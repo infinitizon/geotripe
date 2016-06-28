@@ -1,0 +1,15 @@
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-sm-3 sidenav" style="padding:0; margin:0;">
+            <a href="#/login">Logout</a>
+            <div class="list-group">
+                <a ng-repeat="page in homeCtrl.pages" class="list-group-item side-bar-nav" style="color:#FFF;" ui-sref="patient" ui-sref-active="listActive">{{page.code}}</a>
+            </div>
+            <!--ul class="list-group">
+                <li class="list-group-item" ng-repeat="page in homeCtrl.pages">
+                    <a ui-sref="patient">{{page.code}}</a>
+                </li>
+            </ul-->
+        </div>
+    </div>
+</div>
