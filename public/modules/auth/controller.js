@@ -1,10 +1,9 @@
-angular.module('Authentication')
+angular.module('Auth')
     .controller('LoginController', ['$location', 'AuthenticationService',
         function ($location, AuthenticationService) {
             var vm = this;
             // reset login status
             AuthenticationService.ClearCredentials();
-
             //data = {
             //    "transactionEventType"   : "Query",
             //    "factName": "Patient",
@@ -28,8 +27,8 @@ angular.module('Authentication')
             vm.login = function () {
                 vm.dataLoading = true;
                 AuthenticationService.Login(vm.username, vm.password, function(response) {
-                    if(response.tenantId) {
-                        AuthenticationService.SetCredentials(vm.username, vm.password, response);
+                    if(response.token) {
+                        AuthenticationService.SetCredentials(response.token);
                         $location.path('/home');
                     } else {
                         vm.error = response.message;

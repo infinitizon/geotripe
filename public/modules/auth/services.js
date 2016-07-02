@@ -1,36 +1,35 @@
 'use strict';
+/**
+ * Created by ahassan on 6/10/16.
+ */
 
-angular.module('Authentication')
-
+angular.module('Auth')
     .factory('AuthenticationService',
             ['Base64', '$http', '$cookieStore', '$rootScope', 'DataService',
         function (Base64, $http, $cookieStore, $rootScope, DataService) {
             var service = {};
 
             service.Login = function (username, password, callback) {
-               DataService.post('login').then(function (response) {
+                var data = {
+                    usr:username,
+                    pwd:Base64.encode(password)
+                }
+               DataService.post('login', data).then(function (response) {
                   callback(response);
                });
             };
-            service.SetCredentials = function (username, password, others) {
-                var authdata = Base64.encode(username + ':' + password);
-
+            service.SetCredentials = function (details) {
                 $rootScope.globals = {
                     currentUser: {
-                        username: username,
-                        authdata: authdata,
-                        others:others
+                        userDetails:details
                     }
                 };
-
-                $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
                 $cookieStore.put('globals', $rootScope.globals);
             };
 
             service.ClearCredentials = function () {
                 $rootScope.globals = {};
                 $cookieStore.remove('globals');
-                $http.defaults.headers.common.Authorization = 'Basic ';
             };
 
             return service;
@@ -78,6 +77,4 @@ angular.module('Authentication')
         };
 
         /* jshint ignore:end */
-    });  /**
- * Created by ahassan on 6/10/16.
- */
+    });

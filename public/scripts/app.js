@@ -1,10 +1,10 @@
 //'use strict';
 
 angular.module('Common', []);
-angular.module('Authentication', ['Common']);
+angular.module('Auth', ['Common']);
 angular.module('Home', []);
  
-angular.module('School', ['Authentication', 'Home', 'ui.router', 'ngCookies'])
+angular.module('School', ['Auth', 'Home', 'ui.router', 'ngCookies'])
    .config(['$stateProvider' ,'$httpProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider'
       , function ($stateProvider,$httpProvider, $urlMatcherFactoryProvider, $urlRouterProvider) {
          $urlRouterProvider.otherwise('/login');
