@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="School">
     <head>
-        <title>{{pageTitle}}</title>
+        <title>:: {{pageTitle}} - Geotripe ::</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="scripts/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -13,14 +13,14 @@
     <body>
         <div ui-view></div>
         
-        <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script-->
+        <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script-->
         <script src="scripts/angular.js" type="text/javascript"></script>
         <script src="scripts/angular-ui-router.js" type="text/javascript"></script>
-        <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script-->
+        <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-cookies.js"></script-->
         <script src="scripts/angular-cookies.js" type="text/javascript"></script>
-        <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-animate.min.js"></script-->
+        <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js"></script-->
         <script src="scripts/angular-animate.js" type="text/javascript"></script>
-        <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-touch.min.js"></script-->
+        <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-touch.min.js"></script-->
         <script src="scripts/angular-touch.js" type="text/javascript"></script>
         <script src="scripts/ui-bootstrap-tpls-1.3.3.min.js" type="text/javascript"></script>
         <script src="scripts/app.js" type="text/javascript"></script>

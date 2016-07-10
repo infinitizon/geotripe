@@ -5,8 +5,8 @@ angular.module('Auth', ['Common']);
 angular.module('Home', []);
  
 angular.module('School', ['Auth', 'Home', 'ui.router', 'ngCookies'])
-   .config(['$stateProvider' ,'$httpProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider'
-      , function ($stateProvider,$httpProvider, $urlMatcherFactoryProvider, $urlRouterProvider) {
+   .config(['$stateProvider', '$httpProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider'
+      , function ($stateProvider, $httpProvider, $urlMatcherFactoryProvider, $urlRouterProvider) {
          $urlRouterProvider.otherwise('/login');
          $urlMatcherFactoryProvider.caseInsensitive(true);
 
@@ -30,8 +30,8 @@ angular.module('School', ['Auth', 'Home', 'ui.router', 'ngCookies'])
                controllerAs : 'homeCtrl'
             })
    }])
-   .run(['$rootScope', '$location', '$cookieStore', '$http',
-      function ($rootScope, $location, $cookieStore, $http) {
+   .run(['$rootScope', '$location', '$cookieStore'
+      , function ($rootScope, $location, $cookieStore) {
          // keep user logged in after page refresh
          $rootScope.globals = $cookieStore.get('globals') || {};
          $rootScope.$on('$locationChangeStart', function (event, next, current) {

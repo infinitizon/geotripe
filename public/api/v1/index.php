@@ -6,18 +6,8 @@ $requestUri = $_SERVER['REQUEST_URI']; // <-- "e.g /api/v1/login"
 $physicalPath = str_replace('\\', '', dirname($scriptName)); // <-- "e.g /api/v1"
 $env['PATH_INFO'] = substr_replace($requestUri, '', 0, strlen($physicalPath)); // <--returns "/login"
 
-$data = json_decode(file_get_contents("php://input")); //Get data that is sent to the backend
-/*
- * Include initialization files
- * Useful for test
-    $json = array("tenantId"=>1
-    , '$scriptName' => $scriptName
-    , '$requestUri' => $_SERVER['REQUEST_URI']
-    , 'physicalPath (replaced SCRIPT_NAME)' => $physicalPath
-    , 'PATH_INFO' => $env['PATH_INFO']
-    );
-    echo json_encode($json);
- */
+$data = json_decode(file_get_contents("php://input")); //Get data that is sent to the backend\
+
 include_once "core/init.inc.php";
 $fxns = new Functions($dbo);
 $token=isset($data->token)?$data->token:$token; //Get or Generate token
@@ -30,9 +20,11 @@ if($env['PATH_INFO']==="/login"){
         $qryGivToken = "UPDATE users SET token =:token WHERE email=:email AND password = :password";
         $qryGivToken = $dbo->prepare($qryGivToken);
         $qryGivToken->execute(array(":token"=>$token,":email"=>$data->usr,":password"=>md5(base64_decode($data->pwd))));
+        $response = array("response"=>"Success","token"=>$token);
+    }else{
+        $response = array("response"=>"Failure","message"=>"Username or password is incorrect.");
     }
-    $login = array("token"=>$token);
-    echo json_encode($login);
+    echo json_encode($response);
 }
 
 
