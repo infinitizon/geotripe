@@ -27,9 +27,6 @@ if($env['PATH_INFO']==="/login"){
     echo json_encode($response);
 }
 
+if($env['PATH_INFO']==="/inboundService"){
 
-//$stmt = $dbo->prepare("SELECT 'tenantId', '1' FROM class");
-//$stmt->execute();
-//$result = $stmt->fetch(PDO::FETCH_ASSOC);
-//var_dump($result);
-
+}
