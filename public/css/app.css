@@ -6,8 +6,6 @@
 .loginForm{
     margin-top:6em;
     padding:25px;
-    background: #444;
-    background: rgba(0, 0, 0, 0.3);
     -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;
 }
 .loginForm .form-actions button.btn{
@@ -16,9 +14,13 @@
 .form-top {
     overflow: hidden;
     padding: 0 25px 15px 25px;
+    background: #444;
+    background: rgba(0, 0, 0, 0.3);
 }
 .form-bottom {
     padding: 25px 25px 30px 25px;
+    background: #444;
+    background: rgba(0, 0, 0, 0.3);
 }
 .loginForm_bg {
     position: fixed;
