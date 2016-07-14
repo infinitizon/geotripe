@@ -24,11 +24,19 @@ if($env['PATH_INFO']==="/login"){
         $qryGivToken->execute(array(":token"=>$token,":email"=>$data->usr,":password"=>md5(base64_decode($data->pwd))));
         $response = array("response"=>"Success","token"=>$token);
     }else{
-        $response = array("response"=>"Failure","message"=>"Username or password is incorrect.", );
+        $response = array("response"=>"Failure","message"=>"Username or password is incorrect.");
     }
     echo json_encode($response);
 }
 
-if($env['PATH_INFO']==="/inboundService"){
-
+if($env['PATH_INFO']==="/logout"){
+    try{
+        $qryGivToken = "UPDATE user SET token =null WHERE token=:token";
+        $qryGivToken = $dbo->prepare($qryGivToken);
+        $qryGivToken->execute(array(":token"=>$token));
+        $response = array("response"=>"Success","token"=>"You have been logged out");
+    }catch(Exception $e){
+        $response = array("response"=>"Failure","message"=> $e->getMessage());
+    }
+    echo json_encode($response);
 }

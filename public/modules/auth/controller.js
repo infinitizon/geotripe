@@ -3,7 +3,12 @@ angular.module('Auth')
         function ($location, AuthenticationService) {
             var vm = this;
             // reset login status
-            AuthenticationService.ClearCredentials();
+            AuthenticationService.ClearCredentials(function(response){
+                console.log(response.data.response);
+                if(response.data.response==="Failure"){
+                    $location.path('/home');
+                }
+            });
             //data = {
             //    "transactionEventType"   : "Query",
             //    "factName": "Patient",
