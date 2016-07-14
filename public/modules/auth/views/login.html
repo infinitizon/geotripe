@@ -3,6 +3,10 @@
     <div class="row logo"><img ng-src="/images/logo.png"/> </div>
     <div class="row wrapper">
         <div class="form-top">
+            <div ng-if="loginCtrl.error" class="alert alert-danger">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close" ng-click="loginCtrl.closeNotification()">&times;</a>
+                <strong>Error!</strong> {{loginCtrl.error}}
+            </div>
             <p>
                 <h3><i class="fa fa-3x fa-lock pull-right"></i>Login</h3>
                 Enter your username and password to log on:

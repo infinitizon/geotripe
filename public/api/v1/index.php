@@ -10,7 +10,9 @@ $data = json_decode(file_get_contents("php://input")); //Get data that is sent t
 
 include_once "core/init.inc.php";
 $fxns = new Functions($dbo);
-$token=isset($data->token)?$data->token:$token; //Get or Generate token
+
+$token = isset($data->token)? $data->token : $token; //Get or Generate token
+
 if($env['PATH_INFO']==="/login"){
     $stmtChkUsr = "SELECT * FROM users where email=:email AND password = :password";
     $stmtChkUsr = $dbo->prepare($stmtChkUsr);
@@ -22,7 +24,7 @@ if($env['PATH_INFO']==="/login"){
         $qryGivToken->execute(array(":token"=>$token,":email"=>$data->usr,":password"=>md5(base64_decode($data->pwd))));
         $response = array("response"=>"Success","token"=>$token);
     }else{
-        $response = array("response"=>"Failure","message"=>"Username or password is incorrect.");
+        $response = array("response"=>"Failure","message"=>"Username or password is incorrect.", );
     }
     echo json_encode($response);
 }

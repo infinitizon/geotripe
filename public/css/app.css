@@ -2,34 +2,35 @@
     Created on : Jun 18, 2016, 10:00:43 AM
     Author     : infinitizon
 */
+body{
+    font-family: 'Open Sans', sans-serif;
+}
 /* The following manage the look of the loginform */
 .loginForm{
     margin-top:6em;
+}
+.loginForm .logo {
+    text-align: center;
+    margin-bottom:30px;
+}
+.loginForm .wrapper {
+    overflow: hidden;
     padding:25px;
-    -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
 .loginForm .form-actions button.btn{
-    width: 100%;
+    width: 30%;
 }
-.form-top {
-    overflow: hidden;
-    padding: 0 25px 15px 25px;
-    background: #444;
-    background: rgba(0, 0, 0, 0.3);
+.loginForm input{
+    font-size:0.9em; padding:0;
+    border:none; border-radius: 0;
+    border-bottom:1px solid #CCC;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
-.form-bottom {
-    padding: 25px 25px 30px 25px;
-    background: #444;
-    background: rgba(0, 0, 0, 0.3);
-}
-.loginForm_bg {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-size: cover;
-    background-position: 50% 50%;
-    background-image: url('http://cleancanvas.herokuapp.com/img/backgrounds/color-splash.jpg');
-    background-repeat:repeat;
+.loginForm input:focus{
+     box-shadow: none;
 }

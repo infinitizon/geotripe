@@ -27,13 +27,16 @@ angular.module('Auth')
             vm.login = function () {
                 vm.dataLoading = true;
                 AuthenticationService.Login(vm.username, vm.password, function(response) {
-                    if(response.token) {
-                        AuthenticationService.SetCredentials(response.token);
+                    if(response.data.token) {
+                        AuthenticationService.SetCredentials(response.data.token);
                         $location.path('/home');
                     } else {
-                        vm.error = response.message;
+                        vm.error = response.data.message;
                         vm.dataLoading = false;
                     }
                 });
+            };
+            vm.closeNotification = function () {
+                vm.error = null;
             };
         }])
