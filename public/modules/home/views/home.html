@@ -4,7 +4,7 @@
             <a ui-sref="login">Logout</a>
             <div class="list-group">
                 <a ng-repeat="page in homeCtrl.pages" class="list-group-item side-bar-nav"
-                   style="color:#FFF;" ui-sref="patient" ui-sref-active="listActive">{{page.code}}</a>
+                   ui-sref="{{page.viewpath}}" ui-sref-active="listActive">{{page.name}}</a>
             </div>
             <!--ul class="list-group">
                 <li class="list-group-item" ng-repeat="page in homeCtrl.pages">

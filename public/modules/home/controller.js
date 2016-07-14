@@ -3,5 +3,5 @@ angular.module('Home', [])
         function ($location, $rootScope) {
             var vm = this;
             // reset login status
-            vm.pages = $rootScope.globals.currentUser;
+            vm.pages = $rootScope.globals.currentUser.userDetails.authViews;
         }])

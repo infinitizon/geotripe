@@ -33,7 +33,7 @@ angular.module('Auth')
                 vm.dataLoading = true;
                 AuthenticationService.Login(vm.username, vm.password, function(response) {
                     if(response.data.token) {
-                        AuthenticationService.SetCredentials(response.data.token);
+                        AuthenticationService.SetCredentials(response.data);
                         $location.path('/home');
                     } else {
                         vm.error = response.data.message;

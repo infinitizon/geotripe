@@ -14,7 +14,9 @@ $fxns = new Functions($dbo);
 $token = isset($data->token)? $data->token : $token; //Get or Generate token
 
 if($env['PATH_INFO']==="/login"){
-    $stmtChkUsr = "SELECT * FROM users where email=:email AND password = :password";
+    $stmtChkUsr = "SELECT u.user_id, u.firstname, u.middlename, u.lastname, u.username, u.email
+                    FROM users u
+                    where u.email=:email AND u.password = :password AND u.enabled=1 and u.accountlocked<>1 ";
     $stmtChkUsr = $dbo->prepare($stmtChkUsr);
     $stmtChkUsr->execute(array(":email"=>$data->usr,":password"=>md5(base64_decode($data->pwd))));
     $user = $stmtChkUsr->fetchAll(PDO::FETCH_ASSOC);
@@ -22,7 +24,14 @@ if($env['PATH_INFO']==="/login"){
         $qryGivToken = "UPDATE users SET token =:token WHERE email=:email AND password = :password";
         $qryGivToken = $dbo->prepare($qryGivToken);
         $qryGivToken->execute(array(":token"=>$token,":email"=>$data->usr,":password"=>md5(base64_decode($data->pwd))));
-        $response = array("response"=>"Success","token"=>$token);
+
+        $q_getViews = "select av.name, av.viewpath, av.description from user_authview ua
+                        join authview av
+                        on ua.authview_authview_id=av.authview_id
+                        where ua.ius_yn=1";
+        $r_GivToken = $dbo->prepare($q_getViews);
+        $r_GivToken->execute();
+        $response = array("response"=>"Success","token"=>$token, "authDetails"=>$user[0], "authViews"=>$r_GivToken->fetchAll(PDO::FETCH_ASSOC));
     }else{
         $response = array("response"=>"Failure","message"=>"Username or password is incorrect.");
     }
@@ -31,7 +40,7 @@ if($env['PATH_INFO']==="/login"){
 
 if($env['PATH_INFO']==="/logout"){
     try{
-        $qryGivToken = "UPDATE user SET token =null WHERE token=:token";
+        $qryGivToken = "UPDATE users SET token =null WHERE token=:token";
         $qryGivToken = $dbo->prepare($qryGivToken);
         $qryGivToken->execute(array(":token"=>$token));
         $response = array("response"=>"Success","token"=>"You have been logged out");

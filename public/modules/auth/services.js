@@ -31,7 +31,7 @@ angular.module('Auth')
             service.ClearCredentials = function (callback) {
                 if($cookieStore.get('globals')) {
                     var data = {
-                        token:$cookieStore.get('globals').currentUser.userDetails
+                        token:$cookieStore.get('globals').currentUser.userDetails.token
                     }
                     DataService.post('logout', data).then(function (response) {
                         callback(response);
