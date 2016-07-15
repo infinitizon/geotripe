@@ -1,16 +1,26 @@
-<div class="container-fluid">
-    <div class="row content">
-        <div class="col-sm-3 sidenav" style="padding:0; margin:0;">
-            <a ui-sref="login">Logout</a>
-            <div class="list-group">
-                <a ng-repeat="page in homeCtrl.pages" class="list-group-item side-bar-nav"
-                   ui-sref="{{page.viewpath}}" ui-sref-active="listActive">{{page.name}}</a>
-            </div>
-            <!--ul class="list-group">
-                <li class="list-group-item" ng-repeat="page in homeCtrl.pages">
-                    <a ui-sref="patient">{{page.code}}</a>
-                </li>
-            </ul-->
+<div class="global-content container-fluid">
+    <div class="row global-header">
+        <div class="pull-right">
+            <input type="text" placeholder="Search..." />&nbsp;&nbsp;&nbsp;{{$root.globals.currentUser.userDetails.authDetails.firstname}}
         </div>
+        <div class="col-sm-3 logo-holder"><img ng-src="/images/logo.png" width="100"> </div>
+    </div>
+    <div class="row global-container">
+        <div class="col-sm-3 global-sidenav">
+            <div class="nav-list-group">
+                <a ng-repeat="page in homeCtrl.pages" class="list-group-item side-bar-nav"
+                   ui-sref="{{page.viewpath}}" ui-sref-active="navActive"><i class="fa fa-2x {{page.css_class}}"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{page.name}}</a>
+                <uib-accordion>
+                    <uib-accordion-group ng-repeat="page in homeCtrl.pages" panel-class="panel-danger">
+                        <uib-accordion-heading>
+                            <i class="fa fa-2x {{page.css_class}}"></i>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{page.name}}
+                        </uib-accordion-heading>
+                        This is just some content to illustrate fancy headings.
+                    </uib-accordion-group>
+                </uib-accordion>
+            </div>
+
+        </div>
+        <div class="col-sm-9 global-main-content"></div>
     </div>
 </div>

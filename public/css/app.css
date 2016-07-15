@@ -34,3 +34,49 @@ body{
 .loginForm input:focus{
      box-shadow: none;
 }
+/* End: loginform */
+
+/*** This is for the home screen
+.logo-holder:after{
+    content: "";
+    position: absolute;
+    right: -2px;
+    top: -13px;
+    width: 0;height: 0;
+    border-top: 40px solid transparent;
+    border-left: 10px solid #997F53;
+    border-bottom: 40px solid transparent;
+}
+**/
+.row.global-container {height: 1500px}
+
+.global-header{
+    background: #BF9F68;
+    padding: 1em; height: 80px;
+}
+.global-sidenav{
+    background: #19282F;
+    height: 100%;
+    padding:0; margin:0;
+}
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+    .sidenav {
+        height: auto;
+        padding: 15px;
+    }
+    .row.content {height: auto;}
+}
+.nav-list-group{padding:3em;}
+a.side-bar-nav.navActive{
+    border-left:4px solid #25CCF8;
+    color:#FFFFFF;
+}
+a.side-bar-nav{
+    color:#727A7E; background-color: #19282F;
+    border:none; border-radius:0;
+    text-transform:capitalize;
+    width:100%;
+    padding-left:2em;
+}
+a.side-bar-nav:hover{background:#19282F; color:#FFFFFF; border-left:4px solid #25CCF8;}

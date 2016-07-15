@@ -4,7 +4,7 @@ angular.module('Common', []);
 angular.module('Auth', ['Common']);
 angular.module('Home', []);
  
-angular.module('School', ['Auth', 'Home', 'ui.router', 'ngCookies'])
+angular.module('School', ['Auth', 'Home', 'ui.router', 'ngCookies', 'ui.bootstrap'])
    .config(['$stateProvider', '$httpProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider'
       , function ($stateProvider, $httpProvider, $urlMatcherFactoryProvider, $urlRouterProvider) {
          $urlRouterProvider.otherwise('/login');

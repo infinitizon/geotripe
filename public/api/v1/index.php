@@ -16,7 +16,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
 if($env['PATH_INFO']==="/login"){
     $stmtChkUsr = "SELECT u.user_id, u.firstname, u.middlename, u.lastname, u.username, u.email
                     FROM users u
-                    where u.email=:email AND u.password = :password AND u.enabled=1 and u.accountlocked<>1 ";
+                    WHERE u.email=:email AND u.password = :password AND u.enabled=1 and u.accountlocked<>1 ";
     $stmtChkUsr = $dbo->prepare($stmtChkUsr);
     $stmtChkUsr->execute(array(":email"=>$data->usr,":password"=>md5(base64_decode($data->pwd))));
     $user = $stmtChkUsr->fetchAll(PDO::FETCH_ASSOC);
@@ -25,10 +25,10 @@ if($env['PATH_INFO']==="/login"){
         $qryGivToken = $dbo->prepare($qryGivToken);
         $qryGivToken->execute(array(":token"=>$token,":email"=>$data->usr,":password"=>md5(base64_decode($data->pwd))));
 
-        $q_getViews = "select av.name, av.viewpath, av.description from user_authview ua
-                        join authview av
-                        on ua.authview_authview_id=av.authview_id
-                        where ua.ius_yn=1";
+        $q_getViews = "SELECT av.name, av.parent_id, av.viewpath, av.description, av.css_class FROM user_authview ua
+                        JOIN authview av
+                        ON ua.authview_authview_id=av.authview_id
+                        WHERE ua.ius_yn=1";
         $r_GivToken = $dbo->prepare($q_getViews);
         $r_GivToken->execute();
         $response = array("response"=>"Success","token"=>$token, "authDetails"=>$user[0], "authViews"=>$r_GivToken->fetchAll(PDO::FETCH_ASSOC));
