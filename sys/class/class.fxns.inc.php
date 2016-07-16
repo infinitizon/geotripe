@@ -321,23 +321,48 @@ class Functions extends DB_Connect {
      * Function that generates a dynamic menu for website
      */
 
-    public function _buildMenu($parent, $menu, $classNm = "main_nav") {
+    public function _buildMenu($parent, $menu, $options=array('classNm' => "main_nav", 'method'=>"json")) {
         $html = "";
         if (isset($menu['parents'][$parent])) {
-            $html .= ($parent == 0 && $classNm == "main_nav") ? "<ul class=\"$classNm\">\n" : "<ul>\n";
-            foreach ($menu['parents'][$parent] as $itemId) {
-                if (!isset($menu['parents'][$itemId])) {
-                    $html .= "<li>\n <a href='" . $menu['items'][$itemId]['page_url'] . "'>" . $menu['items'][$itemId]['page_label'] . "</a>\n</li> \n";
+            if($options['method']=="json"){
+                $html .= ($parent == 0) ? "[" : "";
+                foreach ($menu['parents'][$parent] as $itemId) {
+                    if(!isset($menu['parents'][$itemId])) {
+                        $html .= '{';
+                        $html .= '"authview_id":"'.$menu['items'][$itemId]['authview_id'].'",';
+                        $html .= '"name":"'.$menu['items'][$itemId]['name'].'",';
+                        $html .= '"viewpath":"'.$menu['items'][$itemId]['viewpath'].'",';
+                        $html .= '"css_class":"'.$menu['items'][$itemId]['css_class'].'"';
+                        $html .= '},';
+                    }
+                    if(isset($menu['parents'][$itemId])) {
+                        $html .= "{";
+                        $html .= '"authview_id":"'.$menu['items'][$itemId]['authview_id'].'",';
+                        $html .= '"name":"'.$menu['items'][$itemId]['name'].'",';
+                        $html .= '"viewpath":"'.$menu['items'][$itemId]['viewpath'].'",';
+                        $html .= '"css_class":"'.$menu['items'][$itemId]['css_class'].'",';
+                        $html .= '"child":['.$this->_buildMenu($itemId, $menu, $options);
+                        $html .= "]},";
+                    }
                 }
-                if (isset($menu['parents'][$itemId])) {
-                    $html .= "<li>\n <a href='" . $menu['items'][$itemId]['page_url'] . "'>"
+                $html = (substr($html, -2)=='},') ? substr_replace($html ,"}",-2) : "";
+                $html .= ($parent == 0) ? "]" : "";
+            }else {
+                $html .= ($parent == 0 && $options['classNm'] == "main_nav") ? "<ul class=\"{$options['classNm']}\">\n" : "<ul>\n";
+                foreach ($menu['parents'][$parent] as $itemId) {
+                    if (!isset($menu['parents'][$itemId])) {
+                        $html .= "<li>\n <a href='" . $menu['items'][$itemId]['page_url'] . "'>" . $menu['items'][$itemId]['page_label'] . "</a>\n</li> \n";
+                    }
+                    if (isset($menu['parents'][$itemId])) {
+                        $html .= "<li>\n <a href='" . $menu['items'][$itemId]['page_url'] . "'>"
                             . (($parent == 0) ? "<span style=\"float:right;\">&nbsp;&nbsp; &#9661;</span>" : "<span style=\"float:right;\">&#9655;</span>")
                             . $menu['items'][$itemId]['page_label'] . "</a> \n";
-                    $html .= $this->_buildMenu($itemId, $menu, $classNm);
-                    $html .= "</li> \n";
+                        $html .= $this->_buildMenu($itemId, $menu, $options);
+                        $html .= "</li> \n";
+                    }
                 }
+                $html .= "</ul> \n";
             }
-            $html .= "</ul> \n";
         }
         return $html;
     }

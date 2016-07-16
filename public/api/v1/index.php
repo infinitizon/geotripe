@@ -25,13 +25,23 @@ if($env['PATH_INFO']==="/login"){
         $qryGivToken = $dbo->prepare($qryGivToken);
         $qryGivToken->execute(array(":token"=>$token,":email"=>$data->usr,":password"=>md5(base64_decode($data->pwd))));
 
-        $q_getViews = "SELECT av.name, av.parent_id, av.viewpath, av.description, av.css_class FROM user_authview ua
+        $r_getViews = $dbo->query("SELECT av.authview_id, av.name, av.parent_id, av.viewpath, av.description, av.css_class
+                          FROM user_authview ua
                         JOIN authview av
-                        ON ua.authview_authview_id=av.authview_id
-                        WHERE ua.ius_yn=1";
-        $r_GivToken = $dbo->prepare($q_getViews);
-        $r_GivToken->execute();
-        $response = array("response"=>"Success","token"=>$token, "authDetails"=>$user[0], "authViews"=>$r_GivToken->fetchAll(PDO::FETCH_ASSOC));
+                          ON ua.authview_authview_id=av.authview_id
+                        WHERE ua.ius_yn=1");
+        // Create a multidimensional array to conatin a list of items and parents
+        $menu = array( 'items' => array(),  'parents' => array() );
+        // Builds the array lists with data from the menu table
+        while ($items = $r_getViews->fetch(PDO::FETCH_ASSOC)){
+            $menu['items'][$items['authview_id']] = $items;
+            $menu['parents'][$items['parent_id']][] = $items['authview_id'];
+
+        }
+        $authViews = json_decode( $fxns->_buildMenu(0, $menu, array('method'=>"json")) );
+        $response = array("response"=>"Success","token"=>$token
+                        , "authDetails"=>$user[0]
+                        , "authViews"=>$authViews);
     }else{
         $response = array("response"=>"Failure","message"=>"Username or password is incorrect.");
     }

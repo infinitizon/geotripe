@@ -22,7 +22,8 @@
             list-style: none;
         }
         ul.main-menu li a{
-            display: block; text-decoration: none;
+            display: block;
+            text-decoration: none;
         }
         ul.main-menu {
             font-family: Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -62,13 +63,14 @@
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc002c', endColorstr='#6d0019',GradientType=0 ); /* IE6-9 */
         }
         ul.main-menu > li >ul{
+            position: relative;
             background: #fff;
             font-size: 13px;
             line-height: 30px;
             height: 0px; /*Collapses the menu*/
             list-style-type: none;
-            overflow: hidden;
             padding: 0px;
+            overflow: hidden;
             /*Animation*/
             -webkit-transition: height 1s ease;
             -moz-transition: height 1s ease;
@@ -76,16 +78,20 @@
             -ms-transition: height 1s ease;
             transition: height 1s ease;
         }
+        ul.main-menu > li:hover >ul{
+            height: auto; /*Collapses the menu*/
+            overflow:inherit;
+        }
         ul.main-menu > li > ul ul{
             display: none;
         }
         ul.main-menu > li > ul li:hover ul{
             display: block;
             position: absolute;
-            left: 200px; top:0;
+            left: 100%; top:0;
         }
-        ul.main-menu > li:hover >ul{
-            height: 93px; /*Collapses the menu*/
+        ul.main-menu > li > ul  li a{
+            width: 200px; background: #FFF;
         }
     </style>
 </head>

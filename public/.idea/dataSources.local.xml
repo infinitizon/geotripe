@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="MySQL - geotripe@localhost" uuid="074b0dc1-08e4-4b51-aa48-e923c883787e">
+    <data-source name="MySQL - geotripe@localhost" uuid="71b20715-b075-4e0a-b33c-414a5ca160db">
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
+      <schema-pattern>geotripe.*</schema-pattern>
+      <default-schemas>geotripe.*</default-schemas>
     </data-source>
   </component>
 </project>

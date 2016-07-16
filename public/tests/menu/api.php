@@ -13,7 +13,7 @@ while ($items = $result->fetch(PDO::FETCH_ASSOC)){
     $menu['parents'][$items['parent_id']][] = $items['authview_id'];
 
 }
-echo _buildMenu(0, $menu) ;
+echo ``
 function _buildMenu($parent, $menu) {
     $html = "";
     if (isset($menu['parents'][$parent])) {

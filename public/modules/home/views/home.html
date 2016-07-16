@@ -3,24 +3,27 @@
         <div class="pull-right">
             <input type="text" placeholder="Search..." />&nbsp;&nbsp;&nbsp;{{$root.globals.currentUser.userDetails.authDetails.firstname}}
         </div>
-        <div class="col-sm-3 logo-holder"><img ng-src="/images/logo.png" width="100"> </div>
     </div>
     <div class="row global-container">
         <div class="col-sm-3 global-sidenav">
             <div class="nav-list-group">
                 <a ng-repeat="page in homeCtrl.pages" class="list-group-item side-bar-nav"
                    ui-sref="{{page.viewpath}}" ui-sref-active="navActive"><i class="fa fa-2x {{page.css_class}}"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{page.name}}</a>
-                <uib-accordion>
-                    <uib-accordion-group ng-repeat="page in homeCtrl.pages" panel-class="panel-danger">
-                        <uib-accordion-heading>
-                            <i class="fa fa-2x {{page.css_class}}"></i>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{page.name}}
-                        </uib-accordion-heading>
-                        This is just some content to illustrate fancy headings.
-                    </uib-accordion-group>
-                </uib-accordion>
+                <ul class="main-menu">
+                    <li ng-repeat="menu in homeCtrl.pages" ng-include="'menuTree'"></li>
+                </ul>
             </div>
 
         </div>
         <div class="col-sm-9 global-main-content"></div>
     </div>
 </div>
+<script type="text/ng-template" id="menuTree">
+    <a ui-sref="{{ menu.viewpath }}">
+        <i class="fa fa-2x {{menu.css_class}}"></i>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ menu.name }}
+    </a>
+    <ul ng-if="menu.child">
+        <li ng-repeat="menu in menu.child" ng-include="'menuTree'">
+        </li>
+    </ul>
+</script>
