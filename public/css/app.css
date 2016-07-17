@@ -4,6 +4,7 @@
 */
 body{
     font-family: 'Open Sans', sans-serif;
+    background: #EFF2F5;
 }
 /* The following manage the look of the loginform */
 .loginForm{
@@ -67,16 +68,68 @@ body{
     }
     .row.content {height: auto;}
 }
-.nav-list-group{padding:3em;}
+/** .nav-list-group{padding:3em;} */
+ul.main-menu, ul.main-menu ul, ul.main-menu li{
+    margin:0;padding:0;list-style: none;
+}
 a.side-bar-nav.navActive{
     border-left:4px solid #25CCF8;
     color:#FFFFFF;
 }
 a.side-bar-nav{
-    color:#727A7E; background-color: #19282F;
-    border:none; border-radius:0;
+    color:#8c8c8c; background-color: #2f4358;
+    border-bottom:1px solid #19282F; border-radius:0;
     text-transform:capitalize;
+    text-decoration: none;
     width:100%;
-    padding-left:2em;
+    min-width: 250px;
+    padding:0.7em 2em;
+    display: block;
 }
 a.side-bar-nav:hover{background:#19282F; color:#FFFFFF; border-left:4px solid #25CCF8;}
+ul.main-menu li > a:after { margin-left: 5px; content: '\25B8'; float: right;}
+ul.main-menu > li > a:after { margin-left: 5px; content: '\25BE';  float: right; }
+ul.main-menu li > a:only-child:after { margin-left: 0; content: ''; }
+ul.main-menu > li > ul{
+    position: relative;
+    background: #fff;
+    font-size: 13px;
+    line-height: 30px;
+    height: 0px; /*Collapses the menu*/
+    list-style-type: none;
+    padding: 0px; margin-left:1em;
+    overflow: hidden;
+    /*Animation*/
+    -webkit-transition: height 1s ease;
+    -moz-transition: height 1s ease;
+    -o-transition: height 1s ease;
+    -ms-transition: height 1s ease;
+    transition: height 1s ease;
+}
+ul.main-menu > li:hover >ul{
+    height: auto; /*Collapses the menu*/
+    overflow:inherit;
+}
+ul.main-menu > li ul a{
+    background-color: #546a83;
+}ul.main-menu > li > ul ul{
+     display: none;
+ }
+ul.main-menu > li > ul li:hover > ul{
+    display: block;
+    position: absolute;
+    left: 100%; top:0;
+}
+
+.global-main-content{
+    background: #FFFFFF;
+    min-height: 100%;
+}
+.card{
+    margin:20px 10px 10px 10px ;
+    border:1px solid #CCC;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+    cursor: pointer;
+}

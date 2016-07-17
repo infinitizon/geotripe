@@ -3,8 +3,9 @@
 angular.module('Common', []);
 angular.module('Auth', ['Common']);
 angular.module('Home', []);
+angular.module('Setup', ['Common']);
  
-angular.module('School', ['Auth', 'Home', 'ui.router', 'ngCookies', 'ui.bootstrap'])
+angular.module('School', ['Auth', 'Home','Setup', 'ui.router', 'ngCookies', 'ui.bootstrap'])
    .config(['$stateProvider', '$httpProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider'
       , function ($stateProvider, $httpProvider, $urlMatcherFactoryProvider, $urlRouterProvider) {
          $urlRouterProvider.otherwise('/login');
@@ -23,12 +24,22 @@ angular.module('School', ['Auth', 'Home', 'ui.router', 'ngCookies', 'ui.bootstra
                 controller: 'LoginController',
                 controllerAs : 'loginCtrl'
             })
-            .state('home', {
-               url:'/home',
-               templateUrl: 'modules/home/views/home.html',
-               controller: 'HomeController',
-               controllerAs : 'homeCtrl'
-            })
+             .state('home', {
+                 url:'/home',
+                 templateUrl: 'modules/home/views/home.html',
+                 controller: 'HomeController',
+                 controllerAs : 'homeCtrl'
+             })
+             .state('home.setup', {
+                 url:'/setup',
+                 views: {
+                     'app_pages': {
+                         templateUrl: 'modules/setup/views/setup.html',
+                         controller: 'SetupController',
+                         controllerAs : 'setupCtrl'
+                     }
+                 }
+             })
    }])
    .run(['$rootScope', '$location', '$cookieStore'
       , function ($rootScope, $location, $cookieStore) {

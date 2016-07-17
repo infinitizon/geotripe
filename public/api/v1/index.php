@@ -12,7 +12,6 @@ include_once "core/init.inc.php";
 $fxns = new Functions($dbo);
 
 $token = isset($data->token)? $data->token : $token; //Get or Generate token
-
 if($env['PATH_INFO']==="/login"){
     $stmtChkUsr = "SELECT u.user_id, u.firstname, u.middlename, u.lastname, u.username, u.email
                     FROM users u
@@ -44,6 +43,28 @@ if($env['PATH_INFO']==="/login"){
                         , "authViews"=>$authViews);
     }else{
         $response = array("response"=>"Failure","message"=>"Username or password is incorrect.");
+    }
+    echo json_encode($response);
+}
+
+if($env['PATH_INFO']==="/inboundService") {
+    if($data->transactionEventType == "Query"){
+        $responseData = explode("&",$data->transactionMetaData->responseDataProperties);
+        $q_str = "SELECT ";
+        foreach($responseData as $field){
+            $q_str.=$field.",";
+        }
+        $q_str = substr($q_str, 0, -1) . " FROM ". $data->factName;
+
+        $r_obj = $dbo->prepare($q_str);
+        $r_obj->execute(array());
+//        $stmtChkUsr->execute(array(":email"=>$data->usr,":password"=>md5(base64_decode($data->pwd))));
+//        $q_response=array();
+//        $r_obj = $dbo->query($q_str);
+        while ($items = $r_obj->fetch(PDO::FETCH_ASSOC)){
+            $q_response[]=$items;
+        }
+        $response = array("response"=>"Success","token"=>$data->token, "data"=>$q_response);
     }
     echo json_encode($response);
 }

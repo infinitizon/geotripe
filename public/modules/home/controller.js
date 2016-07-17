@@ -1,4 +1,4 @@
-angular.module('Home', [])
+angular.module('Home')
     .controller('HomeController', ['$location', '$rootScope',
         function ($location, $rootScope) {
             var vm = this;

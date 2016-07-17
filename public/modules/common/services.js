@@ -25,4 +25,27 @@ angular.module('Common')
 
                    return service;
                }])
-         .value('RemoteServiceBase','api/v1/');
+    .value('RemoteServiceBase','api/v1/')
+    .factory('postData',function(){
+        return {
+                data : {
+                    "transactionEventType"   : "Query",
+                    "factName": "Party",
+                    "transactionMetaData" :{
+                        "currentLocale" : "NG",
+                        "currentRole"	: "SUPPORT_ADMIN",
+                        "firstResult"       : "0",
+                        "maxResults"    : "30",
+                        "queryStore"     : "MySql",
+                        "responseDataProperties" : "",
+                        "sortingProperties"     : "",
+                        "queryMetaData" : {
+                            "queryClause":{
+                                "andExpression":{},
+                                "orExpression":{}
+                            }
+                        }
+                    }
+                }
+        }
+});
