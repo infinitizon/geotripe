@@ -1,0 +1,11 @@
+<div class="modal-header">
+    <h3 class="modal-title"><div class="pull-right"><a>+ Add new</a></div>User!</h3>
+    <div class="modal-body">
+        <div class="row alert" ng-class="{'alert-success': (UsrCtrl.result=='Success'), 'alert-danger': (UsrCtrl.result=='Failure')}" ng-if="UsrCtrl.result">{{UsrCtrl.message}}</div>
+        Got User!
+    </div>
+    <div class="modal-footer">
+        <!--<button class="btn btn-primary" type="button" ng-click="PartyCtrl.ok()">OK</button>-->
+        <button class="btn btn-warning" type="button" ng-click="UsrCtrl.cancel()">Close window</button>
+    </div>
+</div>

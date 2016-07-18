@@ -26,6 +26,7 @@
         <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-touch.min.js"></script-->
         <script src="scripts/angular-touch.js" type="text/javascript"></script>
         <script src="scripts/ui-bootstrap-tpls-1.3.3.min.js" type="text/javascript"></script>
+        <script src="scripts/dirPagination.js" type="text/javascript"></script>
         <script src="scripts/app.js" type="text/javascript"></script>
         <script src="modules/common/services.js" type="text/javascript"></script>
         <script src="modules/auth/controller.js" type="text/javascript"></script>

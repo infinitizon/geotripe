@@ -48,25 +48,84 @@ if($env['PATH_INFO']==="/login"){
 }
 
 if($env['PATH_INFO']==="/inboundService") {
-    if($data->transactionEventType == "Query"){
-        $responseData = explode("&",$data->transactionMetaData->responseDataProperties);
-        $q_str = "SELECT ";
-        foreach($responseData as $field){
-            $q_str.=$field.",";
+    try {
+        if(isset($data->transactionEventType)){
+            $q_fields = $dbo->query("DESCRIBE {$data->factName}");
+            $r_fields = $q_fields->fetchAll(PDO::FETCH_ASSOC);
+            foreach($r_fields as $fields){
+                if($fields['Key'] == 'PRI'){
+                    $priKy = $fields['Field'];
+                }
+            }
         }
-        $q_str = substr($q_str, 0, -1) . " FROM ". $data->factName;
+        if($data->transactionEventType == "Query") {
+            $responseData = explode("&", $data->transactionMetaData->responseDataProperties);
+            $q_str = "SELECT ";
+            foreach ($responseData as $field) {
+                $q_str .= $field . ",";
+            }
+            $q_str = substr($q_str, 0, -1) . " FROM " . $data->factName;
 
-        $r_obj = $dbo->prepare($q_str);
-        $r_obj->execute(array());
-//        $stmtChkUsr->execute(array(":email"=>$data->usr,":password"=>md5(base64_decode($data->pwd))));
-//        $q_response=array();
-//        $r_obj = $dbo->query($q_str);
-        while ($items = $r_obj->fetch(PDO::FETCH_ASSOC)){
-            $q_response[]=$items;
+            if (!empty($data->transactionMetaData->queryMetaData->queryClause->andExpression)) {
+                $q_str .= " WHERE ";
+                foreach ($data->transactionMetaData->queryMetaData->queryClause->andExpression as $field) {
+                    $q_str .= $field->propertyName . " " . $field->operatorType . " " . $field->propertyValue . " AND";
+                }
+                $q_str = $fxns->_subStrAtDel($q_str, ' AND');
+            }
+            $q_str_tot_count = $dbo->query("SELECT COUNT(*) as `count` FROM (" . $q_str . ") t");
+            $r_str_tot_count = $q_str_tot_count->fetch(PDO::FETCH_ASSOC);
+
+            if (!empty($data->transactionMetaData->pageno) ) {
+                $start = $data->transactionMetaData->pageno * $data->transactionMetaData->itemsPerPage;
+                $q_str .= " LIMIT {$start},{$data->transactionMetaData->itemsPerPage}";
+            }
+//            echo $q_str;
+            $r_obj = $dbo->prepare($q_str);
+            $r_obj->execute(array());
+            while ($items = $r_obj->fetch(PDO::FETCH_ASSOC)){
+                $q_response[]=$items;
+            }
+            $response = array("response"=>"Success","token"=>$data->token, "total_count"=>$r_str_tot_count['count'], "data"=>$q_response);
         }
-        $response = array("response"=>"Success","token"=>$data->token, "data"=>$q_response);
+        if($data->transactionEventType == "Update"){
+            $q_str = "UPDATE {$data->factName} SET ";
+            foreach($r_fields as $fields) {
+                $fieldNm =strtolower( $fields['Field']);
+                if (@$data->factObjects[0]->$fieldNm) {
+                    $q_str .= "{$fields['Field']} = '{$data->factObjects[0]->$fieldNm}'";
+                }
+            }
+            $q_str .= " WHERE $priKy={$data->factObjects[0]->id}";
+                $r_str = $dbo->prepare($q_str);
+                $r_str->execute();
+                $response = array("response"=>"Success","message"=>"Record Updated Successfully","token"=>$data->token);
+        }
+        if($data->transactionEventType == "PUT"){
+            $q_str = "INSERT INTO {$data->factName} ";
+
+            $ins_fields = " (";
+            $ins_values = " VALUES (";
+            foreach($r_fields as $fields) {
+                $fieldNm =strtolower( $fields['Field']);
+                if (@$data->factObjects[0]->$fieldNm) {
+                    @$ins_fields .= " {$fields['Field']} ,";
+                    @$ins_values .= " '{$data->factObjects[0]->$fieldNm}',";
+                }
+            }
+            $ins_fields =  $fxns->_subStrAtDel($ins_fields, ' ,');
+            $ins_values =  $fxns->_subStrAtDel($ins_values, "',");
+            $q_str .= $ins_fields.") ".$ins_values.")";
+
+            $r_str = $dbo->prepare($q_str);
+            $r_str->execute();
+            $response = array("response"=>"Success","message"=>"Record Saved Successfully","token"=>$data->token);
+        }
+    }catch(Exception $e){
+        $response = array("response"=>"Failure","message"=>$e->getMessage(),"token"=>$data->token);
     }
     echo json_encode($response);
+//    var_dump($response);
 }
 
 if($env['PATH_INFO']==="/logout"){
