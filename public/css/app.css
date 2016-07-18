@@ -4,7 +4,6 @@
 */
 body{
     font-family: 'Open Sans', sans-serif;
-    background: #EFF2F5;
 }
 /* The following manage the look of the loginform */
 .loginForm{
@@ -133,4 +132,3 @@ ul.main-menu > li > ul li:hover > ul{
     border-radius:5px;
     cursor: pointer;
 }
-div.PartyDetail{}

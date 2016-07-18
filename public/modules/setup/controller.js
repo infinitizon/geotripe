@@ -62,7 +62,7 @@ angular.module('Setup')
                 vm.edit=true;
                 var data=angular.copy(CommonServices.postData);
                 if(partyId) {
-                    data.transactionMetaData.responseDataProperties = 'party_id&party_partytype_id&addressline1&addressline2&addresscity&name';
+                    data.transactionMetaData.responseDataProperties = 'party_id&party_partytype_id&addressline1&addressline2&addresscity&name&party_country_id&party_state_id';
                     data.transactionMetaData.queryMetaData.queryClause.andExpression = [
                         {
                             "propertyName": "party_id",
@@ -84,14 +84,18 @@ angular.module('Setup')
                     vm.party.addresscity = null;
                     vm.party.name = null;
                 }
-                options={
-                    "factName":'Country',
-                    "responseDataProperties" : "country_id&name&countrycode"
-                }
-                CommonServices.getLOVs(options).success(function(response){
-                    vm.countries = response;
-                });
             };
+            options={
+                "factName":'Country',
+                "responseDataProperties" : "country_id&name",
+                "pageno" : null,
+                "itemsPerPage" : null
+            }
+
+            CommonServices.getLOVs(options).then(function(response){
+                vm.countries = response.data.data;
+            });
+
             vm.saveParty = function(){
                 vm.dataLoading = true;
                 var data=angular.copy(CommonServices.postData);

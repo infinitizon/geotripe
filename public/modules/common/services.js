@@ -38,6 +38,17 @@ angular.module('Common')
                 }
                 return diff;
             };
+            Service.getLOVs = function(options){
+                data=angular.copy(this.postData);
+                data.factName = options.factName;
+                data.transactionMetaData.responseDataProperties = options.responseDataProperties;
+                data.transactionMetaData.pageno = options.pageno;
+                data.transactionMetaData.itemsPerPage = options.itemsPerPage;
+
+                return DataService.post('inboundService', data).then(function(results) {
+                    return results ;
+                });
+            }
             Service.postData = {
                 "transactionEventType"   : "Query",
                 "factName": "Party",
@@ -57,15 +68,5 @@ angular.module('Common')
                     }
                 }
             };
-            Service.getLOVs = function(options){
-                data=angular.copy(this.postData);
-                data.factName = options.factName;
-                data.transactionMetaData.responseDataProperties = options.responseDataProperties;
-
-                console.log(data)
-                $http.post('api/v1/inboundService', data).success(function(results) {
-                    console.log( results );
-                });
-            }
             return Service;
     }])
