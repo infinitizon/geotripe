@@ -76,11 +76,10 @@ if($env['PATH_INFO']==="/inboundService") {
             $q_str_tot_count = $dbo->query("SELECT COUNT(*) as `count` FROM (" . $q_str . ") t");
             $r_str_tot_count = $q_str_tot_count->fetch(PDO::FETCH_ASSOC);
 
-            if (!empty($data->transactionMetaData->pageno) ) {
+            if (!is_null($data->transactionMetaData->pageno) ) {
                 $start = $data->transactionMetaData->pageno * $data->transactionMetaData->itemsPerPage;
                 $q_str .= " LIMIT {$start},{$data->transactionMetaData->itemsPerPage}";
             }
-//            echo $q_str;
             $r_obj = $dbo->prepare($q_str);
             $r_obj->execute(array());
             while ($items = $r_obj->fetch(PDO::FETCH_ASSOC)){
@@ -124,8 +123,8 @@ if($env['PATH_INFO']==="/inboundService") {
     }catch(Exception $e){
         $response = array("response"=>"Failure","message"=>$e->getMessage(),"token"=>$data->token);
     }
-    echo json_encode($response);
-//    var_dump($response);
+    $response = json_encode($response);
+    echo $response;
 }
 
 if($env['PATH_INFO']==="/logout"){
