@@ -59,6 +59,7 @@ if($env['PATH_INFO']==="/inboundService") {
             }
         }
         if($data->transactionEventType == "Query") {
+
             $responseData = explode("&", $data->transactionMetaData->responseDataProperties);
             $q_str = "SELECT ";
             foreach ($responseData as $field) {
@@ -85,7 +86,7 @@ if($env['PATH_INFO']==="/inboundService") {
             while ($items = $r_obj->fetch(PDO::FETCH_ASSOC)){
                 $q_response[]=$items;
             }
-            $response = array("response"=>"Success","token"=>$data->token, "total_count"=>$r_str_tot_count['count'], "data"=>$q_response);
+            $response = array("response"=>"Success","token"=>$data->token, "total_count"=>$r_str_tot_count['count'], "data"=>@$q_response);
         }
         if($data->transactionEventType == "Update"){
             $q_str = "UPDATE {$data->factName} SET ";

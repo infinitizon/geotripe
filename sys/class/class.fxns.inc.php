@@ -57,6 +57,14 @@ class Functions extends DB_Connect {
         return ($fromRear) ? substr($string, 0, strrpos($string, $del) + 1) : substr($string, strpos($string, $del) + 1);
     }
 
+    public function get_string_between($string, $start, $end){
+        $string = ' ' . $string;
+        $ini = strpos($string, $start);
+        if ($ini == 0) return '';
+        $ini += strlen($start);
+        $len = strpos($string, $end, $ini) - $ini;
+        return substr($string, $ini, $len);
+    }
     /**
      * Returns the various combinations of items in an array
      * Example: array('a', 'b') should return 'a b' and 'b a'

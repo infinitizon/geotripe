@@ -33,35 +33,79 @@
             </table>
         </div>
         <div class="drillDown" ng-if="PartyCtrl.edit">
-            <form name="PartyDetail" role="form">
-                <div class="form-group">
-                    <label for="partyName">Party Name:</label>
-                    <input type="text" class="form-control" id="partyName" ng-model="PartyCtrl.party.name">
-                </div>
-                <div class="form-group">
-                    <label for="addressline1">Address Line 1:</label>
-                    <input type="text" class="form-control" id="addressline1" ng-model="PartyCtrl.party.addressline1">
-                </div>
-                <div class="form-group">
-                    <label for="addressline2">Address Line 2:</label>
-                    <input type="text" class="form-control" id="addressline2" ng-model="PartyCtrl.party.addressline2">
-                </div>
-                <div class="form-group">
-                    <label for="emailAddress">Email Address:</label>
-                    <input type="text" class="form-control" id="emailAddress" ng-model="PartyCtrl.party.addresscity">
-                </div>
-                <div class="form-group">
-                    <label for="country">Country:</label>
-                    <select id="country" class="form-control" ng-model="PartyCtrl.party.party_country_id">
-                        <option ng-repeat="country in PartyCtrl.countries" value="{{country.country_id}}">{{country.name}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="state">State:</label>
-                    <select id="state" class="form-control" ng-model="PartyCtrl.party.party_state_id">
-                        <option ng-repeat="country in PartyCtrl.countries" value="{{country.country_id}}">{{country.name}}</option>
-                    </select>
-                </div>
+            <form name="PartyDetail" class="tab-form" role="form">
+                <uib-tabset active="activeForm">
+                    <uib-tab index="0" heading="General">
+                        <ng-form name="GeneralTab">
+                            <div class="form-group">
+                                <label for="partyType">Type:</label>
+                                <select id="partyType" class="form-control" ng-model="PartyCtrl.party.party_partytype_id">
+                                    <option ng-repeat="partyType in PartyCtrl.partyTypes" value="{{partyType.partytype_id}}">{{partyType.name}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="partyName">Party Name:</label>
+                                <input type="text" class="form-control" id="partyName" ng-model="PartyCtrl.party.name">
+                            </div>
+                            <div class="form-group">
+                                <label for="addressline1">Address Line 1:</label>
+                                <input type="text" class="form-control" id="addressline1" ng-model="PartyCtrl.party.addressline1">
+                            </div>
+                            <div class="form-group">
+                                <label for="addressline2">Address Line 2:</label>
+                                <input type="text" class="form-control" id="addressline2" ng-model="PartyCtrl.party.addressline2">
+                            </div>
+                            <div class="form-group">
+                                <label for="emailAddress">Email Address:</label>
+                                <input type="text" class="form-control" id="emailAddress" ng-model="PartyCtrl.party.addresscity">
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country:</label>
+                                <select id="country"
+                                        class="form-control"
+                                        ng-change="PartyCtrl.getCountryStates(PartyCtrl.party.party_country_id)"
+                                        ng-options="country.country_id as country.name for country in PartyCtrl.countries"
+                                        ng-model="PartyCtrl.party.party_country_id">
+                                    <option value="">--Select Country --</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="states">State:</label>
+                                <select id="states"
+                                        class="form-control"
+                                        ng-options="state.state_id as state.name for state in PartyCtrl.states"
+                                        ng-model="PartyCtrl.party.state_id">
+                                    <option value="">--Select State --</option>
+                                </select>
+                            </div>
+                        </ng-form>
+                    </uib-tab>
+                    <uib-tab index="1" heading="Contact Person">
+                        <ng-form name="ContactPersonTab">
+                            <div class="form-group">
+                                <label for="ContactPersonTitle">Title:</label>
+                                <input type="text" class="form-control" id="ContactPersonTitle" ng-model="PartyCtrl.party.contactpersontitle">
+                            </div>
+                            <div class="form-group">
+                                <label for="ContactLastname">Last Name:</label>
+                                <input type="text" class="form-control" id="ContactLastname" ng-model="PartyCtrl.party.contactlastname">
+                            </div>
+                            <div class="form-group">
+                                <label for="ContactFirstname">First Name:</label>
+                                <input type="text" class="form-control" id="ContactFirstname" ng-model="PartyCtrl.party.contactfirstname">
+                            </div>
+                            <div class="form-group">
+                                <label for="ContactMiddlename">Middle Name:</label>
+                                <input type="text" class="form-control" id="ContactMiddlename" ng-model="PartyCtrl.party.contactmiddlename">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactPhoneNumber">Phone Number:</label>
+                                <input type="text" class="form-control" id="contactPhoneNumber" ng-model="PartyCtrl.party.contactphonenumber">
+                            </div>
+                        </ng-form>
+                    </uib-tab>
+                </uib-tabset>
+
                 <div class="form-group col-sm-offset-4">
                     <button type="button" class="btn btn-default" ng-click="PartyCtrl.goBack()"><i class="fa fa-arrow-left"></i> Cancel</button>
                     <button type="submit" class="btn btn-primary" ng-click="PartyCtrl.saveParty()">{{PartyCtrl.party.party_id ? 'Update' : 'Submit'}}</button>

@@ -38,12 +38,7 @@ angular.module('Common')
                 }
                 return diff;
             };
-            Service.getLOVs = function(options){
-                data=angular.copy(this.postData);
-                data.factName = options.factName;
-                data.transactionMetaData.responseDataProperties = options.responseDataProperties;
-                data.transactionMetaData.pageno = options.pageno;
-                data.transactionMetaData.itemsPerPage = options.itemsPerPage;
+            Service.getLOVs = function(data){
 
                 return DataService.post('inboundService', data).then(function(results) {
                     return results ;
