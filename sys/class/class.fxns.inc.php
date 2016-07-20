@@ -66,6 +66,34 @@ class Functions extends DB_Connect {
         return substr($string, $ini, $len);
     }
     /**
+     *
+     */
+    public function _generateQry($factName, $fields, $options=array()){
+        $required = array('del'=>'&');
+        $options = array_merge($required,$options);
+        $q_str = "SELECT ";
+        foreach ($fields as $field) {
+            $q_str .= $field . ",";
+        }
+        $q_str = substr($q_str, 0, -1) . " FROM ";
+
+        $joins= explode(",",$factName);
+        foreach($joins as $key => $tables){
+            $q_str .= $tables." ";
+            if(isset($options['joinType'][$key])){
+                $q_str .= $options['joinType'][$key];
+            }
+            $q_str .= " JOIN ";
+        }
+        $q_str = substr($q_str, 0, strrpos($q_str, "JOIN"));
+        if(isset($options['joinKeys'])){
+            foreach($options['joinKeys'] as $key => $joinFields){
+                $q_str .= " ON ".$joinFields;
+            }
+        }
+        return $q_str;
+    }
+    /**
      * Returns the various combinations of items in an array
      * Example: array('a', 'b') should return 'a b' and 'b a'
      *

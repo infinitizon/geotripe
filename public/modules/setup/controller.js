@@ -172,11 +172,14 @@ angular.module('Setup')
             CommonServices.postData.token = $rootScope.globals.currentUser.userDetails.token;
             vm.getData = function(pageno) {
                 data=angular.copy(CommonServices.postData);
-                data.factName = 'Users';
-                data.transactionMetaData.responseDataProperties = 'user_id&firstname&middlename&lastname&workphonenumber&contactphonenumber&user_party_id(Party=>party_id&name)&isauthorizedperson&username&email&enabled'
+                data.factName = 'User u, Party p';
+                data.transactionMetaData.responseDataProperties = 'u.user_id&u.firstname&u.middlename&u.lastname&u.workphonenumber&u.contactphonenumber&p.name&u.isauthorizedperson&u.username&u.email&u.enabled'
                 data.transactionMetaData.pageno = pageno-1;
                 data.transactionMetaData.itemsPerPage = vm.itemsPerPage;
                 data.transactionMetaData.queryMetaData.queryClause.andExpression = [];
+                data.transactionMetaData.queryMetaData.joinClause = {
+                    'joinType':['LEFT'],'joinKeys':['u.user_party_id=p.party_id']
+                }
 
                 DataService.post('inboundService', data).then(function (response) {
                     vm.users = response.data;

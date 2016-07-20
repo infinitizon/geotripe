@@ -15,7 +15,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
 if($env['PATH_INFO']==="/login"){
     $stmtChkUsr = "SELECT u.user_id, u.firstname, u.middlename, u.lastname, u.username, u.email
                     FROM users u
-                    WHERE u.email=:email AND u.password = :password AND u.enabled=1 and u.accountlocked<>1 ";
+                    WHERE (u.username=:email OR u.email=:email) AND u.password = :password AND u.enabled=1 and u.accountlocked<>1 ";
     $stmtChkUsr = $dbo->prepare($stmtChkUsr);
     $stmtChkUsr->execute(array(":email"=>$data->usr,":password"=>md5(base64_decode($data->pwd))));
     $user = $stmtChkUsr->fetchAll(PDO::FETCH_ASSOC);
@@ -49,77 +49,95 @@ if($env['PATH_INFO']==="/login"){
 
 if($env['PATH_INFO']==="/inboundService") {
     try {
-        if(isset($data->transactionEventType)){
-            $q_fields = $dbo->query("DESCRIBE {$data->factName}");
-            $r_fields = $q_fields->fetchAll(PDO::FETCH_ASSOC);
-            foreach($r_fields as $fields){
-                if($fields['Key'] == 'PRI'){
-                    $priKy = $fields['Field'];
+        ##check if User is logged in
+        $q_ChkUsr = "SELECT * FROM users WHERE token=:token";
+        $r_ChkUsr = $dbo->prepare($q_ChkUsr);
+        $r_ChkUsr->execute(array(":token"=>$token));
+        $user = $r_ChkUsr->fetchAll(PDO::FETCH_ASSOC);
+        if(count($user) != 1) {
+            throw new Exception("-110011");
+        }else{
+            if (isset($data->transactionEventType)) {
+                $q_fields = $dbo->query("DESCRIBE {$data->factName}");
+                $r_fields = $q_fields->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($r_fields as $fields) {
+                    if ($fields['Key'] == 'PRI') {
+                        $priKy = $fields['Field'];
+                    }
                 }
             }
-        }
-        if($data->transactionEventType == "Query") {
+            if ($data->transactionEventType == "Query") {
 
-            $responseData = explode("&", $data->transactionMetaData->responseDataProperties);
-            $q_str = "SELECT ";
-            foreach ($responseData as $field) {
-                $q_str .= $field . ",";
-            }
-            $q_str = substr($q_str, 0, -1) . " FROM " . $data->factName;
-
-            if (!empty($data->transactionMetaData->queryMetaData->queryClause->andExpression)) {
-                $q_str .= " WHERE ";
-                foreach ($data->transactionMetaData->queryMetaData->queryClause->andExpression as $field) {
-                    $q_str .= $field->propertyName . " " . $field->operatorType . " " . $field->propertyValue . " AND";
+                $responseData = explode("&", $data->transactionMetaData->responseDataProperties);
+//                $q_str = "SELECT ";
+//                foreach ($responseData as $field) {
+//                    $q_str .= $field . ",";
+//                }
+//                $q_str = substr($q_str, 0, -1) . " FROM " . $data->factName;
+                $options = array();
+                if (!empty($data->transactionMetaData->queryMetaData->joinClause->joinType)){
+                    $options['joinType'] = $data->transactionMetaData->queryMetaData->joinClause->joinType;
                 }
-                $q_str = $fxns->_subStrAtDel($q_str, ' AND');
-            }
-            $q_str_tot_count = $dbo->query("SELECT COUNT(*) as `count` FROM (" . $q_str . ") t");
-            $r_str_tot_count = $q_str_tot_count->fetch(PDO::FETCH_ASSOC);
-
-            if (!is_null($data->transactionMetaData->pageno) ) {
-                $start = $data->transactionMetaData->pageno * $data->transactionMetaData->itemsPerPage;
-                $q_str .= " LIMIT {$start},{$data->transactionMetaData->itemsPerPage}";
-            }
-            $r_obj = $dbo->prepare($q_str);
-            $r_obj->execute(array());
-            while ($items = $r_obj->fetch(PDO::FETCH_ASSOC)){
-                $q_response[]=$items;
-            }
-            $response = array("response"=>"Success","token"=>$data->token, "total_count"=>$r_str_tot_count['count'], "data"=>@$q_response);
-        }
-        if($data->transactionEventType == "Update"){
-            $q_str = "UPDATE {$data->factName} SET ";
-            foreach($r_fields as $fields) {
-                $fieldNm =strtolower( $fields['Field']);
-                if (@$data->factObjects[0]->$fieldNm) {
-                    $q_str .= "{$fields['Field']} = '{$data->factObjects[0]->$fieldNm}'";
+                if (!empty($data->transactionMetaData->queryMetaData->joinClause->joinKeys)){
+                    $options['joinKeys'] = $data->transactionMetaData->queryMetaData->joinClause->joinKeys;
                 }
+                $q_str = $fxns->_generateQry($data->factName, $responseData,$options);
+
+                echo $q_str;exit;
+                if (!empty($data->transactionMetaData->queryMetaData->queryClause->andExpression)) {
+                    $q_str .= " WHERE ";
+                    foreach ($data->transactionMetaData->queryMetaData->queryClause->andExpression as $field) {
+                        $q_str .= $field->propertyName . " " . $field->operatorType . " " . $field->propertyValue . " AND";
+                    }
+                    $q_str = $fxns->_subStrAtDel($q_str, ' AND');
+                }
+                $q_str_tot_count = $dbo->query("SELECT COUNT(*) as `count` FROM (" . $q_str . ") t");
+                $r_str_tot_count = $q_str_tot_count->fetch(PDO::FETCH_ASSOC);
+
+                if (!is_null($data->transactionMetaData->pageno)) {
+                    $start = $data->transactionMetaData->pageno * $data->transactionMetaData->itemsPerPage;
+                    $q_str .= " LIMIT {$start},{$data->transactionMetaData->itemsPerPage}";
+                }
+                $r_obj = $dbo->prepare($q_str);
+                $r_obj->execute(array());
+                while ($items = $r_obj->fetch(PDO::FETCH_ASSOC)) {
+                    $q_response[] = $items;
+                }
+                $response = array("response" => "Success", "token" => $data->token, "total_count" => $r_str_tot_count['count'], "data" => @$q_response);
             }
-            $q_str .= " WHERE $priKy={$data->factObjects[0]->id}";
+            if ($data->transactionEventType == "Update") {
+                $q_str = "UPDATE {$data->factName} SET ";
+                foreach ($r_fields as $fields) {
+                    $fieldNm = strtolower($fields['Field']);
+                    if (@$data->factObjects[0]->$fieldNm) {
+                        $q_str .= "{$fields['Field']} = '{$data->factObjects[0]->$fieldNm}'";
+                    }
+                }
+                $q_str .= " WHERE $priKy={$data->factObjects[0]->id}";
                 $r_str = $dbo->prepare($q_str);
                 $r_str->execute();
-                $response = array("response"=>"Success","message"=>"Record Updated Successfully","token"=>$data->token);
-        }
-        if($data->transactionEventType == "PUT"){
-            $q_str = "INSERT INTO {$data->factName} ";
-
-            $ins_fields = " (";
-            $ins_values = " VALUES (";
-            foreach($r_fields as $fields) {
-                $fieldNm =strtolower( $fields['Field']);
-                if (@$data->factObjects[0]->$fieldNm) {
-                    @$ins_fields .= " {$fields['Field']} ,";
-                    @$ins_values .= " '{$data->factObjects[0]->$fieldNm}',";
-                }
+                $response = array("response" => "Success", "message" => "Record Updated Successfully", "token" => $data->token);
             }
-            $ins_fields =  $fxns->_subStrAtDel($ins_fields, ' ,');
-            $ins_values =  $fxns->_subStrAtDel($ins_values, "',");
-            $q_str .= $ins_fields.") ".$ins_values.")";
+            if ($data->transactionEventType == "PUT") {
+                $q_str = "INSERT INTO {$data->factName} ";
 
-            $r_str = $dbo->prepare($q_str);
-            $r_str->execute();
-            $response = array("response"=>"Success","message"=>"Record Saved Successfully","token"=>$data->token);
+                $ins_fields = " (";
+                $ins_values = " VALUES (";
+                foreach ($r_fields as $fields) {
+                    $fieldNm = strtolower($fields['Field']);
+                    if (@$data->factObjects[0]->$fieldNm) {
+                        @$ins_fields .= " {$fields['Field']} ,";
+                        @$ins_values .= " '{$data->factObjects[0]->$fieldNm}',";
+                    }
+                }
+                $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
+                $ins_values = $fxns->_subStrAtDel($ins_values, "',");
+                $q_str .= $ins_fields . ") " . $ins_values . ")";
+
+                $r_str = $dbo->prepare($q_str);
+                $r_str->execute();
+                $response = array("response" => "Success", "message" => "Record Saved Successfully", "token" => $data->token);
+            }
         }
     }catch(Exception $e){
         $response = array("response"=>"Failure","message"=>$e->getMessage(),"token"=>$data->token);
