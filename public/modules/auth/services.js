@@ -15,7 +15,6 @@ angular.module('Auth')
                     pwd:Base64.encode(password)
                 }
                DataService.post('login', data).then(function (response) {
-                   console.log(response);
                   callback(response);
                });
             };

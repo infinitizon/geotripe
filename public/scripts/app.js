@@ -41,11 +41,12 @@ angular.module('School', ['Auth', 'Home', 'Setup', 'ui.router', 'ngCookies', 'ui
                  }
              })
    }])
-   .run(['$rootScope', '$location', '$cookieStore'
-      , function ($rootScope, $location, $cookieStore) {
+   .run(['$rootScope', '$location', '$cookieStore', '$uibModalStack'
+      , function ($rootScope, $location, $cookieStore,$uibModalStack) {
          // keep user logged in after page refresh
          $rootScope.globals = $cookieStore.get('globals') || {};
          $rootScope.$on('$locationChangeStart', function (event, next, current) {
+             $uibModalStack.dismissAll();
             // redirect to login page if not logged in
             if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
                 $location.path('/login');

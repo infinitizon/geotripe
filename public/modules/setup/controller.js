@@ -3,6 +3,7 @@ angular.module('Setup')
         function ($location, $rootScope, $uibModal) {
             var vm = this;
             // reset login status
+
             vm.open = function (options) {
                 switch(options.url) {
                     case 'user':
@@ -172,7 +173,7 @@ angular.module('Setup')
             CommonServices.postData.token = $rootScope.globals.currentUser.userDetails.token;
             vm.getData = function(pageno) {
                 data=angular.copy(CommonServices.postData);
-                data.factName = 'User u, Party p';
+                data.factName = 'Users u, Party p';
                 data.transactionMetaData.responseDataProperties = 'u.user_id&u.firstname&u.middlename&u.lastname&u.workphonenumber&u.contactphonenumber&p.name&u.isauthorizedperson&u.username&u.email&u.enabled'
                 data.transactionMetaData.pageno = pageno-1;
                 data.transactionMetaData.itemsPerPage = vm.itemsPerPage;
@@ -192,10 +193,42 @@ angular.module('Setup')
                 vm.edit=false;
                 vm.getData(vm.pageno);
             };
-
-            vm.editParty = function (partyId) {
-
-            }
+            vm.editUser = function (userId) {
+                vm.edit=true;
+                var data=angular.copy(CommonServices.postData);
+                if(userId) {
+                    data.factName = 'Users';
+                    data.transactionMetaData.responseDataProperties = 'firstname&middlename&lastname&workphonenumber&contactphonenumber&user_party_id&isauthorizedperson&username&Email&password*token&enabled&accountlocked&accountexpirationtime&credentialsexpirationtime&datecreated&datemodified';
+                    data.transactionMetaData.queryMetaData.queryClause.andExpression = [
+                        {
+                            "propertyName": "user_id",
+                            "propertyValue": userId,
+                            "propertyDataType": "BIGINT",
+                            "operatorType": "="
+                        }
+                    ];
+                    DataService.post('inboundService', data).then(function (response) {
+                        vm.user = response.data.data[0];
+                        vm.originalPartyData = angular.copy(vm.user);
+                        vm.total_count = response.data.total_count;
+                    })
+                }else{
+                    vm.user.party_id = null;
+                    vm.user.party_partytype_id = null;
+                    vm.user.addressline1 = null;
+                    vm.user.addressline2 = null;
+                    vm.user.addresscity = null;
+                    vm.user.name = null;
+                    vm.user.party_country_id = null;
+                    vm.user.state_id = null;
+                }
+            };
+            data=angular.copy(CommonServices.postData);
+            data.factName = 'Party';
+            data.transactionMetaData.responseDataProperties = "party_id&name";
+            CommonServices.getLOVs(data).then(function(response){
+                vm.parties = response.data.data;
+            });
 
             vm.cancel = function () {
                 $uibModalInstance.dismiss('cancel');
