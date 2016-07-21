@@ -129,22 +129,56 @@ if($env['PATH_INFO']==="/inboundService") {
             if ($data->transactionEventType == "PUT") {
                 $q_str = "INSERT INTO {$data->factName} ";
 
+                $multipleFields = "";
                 $ins_fields = " (";
                 $ins_values = " VALUES (";
-                foreach ($r_fields as $fields) {
-                    $fieldNm = strtolower($fields['Field']);
-                    if (@$data->factObjects[0]->$fieldNm) {
-                        @$ins_fields .= " {$fields['Field']} ,";
-                        @$ins_values .= " '{$data->factObjects[0]->$fieldNm}',";
+                if(!is_array($data->factObjects[0])){
+                    foreach ($r_fields as $fields) {
+                        $fieldNm = strtolower($fields['Field']);
+                        if (@$data->factObjects[0]->$fieldNm) {
+                            @$ins_fields .= " {$fields['Field']} ,";
+                            @$ins_values .= " '{$data->factObjects[0]->$fieldNm}',";
+                        }
                     }
+
+                    $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
+                    $ins_values = rtrim($ins_values,',');
+                    $q_str .= $ins_fields . ") " . $ins_values . ")";
+                }else{
+                    var_dump( $data->factObjects[0][0]);
+                    foreach ($r_fields as $fields) {
+                        foreach($data->factObjects[0] as $values) {
+                            $fieldNm = strtolower($fields['Field']);
+//                            var_dump( $data->factObjects[0][0]->$fieldNm );
+//                            if( @$data->factObjects[0][0]->$fieldNm){
+//                                @$ins_fields .= " {$fields['Field']} ,";
+//                            }
+                        }
+                    }
+
+                    $ins_values = " VALUES ";
+                    foreach($data->factObjects[0] as $values){
+                        $ins_values .= "(";
+                        foreach ($r_fields as $fields) {
+                            if ($values->$fields['Field']) {
+                                @$ins_values .= " '{$values->$fields['Field']}',";
+                            }
+                        }
+                        $ins_values = rtrim($ins_values,',');
+                        $ins_values .= "),";
+                    }
+                    $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
+                    $ins_values = rtrim($ins_values,',');
+                    $q_str .= $ins_fields . ") " . $ins_values;
                 }
-                $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
-                $ins_values = $fxns->_subStrAtDel($ins_values, "',");
-                $q_str .= $ins_fields . ") " . $ins_values . ")";
+                echo $q_str;
 
                 $r_str = $dbo->prepare($q_str);
                 $r_str->execute();
-                $response = array("response" => "Success", "message" => "Record Saved Successfully", "token" => $data->token);
+                $lastId = $dbo->lastInsertId();
+
+                $data=array('token'=> $data->token,'insertId'=>$lastId);
+                $response = array("response" => "Success", "message" => "Record Saved Successfully", "data"=>$data);
             }
         }
     }catch(Exception $e){
