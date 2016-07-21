@@ -195,7 +195,6 @@ angular.module('Setup')
             };
             vm.editUser = function (userId) {
                 vm.edit=true;
-
                 /* This part helps get the pages a user can view */
                 var data=angular.copy(CommonServices.postData);
                 data.factName = 'AuthView a, User_Authview b';
@@ -248,7 +247,6 @@ angular.module('Setup')
                 var data=angular.copy(CommonServices.postData);
                 data.factName = 'Users';
                 vm.changedUsrObjs = CommonServices.GetFormChanges(vm.originalUserData, vm.user);
-                console.log(vm.changedUsrObjs);
                 if( !angular.equals({}, vm.changedUsrObjs) && vm.user.user_id ) { //If anything changed?
                     vm.changedUsrObjs['id'] = vm.user.user_id;
 
@@ -282,22 +280,23 @@ angular.module('Setup')
                 vm.insert = [];
                 vm.update = [];
                 angular.forEach(vm.originalAuthViewsData, function(userViews){
-                    if (userViews.ius_yn)
-                        vm.originalUserViewsFromDb.push(userViews.AuthView_Id);
+                    if (userViews.ius_yn==1) {
+                        vm.originalUserViewsFromDb.push(userViews.authview_id);
+                    }
                 });
                 angular.forEach(vm.userViews, function(userViews){
                     if (userViews.ius_yn==1){
-                        vm.userCheckedArray.push(userViews.AuthView_Id);
+                        vm.userCheckedArray.push(userViews.authview_id);
                     }else{
-                        vm.userUnCheckedArray.push(userViews.AuthView_Id);
+                        vm.userUnCheckedArray.push(userViews.authview_id);
                     }
                 });
-                angular.forEach(vm.userUnCheckedArray, function(values,i){
+                angular.forEach(vm.userUnCheckedArray, function(values){
                     index = vm.originalUserViewsFromDb.indexOf(values);
                     if(index > -1){
                         vm.update.push({
-                            'AuthView_AuthView_Id':vm.originalUserViewsFromDb[index],
-                            'User_User_Id':vm.user.user_id,
+                            'authview_authview_id':vm.originalUserViewsFromDb[index],
+                            'user_user_id':vm.user.user_id,
                             'ius_yn':0
                         });
                     }
@@ -313,13 +312,13 @@ angular.module('Setup')
                         vm.message = response.data.message;
                     })
                 }
-                $scope.$watch(vm.user.user_id, function() {
-                    angular.forEach(vm.userCheckedArray, function(values,i){
+
+                    angular.forEach(vm.userCheckedArray, function(values){
                         index = vm.originalUserViewsFromDb.indexOf(values);
                         if(index == -1){
                             vm.insert.push({
-                                'AuthView_AuthView_Id':values,
-                                'User_User_Id':vm.user.user_id,
+                                'authview_authview_id':values,
+                                'user_user_id':vm.user.user_id,
                                 'ius_yn':1
                             });
                         }
@@ -336,11 +335,13 @@ angular.module('Setup')
                             DataService.post('inboundService', data).then(function (response) {
                                 vm.result = response.data.response;
                                 vm.message = response.data.message;
+                                if(vm.result == "Failure") {
+                                    vm.message += "Error saving the pages to the user";
+                                }
                                 vm.insert = [];
                             });
                         }
                     }
-                });
 
             }
             vm.cancel = function () {

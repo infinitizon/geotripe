@@ -29,7 +29,7 @@ if($env['PATH_INFO']==="/login"){
                           FROM user_authview ua
                         JOIN authview av
                           ON ua.authview_authview_id=av.authview_id
-                        WHERE ua.ius_yn=1");
+                        WHERE ua.ius_yn=1 AND ua.User_User_Id=".$user[0]['user_id']);
             // Create a multidimensional array to conatin a list of items and parents
             $menu = array('items' => array(), 'parents' => array());
             // Builds the array lists with data from the menu table
@@ -114,14 +114,46 @@ if($env['PATH_INFO']==="/inboundService") {
                 $response = array("response" => "Success", "token" => $data->token, "total_count" => $r_str_tot_count['count'], "data" => @$q_response);
             }
             if ($data->transactionEventType == "Update") {
-                $q_str = "UPDATE {$data->factName} SET ";
-                foreach ($r_fields as $fields) {
-                    $fieldNm = strtolower($fields['Field']);
-                    if (@$data->factObjects[0]->$fieldNm) {
-                        $q_str .= "{$fields['Field']} = '{$data->factObjects[0]->$fieldNm}'";
+                if(is_array($data->factObjects[0])){
+                    $q_str = "INSERT INTO {$data->factName} ";
+                    $multipleFields = "";
+                    $ins_fields = " (";
+                    $ins_values = " VALUES (";
+                    $onUpdt = "";
+                    foreach ($r_fields as $fields) {
+                        $fieldNm = strtolower($fields['Field']);
+                        if( isset($data->factObjects[0][0]->$fieldNm)){
+                            @$ins_fields .= " {$fields['Field']} ,";
+                            $onUpdt .=$fields['Field']."=VALUES({$fields['Field']}),";
+                        }
                     }
+                    $ins_values = " VALUES ";
+                    foreach($data->factObjects[0] as $values){
+                        $ins_values .= "(";
+                        foreach ($r_fields as $fields) {
+                            $fieldNm = strtolower($fields['Field']);
+                            if (isset($values->$fieldNm)) {
+                                @$ins_values .= " '{$values->$fieldNm}',";
+                            }
+                        }
+                        $ins_values = rtrim($ins_values,',');
+                        $ins_values .= "),";
+                    }
+                    $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
+                    $ins_values = rtrim($ins_values,',');
+                    $onUpdt = rtrim($onUpdt,',');
+                    $q_str .= $ins_fields . ") " . $ins_values;
+                    $q_str .= " ON DUPLICATE KEY UPDATE ".$onUpdt;
+                }else {
+                    $q_str = "UPDATE {$data->factName} SET ";
+                    foreach ($r_fields as $fields) {
+                        $fieldNm = strtolower($fields['Field']);
+                        if (@$data->factObjects[0]->$fieldNm) {
+                            $q_str .= "{$fields['Field']} = '{$data->factObjects[0]->$fieldNm}'";
+                        }
+                    }
+                    $q_str .= " WHERE $priKy={$data->factObjects[0]->id}";
                 }
-                $q_str .= " WHERE $priKy={$data->factObjects[0]->id}";
                 $r_str = $dbo->prepare($q_str);
                 $r_str->execute();
                 $response = array("response" => "Success", "message" => "Record Updated Successfully", "token" => $data->token);
@@ -145,23 +177,21 @@ if($env['PATH_INFO']==="/inboundService") {
                     $ins_values = rtrim($ins_values,',');
                     $q_str .= $ins_fields . ") " . $ins_values . ")";
                 }else{
-                    var_dump( $data->factObjects[0][0]);
                     foreach ($r_fields as $fields) {
+                        $fieldNm = strtolower($fields['Field']);
                         foreach($data->factObjects[0] as $values) {
-                            $fieldNm = strtolower($fields['Field']);
-//                            var_dump( $data->factObjects[0][0]->$fieldNm );
-//                            if( @$data->factObjects[0][0]->$fieldNm){
-//                                @$ins_fields .= " {$fields['Field']} ,";
-//                            }
+                            if( @$data->factObjects[0][0]->$fieldNm){
+                                @$ins_fields .= " {$fields['Field']} ,";
+                            }
                         }
                     }
-
                     $ins_values = " VALUES ";
                     foreach($data->factObjects[0] as $values){
                         $ins_values .= "(";
                         foreach ($r_fields as $fields) {
-                            if ($values->$fields['Field']) {
-                                @$ins_values .= " '{$values->$fields['Field']}',";
+                            $fieldNm = strtolower($fields['Field']);
+                            if ($values->$fieldNm) {
+                                @$ins_values .= " '{$values->$fieldNm}',";
                             }
                         }
                         $ins_values = rtrim($ins_values,',');
@@ -171,7 +201,6 @@ if($env['PATH_INFO']==="/inboundService") {
                     $ins_values = rtrim($ins_values,',');
                     $q_str .= $ins_fields . ") " . $ins_values;
                 }
-                echo $q_str;
 
                 $r_str = $dbo->prepare($q_str);
                 $r_str->execute();
