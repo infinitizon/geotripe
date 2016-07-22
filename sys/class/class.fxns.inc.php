@@ -66,6 +66,24 @@ class Functions extends DB_Connect {
         return substr($string, $ini, $len);
     }
     /**
+     * Method  : _formatFieldValue - helps to format any database value based on the field type
+     * @param mixed $value A string value to be formatted
+     * @param array $options Will hold the various options for the formatting. default:type=>varchar
+     */
+    public function _formatFieldValue($value, $options=array('type'=>'varchar')){
+        $rtnVal=null;
+        if(strtolower(substr($options['type'],0,3))=="bit") {
+            $rtnVal = str_replace("'","",$value);
+        }elseif(strtolower($options['type'])=="datetime") {
+            $timestamp = strtotime($value);
+            $timestamp = date("Y-m-d H:i:s", $timestamp);
+            $rtnVal = "'{$timestamp}'";
+        }else{
+            $rtnVal = "'{$value}'";
+        }
+        return $rtnVal;
+    }
+    /**
      *
      */
     public function _generateQry($factName, $fields, $options=array()){

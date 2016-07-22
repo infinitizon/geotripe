@@ -20,9 +20,13 @@ angular.module('School', ['Auth', 'Home', 'Setup', 'ui.router', 'ngCookies', 'ui
          $stateProvider
             .state('login', {
                 url:'/login',
-                templateUrl: 'modules/auth/views/login.html',
-                controller: 'LoginController',
-                controllerAs : 'loginCtrl'
+                views: {
+                    'login': {
+                        templateUrl: 'modules/auth/views/login.html',
+                        controller: 'LoginController',
+                        controllerAs : 'loginCtrl'
+                    }
+                }
             })
              .state('home', {
                  url:'/home',
@@ -30,13 +34,23 @@ angular.module('School', ['Auth', 'Home', 'Setup', 'ui.router', 'ngCookies', 'ui
                  controller: 'HomeController',
                  controllerAs : 'homeCtrl'
              })
-             .state('home.setup', {
+             .state('setup', {
                  url:'/setup',
                  views: {
                      'app_pages': {
                          templateUrl: 'modules/setup/views/setup.html',
                          controller: 'SetupController',
                          controllerAs : 'setupCtrl'
+                     }
+                 }
+             })
+             .state('quotes', {
+                 url:'/quotes',
+                 views: {
+                     'app_pages': {
+                         templateUrl: 'modules/setup/views/quotes.html',
+                         controller: 'QuoteController',
+                         controllerAs : 'quotCtrl'
                      }
                  }
              })

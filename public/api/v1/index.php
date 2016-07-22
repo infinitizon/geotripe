@@ -133,7 +133,7 @@ if($env['PATH_INFO']==="/inboundService") {
                         foreach ($r_fields as $fields) {
                             $fieldNm = strtolower($fields['Field']);
                             if (isset($values->$fieldNm)) {
-                                @$ins_values .= " '{$values->$fieldNm}',";
+                                @$ins_values .= $fxns->_formatFieldValue($values->$fieldNm, array('type'=>$fields['Type'])).",";
                             }
                         }
                         $ins_values = rtrim($ins_values,',');
@@ -169,7 +169,7 @@ if($env['PATH_INFO']==="/inboundService") {
                         $fieldNm = strtolower($fields['Field']);
                         if (@$data->factObjects[0]->$fieldNm) {
                             @$ins_fields .= " {$fields['Field']} ,";
-                            @$ins_values .= " '{$data->factObjects[0]->$fieldNm}',";
+                            @$ins_values .= $fxns->_formatFieldValue($data->factObjects[0]->$fieldNm, array('type'=>$fields['Type'])).",";
                         }
                     }
 
@@ -179,10 +179,8 @@ if($env['PATH_INFO']==="/inboundService") {
                 }else{
                     foreach ($r_fields as $fields) {
                         $fieldNm = strtolower($fields['Field']);
-                        foreach($data->factObjects[0] as $values) {
-                            if( @$data->factObjects[0][0]->$fieldNm){
-                                @$ins_fields .= " {$fields['Field']} ,";
-                            }
+                        if( isset($data->factObjects[0][0]->$fieldNm)){
+                            @$ins_fields .= " {$fields['Field']} ,";
                         }
                     }
                     $ins_values = " VALUES ";
@@ -191,7 +189,7 @@ if($env['PATH_INFO']==="/inboundService") {
                         foreach ($r_fields as $fields) {
                             $fieldNm = strtolower($fields['Field']);
                             if ($values->$fieldNm) {
-                                @$ins_values .= " '{$values->$fieldNm}',";
+                                @$ins_values .= $fxns->_formatFieldValue($values->$fieldNm, array('type'=>$fields['Type'])).",";
                             }
                         }
                         $ins_values = rtrim($ins_values,',');
@@ -201,7 +199,7 @@ if($env['PATH_INFO']==="/inboundService") {
                     $ins_values = rtrim($ins_values,',');
                     $q_str .= $ins_fields . ") " . $ins_values;
                 }
-
+//echo $q_str;exit;
                 $r_str = $dbo->prepare($q_str);
                 $r_str->execute();
                 $lastId = $dbo->lastInsertId();

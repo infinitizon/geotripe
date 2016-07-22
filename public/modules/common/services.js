@@ -79,11 +79,7 @@ angular.module('Common',[])
                     }
                 }
             };
-            return Service;
-    }])
-    .factory('Md5',[ function() {
-        var md5 = {};
-        md5.createHash = function(str) {
+            Service.md5Hash = function(str) {
                 if (null === str) {
                     return null;
                 }
@@ -254,5 +250,5 @@ angular.module('Common',[])
                 var temp = wordToHex(a) + wordToHex(b) + wordToHex(c) + wordToHex(d);
                 return temp.toLowerCase();
             }
-        return md5;
-}])
+            return Service;
+    }])

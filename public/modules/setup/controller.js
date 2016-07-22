@@ -194,6 +194,7 @@ angular.module('Setup')
                 vm.getData(vm.pageno);
             };
             vm.editUser = function (userId) {
+                vm.result = null;
                 vm.edit=true;
                 /* This part helps get the pages a user can view */
                 var data=angular.copy(CommonServices.postData);
@@ -240,42 +241,26 @@ angular.module('Setup')
                 vm.parties = response.data.data;
             });
             vm.newPwd = function(){
-                vm.newPwd = CommonServices.createRand();
-                vm.user.password = vm.newPwd;
+                if(vm.user == null){
+                    vm.result = 'Failure';
+                    vm.message = "You need to start creating a user first";
+                }else{
+                    vm.result = null;
+                    newPwd = CommonServices.createRand();
+                    vm.newPwdVal = newPwd;
+                    vm.user.password = CommonServices.md5Hash(vm.newPwdVal);
+                }
             }
             vm.saveUser = function(){
+                if(vm.user==null){
+                    vm.result = 'Failure';
+                    vm.message = "User data is empty, Fill in the required fields first";
+                    return;
+                }
+                vm.result = null;
                 vm.dataLoading = true;
                 var data=angular.copy(CommonServices.postData);
-                data.factName = 'Users';
-                vm.changedUsrObjs = CommonServices.GetFormChanges(vm.originalUserData, vm.user);
-                if( !angular.equals({}, vm.changedUsrObjs) && vm.user.user_id ) { //If anything changed?
-                    vm.changedUsrObjs['id'] = vm.user.user_id;
 
-                    data.transactionEventType = "Update"
-                    data.factObjects = [vm.changedUsrObjs];
-
-                    DataService.post('inboundService', data).then(function (response) {
-                        vm.result = response.data.response;
-                        vm.message = response.data.message;
-                    })
-                }else if(vm.user.user_id == null){ //A new insert
-                    if(vm.user == null){
-                        vm.dataLoading = false;
-                        vm.result = 'Failure';
-                        vm.message = "You need to create a user first";
-                    }else {
-                        data.transactionEventType = "PUT"
-                        data.factObjects = [vm.user];
-
-                        DataService.post('inboundService', data).then(function (response) {
-                            vm.dataLoading = false;
-                            vm.result = response.data.response;
-                            vm.message = response.data.message;
-                            vm.user.user_id = response.data.data.insertId;
-                        })
-                    }
-
-                }
                 vm.originalUserViewsFromDb = [];
                 vm.userCheckedArray = [];
                 vm.userUnCheckedArray = [];
@@ -303,47 +288,127 @@ angular.module('Setup')
                         });
                     }
                 });
+                data.factName = 'Users';
+                vm.changedUsrObjs = CommonServices.GetFormChanges(vm.originalUserData, vm.user);
+                if( !angular.equals({}, vm.changedUsrObjs) && vm.user.user_id ) { //If anything changed?
+                    vm.changedUsrObjs['id'] = vm.user.user_id;
 
-                var data = angular.copy(CommonServices.postData);
-                data.factName = 'User_AuthView';
-                if(vm.update.length > 0){
                     data.transactionEventType = "Update"
-                    data.factObjects = [vm.update];
+                    data.factObjects = [vm.changedUsrObjs];
+
                     DataService.post('inboundService', data).then(function (response) {
                         vm.result = response.data.response;
                         vm.message = response.data.message;
-                    })
-                }
 
-                    angular.forEach(vm.userCheckedArray, function(values){
-                        index = vm.originalUserViewsFromDb.indexOf(values);
-                        if(index == -1){
-                            vm.insert.push({
-                                'authview_authview_id':values,
-                                'user_user_id':vm.user.user_id,
-                                'ius_yn':1
-                            });
-                        }
-                    });
-                    if(vm.insert.length > 0){
-                        if(vm.user.user_id == null){
-                            vm.dataLoading = false;
-                            vm.result = 'Failure';
-                            vm.message = "You need to create a user first";
-                        }else {
-                            vm.message = "Trying to insert pages for user";
-                            data.transactionEventType = "PUT"
-                            data.factObjects = [vm.insert];
+                        //If result is success try these
+                        var data = angular.copy(CommonServices.postData);
+                        data.factName = 'User_AuthView';
+                        if(vm.update.length > 0){       //Check for any pagees updated and modify accordingly
+                            data.transactionEventType = "Update"
+                            data.factObjects = [vm.update];
                             DataService.post('inboundService', data).then(function (response) {
                                 vm.result = response.data.response;
                                 vm.message = response.data.message;
-                                if(vm.result == "Failure") {
-                                    vm.message += "Error saving the pages to the user";
-                                }
-                                vm.insert = [];
-                            });
+                            })
                         }
+
+                        angular.forEach(vm.userCheckedArray, function(values){
+                            index = vm.originalUserViewsFromDb.indexOf(values);
+                            if(index == -1){
+                                vm.insert.push({
+                                    'authview_authview_id':values,
+                                    'user_user_id':vm.user.user_id,
+                                    'ius_yn':1
+                                });
+                            }
+                        });
+
+                        if(vm.insert.length > 0){
+                            if(vm.user.user_id == null){    //Check if pages are added and modify accordingly
+                                vm.dataLoading = false;
+                                vm.result = 'Failure';
+                                vm.message = "You need to create a user first";
+                            }else {
+                                vm.message = "Trying to insert pages for user";
+                                data.transactionEventType = "PUT"
+                                data.factObjects = [vm.insert];
+                                DataService.post('inboundService', data).then(function (response) {
+                                    vm.result = response.data.response;
+                                    vm.message = response.data.message;
+                                    if(vm.result == "Failure") {
+                                        vm.message += "Error saving the pages to the user";
+                                    }
+                                    vm.insert = [];
+                                });
+                            }
+                        }
+                    })
+                }else if(vm.user.user_id == null){ //A new insert
+                    if(vm.user == null){
+                        vm.dataLoading = false;
+                        vm.result = 'Failure';
+                        vm.message = "You need to create a user first";
+                    }else if(vm.userCheckedArray.length == 0){
+                        vm.dataLoading = false;
+                        vm.result = 'Failure';
+                        vm.message = "You need to add default pages to the user";
+                        vm.activeUsrTab = 1
+                    }else{
+                        data.transactionEventType = "PUT"
+                        data.factObjects = [vm.user];
+
+                        DataService.post('inboundService', data).then(function (response) {
+                            vm.dataLoading = false;
+
+                            vm.user.user_id = response.data.data.insertId;
+                            if(response.data.response == "Failure") {
+                                vm.result = response.data.response;
+                                vm.message += "Error saving user... " + response.data.message;
+                            }else{
+                                angular.forEach(vm.userCheckedArray, function(values){
+                                    index = vm.originalUserViewsFromDb.indexOf(values);
+                                    if(index == -1){
+                                        vm.insert.push({
+                                            'authview_authview_id':values,
+                                            'user_user_id':vm.user.user_id,
+                                            'ius_yn':1
+                                        });
+                                    }
+                                });
+                                if(vm.insert.length > 0){
+                                    data.factName = 'User_AuthView';
+                                    if(vm.user.user_id == null){     //Check if pages are added and modify accordingly
+                                        vm.dataLoading = false;
+                                        vm.result = 'Failure';
+                                        vm.message = "You need to create a user first";
+                                    }else {
+                                        vm.message = "Saving pages for user...";
+                                        data.transactionEventType = "PUT"
+                                        data.factObjects = [vm.insert];
+                                        DataService.post('inboundService', data).then(function (response) {
+                                            if(response.data.response == "Failure") {
+                                                vm.result = response.data.response;
+                                                vm.message = "Error saving the pages to the user... "+response.data.message;
+                                            }else{
+                                                vm.result = response.data.response;
+                                                vm.message = response.data.message;
+                                            }
+                                            vm.insert = [];
+                                        });
+                                    }
+                                }else{
+                                    vm.result = response.data.response;
+                                    vm.message = response.data.message;
+
+                                }
+                            }
+
+                        })
                     }
+
+                }
+
+
 
             }
             vm.cancel = function () {

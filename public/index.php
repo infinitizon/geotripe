@@ -14,7 +14,35 @@
     <body>
         <!-- https://apps.gndf.io/#/settings/project/ -->
         <!-- Charts : https://jtblin.github.io/angular-chart.js/  -->
-        <div ui-view></div>
+        <div class="global-content container-fluid" ng-if="$root.globals.currentUser">
+            <div class="row global-header">
+                <div class="pull-right">
+                    <input type="text" placeholder="Search..." />&nbsp;&nbsp;&nbsp;{{$root.globals.currentUser.userDetails.authDetails.firstname}}
+                </div>
+            </div>
+            <div class="row global-container">
+                <div class="col-sm-3 global-sidenav">
+                    <div class="nav-list-group">
+                        <ul class="main-menu">
+                            <li ng-repeat="menu in $root.globals.currentUser.userDetails.authViews" ng-include="'menuTree'"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-9 global-main-content">
+                    <div ui-view="app_pages"></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/ng-template" id="menuTree">
+            <a ui-sref="{{ menu.viewpath }}" class="side-bar-nav" ui-sref-active="navActive">
+                <i class="fa fa-2x {{menu.css_class}}"></i>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ menu.name }}
+            </a>
+            <ul ng-if="menu.child">
+                <li ng-repeat="menu in menu.child" ng-include="'menuTree'">
+                </li>
+            </ul>
+        </script>
+        <div ui-view="login"></div>
 
         <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script-->
         <script src="scripts/angular.js" type="text/javascript"></script>
