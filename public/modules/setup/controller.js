@@ -241,6 +241,7 @@ angular.module('Setup')
             });
             vm.newPwd = function(){
                 vm.newPwd = CommonServices.createRand();
+                vm.user.password = vm.newPwd;
             }
             vm.saveUser = function(){
                 vm.dataLoading = true;
@@ -267,6 +268,7 @@ angular.module('Setup')
                         data.factObjects = [vm.user];
 
                         DataService.post('inboundService', data).then(function (response) {
+                            vm.dataLoading = false;
                             vm.result = response.data.response;
                             vm.message = response.data.message;
                             vm.user.user_id = response.data.data.insertId;
