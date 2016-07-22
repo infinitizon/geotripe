@@ -38,7 +38,7 @@ angular.module('Setup')
             vm.users = []; //declare an empty array
             vm.pageno = 1; // initialize page no to 1
             vm.total_count = 0;
-            vm.itemsPerPage = 5; //this could be a dynamic value from a drop down
+            vm.itemsPerPage = 15; //this could be a dynamic value from a drop down
 
             CommonServices.postData.token = $rootScope.globals.currentUser.userDetails.token;
             vm.getData = function(pageno) {
@@ -168,7 +168,7 @@ angular.module('Setup')
             vm.users = []; //declare an empty array
             vm.pageno = 1; // initialize page no to 1
             vm.total_count = 0;
-            vm.itemsPerPage = 5; //this could be a dynamic value from a drop down
+            vm.itemsPerPage = 15; //this could be a dynamic value from a drop down
 
             CommonServices.postData.token = $rootScope.globals.currentUser.userDetails.token;
             vm.getData = function(pageno) {
