@@ -14,6 +14,7 @@
     <body>
         <!-- https://apps.gndf.io/#/settings/project/ -->
         <!-- Charts : https://jtblin.github.io/angular-chart.js/  -->
+		<!-- https://www.youtube.com/channel/UCO9JvZ75Usyzgd1puurLF6A -->
         <div class="global-content container-fluid" ng-if="$root.globals.currentUser">
             <div class="row global-header">
                 <div class="pull-right">
