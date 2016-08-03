@@ -62,5 +62,6 @@
         <script src="modules/auth/services.js" type="text/javascript"></script>
         <script src="modules/home/controller.js" type="text/javascript"></script>
         <script src="modules/setup/controller.js" type="text/javascript"></script>
+        <script src="modules/quote/controller.js" type="text/javascript"></script>
     </body>
 </html>

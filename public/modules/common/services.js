@@ -1,4 +1,4 @@
-angular.module('Common',[])
+angular.module('Common')
         .factory("DataService", ['$http','$state','RemoteServiceBase',
                function ($http,$state,RemoteServiceBase) { // This service connects to our REST API
                    var service = {};
@@ -51,7 +51,6 @@ angular.module('Common',[])
                 return diff;
             };
             Service.getLOVs = function(data){
-
                 return DataService.post('inboundService', data).then(function(results) {
                     return results ;
                 });

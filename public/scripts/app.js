@@ -3,9 +3,10 @@
 angular.module('Common', []);
 angular.module('Auth', ['Common']);
 angular.module('Home', []);
+angular.module('RFQ', [])
 angular.module('Setup', ['Common']);
  
-angular.module('School', ['Auth', 'Home', 'Setup', 'ui.router', 'ngCookies', 'ui.bootstrap','angularUtils.directives.dirPagination'])
+angular.module('School', ['Auth', 'Home', 'RFQ', 'Setup', 'ui.router', 'ngCookies', 'ui.bootstrap','angularUtils.directives.dirPagination'])
    .config(['$stateProvider', '$httpProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider'
       , function ($stateProvider, $httpProvider, $urlMatcherFactoryProvider, $urlRouterProvider) {
          $urlRouterProvider.otherwise('/login');
@@ -48,7 +49,7 @@ angular.module('School', ['Auth', 'Home', 'Setup', 'ui.router', 'ngCookies', 'ui
                  url:'/quotes',
                  views: {
                      'app_pages': {
-                         templateUrl: 'modules/setup/views/quotes.html',
+                         templateUrl: 'modules/quote/views/quotes.html',
                          controller: 'QuoteController',
                          controllerAs : 'quotCtrl'
                      }
