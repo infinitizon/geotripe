@@ -6,7 +6,9 @@ var_dump($_POST);
 print_r($_FILES);
 
 $data = json_decode(file_get_contents("php://input")); //Get data that is sent to the backend\
-var_dump($data);
+var_dump($data->file->name);
+$image= file_get_contents($_FILES['file']['tmp_name']);
+var_dump($image);
 //$target_file = $target_dir . basename($_FILES["file"]["name"]);
 //
 //move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
