@@ -12,10 +12,10 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 </head>
 <body ng-controller="appCtrl">
-
+<!--Source http://stackoverflow.com/questions/33534497/file-upload-using-angularjs-with-php-server-script -->
     <div class="file-upload">
         <input type="text" ng-model="name">
-        <input type="file" file-model="myFile"/>
+        <input type="file" multiple file-model="myFile"/>
         <button ng-click="uploadFile()">upload me</button>
     </div>
 
@@ -32,15 +32,19 @@
                 .controller('appCtrl', ['$scope', '$http', function($scope, $http){
 
                     $scope.uploadFile = function(){
+                        console.log($scope.myFile.length)
                         var file = $scope.myFile;
                         console.log('file is ' );
                         console.dir(file);
 
-//                        var fd = new FormData();
-//                        fd.append('file', file);
-//                        fd.append('name', $scope.name);
-                        fd = {'nm':$scope.name,'file': file}
-                        $http.post("../api/index", fd)
+                        var fd = new FormData();
+                        fd.append('file', file);
+                        fd.append('name', $scope.name);
+//                        fd = {'nm':$scope.name,'file': file}
+                        $http.post("api/index", fd, {
+                                    transformRequest: angular.identity,
+                                    headers: {'Content-Type': undefined, 'Process-Data': false}
+                                })
                                 .success(function(){
                                     console.log("Success");
                                 })

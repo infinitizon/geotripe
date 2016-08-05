@@ -1,5 +1,6 @@
 angular.module('Common')
-        .factory("DataService", ['$http','$state','RemoteServiceBase',
+    .value('RemoteServiceBase','api/v1/')
+    .factory("DataService", ['$http','$state','RemoteServiceBase',
                function ($http,$state,RemoteServiceBase) { // This service connects to our REST API
                    var service = {};
                    service.get = function (q) {
@@ -10,8 +11,8 @@ angular.module('Common')
                            return results;
                        });
                    };
-                   service.post = function (q, object) {
-                       return $http.post(RemoteServiceBase + q, object).then(function (results) {
+                   service.post = function (q, object, config) {
+                       return $http.post(RemoteServiceBase + q, object, config).then(function (results) {
                            if(results.data.message == -110011){
                                $state.go('login');
                            }
@@ -37,7 +38,6 @@ angular.module('Common')
 
                    return service;
                }])
-    .value('RemoteServiceBase','api/v1/')
     .factory('CommonServices', ['DataService' ,
         function(DataService){
             var Service = {};

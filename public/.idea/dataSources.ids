@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source name="MySQL - geotripe@localhost" uuid="6f64b6f4-3572-4765-94e4-42d5865708b2">
-    <database-info product="MySQL" version="5.5.5-10.1.13-MariaDB" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+  <data-source name="MySQL - geotripe@localhost" uuid="bcac8c61-5090-49db-b5dc-9087e3930db5">
+    <database-info product="MySQL" version="5.6.24" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
-    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
-    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.4">
       <schema id="1" name="geotripe"/>
-      <table id="2" parent="1" name="authview"/>
-      <table id="3" parent="1" name="bankaccountdetail"/>
-      <table id="4" parent="1" name="businesstype"/>
-      <table id="5" parent="1" name="country"/>
-      <table id="6" parent="1" name="currency"/>
-      <table id="7" parent="1" name="document"/>
-      <table id="8" parent="1" name="logindetail"/>
-      <table id="9" parent="1" name="party"/>
-      <table id="10" parent="1" name="partystatus"/>
-      <table id="11" parent="1" name="partytype"/>
-      <table id="12" parent="1" name="product"/>
-      <table id="13" parent="1" name="purchaseorder"/>
-      <table id="14" parent="1" name="purchaseorderstatus"/>
-      <table id="15" parent="1" name="quote"/>
-      <table id="16" parent="1" name="quotedirection"/>
-      <table id="17" parent="1" name="quotestatus"/>
-      <table id="18" parent="1" name="state"/>
-      <table id="19" parent="1" name="user_authview"/>
-      <table id="20" parent="1" name="users"/>
+      <table id="2" parent="1" name="AuthView"/>
+      <table id="3" parent="1" name="BankAccountDetail"/>
+      <table id="4" parent="1" name="BusinessType"/>
+      <table id="5" parent="1" name="Country"/>
+      <table id="6" parent="1" name="Currency"/>
+      <table id="7" parent="1" name="Document"/>
+      <table id="8" parent="1" name="LoginDetail"/>
+      <table id="9" parent="1" name="Party"/>
+      <table id="10" parent="1" name="PartyStatus"/>
+      <table id="11" parent="1" name="PartyType"/>
+      <table id="12" parent="1" name="Product"/>
+      <table id="13" parent="1" name="PurchaseOrder"/>
+      <table id="14" parent="1" name="PurchaseOrderStatus"/>
+      <table id="15" parent="1" name="Quote"/>
+      <table id="16" parent="1" name="QuoteDirection"/>
+      <table id="17" parent="1" name="QuoteStatus"/>
+      <table id="18" parent="1" name="State"/>
+      <table id="19" parent="1" name="User_AuthView"/>
+      <table id="20" parent="1" name="Users"/>
       <column id="21" parent="2" name="AuthView_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
@@ -110,25 +110,25 @@
       </key>
       <foreign-key id="44" parent="3" name="fk_BankAccountDetail_Country1">
         <columns>BankAccountDetail_Country_Id</columns>
-        <ref-key>~.country.PRIMARY</ref-key>
+        <ref-key>~.Country.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
       <foreign-key id="45" parent="3" name="fk_BankAccountDetail_Currency1">
         <columns>BankAccountDetail_Currency_Id</columns>
-        <ref-key>~.currency.PRIMARY</ref-key>
+        <ref-key>~.Currency.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
       <foreign-key id="46" parent="3" name="fk_BankAccountDetail_Party1">
         <columns>BankAccountDetail_Party_Id</columns>
-        <ref-key>~.party.PRIMARY</ref-key>
+        <ref-key>~.Party.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
       <foreign-key id="47" parent="3" name="fk_BankAccountDetail_State1">
         <columns>BankAccountDetail_State_Id</columns>
-        <ref-key>~.state.PRIMARY</ref-key>
+        <ref-key>~.State.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
@@ -201,7 +201,7 @@
       </key>
       <foreign-key id="67" parent="7" name="fk_Document_Quote1">
         <columns>Document_Quote_Id</columns>
-        <ref-key>~.quote.PRIMARY</ref-key>
+        <ref-key>~.Quote.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
@@ -241,7 +241,7 @@
       </key>
       <foreign-key id="77" parent="8" name="fk_LoginDetail_User1">
         <columns>LoginDetail_User_Id</columns>
-        <ref-key>~.users.PRIMARY</ref-key>
+        <ref-key>~.Users.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
@@ -344,31 +344,31 @@
       </key>
       <foreign-key id="107" parent="9" name="fk_Party_BusinessType1">
         <columns>Party_BusinessType_Id</columns>
-        <ref-key>~.businesstype.PRIMARY</ref-key>
+        <ref-key>~.BusinessType.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
       <foreign-key id="108" parent="9" name="fk_Party_Country1">
         <columns>Party_Country_Id</columns>
-        <ref-key>~.country.PRIMARY</ref-key>
+        <ref-key>~.Country.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
       <foreign-key id="109" parent="9" name="fk_Party_PartyStatus1">
         <columns>PartyStatus_PartyStatus_Id</columns>
-        <ref-key>~.partystatus.PRIMARY</ref-key>
+        <ref-key>~.PartyStatus.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
       <foreign-key id="110" parent="9" name="fk_Party_PartyType1">
         <columns>Party_PartyType_Id</columns>
-        <ref-key>~.partytype.PRIMARY</ref-key>
+        <ref-key>~.PartyType.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
       <foreign-key id="111" parent="9" name="fk_Party_State1">
         <columns>Party_State_Id</columns>
-        <ref-key>~.state.PRIMARY</ref-key>
+        <ref-key>~.State.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
@@ -441,7 +441,7 @@
       </key>
       <foreign-key id="131" parent="13" name="fk_PurchaseOrder_PurchaseOrderStatus1">
         <columns>PurchaseOrder_PurchaseOrderStatus_Id</columns>
-        <ref-key>~.purchaseorderstatus.PRIMARY</ref-key>
+        <ref-key>~.PurchaseOrderStatus.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
@@ -555,43 +555,43 @@
       </key>
       <foreign-key id="162" parent="15" name="fk_Quote_Currency1">
         <columns>Quote_Currency_Id</columns>
-        <ref-key>~.currency.PRIMARY</ref-key>
+        <ref-key>~.Currency.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
       <foreign-key id="163" parent="15" name="fk_Quote_Product1">
         <columns>Quote_Product_Id</columns>
-        <ref-key>~.product.PRIMARY</ref-key>
+        <ref-key>~.Product.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
       <foreign-key id="164" parent="15" name="fk_Quote_PurchaseOrder1">
         <columns>Quote_PurchaseOrder_Id</columns>
-        <ref-key>~.purchaseorder.PRIMARY</ref-key>
+        <ref-key>~.PurchaseOrder.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
       <foreign-key id="165" parent="15" name="fk_Quote_QuoteDirection1">
         <columns>Quote_QuoteDirection_Id</columns>
-        <ref-key>~.quotedirection.PRIMARY</ref-key>
+        <ref-key>~.QuoteDirection.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
       <foreign-key id="166" parent="15" name="fk_Quote_QuoteStatus1">
         <columns>Quote_Status_Id</columns>
-        <ref-key>~.quotestatus.PRIMARY</ref-key>
+        <ref-key>~.QuoteStatus.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
       <foreign-key id="167" parent="15" name="fk_Quote_User1">
         <columns>Quote_EnteredBy_Id</columns>
-        <ref-key>~.users.PRIMARY</ref-key>
+        <ref-key>~.Users.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
       <foreign-key id="168" parent="15" name="fk_Quote_User2">
         <columns>Quote_ApprovedBy_Id</columns>
-        <ref-key>~.users.PRIMARY</ref-key>
+        <ref-key>~.Users.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
@@ -644,7 +644,7 @@
       </key>
       <foreign-key id="182" parent="18" name="fk_State_Country1">
         <columns>State_Country_Id</columns>
-        <ref-key>~.country.PRIMARY</ref-key>
+        <ref-key>~.Country.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
@@ -675,7 +675,6 @@ User_User_Id</columns>
       <column id="189" parent="20" name="User_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
-        <sequence-identity>1</sequence-identity>
       </column>
       <column id="190" parent="20" name="Firstname">
         <mandatory>1</mandatory>
@@ -699,7 +698,7 @@ User_User_Id</columns>
         <data-type>bigint(20)</data-type>
       </column>
       <column id="196" parent="20" name="IsAuthorizedPerson">
-        <data-type>bit(1)</data-type>
+        <data-type>tinyint(1)</data-type>
       </column>
       <column id="197" parent="20" name="Username">
         <data-type>varchar(100)</data-type>
@@ -742,7 +741,7 @@ User_User_Id</columns>
       </key>
       <foreign-key id="209" parent="20" name="fk_User_Party1">
         <columns>User_Party_Id</columns>
-        <ref-key>~.party.PRIMARY</ref-key>
+        <ref-key>~.Party.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>

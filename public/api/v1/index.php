@@ -7,7 +7,24 @@ $physicalPath = str_replace('\\', '', dirname($scriptName)); // <-- "e.g /api/v1
 $env['PATH_INFO'] = substr_replace($requestUri, '', 0, strlen($physicalPath)); // <--returns "/login"
 
 $data = json_decode(file_get_contents("php://input")); //Get data that is sent to the backend\
-
+if(!$data){
+    if(isset($_POST)){
+        $input = "{\"transactionEventType\":\"{$_POST['transactionEventType']}\",\"factName\":\"{$_POST['factName']}\",";
+        if(isset($_POST['factObjects'])){
+            $factObjects = "[".json_encode($_POST['factObjects'])."]";
+            $input .= "\"factObjects\": {$factObjects},";
+        }
+        if(isset($_POST['transactionMetaData'])){
+            $transactionMetaData = json_encode($_POST['transactionMetaData']);
+            $transactionMetaData = str_replace('\"', '"',$transactionMetaData);
+            $transactionMetaData = str_replace('"[', '[',$transactionMetaData);
+            $transactionMetaData = str_replace(']"', ']',$transactionMetaData);
+            $input .= "\"transactionMetaData\": {$transactionMetaData}";
+        }
+        $input .= "}";
+    }
+    $data = json_decode($input);
+}
 include_once "core/init.inc.php";
 $fxns = new Functions($dbo);
 
