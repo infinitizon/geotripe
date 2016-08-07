@@ -91,14 +91,12 @@ if($env['PATH_INFO']==="/inboundService") {
                     }
                 }
             }
+            /**
+             * A Query is simple a select
+             */
             if ($data->transactionEventType == "Query") {
 
                 $responseData = explode("&", $data->transactionMetaData->responseDataProperties);
-//                $q_str = "SELECT ";
-//                foreach ($responseData as $field) {
-//                    $q_str .= $field . ",";
-//                }
-//                $q_str = substr($q_str, 0, -1) . " FROM " . $data->factName;
                 $options = array();
                 if (!empty($data->transactionMetaData->queryMetaData->joinClause->joinType)){
                     $options['joinType'] = $data->transactionMetaData->queryMetaData->joinClause->joinType;
@@ -108,7 +106,6 @@ if($env['PATH_INFO']==="/inboundService") {
                 }
                 $q_str = $fxns->_generateQry($data->factName, $responseData,$options);
 
-//                echo $q_str;exit;
                 if (!empty($data->transactionMetaData->queryMetaData->queryClause->andExpression)) {
                     $q_str .= " WHERE ";
                     foreach ($data->transactionMetaData->queryMetaData->queryClause->andExpression as $field) {
@@ -130,6 +127,9 @@ if($env['PATH_INFO']==="/inboundService") {
                 }
                 $response = array("response" => "Success", "token" => $data->token, "total_count" => $r_str_tot_count['count'], "data" => @$q_response);
             }
+            /**
+             * An Update is an Update
+             */
             if ($data->transactionEventType == "Update") {
                 if(is_array($data->factObjects[0])){
                     $q_str = "INSERT INTO {$data->factName} ";
@@ -175,6 +175,9 @@ if($env['PATH_INFO']==="/inboundService") {
                 $r_str->execute();
                 $response = array("response" => "Success", "message" => "Record Updated Successfully", "token" => $data->token);
             }
+            /**
+             * A PUT is an insert
+             */
             if ($data->transactionEventType == "PUT") {
                 $q_str = "INSERT INTO {$data->factName} ";
 
