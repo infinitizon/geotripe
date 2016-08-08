@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8d05ef40-3f7a-41b2-81e7-eb6b1d801a63" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Geoscape.mwb" afterPath="$PROJECT_DIR$/../Geoscape.mwb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Geoscape.mwb.bak" afterPath="$PROJECT_DIR$/../Geoscape.mwb.bak" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/v1/index.php" afterPath="$PROJECT_DIR$/api/v1/index.php" />
-    </list>
+    <list default="true" id="8d05ef40-3f7a-41b2-81e7-eb6b1d801a63" name="Default" comment="" />
     <ignored path="public.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -43,8 +39,8 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/v1/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.87891614">
-              <caret line="115" column="79" selection-start-line="115" selection-start-column="75" selection-end-line="115" selection-end-column="79" />
+            <state vertical-scroll-proportion="0.5613887">
+              <caret line="90" column="21" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="21" />
               <folding>
                 <marker date="1470647681000" expanded="true" signature="1526:1765" placeholder="SELECT u.use... Users" />
                 <marker date="1470647681000" expanded="true" signature="2045:2052" placeholder="UPDATE Users... " />
@@ -799,12 +795,12 @@
       <workItem from="1470563844977" duration="1233000" />
       <workItem from="1470565641870" duration="3057000" />
       <workItem from="1470600225400" duration="1219000" />
-      <workItem from="1470645218763" duration="1750000" />
+      <workItem from="1470645218763" duration="1775000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35614000" />
+    <option name="totallyTimeSpent" value="35639000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1863" height="1329" extended-state="0" />
@@ -1249,8 +1245,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/v1/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.87891614">
-          <caret line="115" column="79" selection-start-line="115" selection-start-column="75" selection-end-line="115" selection-end-column="79" />
+        <state vertical-scroll-proportion="0.5613887">
+          <caret line="90" column="21" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="21" />
           <folding>
             <marker date="1470647681000" expanded="true" signature="1526:1765" placeholder="SELECT u.use... Users" />
             <marker date="1470647681000" expanded="true" signature="2045:2052" placeholder="UPDATE Users... " />
