@@ -31,9 +31,13 @@ angular.module('School', ['Auth', 'Home', 'RFQ', 'Setup', 'ui.router', 'ngCookie
             })
              .state('home', {
                  url:'/home',
-                 templateUrl: 'modules/home/views/home.html',
-                 controller: 'HomeController',
-                 controllerAs : 'homeCtrl'
+                 views: {
+                     'app_pages': {
+                         templateUrl: 'modules/home/views/home.html',
+                         controller: 'HomeController',
+                         controllerAs : 'homeCtrl'
+                     }
+                 }
              })
              .state('setup', {
                  url:'/setup',
