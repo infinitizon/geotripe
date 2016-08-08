@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="School">
     <head>
-        <title>:: {{pageTitle}} - Geotripe ::</title>
+        <title>:: {{$root.pageTitle}} - Geotripe ::</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="scripts/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -20,6 +20,7 @@
                 <div class="pull-right">
                     <input type="text" placeholder="Search..." />&nbsp;&nbsp;&nbsp;{{$root.globals.currentUser.userDetails.authDetails.firstname}}
                 </div>
+                <div>{{$root.pageHeader}}</div>
             </div>
             <div class="row global-container">
                 <div class="col-sm-3 global-sidenav">

@@ -1,6 +1,9 @@
 angular.module('RFQ')
     .controller('QuoteController', ['$scope', '$location', '$rootScope','DataService','$http',
         function ($scope, $location, $rootScope,DataService,$http) {
+            $rootScope.pageTitle = "Quotes";
+            $rootScope.pageHeader = "Quotes";
+
             var vm = this;
             $scope.getFileDetails = function (e) {
                 vm.files = [];
