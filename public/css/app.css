@@ -121,6 +121,7 @@ ul.main-menu > li > ul li:hover > ul{
 }
 
 .global-main-content{
+    padding: 30px;
     background: #FFFFFF;
     min-height: 100%;
 }
