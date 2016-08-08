@@ -32,13 +32,13 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
 if($env['PATH_INFO']==="/login"){
     try {
         $stmtChkUsr = "SELECT u.user_id, u.firstname, u.middlename, u.lastname, u.username, u.email
-                    FROM Users u
+                    FROM users u
                     WHERE (u.username=:email OR u.email=:email) AND u.password = :password AND u.enabled=1 and u.accountlocked<>1 ";
         $stmtChkUsr = $dbo->prepare($stmtChkUsr);
         $stmtChkUsr->execute(array(":email" => $data->usr, ":password" => md5(base64_decode($data->pwd))));
         $user = $stmtChkUsr->fetchAll(PDO::FETCH_ASSOC);
         if (count($user) == 1) {
-            $qryGivToken = "UPDATE Users SET token =:token WHERE email=:email AND password = :password";
+            $qryGivToken = "UPDATE users SET token =:token WHERE email=:email AND password = :password";
             $qryGivToken = $dbo->prepare($qryGivToken);
             $qryGivToken->execute(array(":token" => $token, ":email" => $data->usr, ":password" => md5(base64_decode($data->pwd))));
 
@@ -74,7 +74,7 @@ if($env['PATH_INFO']==="/login"){
 if($env['PATH_INFO']==="/inboundService") {
     try {
         ##check if User is logged in
-        $q_ChkUsr = "SELECT * FROM Users WHERE token=:token";
+        $q_ChkUsr = "SELECT * FROM users WHERE token=:token";
         $r_ChkUsr = $dbo->prepare($q_ChkUsr);
         $r_ChkUsr->execute(array(":token"=>$token));
         $user = $r_ChkUsr->fetchAll(PDO::FETCH_ASSOC);
@@ -237,7 +237,7 @@ if($env['PATH_INFO']==="/inboundService") {
 
 if($env['PATH_INFO']==="/logout"){
     try{
-        $qryGivToken = "UPDATE Users SET token =null WHERE token=:token";
+        $qryGivToken = "UPDATE users SET token =null WHERE token=:token";
         $qryGivToken = $dbo->prepare($qryGivToken);
         $qryGivToken->execute(array(":token"=>$token));
         $response = array("response"=>"Success","token"=>"You have been logged out");

@@ -41,20 +41,12 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/v1/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.26406926">
-              <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.012987013">
+              <caret line="34" column="26" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="26" />
               <folding>
-                <marker date="1470647351000" expanded="true" signature="1526:1765" placeholder="SELECT u.use... Users" />
-                <marker date="1470647351000" expanded="true" signature="2045:2052" placeholder="UPDATE users... " />
-                <marker date="1470647351000" expanded="true" signature="2045:2119" placeholder="UPDATE Users... " />
-                <marker date="1470647351000" expanded="true" signature="2351:2658" placeholder="SELECT av.au... user_authview" />
-                <marker date="1470647351000" expanded="true" signature="3969:4007" placeholder="SELECT * FRO... Users" />
-                <marker date="1470647351000" expanded="true" signature="6032:6082" placeholder="SELECT COUNT... ${$q_str}" />
-                <marker date="1470647351000" expanded="true" signature="7049:7061" placeholder="INSERT INTO $... " />
-                <marker date="1470647351000" expanded="true" signature="8659:8687" placeholder="UPDATE ${{$d... " />
-                <marker date="1470647351000" expanded="true" signature="9486:9498" placeholder="INSERT INTO $... " />
-                <marker date="1470647351000" expanded="true" signature="12151:12198" placeholder="UPDATE Users... " />
-                <marker date="1470647351000" expanded="true" signature="12159:12198" placeholder="UPDATE users... " />
+                <marker date="1470647466000" expanded="true" signature="1526:1765" placeholder="SELECT u.use... users" />
+                <marker date="1470647466000" expanded="true" signature="2045:2052" placeholder="UPDATE Users... " />
+                <marker date="1470647466000" expanded="true" signature="12159:12198" placeholder="UPDATE users... " />
               </folding>
             </state>
           </provider>
@@ -797,12 +789,12 @@
       <workItem from="1470563844977" duration="1233000" />
       <workItem from="1470565641870" duration="3057000" />
       <workItem from="1470600225400" duration="1219000" />
-      <workItem from="1470645218763" duration="1484000" />
+      <workItem from="1470645218763" duration="1570000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35348000" />
+    <option name="totallyTimeSpent" value="35434000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1863" height="1329" extended-state="0" />
@@ -871,17 +863,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1470647351000" expanded="true" signature="1526:1765" placeholder="SELECT u.use... Users" />
-            <marker date="1470647351000" expanded="true" signature="2045:2052" placeholder="UPDATE users... " />
-            <marker date="1470647351000" expanded="true" signature="2045:2119" placeholder="UPDATE Users... " />
-            <marker date="1470647351000" expanded="true" signature="2351:2658" placeholder="SELECT av.au... user_authview" />
-            <marker date="1470647351000" expanded="true" signature="3969:4007" placeholder="SELECT * FRO... Users" />
-            <marker date="1470647351000" expanded="true" signature="6032:6082" placeholder="SELECT COUNT... ${$q_str}" />
-            <marker date="1470647351000" expanded="true" signature="7049:7061" placeholder="INSERT INTO $... " />
-            <marker date="1470647351000" expanded="true" signature="8659:8687" placeholder="UPDATE ${{$d... " />
-            <marker date="1470647351000" expanded="true" signature="9486:9498" placeholder="INSERT INTO $... " />
-            <marker date="1470647351000" expanded="true" signature="12151:12198" placeholder="UPDATE Users... " />
-            <marker date="1470647351000" expanded="true" signature="12159:12198" placeholder="UPDATE users... " />
+            <marker date="1470647466000" expanded="true" signature="1526:1765" placeholder="SELECT u.use... users" />
+            <marker date="1470647466000" expanded="true" signature="2045:2052" placeholder="UPDATE Users... " />
+            <marker date="1470647466000" expanded="true" signature="12159:12198" placeholder="UPDATE users... " />
           </folding>
         </state>
       </provider>
@@ -947,17 +931,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
           <folding>
-            <marker date="1470647351000" expanded="true" signature="1526:1765" placeholder="SELECT u.use... Users" />
-            <marker date="1470647351000" expanded="true" signature="2045:2052" placeholder="UPDATE users... " />
-            <marker date="1470647351000" expanded="true" signature="2045:2119" placeholder="UPDATE Users... " />
-            <marker date="1470647351000" expanded="true" signature="2351:2658" placeholder="SELECT av.au... user_authview" />
-            <marker date="1470647351000" expanded="true" signature="3969:4007" placeholder="SELECT * FRO... Users" />
-            <marker date="1470647351000" expanded="true" signature="6032:6082" placeholder="SELECT COUNT... ${$q_str}" />
-            <marker date="1470647351000" expanded="true" signature="7049:7061" placeholder="INSERT INTO $... " />
-            <marker date="1470647351000" expanded="true" signature="8659:8687" placeholder="UPDATE ${{$d... " />
-            <marker date="1470647351000" expanded="true" signature="9486:9498" placeholder="INSERT INTO $... " />
-            <marker date="1470647351000" expanded="true" signature="12151:12198" placeholder="UPDATE Users... " />
-            <marker date="1470647351000" expanded="true" signature="12159:12198" placeholder="UPDATE users... " />
+            <marker date="1470647466000" expanded="true" signature="1526:1765" placeholder="SELECT u.use... users" />
+            <marker date="1470647466000" expanded="true" signature="2045:2052" placeholder="UPDATE Users... " />
+            <marker date="1470647466000" expanded="true" signature="12159:12198" placeholder="UPDATE users... " />
           </folding>
         </state>
       </provider>
@@ -1247,20 +1223,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/v1/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.26406926">
-          <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.012987013">
+          <caret line="34" column="26" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="26" />
           <folding>
-            <marker date="1470647351000" expanded="true" signature="1526:1765" placeholder="SELECT u.use... Users" />
-            <marker date="1470647351000" expanded="true" signature="2045:2052" placeholder="UPDATE users... " />
-            <marker date="1470647351000" expanded="true" signature="2045:2119" placeholder="UPDATE Users... " />
-            <marker date="1470647351000" expanded="true" signature="2351:2658" placeholder="SELECT av.au... user_authview" />
-            <marker date="1470647351000" expanded="true" signature="3969:4007" placeholder="SELECT * FRO... Users" />
-            <marker date="1470647351000" expanded="true" signature="6032:6082" placeholder="SELECT COUNT... ${$q_str}" />
-            <marker date="1470647351000" expanded="true" signature="7049:7061" placeholder="INSERT INTO $... " />
-            <marker date="1470647351000" expanded="true" signature="8659:8687" placeholder="UPDATE ${{$d... " />
-            <marker date="1470647351000" expanded="true" signature="9486:9498" placeholder="INSERT INTO $... " />
-            <marker date="1470647351000" expanded="true" signature="12151:12198" placeholder="UPDATE Users... " />
-            <marker date="1470647351000" expanded="true" signature="12159:12198" placeholder="UPDATE users... " />
+            <marker date="1470647466000" expanded="true" signature="1526:1765" placeholder="SELECT u.use... users" />
+            <marker date="1470647466000" expanded="true" signature="2045:2052" placeholder="UPDATE Users... " />
+            <marker date="1470647466000" expanded="true" signature="12159:12198" placeholder="UPDATE users... " />
           </folding>
         </state>
       </provider>
