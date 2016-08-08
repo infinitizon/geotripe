@@ -38,7 +38,7 @@ if($env['PATH_INFO']==="/login"){
         $stmtChkUsr->execute(array(":email" => $data->usr, ":password" => md5(base64_decode($data->pwd))));
         $user = $stmtChkUsr->fetchAll(PDO::FETCH_ASSOC);
         if (count($user) == 1) {
-            $qryGivToken = "UPDATE users SET token =:token WHERE email=:email AND password = :password";
+            $qryGivToken = "UPDATE Users SET token =:token WHERE email=:email AND password = :password";
             $qryGivToken = $dbo->prepare($qryGivToken);
             $qryGivToken->execute(array(":token" => $token, ":email" => $data->usr, ":password" => md5(base64_decode($data->pwd))));
 
@@ -74,7 +74,7 @@ if($env['PATH_INFO']==="/login"){
 if($env['PATH_INFO']==="/inboundService") {
     try {
         ##check if User is logged in
-        $q_ChkUsr = "SELECT * FROM users WHERE token=:token";
+        $q_ChkUsr = "SELECT * FROM Users WHERE token=:token";
         $r_ChkUsr = $dbo->prepare($q_ChkUsr);
         $r_ChkUsr->execute(array(":token"=>$token));
         $user = $r_ChkUsr->fetchAll(PDO::FETCH_ASSOC);
@@ -237,7 +237,7 @@ if($env['PATH_INFO']==="/inboundService") {
 
 if($env['PATH_INFO']==="/logout"){
     try{
-        $qryGivToken = "UPDATE users SET token =null WHERE token=:token";
+        $qryGivToken = "UPDATE Users SET token =null WHERE token=:token";
         $qryGivToken = $dbo->prepare($qryGivToken);
         $qryGivToken->execute(array(":token"=>$token));
         $response = array("response"=>"Success","token"=>"You have been logged out");
