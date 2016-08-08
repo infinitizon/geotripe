@@ -6,12 +6,28 @@
             <input type="text" id="subject" ng-model="quotCtrl.subject" class="form-control"/>
         </div>
         <div class="form-group">
+            <label for="PartyId">Party</label>
+            <select id="PartyId"
+                    class="form-control"
+                    ng-click="quotCtrl.getLOVs('Party','parties', {'response':'party_id&name'})"
+                    ng-options="party.name for party in quotCtrl.container['parties'] track by party.party_id"
+                    ng-model="quotCtrl.party.party_id">
+                <option value="">{{"--Select Company name --"}}</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="quoteDirection">Direction</label>
-            <input type="text" id="quoteDirection" ng-model="quotCtrl.quoteDirection" class="form-control"/>
+            <select id="quoteDirection"
+                    class="form-control"
+                    ng-click="quotCtrl.getLOVs('QuoteDirection','quotes', {'response':'QuoteDirection_Id&name'})"
+                    ng-options="quotes.name for quotes in quotCtrl.container['quotes'] track by quotes.QuoteDirection_Id"
+                    ng-model="quotCtrl.quote.Quote_QuoteDirection_Id">
+                <option value="">{{"--Select Quote Direction --"}}</option>
+            </select>
         </div>
         <div class="form-group">
             <label for="amount">Amount</label>
-            <input type="text" id="amount" class="form-control"/>
+            <input type="number" id="amount" class="form-control"/>
         </div>
         <div class="form-group">
             <label for="currency">Currency</label>
@@ -23,7 +39,7 @@
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <input type="text" id="description" class="form-control"/>
+            <textarea id="description" class="form-control" ng-model="description"></textarea>
         </div>
         <div class="form-group">
             <label for="quantity">Quantity</label>
@@ -40,9 +56,12 @@
         <div class="form-group">
             <label for="notes">Attachments <small><small>(ctrl+click to select multiple files)</small></small></label>
             <input type="file" id="file" name="file" multiple onchange="angular.element(this).scope().getFileDetails(this)" />
+            <div ng-if="quotCtrl.files">You selected:
+                <ul><li ng-repeat="file in quotCtrl.files">{{file.name}}</li></ul>
+            </div>
         </div>
         <div class="form-actions text-center">
-            <button ng-click="quotCtrl.uploadFile()" style="width:20%;" ng-disabled="form.$invalid || quotCtrl.dataLoading" class="btn btn-primary input-lg">Submit</button>
+            <button ng-click="quotCtrl.uploadFile()" data-ng-disabled="true" style="width:20%;" class="btn btn-primary input-lg">Submit</button>
             <img ng-if="quotCtrl.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
         </div>
     </form>

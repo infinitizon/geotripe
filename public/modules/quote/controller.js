@@ -1,10 +1,13 @@
 angular.module('RFQ')
-    .controller('QuoteController', ['$scope', '$location', '$rootScope','DataService','$http',
-        function ($scope, $location, $rootScope,DataService,$http) {
+    .controller('QuoteController', ['$scope', '$location', '$rootScope','DataService','CommonServices','$http',
+        function ($scope, $location, $rootScope,DataService,CommonServices,$http) {
             $rootScope.pageTitle = "Quotes";
             $rootScope.pageHeader = "Quotes";
 
             var vm = this;
+            vm.container = [];
+
+            CommonServices.postData.token = $rootScope.globals.currentUser.userDetails.token;
             $scope.getFileDetails = function (e) {
                 vm.files = [];
                 $scope.$apply(function () {
@@ -13,7 +16,19 @@ angular.module('RFQ')
                         vm.files.push(e.files[i]);
                     }
                 });
+
+                console.dir(vm.files);
             };
+            vm.getLOVs = function(factName, selectScope, options) {
+                if (vm.container[selectScope] == null) {
+                    var data = angular.copy(CommonServices.postData);
+                    data.factName = factName;
+                    data.transactionMetaData.responseDataProperties = options.response;
+                    DataService.post('inboundService', data).then( function (response) {
+                        vm.container[selectScope] = response.data.data;
+                    });
+                }
+            }
             vm.uploadFile = function () {
                 //FILL FormData WITH FILE DETAILS.
                 var data = new FormData();

@@ -172,7 +172,7 @@ angular.module('Setup')
 
             CommonServices.postData.token = $rootScope.globals.currentUser.userDetails.token;
             vm.getData = function(pageno) {
-                data=angular.copy(CommonServices.postData);
+                var data=angular.copy(CommonServices.postData);
                 data.factName = 'Users u, Party p';
                 data.transactionMetaData.responseDataProperties = 'u.user_id&u.firstname&u.middlename&u.lastname&u.workphonenumber&u.contactphonenumber&p.name&u.isauthorizedperson&u.username&u.email&u.enabled'
                 data.transactionMetaData.pageno = pageno-1;
