@@ -41,13 +41,13 @@ if($env['PATH_INFO']==="/login"){
             $qryGivToken = "UPDATE Users SET token =:token WHERE email=:email AND password = :password";
             $qryGivToken = $dbo->prepare($qryGivToken);
             $qryGivToken->execute(array(":token" => $token, ":email" => $data->usr, ":password" => md5(base64_decode($data->pwd))));
-
             $r_getViews = $dbo->query("SELECT av.authview_id, av.name, av.parent_id, av.viewpath, av.description, av.css_class
                           FROM User_AuthView ua
                         JOIN AuthView av
                           ON ua.authview_authview_id=av.authview_id
                         WHERE ua.ius_yn=1 AND ua.User_User_Id=".$user[0]['user_id']);
             // Create a multidimensional array to conatin a list of items and parents
+
             $menu = array('items' => array(), 'parents' => array());
             // Builds the array lists with data from the menu table
             while ($items = $r_getViews->fetch(PDO::FETCH_ASSOC)) {
@@ -92,20 +92,19 @@ if($env['PATH_INFO']==="/inboundService") {
                 }
             }
             /**
-             * A Query is simple a select
+             * A Query is a select
              */
             if ($data->transactionEventType == "Query") {
 
                 $responseData = explode("&", $data->transactionMetaData->responseDataProperties);
                 $options = array();
                 if (!empty($data->transactionMetaData->queryMetaData->joinClause->joinType)){
-                    $options['joinType'] = $data->transactionMetaData->queryMetaData->joinClause->joinType;
-                }
-                if (!empty($data->transactionMetaData->queryMetaData->joinClause->joinKeys)){
-                    $options['joinKeys'] = $data->transactionMetaData->queryMetaData->joinClause->joinKeys;
+                    foreach ($data->transactionMetaData->queryMetaData->joinClause->joinType as $key => $item) {
+                        $options['joinType'][] = $item;
+                        $options['joinKeys'][] = $data->transactionMetaData->queryMetaData->joinClause->joinKeys[$key];
+                    }
                 }
                 $q_str = $fxns->_generateQry($data->factName, $responseData,$options);
-
                 if (!empty($data->transactionMetaData->queryMetaData->queryClause->andExpression)) {
                     $q_str .= " WHERE ";
                     foreach ($data->transactionMetaData->queryMetaData->queryClause->andExpression as $field) {

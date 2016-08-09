@@ -179,7 +179,7 @@ angular.module('Setup')
                 data.transactionMetaData.itemsPerPage = vm.itemsPerPage;
                 data.transactionMetaData.queryMetaData.queryClause.andExpression = [];
                 data.transactionMetaData.queryMetaData.joinClause = {
-                    'joinType':['LEFT'],'joinKeys':['u.user_party_id=p.party_id']
+                    'joinType':['LEFT JOIN'],'joinKeys':['u.user_party_id=p.party_id']
                 }
 
                 DataService.post('inboundService', data).then(function (response) {
@@ -202,7 +202,7 @@ angular.module('Setup')
                 data.transactionMetaData.responseDataProperties = 'a.authview_id&a.name&b.authview_authview_id&b.user_user_id&b.ius_yn';
                 theuserId = (typeof userId === "undefined")?'null':userId;
                 data.transactionMetaData.queryMetaData.joinClause = {
-                    'joinType':['LEFT'],'joinKeys':['a.authview_id = b.authview_authview_id AND b.user_user_id = '+theuserId]
+                    'joinType':['LEFT JOIN'],'joinKeys':['a.authview_id = b.authview_authview_id AND b.user_user_id = '+theuserId]
                 }
                 DataService.post('inboundService', data).then(function (response) {
                     vm.userViews = response.data.data;

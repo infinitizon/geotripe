@@ -96,19 +96,15 @@ class Functions extends DB_Connect {
         $q_str = substr($q_str, 0, -1) . " FROM ";
 
         $joins= explode(",",$factName);
+        $joinQry = "";
         foreach($joins as $key => $tables){
-            $q_str .= $tables." ";
+            $joinQry .= (empty($joinQry)?($tables." "):' ');
             if(isset($options['joinType'][$key])){
-                $q_str .= $options['joinType'][$key];
-            }
-            $q_str .= " JOIN ";
-        }
-        $q_str = substr($q_str, 0, strrpos($q_str, "JOIN"));
-        if(isset($options['joinKeys'])){
-            foreach($options['joinKeys'] as $key => $joinFields){
-                $q_str .= " ON ".$joinFields;
+                $joinQry .= $options['joinType'][$key] ." ". $joins[$key+1];
+                $joinQry .= " ON ".$options['joinKeys'][$key];
             }
         }
+        $q_str .= $joinQry;
         return $q_str;
     }
     /**

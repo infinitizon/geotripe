@@ -1,87 +1,124 @@
 <div class="row wrapper">
     <div ng-show="error" class="alert alert-danger">{{error}}</div>
-    <form name="form" ng-submit="login()" role="form">
-        <div class="form-group">
-            <label for="subject">Subject</label>
-            <input type="text" id="subject" ng-model="quotCtrl.subject" class="form-control"/>
-        </div>
-        <div class="form-group">
-            <label for="PartyId">Party</label>
-            <select id="PartyId"
-                    class="form-control"
-                    ng-click="quotCtrl.getLOVs('Party','parties', {'response':'party_id&name'})"
-                    ng-options="party.name for party in quotCtrl.container['parties'] track by party.party_id"
-                    ng-model="quotCtrl.party.party_id">
-                <option value="">{{"--Select Company name --"}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="quoteDirection">Direction</label>
-            <select id="quoteDirection"
-                    class="form-control"
-                    ng-click="quotCtrl.getLOVs('QuoteDirection','quotes', {'response':'QuoteDirection_Id&name'})"
-                    ng-options="quotes.name for quotes in quotCtrl.container['quotes'] track by quotes.QuoteDirection_Id"
-                    ng-model="quotCtrl.quote.Quote_QuoteDirection_Id">
-                <option value="">{{"--Select Quote Direction --"}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="product">Product</label>
-            <select id="product"
-                    class="form-control"
-                    ng-click="quotCtrl.getLOVs('Product','products', {'response':'product_id&name'
-                                                                            , 'and':[{
-                                                                                'propertyName': 'ins_yn',
-                                                                                'propertyValue': 1,
-                                                                                'propertyDataType': 'TINYINT',
-                                                                                'operatorType': '='
-                                                                            }]
-                                                                           })"
-                    ng-options="product.name for product in quotCtrl.container['products'] track by product.product_id"
-                    ng-model="quotCtrl.quote.product_id">
-                <option value="">{{"--Select Product --"}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="amount">Amount</label>
-            <input type="number" id="amount" class="form-control"/>
-        </div>
-        <div class="form-group">
-            <label for="currency">Currency</label>
-            <select id="currency"
-                    class="form-control"
-                    ng-click="quotCtrl.getLOVs('currency','currencies', {'response':'currency_Id&code'})"
-                    ng-options="currencies.code for currencies in quotCtrl.container['currencies'] track by currencies.currency_Id"
-                    ng-model="quotCtrl.quote.currency_Id">
-                <option value="">{{"--Select Currency --"}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="bidPrice">Bid Price</label>
-            <input type="text" id="bidPrice" class="form-control"/>
-        </div>
-        <div class="form-group">
-            <label for="description">Description</label>
-            <textarea id="description" class="form-control" ng-model="description"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="quantity">Quantity</label>
-            <input type="number" id="quantity" class="form-control"/>
-        </div>
-        <div class="form-group">
-            <label for="notes">Other Notes</label>
-            <textarea id="notes" class="form-control" ng-model="myTextarea"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="notes">Attachments <small><small>(ctrl+click to select multiple files)</small></small></label>
-            <input type="file" id="file" name="file" multiple onchange="angular.element(this).scope().getFileDetails(this)" />
-            <div ng-if="quotCtrl.files" style="margin-top:10px;">You selected:
-                <ul><li ng-repeat="file in quotCtrl.files">{{file.name}}</li></ul>
+    <div class="drillDown" ng-if="!quotCtrl.edit">
+        <dir-pagination-controls
+                max-size="8"
+                direction-links="true"
+                boundary-links="true"
+                on-page-change="UsrCtrl.getData(newPageNumber)" >
+        </dir-pagination-controls>
+        <table class="table table-responsive">
+            <thead>
+            <tr>
+                <th>quote_id</th>
+                <th>Name</th>
+                <th>Subject</th>
+                <th>Status</th>
+                <th class="text-center">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-show="UsrCtrl.users.data <= 0"><td colspan="6" style="text-align:center;">Loading new data!!</td></tr>
+            <tr dir-paginate="quote in quotCtrl.quotes.data|itemsPerPage:quotCtrl.itemsPerPage" total-items="quotCtrl.total_count">
+                <td>{{quote.quote_id}}</td>
+                <td>{{quote.name}}</td>
+                <td>{{quote.subject}}</td>
+                <td>{{quote.status}}</td>
+                <td class="text-center">
+                    <div class="row">
+                        <button  type="button" class="btn btn-primary" ng-click="quotCtrl.editQuote(quote.quote_id)"><i class="fa fa-pencil"></i> Edit</button>
+                        <button  type="button" class="btn btn-danger" ng-click="quotCtrl.deleteQuote()"><i class="fa fa-trash"></i> Delete</button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="drillDown" ng-if="quotCtrl.edit">
+        <form name="form" ng-submit="login()" role="form">
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" ng-model="quotCtrl.quote.subject" class="form-control"/>
             </div>
-        </div>
-        <div class="form-actions text-center">
-            <button ng-click="quotCtrl.postData()" data-ng-disabled="true" style="width:20%;" class="btn btn-primary input-lg">Submit</button>
-            <img ng-if="quotCtrl.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
-        </div>
-    </form>
+            <div class="form-group">
+                <label for="PartyId">Party</label>
+                <select id="PartyId"
+                        class="form-control"
+                        ng-click="quotCtrl.getLOVs('Party','parties', {'response':'party_id&name'})"
+                        ng-options="party.name for party in quotCtrl.container['parties'] track by party.party_id"
+                        ng-model="quotCtrl.quote.party_party_id">
+                    <option value="">{{quotCtrl.quote.partyName ||"--Select Company name --"}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="quoteDirection">Direction</label>
+                <select id="quoteDirection"
+                        class="form-control"
+                        ng-click="quotCtrl.getLOVs('QuoteDirection','quotes', {'response':'QuoteDirection_Id&name'})"
+                        ng-options="quotes.name for quotes in quotCtrl.container['quotes'] track by quotes.QuoteDirection_Id"
+                        ng-model="quotCtrl.quote.quote_quoteDirection_id">
+                    <option value="">{{quotCtrl.quote.quoteDirection ||"--Select Quote Direction --"}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="product">Product</label>
+                <select id="product"
+                        class="form-control"
+                        ng-click="quotCtrl.getLOVs('Product','products', {'response':'product_id&name'
+                                                                                , 'and':[{
+                                                                                    'propertyName': 'ins_yn',
+                                                                                    'propertyValue': 1,
+                                                                                    'propertyDataType': 'TINYINT',
+                                                                                    'operatorType': '='
+                                                                                }]
+                                                                               })"
+                        ng-options="product.name for product in quotCtrl.container['products'] track by product.product_id"
+                        ng-model="quotCtrl.quote.quote_product_id">
+                    <option value="">{{quotCtrl.quote.product || "--Select Product --"}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" class="form-control" step="0.01" ng-model="quotCtrl.quote.quoteAmount"/>
+            </div>
+            <div class="form-group">
+                <label for="currency">Currency</label>
+                <select id="currency"
+                        class="form-control"
+                        ng-click="quotCtrl.getLOVs('currency','currencies', {'response':'currency_Id&code'})"
+                        ng-options="currencies.code for currencies in quotCtrl.container['currencies'] track by currencies.currency_Id"
+                        ng-model="quotCtrl.quote.quote_currency_id">
+                    <option value="">{{quotCtrl.quote.currency || "--Select Currency --"}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="bidPrice">Bid Price</label>
+                <input type="text" id="bidPrice" class="form-control" ng-model="quotCtrl.quote.bidPrice" />
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" class="form-control" ng-model="quotCtrl.quote.description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input type="number" id="quantity" class="form-control" ng-model="quotCtrl.quote.quantity"/>
+            </div>
+            <div class="form-group">
+                <label for="notes">Other Notes</label>
+                <textarea id="notes" class="form-control" ng-model="quotCtrl.quote.specificationAndRequirement"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="notes">Attachments <small><small>(ctrl+click to select multiple files)</small></small></label>
+                <input type="file" id="file" name="file" multiple onchange="angular.element(this).scope().getFileDetails(this)" />
+                <div ng-if="quotCtrl.files" style="margin-top:10px;">You selected:
+                    <ul><li ng-repeat="file in quotCtrl.files">{{file.name}}</li></ul>
+                </div>
+            </div>
+            <div class="form-actions text-center">
+                <button type="button" class="btn btn-default" style="width:10%;" ng-click="quotCtrl.goBack()"><i class="fa fa-arrow-left"></i> Cancel</button>
+                <button ng-click="quotCtrl.postData()" data-ng-disabled="form.$invalid || dataLoading" style="width:10%;" class="btn btn-primary">Submit</button>
+                <img ng-if="quotCtrl.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+            </div>
+        </form>
+    </div>
 </div>

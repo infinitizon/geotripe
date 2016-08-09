@@ -5,6 +5,66 @@ angular.module('RFQ')
             $rootScope.pageHeader = "Quotes";
 
             var vm = this;
+            /*
+             * This part gets all the quotes available
+             */
+            vm.edit = false;
+            vm.users = []; //declare an empty array
+            vm.pageno = 1; // initialize page no to 1
+            vm.total_count = 0;
+            vm.itemsPerPage = 15; //this could be a dynamic value from a drop down
+
+            CommonServices.postData.token = $rootScope.globals.currentUser.userDetails.token;
+            vm.getData = function(pageno) {
+                var data=angular.copy(CommonServices.postData);
+                data.factName = 'Quote q, Party p, QuoteStatus qs';
+                data.transactionMetaData.responseDataProperties = 'q.quote_id&p.name&CONCAT(LEFT(q.subject , 30),IF(LENGTH(q.subject)>30, "…", "")) subject&qs.name status'
+                data.transactionMetaData.pageno = pageno-1;
+                data.transactionMetaData.itemsPerPage = vm.itemsPerPage;
+                data.transactionMetaData.queryMetaData.queryClause.andExpression = [];
+                data.transactionMetaData.queryMetaData.joinClause = {
+                    'joinType':['JOIN','JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id']
+                }
+                DataService.post('inboundService', data).then(function (response) {
+                    vm.quotes = response.data;
+                    vm.total_count = response.data.total_count;
+                })
+            }
+            vm.getData(vm.pageno);
+
+            vm.goBack = function () {
+                vm.edit=false;
+                vm.getData(vm.pageno);
+            };
+            vm.editQuote = function (quoteId) {
+                vm.edit=true;
+                if(quoteId) {
+                    var data=angular.copy(CommonServices.postData);
+                    data.factName = 'Quote q, Party p, Product pr, QuoteStatus qs, QuoteDirection qd, Currency c, Users u';
+                    data.transactionMetaData.responseDataProperties = 'q.quote_id&q.subject&p.name partyName&qs.name quoteStatus&qd.name quoteDirection&q.quoteAmount&c.code currency&q.entryDate&q.approveDate&u.firstname&q.bidPrice&q.askPrice&q.quote_purchaseOrder_id&q.strike&q.description&q.quantity&pr.name product&q.expiryDate&q.quote_approvedBy_id&q.specificationAndRequirement';
+                    data.transactionMetaData.queryMetaData.joinClause = {
+                        'joinType':['JOIN','JOIN','JOIN','JOIN','JOIN','JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.quote_product_id=pr.product_id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_quoteDirection_id=qd.quoteDirection_id','q.quote_currency_id=c.currency_id','q.quote_enteredBy_id=u.user_id']
+                    }
+                    data.transactionMetaData.queryMetaData.queryClause.andExpression = [
+                        {
+                            "propertyName": "quote_id",
+                            "propertyValue": quoteId,
+                            "propertyDataType": "BIGINT",
+                            "operatorType": "="
+                        }
+                    ];
+                    DataService.post('inboundService', data).then(function (response) {
+                        vm.quote = response.data.data[0];
+                        vm.quote.quoteAmount = parseFloat(vm.quote.quoteAmount);
+                        vm.originalUserData = angular.copy(vm.user);
+                        vm.total_count = response.data.total_count;
+                    })
+
+                }else{
+                    vm.user = null;
+                    vm.userViews = null;
+                }
+            }
             vm.container = [];
 
             CommonServices.postData.token = $rootScope.globals.currentUser.userDetails.token;
