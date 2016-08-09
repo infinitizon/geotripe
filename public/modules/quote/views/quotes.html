@@ -26,12 +26,35 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="product">Product</label>
+            <select id="product"
+                    class="form-control"
+                    ng-click="quotCtrl.getLOVs('Product','products', {'response':'product_id&name'
+                                                                            , 'and':[{
+                                                                                'propertyName': 'ins_yn',
+                                                                                'propertyValue': 1,
+                                                                                'propertyDataType': 'TINYINT',
+                                                                                'operatorType': '='
+                                                                            }]
+                                                                           })"
+                    ng-options="product.name for product in quotCtrl.container['products'] track by product.product_id"
+                    ng-model="quotCtrl.quote.product_id">
+                <option value="">{{"--Select Product --"}}</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="amount">Amount</label>
             <input type="number" id="amount" class="form-control"/>
         </div>
         <div class="form-group">
             <label for="currency">Currency</label>
-            <input type="text" id="currency" class="form-control"/>
+            <select id="currency"
+                    class="form-control"
+                    ng-click="quotCtrl.getLOVs('currency','currencies', {'response':'currency_Id&code'})"
+                    ng-options="currencies.code for currencies in quotCtrl.container['currencies'] track by currencies.currency_Id"
+                    ng-model="quotCtrl.quote.currency_Id">
+                <option value="">{{"--Select Currency --"}}</option>
+            </select>
         </div>
         <div class="form-group">
             <label for="bidPrice">Bid Price</label>
@@ -46,22 +69,18 @@
             <input type="number" id="quantity" class="form-control"/>
         </div>
         <div class="form-group">
-            <label for="product">Product</label>
-            <input type="number" id="product" class="form-control"/>
-        </div>
-        <div class="form-group">
             <label for="notes">Other Notes</label>
             <textarea id="notes" class="form-control" ng-model="myTextarea"></textarea>
         </div>
         <div class="form-group">
             <label for="notes">Attachments <small><small>(ctrl+click to select multiple files)</small></small></label>
             <input type="file" id="file" name="file" multiple onchange="angular.element(this).scope().getFileDetails(this)" />
-            <div ng-if="quotCtrl.files">You selected:
+            <div ng-if="quotCtrl.files" style="margin-top:10px;">You selected:
                 <ul><li ng-repeat="file in quotCtrl.files">{{file.name}}</li></ul>
             </div>
         </div>
         <div class="form-actions text-center">
-            <button ng-click="quotCtrl.uploadFile()" data-ng-disabled="true" style="width:20%;" class="btn btn-primary input-lg">Submit</button>
+            <button ng-click="quotCtrl.postData()" data-ng-disabled="true" style="width:20%;" class="btn btn-primary input-lg">Submit</button>
             <img ng-if="quotCtrl.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
         </div>
     </form>

@@ -24,12 +24,15 @@ angular.module('RFQ')
                     var data = angular.copy(CommonServices.postData);
                     data.factName = factName;
                     data.transactionMetaData.responseDataProperties = options.response;
+                    if(options.and){
+                        data.transactionMetaData.queryMetaData.queryClause.andExpression = options.and;
+                    }
                     DataService.post('inboundService', data).then( function (response) {
                         vm.container[selectScope] = response.data.data;
                     });
                 }
             }
-            vm.uploadFile = function () {
+            vm.postData = function () {
                 //FILL FormData WITH FILE DETAILS.
                 var data = new FormData();
                 var andExpression = [
