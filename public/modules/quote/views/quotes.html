@@ -1,6 +1,9 @@
 <div class="row wrapper">
     <div ng-show="error" class="alert alert-danger">{{error}}</div>
-    <div class="drillDown" ng-if="!quotCtrl.edit">
+    <div class="full" ng-if="!quotCtrl.edit">
+        <div class="row" style="padding:10px;">
+            <div class="pull-right"><button type="button" class="btn btn-primary" data-ng-click="quotCtrl.editUser()">+ Add new</button></div>
+        </div>
         <dir-pagination-controls
                 max-size="8"
                 direction-links="true"
@@ -10,7 +13,6 @@
         <table class="table table-responsive">
             <thead>
             <tr>
-                <th>quote_id</th>
                 <th>Name</th>
                 <th>Subject</th>
                 <th>Status</th>
@@ -18,9 +20,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-show="UsrCtrl.users.data <= 0"><td colspan="6" style="text-align:center;">Loading new data!!</td></tr>
+            <tr ng-show="quotCtrl.quotes.data <= 0"><td colspan="6" style="text-align:center;">Loading new data!!</td></tr>
             <tr dir-paginate="quote in quotCtrl.quotes.data|itemsPerPage:quotCtrl.itemsPerPage" total-items="quotCtrl.total_count">
-                <td>{{quote.quote_id}}</td>
                 <td>{{quote.name}}</td>
                 <td>{{quote.subject}}</td>
                 <td>{{quote.status}}</td>
@@ -35,6 +36,10 @@
         </table>
     </div>
     <div class="drillDown" ng-if="quotCtrl.edit">
+        <div class="row" style="padding:20px;">
+            <button type="button" class="btn btn-default" data-ng-click="quotCtrl.goBack()"><i class="fa fa-arrow-left"></i> Back</button>
+            <div class="pull-right"><button type="button" class="btn btn-primary" data-ng-click="quotCtrl.editQuote()">+ Add new</button></div>
+        </div>
         <form name="form" ng-submit="login()" role="form">
             <div class="form-group">
                 <label for="subject">Subject</label>

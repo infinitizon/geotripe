@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d05ef40-3f7a-41b2-81e7-eb6b1d801a63" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/controller.js" afterPath="$PROJECT_DIR$/modules/quote/controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/views/quotes.html" afterPath="$PROJECT_DIR$/modules/quote/views/quotes.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../sys/config/db-cred.inc.php" afterPath="$PROJECT_DIR$/../sys/config/db-cred.inc.php" />
     </list>
     <ignored path="public.iws" />
@@ -60,51 +63,49 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="class.fxns.inc.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../sys/class/class.fxns.inc.php">
+      <file leaf-file-name="setup.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/setup/views/setup.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-32.083332">
-              <caret line="106" column="27" selection-start-line="106" selection-start-column="27" selection-end-line="106" selection-end-column="27" />
-              <folding>
-                <marker date="1470745741000" expanded="true" signature="13459:13610" placeholder="SELECT page_... pages" />
-                <marker date="1470745741000" expanded="true" signature="16665:16677" placeholder="..." />
-                <marker date="1470745741000" expanded="true" signature="16726:16738" placeholder="..." />
-              </folding>
+            <state vertical-scroll-proportion="-7.5">
+              <caret line="12" column="10" selection-start-line="1" selection-start-column="4" selection-end-line="12" selection-end-column="10" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quotes.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="user.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/setup/views/templates/user.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.5">
+              <caret line="4" column="24" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="quotes.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/quote/views/quotes.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-45.958332">
-              <caret line="114" column="22" selection-start-line="114" selection-start-column="22" selection-end-line="114" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.285596">
+              <caret line="23" column="131" selection-start-line="23" selection-start-column="131" selection-end-line="23" selection-end-column="131" />
               <folding>
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#10;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#div#11;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#1;n#div#11;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <marker date="1470754885000" expanded="true" signature="3469:3687" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-                <marker date="1470754885000" expanded="true" signature="3469:3689" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-                <marker date="1470754885000" expanded="true" signature="3469:3697" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-                <marker date="1470754885000" expanded="true" signature="3469:3699" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-                <marker date="1470754885000" expanded="true" signature="3469:3798" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-                <marker date="1470754885000" expanded="true" signature="3469:3803" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-                <marker date="1470754885000" expanded="true" signature="3469:3905" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-                <marker date="1470754885000" expanded="true" signature="3469:3918" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-                <marker date="1470754885000" expanded="true" signature="3469:4186" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-                <marker date="1470754885000" expanded="true" signature="3587:3687" placeholder="[...]" />
-                <marker date="1470754885000" expanded="true" signature="3588:3687" placeholder="{...}" />
+                <marker date="1470757723000" expanded="true" signature="3940:4158" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+                <marker date="1470757723000" expanded="true" signature="3940:4160" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+                <marker date="1470757723000" expanded="true" signature="3940:4168" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+                <marker date="1470757723000" expanded="true" signature="3940:4170" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+                <marker date="1470757723000" expanded="true" signature="3940:4269" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+                <marker date="1470757723000" expanded="true" signature="3940:4274" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+                <marker date="1470757723000" expanded="true" signature="3940:4376" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+                <marker date="1470757723000" expanded="true" signature="3940:4389" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+                <marker date="1470757723000" expanded="true" signature="3940:4657" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+                <marker date="1470757723000" expanded="true" signature="4058:4158" placeholder="[...]" />
+                <marker date="1470757723000" expanded="true" signature="4059:4158" placeholder="{...}" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db-cred.inc.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../sys/config/db-cred.inc.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21109271">
-              <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -113,7 +114,7 @@
         <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="57" column="66" selection-start-line="57" selection-start-column="66" selection-end-line="57" selection-end-column="66" />
+              <caret line="63" column="36" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -134,18 +135,8 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.75">
-              <caret line="22" column="39" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/auth/views/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.125">
-              <caret line="29" column="84" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="84" />
+            <state vertical-scroll-proportion="-6.25">
+              <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -156,16 +147,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-20.0">
               <caret line="205" column="17" selection-start-line="203" selection-start-column="16" selection-end-line="205" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/setup/views/templates/user.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-56.25">
-              <caret line="90" column="56" selection-start-line="90" selection-start-column="56" selection-end-line="91" selection-end-column="142" />
               <folding />
             </state>
           </provider>
@@ -199,7 +180,6 @@
         <option value="$PROJECT_DIR$/tests/fileWtUpload/2/index.html" />
         <option value="$PROJECT_DIR$/tests/fileWtUpload/1/index.html" />
         <option value="$PROJECT_DIR$/modules/common/services.js" />
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/modules/auth/views/login.html" />
         <option value="$PROJECT_DIR$/scripts/app.js" />
         <option value="$PROJECT_DIR$/css/app.css" />
@@ -207,9 +187,10 @@
         <option value="$PROJECT_DIR$/../sys/class/class.fxns.inc.php" />
         <option value="$PROJECT_DIR$/modules/setup/controller.js" />
         <option value="$PROJECT_DIR$/api/v1/index.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/../sys/config/db-cred.inc.php" />
         <option value="$PROJECT_DIR$/modules/quote/controller.js" />
         <option value="$PROJECT_DIR$/modules/quote/views/quotes.html" />
-        <option value="$PROJECT_DIR$/../sys/config/db-cred.inc.php" />
       </list>
     </option>
   </component>
@@ -1025,12 +1006,12 @@
       <workItem from="1470563844977" duration="1233000" />
       <workItem from="1470565641870" duration="3057000" />
       <workItem from="1470600225400" duration="1219000" />
-      <workItem from="1470645218763" duration="23183000" />
+      <workItem from="1470645218763" duration="24850000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57047000" />
+    <option name="totallyTimeSpent" value="58714000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1924" height="1329" extended-state="0" />
@@ -1111,20 +1092,22 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="45" column="6" selection-start-line="45" selection-start-column="6" selection-end-line="45" selection-end-column="6" />
           <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#10;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#11;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#1;n#div#11;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <marker date="1470754885000" expanded="true" signature="3469:3687" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3689" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3697" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3699" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3798" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3803" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3905" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3918" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:4186" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3587:3687" placeholder="[...]" />
-            <marker date="1470754885000" expanded="true" signature="3588:3687" placeholder="{...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4158" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4160" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4168" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4170" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4269" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4274" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4376" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4389" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4657" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="4058:4158" placeholder="[...]" />
+            <marker date="1470757723000" expanded="true" signature="4059:4158" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -1202,20 +1185,22 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="10" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
           <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#10;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#11;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#1;n#div#11;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <marker date="1470754885000" expanded="true" signature="3469:3687" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3689" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3697" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3699" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3798" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3803" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3905" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3918" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:4186" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3587:3687" placeholder="[...]" />
-            <marker date="1470754885000" expanded="true" signature="3588:3687" placeholder="{...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4158" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4160" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4168" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4170" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4269" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4274" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4376" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4389" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4657" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="4058:4158" placeholder="[...]" />
+            <marker date="1470757723000" expanded="true" signature="4059:4158" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -1405,22 +1390,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-48.458332">
-          <caret line="149" column="38" selection-start-line="149" selection-start-column="38" selection-end-line="149" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/setup/views/setup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14900662">
-          <caret line="12" column="10" selection-start-line="1" selection-start-column="4" selection-end-line="12" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1437,14 +1406,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/setup/views/templates/user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-56.25">
-          <caret line="90" column="56" selection-start-line="90" selection-start-column="56" selection-end-line="91" selection-end-column="142" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../sys/class/class.fxns.inc.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-32.083332">
@@ -1457,10 +1418,68 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/modules/setup/views/setup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.5">
+          <caret line="12" column="10" selection-start-line="1" selection-start-column="4" selection-end-line="12" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/setup/controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-20.0">
           <caret line="205" column="17" selection-start-line="203" selection-start-column="16" selection-end-line="205" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/auth/views/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36009935">
+          <caret line="29" column="84" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.25">
+          <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/home/views/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.625">
+          <caret line="1" column="27" selection-start-line="1" selection-start-column="27" selection-end-line="1" selection-end-column="27" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/setup/views/templates/user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.5">
+          <caret line="4" column="24" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../sys/config/db-cred.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21109271">
+          <caret line="17" column="31" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-30.333334">
+          <caret line="122" column="20" selection-start-line="122" selection-start-column="1" selection-end-line="122" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -1485,68 +1504,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/home/views/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.625">
-          <caret line="1" column="27" selection-start-line="1" selection-start-column="27" selection-end-line="1" selection-end-column="27" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.75">
-          <caret line="22" column="39" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/auth/views/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.125">
-          <caret line="29" column="84" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="66" selection-start-line="57" selection-start-column="66" selection-end-line="57" selection-end-column="66" />
+          <caret line="63" column="36" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/quote/views/quotes.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-45.958332">
-          <caret line="114" column="22" selection-start-line="114" selection-start-column="22" selection-end-line="114" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.285596">
+          <caret line="23" column="131" selection-start-line="23" selection-start-column="131" selection-end-line="23" selection-end-column="131" />
           <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#10;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#11;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#1;n#div#11;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <marker date="1470754885000" expanded="true" signature="3469:3687" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3689" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3697" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3699" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3798" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3803" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3905" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:3918" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3469:4186" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470754885000" expanded="true" signature="3587:3687" placeholder="[...]" />
-            <marker date="1470754885000" expanded="true" signature="3588:3687" placeholder="{...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4158" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4160" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4168" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4170" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4269" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4274" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4376" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4389" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="3940:4657" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470757723000" expanded="true" signature="4058:4158" placeholder="[...]" />
+            <marker date="1470757723000" expanded="true" signature="4059:4158" placeholder="{...}" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sys/config/db-cred.inc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21109271">
-          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>

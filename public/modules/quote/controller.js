@@ -61,8 +61,7 @@ angular.module('RFQ')
                     })
 
                 }else{
-                    vm.user = null;
-                    vm.userViews = null;
+                    vm.quote = null;
                 }
             }
             vm.container = [];
