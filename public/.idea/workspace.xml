@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d05ef40-3f7a-41b2-81e7-eb6b1d801a63" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/v1/index.php" afterPath="$PROJECT_DIR$/api/v1/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/controller.js" afterPath="$PROJECT_DIR$/modules/quote/controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/views/quotes.html" afterPath="$PROJECT_DIR$/modules/quote/views/quotes.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../sys/config/db-cred.inc.php" afterPath="$PROJECT_DIR$/../sys/config/db-cred.inc.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/setup/views/setup.html" afterPath="$PROJECT_DIR$/modules/setup/views/setup.html" />
     </list>
     <ignored path="public.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,20 +45,23 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/v1/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.2352943">
-              <caret line="94" column="25" selection-start-line="94" selection-start-column="25" selection-end-line="94" selection-end-column="25" />
+            <state vertical-scroll-proportion="-0.29411766">
+              <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
               <folding>
-                <marker date="1470754078000" expanded="true" signature="1526:1765" placeholder="SELECT u.use... Users" />
-                <marker date="1470754078000" expanded="true" signature="2045:2052" placeholder="UPDATE Users... " />
-                <marker date="1470754078000" expanded="true" signature="2045:2119" placeholder="UPDATE Users... " />
-                <marker date="1470754078000" expanded="true" signature="2350:2657" placeholder="SELECT av.au... User_AuthView" />
-                <marker date="1470754078000" expanded="true" signature="3969:4007" placeholder="SELECT * FRO... Users" />
-                <marker date="1470754078000" expanded="true" signature="6007:6057" placeholder="SELECT COUNT... ${$q_str}" />
-                <marker date="1470754078000" expanded="true" signature="7024:7036" placeholder="INSERT INTO $... " />
-                <marker date="1470754078000" expanded="true" signature="8634:8662" placeholder="UPDATE ${{$d... " />
-                <marker date="1470754078000" expanded="true" signature="9461:9473" placeholder="INSERT INTO $... " />
-                <marker date="1470754078000" expanded="true" signature="12126:12173" placeholder="UPDATE Users... " />
-                <marker date="1470754078000" expanded="true" signature="12134:12173" placeholder="UPDATE users... " />
+                <marker date="1470835750000" expanded="true" signature="1740:1979" placeholder="SELECT u.use... Users" />
+                <marker date="1470835750000" expanded="true" signature="2259:2266" placeholder="UPDATE Users... " />
+                <marker date="1470835750000" expanded="true" signature="2259:2333" placeholder="UPDATE Users... " />
+                <marker date="1470835750000" expanded="true" signature="2564:2871" placeholder="SELECT av.au... User_AuthView" />
+                <marker date="1470835750000" expanded="true" signature="4183:4221" placeholder="SELECT * FRO... Users" />
+                <marker date="1470835750000" expanded="true" signature="6221:6271" placeholder="SELECT COUNT... ${$q_str}" />
+                <marker date="1470835750000" expanded="true" signature="7238:7250" placeholder="INSERT INTO $... " />
+                <marker date="1470835750000" expanded="true" signature="8848:8876" placeholder="UPDATE ${{$d... " />
+                <marker date="1470835750000" expanded="true" signature="9675:9687" placeholder="INSERT INTO $... " />
+                <marker date="1470835750000" expanded="true" signature="9739:9751" placeholder="INSERT INTO $... " />
+                <marker date="1470835750000" expanded="true" signature="9739:9816" placeholder="INSERT INTO logs... " />
+                <marker date="1470835750000" expanded="true" signature="9739:9817" placeholder="INSERT INTO logs... " />
+                <marker date="1470835750000" expanded="true" signature="12713:12760" placeholder="UPDATE Users... " />
+                <marker date="1470835750000" expanded="true" signature="12721:12760" placeholder="UPDATE users... " />
               </folding>
             </state>
           </provider>
@@ -66,8 +70,8 @@
       <file leaf-file-name="setup.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/setup/views/setup.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.5">
-              <caret line="12" column="10" selection-start-line="1" selection-start-column="4" selection-end-line="12" selection-end-column="10" />
+            <state vertical-scroll-proportion="-5.625">
+              <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -86,25 +90,25 @@
       <file leaf-file-name="quotes.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/quote/views/quotes.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.285596">
-              <caret line="23" column="131" selection-start-line="23" selection-start-column="131" selection-end-line="23" selection-end-column="131" />
+            <state vertical-scroll-proportion="0.509106">
+              <caret line="54" column="53" selection-start-line="54" selection-start-column="48" selection-end-line="54" selection-end-column="53" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#10;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#div#11;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#1;n#div#11;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <marker date="1470757723000" expanded="true" signature="3940:4158" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-                <marker date="1470757723000" expanded="true" signature="3940:4160" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-                <marker date="1470757723000" expanded="true" signature="3940:4168" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-                <marker date="1470757723000" expanded="true" signature="3940:4170" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-                <marker date="1470757723000" expanded="true" signature="3940:4269" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-                <marker date="1470757723000" expanded="true" signature="3940:4274" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-                <marker date="1470757723000" expanded="true" signature="3940:4376" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-                <marker date="1470757723000" expanded="true" signature="3940:4389" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-                <marker date="1470757723000" expanded="true" signature="3940:4657" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-                <marker date="1470757723000" expanded="true" signature="4058:4158" placeholder="[...]" />
-                <marker date="1470757723000" expanded="true" signature="4059:4158" placeholder="{...}" />
+                <marker date="1470831542000" expanded="true" signature="3942:4160" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+                <marker date="1470831542000" expanded="true" signature="3942:4162" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+                <marker date="1470831542000" expanded="true" signature="3942:4170" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+                <marker date="1470831542000" expanded="true" signature="3942:4172" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+                <marker date="1470831542000" expanded="true" signature="3942:4271" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+                <marker date="1470831542000" expanded="true" signature="3942:4276" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+                <marker date="1470831542000" expanded="true" signature="3942:4378" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+                <marker date="1470831542000" expanded="true" signature="3942:4391" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+                <marker date="1470831542000" expanded="true" signature="3942:4659" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+                <marker date="1470831542000" expanded="true" signature="4060:4160" placeholder="[...]" />
+                <marker date="1470831542000" expanded="true" signature="4061:4160" placeholder="{...}" />
               </folding>
             </state>
           </provider>
@@ -113,8 +117,18 @@
       <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
           <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-62.77778">
+              <caret line="113" column="71" selection-start-line="113" selection-start-column="71" selection-end-line="113" selection-end-column="71" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/common/services.js">
+          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="63" column="36" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
+              <caret line="72" column="34" selection-start-line="72" selection-start-column="21" selection-end-line="72" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -145,8 +159,8 @@
       <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/setup/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.0">
-              <caret line="205" column="17" selection-start-line="203" selection-start-column="16" selection-end-line="205" selection-end-column="17" />
+            <state vertical-scroll-proportion="-2.9629629">
+              <caret line="347" column="16" selection-start-line="347" selection-start-column="16" selection-end-line="347" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -186,11 +200,12 @@
         <option value="$PROJECT_DIR$/modules/home/views/home.html" />
         <option value="$PROJECT_DIR$/../sys/class/class.fxns.inc.php" />
         <option value="$PROJECT_DIR$/modules/setup/controller.js" />
-        <option value="$PROJECT_DIR$/api/v1/index.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/../sys/config/db-cred.inc.php" />
-        <option value="$PROJECT_DIR$/modules/quote/controller.js" />
+        <option value="$PROJECT_DIR$/modules/setup/views/setup.html" />
         <option value="$PROJECT_DIR$/modules/quote/views/quotes.html" />
+        <option value="$PROJECT_DIR$/modules/quote/controller.js" />
+        <option value="$PROJECT_DIR$/api/v1/index.php" />
       </list>
     </option>
   </component>
@@ -1006,12 +1021,12 @@
       <workItem from="1470563844977" duration="1233000" />
       <workItem from="1470565641870" duration="3057000" />
       <workItem from="1470600225400" duration="1219000" />
-      <workItem from="1470645218763" duration="24850000" />
+      <workItem from="1470645218763" duration="29853000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58714000" />
+    <option name="totallyTimeSpent" value="63717000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1924" height="1329" extended-state="0" />
@@ -1072,17 +1087,20 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1470754078000" expanded="true" signature="1526:1765" placeholder="SELECT u.use... Users" />
-            <marker date="1470754078000" expanded="true" signature="2045:2052" placeholder="UPDATE Users... " />
-            <marker date="1470754078000" expanded="true" signature="2045:2119" placeholder="UPDATE Users... " />
-            <marker date="1470754078000" expanded="true" signature="2350:2657" placeholder="SELECT av.au... User_AuthView" />
-            <marker date="1470754078000" expanded="true" signature="3969:4007" placeholder="SELECT * FRO... Users" />
-            <marker date="1470754078000" expanded="true" signature="6007:6057" placeholder="SELECT COUNT... ${$q_str}" />
-            <marker date="1470754078000" expanded="true" signature="7024:7036" placeholder="INSERT INTO $... " />
-            <marker date="1470754078000" expanded="true" signature="8634:8662" placeholder="UPDATE ${{$d... " />
-            <marker date="1470754078000" expanded="true" signature="9461:9473" placeholder="INSERT INTO $... " />
-            <marker date="1470754078000" expanded="true" signature="12126:12173" placeholder="UPDATE Users... " />
-            <marker date="1470754078000" expanded="true" signature="12134:12173" placeholder="UPDATE users... " />
+            <marker date="1470835750000" expanded="true" signature="1740:1979" placeholder="SELECT u.use... Users" />
+            <marker date="1470835750000" expanded="true" signature="2259:2266" placeholder="UPDATE Users... " />
+            <marker date="1470835750000" expanded="true" signature="2259:2333" placeholder="UPDATE Users... " />
+            <marker date="1470835750000" expanded="true" signature="2564:2871" placeholder="SELECT av.au... User_AuthView" />
+            <marker date="1470835750000" expanded="true" signature="4183:4221" placeholder="SELECT * FRO... Users" />
+            <marker date="1470835750000" expanded="true" signature="6221:6271" placeholder="SELECT COUNT... ${$q_str}" />
+            <marker date="1470835750000" expanded="true" signature="7238:7250" placeholder="INSERT INTO $... " />
+            <marker date="1470835750000" expanded="true" signature="8848:8876" placeholder="UPDATE ${{$d... " />
+            <marker date="1470835750000" expanded="true" signature="9675:9687" placeholder="INSERT INTO $... " />
+            <marker date="1470835750000" expanded="true" signature="9739:9751" placeholder="INSERT INTO $... " />
+            <marker date="1470835750000" expanded="true" signature="9739:9816" placeholder="INSERT INTO logs... " />
+            <marker date="1470835750000" expanded="true" signature="9739:9817" placeholder="INSERT INTO logs... " />
+            <marker date="1470835750000" expanded="true" signature="12713:12760" placeholder="UPDATE Users... " />
+            <marker date="1470835750000" expanded="true" signature="12721:12760" placeholder="UPDATE users... " />
           </folding>
         </state>
       </provider>
@@ -1097,17 +1115,17 @@
             <element signature="n#style#0;n#div#0;n#div#10;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#11;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#1;n#div#11;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <marker date="1470757723000" expanded="true" signature="3940:4158" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4160" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4168" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4170" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4269" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4274" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4376" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4389" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4657" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="4058:4158" placeholder="[...]" />
-            <marker date="1470757723000" expanded="true" signature="4059:4158" placeholder="{...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4160" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4162" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4170" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4172" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4271" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4276" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4378" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4391" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4659" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="4060:4160" placeholder="[...]" />
+            <marker date="1470831542000" expanded="true" signature="4061:4160" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -1165,17 +1183,20 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
           <folding>
-            <marker date="1470754078000" expanded="true" signature="1526:1765" placeholder="SELECT u.use... Users" />
-            <marker date="1470754078000" expanded="true" signature="2045:2052" placeholder="UPDATE Users... " />
-            <marker date="1470754078000" expanded="true" signature="2045:2119" placeholder="UPDATE Users... " />
-            <marker date="1470754078000" expanded="true" signature="2350:2657" placeholder="SELECT av.au... User_AuthView" />
-            <marker date="1470754078000" expanded="true" signature="3969:4007" placeholder="SELECT * FRO... Users" />
-            <marker date="1470754078000" expanded="true" signature="6007:6057" placeholder="SELECT COUNT... ${$q_str}" />
-            <marker date="1470754078000" expanded="true" signature="7024:7036" placeholder="INSERT INTO $... " />
-            <marker date="1470754078000" expanded="true" signature="8634:8662" placeholder="UPDATE ${{$d... " />
-            <marker date="1470754078000" expanded="true" signature="9461:9473" placeholder="INSERT INTO $... " />
-            <marker date="1470754078000" expanded="true" signature="12126:12173" placeholder="UPDATE Users... " />
-            <marker date="1470754078000" expanded="true" signature="12134:12173" placeholder="UPDATE users... " />
+            <marker date="1470835750000" expanded="true" signature="1740:1979" placeholder="SELECT u.use... Users" />
+            <marker date="1470835750000" expanded="true" signature="2259:2266" placeholder="UPDATE Users... " />
+            <marker date="1470835750000" expanded="true" signature="2259:2333" placeholder="UPDATE Users... " />
+            <marker date="1470835750000" expanded="true" signature="2564:2871" placeholder="SELECT av.au... User_AuthView" />
+            <marker date="1470835750000" expanded="true" signature="4183:4221" placeholder="SELECT * FRO... Users" />
+            <marker date="1470835750000" expanded="true" signature="6221:6271" placeholder="SELECT COUNT... ${$q_str}" />
+            <marker date="1470835750000" expanded="true" signature="7238:7250" placeholder="INSERT INTO $... " />
+            <marker date="1470835750000" expanded="true" signature="8848:8876" placeholder="UPDATE ${{$d... " />
+            <marker date="1470835750000" expanded="true" signature="9675:9687" placeholder="INSERT INTO $... " />
+            <marker date="1470835750000" expanded="true" signature="9739:9751" placeholder="INSERT INTO $... " />
+            <marker date="1470835750000" expanded="true" signature="9739:9816" placeholder="INSERT INTO logs... " />
+            <marker date="1470835750000" expanded="true" signature="9739:9817" placeholder="INSERT INTO logs... " />
+            <marker date="1470835750000" expanded="true" signature="12713:12760" placeholder="UPDATE Users... " />
+            <marker date="1470835750000" expanded="true" signature="12721:12760" placeholder="UPDATE users... " />
           </folding>
         </state>
       </provider>
@@ -1190,17 +1211,17 @@
             <element signature="n#style#0;n#div#0;n#div#10;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#11;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#1;n#div#11;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <marker date="1470757723000" expanded="true" signature="3940:4158" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4160" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4168" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4170" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4269" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4274" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4376" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4389" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4657" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="4058:4158" placeholder="[...]" />
-            <marker date="1470757723000" expanded="true" signature="4059:4158" placeholder="{...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4160" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4162" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4170" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4172" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4271" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4276" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4378" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4391" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4659" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="4060:4160" placeholder="[...]" />
+            <marker date="1470831542000" expanded="true" signature="4061:4160" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -1398,14 +1419,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/common/services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="25" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../sys/class/class.fxns.inc.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-32.083332">
@@ -1418,34 +1431,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/setup/views/setup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.5">
-          <caret line="12" column="10" selection-start-line="1" selection-start-column="4" selection-end-line="12" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/setup/controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.0">
-          <caret line="205" column="17" selection-start-line="203" selection-start-column="16" selection-end-line="205" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/auth/views/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36009935">
           <caret line="29" column="84" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.25">
-          <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -1484,55 +1473,90 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/v1/index.php">
+    <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.2352943">
-          <caret line="94" column="25" selection-start-line="94" selection-start-column="25" selection-end-line="94" selection-end-column="25" />
-          <folding>
-            <marker date="1470754078000" expanded="true" signature="1526:1765" placeholder="SELECT u.use... Users" />
-            <marker date="1470754078000" expanded="true" signature="2045:2052" placeholder="UPDATE Users... " />
-            <marker date="1470754078000" expanded="true" signature="2045:2119" placeholder="UPDATE Users... " />
-            <marker date="1470754078000" expanded="true" signature="2350:2657" placeholder="SELECT av.au... User_AuthView" />
-            <marker date="1470754078000" expanded="true" signature="3969:4007" placeholder="SELECT * FRO... Users" />
-            <marker date="1470754078000" expanded="true" signature="6007:6057" placeholder="SELECT COUNT... ${$q_str}" />
-            <marker date="1470754078000" expanded="true" signature="7024:7036" placeholder="INSERT INTO $... " />
-            <marker date="1470754078000" expanded="true" signature="8634:8662" placeholder="UPDATE ${{$d... " />
-            <marker date="1470754078000" expanded="true" signature="9461:9473" placeholder="INSERT INTO $... " />
-            <marker date="1470754078000" expanded="true" signature="12126:12173" placeholder="UPDATE Users... " />
-            <marker date="1470754078000" expanded="true" signature="12134:12173" placeholder="UPDATE users... " />
-          </folding>
+        <state vertical-scroll-proportion="-6.25">
+          <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/common/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="72" column="34" selection-start-line="72" selection-start-column="21" selection-end-line="72" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/setup/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.9629629">
+          <caret line="347" column="16" selection-start-line="347" selection-start-column="16" selection-end-line="347" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/setup/views/setup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.625">
+          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="36" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
+        <state vertical-scroll-proportion="-62.77778">
+          <caret line="113" column="71" selection-start-line="113" selection-start-column="71" selection-end-line="113" selection-end-column="71" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/v1/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.29411766">
+          <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+          <folding>
+            <marker date="1470835750000" expanded="true" signature="1740:1979" placeholder="SELECT u.use... Users" />
+            <marker date="1470835750000" expanded="true" signature="2259:2266" placeholder="UPDATE Users... " />
+            <marker date="1470835750000" expanded="true" signature="2259:2333" placeholder="UPDATE Users... " />
+            <marker date="1470835750000" expanded="true" signature="2564:2871" placeholder="SELECT av.au... User_AuthView" />
+            <marker date="1470835750000" expanded="true" signature="4183:4221" placeholder="SELECT * FRO... Users" />
+            <marker date="1470835750000" expanded="true" signature="6221:6271" placeholder="SELECT COUNT... ${$q_str}" />
+            <marker date="1470835750000" expanded="true" signature="7238:7250" placeholder="INSERT INTO $... " />
+            <marker date="1470835750000" expanded="true" signature="8848:8876" placeholder="UPDATE ${{$d... " />
+            <marker date="1470835750000" expanded="true" signature="9675:9687" placeholder="INSERT INTO $... " />
+            <marker date="1470835750000" expanded="true" signature="9739:9751" placeholder="INSERT INTO $... " />
+            <marker date="1470835750000" expanded="true" signature="9739:9816" placeholder="INSERT INTO logs... " />
+            <marker date="1470835750000" expanded="true" signature="9739:9817" placeholder="INSERT INTO logs... " />
+            <marker date="1470835750000" expanded="true" signature="12713:12760" placeholder="UPDATE Users... " />
+            <marker date="1470835750000" expanded="true" signature="12721:12760" placeholder="UPDATE users... " />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/quote/views/quotes.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.285596">
-          <caret line="23" column="131" selection-start-line="23" selection-start-column="131" selection-end-line="23" selection-end-column="131" />
+        <state vertical-scroll-proportion="0.509106">
+          <caret line="54" column="53" selection-start-line="54" selection-start-column="48" selection-end-line="54" selection-end-column="53" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#10;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#11;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#1;n#div#11;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <marker date="1470757723000" expanded="true" signature="3940:4158" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4160" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4168" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4170" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4269" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4274" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4376" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4389" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="3940:4657" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
-            <marker date="1470757723000" expanded="true" signature="4058:4158" placeholder="[...]" />
-            <marker date="1470757723000" expanded="true" signature="4059:4158" placeholder="{...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4160" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4162" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4170" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4172" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4271" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4276" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4378" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4391" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="3942:4659" placeholder="{&quot;response&quot;: 'product_id&amp;name'...}" />
+            <marker date="1470831542000" expanded="true" signature="4060:4160" placeholder="[...]" />
+            <marker date="1470831542000" expanded="true" signature="4061:4160" placeholder="{...}" />
           </folding>
         </state>
       </provider>

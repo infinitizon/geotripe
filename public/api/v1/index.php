@@ -12,6 +12,9 @@ if(!$data){
         $input = "{\"transactionEventType\":\"{$_POST['transactionEventType']}\",\"factName\":\"{$_POST['factName']}\",";
         if(isset($_POST['factObjects'])){
             $factObjects = "[".json_encode($_POST['factObjects'])."]";
+            $factObjects = str_replace('\"', '"',$factObjects);
+            $factObjects = str_replace('"{', '{',$factObjects);
+            $factObjects = str_replace('}"', '}',$factObjects);
             $input .= "\"factObjects\": {$factObjects},";
         }
         if(isset($_POST['transactionMetaData'])){
@@ -23,6 +26,7 @@ if(!$data){
         }
         $input .= "}";
     }
+    echo $input;exit;
     $data = json_decode($input);
 }
 include_once "core/init.inc.php";
@@ -179,22 +183,27 @@ if($env['PATH_INFO']==="/inboundService") {
              */
             if ($data->transactionEventType == "PUT") {
                 $q_str = "INSERT INTO {$data->factName} ";
+                $q_str_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) ";
 
                 $multipleFields = "";
                 $ins_fields = " (";
                 $ins_values = " VALUES (";
+                $log_txt = " VALUES (";
                 if(!is_array($data->factObjects[0])){
+                    $log_txt .= "{$user[0]['user_id']},'{$data->factName}','', 'inserted new line";
                     foreach ($r_fields as $fields) {
                         $fieldNm = strtolower($fields['Field']);
                         if (@$data->factObjects[0]->$fieldNm) {
                             @$ins_fields .= " {$fields['Field']} ,";
                             @$ins_values .= $fxns->_formatFieldValue($data->factObjects[0]->$fieldNm, array('type'=>$fields['Type'])).",";
+                            $log_txt .= " {$fields['Field']}=>{$ins_values}')";
                         }
                     }
 
                     $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
                     $ins_values = rtrim($ins_values,',');
                     $q_str .= $ins_fields . ") " . $ins_values . ")";
+                    echo $log_txt; exit;
                 }else{
                     foreach ($r_fields as $fields) {
                         $fieldNm = strtolower($fields['Field']);

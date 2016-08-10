@@ -2,7 +2,7 @@
     <div ng-show="error" class="alert alert-danger">{{error}}</div>
     <div class="full" ng-if="!quotCtrl.edit">
         <div class="row" style="padding:10px;">
-            <div class="pull-right"><button type="button" class="btn btn-primary" data-ng-click="quotCtrl.editUser()">+ Add new</button></div>
+            <div class="pull-right"><button type="button" class="btn btn-primary" data-ng-click="quotCtrl.editQuote()">+ Add new</button></div>
         </div>
         <dir-pagination-controls
                 max-size="8"
@@ -52,7 +52,7 @@
                         ng-click="quotCtrl.getLOVs('Party','parties', {'response':'party_id&name'})"
                         ng-options="party.name for party in quotCtrl.container['parties'] track by party.party_id"
                         ng-model="quotCtrl.quote.party_party_id">
-                    <option value="">{{quotCtrl.quote.partyName ||"--Select Company name --"}}</option>
+                    <option value="">{{quotCtrl.quote.partyName || "--Select Company name --"}}</option>
                 </select>
             </div>
             <div class="form-group">

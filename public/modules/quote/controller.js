@@ -94,30 +94,32 @@ angular.module('RFQ')
             vm.postData = function () {
                 //FILL FormData WITH FILE DETAILS.
                 var data = new FormData();
-                var andExpression = [
-                    {
-                        "propertyName": "user_id",
-                        "propertyValue": "test",
-                        "propertyDataType": "BIGINT",
-                        "operatorType": "="
-                    }
-                ];
-                data.append("transactionEventType", "PUT");
                 data.append("factName", "Quote");
                 data.append("transactionMetaData[currentLocale]", "NG");
                 data.append("transactionMetaData[queryStore]", "MySql");
-                data.append("transactionMetaData[queryMetaData]", "MySql");
-                data.append("factObjects[Quote]", "Quote");
-                data.append("factObjects[Note]", "Note");
-                data.append("transactionMetaData[queryMetaData][queryClause]", "sic");
-                data.append("transactionMetaData[queryMetaData][queryClause][andExpression]", JSON.stringify(andExpression));
+                if(vm.quote.quote_id){
+                    data.append("transactionEventType", "Update");
+                    var andExpression = [
+                        {
+                            "propertyName": "user_id",
+                            "propertyValue": "test",
+                            "propertyDataType": "BIGINT",
+                            "operatorType": "="
+                        }
+                    ];
+                    data.append("transactionMetaData[queryMetaData][queryClause][andExpression]", JSON.stringify(andExpression));
+                }else if(vm.quote.quote_id == null) { //A new insert
+                    data.append("transactionEventType", "PUT");
 
-                for (var i in vm.files) {
-                    data.append("file[]", vm.files[i]);
-                }
-                DataService.post("inboundService", data, {
+                    data.append("factObjects", [JSON.stringify(vm.quote)]);
+
+                    for (var i in vm.files) {
+                        data.append("file[]", vm.files[i]);
+                    }
+                    DataService.post("inboundService", data, {
                         transformRequest: angular.identity,
                         headers: {'Content-Type': undefined, 'Process-Data': false}
-                    })
+                    });
+                }
             }
         }])
