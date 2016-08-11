@@ -1,5 +1,5 @@
 <div class="row wrapper">
-    <div ng-show="error" class="alert alert-danger">{{error}}</div>
+    <div ng-show="quotCtrl.error" class="alert alert-danger">{{quotCtrl.error}}</div>
     <div class="full" ng-if="!quotCtrl.edit">
         <div class="row" style="padding:10px;">
             <div class="pull-right"><button type="button" class="btn btn-primary" data-ng-click="quotCtrl.editQuote()">+ Add new</button></div>
@@ -8,9 +8,9 @@
                 max-size="8"
                 direction-links="true"
                 boundary-links="true"
-                on-page-change="UsrCtrl.getData(newPageNumber)" >
+                on-page-change="quotCtrl.getData(newPageNumber)" >
         </dir-pagination-controls>
-        <table class="table table-responsive">
+        <table class="table table-responsive table-striped table-hover">
             <thead>
             <tr>
                 <th>Name</th>
@@ -20,8 +20,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-show="quotCtrl.quotes.data <= 0"><td colspan="6" style="text-align:center;">Loading new data!!</td></tr>
-            <tr dir-paginate="quote in quotCtrl.quotes.data|itemsPerPage:quotCtrl.itemsPerPage" total-items="quotCtrl.total_count">
+            <tr ng-if="quotCtrl.quotes.length <= 0"><td colspan="4" style="text-align:center;">Loading new data!!</td></tr>
+            <tr dir-paginate="quote in quotCtrl.quotes|itemsPerPage:quotCtrl.itemsPerPage" total-items="quotCtrl.total_count">
                 <td>{{quote.name}}</td>
                 <td>{{quote.subject}}</td>
                 <td>{{quote.status}}</td>
@@ -41,12 +41,13 @@
             <div class="pull-right"><button type="button" class="btn btn-primary" data-ng-click="quotCtrl.editQuote()">+ Add new</button></div>
         </div>
         <form name="form" ng-submit="login()" role="form">
+            <p>All fileds marked  <span class="text-danger">*</span> are required</p>
             <div class="form-group">
                 <label for="subject">Subject</label>
                 <input type="text" id="subject" ng-model="quotCtrl.quote.subject" class="form-control"/>
             </div>
             <div class="form-group">
-                <label for="PartyId">Party</label>
+                <label for="PartyId">Party <span ng-show="!quotCtrl.quote.party_party_id" class="text-danger">*</span></label>
                 <select id="PartyId"
                         class="form-control"
                         ng-click="quotCtrl.getLOVs('Party','parties', {'response':'party_id&name'})"
@@ -56,17 +57,17 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="quoteDirection">Direction</label>
-                <select id="quoteDirection"
+                <label for="quoteDirection">Direction <span ng-show="!quotCtrl.quote.quote_quotedirection_id" class="text-danger">*</span></label>
+                <select id="quoteDirection" required
                         class="form-control"
                         ng-click="quotCtrl.getLOVs('QuoteDirection','quotes', {'response':'QuoteDirection_Id&name'})"
                         ng-options="quotes.QuoteDirection_Id as quotes.name for quotes in quotCtrl.container['quotes']"
-                        ng-model="quotCtrl.quote.quote_quoteDirection_id">
+                        ng-model="quotCtrl.quote.quote_quotedirection_id">
                     <option value="">{{quotCtrl.quote.quoteDirection ||"--Select Quote Direction --"}}</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="product">Product</label>
+                <label for="product">Product <span ng-show="!quotCtrl.quote.quote_product_id" class="text-danger">*</span></label>
                 <select id="product"
                         class="form-control"
                         ng-click="quotCtrl.getLOVs('Product','products', {'response':'product_id&name'
@@ -84,11 +85,11 @@
             </div>
             <div class="form-group">
                 <label for="amount">Amount</label>
-                <input type="number" id="amount" class="form-control" step="0.01" ng-model="quotCtrl.quote.quoteAmount"/>
+                <input type="number" id="amount" class="form-control" step="0.01" placeholder="Amount" ng-model="quotCtrl.quote.quoteAmount"/>
             </div>
             <div class="form-group">
-                <label for="currency">Currency</label>
-                <select id="currency"
+                <label for="currency">Currency  <span ng-show="!quotCtrl.quote.quote_currency_id" class="text-danger">*</span></label>
+                <select id="currency" required
                         class="form-control"
                         ng-click="quotCtrl.getLOVs('currency','currencies', {'response':'currency_Id&code'})"
                         ng-options="currencies.currency_Id as currencies.code for currencies in quotCtrl.container['currencies']"
@@ -98,19 +99,19 @@
             </div>
             <div class="form-group">
                 <label for="bidPrice">Bid Price</label>
-                <input type="text" id="bidPrice" class="form-control" ng-model="quotCtrl.quote.bidPrice" />
+                <input type="text" id="bidPrice" class="form-control" ng-model="quotCtrl.quote.bidprice" />
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
                 <textarea id="description" class="form-control" ng-model="quotCtrl.quote.description"></textarea>
             </div>
             <div class="form-group">
-                <label for="quantity">Quantity</label>
-                <input type="number" id="quantity" class="form-control" ng-model="quotCtrl.quote.quantity"/>
+                <label for="quantity">Quantity <span ng-show="!quotCtrl.quote.quantity" class="text-danger">*</span></label>
+                <input type="number" id="quantity" class="form-control" placeholder="Quantity (Only numbers allowed)" required ng-model="quotCtrl.quote.quantity"/>
             </div>
             <div class="form-group">
                 <label for="notes">Other Notes</label>
-                <textarea id="notes" class="form-control" ng-model="quotCtrl.quote.specificationAndRequirement"></textarea>
+                <textarea id="notes" class="form-control" ng-model="quotCtrl.quote.specificationandrequirement"></textarea>
             </div>
             <div class="form-group">
                 <label for="notes">Attachments <small><small>(ctrl+click to select multiple files)</small></small></label>
@@ -121,7 +122,7 @@
             </div>
             <div class="form-actions text-center">
                 <button type="button" class="btn btn-default" style="width:10%;" ng-click="quotCtrl.goBack()"><i class="fa fa-arrow-left"></i> Cancel</button>
-                <button ng-click="quotCtrl.postData()" data-ng-disabled="form.$invalid || dataLoading" style="width:10%;" class="btn btn-primary">Submit</button>
+                <button ng-click="quotCtrl.postData()" data-ng-disabled="form.$invalid || quotCtrl.dataLoading || quotCtrl.isDisabled" style="width:10%;" class="btn btn-primary">Submit</button>
                 <img ng-if="quotCtrl.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
             </div>
         </form>

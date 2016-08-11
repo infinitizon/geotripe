@@ -16,6 +16,7 @@ angular.module("app", ['angularUtils.directives.dirPagination'])
                 ,'pagenumber':pageno}
             $http.post("server.php",data).success(function(response){
                 //ajax request to fetch data into vm.data
+                console.log(response)
                 vm.users = response;  // data to be displayed on current page.
                 //vm.users = response.data;  // data to be displayed on current page.
                 //vm.total_count = response.total_count; // total data count.

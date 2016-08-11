@@ -1,5 +1,5 @@
 <?php
-
+sleep(1);
 echo '[{"id":1,"first_name":"Heather","last_name":"Bell","hobby":"Eating"},
 {"id":2,"first_name":"Andrea","last_name":"Dean","hobby":"Gaming"},
 {"id":3,"first_name":"Peter","last_name":"Barnes","hobby":"Reading Books"},

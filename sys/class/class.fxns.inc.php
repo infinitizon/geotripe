@@ -79,7 +79,7 @@ class Functions extends DB_Connect {
             $timestamp = date("Y-m-d H:i:s", $timestamp);
             $rtnVal = "'{$timestamp}'";
         }else{
-            $rtnVal = "'{$value}'";
+            $rtnVal = "'".htmlspecialchars($value,ENT_QUOTES )."'";
         }
         return $rtnVal;
     }

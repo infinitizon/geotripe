@@ -6,6 +6,7 @@ $requestUri = $_SERVER['REQUEST_URI']; // <-- "e.g /api/v1/login"
 $physicalPath = str_replace('\\', '', dirname($scriptName)); // <-- "e.g /api/v1"
 $env['PATH_INFO'] = substr_replace($requestUri, '', 0, strlen($physicalPath)); // <--returns "/login"
 
+sleep(1);
 $data = json_decode(file_get_contents("php://input")); //Get data that is sent to the backend\
 if(!$data){
     if(isset($_POST)){
@@ -26,6 +27,7 @@ if(!$data){
         }
         $input .= "}";
     }
+//    echo $input;
     $data = json_decode($input);
 }
 include_once "core/init.inc.php";
@@ -188,20 +190,30 @@ if($env['PATH_INFO']==="/inboundService") {
                 $ins_fields = " (";
                 $ins_values = " VALUES (";
                 if(!is_array($data->factObjects[0])){
-                    $log_txt = "{$user[0]['User_Id']},'{$data->factName}','', 'inserted new line";
+                    $log_txt = "{$user[0]['User_Id']},'{$data->factName}',:tblColKey, 'inserted new lines for: ";
+//                    var_dump($data->factObjects[0]);
                     foreach ($r_fields as $fields) {
                         $fieldNm = strtolower($fields['Field']);
-                        if (@$data->factObjects[0]->$fieldNm) {
+                        if (strtolower(@$data->factObjects[0]->$fieldNm)) {
                             @$ins_fields .= " {$fields['Field']} ,";
-                            @$ins_values .= $fxns->_formatFieldValue($data->factObjects[0]->$fieldNm, array('type'=>$fields['Type'])).",";
-                            @$log_txt .= $fxns->_formatFieldValue($data->factObjects[0]->$fieldNm, array('type'=>$fields['Type'])).",";
+                            $formatedVal = $fxns->_formatFieldValue($data->factObjects[0]->$fieldNm, array('type'=>$fields['Type'])).",";
+                            @$ins_values .= $formatedVal;
+                            @$log_txt .= "{$fields['Field']}=>".htmlspecialchars($data->factObjects[0]->$fieldNm,ENT_QUOTES ).", ";
                         }
                     }
 
                     $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
                     $ins_values = rtrim($ins_values,',');
+                    $log_txt = rtrim($log_txt,', ');
                     $q_str .= $ins_fields . ") " . $ins_values . ")";
-                    echo $log_txt; exit;
+                    $q_str_logs .= " VALUES (" . $log_txt . "', NOW() )";
+
+                    $r_str = $dbo->prepare($q_str);
+                    $r_str->execute();
+                    $lastId = $dbo->lastInsertId();
+
+                    $r_logStr = $dbo->prepare($q_str_logs);
+                    $r_logStr->execute(array(':tblColKey'=>$lastId));
                 }else{
                     foreach ($r_fields as $fields) {
                         $fieldNm = strtolower($fields['Field']);
@@ -226,9 +238,6 @@ if($env['PATH_INFO']==="/inboundService") {
                     $q_str .= $ins_fields . ") " . $ins_values;
                 }
 //echo $q_str;exit;
-                $r_str = $dbo->prepare($q_str);
-                $r_str->execute();
-                $lastId = $dbo->lastInsertId();
 
                 $data=array('token'=> $data->token,'insertId'=>$lastId);
                 $response = array("response" => "Success", "message" => "Record Saved Successfully", "data"=>$data);

@@ -26,7 +26,8 @@ angular.module('RFQ')
                     'joinType':['JOIN','JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id']
                 }
                 DataService.post('inboundService', data).then(function (response) {
-                    vm.quotes = response.data;
+                    vm.quotes = response.data.data;
+                    console.log(vm.quotes.length)
                     vm.total_count = response.data.total_count;
                 })
             }
@@ -37,11 +38,12 @@ angular.module('RFQ')
                 vm.getData(vm.pageno);
             };
             vm.editQuote = function (quoteId) {
+                vm.isDisabled = false;
                 vm.edit=true;
                 if(quoteId) {
                     var data=angular.copy(CommonServices.postData);
                     data.factName = 'Quote q, Party p, Product pr, QuoteStatus qs, QuoteDirection qd, Currency c, Users u';
-                    data.transactionMetaData.responseDataProperties = 'q.quote_id&q.subject&p.name partyName&qs.name quoteStatus&qd.name quoteDirection&q.quoteAmount&c.code currency&q.entryDate&q.approveDate&u.firstname&q.bidPrice&q.askPrice&q.quote_purchaseOrder_id&q.strike&q.description&q.quantity&pr.name product&q.expiryDate&q.quote_approvedBy_id&q.specificationAndRequirement';
+                    data.transactionMetaData.responseDataProperties = 'q.quote_id&q.subject&p.name partyname&qs.name quotestatus&qd.name quotedirection&q.quoteamount&c.code currency&q.entrydate&q.approvedate&u.firstname&q.bidPrice&q.askPrice&q.quote_purchaseorder_id&q.strike&q.description&q.quantity&pr.name product&q.expirydate&q.quote_approvedby_id&q.specificationandrequirement';
                     data.transactionMetaData.queryMetaData.joinClause = {
                         'joinType':['JOIN','JOIN','JOIN','JOIN','JOIN','JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.quote_product_id=pr.product_id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_quoteDirection_id=qd.quoteDirection_id','q.quote_currency_id=c.currency_id','q.quote_enteredBy_id=u.user_id']
                     }
@@ -92,6 +94,8 @@ angular.module('RFQ')
                 }
             }
             vm.postData = function () {
+                vm.isDisabled = true; //Disable submit button
+                vm.dataLoading = true; //Disable submit button
                 //FILL FormData WITH FILE DETAILS.
                 var data = new FormData();
                 data.append("factName", "Quote");
@@ -111,7 +115,7 @@ angular.module('RFQ')
                     data.append("transactionMetaData[queryMetaData][queryClause][andExpression]", JSON.stringify(andExpression));
                 }else if(vm.quote.quote_id == null) { //A new insert
                     data.append("transactionEventType", "PUT");
-
+                    vm.quote.quote_enteredby_id = $rootScope.globals.currentUser.userDetails.authDetails.user_id;
                     data.append("factObjects", [JSON.stringify(vm.quote)]);
 
                     for (var i in vm.files) {
@@ -120,6 +124,16 @@ angular.module('RFQ')
                     DataService.post("inboundService", data, {
                         transformRequest: angular.identity,
                         headers: {'Content-Type': undefined, 'Process-Data': false}
+                    }).then( function (response) {
+                        if(response.data.response == 'Failure'){
+                            vm.error=response.data.message;
+                            vm.isDisabled = false;
+                            vm.dataLoading = false;
+                        }else{
+                            vm.error="Record submitted successfully";
+                            vm.goBack()
+                        }
+                        //vm.container[selectScope] = response.data.data;
                     });
                 }
             }
