@@ -9,7 +9,7 @@ angular.module('RFQ')
              * This part gets all the quotes available
              */
             vm.edit = false;
-            vm.quotes = []; //declare an empty array
+            vm.quotes = []; //declare an empty array so as to show the "loading data" notice!
             vm.pageno = 1; // initialize page no to 1
             vm.total_count = 0;
             vm.itemsPerPage = 15; //this could be a dynamic value from a drop down
@@ -58,6 +58,7 @@ angular.module('RFQ')
                     DataService.post('inboundService', data).then(function (response) {
                         vm.quote = response.data.data[0];
                         vm.quote.quoteAmount = parseFloat(vm.quote.quoteAmount);
+                        
                         vm.originalUserData = angular.copy(vm.user);
                         vm.total_count = response.data.total_count;
                     })
@@ -68,18 +69,6 @@ angular.module('RFQ')
             }
             vm.container = [];
 
-            CommonServices.postData.token = $rootScope.globals.currentUser.userDetails.token;
-            $scope.getFileDetails = function (e) {
-                vm.files = [];
-                $scope.$apply(function () {
-                    // STORE THE FILE OBJECT IN AN ARRAY.
-                    for (var i = 0; i < e.files.length; i++) {
-                        vm.files.push(e.files[i]);
-                    }
-                });
-
-                console.dir(vm.files);
-            };
             vm.getLOVs = function(factName, selectScope, options) {
                 if (vm.container[selectScope] == null) {
                     var data = angular.copy(CommonServices.postData);
@@ -93,6 +82,16 @@ angular.module('RFQ')
                     });
                 }
             }
+            CommonServices.postData.token = $rootScope.globals.currentUser.userDetails.token;
+            $scope.getFileDetails = function (e) {
+                vm.files = [];
+                $scope.$apply(function () {
+                    // STORE THE FILE OBJECT IN AN ARRAY.
+                    for (var i = 0; i < e.files.length; i++) {
+                        vm.files.push(e.files[i]);
+                    }
+                });
+            };
             vm.postData = function () {
                 vm.isDisabled = true; //Disable submit button
                 vm.dataLoading = true; //Disable submit button
@@ -131,7 +130,7 @@ angular.module('RFQ')
                             vm.dataLoading = false;
                         }else{
                             vm.error="Record submitted successfully";
-                            vm.goBack()
+                            //vm.goBack()
                         }
                         //vm.container[selectScope] = response.data.data;
                     });
