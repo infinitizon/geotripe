@@ -58,7 +58,7 @@ angular.module('RFQ')
                     DataService.post('inboundService', data).then(function (response) {
                         vm.quote = response.data.data[0];
                         vm.quote.quoteAmount = parseFloat(vm.quote.quoteAmount);
-                        
+
                         vm.originalUserData = angular.copy(vm.user);
                         vm.total_count = response.data.total_count;
                     })
