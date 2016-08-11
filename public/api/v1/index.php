@@ -5,7 +5,7 @@ $scriptName = $_SERVER['SCRIPT_NAME']; // <-- "e.g /api/v1/index.php"
 $requestUri = $_SERVER['REQUEST_URI']; // <-- "e.g /api/v1/login"
 $physicalPath = str_replace('\\', '', dirname($scriptName)); // <-- "e.g /api/v1"
 $env['PATH_INFO'] = substr_replace($requestUri, '', 0, strlen($physicalPath)); // <--returns "/login"
-
+//https://www.olx.com.ng/ad/honda-accord-2005-ID15KkhD.html#6d45d1b9e3
 $data = json_decode(file_get_contents("php://input")); //Get data that is sent to the backend\
 if(!$data){
     if(isset($_POST)){
@@ -214,7 +214,6 @@ if($env['PATH_INFO']==="/inboundService") {
                     $r_logStr = $dbo->prepare($q_str_logs);
                     $r_logStr->execute(array(':tblColKey'=>$lastId));
                     if($_FILES){
-//                        var_dump($_FILES['file']);
                         for($i=0; $i<count($_FILES['file']['name']); $i++ ){
                             $name = $_FILES['file']['name'][$i];
                             $mime = $_FILES['file']['type'][$i];
