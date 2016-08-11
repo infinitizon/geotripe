@@ -9,13 +9,14 @@ angular.module('RFQ')
              * This part gets all the quotes available
              */
             vm.edit = false;
-            vm.users = []; //declare an empty array
+            vm.quotes = []; //declare an empty array
             vm.pageno = 1; // initialize page no to 1
             vm.total_count = 0;
             vm.itemsPerPage = 15; //this could be a dynamic value from a drop down
 
             CommonServices.postData.token = $rootScope.globals.currentUser.userDetails.token;
             vm.getData = function(pageno) {
+                vm.quotes = []; // Initially make list empty so as to show the "loading data" notice!
                 var data=angular.copy(CommonServices.postData);
                 data.factName = 'Quote q, Party p, QuoteStatus qs';
                 data.transactionMetaData.responseDataProperties = 'q.quote_id&p.name&CONCAT(LEFT(q.subject , 30),IF(LENGTH(q.subject)>30, "…", "")) subject&qs.name status'
@@ -27,7 +28,6 @@ angular.module('RFQ')
                 }
                 DataService.post('inboundService', data).then(function (response) {
                     vm.quotes = response.data.data;
-                    console.log(vm.quotes.length)
                     vm.total_count = response.data.total_count;
                 })
             }
