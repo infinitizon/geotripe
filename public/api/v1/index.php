@@ -9,7 +9,7 @@ $env['PATH_INFO'] = substr_replace($requestUri, '', 0, strlen($physicalPath)); /
 $data = json_decode(file_get_contents("php://input")); //Get data that is sent to the backend\
 if(!$data){
     if(isset($_POST)){
-        $input = "{\"transactionEventType\":\"{$_POST['transactionEventType']}\",\"factName\":\"{$_POST['factName']}\",";
+        $input = "{\"transactionEventType\":\"{$_POST['transactionEventType']}\",\"factName\":\"{$_POST['factName']}\",\"token\":\"{$_POST['token']}\",";
         if(isset($_POST['factObjects'])){
             $factObjects = "[".json_encode($_POST['factObjects'])."]";
             $factObjects = str_replace('\"', '"',$factObjects);
@@ -26,7 +26,6 @@ if(!$data){
         }
         $input .= "}";
     }
-    echo $input;exit;
     $data = json_decode($input);
 }
 include_once "core/init.inc.php";
@@ -188,15 +187,14 @@ if($env['PATH_INFO']==="/inboundService") {
                 $multipleFields = "";
                 $ins_fields = " (";
                 $ins_values = " VALUES (";
-                $log_txt = " VALUES (";
                 if(!is_array($data->factObjects[0])){
-                    $log_txt .= "{$user[0]['user_id']},'{$data->factName}','', 'inserted new line";
+                    $log_txt = "{$user[0]['User_Id']},'{$data->factName}','', 'inserted new line";
                     foreach ($r_fields as $fields) {
                         $fieldNm = strtolower($fields['Field']);
                         if (@$data->factObjects[0]->$fieldNm) {
                             @$ins_fields .= " {$fields['Field']} ,";
                             @$ins_values .= $fxns->_formatFieldValue($data->factObjects[0]->$fieldNm, array('type'=>$fields['Type'])).",";
-                            $log_txt .= " {$fields['Field']}=>{$ins_values}')";
+                            @$log_txt .= $fxns->_formatFieldValue($data->factObjects[0]->$fieldNm, array('type'=>$fields['Type'])).",";
                         }
                     }
 

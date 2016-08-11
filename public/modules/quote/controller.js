@@ -95,6 +95,7 @@ angular.module('RFQ')
                 //FILL FormData WITH FILE DETAILS.
                 var data = new FormData();
                 data.append("factName", "Quote");
+                data.append("token", $rootScope.globals.currentUser.userDetails.token);
                 data.append("transactionMetaData[currentLocale]", "NG");
                 data.append("transactionMetaData[queryStore]", "MySql");
                 if(vm.quote.quote_id){

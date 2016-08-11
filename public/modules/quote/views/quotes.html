@@ -50,7 +50,7 @@
                 <select id="PartyId"
                         class="form-control"
                         ng-click="quotCtrl.getLOVs('Party','parties', {'response':'party_id&name'})"
-                        ng-options="party.name for party in quotCtrl.container['parties'] track by party.party_id"
+                        ng-options="party.party_id as party.name for party in quotCtrl.container['parties']"
                         ng-model="quotCtrl.quote.party_party_id">
                     <option value="">{{quotCtrl.quote.partyName || "--Select Company name --"}}</option>
                 </select>
@@ -60,7 +60,7 @@
                 <select id="quoteDirection"
                         class="form-control"
                         ng-click="quotCtrl.getLOVs('QuoteDirection','quotes', {'response':'QuoteDirection_Id&name'})"
-                        ng-options="quotes.name for quotes in quotCtrl.container['quotes'] track by quotes.QuoteDirection_Id"
+                        ng-options="quotes.QuoteDirection_Id as quotes.name for quotes in quotCtrl.container['quotes']"
                         ng-model="quotCtrl.quote.quote_quoteDirection_id">
                     <option value="">{{quotCtrl.quote.quoteDirection ||"--Select Quote Direction --"}}</option>
                 </select>
@@ -77,7 +77,7 @@
                                                                                     'operatorType': '='
                                                                                 }]
                                                                                })"
-                        ng-options="product.name for product in quotCtrl.container['products'] track by product.product_id"
+                        ng-options="product.product_id as product.name for product in quotCtrl.container['products']"
                         ng-model="quotCtrl.quote.quote_product_id">
                     <option value="">{{quotCtrl.quote.product || "--Select Product --"}}</option>
                 </select>
@@ -91,7 +91,7 @@
                 <select id="currency"
                         class="form-control"
                         ng-click="quotCtrl.getLOVs('currency','currencies', {'response':'currency_Id&code'})"
-                        ng-options="currencies.code for currencies in quotCtrl.container['currencies'] track by currencies.currency_Id"
+                        ng-options="currencies.currency_Id as currencies.code for currencies in quotCtrl.container['currencies']"
                         ng-model="quotCtrl.quote.quote_currency_id">
                     <option value="">{{quotCtrl.quote.currency || "--Select Currency --"}}</option>
                 </select>
