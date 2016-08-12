@@ -74,8 +74,8 @@
                                 <span class="fa fa-refresh" style="cursor:pointer;" ng-click="UsrCtrl.newPwd()"> generate new password &nbsp;&nbsp;&nbsp;<span class="text-danger"> {{UsrCtrl.newPwdVal}}</span></span>
                             </div>
                             <div class="checkbox">
-                                <label><input type="checkbox" id="enabled" ng-model="UsrCtrl.user.enabled" ng-true-value="'1'" ng-false-value="'0'" > Account Enabled:</label>
-                                <label><input type="checkbox" id="accountlocked" ng-model="UsrCtrl.user.accountlocked" ng-true-value="'1'" ng-false-value="'0'" > Lock/Unlock:</label>
+                                <label class="checkbox-inline"><input type="checkbox" id="enabled" ng-model="UsrCtrl.user.enabled" ng-true-value="'1'" ng-false-value="'0'" > Account Enabled:</label>
+                                <label class="checkbox-inline"><input type="checkbox" id="accountlocked" ng-model="UsrCtrl.user.accountlocked" ng-true-value="'1'" ng-false-value="'0'" > Lock/Unlock:</label>
                             </div>
                         </ng-form>
                     </uib-tab>

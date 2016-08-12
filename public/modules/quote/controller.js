@@ -58,8 +58,9 @@ angular.module('RFQ')
                     DataService.post('inboundService', data).then(function (response) {
                         vm.quote = response.data.data[0];
                         vm.quote.quoteAmount = parseFloat(vm.quote.quoteAmount);
+                        vm.quote.quantity = parseFloat(vm.quote.quantity);
 
-                        vm.originalUserData = angular.copy(vm.user);
+                        vm.originalUserData = angular.copy(vm.quote);
                         vm.total_count = response.data.total_count;
                     })
 
@@ -112,6 +113,7 @@ angular.module('RFQ')
                         }
                     ];
                     data.append("transactionMetaData[queryMetaData][queryClause][andExpression]", JSON.stringify(andExpression));
+                    console.log('editing');
                 }else if(vm.quote.quote_id == null) { //A new insert
                     data.append("transactionEventType", "PUT");
                     vm.quote.quote_enteredby_id = $rootScope.globals.currentUser.userDetails.authDetails.user_id;
