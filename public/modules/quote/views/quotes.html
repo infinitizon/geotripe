@@ -119,6 +119,9 @@
                 <div ng-if="quotCtrl.files" style="margin-top:10px;">You selected:
                     <ul><li ng-repeat="file in quotCtrl.files">{{file.name}}</li></ul>
                 </div>
+                <div ng-if="quotCtrl.quoteFiles" class="well">Files already attached are:
+                    <ul><li ng-repeat="file in quotCtrl.quoteFiles"><a href="#">{{file.docName}}</a></li></ul>
+                </div>
             </div>
             <div class="form-actions text-center">
                 <button type="button" class="btn btn-default" style="width:10%;" ng-click="quotCtrl.goBack()"><i class="fa fa-arrow-left"></i> Cancel</button>

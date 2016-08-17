@@ -39,6 +39,8 @@ angular.module('RFQ')
             };
             vm.editQuote = function (quoteId) {
                 vm.isDisabled = false;
+                vm.quoteFiles = vm.files = null;
+
                 vm.edit=true;
                 if(quoteId) {
                     var data=angular.copy(CommonServices.postData);
@@ -57,6 +59,7 @@ angular.module('RFQ')
                     ];
                     DataService.post('inboundService', data).then(function (response) {
                         vm.quote = response.data.data[0];
+                        vm.quoteFiles = response.data.data['files'];
                         vm.quote.quoteAmount = parseFloat(vm.quote.quoteAmount);
                         vm.quote.quantity = parseFloat(vm.quote.quantity);
 

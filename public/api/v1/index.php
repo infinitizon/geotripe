@@ -110,11 +110,14 @@ if($env['PATH_INFO']==="/inboundService") {
                 }
                 $q_str = $fxns->_generateQry($data->factName, $responseData,$options);
                 if (!empty($data->transactionMetaData->queryMetaData->queryClause->andExpression)) {
-                    $q_str .= " WHERE ";
+                    $q_str .= " WHERE "; $files_id = '';
                     foreach ($data->transactionMetaData->queryMetaData->queryClause->andExpression as $field) {
                         $q_str .= $field->propertyName . " " . $field->operatorType . " " . $field->propertyValue . " AND";
+                        $files_id .= $field->propertyValue.' ,';
                     }
                     $q_str = $fxns->_subStrAtDel($q_str, ' AND');
+                    $files_id = $fxns->_subStrAtDel($files_id, ' ,');
+                    $q_getFiles_str = "SELECT doc_id,doc_quote_id,docName,docCreateDate FROM Document WHERE doc_quote_Id IN ($files_id)";
                 }
                 $q_str_tot_count = $dbo->query("SELECT COUNT(*) as `count` FROM (" . $q_str . ") t");
                 $r_str_tot_count = $q_str_tot_count->fetch(PDO::FETCH_ASSOC);
@@ -127,6 +130,12 @@ if($env['PATH_INFO']==="/inboundService") {
                 $r_obj->execute(array());
                 while ($items = $r_obj->fetch(PDO::FETCH_ASSOC)) {
                     $q_response[] = $items;
+                }
+                if(isset($q_getFiles_str)) {
+                    $r_getFiles_str = $dbo->prepare($q_getFiles_str);
+                    $r_getFiles_str->execute();
+                    $files = $r_getFiles_str->fetchAll(PDO::FETCH_ASSOC);
+                    $q_response['files'] = $files;
                 }
                 $response = array("response" => "Success", "token" => $data->token, "total_count" => $r_str_tot_count['count'], "data" => @$q_response);
             }

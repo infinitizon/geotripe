@@ -22,726 +22,825 @@
       <table id="13" parent="1" name="PurchaseOrder"/>
       <table id="14" parent="1" name="PurchaseOrderStatus"/>
       <table id="15" parent="1" name="Quote"/>
-      <table id="16" parent="1" name="QuoteDirection"/>
+      <table id="16" parent="1" name="QuoteDirection">
+        <comment>Direction: Buy or sell of the quote</comment>
+      </table>
       <table id="17" parent="1" name="QuoteStatus"/>
       <table id="18" parent="1" name="State"/>
       <table id="19" parent="1" name="User_AuthView"/>
       <table id="20" parent="1" name="Users"/>
-      <column id="21" parent="2" name="AuthView_Id">
+      <table id="21" parent="1" name="Mail"/>
+      <table id="22" parent="1" name="logs"/>
+      <column id="23" parent="2" name="AuthView_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="22" parent="2" name="parent_id">
+      <column id="24" parent="2" name="parent_id">
         <data-type>bigint(20)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
       </column>
-      <column id="23" parent="2" name="Name">
+      <column id="25" parent="2" name="Name">
         <data-type>varchar(200)</data-type>
       </column>
-      <column id="24" parent="2" name="ViewPath">
+      <column id="26" parent="2" name="ViewPath">
         <data-type>varchar(200)</data-type>
       </column>
-      <column id="25" parent="2" name="description">
+      <column id="27" parent="2" name="description">
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="26" parent="2" name="css_class">
+      <column id="28" parent="2" name="css_class">
         <data-type>varchar(100)</data-type>
       </column>
-      <key id="27" parent="2" name="PRIMARY">
+      <key id="29" parent="2" name="PRIMARY">
         <columns>AuthView_Id</columns>
         <primary>1</primary>
       </key>
-      <column id="28" parent="3" name="BankAccountDetail_Id">
+      <column id="30" parent="3" name="BankAccountDetail_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="29" parent="3" name="BankAccountDetail_Party_Id">
+      <column id="31" parent="3" name="BankAccountDetail_Party_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="30" parent="3" name="BankName">
+      <column id="32" parent="3" name="BankName">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="31" parent="3" name="BankAccountDetail_Currency_Id">
+      <column id="33" parent="3" name="BankAccountDetail_Currency_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="32" parent="3" name="AccountName">
+      <column id="34" parent="3" name="AccountName">
         <data-type>varchar(100)</data-type>
       </column>
-      <column id="33" parent="3" name="AccountReference">
+      <column id="35" parent="3" name="AccountReference">
         <data-type>varchar(100)</data-type>
       </column>
-      <column id="34" parent="3" name="SWIFTCode">
+      <column id="36" parent="3" name="SWIFTCode">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="35" parent="3" name="IBAN">
+      <column id="37" parent="3" name="IBAN">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="36" parent="3" name="NUBAN">
+      <column id="38" parent="3" name="NUBAN">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="37" parent="3" name="BankAccountDetail_Country_Id">
+      <column id="39" parent="3" name="BankAccountDetail_Country_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="38" parent="3" name="BankAccountDetail_State_Id">
+      <column id="40" parent="3" name="BankAccountDetail_State_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <index id="39" parent="3" name="fk_BankAccountDetail_Country1_idx">
+      <index id="41" parent="3" name="fk_BankAccountDetail_Country1_idx">
         <columns>BankAccountDetail_Country_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="40" parent="3" name="fk_BankAccountDetail_Currency1_idx">
+      <index id="42" parent="3" name="fk_BankAccountDetail_Currency1_idx">
         <columns>BankAccountDetail_Currency_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="41" parent="3" name="fk_BankAccountDetail_Party1_idx">
+      <index id="43" parent="3" name="fk_BankAccountDetail_Party1_idx">
         <columns>BankAccountDetail_Party_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="42" parent="3" name="fk_BankAccountDetail_State1_idx">
+      <index id="44" parent="3" name="fk_BankAccountDetail_State1_idx">
         <columns>BankAccountDetail_State_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="43" parent="3" name="PRIMARY">
+      <key id="45" parent="3" name="PRIMARY">
         <columns>BankAccountDetail_Id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="44" parent="3" name="fk_BankAccountDetail_Country1">
+      <foreign-key id="46" parent="3" name="fk_BankAccountDetail_Country1">
         <columns>BankAccountDetail_Country_Id</columns>
         <ref-key>~.Country.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="45" parent="3" name="fk_BankAccountDetail_Currency1">
+      <foreign-key id="47" parent="3" name="fk_BankAccountDetail_Currency1">
         <columns>BankAccountDetail_Currency_Id</columns>
         <ref-key>~.Currency.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="46" parent="3" name="fk_BankAccountDetail_Party1">
+      <foreign-key id="48" parent="3" name="fk_BankAccountDetail_Party1">
         <columns>BankAccountDetail_Party_Id</columns>
         <ref-key>~.Party.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="47" parent="3" name="fk_BankAccountDetail_State1">
+      <foreign-key id="49" parent="3" name="fk_BankAccountDetail_State1">
         <columns>BankAccountDetail_State_Id</columns>
         <ref-key>~.State.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="48" parent="4" name="BusinessType_Id">
+      <column id="50" parent="4" name="BusinessType_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="49" parent="4" name="Name">
+      <column id="51" parent="4" name="Name">
         <data-type>varchar(200)</data-type>
       </column>
-      <column id="50" parent="4" name="description">
+      <column id="52" parent="4" name="description">
         <data-type>varchar(255)</data-type>
       </column>
-      <key id="51" parent="4" name="PRIMARY">
+      <key id="53" parent="4" name="PRIMARY">
         <columns>BusinessType_Id</columns>
         <primary>1</primary>
       </key>
-      <column id="52" parent="5" name="Country_Id">
+      <column id="54" parent="5" name="Country_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="53" parent="5" name="Name">
+      <column id="55" parent="5" name="Name">
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="54" parent="5" name="CountryCode">
+      <column id="56" parent="5" name="CountryCode">
         <data-type>varchar(45)</data-type>
       </column>
-      <key id="55" parent="5" name="PRIMARY">
+      <key id="57" parent="5" name="PRIMARY">
         <columns>Country_Id</columns>
         <primary>1</primary>
       </key>
-      <column id="56" parent="6" name="Currency_Id">
+      <column id="58" parent="6" name="currency_id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="57" parent="6" name="Name">
+      <column id="59" parent="6" name="code">
         <data-type>varchar(200)</data-type>
       </column>
-      <column id="58" parent="6" name="description">
+      <column id="60" parent="6" name="description">
         <data-type>varchar(255)</data-type>
       </column>
-      <key id="59" parent="6" name="PRIMARY">
-        <columns>Currency_Id</columns>
+      <column id="61" parent="6" name="decimalHTML">
+        <data-type>varchar(10)</data-type>
+      </column>
+      <column id="62" parent="6" name="hexHTML">
+        <data-type>varchar(10)</data-type>
+      </column>
+      <column id="63" parent="6" name="unicode">
+        <data-type>varchar(10)</data-type>
+      </column>
+      <key id="64" parent="6" name="PRIMARY">
+        <columns>currency_id</columns>
         <primary>1</primary>
       </key>
-      <column id="60" parent="7" name="Document_Id">
+      <column id="65" parent="7" name="doc_id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="61" parent="7" name="Document_Quote_Id">
+      <column id="66" parent="7" name="doc_quote_id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="62" parent="7" name="DocumentName">
-        <data-type>varchar(45)</data-type>
+      <column id="67" parent="7" name="docName">
+        <data-type>varchar(300)</data-type>
       </column>
-      <column id="63" parent="7" name="DocumentMimeType">
-        <data-type>varchar(45)</data-type>
+      <column id="68" parent="7" name="docMimeType">
+        <data-type>varchar(300)</data-type>
       </column>
-      <column id="64" parent="7" name="DocumentBlob">
+      <column id="69" parent="7" name="docBlob">
         <data-type>blob</data-type>
       </column>
-      <index id="65" parent="7" name="fk_Document_Quote1_idx">
-        <columns>Document_Quote_Id</columns>
+      <column id="70" parent="7" name="docSize">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="71" parent="7" name="docCreateDate">
+        <data-type>datetime</data-type>
+      </column>
+      <index id="72" parent="7" name="fk_Document_Quote1_idx">
+        <columns>doc_quote_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="66" parent="7" name="PRIMARY">
-        <columns>Document_Id</columns>
+      <key id="73" parent="7" name="PRIMARY">
+        <columns>doc_id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="67" parent="7" name="fk_Document_Quote1">
-        <columns>Document_Quote_Id</columns>
+      <foreign-key id="74" parent="7" name="fk_Document_Quote1">
+        <columns>doc_quote_id</columns>
         <ref-key>~.Quote.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="68" parent="8" name="LoginDetail_Id">
+      <column id="75" parent="8" name="LoginDetail_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="69" parent="8" name="Username">
+      <column id="76" parent="8" name="Username">
         <mandatory>1</mandatory>
         <data-type>varchar(200)</data-type>
       </column>
-      <column id="70" parent="8" name="RemoteAddress">
+      <column id="77" parent="8" name="RemoteAddress">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="71" parent="8" name="LoginDate">
+      <column id="78" parent="8" name="LoginDate">
         <mandatory>1</mandatory>
         <data-type>datetime</data-type>
       </column>
-      <column id="72" parent="8" name="LoginSuccessful">
+      <column id="79" parent="8" name="LoginSuccessful">
         <mandatory>1</mandatory>
         <data-type>bit(1)</data-type>
       </column>
-      <column id="73" parent="8" name="FailureReason">
+      <column id="80" parent="8" name="FailureReason">
         <data-type>varchar(500)</data-type>
       </column>
-      <column id="74" parent="8" name="LoginDetail_User_Id">
+      <column id="81" parent="8" name="LoginDetail_User_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <index id="75" parent="8" name="fk_LoginDetail_User1_idx">
+      <index id="82" parent="8" name="fk_LoginDetail_User1_idx">
         <columns>LoginDetail_User_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="76" parent="8" name="PRIMARY">
+      <key id="83" parent="8" name="PRIMARY">
         <columns>LoginDetail_Id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="77" parent="8" name="fk_LoginDetail_User1">
+      <foreign-key id="84" parent="8" name="fk_LoginDetail_User1">
         <columns>LoginDetail_User_Id</columns>
         <ref-key>~.Users.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="78" parent="9" name="Party_Id">
+      <column id="85" parent="9" name="Party_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="79" parent="9" name="Party_PartyType_Id">
+      <column id="86" parent="9" name="Party_PartyType_Id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="80" parent="9" name="AddressCity">
+      <column id="87" parent="9" name="AddressCity">
         <data-type>varchar(100)</data-type>
       </column>
-      <column id="81" parent="9" name="AddressLine1">
+      <column id="88" parent="9" name="AddressLine1">
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="82" parent="9" name="AddressLine2">
+      <column id="89" parent="9" name="AddressLine2">
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="83" parent="9" name="PostalCode">
+      <column id="90" parent="9" name="PostalCode">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="84" parent="9" name="ContactPhoneNumber">
+      <column id="91" parent="9" name="ContactPhoneNumber">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="85" parent="9" name="Name">
+      <column id="92" parent="9" name="Name">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="86" parent="9" name="EmailAddress">
+      <column id="93" parent="9" name="EmailAddress">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="87" parent="9" name="Party_Country_Id">
+      <column id="94" parent="9" name="Party_Country_Id">
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="88" parent="9" name="Party_State_Id">
+      <column id="95" parent="9" name="Party_State_Id">
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="89" parent="9" name="ClientId">
+      <column id="96" parent="9" name="ClientId">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="90" parent="9" name="IsActive">
+      <column id="97" parent="9" name="IsActive">
         <data-type>bit(1)</data-type>
       </column>
-      <column id="91" parent="9" name="ContactLastname">
+      <column id="98" parent="9" name="ContacLastname">
         <data-type>varchar(100)</data-type>
       </column>
-      <column id="92" parent="9" name="ContactFirstname">
+      <column id="99" parent="9" name="ContacFirstname">
         <data-type>varchar(100)</data-type>
       </column>
-      <column id="93" parent="9" name="ContactPersonTitle">
+      <column id="100" parent="9" name="ContacPersonTitle">
         <data-type>varchar(100)</data-type>
       </column>
-      <column id="94" parent="9" name="ContactMiddlename">
+      <column id="101" parent="9" name="ContacMiddlename">
         <data-type>varchar(100)</data-type>
       </column>
-      <column id="95" parent="9" name="YearEstablished">
+      <column id="102" parent="9" name="YearEstablished">
         <data-type>int(11)</data-type>
       </column>
-      <column id="96" parent="9" name="Party_BusinessType_Id">
+      <column id="103" parent="9" name="Party_BusinessType_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="97" parent="9" name="OtherTypeOfBusiness">
+      <column id="104" parent="9" name="OtherTypeOfBusiness">
         <data-type>varchar(555)</data-type>
       </column>
-      <column id="98" parent="9" name="MajorBusinessActivity">
+      <column id="105" parent="9" name="MajorBusinessActivity">
         <data-type>varchar(455)</data-type>
       </column>
-      <column id="99" parent="9" name="TermConditionAccepted">
+      <column id="106" parent="9" name="TermConditionAccepted">
         <data-type>bit(1)</data-type>
       </column>
-      <column id="100" parent="9" name="PartyStatus_PartyStatus_Id">
+      <column id="107" parent="9" name="PartyStatus_PartyStatus_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <index id="101" parent="9" name="fk_Party_BusinessType1_idx">
+      <index id="108" parent="9" name="fk_Party_BusinessType1_idx">
         <columns>Party_BusinessType_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="102" parent="9" name="fk_Party_Country1_idx">
+      <index id="109" parent="9" name="fk_Party_Country1_idx">
         <columns>Party_Country_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="103" parent="9" name="fk_Party_PartyStatus1_idx">
+      <index id="110" parent="9" name="fk_Party_PartyStatus1_idx">
         <columns>PartyStatus_PartyStatus_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="104" parent="9" name="fk_Party_PartyType1_idx">
+      <index id="111" parent="9" name="fk_Party_PartyType1_idx">
         <columns>Party_PartyType_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="105" parent="9" name="fk_Party_State1_idx">
+      <index id="112" parent="9" name="fk_Party_State1_idx">
         <columns>Party_State_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="106" parent="9" name="PRIMARY">
+      <key id="113" parent="9" name="PRIMARY">
         <columns>Party_Id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="107" parent="9" name="fk_Party_BusinessType1">
+      <foreign-key id="114" parent="9" name="fk_Party_BusinessType1">
         <columns>Party_BusinessType_Id</columns>
         <ref-key>~.BusinessType.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="108" parent="9" name="fk_Party_Country1">
+      <foreign-key id="115" parent="9" name="fk_Party_Country1">
         <columns>Party_Country_Id</columns>
         <ref-key>~.Country.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="109" parent="9" name="fk_Party_PartyStatus1">
+      <foreign-key id="116" parent="9" name="fk_Party_PartyStatus1">
         <columns>PartyStatus_PartyStatus_Id</columns>
         <ref-key>~.PartyStatus.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="110" parent="9" name="fk_Party_PartyType1">
+      <foreign-key id="117" parent="9" name="fk_Party_PartyType1">
         <columns>Party_PartyType_Id</columns>
         <ref-key>~.PartyType.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="111" parent="9" name="fk_Party_State1">
+      <foreign-key id="118" parent="9" name="fk_Party_State1">
         <columns>Party_State_Id</columns>
         <ref-key>~.State.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="112" parent="10" name="PartyStatus_Id">
+      <column id="119" parent="10" name="PartyStatus_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="113" parent="10" name="Name">
+      <column id="120" parent="10" name="Name">
         <data-type>varchar(200)</data-type>
       </column>
-      <column id="114" parent="10" name="description">
+      <column id="121" parent="10" name="description">
         <data-type>varchar(255)</data-type>
       </column>
-      <key id="115" parent="10" name="PRIMARY">
+      <key id="122" parent="10" name="PRIMARY">
         <columns>PartyStatus_Id</columns>
         <primary>1</primary>
       </key>
-      <column id="116" parent="11" name="PartyType_Id">
+      <column id="123" parent="11" name="PartyType_Id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="117" parent="11" name="Name">
+      <column id="124" parent="11" name="Name">
         <data-type>varchar(200)</data-type>
       </column>
-      <column id="118" parent="11" name="description">
+      <column id="125" parent="11" name="description">
         <data-type>varchar(255)</data-type>
       </column>
-      <key id="119" parent="11" name="PRIMARY">
+      <key id="126" parent="11" name="PRIMARY">
         <columns>PartyType_Id</columns>
         <primary>1</primary>
       </key>
-      <column id="120" parent="12" name="Product_Id">
+      <column id="127" parent="12" name="product_id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="121" parent="12" name="Name">
+      <column id="128" parent="12" name="name">
         <data-type>varchar(200)</data-type>
       </column>
-      <column id="122" parent="12" name="description">
+      <column id="129" parent="12" name="description">
         <data-type>varchar(255)</data-type>
       </column>
-      <key id="123" parent="12" name="PRIMARY">
-        <columns>Product_Id</columns>
+      <column id="130" parent="12" name="ins_yn">
+        <data-type>tinyint(1)</data-type>
+      </column>
+      <key id="131" parent="12" name="PRIMARY">
+        <columns>product_id</columns>
         <primary>1</primary>
       </key>
-      <column id="124" parent="13" name="PurchaseOrder_Id">
+      <column id="132" parent="13" name="PurchaseOrder_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="125" parent="13" name="PurchaseOrder_PurchaseOrderStatus_Id">
+      <column id="133" parent="13" name="PurchaseOrder_PurchaseOrderStatus_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="126" parent="13" name="EntryDate">
+      <column id="134" parent="13" name="EntryDate">
         <data-type>datetime</data-type>
       </column>
-      <column id="127" parent="13" name="DateOfExcetuion">
+      <column id="135" parent="13" name="DateOfExcetuion">
         <data-type>datetime</data-type>
       </column>
-      <column id="128" parent="13" name="PurchasePrice">
+      <column id="136" parent="13" name="PurchasePrice">
         <data-type>decimal(19,2)</data-type>
       </column>
-      <index id="129" parent="13" name="fk_PurchaseOrder_PurchaseOrderStatus1_idx">
+      <index id="137" parent="13" name="fk_PurchaseOrder_PurchaseOrderStatus1_idx">
         <columns>PurchaseOrder_PurchaseOrderStatus_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="130" parent="13" name="PRIMARY">
+      <key id="138" parent="13" name="PRIMARY">
         <columns>PurchaseOrder_Id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="131" parent="13" name="fk_PurchaseOrder_PurchaseOrderStatus1">
+      <foreign-key id="139" parent="13" name="fk_PurchaseOrder_PurchaseOrderStatus1">
         <columns>PurchaseOrder_PurchaseOrderStatus_Id</columns>
         <ref-key>~.PurchaseOrderStatus.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="132" parent="14" name="PurchaseOrderStatus_Id">
+      <column id="140" parent="14" name="PurchaseOrderStatus_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="133" parent="14" name="Name">
+      <column id="141" parent="14" name="Name">
         <data-type>varchar(200)</data-type>
       </column>
-      <column id="134" parent="14" name="description">
+      <column id="142" parent="14" name="description">
         <data-type>varchar(255)</data-type>
       </column>
-      <key id="135" parent="14" name="PRIMARY">
+      <key id="143" parent="14" name="PRIMARY">
         <columns>PurchaseOrderStatus_Id</columns>
         <primary>1</primary>
       </key>
-      <column id="136" parent="15" name="Quote_Id">
+      <column id="144" parent="15" name="quote_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="137" parent="15" name="Quote_Status_Id">
+      <column id="145" parent="15" name="subject">
+        <data-type>varchar(200)</data-type>
+      </column>
+      <column id="146" parent="15" name="Party_Party_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="138" parent="15" name="Quote_QuoteDirection_Id">
+      <column id="147" parent="15" name="Quote_Status_Id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+        <default-expression>&apos;12141324&apos;</default-expression>
+      </column>
+      <column id="148" parent="15" name="Quote_QuoteDirection_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="139" parent="15" name="QuoteAmount">
+      <column id="149" parent="15" name="QuoteAmount">
         <data-type>decimal(19,2)</data-type>
       </column>
-      <column id="140" parent="15" name="Quote_Currency_Id">
+      <column id="150" parent="15" name="Quote_Currency_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="141" parent="15" name="EntryDate">
+      <column id="151" parent="15" name="EntryDate">
         <data-type>datetime</data-type>
       </column>
-      <column id="142" parent="15" name="ApproveDate">
+      <column id="152" parent="15" name="ApproveDate">
         <data-type>datetime</data-type>
       </column>
-      <column id="143" parent="15" name="Quote_EnteredBy_Id">
+      <column id="153" parent="15" name="Quote_EnteredBy_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="144" parent="15" name="BidPrice">
+      <column id="154" parent="15" name="BidPrice">
         <data-type>decimal(19,2)</data-type>
       </column>
-      <column id="145" parent="15" name="AskPrice">
+      <column id="155" parent="15" name="AskPrice">
         <data-type>decimal(19,2)</data-type>
       </column>
-      <column id="146" parent="15" name="Quote_PurchaseOrder_Id">
-        <mandatory>1</mandatory>
+      <column id="156" parent="15" name="Quote_PurchaseOrder_Id">
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="147" parent="15" name="Strike">
+      <column id="157" parent="15" name="Strike">
         <data-type>decimal(19,2)</data-type>
       </column>
-      <column id="148" parent="15" name="Description">
+      <column id="158" parent="15" name="Description">
         <data-type>varchar(1000)</data-type>
       </column>
-      <column id="149" parent="15" name="Quantity">
+      <column id="159" parent="15" name="Quantity">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="150" parent="15" name="Quote_Product_Id">
+      <column id="160" parent="15" name="Quote_Product_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="151" parent="15" name="ExpiryDate">
+      <column id="161" parent="15" name="ExpiryDate">
         <data-type>datetime</data-type>
       </column>
-      <column id="152" parent="15" name="Quote_ApprovedBy_Id">
-        <mandatory>1</mandatory>
+      <column id="162" parent="15" name="Quote_ApprovedBy_Id">
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="153" parent="15" name="SpecificationAndRequirement">
+      <column id="163" parent="15" name="SpecificationAndRequirement">
         <data-type>varchar(2000)</data-type>
       </column>
-      <index id="154" parent="15" name="fk_Quote_Currency1_idx">
+      <index id="164" parent="15" name="fk_Quote_Currency1_idx">
         <columns>Quote_Currency_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="155" parent="15" name="fk_Quote_Product1_idx">
+      <index id="165" parent="15" name="fk_Quote_Party1_idx">
+        <columns>Party_Party_Id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="166" parent="15" name="fk_Quote_Product1_idx">
         <columns>Quote_Product_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="156" parent="15" name="fk_Quote_PurchaseOrder1_idx">
+      <index id="167" parent="15" name="fk_Quote_PurchaseOrder1_idx">
         <columns>Quote_PurchaseOrder_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="157" parent="15" name="fk_Quote_QuoteDirection1_idx">
+      <index id="168" parent="15" name="fk_Quote_QuoteDirection1_idx">
         <columns>Quote_QuoteDirection_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="158" parent="15" name="fk_Quote_QuoteStatus1_idx">
+      <index id="169" parent="15" name="fk_Quote_QuoteStatus1_idx">
         <columns>Quote_Status_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="159" parent="15" name="fk_Quote_User1_idx">
+      <index id="170" parent="15" name="fk_Quote_User1_idx">
         <columns>Quote_EnteredBy_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="160" parent="15" name="fk_Quote_User2_idx">
+      <index id="171" parent="15" name="fk_Quote_User2_idx">
         <columns>Quote_ApprovedBy_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="161" parent="15" name="PRIMARY">
-        <columns>Quote_Id</columns>
+      <key id="172" parent="15" name="PRIMARY">
+        <columns>quote_Id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="162" parent="15" name="fk_Quote_Currency1">
+      <foreign-key id="173" parent="15" name="fk_Quote_Currency1">
         <columns>Quote_Currency_Id</columns>
         <ref-key>~.Currency.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="163" parent="15" name="fk_Quote_Product1">
+      <foreign-key id="174" parent="15" name="fk_Quote_Party1">
+        <columns>Party_Party_Id</columns>
+        <ref-key>~.Party.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="175" parent="15" name="fk_Quote_Product1">
         <columns>Quote_Product_Id</columns>
         <ref-key>~.Product.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="164" parent="15" name="fk_Quote_PurchaseOrder1">
+      <foreign-key id="176" parent="15" name="fk_Quote_PurchaseOrder1">
         <columns>Quote_PurchaseOrder_Id</columns>
         <ref-key>~.PurchaseOrder.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="165" parent="15" name="fk_Quote_QuoteDirection1">
+      <foreign-key id="177" parent="15" name="fk_Quote_QuoteDirection1">
         <columns>Quote_QuoteDirection_Id</columns>
         <ref-key>~.QuoteDirection.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="166" parent="15" name="fk_Quote_QuoteStatus1">
+      <foreign-key id="178" parent="15" name="fk_Quote_QuoteStatus1">
         <columns>Quote_Status_Id</columns>
         <ref-key>~.QuoteStatus.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="167" parent="15" name="fk_Quote_User1">
+      <foreign-key id="179" parent="15" name="fk_Quote_User1">
         <columns>Quote_EnteredBy_Id</columns>
         <ref-key>~.Users.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="168" parent="15" name="fk_Quote_User2">
+      <foreign-key id="180" parent="15" name="fk_Quote_User2">
         <columns>Quote_ApprovedBy_Id</columns>
         <ref-key>~.Users.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="169" parent="16" name="QuoteDirection_Id">
+      <column id="181" parent="16" name="QuoteDirection_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="170" parent="16" name="Name">
+      <column id="182" parent="16" name="Name">
         <data-type>varchar(200)</data-type>
       </column>
-      <column id="171" parent="16" name="description">
+      <column id="183" parent="16" name="description">
         <data-type>varchar(255)</data-type>
       </column>
-      <key id="172" parent="16" name="PRIMARY">
+      <key id="184" parent="16" name="PRIMARY">
         <columns>QuoteDirection_Id</columns>
         <primary>1</primary>
       </key>
-      <column id="173" parent="17" name="QuoteStatus_Id">
+      <column id="185" parent="17" name="QuoteStatus_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="174" parent="17" name="Name">
+      <column id="186" parent="17" name="Name">
         <data-type>varchar(200)</data-type>
       </column>
-      <column id="175" parent="17" name="description">
+      <column id="187" parent="17" name="description">
         <data-type>varchar(255)</data-type>
       </column>
-      <key id="176" parent="17" name="PRIMARY">
+      <key id="188" parent="17" name="PRIMARY">
         <columns>QuoteStatus_Id</columns>
         <primary>1</primary>
       </key>
-      <column id="177" parent="18" name="State_Id">
+      <column id="189" parent="18" name="State_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="178" parent="18" name="Name">
+      <column id="190" parent="18" name="Name">
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="179" parent="18" name="State_Country_Id">
+      <column id="191" parent="18" name="State_Country_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <index id="180" parent="18" name="fk_State_Country1_idx">
+      <index id="192" parent="18" name="fk_State_Country1_idx">
         <columns>State_Country_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="181" parent="18" name="PRIMARY">
+      <key id="193" parent="18" name="PRIMARY">
         <columns>State_Id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="182" parent="18" name="fk_State_Country1">
+      <foreign-key id="194" parent="18" name="fk_State_Country1">
         <columns>State_Country_Id</columns>
         <ref-key>~.Country.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="183" parent="19" name="AuthView_AuthView_Id">
+      <column id="195" parent="19" name="AuthView_AuthView_Id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="184" parent="19" name="User_User_Id">
+      <column id="196" parent="19" name="User_User_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="185" parent="19" name="ius_yn">
+      <column id="197" parent="19" name="ius_yn">
         <data-type>tinyint(1)</data-type>
       </column>
-      <index id="186" parent="19" name="fk_user_authView_AuthView1_idx">
+      <index id="198" parent="19" name="fk_user_authView_AuthView1_idx">
         <columns>AuthView_AuthView_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="187" parent="19" name="fk_user_authView_User1_idx">
+      <index id="199" parent="19" name="fk_user_authView_User1_idx">
         <columns>User_User_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="188" parent="19" name="PRIMARY">
+      <key id="200" parent="19" name="PRIMARY">
         <columns>AuthView_AuthView_Id
 User_User_Id</columns>
         <primary>1</primary>
       </key>
-      <column id="189" parent="20" name="User_Id">
+      <column id="201" parent="20" name="User_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="190" parent="20" name="Firstname">
+      <column id="202" parent="20" name="Firstname">
         <mandatory>1</mandatory>
         <data-type>varchar(200)</data-type>
       </column>
-      <column id="191" parent="20" name="MiddleName">
+      <column id="203" parent="20" name="MiddleName">
         <data-type>varchar(200)</data-type>
       </column>
-      <column id="192" parent="20" name="LastName">
+      <column id="204" parent="20" name="LastName">
         <mandatory>1</mandatory>
         <data-type>varchar(200)</data-type>
       </column>
-      <column id="193" parent="20" name="WorkPhoneNumber">
+      <column id="205" parent="20" name="WorkPhoneNumber">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="194" parent="20" name="ContactPhoneNumber">
+      <column id="206" parent="20" name="ContactPhoneNumber">
         <data-type>varchar(45)</data-type>
       </column>
-      <column id="195" parent="20" name="User_Party_Id">
+      <column id="207" parent="20" name="User_Party_Id">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="196" parent="20" name="IsAuthorizedPerson">
+      <column id="208" parent="20" name="IsAuthorizedPerson">
         <data-type>tinyint(1)</data-type>
       </column>
-      <column id="197" parent="20" name="Username">
+      <column id="209" parent="20" name="Username">
         <data-type>varchar(100)</data-type>
       </column>
-      <column id="198" parent="20" name="Email">
+      <column id="210" parent="20" name="Email">
         <data-type>varchar(100)</data-type>
       </column>
-      <column id="199" parent="20" name="Password">
+      <column id="211" parent="20" name="Password">
         <mandatory>1</mandatory>
         <data-type>varchar(200)</data-type>
       </column>
-      <column id="200" parent="20" name="token">
+      <column id="212" parent="20" name="token">
         <data-type>varchar(200)</data-type>
       </column>
-      <column id="201" parent="20" name="Enabled">
-        <data-type>bit(1)</data-type>
+      <column id="213" parent="20" name="Enabled">
+        <data-type>tinyint(1)</data-type>
       </column>
-      <column id="202" parent="20" name="AccountLocked">
-        <data-type>bit(1)</data-type>
+      <column id="214" parent="20" name="AccountLocked">
+        <data-type>tinyint(1)</data-type>
       </column>
-      <column id="203" parent="20" name="AccountExpirationTime">
+      <column id="215" parent="20" name="AccountExpirationTime">
         <data-type>datetime</data-type>
       </column>
-      <column id="204" parent="20" name="CredentialsExpirationTime">
+      <column id="216" parent="20" name="CredentialsExpirationTime">
         <data-type>datetime</data-type>
       </column>
-      <column id="205" parent="20" name="DateCreated">
+      <column id="217" parent="20" name="DateCreated">
         <data-type>datetime</data-type>
       </column>
-      <column id="206" parent="20" name="DateModified">
+      <column id="218" parent="20" name="DateModified">
         <data-type>datetime</data-type>
       </column>
-      <index id="207" parent="20" name="fk_User_Party1_idx">
+      <index id="219" parent="20" name="fk_User_Party1_idx">
         <columns>User_Party_Id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="208" parent="20" name="PRIMARY">
+      <key id="220" parent="20" name="PRIMARY">
         <columns>User_Id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="209" parent="20" name="fk_User_Party1">
+      <foreign-key id="221" parent="20" name="fk_User_Party1">
         <columns>User_Party_Id</columns>
         <ref-key>~.Party.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="222" parent="21" name="mail_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="223" parent="21" name="mail_to">
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="224" parent="21" name="mail_from">
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="225" parent="21" name="mail_subj">
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="226" parent="21" name="mail_body">
+        <data-type>text</data-type>
+      </column>
+      <column id="227" parent="21" name="create_date">
+        <data-type>datetime</data-type>
+      </column>
+      <column id="228" parent="21" name="modified_date">
+        <data-type>datetime</data-type>
+      </column>
+      <key id="229" parent="21" name="PRIMARY">
+        <columns>mail_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="230" parent="22" name="log_id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+      </column>
+      <column id="231" parent="22" name="users_user_id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+      </column>
+      <column id="232" parent="22" name="log_table">
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="233" parent="22" name="log_table_key">
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="234" parent="22" name="log_changes">
+        <data-type>text</data-type>
+      </column>
+      <column id="235" parent="22" name="log_date">
+        <data-type>datetime</data-type>
+      </column>
+      <index id="236" parent="22" name="fk_logs_Users1_idx">
+        <columns>users_user_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="237" parent="22" name="PRIMARY">
+        <columns>log_id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="238" parent="22" name="fk_logs_Users1">
+        <columns>users_user_id</columns>
+        <ref-key>~.Users.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
