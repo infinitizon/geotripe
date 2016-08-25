@@ -42,76 +42,75 @@
         </div>
         <form name="form" ng-submit="login()" role="form">
             <p>All fileds marked  <span class="text-danger">*</span> are required</p>
-            <div class="form-group">
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" ng-model="quotCtrl.quote.subject" class="form-control"/>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" ng-model="quotCtrl.quote.subject" class="form-control"/>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="rfq_no">Request No </label>
+                        <input type="text" id="rfq_no" ng-model="quotCtrl.quote.rfq_no" class="form-control"/>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="PartyId">Party <span ng-show="!quotCtrl.quote.party_party_id" class="text-danger">*</span></label>
-                <select id="PartyId"
-                        class="form-control"
-                        ng-click="quotCtrl.getLOVs('Party','parties', {'response':'party_id&name'})"
-                        ng-options="party.party_id as party.name for party in quotCtrl.container['parties']"
-                        ng-model="quotCtrl.quote.party_party_id">
-                    <option value="">{{quotCtrl.quote.partyName || "--Select Company name --"}}</option>
-                </select>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="publishDate">Publish Date</label>
+                        <input type="text" id="publishDate" ng-model="quotCtrl.quote.publishdate" class="form-control"/>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="dueDate">Due Date</label>
+                        <input type="text" id="dueDate" ng-model="quotCtrl.quote.duedate" class="form-control"/>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="quoteDirection">Direction <span ng-show="!quotCtrl.quote.quote_quotedirection_id" class="text-danger">*</span></label>
-                <select id="quoteDirection" required
-                        class="form-control"
-                        ng-click="quotCtrl.getLOVs('QuoteDirection','quotes', {'response':'QuoteDirection_Id&name'})"
-                        ng-options="quotes.QuoteDirection_Id as quotes.name for quotes in quotCtrl.container['quotes']"
-                        ng-model="quotCtrl.quote.quote_quotedirection_id">
-                    <option value="">{{quotCtrl.quote.quoteDirection ||"--Select Quote Direction --"}}</option>
-                </select>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="PartyId">Party <span ng-show="!quotCtrl.quote.party_party_id" class="text-danger">*</span></label>
+                        <select id="PartyId"
+                                class="form-control"
+                                ng-click="quotCtrl.getLOVs('Party','parties', {'response':'party_id&name'})"
+                                ng-options="party.party_id as party.name for party in quotCtrl.container['parties']"
+                                ng-change="quotCtrl.getUsers(quotCtrl.quote.party_party_id)"
+                                ng-model="quotCtrl.quote.party_party_id">
+                            <option value="">{{quotCtrl.quote.partyName || "--Select Company name --"}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="userId">Name Of Event Owner <span ng-show="!quotCtrl.quote.users_user_id" class="text-danger">*</span></label>
+                        <select id="userId"
+                                class="form-control"
+                                ng-options="user.user_id as user.name for user in quotCtrl.container['users']"
+                                ng-model="quotCtrl.quote.users_user_id">
+                            <option value="">{{quotCtrl.quote.userName || "--Select Name of Event Owner --"}}</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="product">Product <span ng-show="!quotCtrl.quote.quote_product_id" class="text-danger">*</span></label>
-                <select id="product"
-                        class="form-control"
-                        ng-click="quotCtrl.getLOVs('Product','products', {'response':'product_id&name'
-                                                                                , 'and':[{
-                                                                                    'propertyName': 'ins_yn',
-                                                                                    'propertyValue': 1,
-                                                                                    'propertyDataType': 'TINYINT',
-                                                                                    'operatorType': '='
-                                                                                }]
-                                                                               })"
-                        ng-options="product.product_id as product.name for product in quotCtrl.container['products']"
-                        ng-model="quotCtrl.quote.quote_product_id">
-                    <option value="">{{quotCtrl.quote.product || "--Select Product --"}}</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="amount">Amount</label>
-                <input type="number" id="amount" class="form-control" step="0.01" placeholder="Amount" ng-model="quotCtrl.quote.quoteAmount"/>
-            </div>
-            <div class="form-group">
-                <label for="currency">Currency  <span ng-show="!quotCtrl.quote.quote_currency_id" class="text-danger">*</span></label>
-                <select id="currency" required
-                        class="form-control"
-                        ng-click="quotCtrl.getLOVs('currency','currencies', {'response':'currency_Id&code'})"
-                        ng-options="currencies.currency_Id as currencies.code for currencies in quotCtrl.container['currencies']"
-                        ng-model="quotCtrl.quote.quote_currency_id">
-                    <option value="">{{quotCtrl.quote.currency || "--Select Currency --"}}</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="bidPrice">Bid Price</label>
-                <input type="text" id="bidPrice" class="form-control" ng-model="quotCtrl.quote.bidprice" />
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea id="description" class="form-control" ng-model="quotCtrl.quote.description"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="quantity">Quantity <span ng-show="!quotCtrl.quote.quantity" class="text-danger">*</span></label>
-                <input type="number" id="quantity" class="form-control" placeholder="Quantity (Only numbers allowed)" required ng-model="quotCtrl.quote.quantity"/>
-            </div>
-            <div class="form-group">
-                <label for="notes">Other Notes</label>
-                <textarea id="notes" class="form-control" ng-model="quotCtrl.quote.specificationandrequirement"></textarea>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="currency">Currency  <span ng-show="!quotCtrl.quote.quote_currency_id" class="text-danger">*</span></label>
+                        <select id="currency" required
+                                class="form-control"
+                                ng-click="quotCtrl.getLOVs('currency','currencies', {'response':'currency_Id&code'})"
+                                ng-options="currencies.currency_Id as currencies.code for currencies in quotCtrl.container['currencies']"
+                                ng-model="quotCtrl.quote.quote_currency_id">
+                            <option value="">{{quotCtrl.quote.currency || "--Select Currency --"}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                </div>
             </div>
             <div class="form-group">
                 <label for="notes">Attachments <small><small>(ctrl+click to select multiple files)</small></small></label>
@@ -122,6 +121,33 @@
                 <div ng-if="quotCtrl.quoteFiles" class="well">Files already attached are:
                     <ul><li ng-repeat="file in quotCtrl.quoteFiles"><a href="#">{{file.docName}}</a></li></ul>
                 </div>
+            </div>
+
+<div class="container">
+            <fieldset style="margin-top:25px;">
+                <legend>
+                    <i class="fa fa-plus pull-right text-primary"
+                       style="cursor: pointer;"
+                       ng-click="quotCtrl.open({'modalSize':'lg', 'url':'quoteItems'})"
+                       aria-hidden="true">
+                    </i> Add Quote Items:</legend>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr><th>S/N</th><th>Material Description</th><th>Qty</th><th>Manufacturers</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="allergy in patDetCtrl.patient.allergies">
+                        <td>{{allergy.reaction}}</td>
+                        <td>{{allergy.severity.name}}</td>
+                        <td>{{allergy.type.name}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+</div>
+            <div class="form-group">
+                <label for="notes">Other Notes</label>
+                <textarea id="notes" class="form-control" ng-model="quotCtrl.quote.specificationandrequirement"></textarea>
             </div>
             <div class="form-actions text-center">
                 <button type="button" class="btn btn-default" style="width:10%;" ng-click="quotCtrl.goBack()"><i class="fa fa-arrow-left"></i> Cancel</button>

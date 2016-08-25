@@ -5,16 +5,34 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="scripts/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="scripts/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
         <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
         <link href="css/app.css" rel="stylesheet" type="text/css"/>
         <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
         <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+        <!--
+           IE8 support, see AngularJS Internet Explorer Compatibility http://docs.angularjs.org/guide/ie
+           For Firefox 3.6, you will also need to include jQuery and ECMAScript 5 shim
+         -->
+        <!--[if lt IE 9]>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.2.0/es5-shim.js"></script>
+        <script>
+            document.createElement('ui-select');
+            document.createElement('ui-select-match');
+            document.createElement('ui-select-choices');
+        </script>
+        <![endif]-->
+
     </head>
     <body>
         <!-- https://apps.gndf.io/#/settings/project/ -->
         <!-- Charts : https://jtblin.github.io/angular-chart.js/  -->
 		<!-- https://www.youtube.com/channel/UCO9JvZ75Usyzgd1puurLF6A -->
+        <!-- File uploads: http://jsfiddle.net/danialfarid/maqbzv15/1118/ -->
+
         <div class="global-content container-fluid" ng-if="$root.globals.currentUser">
             <div class="row global-header">
                 <div class="pull-right">
@@ -47,14 +65,16 @@
         <div ui-view="login"></div>
 
         <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script-->
-        <script src="scripts/angular.js" type="text/javascript"></script>
+        <script src="scripts/angular/1.5.7/angular.js" type="text/javascript"></script>
         <script src="scripts/angular-ui-router.js" type="text/javascript"></script>
         <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-cookies.js"></script-->
-        <script src="scripts/angular-cookies.js" type="text/javascript"></script>
+        <script src="scripts/angular/1.5.7/angular-cookies.min.js" type="text/javascript"></script>
         <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js"></script-->
-        <script src="scripts/angular-animate.js" type="text/javascript"></script>
+        <script src="scripts/angular/1.5.7/angular-animate.min.js" type="text/javascript"></script>
         <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-touch.min.js"></script-->
-        <script src="scripts/angular-touch.js" type="text/javascript"></script>
+        <script src="scripts/angular/1.5.7/angular-touch.min.js" type="text/javascript"></script>
+        <script src="scripts/angular/1.5.7/angular-sanitize.min.js" type="text/javascript"></script>
+        <script src="scripts/select.min.js" type="text/javascript"></script>
         <script src="scripts/ui-bootstrap-tpls-1.3.3.min.js" type="text/javascript"></script>
         <script src="scripts/dirPagination.js" type="text/javascript"></script>
         <script src="scripts/app.js" type="text/javascript"></script>

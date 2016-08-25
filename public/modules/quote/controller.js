@@ -1,10 +1,36 @@
 angular.module('RFQ')
-    .controller('QuoteController', ['$scope', '$location', '$rootScope','DataService','CommonServices','$http',
-        function ($scope, $location, $rootScope,DataService,CommonServices,$http) {
+    .controller('QuoteController', ['$scope', '$location', '$rootScope','DataService','CommonServices','$http', '$uibModal',
+        function ($scope, $location, $rootScope,DataService,CommonServices,$http, $uibModal) {
             $rootScope.pageTitle = "Quotes";
             $rootScope.pageHeader = "Quotes";
 
             var vm = this;
+            vm.open = function (options) {
+                switch(options.url) {
+                    case 'quoteItems':
+                        options.controller = 'quoteItemsController';
+                        options.controllerAs = 'quotItmCtrl';
+                        break;
+                }
+                var modalInstance = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'modules/quote/views/templates/'+options.url+'.html',
+                    controller: options.controller,
+                    controllerAs: options.controllerAs,
+                    size: options.modalSize
+                });
+
+                modalInstance.result.then(function (selectedItem) {
+                    vm.patient.allergies.push(selectedItem);
+                    vm.allergies.push({
+                        "reaction":selectedItem.reaction,
+                        "severity":selectedItem.severity.id,
+                        "type":selectedItem.type.id
+                    })
+                }, function () {
+                    console.log('Modal dismissed at: ' + new Date());
+                });
+            };
             /*
              * This part gets all the quotes available
              */
@@ -78,6 +104,7 @@ angular.module('RFQ')
                     var data = angular.copy(CommonServices.postData);
                     data.factName = factName;
                     data.transactionMetaData.responseDataProperties = options.response;
+                    console.log(options.response);
                     if(options.and){
                         data.transactionMetaData.queryMetaData.queryClause.andExpression = options.and;
                     }
@@ -85,6 +112,14 @@ angular.module('RFQ')
                         vm.container[selectScope] = response.data.data;
                     });
                 }
+            }
+            vm.getUsers = function(partyId){
+                vm.getLOVs("Users","users", {"response":"user_id&concat(firstname,', ',middlename,' ',lastname)name",'and':[{
+                    'propertyName': 'user_party_id',
+                    'propertyValue': 20161307,
+                    'propertyDataType': 'BIGINT',
+                    'operatorType': '='
+                }]});
             }
             CommonServices.postData.token = $rootScope.globals.currentUser.userDetails.token;
             $scope.getFileDetails = function (e) {
@@ -142,3 +177,15 @@ angular.module('RFQ')
                 }
             }
         }])
+    .controller('quoteItemsController', ['$scope','$rootScope','$uibModalInstance', 'CommonServices',
+        function ($scope, $rootScope, $uibModalInstance,CommonServices)  {
+            var vm = this;
+            $scope.itemArray = [
+                {id: 1, name: 'first'},
+                {id: 2, name: 'second'},
+                {id: 3, name: 'third'},
+                {id: 4, name: 'fourth'},
+                {id: 5, name: 'fifth'},
+            ];
+
+        }]);

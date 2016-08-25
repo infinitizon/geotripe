@@ -15,9 +15,10 @@ $C['DB_USER'] = 'root';	 //
 /*
 * The database password
 */
-$C['DB_PASS'] =  'rootn31'; // rootn31
+$C['DB_PASS'] =  ''; // rootn31
 /*
 * The name of the database to work with
 */
 $C['DB_NAME'] = 'geotripe';  //
+
 ?>

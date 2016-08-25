@@ -132,10 +132,13 @@ if($env['PATH_INFO']==="/inboundService") {
                     $q_response[] = $items;
                 }
                 if(isset($q_getFiles_str)) {
+//                    var_dump($q_getFiles_str);
                     $r_getFiles_str = $dbo->prepare($q_getFiles_str);
                     $r_getFiles_str->execute();
                     $files = $r_getFiles_str->fetchAll(PDO::FETCH_ASSOC);
-                    $q_response['files'] = $files;
+                    if(count($files) > 0) {
+                        $q_response['files'] = $files;
+                    }
                 }
                 $response = array("response" => "Success", "token" => $data->token, "total_count" => $r_str_tot_count['count'], "data" => @$q_response);
             }
