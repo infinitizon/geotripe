@@ -91,10 +91,18 @@ angular.module('RFQ')
                     })
                     var data=angular.copy(CommonServices.postData);
                     data.factName = 'QuoteDetail qd';
-                    data.transactionMetaData.responseDataProperties = 'qd.quotedetail_id&qd.serialnumber&qd.description&qd.price&qd.quantity&qd.Quote_quote_Id';
-                    data.transactionMetaData.queryMetaData.joinClause = {
-                        'joinType':['JOIN','JOIN','JOIN','JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_currency_id=c.currency_id','q.quote_enteredBy_id=u.user_id']
-                    }
+                    data.transactionMetaData.responseDataProperties = 'qd.quotedetail_id&qd.serialnumber&qd.description&qd.price&qd.quantity&qd.quote_quote_id';
+                    data.transactionMetaData.queryMetaData.queryClause.andExpression = [
+                        {
+                            "propertyName": "Quote_quote_Id",
+                            "propertyValue": quoteId,
+                            "propertyDataType": "BIGINT",
+                            "operatorType": "="
+                        }
+                    ];
+                    DataService.post('inboundService', data).then(function (response) {
+                        vm.lineItems = response.data.data;
+                    })
                 }else{
                     vm.quote = null;
                 }
