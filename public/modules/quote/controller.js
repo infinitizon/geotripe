@@ -5,6 +5,7 @@ angular.module('RFQ')
             $rootScope.pageHeader = "Quotes";
 
             var vm = this;
+            vm.lineItems = []
             vm.open = function (options) {
                 switch(options.url) {
                     case 'quoteItems':
@@ -21,12 +22,8 @@ angular.module('RFQ')
                 });
 
                 modalInstance.result.then(function (selectedItem) {
-                    vm.patient.allergies.push(selectedItem);
-                    vm.allergies.push({
-                        "reaction":selectedItem.reaction,
-                        "severity":selectedItem.severity.id,
-                        "type":selectedItem.type.id
-                    })
+                    console.log(selectedItem)
+                    vm.lineItems.push(selectedItem);
                 }, function () {
                     console.log('Modal dismissed at: ' + new Date());
                 });
@@ -70,10 +67,10 @@ angular.module('RFQ')
                 vm.edit=true;
                 if(quoteId) {
                     var data=angular.copy(CommonServices.postData);
-                    data.factName = 'Quote q, Party p, Product pr, QuoteStatus qs, QuoteDirection qd, Currency c, Users u';
-                    data.transactionMetaData.responseDataProperties = 'q.quote_id&q.subject&p.name partyname&qs.name quotestatus&qd.name quotedirection&q.quoteamount&c.code currency&q.entrydate&q.approvedate&u.firstname&q.bidPrice&q.askPrice&q.quote_purchaseorder_id&q.strike&q.description&q.quantity&pr.name product&q.expirydate&q.quote_approvedby_id&q.specificationandrequirement';
+                    data.factName = 'Quote q, Party p, QuoteStatus qs, Currency c, Users u';
+                    data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&q.subject&p.name partyname&qs.name quotestatus&c.code currency&q.entrydate&q.approvedate&u.firstname&q.description&q.quote_approvedby_id&q.specificationandrequirement';
                     data.transactionMetaData.queryMetaData.joinClause = {
-                        'joinType':['JOIN','JOIN','JOIN','JOIN','JOIN','JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.quote_product_id=pr.product_id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_quoteDirection_id=qd.quoteDirection_id','q.quote_currency_id=c.currency_id','q.quote_enteredBy_id=u.user_id']
+                        'joinType':['JOIN','JOIN','JOIN','JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_currency_id=c.currency_id','q.quote_enteredBy_id=u.user_id']
                     }
                     data.transactionMetaData.queryMetaData.queryClause.andExpression = [
                         {
@@ -92,7 +89,12 @@ angular.module('RFQ')
                         vm.originalUserData = angular.copy(vm.quote);
                         vm.total_count = response.data.total_count;
                     })
-
+                    var data=angular.copy(CommonServices.postData);
+                    data.factName = 'QuoteDetail qd';
+                    data.transactionMetaData.responseDataProperties = 'qd.quotedetail_id&qd.serialnumber&qd.description&qd.price&qd.quantity&qd.Quote_quote_Id';
+                    data.transactionMetaData.queryMetaData.joinClause = {
+                        'joinType':['JOIN','JOIN','JOIN','JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_currency_id=c.currency_id','q.quote_enteredBy_id=u.user_id']
+                    }
                 }else{
                     vm.quote = null;
                 }
@@ -104,7 +106,6 @@ angular.module('RFQ')
                     var data = angular.copy(CommonServices.postData);
                     data.factName = factName;
                     data.transactionMetaData.responseDataProperties = options.response;
-                    console.log(options.response);
                     if(options.and){
                         data.transactionMetaData.queryMetaData.queryClause.andExpression = options.and;
                     }
@@ -177,15 +178,76 @@ angular.module('RFQ')
                 }
             }
         }])
-    .controller('quoteItemsController', ['$scope','$rootScope','$uibModalInstance', 'CommonServices',
-        function ($scope, $rootScope, $uibModalInstance,CommonServices)  {
+    .controller('quoteItemsController', ['$scope','$rootScope','$uibModalInstance', 'DataService', 'CommonServices',
+        function ($scope, $rootScope, $uibModalInstance,DataService,CommonServices)  {
             var vm = this;
-            $scope.itemArray = [
-                {id: 1, name: 'first'},
-                {id: 2, name: 'second'},
-                {id: 3, name: 'third'},
-                {id: 4, name: 'fourth'},
-                {id: 5, name: 'fifth'},
-            ];
+            vm.insertingManu = false;
+            vm.showNewManu = true;
 
-        }]);
+            var data=angular.copy(CommonServices.postData);
+            data.factName = 'Party p';
+            data.transactionMetaData.responseDataProperties = 'p.party_partytype_id,p.name';
+            data.transactionMetaData.queryMetaData.queryClause.andExpression = [
+                {
+                    "propertyName": "party_partytype_id",
+                    "propertyValue": 201607132,
+                    "propertyDataType": "BIGINT",
+                    "operatorType": "="
+                }
+            ];
+            DataService.post('inboundService', data).then(function (response) {
+                vm.manufacturers = response.data.data;
+            });
+            vm.addNewManu = function(){
+                vm.insertingManu = true;
+                var data=angular.copy(CommonServices.postData);
+                data.factName = 'Party';
+                data.transactionEventType = "PUT"
+                data.factObjects = [{party_partytype_id:201607132,partystatus_partystatus_id:1011,isactive:1,name:vm.newManu}];
+                DataService.post('inboundService', data).then(function (response) {
+                    vm.manufacturers.push({party_partytype_id:response.data.data.insertId, name:vm.newManu});
+                    vm.insertingManu = false;
+                    console.log(vm.manufacturers);
+                    vm.newManu = '';
+                });
+            }
+            vm.addLineItems = function () {
+                vm.allergies={
+                    "matDesc":vm.matdesc,
+                    "rfq_no":vm.qty,
+                    "manus":vm.selectedManufacturers
+                }
+                $uibModalInstance.close(vm.allergies);
+            }
+        }])
+    .filter('propsFilter', function() {
+        return function(items, props) {
+            var out = [];
+
+            if (angular.isArray(items)) {
+                var keys = Object.keys(props);
+
+                items.forEach(function(item) {
+                    var itemMatches = false;
+
+                    for (var i = 0; i < keys.length; i++) {
+                        var prop = keys[i];
+                        var text = props[prop].toLowerCase();
+                        if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
+                            itemMatches = true;
+                            break;
+                        }
+                    }
+
+                    if (itemMatches) {
+                        out.push(item);
+                    }
+                });
+            } else {
+                // Let the output be the input untouched
+                out = items;
+            }
+
+            return out;
+        };
+    });

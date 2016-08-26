@@ -39,8 +39,11 @@
                         <ng-form name="GeneralTab">
                             <div class="form-group">
                                 <label for="partyType">Type:</label>
-                                <select id="partyType" class="form-control" ng-model="PartyCtrl.party.party_partytype_id">
-                                    <option ng-repeat="partyType in PartyCtrl.partyTypes" value="{{partyType.partytype_id}}">{{partyType.name}}</option>
+                                <select id="partyType" class="form-control"
+                                        data-ng-click="PartyCtrl.getLOVs('PartyType','partytypes', {'response':'partytype_id&name'})"
+                                        data-ng-options="partytype.partytype_id as partytype.name for partytype in PartyCtrl.container['partytypes']"
+                                        data-ng-model="PartyCtrl.party.party_partytype_id">
+                                    <option value="">{{PartyCtrl.party.partytypename || "-- Select Party --"}}</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -63,10 +66,11 @@
                                 <label for="country">Country:</label>
                                 <select id="country"
                                         class="form-control"
-                                        ng-change="PartyCtrl.getCountryStates(PartyCtrl.party.party_country_id)"
-                                        ng-options="country.country_id as country.name for country in PartyCtrl.countries"
-                                        ng-model="PartyCtrl.party.party_country_id">
-                                    <option value="">--Select Country --</option>
+                                        data-ng-click="PartyCtrl.getLOVs('Country','countries', {'response':'country_id&name'})"
+                                        data-ng-change="PartyCtrl.getCountryStates(PartyCtrl.party.party_country_id)"
+                                        data-ng-options="country.country_id as country.name for country in PartyCtrl.container['countries']"
+                                        data-ng-model="PartyCtrl.party.party_country_id">
+                                    <option value="">{{PartyCtrl.party.countryName || "-- Select Country --"}}</option>
                                 </select>
                             </div>
                             <div class="form-group">

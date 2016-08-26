@@ -119,6 +119,7 @@ if($env['PATH_INFO']==="/inboundService") {
                     $files_id = $fxns->_subStrAtDel($files_id, ' ,');
                     $q_getFiles_str = "SELECT doc_id,doc_quote_id,docName,docCreateDate FROM Document WHERE doc_quote_Id IN ($files_id)";
                 }
+
                 $q_str_tot_count = $dbo->query("SELECT COUNT(*) as `count` FROM (" . $q_str . ") t");
                 $r_str_tot_count = $q_str_tot_count->fetch(PDO::FETCH_ASSOC);
 
@@ -141,6 +142,10 @@ if($env['PATH_INFO']==="/inboundService") {
                     }
                 }
                 $response = array("response" => "Success", "token" => $data->token, "total_count" => $r_str_tot_count['count'], "data" => @$q_response);
+
+                $response = json_encode($response);
+//                var_dump($response);
+                echo $response;exit;
             }
             /**
              * An Update is an Update
@@ -189,6 +194,7 @@ if($env['PATH_INFO']==="/inboundService") {
                 $r_str = $dbo->prepare($q_str);
                 $r_str->execute();
                 $response = array("response" => "Success", "message" => "Record Updated Successfully", "token" => $data->token);
+
             }
             /**
              * A PUT is an insert
@@ -202,7 +208,6 @@ if($env['PATH_INFO']==="/inboundService") {
                 $ins_values = " VALUES (";
                 if(!is_array($data->factObjects[0])){
                     $log_txt = "{$user[0]['User_Id']},'{$data->factName}',:tblColKey, 'inserted new lines for: ";
-//                    var_dump($data->factObjects[0]);
                     foreach ($r_fields as $fields) {
                         $fieldNm = strtolower($fields['Field']);
                         if (strtolower(@$data->factObjects[0]->$fieldNm)) {
@@ -259,8 +264,6 @@ if($env['PATH_INFO']==="/inboundService") {
                     $ins_values = rtrim($ins_values,',');
                     $q_str .= $ins_fields . ") " . $ins_values;
                 }
-//echo $q_str;exit;
-
                 $data=array('token'=> $data->token,'insertId'=>$lastId);
                 $response = array("response" => "Success", "message" => "Record Saved Successfully", "data"=>$data);
             }
@@ -269,6 +272,7 @@ if($env['PATH_INFO']==="/inboundService") {
         $response = array("response"=>"Failure","message"=>$e->getMessage(),"token"=>$data->token);
     }
     $response = json_encode($response);
+    var_dump($response);
     echo $response;
 }
 

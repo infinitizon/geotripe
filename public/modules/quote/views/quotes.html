@@ -46,13 +46,13 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="subject">Subject</label>
-                        <input type="text" id="subject" ng-model="quotCtrl.quote.subject" class="form-control"/>
+                        <input type="text" id="subject" data-ng-model="quotCtrl.quote.subject" class="form-control" data-ng-disabled="false" />
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="rfq_no">Request No </label>
-                        <input type="text" id="rfq_no" ng-model="quotCtrl.quote.rfq_no" class="form-control"/>
+                        <input type="text" id="rfq_no" data-ng-model="quotCtrl.quote.rfq_no" class="form-control" data-ng-disabled="false"/>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="publishDate">Publish Date</label>
-                        <input type="text" id="publishDate" ng-model="quotCtrl.quote.publishdate" class="form-control"/>
+                        <input type="text" id="publishDate" data-ng-model="quotCtrl.quote.publishdate" class="form-control" data-ng-disabled="false"/>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -76,11 +76,16 @@
                         <label for="PartyId">Party <span ng-show="!quotCtrl.quote.party_party_id" class="text-danger">*</span></label>
                         <select id="PartyId"
                                 class="form-control"
-                                ng-click="quotCtrl.getLOVs('Party','parties', {'response':'party_id&name'})"
+                                ng-click="quotCtrl.getLOVs('Party','parties', {'response':'party_id&name', 'and':[{
+                                                                                    'propertyName': 'party_partytype_id',
+                                                                                    'propertyValue': 201607131,
+                                                                                    'propertyDataType': 'BIGINT',
+                                                                                    'operatorType': '='
+                                                                                }]})"
                                 ng-options="party.party_id as party.name for party in quotCtrl.container['parties']"
                                 ng-change="quotCtrl.getUsers(quotCtrl.quote.party_party_id)"
                                 ng-model="quotCtrl.quote.party_party_id">
-                            <option value="">{{quotCtrl.quote.partyName || "--Select Company name --"}}</option>
+                            <option value="">{{quotCtrl.quote.partyname || "--Select Company name --"}}</option>
                         </select>
                     </div>
                 </div>
@@ -102,9 +107,9 @@
                         <label for="currency">Currency  <span ng-show="!quotCtrl.quote.quote_currency_id" class="text-danger">*</span></label>
                         <select id="currency" required
                                 class="form-control"
-                                ng-click="quotCtrl.getLOVs('currency','currencies', {'response':'currency_Id&code'})"
-                                ng-options="currencies.currency_Id as currencies.code for currencies in quotCtrl.container['currencies']"
-                                ng-model="quotCtrl.quote.quote_currency_id">
+                                data-ng-click="quotCtrl.getLOVs('currency','currencies', {'response':'currency_Id&code'})"
+                                data-ng-options="currencies.currency_Id as currencies.code for currencies in quotCtrl.container['currencies']"
+                                data-ng-model="quotCtrl.quote.quote_currency_id">
                             <option value="">{{quotCtrl.quote.currency || "--Select Currency --"}}</option>
                         </select>
                     </div>
@@ -115,11 +120,11 @@
             <div class="form-group">
                 <label for="notes">Attachments <small><small>(ctrl+click to select multiple files)</small></small></label>
                 <input type="file" id="file" name="file" multiple onchange="angular.element(this).scope().getFileDetails(this)" />
-                <div ng-if="quotCtrl.files" style="margin-top:10px;">You selected:
-                    <ul><li ng-repeat="file in quotCtrl.files">{{file.name}}</li></ul>
+                <div data-ng-if="quotCtrl.files" style="margin-top:10px;">You selected:
+                    <ul><li data-ng-repeat="file in quotCtrl.files">{{file.name}}</li></ul>
                 </div>
-                <div ng-if="quotCtrl.quoteFiles" class="well">Files already attached are:
-                    <ul><li ng-repeat="file in quotCtrl.quoteFiles"><a href="#">{{file.docName}}</a></li></ul>
+                <div data-ng-if="quotCtrl.quoteFiles" class="well">Files already attached are:
+                    <ul><li data-ng-repeat="file in quotCtrl.quoteFiles"><a href="#">{{file.docName}}</a></li></ul>
                 </div>
             </div>
 
@@ -136,10 +141,11 @@
                         <tr><th>S/N</th><th>Material Description</th><th>Qty</th><th>Manufacturers</th></tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="allergy in patDetCtrl.patient.allergies">
-                        <td>{{allergy.reaction}}</td>
-                        <td>{{allergy.severity.name}}</td>
-                        <td>{{allergy.type.name}}</td>
+                    <tr ng-repeat="lineItem in quotCtrl.lineItems track by $index">
+                        <td>{{$index+1}}</td>
+                        <td>{{lineItem.matdesc}}</td>
+                        <td>{{lineItem.qty}}</td>
+                        <td>{{(lineItem.manus.length >1) ? 'Many' : lineItem.manus[0].name }}</td>
                     </tr>
                     </tbody>
                 </table>

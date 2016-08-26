@@ -140,12 +140,22 @@ ul.main-menu > li > ul li:hover > ul{
 ul.nav-tabs{
     margin-bottom:20px;
 }
-/**
-Helper classes for text and backgrounds
-*/
+/** Helper classes for text and backgrounds */
 .bg-hot{
     background-color: rgba(235, 87, 104, 1);
 }
 .bg-cool{
     background-color: rgba(24, 170, 88, 1);
+}
+/*** Selectize stuffs ***/
+.select2 > .select2-choice.ui-select-match {
+    /* Because of the inclusion of Bootstrap */
+    height: 29px;
+}
+.selectize-control > .selectize-dropdown {
+    top: 36px;
+}
+/* End: Selectize stuffs */
+.cursor-pointer{
+    cursor: pointer;
 }

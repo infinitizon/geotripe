@@ -63,7 +63,11 @@ angular.module('Setup')
                 vm.edit=true;
                 var data=angular.copy(CommonServices.postData);
                 if(partyId) {
-                    data.transactionMetaData.responseDataProperties = 'party_id&party_partytype_id&addressline1&addressline2&addresscity&name&party_country_id&party_state_id&contactpersontitle&contactlastname&contactfirstname&contactmiddlename&contactphonenumber';
+                    data.factName = 'Party p, PartyType pt, Country c, State s';
+                    data.transactionMetaData.responseDataProperties = 'p.party_id&p.party_partytype_id&pt.name partytypename&p.addressline1&p.addressline2&p.addresscity&p.name&p.party_country_id&c.name countryName&p.party_state_id&s.Name stateName&p.contactpersontitle&p.contactlastname&p.contactfirstname&p.contactmiddlename&p.contactphonenumber';
+                    data.transactionMetaData.queryMetaData.joinClause = {
+                        'joinType':['JOIN','LEFT JOIN','LEFT JOIN'],'joinKeys':['p.Party_PartyType_Id=pt.PartyType_Id','p.Party_Country_Id=c.Country_Id','p.Party_State_Id=s.State_id']
+                    }
                     data.transactionMetaData.queryMetaData.queryClause.andExpression = [
                         {
                             "propertyName": "party_id",
@@ -88,22 +92,25 @@ angular.module('Setup')
                     vm.party.state_id = null;
                 }
             };
-
-            data=angular.copy(CommonServices.postData);
-            data.factName = 'Country';
-            data.transactionMetaData.responseDataProperties = "country_id&name";
-            data.transactionMetaData.pageno = null;
-            data.transactionMetaData.itemsPerPage = null;
-            CommonServices.getLOVs(data).then(function(response){
-                vm.countries = response.data.data;
-            });
-
-            data=angular.copy(CommonServices.postData);
-            data.factName = 'PartyType';
-            data.transactionMetaData.responseDataProperties = "partytype_id&name";
-            CommonServices.getLOVs(data).then(function(response){
-                vm.partyTypes = response.data.data;
-            });
+            vm.container = [];
+            vm.getLOVs = function(factName, selectScope, options) {
+                console.log(selectScope)
+                if (vm.container[selectScope] == null) {
+                    var data = angular.copy(CommonServices.postData);
+                    data.factName = factName;
+                    data.transactionMetaData.responseDataProperties = options.response;
+                    data.transactionMetaData.pageno = null;
+                    data.transactionMetaData.itemsPerPage = null;
+                    if(options.and){
+                        data.transactionMetaData.queryMetaData.queryClause.andExpression = options.and;
+                    }
+                    console.log(data)
+                    DataService.post('inboundService', data).then( function (response) {
+                        console.log(response)
+                        vm.container[selectScope] = response.data.data;
+                    });
+                }
+            }
             vm.getCountryStates = function(id){
                 if(vm.party.party_country_id){
                     data=angular.copy(CommonServices.postData);
