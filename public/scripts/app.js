@@ -6,7 +6,7 @@ angular.module('Home', []);
 angular.module('RFQ', [])
 angular.module('Setup', ['Common']);
  
-angular.module('School', ['Auth', 'Home', 'RFQ', 'Setup', 'ui.router', 'ngCookies', 'ngSanitize', 'ui.bootstrap', 'ui.select','angularUtils.directives.dirPagination'])
+angular.module('School', ['Auth', 'Home', 'RFQ', 'Setup', 'ui.router', 'ngCookies', 'ngSanitize', 'ui.bootstrap', 'ui.bootstrap', 'ui.select','angularUtils.directives.dirPagination'])
    .config(['$stateProvider', '$httpProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider'
       , function ($stateProvider, $httpProvider, $urlMatcherFactoryProvider, $urlRouterProvider) {
          $urlRouterProvider.otherwise('/login');

@@ -51,22 +51,36 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="rfq_no">Request No </label>
-                        <input type="text" id="rfq_no" data-ng-model="quotCtrl.quote.rfq_no" class="form-control" data-ng-disabled="false"/>
+                        <label for="rfq_no">Request No <span ng-show="!quotCtrl.quote.rfq_no" class="text-danger">*</span></label>
+                        <input type="text" id="rfq_no" data-ng-model="quotCtrl.quote.rfq_no" class="form-control" data-ng-disabled="false" ng-required="true" />
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="publishDate">Publish Date</label>
-                        <input type="text" id="publishDate" data-ng-model="quotCtrl.quote.publishdate" class="form-control" data-ng-disabled="false"/>
+                        <label for="publishDate">Publish Date <span ng-show="!quotCtrl.quote.publishdate" class="text-danger">*</span></label>
+                        <p class="input-group">
+                            <input type="text" id="publishDate" class="form-control"
+                                   uib-datepicker-popup="dd-MMM-yyyy" ng-model="quotCtrl.quote.publishdate" is-open="quotCtrl.publishdate" ng-focus="quotCtrl.publishdate=true"
+                                   ng-required="true" close-text="&times;" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="quotCtrl.publishdate = !quotCtrl.publishdate"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="dueDate">Due Date</label>
-                        <input type="text" id="dueDate" ng-model="quotCtrl.quote.duedate" class="form-control"/>
+                        <label for="dueDate">Due Date <span ng-show="!quotCtrl.quote.duedate" class="text-danger">*</span></label>
+                        <p class="input-group">
+                            <input type="text" id="dueDate" class="form-control"
+                                   uib-datepicker-popup="dd-MMM-yyyy" ng-model="quotCtrl.quote.duedate" is-open="quotCtrl.dueDate" ng-focus="quotCtrl.dueDate=true"
+                                   ng-required="true" close-text="&times;" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="quotCtrl.dueDate = !quotCtrl.dueDate"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -74,8 +88,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="PartyId">Party <span ng-show="!quotCtrl.quote.party_party_id" class="text-danger">*</span></label>
-                        <select id="PartyId"
-                                class="form-control"
+                        <select id="PartyId" class="form-control"
                                 ng-click="quotCtrl.getLOVs('Party','parties', {'response':'party_id&name', 'and':[{
                                                                                     'propertyName': 'party_partytype_id',
                                                                                     'propertyValue': 201607131,
@@ -143,7 +156,7 @@
                     <tbody>
                     <tr ng-repeat="lineItem in quotCtrl.lineItems track by $index">
                         <td>{{$index+1}}</td>
-                        <td>{{lineItem.matdesc}}</td>
+                        <td>{{lineItem.matDesc}}</td>
                         <td>{{lineItem.qty}}</td>
                         <td>{{(lineItem.manus.length >1) ? 'Many' : lineItem.manus[0].name }}</td>
                     </tr>

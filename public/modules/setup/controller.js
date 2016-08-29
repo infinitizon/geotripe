@@ -147,7 +147,8 @@ angular.module('Setup')
                         vm.message = response.data.message;
                     })
                 }else if( !vm.party.party_id ) { //A new insert
-                    data.transactionEventType = "PUT"
+                    data.transactionEventType = "PUT";
+                    vm.party.partystatus_partystatus_id = 1011;
                     data.factObjects = [vm.party];
 
                     DataService.post('inboundService', data).then(function (response) {
@@ -203,6 +204,7 @@ angular.module('Setup')
             vm.editUser = function (userId) {
                 vm.result = null;
                 vm.edit=true;
+                vm.dataLoading = false;
                 /* This part helps get the pages a user can view */
                 var data=angular.copy(CommonServices.postData);
                 data.factName = 'AuthView a, User_Authview b';

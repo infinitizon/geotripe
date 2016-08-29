@@ -75,7 +75,7 @@
         <script src="scripts/angular/1.5.7/angular-touch.min.js" type="text/javascript"></script>
         <script src="scripts/angular/1.5.7/angular-sanitize.min.js" type="text/javascript"></script>
         <script src="scripts/select.min.js" type="text/javascript"></script>
-        <script src="scripts/ui-bootstrap-tpls-1.3.3.min.js" type="text/javascript"></script>
+        <script src="scripts/ui-bootstrap-tpls-2.1.3.min.js" type="text/javascript"></script>
         <script src="scripts/dirPagination.js" type="text/javascript"></script>
         <script src="scripts/app.js" type="text/javascript"></script>
         <script src="modules/common/services.js" type="text/javascript"></script>

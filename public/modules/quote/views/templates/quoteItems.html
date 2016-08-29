@@ -8,7 +8,7 @@
             </div>
             <div class="form-group">
                 <label for="quantity">Quantity:</label>
-                <input type="text" id="quantity" ng-model="quotCtrl.qty" class="form-control"/>
+                <input type="text" id="quantity" ng-model="quotItmCtrl.qty" class="form-control"/>
             </div>
             <div class="form-group">
                 <!--https://github.com/angular-ui/ui-select-->
@@ -26,7 +26,6 @@
                         <div ng-bind-html="manufacturer.name | highlight: $select.search"></div>
                     </ui-select-choices>
                 </ui-select>
-                <p>Selected: {{quotItmCtrl.selectedManufacturers}}</p>
             </div>
             <div class="form-group col-sm-offset-4">
                 <button type="submit" class="btn btn-primary" ng-click="quotItmCtrl.addLineItems()">Save</button>

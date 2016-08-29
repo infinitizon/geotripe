@@ -22,7 +22,6 @@ angular.module('RFQ')
                 });
 
                 modalInstance.result.then(function (selectedItem) {
-                    console.log(selectedItem)
                     vm.lineItems.push(selectedItem);
                 }, function () {
                     console.log('Modal dismissed at: ' + new Date());
@@ -123,9 +122,9 @@ angular.module('RFQ')
                 }
             }
             vm.getUsers = function(partyId){
-                vm.getLOVs("Users","users", {"response":"user_id&concat(firstname,', ',middlename,' ',lastname)name",'and':[{
+                vm.getLOVs("Users","users", {"response":"user_id&concat(IFNULL(firstname,''), ', ',IFNULL(middlename,''),' ',IFNULL(lastname,''))name",'and':[{
                     'propertyName': 'user_party_id',
-                    'propertyValue': 20161307,
+                    'propertyValue': partyId,
                     'propertyDataType': 'BIGINT',
                     'operatorType': '='
                 }]});
@@ -163,8 +162,22 @@ angular.module('RFQ')
                     console.log('editing');
                 }else if(vm.quote.quote_id == null) { //A new insert
                     data.append("transactionEventType", "PUT");
+                    data.append("putType", "many");
+                    data.append("putOrder", "Quote-Quote_quote_Id,QuoteDetail-QuoteDetail_QuoteDetail_Id,QuoteDetail_Manufacturer");
                     vm.quote.quote_enteredby_id = $rootScope.globals.currentUser.userDetails.authDetails.user_id;
-                    data.append("factObjects", [JSON.stringify(vm.quote)]);
+                    vm.quote.quote_status_id = 12141325; // Pending Approval...Hopefully this will not change
+                    data.append("factObjects[quote]", [JSON.stringify(vm.quote)]);
+
+
+                    angular.forEach(vm.lineItems  , function(QuoteDetail, key) {
+                        var QuoteDetail = {description: vm.lineItems[key].matDesc, quantity: vm.lineItems[key].qty};
+                        angular.forEach(vm.lineItems[key].manus  , function(QuoteManufacturer, key2) {
+                            vm.lineItems[key].manus[key2] = {party_partytype_id:QuoteManufacturer.party_partytype_id, name:QuoteManufacturer.name };
+                        });
+                        data.append("factObjects[QuoteDetail]["+key+"]", [JSON.stringify(QuoteDetail)]);
+                        data.append("factObjects[QuoteDetail_Manufacturer]["+key+"]", [JSON.stringify(vm.lineItems[key].manus)]);
+                    });
+
 
                     for (var i in vm.files) {
                         data.append("file[]", vm.files[i]);
@@ -179,6 +192,14 @@ angular.module('RFQ')
                             vm.dataLoading = false;
                         }else{
                             vm.error="Record submitted successfully";
+                            //var data = angular.copy(CommonServices.postData);
+                            //data.factName = 'QuoteDetail';
+                            //data.transactionEventType = "PUT"
+                            //vm.lineItems.quote_quote_id = response.data.data.insertId;
+                            //data.factObjects = [vm.lineItems];
+                            //DataService.post('inboundService', data).then( function (response) {
+                            //
+                            //});
                             //vm.goBack()
                         }
                         //vm.container[selectScope] = response.data.data;
@@ -192,6 +213,8 @@ angular.module('RFQ')
             vm.insertingManu = false;
             vm.showNewManu = true;
 
+            vm.publishdate = false;
+            vm.dueDate = false;
             var data=angular.copy(CommonServices.postData);
             data.factName = 'Party p';
             data.transactionMetaData.responseDataProperties = 'p.party_partytype_id,p.name';
@@ -204,7 +227,7 @@ angular.module('RFQ')
                 }
             ];
             DataService.post('inboundService', data).then(function (response) {
-                vm.manufacturers = response.data.data;
+                vm.manufacturers = response.data.data || [];
             });
             vm.addNewManu = function(){
                 vm.insertingManu = true;
@@ -222,7 +245,7 @@ angular.module('RFQ')
             vm.addLineItems = function () {
                 vm.allergies={
                     "matDesc":vm.matdesc,
-                    "rfq_no":vm.qty,
+                    "qty":vm.qty,
                     "manus":vm.selectedManufacturers
                 }
                 $uibModalInstance.close(vm.allergies);

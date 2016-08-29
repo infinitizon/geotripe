@@ -10,11 +10,19 @@ $data = json_decode(file_get_contents("php://input")); //Get data that is sent t
 if(!$data){
     if(isset($_POST)){
         $input = "{\"transactionEventType\":\"{$_POST['transactionEventType']}\",\"factName\":\"{$_POST['factName']}\",\"token\":\"{$_POST['token']}\",";
+        if(isset($_POST['putType'])) {
+            $input .= "\"putType\": \"{$_POST['putType']}\",";
+        }
+        if(isset($_POST['putOrder'])) {
+            $input .= "\"putOrder\": \"{$_POST['putOrder']}\",";
+        }
         if(isset($_POST['factObjects'])){
             $factObjects = "[".json_encode($_POST['factObjects'])."]";
             $factObjects = str_replace('\"', '"',$factObjects);
             $factObjects = str_replace('"{', '{',$factObjects);
             $factObjects = str_replace('}"', '}',$factObjects);
+            $factObjects = str_replace('"[{', '[{',$factObjects);
+            $factObjects = str_replace('}]"', '}]',$factObjects);
             $input .= "\"factObjects\": {$factObjects},";
         }
         if(isset($_POST['transactionMetaData'])){
@@ -200,6 +208,15 @@ if($env['PATH_INFO']==="/inboundService") {
              * A PUT is an insert
              */
             if ($data->transactionEventType == "PUT") {
+
+                if($data->putType == 'many'){
+                    $facts = explode(",",$data->putOrder);
+                    foreach($facts as $fact){
+                        $fact = explode("-",$fact);
+                        $q_str = "INSERT INTO {$fact[0]} ";
+                    }
+                    exit;
+                }
                 $q_str = "INSERT INTO {$data->factName} ";
                 $q_str_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) ";
 
@@ -263,6 +280,11 @@ if($env['PATH_INFO']==="/inboundService") {
                     $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
                     $ins_values = rtrim($ins_values,',');
                     $q_str .= $ins_fields . ") " . $ins_values;
+
+                    $r_str = $dbo->prepare($q_str);
+                    $r_str->execute();
+                    $lastId = $dbo->lastInsertId();
+
                 }
                 $data=array('token'=> $data->token,'insertId'=>$lastId);
                 $response = array("response" => "Success", "message" => "Record Saved Successfully", "data"=>$data);
@@ -272,7 +294,6 @@ if($env['PATH_INFO']==="/inboundService") {
         $response = array("response"=>"Failure","message"=>$e->getMessage(),"token"=>$data->token);
     }
     $response = json_encode($response);
-    var_dump($response);
     echo $response;
 }
 
