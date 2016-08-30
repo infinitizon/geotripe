@@ -93,7 +93,7 @@ if($env['PATH_INFO']==="/inboundService") {
         if(count($user) != 1) {
             throw new Exception("-110011");
         }else{
-            if (isset($data->transactionEventType)) {
+            if (isset($data->transactionEventType) && !isset($data->putType)) {
                 $theFact = explode(',',$data->factName);
                 $q_fields = $dbo->query("DESCRIBE {$theFact[0]}");
                 $r_fields = $q_fields->fetchAll(PDO::FETCH_ASSOC);
@@ -211,9 +211,36 @@ if($env['PATH_INFO']==="/inboundService") {
 
                 if($data->putType == 'many'){
                     $facts = explode(",",$data->putOrder);
-                    foreach($facts as $fact){
+                    foreach($facts as $key => $fact){
                         $fact = explode("-",$fact);
-                        $q_str = "INSERT INTO {$fact[0]} ";
+                        $theFact = strtolower($fact[0]);
+                        $q_fields = $dbo->query("DESCRIBE {$theFact}");
+                        $r_fields = $q_fields->fetchAll(PDO::FETCH_ASSOC);
+                        foreach ($r_fields as $fields) {
+                            if ($fields['Key'] == 'PRI') {
+                                $priKy = $fields['Field'];
+                            }
+                        }
+                        echo "$key=>".$fact[0]."\n";
+                        $appenders = '';
+                        _buildQuery($key, $menu);
+//                        $q_str = "INSERT INTO {$theFact} ";
+//                        $ins_fields = " (";
+//                        $ins_values = " VALUES (";
+//                        foreach ($r_fields as $fields) {
+//                            $fieldNm = strtolower($fields['Field']);
+//                            if (strtolower(@$data->factObjects[0]->$theFact->$fieldNm)) {
+//                                @$ins_fields .= " {$fields['Field']} ,";
+//                                $formatedVal = $fxns->_formatFieldValue($data->factObjects[0]->$fact[0]->$fieldNm, array('type'=>$fields['Type'])).",";
+//                                @$ins_values .= $formatedVal;
+//                                @$log_txt .= "{$fields['Field']}=>".htmlspecialchars($data->factObjects[0]->$fact[0]->$fieldNm,ENT_QUOTES ).", ";
+//                            }
+//                        }
+                        $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
+                        $ins_values = rtrim($ins_values,',');
+//                        $log_txt = rtrim($log_txt,', ');
+                        $q_str .= $ins_fields . ") " . $ins_values . ")";
+                        echo $q_str;
                     }
                     exit;
                 }
