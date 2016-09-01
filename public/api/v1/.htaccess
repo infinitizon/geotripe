@@ -1,3 +1,5 @@
-RewriteEngine On 
+RewriteEngine On
+
+RewriteRule ^/?quote/$ quote.php [L]
 RewriteCond %{REQUEST_FILENAME} !-f 
 RewriteRule ^(.*)$ %{ENV:BASE}index.php [QSA,L]

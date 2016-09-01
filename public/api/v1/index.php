@@ -34,7 +34,7 @@ if(!$data){
         }
         $input .= "}";
     }
-//    echo $input;
+    echo $input;exit;
     $data = json_decode($input);
 }
 include_once "core/init.inc.php";
@@ -151,8 +151,8 @@ if($env['PATH_INFO']==="/inboundService") {
                 }
                 $response = array("response" => "Success", "token" => $data->token, "total_count" => $r_str_tot_count['count'], "data" => @$q_response);
 
-                $response = json_encode($response);
 //                var_dump($response);
+                $response = json_encode($response);
                 echo $response;exit;
             }
             /**

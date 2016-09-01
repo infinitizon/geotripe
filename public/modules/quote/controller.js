@@ -182,10 +182,11 @@ angular.module('RFQ')
                     for (var i in vm.files) {
                         data.append("file[]", vm.files[i]);
                     }
-                    DataService.post("inboundService", data, {
+                    DataService.post("quote", data, {
                         transformRequest: angular.identity,
                         headers: {'Content-Type': undefined, 'Process-Data': false}
                     }).then( function (response) {
+                        console.log(response);
                         if(response.data.response == 'Failure'){
                             vm.error=response.data.message;
                             vm.isDisabled = false;
@@ -230,17 +231,22 @@ angular.module('RFQ')
                 vm.manufacturers = response.data.data || [];
             });
             vm.addNewManu = function(){
-                vm.insertingManu = true;
-                var data=angular.copy(CommonServices.postData);
-                data.factName = 'Party';
-                data.transactionEventType = "PUT"
-                data.factObjects = [{party_partytype_id:201607132,partystatus_partystatus_id:1011,isactive:1,name:vm.newManu}];
-                DataService.post('inboundService', data).then(function (response) {
-                    vm.manufacturers.push({party_partytype_id:response.data.data.insertId, name:vm.newManu});
-                    vm.insertingManu = false;
-                    console.log(vm.manufacturers);
-                    vm.newManu = '';
-                });
+                if(vm.newManu){
+                    vm.errorMsg = false;
+                    vm.insertingManu = true;
+                    var data=angular.copy(CommonServices.postData);
+                    data.factName = 'Party';
+                    data.transactionEventType = "PUT"
+                    data.factObjects = [{party_partytype_id:201607132,partystatus_partystatus_id:1011,isactive:1,name:vm.newManu}];
+                    DataService.post('inboundService', data).then(function (response) {
+                        vm.manufacturers.push({party_partytype_id:response.data.data.insertId, name:vm.newManu});
+                        vm.insertingManu = false;
+                        console.log(vm.manufacturers);
+                        vm.newManu = '';
+                    });
+                }else{
+                    vm.errorMsg = true;
+                }
             }
             vm.addLineItems = function () {
                 vm.allergies={
