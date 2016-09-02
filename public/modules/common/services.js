@@ -75,7 +75,8 @@ angular.module('Common')
                             "andExpression":[],
                             "orExpression":[]
                         }
-                    }
+                    },
+                    "groupingProperties"     : "",
                 }
             };
             Service.md5Hash = function(str) {

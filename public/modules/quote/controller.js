@@ -18,11 +18,20 @@ angular.module('RFQ')
                     templateUrl: 'modules/quote/views/templates/'+options.url+'.html',
                     controller: options.controller,
                     controllerAs: options.controllerAs,
-                    size: options.modalSize
+                    size: options.modalSize,
+                    resolve:{
+                        data  : function(){
+                            return options.data || {};
+                        }
+                    }
                 });
 
                 modalInstance.result.then(function (selectedItem) {
-                    vm.lineItems.push(selectedItem);
+                    if(selectedItem.index != null){
+                        vm.lineItems[selectedItem.index] = selectedItem;
+                    }else{
+                        vm.lineItems.push(selectedItem);
+                    }
                 }, function () {
                     console.log('Modal dismissed at: ' + new Date());
                 });
@@ -88,9 +97,13 @@ angular.module('RFQ')
                         vm.originalUserData = angular.copy(vm.quote);
                         vm.total_count = response.data.total_count;
                     })
+                    /*Now get the quote details*/
                     var data=angular.copy(CommonServices.postData);
-                    data.factName = 'QuoteDetail qd';
-                    data.transactionMetaData.responseDataProperties = 'qd.quotedetail_id&qd.serialnumber&qd.description&qd.price&qd.quantity&qd.quote_quote_id';
+                    data.factName = 'QuoteDetail qd, QuoteDetail_Manufacturer qdm';
+                    data.transactionMetaData.responseDataProperties = 'qd.quotedetail_id&qd.serialnumber&qd.description&qd.price&qd.quantity&qd.quote_quote_id&group_concat(qdm.Party_Party_Id)Party_Party_Id';
+                    data.transactionMetaData.queryMetaData.joinClause = {
+                        'joinType':['JOIN'],'joinKeys':['qd.QuoteDetail_Id=qdm.QuoteDetail_QuoteDetail_Id']
+                    }
                     data.transactionMetaData.queryMetaData.queryClause.andExpression = [
                         {
                             "propertyName": "Quote_quote_Id",
@@ -99,8 +112,12 @@ angular.module('RFQ')
                             "operatorType": "="
                         }
                     ];
+                    data.transactionMetaData.groupingProperties = 'qd.QuoteDetail_Id';
                     DataService.post('inboundService', data).then(function (response) {
-                        vm.lineItems = response.data.data;
+                        angular.forEach(response.data.data  , function(lineItem, key) {
+                            var items = {matDesc:lineItem.description,qty:lineItem.quantity};
+                            vm.lineItems.push(items);
+                        })
                     })
                 }else{
                     vm.quote = null;
@@ -166,16 +183,18 @@ angular.module('RFQ')
                     data.append("putOrder", "Quote-Quote_quote_Id,QuoteDetail-QuoteDetail_QuoteDetail_Id,QuoteDetail_Manufacturer");
                     vm.quote.quote_enteredby_id = $rootScope.globals.currentUser.userDetails.authDetails.user_id;
                     vm.quote.quote_status_id = 12141325; // Pending Approval...Hopefully this will not change
+                    vm.quote.entrydate = new Date();
                     data.append("factObjects[quote]", [JSON.stringify(vm.quote)]);
 
-
+                    vm.lineItems4Db = angular.copy(vm.lineItems);
                     angular.forEach(vm.lineItems  , function(QuoteDetail, key) {
                         var QuoteDetail = {description: vm.lineItems[key].matDesc, quantity: vm.lineItems[key].qty};
                         angular.forEach(vm.lineItems[key].manus  , function(QuoteManufacturer, key2) {
-                            vm.lineItems[key].manus[key2] = {party_partytype_id:QuoteManufacturer.party_partytype_id, name:QuoteManufacturer.name };
+                            vm.lineItems4Db[key].manus[key2] = {party_party_id:QuoteManufacturer.party_id};
+                            //console.log(vm.lineItems4Db[key].manus[key2]);
                         });
                         data.append("factObjects[QuoteDetail]["+key+"]", [JSON.stringify(QuoteDetail)]);
-                        data.append("factObjects[QuoteDetail_Manufacturer]["+key+"]", [JSON.stringify(vm.lineItems[key].manus)]);
+                        data.append("factObjects[QuoteDetail_Manufacturer]["+key+"]", [JSON.stringify(vm.lineItems4Db[key].manus)]);
                     });
 
 
@@ -186,7 +205,6 @@ angular.module('RFQ')
                         transformRequest: angular.identity,
                         headers: {'Content-Type': undefined, 'Process-Data': false}
                     }).then( function (response) {
-                        console.log(response);
                         if(response.data.response == 'Failure'){
                             vm.error=response.data.message;
                             vm.isDisabled = false;
@@ -208,17 +226,25 @@ angular.module('RFQ')
                 }
             }
         }])
-    .controller('quoteItemsController', ['$scope','$rootScope','$uibModalInstance', 'DataService', 'CommonServices',
-        function ($scope, $rootScope, $uibModalInstance,DataService,CommonServices)  {
+    .controller('quoteItemsController', ['$scope','$rootScope','$uibModalInstance', 'data', 'DataService', 'CommonServices',
+        function ($scope, $rootScope, $uibModalInstance,data,DataService,CommonServices)  {
             var vm = this;
             vm.insertingManu = false;
             vm.showNewManu = true;
 
+            vm.data = data;
+            vm.indexSelected = null;
+            if(vm.data.item){
+                vm.indexSelected = vm.data.index;
+                vm.matdesc = vm.data.item.matDesc;
+                vm.qty = vm.data.item.qty;
+                vm.selectedManufacturers = vm.data.item.manus;
+            }
             vm.publishdate = false;
             vm.dueDate = false;
             var data=angular.copy(CommonServices.postData);
             data.factName = 'Party p';
-            data.transactionMetaData.responseDataProperties = 'p.party_partytype_id,p.name';
+            data.transactionMetaData.responseDataProperties = 'p.party_id,p.name';
             data.transactionMetaData.queryMetaData.queryClause.andExpression = [
                 {
                     "propertyName": "party_partytype_id",
@@ -241,7 +267,6 @@ angular.module('RFQ')
                     DataService.post('inboundService', data).then(function (response) {
                         vm.manufacturers.push({party_partytype_id:response.data.data.insertId, name:vm.newManu});
                         vm.insertingManu = false;
-                        console.log(vm.manufacturers);
                         vm.newManu = '';
                     });
                 }else{
@@ -250,6 +275,7 @@ angular.module('RFQ')
             }
             vm.addLineItems = function () {
                 vm.allergies={
+                    "index":vm.indexSelected,
                     "matDesc":vm.matdesc,
                     "qty":vm.qty,
                     "manus":vm.selectedManufacturers

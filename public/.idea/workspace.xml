@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d05ef40-3f7a-41b2-81e7-eb6b1d801a63" name="Default" comment="UI-boot">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/v1/quote.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/v1/.htaccess" afterPath="$PROJECT_DIR$/api/v1/.htaccess" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/v1/index.php" afterPath="$PROJECT_DIR$/api/v1/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/v1/quote.php" afterPath="$PROJECT_DIR$/api/v1/quote.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/common/services.js" afterPath="$PROJECT_DIR$/modules/common/services.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/controller.js" afterPath="$PROJECT_DIR$/modules/quote/controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/views/quotes.html" afterPath="$PROJECT_DIR$/modules/quote/views/quotes.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/views/templates/quoteItems.html" afterPath="$PROJECT_DIR$/modules/quote/views/templates/quoteItems.html" />
     </list>
     <ignored path="public.iws" />
@@ -46,60 +48,51 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/v1/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.529411">
-              <caret line="318" column="9" selection-start-line="318" selection-start-column="9" selection-end-line="324" selection-end-column="1" />
+            <state vertical-scroll-proportion="-5.882353">
+              <caret line="130" column="89" selection-start-line="130" selection-start-column="89" selection-end-line="130" selection-end-column="89" />
               <folding>
-                <marker date="1472744840000" expanded="true" signature="2201:2440" placeholder="SELECT u.use... Users" />
-                <marker date="1472744840000" expanded="true" signature="2720:2794" placeholder="UPDATE Users... " />
-                <marker date="1472744840000" expanded="true" signature="3025:3332" placeholder="SELECT av.au... User_AuthView" />
-                <marker date="1472744840000" expanded="true" signature="4644:4682" placeholder="SELECT * FRO... Users" />
-                <marker date="1472744840000" expanded="true" signature="6832:6928" placeholder="SELECT * FRO... Document" />
-                <marker date="1472744840000" expanded="true" signature="6998:7048" placeholder="SELECT COUNT... ${$q_str}" />
-                <marker date="1472744840000" expanded="true" signature="8569:8581" placeholder="INSERT INTO $... " />
-                <marker date="1472744840000" expanded="true" signature="10179:10207" placeholder="UPDATE ${{$d... " />
-                <marker date="1472744840000" expanded="true" signature="11808:11820" placeholder="INSERT INTO $... " />
-                <marker date="1472744840000" expanded="true" signature="13058:13070" placeholder="INSERT INTO $... " />
-                <marker date="1472744840000" expanded="true" signature="13122:13199" placeholder="INSERT INTO logs... " />
-                <marker date="1472744840000" expanded="true" signature="15185:15331" placeholder="INSERT INTO document... " />
-                <marker date="1472744840000" expanded="true" signature="17305:17352" placeholder="UPDATE Users... " />
+                <marker date="1472830971000" expanded="true" signature="2201:2440" placeholder="SELECT u.use... Users" />
+                <marker date="1472830971000" expanded="true" signature="2720:2794" placeholder="UPDATE Users... " />
+                <marker date="1472830971000" expanded="true" signature="3025:3332" placeholder="SELECT av.au... User_AuthView" />
+                <marker date="1472830971000" expanded="true" signature="4644:4682" placeholder="SELECT * FRO... Users" />
+                <marker date="1472830971000" expanded="true" signature="6832:6928" placeholder="SELECT * FRO... Document" />
+                <marker date="1472830971000" expanded="true" signature="7184:7234" placeholder="SELECT COUNT... ${$q_str}" />
+                <marker date="1472830971000" expanded="true" signature="8755:8767" placeholder="INSERT INTO $... " />
+                <marker date="1472830971000" expanded="true" signature="10365:10393" placeholder="UPDATE ${{$d... " />
+                <marker date="1472830971000" expanded="true" signature="11194:11206" placeholder="INSERT INTO $... " />
+                <marker date="1472830971000" expanded="true" signature="11258:11335" placeholder="INSERT INTO logs... " />
+                <marker date="1472830971000" expanded="true" signature="13321:13467" placeholder="INSERT INTO document... " />
+                <marker date="1472830971000" expanded="true" signature="15441:15488" placeholder="UPDATE Users... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test.php">
+      <file leaf-file-name="class.fxns.inc.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../sys/class/class.fxns.inc.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test3.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test3.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.625">
-              <caret line="11" column="11" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="11" />
+            <state vertical-scroll-proportion="-16.5">
+              <caret line="88" column="20" selection-start-line="88" selection-start-column="20" selection-end-line="88" selection-end-column="20" />
               <folding>
-                <marker date="1472572621000" expanded="true" signature="2114:2126" placeholder="INSERT INTO $... " />
-                <marker date="1472572621000" expanded="true" signature="3051:3063" placeholder="INSERT INTO $... " />
+                <marker date="1471007044000" expanded="true" signature="13491:13642" placeholder="SELECT page_... pages" />
+                <marker date="1471007044000" expanded="true" signature="16697:16709" placeholder="..." />
+                <marker date="1471007044000" expanded="true" signature="16758:16770" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quotes.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/quote/views/quotes.html">
+      <file leaf-file-name="quote.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/v1/quote.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.4313726">
-              <caret line="92" column="89" selection-start-line="92" selection-start-column="85" selection-end-line="92" selection-end-column="89" />
+            <state vertical-scroll-proportion="-35.375">
+              <caret line="112" column="33" selection-start-line="112" selection-start-column="33" selection-end-line="112" selection-end-column="33" />
               <folding>
-                <element signature="n#style#0;n#i#0;n#legend#0;n#fieldset#0;n#div#5;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <marker date="1472463580000" expanded="true" signature="5530:6103" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
-                <marker date="1472463580000" expanded="true" signature="5565:6102" placeholder="[...]" />
-                <marker date="1472463580000" expanded="true" signature="5566:6101" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
+                <marker date="1472829071000" expanded="true" signature="2183:2221" placeholder="SELECT * FRO... Users" />
+                <marker date="1472829071000" expanded="true" signature="2968:2980" placeholder="INSERT INTO $... " />
+                <marker date="1472829071000" expanded="true" signature="2968:2985" placeholder="INSERT INTO quote... " />
+                <marker date="1472829071000" expanded="true" signature="4192:4215" placeholder="INSERT INTO QuoteDetail... " />
+                <marker date="1472829071000" expanded="true" signature="5228:5264" placeholder="INSERT INTO QuoteDetail_Manufacturer... " />
               </folding>
             </state>
           </provider>
@@ -109,30 +102,55 @@
         <entry file="file://$PROJECT_DIR$/api/v1/.htaccess">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
+              <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="quoteItems.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/quote/views/templates/quoteItems.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-18.125">
+              <caret line="29" column="61" selection-start-line="29" selection-start-column="61" selection-end-line="29" selection-end-column="61" />
+              <folding>
+                <element signature="n#style#0;n#input#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="quotes.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/quote/views/quotes.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.058824">
+              <caret line="160" column="46" selection-start-line="158" selection-start-column="30" selection-end-line="160" selection-end-column="46" />
+              <folding>
+                <element signature="n#style#0;n#i#0;n#legend#0;n#fieldset#0;n#div#5;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <marker date="1472813404000" expanded="true" signature="5530:6103" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
+                <marker date="1472813404000" expanded="true" signature="5565:6102" placeholder="[...]" />
+                <marker date="1472813404000" expanded="true" signature="5566:6101" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-41.88889">
-              <caret line="234" column="39" selection-start-line="234" selection-start-column="39" selection-end-line="234" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.25839794">
+              <caret line="117" column="93" selection-start-line="117" selection-start-column="93" selection-end-line="117" selection-end-column="93" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quote.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/api/v1/quote.php">
+      <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/common/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6958763">
-              <caret line="54" column="20" selection-start-line="54" selection-start-column="20" selection-end-line="54" selection-end-column="20" />
-              <folding>
-                <marker date="1472745491000" expanded="true" signature="2206:2244" placeholder="SELECT * FRO... Users" />
-              </folding>
+            <state vertical-scroll-proportion="0.0">
+              <caret line="78" column="39" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="39" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -165,7 +183,6 @@
         <option value="$PROJECT_DIR$/tests/fileWtUpload/2/api/index.php" />
         <option value="$PROJECT_DIR$/tests/fileWtUpload/2/index.html" />
         <option value="$PROJECT_DIR$/tests/fileWtUpload/1/index.html" />
-        <option value="$PROJECT_DIR$/modules/common/services.js" />
         <option value="$PROJECT_DIR$/modules/auth/views/login.html" />
         <option value="$PROJECT_DIR$/modules/home/views/home.html" />
         <option value="$PROJECT_DIR$/modules/setup/views/setup.html" />
@@ -180,13 +197,14 @@
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/scripts/app.js" />
         <option value="$PROJECT_DIR$/modules/setup/controller.js" />
-        <option value="$PROJECT_DIR$/modules/quote/views/quotes.html" />
         <option value="$PROJECT_DIR$/tests/test3.php" />
+        <option value="$PROJECT_DIR$/modules/quote/views/quotes.html" />
         <option value="$PROJECT_DIR$/api/v1/.htaccess" />
         <option value="$PROJECT_DIR$/modules/quote/views/templates/quoteItems.html" />
+        <option value="$PROJECT_DIR$/api/v1/quote.php" />
+        <option value="$PROJECT_DIR$/modules/common/services.js" />
         <option value="$PROJECT_DIR$/api/v1/index.php" />
         <option value="$PROJECT_DIR$/modules/quote/controller.js" />
-        <option value="$PROJECT_DIR$/api/v1/quote.php" />
       </list>
     </option>
   </component>
@@ -1143,12 +1161,12 @@
       <workItem from="1471348875217" duration="163000" />
       <workItem from="1471359545198" duration="1495000" />
       <workItem from="1471451024463" duration="4587000" />
-      <workItem from="1471854082747" duration="73111000" />
+      <workItem from="1471854082747" duration="91498000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="171615000" />
+    <option name="totallyTimeSpent" value="190002000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="137" y="28" width="2230" height="1285" extended-state="0" />
@@ -1562,46 +1580,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/common/services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sys/class/class.fxns.inc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6572165">
-          <caret line="88" column="20" selection-start-line="88" selection-start-column="20" selection-end-line="88" selection-end-column="20" />
-          <folding>
-            <marker date="1471007044000" expanded="true" signature="13491:13642" placeholder="SELECT page_... pages" />
-            <marker date="1471007044000" expanded="true" signature="16697:16709" placeholder="..." />
-            <marker date="1471007044000" expanded="true" signature="16758:16770" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test2.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/v1/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -1614,9 +1596,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test3.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.625">
+        <state vertical-scroll-proportion="-0.3273196">
           <caret line="11" column="11" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="11" />
           <folding>
             <marker date="1472572621000" expanded="true" signature="2114:2126" placeholder="INSERT INTO $... " />
@@ -1625,66 +1615,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/views/quotes.html">
+    <entry file="file://$PROJECT_DIR$/api/v1/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.4313726">
-          <caret line="92" column="89" selection-start-line="92" selection-start-column="85" selection-end-line="92" selection-end-column="89" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#legend#0;n#fieldset#0;n#div#5;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <marker date="1472463580000" expanded="true" signature="5530:6103" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
-            <marker date="1472463580000" expanded="true" signature="5565:6102" placeholder="[...]" />
-            <marker date="1472463580000" expanded="true" signature="5566:6101" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/quote/views/templates/quoteItems.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26385224">
-          <caret line="20" column="71" selection-start-line="20" selection-start-column="71" selection-end-line="20" selection-end-column="71" />
+        <state vertical-scroll-proportion="-18.125">
+          <caret line="29" column="61" selection-start-line="29" selection-start-column="61" selection-end-line="29" selection-end-column="61" />
           <folding>
             <element signature="n#style#0;n#input#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
+    <entry file="file://$PROJECT_DIR$/modules/quote/views/quotes.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-41.88889">
-          <caret line="234" column="39" selection-start-line="234" selection-start-column="39" selection-end-line="234" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/v1/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.529411">
-          <caret line="318" column="9" selection-start-line="318" selection-start-column="9" selection-end-line="324" selection-end-column="1" />
+        <state vertical-scroll-proportion="-14.058824">
+          <caret line="160" column="46" selection-start-line="158" selection-start-column="30" selection-end-line="160" selection-end-column="46" />
           <folding>
-            <marker date="1472744840000" expanded="true" signature="2201:2440" placeholder="SELECT u.use... Users" />
-            <marker date="1472744840000" expanded="true" signature="2720:2794" placeholder="UPDATE Users... " />
-            <marker date="1472744840000" expanded="true" signature="3025:3332" placeholder="SELECT av.au... User_AuthView" />
-            <marker date="1472744840000" expanded="true" signature="4644:4682" placeholder="SELECT * FRO... Users" />
-            <marker date="1472744840000" expanded="true" signature="6832:6928" placeholder="SELECT * FRO... Document" />
-            <marker date="1472744840000" expanded="true" signature="6998:7048" placeholder="SELECT COUNT... ${$q_str}" />
-            <marker date="1472744840000" expanded="true" signature="8569:8581" placeholder="INSERT INTO $... " />
-            <marker date="1472744840000" expanded="true" signature="10179:10207" placeholder="UPDATE ${{$d... " />
-            <marker date="1472744840000" expanded="true" signature="11808:11820" placeholder="INSERT INTO $... " />
-            <marker date="1472744840000" expanded="true" signature="13058:13070" placeholder="INSERT INTO $... " />
-            <marker date="1472744840000" expanded="true" signature="13122:13199" placeholder="INSERT INTO logs... " />
-            <marker date="1472744840000" expanded="true" signature="15185:15331" placeholder="INSERT INTO document... " />
-            <marker date="1472744840000" expanded="true" signature="17305:17352" placeholder="UPDATE Users... " />
+            <element signature="n#style#0;n#i#0;n#legend#0;n#fieldset#0;n#div#5;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <marker date="1472813404000" expanded="true" signature="5530:6103" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
+            <marker date="1472813404000" expanded="true" signature="5565:6102" placeholder="[...]" />
+            <marker date="1472813404000" expanded="true" signature="5566:6101" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/v1/quote.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6958763">
-          <caret line="54" column="20" selection-start-line="54" selection-start-column="20" selection-end-line="54" selection-end-column="20" />
+        <state vertical-scroll-proportion="-35.375">
+          <caret line="112" column="33" selection-start-line="112" selection-start-column="33" selection-end-line="112" selection-end-column="33" />
           <folding>
-            <marker date="1472745491000" expanded="true" signature="2206:2244" placeholder="SELECT * FRO... Users" />
+            <marker date="1472829071000" expanded="true" signature="2183:2221" placeholder="SELECT * FRO... Users" />
+            <marker date="1472829071000" expanded="true" signature="2968:2980" placeholder="INSERT INTO $... " />
+            <marker date="1472829071000" expanded="true" signature="2968:2985" placeholder="INSERT INTO quote... " />
+            <marker date="1472829071000" expanded="true" signature="4192:4215" placeholder="INSERT INTO QuoteDetail... " />
+            <marker date="1472829071000" expanded="true" signature="5228:5264" placeholder="INSERT INTO QuoteDetail_Manufacturer... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../sys/class/class.fxns.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.5">
+          <caret line="88" column="20" selection-start-line="88" selection-start-column="20" selection-end-line="88" selection-end-column="20" />
+          <folding>
+            <marker date="1471007044000" expanded="true" signature="13491:13642" placeholder="SELECT page_... pages" />
+            <marker date="1471007044000" expanded="true" signature="16697:16709" placeholder="..." />
+            <marker date="1471007044000" expanded="true" signature="16758:16770" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/common/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="78" column="39" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/v1/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.882353">
+          <caret line="130" column="89" selection-start-line="130" selection-start-column="89" selection-end-line="130" selection-end-column="89" />
+          <folding>
+            <marker date="1472830971000" expanded="true" signature="2201:2440" placeholder="SELECT u.use... Users" />
+            <marker date="1472830971000" expanded="true" signature="2720:2794" placeholder="UPDATE Users... " />
+            <marker date="1472830971000" expanded="true" signature="3025:3332" placeholder="SELECT av.au... User_AuthView" />
+            <marker date="1472830971000" expanded="true" signature="4644:4682" placeholder="SELECT * FRO... Users" />
+            <marker date="1472830971000" expanded="true" signature="6832:6928" placeholder="SELECT * FRO... Document" />
+            <marker date="1472830971000" expanded="true" signature="7184:7234" placeholder="SELECT COUNT... ${$q_str}" />
+            <marker date="1472830971000" expanded="true" signature="8755:8767" placeholder="INSERT INTO $... " />
+            <marker date="1472830971000" expanded="true" signature="10365:10393" placeholder="UPDATE ${{$d... " />
+            <marker date="1472830971000" expanded="true" signature="11194:11206" placeholder="INSERT INTO $... " />
+            <marker date="1472830971000" expanded="true" signature="11258:11335" placeholder="INSERT INTO logs... " />
+            <marker date="1472830971000" expanded="true" signature="13321:13467" placeholder="INSERT INTO document... " />
+            <marker date="1472830971000" expanded="true" signature="15441:15488" placeholder="UPDATE Users... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25839794">
+          <caret line="117" column="93" selection-start-line="117" selection-start-column="93" selection-end-line="117" selection-end-column="93" />
+          <folding />
         </state>
       </provider>
     </entry>

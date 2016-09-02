@@ -127,7 +127,9 @@ if($env['PATH_INFO']==="/inboundService") {
                     $files_id = $fxns->_subStrAtDel($files_id, ' ,');
                     $q_getFiles_str = "SELECT doc_id,doc_quote_id,docName,docCreateDate FROM Document WHERE doc_quote_Id IN ($files_id)";
                 }
-
+                if (!empty($data->transactionMetaData->groupingProperties)) {
+                    $q_str .= " GROUP BY ".$data->transactionMetaData->groupingProperties;
+                }
                 $q_str_tot_count = $dbo->query("SELECT COUNT(*) as `count` FROM (" . $q_str . ") t");
                 $r_str_tot_count = $q_str_tot_count->fetch(PDO::FETCH_ASSOC);
 
@@ -209,41 +211,6 @@ if($env['PATH_INFO']==="/inboundService") {
              */
             if ($data->transactionEventType == "PUT") {
 
-                if($data->putType == 'many'){
-                    $facts = explode(",",$data->putOrder);
-                    foreach($facts as $key => $fact){
-                        $fact = explode("-",$fact);
-                        $theFact = strtolower($fact[0]);
-                        $q_fields = $dbo->query("DESCRIBE {$theFact}");
-                        $r_fields = $q_fields->fetchAll(PDO::FETCH_ASSOC);
-                        foreach ($r_fields as $fields) {
-                            if ($fields['Key'] == 'PRI') {
-                                $priKy = $fields['Field'];
-                            }
-                        }
-                        echo "$key=>".$fact[0]."\n";
-                        $appenders = '';
-                        _buildQuery($key, $menu);
-//                        $q_str = "INSERT INTO {$theFact} ";
-//                        $ins_fields = " (";
-//                        $ins_values = " VALUES (";
-//                        foreach ($r_fields as $fields) {
-//                            $fieldNm = strtolower($fields['Field']);
-//                            if (strtolower(@$data->factObjects[0]->$theFact->$fieldNm)) {
-//                                @$ins_fields .= " {$fields['Field']} ,";
-//                                $formatedVal = $fxns->_formatFieldValue($data->factObjects[0]->$fact[0]->$fieldNm, array('type'=>$fields['Type'])).",";
-//                                @$ins_values .= $formatedVal;
-//                                @$log_txt .= "{$fields['Field']}=>".htmlspecialchars($data->factObjects[0]->$fact[0]->$fieldNm,ENT_QUOTES ).", ";
-//                            }
-//                        }
-                        $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
-                        $ins_values = rtrim($ins_values,',');
-//                        $log_txt = rtrim($log_txt,', ');
-                        $q_str .= $ins_fields . ") " . $ins_values . ")";
-                        echo $q_str;
-                    }
-                    exit;
-                }
                 $q_str = "INSERT INTO {$data->factName} ";
                 $q_str_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) ";
 
