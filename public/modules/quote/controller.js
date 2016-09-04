@@ -27,6 +27,7 @@ angular.module('RFQ')
                 });
 
                 modalInstance.result.then(function (selectedItem) {
+                    console.log(selectedItem);
                     if(selectedItem.index != null){
                         vm.lineItems[selectedItem.index] = selectedItem;
                     }else{
@@ -49,14 +50,15 @@ angular.module('RFQ')
             vm.getData = function(pageno) {
                 vm.quotes = []; // Initially make list empty so as to show the "loading data" notice!
                 var data=angular.copy(CommonServices.postData);
-                data.factName = 'Quote q, Party p, QuoteStatus qs';
-                data.transactionMetaData.responseDataProperties = 'q.quote_id&p.name&CONCAT(LEFT(q.subject , 30),IF(LENGTH(q.subject)>30, "…", "")) subject&qs.name status'
+                data.factName = 'Quote q, Party p, QuoteStatus qs, users u, QuoteDetail qd';
+                data.transactionMetaData.responseDataProperties = 'q.quote_id&p.name&CONCAT(LEFT(q.subject , 30),IF(LENGTH(q.subject)>30, "…", "")) subject&CONCAT(u.lastname,", ",u.middlename," ",u.firstname)enteredBy&qs.name status&COUNT(qd.Quote_quote_Id) totalQuotes'
                 data.transactionMetaData.pageno = pageno-1;
                 data.transactionMetaData.itemsPerPage = vm.itemsPerPage;
                 data.transactionMetaData.queryMetaData.queryClause.andExpression = [];
                 data.transactionMetaData.queryMetaData.joinClause = {
-                    'joinType':['JOIN','JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id']
+                    'joinType':['JOIN','JOIN','JOIN','LEFT JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_enteredBy_id=u.user_id','q.quote_Id=qd.Quote_quote_Id']
                 }
+                data.transactionMetaData.groupingProperties = 'q.quote_Id';
                 DataService.post('inboundService', data).then(function (response) {
                     vm.quotes = response.data.data;
                     vm.total_count = response.data.total_count;
@@ -75,10 +77,10 @@ angular.module('RFQ')
                 vm.edit=true;
                 if(quoteId) {
                     var data=angular.copy(CommonServices.postData);
-                    data.factName = 'Quote q, Party p, QuoteStatus qs, Currency c, Users u';
-                    data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&q.subject&p.name partyname&qs.name quotestatus&c.code currency&q.entrydate&q.approvedate&u.firstname&q.description&q.quote_approvedby_id&q.specificationandrequirement';
+                    data.factName = 'Quote q, Party p, QuoteStatus qs, Currency c, Users u, Users uu';
+                    data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&q.subject&p.name partyname&qs.name quotestatus&c.code currency&q.entrydate&q.publishdate&q.duedate&q.approvedate&u.firstname&q.description&q.quote_approvedby_id&q.specificationandrequirement&concat(IFNULL(uu.firstname,""), ", ",IFNULL(uu.middlename,"")," ",IFNULL(uu.lastname,""))userName';
                     data.transactionMetaData.queryMetaData.joinClause = {
-                        'joinType':['JOIN','JOIN','JOIN','JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_currency_id=c.currency_id','q.quote_enteredBy_id=u.user_id']
+                        'joinType':['JOIN','JOIN','JOIN','JOIN','LEFT JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_currency_id=c.currency_id','q.quote_enteredBy_id=u.user_id','q.users_user_id=uu.user_id']
                     }
                     data.transactionMetaData.queryMetaData.queryClause.andExpression = [
                         {
@@ -93,6 +95,9 @@ angular.module('RFQ')
                         vm.quoteFiles = response.data.data['files'];
                         vm.quote.quoteAmount = parseFloat(vm.quote.quoteAmount);
                         vm.quote.quantity = parseFloat(vm.quote.quantity);
+
+                        vm.quote.publishdate = new Date(vm.quote.publishdate);
+                        vm.quote.duedate = new Date(vm.quote.duedate);
 
                         vm.originalUserData = angular.copy(vm.quote);
                         vm.total_count = response.data.total_count;

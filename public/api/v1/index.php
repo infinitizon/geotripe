@@ -130,6 +130,8 @@ if($env['PATH_INFO']==="/inboundService") {
                 if (!empty($data->transactionMetaData->groupingProperties)) {
                     $q_str .= " GROUP BY ".$data->transactionMetaData->groupingProperties;
                 }
+
+//                echo $q_str;
                 $q_str_tot_count = $dbo->query("SELECT COUNT(*) as `count` FROM (" . $q_str . ") t");
                 $r_str_tot_count = $q_str_tot_count->fetch(PDO::FETCH_ASSOC);
 

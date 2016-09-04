@@ -118,6 +118,8 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                     }
                 }
             $dbo->commit();
+            $data=array('token'=> $data->token,'insertId'=>$lastId);
+            $response = array("response" => "Success", "message" => "Record Saved Successfully", "data"=>$data);
         }catch(Exception $e){
             $dbo->rollBack();
             $response = array("response"=>"Failure","message"=>$e->getMessage(),"token"=>$data->token);
