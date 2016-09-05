@@ -35,7 +35,7 @@ if(!$data){
         }
         $input .= "}";
     }
-//    echo $input;
+//    echo $input;exit;
     $data = json_decode($input);
 }
 include_once "core/init.inc.php";
@@ -124,6 +124,123 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
             $dbo->rollBack();
             $response = array("response"=>"Failure","message"=>$e->getMessage(),"token"=>$data->token);
         }
+    }
+    if ($data->transactionEventType == "UPDATE") {
+        try {
+            $dbo->beginTransaction();
+            if($data->factObjects[0]->quote){
+                $q_fields = $dbo->query("DESCRIBE quote");
+                $r_fields = $q_fields->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($r_fields as $fields) {
+                    if ($fields['Key'] == 'PRI') {
+                        $priKy = $fields['Field'];
+                    }
+                }
+                $q_str_quotes = "UPDATE quote SET";
+                $inserts = "";
+                foreach ($r_fields as $fields) {
+                    $fieldNm = strtolower($fields['Field']);
+                    if (@$data->factObjects[0]->quote->$fieldNm) {
+                        $inserts .= "{$fields['Field']} = ".$fxns->_formatFieldValue($data->factObjects[0]->quote->$fieldNm, array('type'=>$fields['Type'])).",";
+                    }
+                }
+                $q_str_quotes .= $inserts." WHERE $priKy={$data->factObjects[0]->quote->id}";
+                if($inserts != ""){
+//                    $r_str = $dbo->prepare($q_str_quotes);
+//                    $r_str->execute();
+                }
+                if(isset($data->factObjects[0]->QuoteDetail) ){
+                    foreach ($data->factObjects[0]->QuoteDetail as $key => $val) {
+                        $q_fields = $dbo->query("DESCRIBE QuoteDetail");
+                        $r_fields = $q_fields->fetchAll(PDO::FETCH_ASSOC);
+                        foreach ($r_fields as $fields) {
+                            if ($fields['Key'] == 'PRI') {
+                                $priKy = $fields['Field'];
+                            }
+                        }
+                        $q_QuoteDetailFields = "SELECT * FROM QuoteDetail WHERE quoteDetail_Id={$data->factObjects[0]->QuoteDetail[$key]->id}";
+                        $r_QuoteDetailFields = $dbo->prepare($q_QuoteDetailFields);
+                        $r_QuoteDetailFields->execute(array(":token" => $token));
+                        $QuoteDetailFields = $r_QuoteDetailFields->fetchAll(PDO::FETCH_ASSOC);
+
+                        $q_str_quoteDetail = "UPDATE QuoteDetail SET ";
+                        $inserts = "";
+                        foreach ($r_fields as $fields) {
+                            $fieldNm = strtolower($fields['Field']);
+                            if (@$data->factObjects[0]->QuoteDetail[$key]->$fieldNm && $QuoteDetailFields[0][$fieldNm] != $data->factObjects[0]->QuoteDetail[$key]->$fieldNm) {
+                                $inserts .= "{$fields['Field']} = ".$fxns->_formatFieldValue($data->factObjects[0]->QuoteDetail[$key]->$fieldNm, array('type'=>$fields['Type'])).",";
+                            }
+                        }
+                        $q_str_quoteDetail .= $inserts." WHERE Quote_quote_Id={$data->factObjects[0]->QuoteDetail[$key]->id}";
+                        if($inserts != ""){
+//                            $r_str = $dbo->prepare($q_str_quoteDetail);
+//                            $r_str->execute();
+                        }
+
+                        if(isset($data->factObjects[0]->QuoteDetail_Manufacturer[$key])){
+                            $q_QuoteDetail_Manufacturer = "SELECT * FROM QuoteDetail_Manufacturer WHERE QuoteDetail_QuoteDetail_Id={$data->factObjects[0]->QuoteDetail[$key]->id}";
+                            $r_QuoteDetail_Manufacturer = $dbo->prepare($q_QuoteDetail_Manufacturer);
+                            $r_QuoteDetail_Manufacturer->execute(array(":token" => $token));
+                            $QuoteDetail_Manufacturer = $r_QuoteDetail_Manufacturer->fetchAll(PDO::FETCH_ASSOC);
+                            $onUpdt = "";
+                            foreach($data->factObjects[0]->QuoteDetail_Manufacturer[$key] as $subVals){
+
+                                $q_str = "INSERT INTO QuoteDetail_Manufacturer ";
+                                $ins_fields = " (QuoteDetail_QuoteDetail_Id,";
+                                $ins_values = " VALUES ({$data->factObjects[0]->QuoteDetail[$key]->id},";
+                                foreach($subVals as $col => $value){
+                                    $ins_fields .= $col . " ,";
+                                    $ins_values .= "'" . $value . "' ,";
+                                    $onUpdt .=$fields['Field']."=VALUES({$fields['Field']}),";
+                                }
+                                $onUpdt = rtrim($onUpdt,',');
+                                $q_str .= " ON DUPLICATE KEY UPDATE ".$onUpdt;
+                                echo $q_str."\n";
+//                                $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
+//                                $ins_values = rtrim($ins_values,' ,');
+//                                $q_str_quoteDetail_Manufacturer = $q_str .$ins_fields . ") " . $ins_values . ")";
+//                                //Let's update the manufacturer table
+////                                $r_str = $dbo->prepare($q_str_quoteDetail_Manufacturer);
+////                                $r_str->execute();
+////                                $lastId = $dbo->lastInsertId();
+                            }
+                        }
+                    }
+                }
+            }
+
+            $dbo->commit();
+            $data=array('token'=> $data->token,'insertId'=>$lastId);
+            $response = array("response" => "Success", "message" => "Record Saved Successfully", "data"=>$data);
+        }catch(Exception $e){
+            $dbo->rollBack();
+            $response = array("response"=>"Failure","message"=>$e->getMessage(),"token"=>$data->token);
+        }
+
+    }
+    if ($data->transactionEventType == "DELETE") {
+        try{
+            $q_del_quoteDetail = "DELETE FROM QuoteDetail WHERE ";
+            foreach ($data->transactionMetaData->queryMetaData->queryClause->andExpression as $field) {
+                $q_del_quoteDetail .= $field->propertyName . " " . $field->operatorType . " ";
+                if($field->operatorType=="IN"){
+                    $q_del_quoteDetail .= "(".$field->propertyValue . ") AND";
+                }elseif($field->operatorType=="LIKE"){
+                    $q_del_quoteDetail .= "'%".$field->propertyValue . "%' AND";
+                }else{
+                    $q_del_quoteDetail .= $field->propertyValue . " AND";
+                }
+            }
+            $q_del_quoteDetail = $fxns->_subStrAtDel($q_del_quoteDetail, ' AND');
+            $r_str = $dbo->prepare($q_del_quoteDetail);
+            $r_str->execute();
+            $data=array('token'=> $data->token);
+            $response = array("response" => "Success", "message" => "Record Deleted Successfully", "data"=>$data);
+        }catch(Exception $e){
+            $dbo->rollBack();
+            $response = array("response"=>"Failure","message"=>$e->getMessage(),"token"=>$data->token);
+        }
+
     }
 $response = json_encode($response);
 echo $response;

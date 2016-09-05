@@ -70,9 +70,33 @@ angular.module('RFQ')
                 vm.edit=false;
                 vm.getData(vm.pageno);
             };
+            vm.deleteLineItem = function(index,id){
+                if(id){
+                    if(confirm("Are you sure you want to delete this line item. Action is irreversible!")){
+                        var data=angular.copy(CommonServices.postData);
+                        data.factName = 'QuoteDetail qd';
+                        data.transactionEventType = "DELETE";
+                        data.transactionMetaData.queryMetaData.queryClause.andExpression = [
+                            {
+                                "propertyName": "QuoteDetail_Id",
+                                "propertyValue": id,
+                                "propertyDataType": "BIGINT",
+                                "operatorType": "="
+                            }
+                        ];
+                        DataService.post('quote', data).then(function (response) {
+                            vm.lineItems.splice( index,1 );
+                        });
+
+                    }
+                }else{
+                    vm.lineItems.splice( index,1 );
+                }
+
+            }
             vm.editQuote = function (quoteId) {
                 vm.isDisabled = false;
-                vm.quoteFiles = vm.files = null;
+                vm.quoteFiles = vm.files = null;vm.lineItems = [];
 
                 vm.edit=true;
                 if(quoteId) {
@@ -93,13 +117,13 @@ angular.module('RFQ')
                     DataService.post('inboundService', data).then(function (response) {
                         vm.quote = response.data.data[0];
                         vm.quoteFiles = response.data.data['files'];
-                        vm.quote.quoteAmount = parseFloat(vm.quote.quoteAmount);
-                        vm.quote.quantity = parseFloat(vm.quote.quantity);
 
+                        vm.originalQuoteData = angular.copy(vm.quote);
+                        vm.originalQuoteData.publishdate = new Date(vm.originalQuoteData.publishdate);
+                        vm.originalQuoteData.duedate = new Date(vm.originalQuoteData.duedate);
                         vm.quote.publishdate = new Date(vm.quote.publishdate);
                         vm.quote.duedate = new Date(vm.quote.duedate);
 
-                        vm.originalUserData = angular.copy(vm.quote);
                         vm.total_count = response.data.total_count;
                     })
                     /*Now get the quote details*/
@@ -120,12 +144,33 @@ angular.module('RFQ')
                     data.transactionMetaData.groupingProperties = 'qd.QuoteDetail_Id';
                     DataService.post('inboundService', data).then(function (response) {
                         angular.forEach(response.data.data  , function(lineItem, key) {
-                            var items = {matDesc:lineItem.description,qty:lineItem.quantity};
-                            vm.lineItems.push(items);
+                            var data=angular.copy(CommonServices.postData);
+                            data.factName = 'Party p';
+                            data.transactionMetaData.responseDataProperties = "concat('[',group_concat(concat('{"+'"party_id":"'+"',party_id,'"+'","name":"'+"',name,'"+'"}'+"')),']')manus";
+                            data.transactionMetaData.queryMetaData.queryClause.andExpression = [
+                                {
+                                    "propertyName": "party_Id",
+                                    "propertyValue": lineItem.Party_Party_Id,
+                                    "propertyDataType": "BIGINT",
+                                    "operatorType": "IN"
+                                }
+                            ];
+                            DataService.post('inboundService', data).then(function (response) {
+                                var items = {id:lineItem.quotedetail_id,matDesc:lineItem.description,qty:lineItem.quantity,manus:eval(response.data.data[0].manus)};
+                                vm.lineItems.push(items);
+                            })
                         })
+                        if(vm.lineItems.length <= 0){
+                            vm.lineItemsLoading = "Click the + icon to add new items";
+                        }else{
+                            vm.originalLineItems = vm.lineItems;
+                        }
                     })
                 }else{
+                    vm.lineItemsLoading = "Click the + icon to add new items";
                     vm.quote = null;
+                    vm.lineItems = [];
+                    vm.quoteFiles = null;
                 }
             }
             vm.container = [];
@@ -170,18 +215,49 @@ angular.module('RFQ')
                 data.append("token", $rootScope.globals.currentUser.userDetails.token);
                 data.append("transactionMetaData[currentLocale]", "NG");
                 data.append("transactionMetaData[queryStore]", "MySql");
+                //I'm editing a quote here
                 if(vm.quote.quote_id){
-                    data.append("transactionEventType", "Update");
-                    var andExpression = [
-                        {
-                            "propertyName": "user_id",
-                            "propertyValue": "test",
-                            "propertyDataType": "BIGINT",
-                            "operatorType": "="
+                    vm.changedObjs = CommonServices.GetFormChanges(vm.originalQuoteData,vm.quote);
+                    if(+vm.originalQuoteData.publishdate == +vm.quote.publishdate){
+                        delete vm.changedObjs["publishdate"];
+                    }
+                    if(+vm.originalQuoteData.duedate == +vm.quote.duedate){
+                        delete vm.changedObjs["duedate"];
+                    }
+                    data.append("transactionEventType", "UPDATE");
+                    data.append("putType", "many");
+                    data.append("putOrder", "Quote-Quote_quote_Id,QuoteDetail-QuoteDetail_QuoteDetail_Id,QuoteDetail_Manufacturer");
+                    vm.changedObjs['id'] = vm.quote.quote_id;
+                    if( !angular.equals({}, vm.changedObjs) ){
+                        data.append("factObjects[quote]", [JSON.stringify(vm.changedObjs)]);
+                    }
+                    vm.lineItems4Db = angular.copy(vm.lineItems);
+                    angular.forEach(vm.lineItems  , function(QuoteDetail, key) {
+                        var QuoteDetail = {id: vm.lineItems[key].id, description: vm.lineItems[key].matDesc, quantity: vm.lineItems[key].qty};
+                        angular.forEach(vm.lineItems[key].manus  , function(QuoteManufacturer, key2) {
+                            vm.lineItems4Db[key].manus[key2] = {party_party_id:QuoteManufacturer.party_id};
+                        });
+                        data.append("factObjects[QuoteDetail]["+key+"]", [JSON.stringify(QuoteDetail)]);
+                        data.append("factObjects[QuoteDetail_Manufacturer]["+key+"]", [JSON.stringify(vm.lineItems4Db[key].manus)]);
+                    });
+
+
+                    for (var i in vm.files) {
+                        data.append("file[]", vm.files[i]);
+                    }
+                    DataService.post("quote", data, {
+                        transformRequest: angular.identity,
+                        headers: {'Content-Type': undefined, 'Process-Data': false}
+                    }).then( function (response) {
+                        if(response.data.response == 'Failure'){
+                            vm.error=response.data.message;
+                            vm.isDisabled = false;
+                            vm.dataLoading = false;
+                        }else{
+                            vm.error="Record submitted successfully";
+                            vm.goBack()
                         }
-                    ];
-                    data.append("transactionMetaData[queryMetaData][queryClause][andExpression]", JSON.stringify(andExpression));
-                    console.log('editing');
+                    });
                 }else if(vm.quote.quote_id == null) { //A new insert
                     data.append("transactionEventType", "PUT");
                     data.append("putType", "many");
@@ -224,7 +300,7 @@ angular.module('RFQ')
                             //DataService.post('inboundService', data).then( function (response) {
                             //
                             //});
-                            //vm.goBack()
+                            vm.goBack()
                         }
                         //vm.container[selectScope] = response.data.data;
                     });
@@ -241,6 +317,7 @@ angular.module('RFQ')
             vm.indexSelected = null;
             if(vm.data.item){
                 vm.indexSelected = vm.data.index;
+                vm.id = vm.data.item.id;
                 vm.matdesc = vm.data.item.matDesc;
                 vm.qty = vm.data.item.qty;
                 vm.selectedManufacturers = vm.data.item.manus;
@@ -281,6 +358,7 @@ angular.module('RFQ')
             vm.addLineItems = function () {
                 vm.allergies={
                     "index":vm.indexSelected,
+                    "id":vm.id,
                     "matDesc":vm.matdesc,
                     "qty":vm.qty,
                     "manus":vm.selectedManufacturers

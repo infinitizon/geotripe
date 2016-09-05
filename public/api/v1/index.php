@@ -120,7 +120,15 @@ if($env['PATH_INFO']==="/inboundService") {
                 if (!empty($data->transactionMetaData->queryMetaData->queryClause->andExpression)) {
                     $q_str .= " WHERE "; $files_id = '';
                     foreach ($data->transactionMetaData->queryMetaData->queryClause->andExpression as $field) {
-                        $q_str .= $field->propertyName . " " . $field->operatorType . " " . $field->propertyValue . " AND";
+                        $q_str .= $field->propertyName . " " . $field->operatorType . " ";
+                        if($field->operatorType=="IN"){
+//                            echo $field->propertyValue;
+                            $q_str .= "(".$field->propertyValue . ") AND";
+                        }elseif($field->operatorType=="LIKE"){
+                            $q_str .= "'%".$field->propertyValue . "%' AND";
+                        }else{
+                            $q_str .= $field->propertyValue . " AND";
+                        }
                         $files_id .= $field->propertyValue.' ,';
                     }
                     $q_str = $fxns->_subStrAtDel($q_str, ' AND');
