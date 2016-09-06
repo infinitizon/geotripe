@@ -122,7 +122,7 @@ if($env['PATH_INFO']==="/inboundService") {
                     foreach ($data->transactionMetaData->queryMetaData->queryClause->andExpression as $field) {
                         $q_str .= $field->propertyName . " " . $field->operatorType . " ";
                         if($field->operatorType=="IN"){
-//                            echo $field->propertyValue;
+//                            echo $field->propertyName;
                             $q_str .= "(".$field->propertyValue . ") AND";
                         }elseif($field->operatorType=="LIKE"){
                             $q_str .= "'%".$field->propertyValue . "%' AND";

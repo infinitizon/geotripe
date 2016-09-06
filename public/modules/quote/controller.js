@@ -143,10 +143,11 @@ angular.module('RFQ')
                     ];
                     data.transactionMetaData.groupingProperties = 'qd.QuoteDetail_Id';
                     DataService.post('inboundService', data).then(function (response) {
-                        angular.forEach(response.data.data  , function(lineItem, key) {
+                        delete response.data.data['files'];
+                        angular.forEach(response.data.data , function(lineItem, key) {
                             var data=angular.copy(CommonServices.postData);
                             data.factName = 'Party p';
-                            data.transactionMetaData.responseDataProperties = "concat('[',group_concat(concat('{"+'"party_id":"'+"',party_id,'"+'","name":"'+"',name,'"+'"}'+"')),']')manus";
+                            data.transactionMetaData.responseDataProperties = "concat('[',group_concat(concat('{"+'"party_id":"'+"',IFNULL(party_id,''),'"+'","name":"'+"',IFNULL(name,''),'"+'"}'+"')),']')manus";
                             data.transactionMetaData.queryMetaData.queryClause.andExpression = [
                                 {
                                     "propertyName": "party_Id",
