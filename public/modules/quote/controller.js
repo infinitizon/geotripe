@@ -84,7 +84,7 @@ angular.module('RFQ')
                                 "operatorType": "="
                             }
                         ];
-                        DataService.post('quote', data).then(function (response) {
+                        DataService.post('quote.php', data).then(function (response) {
                             vm.lineItems.splice( index,1 );
                         });
 
@@ -143,28 +143,30 @@ angular.module('RFQ')
                     ];
                     data.transactionMetaData.groupingProperties = 'qd.QuoteDetail_Id';
                     DataService.post('inboundService', data).then(function (response) {
-                        delete response.data.data['files'];
-                        angular.forEach(response.data.data , function(lineItem, key) {
-                            var data=angular.copy(CommonServices.postData);
-                            data.factName = 'Party p';
-                            data.transactionMetaData.responseDataProperties = "concat('[',group_concat(concat('{"+'"party_id":"'+"',IFNULL(party_id,''),'"+'","name":"'+"',IFNULL(name,''),'"+'"}'+"')),']')manus";
-                            data.transactionMetaData.queryMetaData.queryClause.andExpression = [
-                                {
-                                    "propertyName": "party_Id",
-                                    "propertyValue": lineItem.Party_Party_Id,
-                                    "propertyDataType": "BIGINT",
-                                    "operatorType": "IN"
-                                }
-                            ];
-                            DataService.post('inboundService', data).then(function (response) {
-                                var items = {id:lineItem.quotedetail_id,matDesc:lineItem.description,qty:lineItem.quantity,manus:eval(response.data.data[0].manus)};
-                                vm.lineItems.push(items);
+                        if(response.data.data!=null){
+                            delete response.data.data['files'];
+                            angular.forEach(response.data.data , function(lineItem, key) {
+                                var data=angular.copy(CommonServices.postData);
+                                data.factName = 'Party p';
+                                data.transactionMetaData.responseDataProperties = "concat('[',group_concat(concat('{"+'"party_id":"'+"',IFNULL(party_id,''),'"+'","name":"'+"',IFNULL(name,''),'"+'"}'+"')),']')manus";
+                                data.transactionMetaData.queryMetaData.queryClause.andExpression = [
+                                    {
+                                        "propertyName": "party_Id",
+                                        "propertyValue": lineItem.Party_Party_Id,
+                                        "propertyDataType": "BIGINT",
+                                        "operatorType": "IN"
+                                    }
+                                ];
+                                DataService.post('inboundService', data).then(function (response) {
+                                    var items = {id:lineItem.quotedetail_id,matDesc:lineItem.description,qty:lineItem.quantity,manus:eval(response.data.data[0].manus)};
+                                    vm.lineItems.push(items);
+                                    if(vm.lineItems.length <= 0){
+                                        vm.lineItemsLoading = "Click the + icon to add new items";
+                                    }else{
+                                        vm.originalLineItems = vm.lineItems;
+                                    }
+                                })
                             })
-                        })
-                        if(vm.lineItems.length <= 0){
-                            vm.lineItemsLoading = "Click the + icon to add new items";
-                        }else{
-                            vm.originalLineItems = vm.lineItems;
                         }
                     })
                 }else{
@@ -257,7 +259,7 @@ angular.module('RFQ')
                     data.append("file[]", vm.files[i]);
                 }
                 //Post the data
-                DataService.post("quote", data, {
+                DataService.post("quote.php", data, {
                     transformRequest: angular.identity,
                     headers: {'Content-Type': undefined, 'Process-Data': false}
                 }).then( function (response) {
