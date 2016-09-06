@@ -1,6 +1,6 @@
 <?php
 header("Content-Type:application/json");
-var_dump($_SERVER);exit;
+
 $scriptName = $_SERVER['SCRIPT_NAME']; // <-- "e.g /api/v1/index.php"
 $requestUri = $_SERVER['REQUEST_URI']; // <-- "e.g /api/v1/login"
 $physicalPath = str_replace('\\', '', dirname($scriptName)); // <-- "e.g /api/v1"
@@ -108,6 +108,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         $r_str = $dbo->prepare($q_str_quoteDetail);
                         $r_str->execute();
                         $lastQuoteDetailId = $dbo->lastInsertId();
+//								var_dump($data->factObjects[0]->QuoteDetail_Manufacturer);
                         if(isset($data->factObjects[0]->QuoteDetail_Manufacturer[$key])){
                             foreach($data->factObjects[0]->QuoteDetail_Manufacturer[$key] as $subVals){
                                 $q_str = "INSERT INTO QuoteDetail_Manufacturer ";
@@ -129,6 +130,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                     }
                 }
             $dbo->commit();
+			$lastId = isset($lastId)?$lastId:(isset($lastQuoteDetailId)?$lastQuoteDetailId:$lastQuoteId);
             $data=array('token'=> $data->token,'insertId'=>$lastId);
             $response = array("response" => "Success", "message" => "Record Saved Successfully", "data"=>$data);
         }catch(Exception $e){
@@ -136,7 +138,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
             $response = array("response"=>"Failure","message"=>$e->getMessage(),"token"=>$data->token);
         }
     }
-    if ($data->transactionEventType == "UPDATE") {
+    if (@$data->transactionEventType == "UPDATE") {
         try {
             $dbo->beginTransaction();
             if($data->factObjects[0]->quote){

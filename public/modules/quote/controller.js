@@ -245,6 +245,7 @@ angular.module('RFQ')
                 }
                 //Check for the manufacturers
                 vm.lineItems4Db = angular.copy(vm.lineItems);
+                        console.log(vm.lineItems);
                 angular.forEach(vm.lineItems  , function(QuoteDetail, key) {
                     var QuoteDetail = {description: vm.lineItems[key].matDesc, quantity: vm.lineItems[key].qty};
                     angular.forEach(vm.lineItems[key].manus  , function(QuoteManufacturer, key2) {
