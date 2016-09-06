@@ -102,7 +102,7 @@
                                 ng-options="party.party_id as party.name for party in quotCtrl.container['parties']"
                                 ng-change="quotCtrl.getUsers(quotCtrl.quote.party_party_id)"
                                 ng-model="quotCtrl.quote.party_party_id">
-                            <option value="">{{quotCtrl.quote.partyname || "--Select Company name --"}}</option>
+                            <option value="">{{quotCtrl.quote.party_party_id || "--Select Company name --"}}</option>
                         </select>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
                                 class="form-control"
                                 ng-options="user.user_id as user.name for user in quotCtrl.container['users']"
                                 ng-model="quotCtrl.quote.users_user_id">
-                            <option value="">{{quotCtrl.quote.userName || "--Select Name of Event Owner --"}}</option>
+                            <option value="">{{quotCtrl.quote.users_user_id || "--Select Name of Event Owner --"}}</option>
                         </select>
                     </div>
                 </div>

@@ -102,7 +102,7 @@ angular.module('RFQ')
                 if(quoteId) {
                     var data=angular.copy(CommonServices.postData);
                     data.factName = 'Quote q, Party p, QuoteStatus qs, Currency c, Users u, Users uu';
-                    data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&q.subject&p.name partyname&qs.name quotestatus&c.code currency&q.entrydate&q.publishdate&q.duedate&q.approvedate&u.firstname&q.description&q.quote_approvedby_id&q.specificationandrequirement&concat(IFNULL(uu.firstname,""), ", ",IFNULL(uu.middlename,"")," ",IFNULL(uu.lastname,""))userName';
+                    data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&q.subject&p.name party_party_id&qs.name quotestatus&c.code currency&q.entrydate&q.publishdate&q.duedate&q.approvedate&u.firstname&q.description&q.quote_approvedby_id&q.specificationandrequirement&concat(IFNULL(uu.firstname,""), ", ",IFNULL(uu.middlename,"")," ",IFNULL(uu.lastname,""))users_user_id';
                     data.transactionMetaData.queryMetaData.joinClause = {
                         'joinType':['JOIN','JOIN','JOIN','JOIN','LEFT JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_currency_id=c.currency_id','q.quote_enteredBy_id=u.user_id','q.users_user_id=uu.user_id']
                     }
@@ -231,33 +231,6 @@ angular.module('RFQ')
                     if( !angular.equals({}, vm.changedObjs) ){
                         data.append("factObjects[quote]", [JSON.stringify(vm.changedObjs)]);
                     }
-                    vm.lineItems4Db = angular.copy(vm.lineItems);
-                    angular.forEach(vm.lineItems  , function(QuoteDetail, key) {
-                        var QuoteDetail = {id: vm.lineItems[key].id, description: vm.lineItems[key].matDesc, quantity: vm.lineItems[key].qty};
-                        angular.forEach(vm.lineItems[key].manus  , function(QuoteManufacturer, key2) {
-                            vm.lineItems4Db[key].manus[key2] = {party_party_id:QuoteManufacturer.party_id};
-                        });
-                        data.append("factObjects[QuoteDetail]["+key+"]", [JSON.stringify(QuoteDetail)]);
-                        data.append("factObjects[QuoteDetail_Manufacturer]["+key+"]", [JSON.stringify(vm.lineItems4Db[key].manus)]);
-                    });
-
-
-                    for (var i in vm.files) {
-                        data.append("file[]", vm.files[i]);
-                    }
-                    DataService.post("quote", data, {
-                        transformRequest: angular.identity,
-                        headers: {'Content-Type': undefined, 'Process-Data': false}
-                    }).then( function (response) {
-                        if(response.data.response == 'Failure'){
-                            vm.error=response.data.message;
-                            vm.isDisabled = false;
-                            vm.dataLoading = false;
-                        }else{
-                            vm.error="Record submitted successfully";
-                            vm.goBack()
-                        }
-                    });
                 }else if(vm.quote.quote_id == null) { //A new insert
                     data.append("transactionEventType", "PUT");
                     data.append("putType", "many");
@@ -266,45 +239,37 @@ angular.module('RFQ')
                     vm.quote.quote_status_id = 12141325; // Pending Approval...Hopefully this will not change
                     vm.quote.entrydate = new Date();
                     data.append("factObjects[quote]", [JSON.stringify(vm.quote)]);
-
-                    vm.lineItems4Db = angular.copy(vm.lineItems);
-                    angular.forEach(vm.lineItems  , function(QuoteDetail, key) {
-                        var QuoteDetail = {description: vm.lineItems[key].matDesc, quantity: vm.lineItems[key].qty};
-                        angular.forEach(vm.lineItems[key].manus  , function(QuoteManufacturer, key2) {
-                            vm.lineItems4Db[key].manus[key2] = {party_party_id:QuoteManufacturer.party_id};
-                            //console.log(vm.lineItems4Db[key].manus[key2]);
-                        });
-                        data.append("factObjects[QuoteDetail]["+key+"]", [JSON.stringify(QuoteDetail)]);
-                        data.append("factObjects[QuoteDetail_Manufacturer]["+key+"]", [JSON.stringify(vm.lineItems4Db[key].manus)]);
-                    });
-
-
-                    for (var i in vm.files) {
-                        data.append("file[]", vm.files[i]);
-                    }
-                    DataService.post("quote", data, {
-                        transformRequest: angular.identity,
-                        headers: {'Content-Type': undefined, 'Process-Data': false}
-                    }).then( function (response) {
-                        if(response.data.response == 'Failure'){
-                            vm.error=response.data.message;
-                            vm.isDisabled = false;
-                            vm.dataLoading = false;
-                        }else{
-                            vm.error="Record submitted successfully";
-                            //var data = angular.copy(CommonServices.postData);
-                            //data.factName = 'QuoteDetail';
-                            //data.transactionEventType = "PUT"
-                            //vm.lineItems.quote_quote_id = response.data.data.insertId;
-                            //data.factObjects = [vm.lineItems];
-                            //DataService.post('inboundService', data).then( function (response) {
-                            //
-                            //});
-                            vm.goBack()
-                        }
-                        //vm.container[selectScope] = response.data.data;
-                    });
                 }
+                //Check for the manufacturers
+                vm.lineItems4Db = angular.copy(vm.lineItems);
+                angular.forEach(vm.lineItems  , function(QuoteDetail, key) {
+                    var QuoteDetail = {description: vm.lineItems[key].matDesc, quantity: vm.lineItems[key].qty};
+                    angular.forEach(vm.lineItems[key].manus  , function(QuoteManufacturer, key2) {
+                        vm.lineItems4Db[key].manus[key2] = {party_party_id:QuoteManufacturer.party_id};
+                        //console.log(vm.lineItems4Db[key].manus[key2]);
+                    });
+                    data.append("factObjects[QuoteDetail]["+key+"]", [JSON.stringify(QuoteDetail)]);
+                    data.append("factObjects[QuoteDetail_Manufacturer]["+key+"]", [JSON.stringify(vm.lineItems4Db[key].manus)]);
+                });
+                //Check for files
+                for (var i in vm.files) {
+                    data.append("file[]", vm.files[i]);
+                }
+                //Post the data
+                DataService.post("quote", data, {
+                    transformRequest: angular.identity,
+                    headers: {'Content-Type': undefined, 'Process-Data': false}
+                }).then( function (response) {
+                    if(response.data.response == 'Failure'){
+                        vm.error=response.data.message;
+                        vm.isDisabled = false;
+                        vm.dataLoading = false;
+                    }else{
+                        vm.error="Record updated successfully";
+                        vm.goBack()
+                    }
+                    //vm.container[selectScope] = response.data.data;
+                });
             }
         }])
     .controller('quoteItemsController', ['$scope','$rootScope','$uibModalInstance', 'data', 'DataService', 'CommonServices',

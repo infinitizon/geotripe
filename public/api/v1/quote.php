@@ -80,6 +80,17 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                     $r_str = $dbo->prepare($q_str_quote);
                     $r_str->execute();
                     $lastQuoteId = $dbo->lastInsertId();
+                    if($_FILES){
+                        for($i=0; $i<count($_FILES['file']['name']); $i++ ){
+                            $name = $_FILES['file']['name'][$i];
+                            $mime = $_FILES['file']['type'][$i];
+                            $blob = $dbo->quote(file_get_contents($_FILES['file']['tmp_name'][$i]));
+                            $size = intval($_FILES['file']['size'][$i]);
+                            $query = "INSERT INTO document (doc_quote_id,docName,docMimeType,docBlob,docSize,docCreateDate) VALUES ({$lastId},'{$name}','{$mime}',{$blob},{$size},NOW())";
+                            $r_query = $dbo->prepare($query);
+                            $r_query->execute();
+                        }
+                    }
                 }
                 if(isset($data->factObjects[0]->QuoteDetail) ){
                     foreach ($data->factObjects[0]->QuoteDetail as $key => $val) {
@@ -136,7 +147,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         $priKy = $fields['Field'];
                     }
                 }
-                $q_str_quotes = "UPDATE quote SET";
+                $q_str_quotes = "UPDATE quote SET ";
                 $inserts = "";
                 foreach ($r_fields as $fields) {
                     $fieldNm = strtolower($fields['Field']);
@@ -144,10 +155,23 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         $inserts .= "{$fields['Field']} = ".$fxns->_formatFieldValue($data->factObjects[0]->quote->$fieldNm, array('type'=>$fields['Type'])).",";
                     }
                 }
+                $inserts = rtrim($inserts,',');
                 $q_str_quotes .= $inserts." WHERE $priKy={$data->factObjects[0]->quote->id}";
+//                echo $q_str_quotes;
                 if($inserts != ""){
-//                    $r_str = $dbo->prepare($q_str_quotes);
-//                    $r_str->execute();
+                    $r_str = $dbo->prepare($q_str_quotes);
+                    $r_str->execute();
+                }
+                if($_FILES){
+                    for($i=0; $i<count($_FILES['file']['name']); $i++ ){
+                        $name = $_FILES['file']['name'][$i];
+                        $mime = $_FILES['file']['type'][$i];
+                        $blob = $dbo->quote(file_get_contents($_FILES['file']['tmp_name'][$i]));
+                        $size = intval($_FILES['file']['size'][$i]);
+                        $query = "INSERT INTO document (doc_quote_id,docName,docMimeType,docBlob,docSize,docCreateDate) VALUES ({$data->factObjects[0]->quote->id},'{$name}','{$mime}',{$blob},{$size},NOW())";
+                        $r_query = $dbo->prepare($query);
+                        $r_query->execute();
+                    }
                 }
                 if(isset($data->factObjects[0]->QuoteDetail) ){
                     foreach ($data->factObjects[0]->QuoteDetail as $key => $val) {
@@ -158,51 +182,82 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                                 $priKy = $fields['Field'];
                             }
                         }
-                        $q_QuoteDetailFields = "SELECT * FROM QuoteDetail WHERE quoteDetail_Id={$data->factObjects[0]->QuoteDetail[$key]->id}";
-                        $r_QuoteDetailFields = $dbo->prepare($q_QuoteDetailFields);
-                        $r_QuoteDetailFields->execute(array(":token" => $token));
-                        $QuoteDetailFields = $r_QuoteDetailFields->fetchAll(PDO::FETCH_ASSOC);
+                        if(isset($data->factObjects[0]->QuoteDetail[$key]->id)){
+                            $q_QuoteDetailFields = "SELECT * FROM QuoteDetail WHERE quoteDetail_Id={$data->factObjects[0]->QuoteDetail[$key]->id}";
+                            $r_QuoteDetailFields = $dbo->prepare($q_QuoteDetailFields);
+                            $r_QuoteDetailFields->execute(array(":token" => $token));
+                            $QuoteDetailFields = $r_QuoteDetailFields->fetchAll(PDO::FETCH_ASSOC);
 
-                        $q_str_quoteDetail = "UPDATE QuoteDetail SET ";
-                        $inserts = "";
-                        foreach ($r_fields as $fields) {
-                            $fieldNm = strtolower($fields['Field']);
-                            if (@$data->factObjects[0]->QuoteDetail[$key]->$fieldNm && $QuoteDetailFields[0][$fieldNm] != $data->factObjects[0]->QuoteDetail[$key]->$fieldNm) {
-                                $inserts .= "{$fields['Field']} = ".$fxns->_formatFieldValue($data->factObjects[0]->QuoteDetail[$key]->$fieldNm, array('type'=>$fields['Type'])).",";
+                            $q_str_quoteDetail = "UPDATE QuoteDetail SET ";
+                            $inserts = "";
+                            foreach ($r_fields as $fields) {
+                                $fieldNm = strtolower($fields['Field']);
+                                if (@$data->factObjects[0]->QuoteDetail[$key]->$fieldNm && $QuoteDetailFields[0][$fieldNm] != $data->factObjects[0]->QuoteDetail[$key]->$fieldNm) {
+                                    $inserts .= "{$fields['Field']} = ".$fxns->_formatFieldValue($data->factObjects[0]->QuoteDetail[$key]->$fieldNm, array('type'=>$fields['Type'])).",";
+                                }
                             }
-                        }
-                        $q_str_quoteDetail .= $inserts." WHERE Quote_quote_Id={$data->factObjects[0]->QuoteDetail[$key]->id}";
-                        if($inserts != ""){
-//                            $r_str = $dbo->prepare($q_str_quoteDetail);
-//                            $r_str->execute();
+                            $q_str_quoteDetail .= $inserts." WHERE Quote_quote_Id={$data->factObjects[0]->QuoteDetail[$key]->id}";
+                            if($inserts != ""){
+                                $r_str = $dbo->prepare($q_str_quoteDetail);
+                                $r_str->execute();
+                            }
+                            $lastQuoteDetailId = $data->factObjects[0]->QuoteDetail[$key]->id;
+                        }else{
+                            $q_str = "INSERT INTO QuoteDetail ";
+                            $ins_fields = " (Quote_quote_Id, ";
+                            $ins_values = " VALUES ({$data->factObjects[0]->quote->id}, ";
+                            foreach($val as $col => $value){
+                                $ins_fields .= $col . " ,";
+                                $ins_values .= "'" . $value . "' ,";
+                            }
+                            $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
+                            $ins_values = rtrim($ins_values,' ,');
+                            $q_str_quoteDetail = $q_str .$ins_fields . ") " . $ins_values . ")";
+//echo $q_str_quoteDetail."\n";
+                            $r_str = $dbo->prepare($q_str_quoteDetail);
+                            $r_str->execute();
+                            $lastQuoteDetailId = $dbo->lastInsertId();
                         }
 
                         if(isset($data->factObjects[0]->QuoteDetail_Manufacturer[$key])){
-                            $q_QuoteDetail_Manufacturer = "SELECT * FROM QuoteDetail_Manufacturer WHERE QuoteDetail_QuoteDetail_Id={$data->factObjects[0]->QuoteDetail[$key]->id}";
-                            $r_QuoteDetail_Manufacturer = $dbo->prepare($q_QuoteDetail_Manufacturer);
-                            $r_QuoteDetail_Manufacturer->execute(array(":token" => $token));
-                            $QuoteDetail_Manufacturer = $r_QuoteDetail_Manufacturer->fetchAll(PDO::FETCH_ASSOC);
-                            $onUpdt = "";
-                            foreach($data->factObjects[0]->QuoteDetail_Manufacturer[$key] as $subVals){
 
-                                $q_str = "INSERT INTO QuoteDetail_Manufacturer ";
-                                $ins_fields = " (QuoteDetail_QuoteDetail_Id,";
-                                $ins_values = " VALUES ({$data->factObjects[0]->QuoteDetail[$key]->id},";
-                                foreach($subVals as $col => $value){
-                                    $ins_fields .= $col . " ,";
-                                    $ins_values .= "'" . $value . "' ,";
-                                    $onUpdt .=$fields['Field']."=VALUES({$fields['Field']}),";
+                            $q_fields = $dbo->query("DESCRIBE QuoteDetail_Manufacturer");
+                            $r_fields = $q_fields->fetchAll(PDO::FETCH_ASSOC);
+                            foreach ($r_fields as $fields) {
+                                if ($fields['Key'] == 'PRI') {
+                                    $priKy = $fields['Field'];
                                 }
+                            }
+                            foreach($data->factObjects[0]->QuoteDetail_Manufacturer[$key] as $values){
+
+                                $q_str_quoteDetail_Manufacturer = "INSERT INTO QuoteDetail_Manufacturer ";
+                                $ins_fields = " (QuoteDetail_QuoteDetail_Id ,";
+                                $ins_values = " VALUES ({$lastQuoteDetailId},";
+                                $onUpdt = "";
+                                foreach ($r_fields as $fields) {
+                                    $fieldNm = strtolower($fields['Field']);
+                                    if( isset($values->$fieldNm)){
+                                        @$ins_fields .= " {$fields['Field']} ,";
+                                        $onUpdt .=$fields['Field']."=VALUES({$fields['Field']}),";
+                                    }
+                                }
+                                foreach ($r_fields as $fields) {
+                                    $fieldNm = strtolower($fields['Field']);
+                                    if (isset($values->$fieldNm)) {
+                                        @$ins_values .= $fxns->_formatFieldValue($values->$fieldNm, array('type'=>$fields['Type'])).",";
+                                    }
+                                }
+                                $ins_values = rtrim($ins_values,',');
+                                $ins_values .= "),";
+                                $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
+                                $ins_values = rtrim($ins_values,',');
                                 $onUpdt = rtrim($onUpdt,',');
-                                $q_str .= " ON DUPLICATE KEY UPDATE ".$onUpdt;
-                                echo $q_str."\n";
-//                                $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
-//                                $ins_values = rtrim($ins_values,' ,');
-//                                $q_str_quoteDetail_Manufacturer = $q_str .$ins_fields . ") " . $ins_values . ")";
-//                                //Let's update the manufacturer table
-////                                $r_str = $dbo->prepare($q_str_quoteDetail_Manufacturer);
-////                                $r_str->execute();
-////                                $lastId = $dbo->lastInsertId();
+                                $q_str_quoteDetail_Manufacturer .= $ins_fields . ") " . $ins_values;
+                                $q_str_quoteDetail_Manufacturer .= " ON DUPLICATE KEY UPDATE ".$onUpdt;
+                                //Let's update the manufacturer table
+                                $r_str_quoteDetail_Manufacturer = $dbo->prepare($q_str_quoteDetail_Manufacturer);
+                                $r_str_quoteDetail_Manufacturer->execute();
+                                $lastId = $dbo->lastInsertId();
                             }
                         }
                     }
@@ -210,7 +265,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
             }
 
             $dbo->commit();
-            $data=array('token'=> $data->token,'insertId'=>$lastId);
+            $data=array('token'=> $data->token);
             $response = array("response" => "Success", "message" => "Record Saved Successfully", "data"=>$data);
         }catch(Exception $e){
             $dbo->rollBack();
@@ -218,7 +273,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
         }
 
     }
-    if ($data->transactionEventType == "DELETE") {
+    if (@$data->transactionEventType == "DELETE") {
         try{
             $q_del_quoteDetail = "DELETE FROM QuoteDetail WHERE ";
             foreach ($data->transactionMetaData->queryMetaData->queryClause->andExpression as $field) {

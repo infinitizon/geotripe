@@ -173,7 +173,6 @@ if($env['PATH_INFO']==="/inboundService") {
             if ($data->transactionEventType == "Update") {
                 if(is_array($data->factObjects[0])){
                     $q_str = "INSERT INTO {$data->factName} ";
-                    $multipleFields = "";
                     $ins_fields = " (";
                     $ins_values = " VALUES (";
                     $onUpdt = "";
