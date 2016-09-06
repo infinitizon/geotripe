@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d05ef40-3f7a-41b2-81e7-eb6b1d801a63" name="Default" comment="UI-boot">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/controller.js" afterPath="$PROJECT_DIR$/modules/quote/controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/v1/.htaccess" afterPath="$PROJECT_DIR$/api/v1/.htaccess" />
     </list>
     <ignored path="public.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -89,7 +89,7 @@
         <entry file="file://$PROJECT_DIR$/api/v1/.htaccess">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="30" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="30" />
+              <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -188,10 +188,10 @@
         <option value="$PROJECT_DIR$/modules/quote/views/templates/quoteItems.html" />
         <option value="$PROJECT_DIR$/api/v1/quote.php" />
         <option value="$PROJECT_DIR$/modules/quote/views/quotes.html" />
-        <option value="$PROJECT_DIR$/api/v1/.htaccess" />
         <option value="$PROJECT_DIR$/api/v1/index.php" />
         <option value="$PROJECT_DIR$/../sys/config/db-cred.inc.php" />
         <option value="$PROJECT_DIR$/modules/quote/controller.js" />
+        <option value="$PROJECT_DIR$/api/v1/.htaccess" />
       </list>
     </option>
   </component>
@@ -906,12 +906,12 @@
       <workItem from="1472937884660" duration="6855000" />
       <workItem from="1473014141769" duration="91000" />
       <workItem from="1473022555086" duration="246000" />
-      <workItem from="1473060145856" duration="33358000" />
+      <workItem from="1473060145856" duration="33614000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="231945000" />
+    <option name="totallyTimeSpent" value="232201000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="132" y="23" width="2237" height="1323" extended-state="0" />
@@ -1343,18 +1343,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/v1/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="30" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-43.296295">
           <caret line="261" column="39" selection-start-line="261" selection-start-column="39" selection-end-line="261" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/v1/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
           <folding />
         </state>
       </provider>
