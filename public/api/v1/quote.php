@@ -1,6 +1,6 @@
 <?php
 header("Content-Type:application/json");
-
+var_dump($_SERVER);exit;
 $scriptName = $_SERVER['SCRIPT_NAME']; // <-- "e.g /api/v1/index.php"
 $requestUri = $_SERVER['REQUEST_URI']; // <-- "e.g /api/v1/login"
 $physicalPath = str_replace('\\', '', dirname($scriptName)); // <-- "e.g /api/v1"
