@@ -84,7 +84,7 @@ angular.module('RFQ')
                                 "operatorType": "="
                             }
                         ];
-                        DataService.post('quote.php', data).then(function (response) {
+                        DataService.post('quote', data).then(function (response) {
                             vm.lineItems.splice( index,1 );
                         });
 
@@ -259,7 +259,7 @@ angular.module('RFQ')
                     data.append("file[]", vm.files[i]);
                 }
                 //Post the data
-                DataService.post("quote.php", data, {
+                DataService.post("quote", data, {
                     transformRequest: angular.identity,
                     headers: {'Content-Type': undefined, 'Process-Data': false}
                 }).then( function (response) {
