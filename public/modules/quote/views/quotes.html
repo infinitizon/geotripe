@@ -4,6 +4,13 @@
         <div class="row" style="padding:10px;">
             <div class="pull-right"><button type="button" class="btn btn-primary" data-ng-click="quotCtrl.editQuote()">+ Add new</button></div>
         </div>
+        <div>
+            <ul>
+                <li data-ng-repeat="" style="background:rgba(24, 153, 213, 1);">
+                    <h2></h2>
+                </li>
+            </ul>
+        </div>
         <dir-pagination-controls
                 max-size="8"
                 direction-links="true"
@@ -25,7 +32,7 @@
             <tr ng-if="quotCtrl.quotes.length <= 0"><td colspan="6" style="text-align:center;">Loading new data!!</td></tr>
             <tr dir-paginate="quote in quotCtrl.quotes|itemsPerPage:quotCtrl.itemsPerPage" total-items="quotCtrl.total_count">
                 <td>{{quote.name}}</td>
-                <td>{{quote.subject}}</td>
+                <td>{{quote.rfq_no}}</td>
                 <td>{{quote.status}}</td>
                 <td>{{quote.totalQuotes}}</td>
                 <td>{{quote.enteredBy}}</td>
@@ -49,14 +56,14 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" data-ng-model="quotCtrl.quote.subject" class="form-control" data-ng-disabled="false" />
+                        <label for="rfq_no">Request No <span ng-show="!quotCtrl.quote.rfq_no" class="text-danger">*</span></label>
+                        <input type="text" id="rfq_no" data-ng-model="quotCtrl.quote.rfq_no" class="form-control" data-ng-disabled="false" ng-required="true" />
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="rfq_no">Request No <span ng-show="!quotCtrl.quote.rfq_no" class="text-danger">*</span></label>
-                        <input type="text" id="rfq_no" data-ng-model="quotCtrl.quote.rfq_no" class="form-control" data-ng-disabled="false" ng-required="true" />
+                        <label for="eventOwner">Name of Event Owner</label>
+                        <input type="text" id="eventOwner" data-ng-model="quotCtrl.quote.eventowner" class="form-control" data-ng-disabled="false" />
                     </div>
                 </div>
             </div>
@@ -69,7 +76,7 @@
                                    uib-datepicker-popup="dd-MMM-yyyy" ng-model="quotCtrl.quote.publishdate" is-open="quotCtrl.publishdate" ng-focus="quotCtrl.publishdate=true"
                                    ng-required="true" close-text="&times;" />
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="quotCtrl.publishdate = !quotCtrl.publishdate"><i class="glyphicon glyphicon-calendar"></i></button>
+                                <button type="button" class="btn btn-default" data-ng-click="quotCtrl.publishdate = !quotCtrl.publishdate"><i class="glyphicon glyphicon-calendar"></i></button>
                             </span>
                         </p>
                     </div>
@@ -91,7 +98,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="PartyId">Party <span ng-show="!quotCtrl.quote.party_party_id" class="text-danger">*</span></label>
+                        <label for="PartyId">Client <span ng-show="!quotCtrl.quote.party_party_id" class="text-danger">*</span></label>
                         <select id="PartyId" class="form-control"
                                 ng-click="quotCtrl.getLOVs('Party','parties', {'response':'party_id&name', 'and':[{
                                                                                     'propertyName': 'party_partytype_id',
@@ -108,7 +115,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="userId">Name Of Event Owner <span ng-show="!quotCtrl.quote.users_user_id" class="text-danger">*</span></label>
+                        <label for="userId">Assign to <span ng-show="!quotCtrl.quote.users_user_id" class="text-danger">*</span></label>
                         <select id="userId"
                                 class="form-control"
                                 ng-options="user.user_id as user.name for user in quotCtrl.container['users']"

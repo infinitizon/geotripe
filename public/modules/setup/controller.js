@@ -64,7 +64,7 @@ angular.module('Setup')
                 var data=angular.copy(CommonServices.postData);
                 if(partyId) {
                     data.factName = 'Party p, PartyType pt, Country c, State s';
-                    data.transactionMetaData.responseDataProperties = 'p.party_id&p.party_partytype_id&pt.name partytypename&p.addressline1&p.addressline2&p.addresscity&p.name&p.party_country_id&c.name countryName&p.party_state_id&s.Name stateName&p.contactpersontitle&p.contactlastname&p.contactfirstname&p.contactmiddlename&p.contactphonenumber';
+                    data.transactionMetaData.responseDataProperties = 'p.party_id&p.party_partytype_id&pt.name partytypename&p.addressline1&p.addressline2&p.addresscity&p.emailaddress&p.name&p.party_country_id&c.name countryName&p.party_state_id&s.Name stateName&p.contactpersontitle&p.contactlastname&p.contactfirstname&p.contactmiddlename&p.contactphonenumber';
                     data.transactionMetaData.queryMetaData.joinClause = {
                         'joinType':['JOIN','LEFT JOIN','LEFT JOIN'],'joinKeys':['p.Party_PartyType_Id=pt.PartyType_Id','p.Party_Country_Id=c.Country_Id','p.Party_State_Id=s.State_id']
                     }
@@ -94,7 +94,6 @@ angular.module('Setup')
             };
             vm.container = [];
             vm.getLOVs = function(factName, selectScope, options) {
-                console.log(selectScope)
                 if (vm.container[selectScope] == null) {
                     var data = angular.copy(CommonServices.postData);
                     data.factName = factName;
@@ -104,9 +103,7 @@ angular.module('Setup')
                     if(options.and){
                         data.transactionMetaData.queryMetaData.queryClause.andExpression = options.and;
                     }
-                    console.log(data)
                     DataService.post('inboundService', data).then( function (response) {
-                        console.log(response)
                         vm.container[selectScope] = response.data.data;
                     });
                 }
@@ -124,7 +121,6 @@ angular.module('Setup')
                             "operatorType": "LIKE"
                         }
                     ];
-                    console.log(data);
                     CommonServices.getLOVs(data).then(function(response){
                         vm.states = response.data.data;
                     });
@@ -163,9 +159,6 @@ angular.module('Setup')
             vm.cancel = function () {
                 $uibModalInstance.dismiss('cancel');
             };
-            //vm.ok = function () {
-            //    $uibModalInstance.close('Ok');
-            //};
         }])
     .controller('UserController', ['$scope','$rootScope','$uibModalInstance','DataService','CommonServices',
         function ($scope, $rootScope, $uibModalInstance,DataService,CommonServices) {
