@@ -14,7 +14,7 @@
             <thead>
             <tr>
                 <th>Client</th>
-                <th>Subject</th>
+                <th>Request No</th>
                 <th>Status</th>
                 <th>Total Line Items</th>
                 <th>Entered By</th>
@@ -25,7 +25,7 @@
             <tr ng-if="quotCtrl.quotes.length <= 0"><td colspan="6" style="text-align:center;">Loading new data!!</td></tr>
             <tr dir-paginate="quote in quotCtrl.quotes|itemsPerPage:quotCtrl.itemsPerPage" total-items="quotCtrl.total_count">
                 <td>{{quote.name}}</td>
-                <td>{{quote.subject}}</td>
+                <td>{{quote.rfq_no}}</td>
                 <td>{{quote.status}}</td>
                 <td>{{quote.totalQuotes}}</td>
                 <td>{{quote.enteredBy}}</td>

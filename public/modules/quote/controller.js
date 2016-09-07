@@ -51,7 +51,7 @@ angular.module('RFQ')
                 vm.quotes = []; // Initially make list empty so as to show the "loading data" notice!
                 var data=angular.copy(CommonServices.postData);
                 data.factName = 'Quote q, Party p, QuoteStatus qs, users u, QuoteDetail qd';
-                data.transactionMetaData.responseDataProperties = 'q.quote_id&p.name&CONCAT(LEFT(q.subject , 30),IF(LENGTH(q.subject)>30, "…", "")) subject&CONCAT(u.lastname,", ",u.middlename," ",u.firstname)enteredBy&qs.name status&COUNT(qd.Quote_quote_Id) totalQuotes'
+                data.transactionMetaData.responseDataProperties = 'q.quote_id&p.name&rfq_no&CONCAT(u.lastname,", ",u.middlename," ",u.firstname)enteredBy&qs.name status&COUNT(qd.Quote_quote_Id) totalQuotes'
                 data.transactionMetaData.pageno = pageno-1;
                 data.transactionMetaData.itemsPerPage = vm.itemsPerPage;
                 data.transactionMetaData.queryMetaData.queryClause.andExpression = [];
