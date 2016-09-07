@@ -5,11 +5,11 @@
             <div class="pull-right"><button type="button" class="btn btn-primary" data-ng-click="quotCtrl.editQuote()">+ Add new</button></div>
         </div>
         <div>
-            <ul>
-                <li data-ng-repeat="" style="background:rgba(24, 153, 213, 1);">
-                    <h2></h2>
-                </li>
-            </ul>
+            <!--<ul>-->
+                <!--<li data-ng-repeat="" style="background:rgba(24, 153, 213, 1);">-->
+                    <!--<h2></h2>-->
+                <!--</li>-->
+            <!--</ul>-->
         </div>
         <dir-pagination-controls
                 max-size="8"
@@ -98,28 +98,28 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="PartyId">Client <span ng-show="!quotCtrl.quote.party_party_id" class="text-danger">*</span></label>
+                        <label for="PartyId">Client <span data-ng-show="!quotCtrl.quote.party_party_id" class="text-danger">*</span></label>
                         <select id="PartyId" class="form-control"
-                                ng-click="quotCtrl.getLOVs('Party','parties', {'response':'party_id&name', 'and':[{
+                                data-ng-click="quotCtrl.getLOVs('Party','parties', {'response':'party_id&name', 'and':[{
                                                                                     'propertyName': 'party_partytype_id',
                                                                                     'propertyValue': 201607131,
                                                                                     'propertyDataType': 'BIGINT',
                                                                                     'operatorType': '='
                                                                                 }]})"
-                                ng-options="party.party_id as party.name for party in quotCtrl.container['parties']"
-                                ng-change="quotCtrl.getUsers(quotCtrl.quote.party_party_id)"
-                                ng-model="quotCtrl.quote.party_party_id">
+                                data-ng-options="party.party_id as party.name for party in quotCtrl.container['parties']"
+                                data-ng-model="quotCtrl.quote.party_party_id">
                             <option value="">{{quotCtrl.quote.party_party_id || "--Select Company name --"}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="userId">Assign to <span ng-show="!quotCtrl.quote.users_user_id" class="text-danger">*</span></label>
+                        <label for="userId">Assign to <span data-ng-show="!quotCtrl.quote.users_user_id" class="text-danger">*</span></label>
                         <select id="userId"
                                 class="form-control"
-                                ng-options="user.user_id as user.name for user in quotCtrl.container['users']"
-                                ng-model="quotCtrl.quote.users_user_id">
+                                data-ng-click="quotCtrl.getUsers(20161307)"
+                                data-ng-options="user.user_id as user.name for user in quotCtrl.container['users']"
+                                data-ng-model="quotCtrl.quote.users_user_id">
                             <option value="">{{quotCtrl.quote.users_user_id || "--Select Name of Event Owner --"}}</option>
                         </select>
                     </div>

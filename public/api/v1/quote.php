@@ -8,6 +8,14 @@ $env['PATH_INFO'] = substr_replace($requestUri, '', 0, strlen($physicalPath)); /
 //https://www.olx.com.ng/ad/honda-accord-2005-ID15KkhD.html#6d45d1b9e3
 $data = json_decode(file_get_contents("php://input")); //Get data that is sent to the backend\
 
+
+//select p.Name,count(q.quote_id)
+//from party p
+//LEFT JOIN quote q
+//	ON p.Party_Id=q.Party_Party_Id
+//where p.Party_PartyType_Id = 201607131
+//group by p.Party_Id
+
 if(!$data){
     if(isset($_POST)){
         $input = "{\"transactionEventType\":\"{$_POST['transactionEventType']}\",\"factName\":\"{$_POST['factName']}\",\"token\":\"{$_POST['token']}\",";

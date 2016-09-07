@@ -198,7 +198,7 @@ angular.module('RFQ')
                     'propertyDataType': 'BIGINT',
                     'operatorType': '='
                 }]});
-            }   
+            }
             CommonServices.postData.token = $rootScope.globals.currentUser.userDetails.token;
             $scope.getFileDetails = function (e) {
                 vm.files = [];
