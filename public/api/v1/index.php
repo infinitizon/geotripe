@@ -34,9 +34,10 @@ if(!$data){
         }
         $input .= "}";
     }
-//    echo $input;exit;
+    echo $input;exit;
     $data = json_decode($input);
 }
+//echo $input;exit;
 include_once "core/init.inc.php";
 $fxns = new Functions($dbo);
 
@@ -205,11 +206,13 @@ if($env['PATH_INFO']==="/inboundService") {
                     foreach ($r_fields as $fields) {
                         $fieldNm = strtolower($fields['Field']);
                         if (@$data->factObjects[0]->$fieldNm) {
-                            $q_str .= "{$fields['Field']} = '{$data->factObjects[0]->$fieldNm}'";
+                            $q_str .= "{$fields['Field']} = '{$data->factObjects[0]->$fieldNm}' ,";
                         }
                     }
+                    $q_str = $fxns->_subStrAtDel($q_str, ' ,');
                     $q_str .= " WHERE $priKy={$data->factObjects[0]->id}";
                 }
+                echo $q_str;
                 $r_str = $dbo->prepare($q_str);
                 $r_str->execute();
                 $response = array("response" => "Success", "message" => "Record Updated Successfully", "token" => $data->token);

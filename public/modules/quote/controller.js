@@ -51,7 +51,7 @@ angular.module('RFQ')
                 vm.quotes = []; // Initially make list empty so as to show the "loading data" notice!
                 var data=angular.copy(CommonServices.postData);
                 data.factName = 'Quote q, Party p, QuoteStatus qs, users u, QuoteDetail qd';
-                data.transactionMetaData.responseDataProperties = 'q.quote_id&p.name&rfq_no&CONCAT(u.lastname,", ",u.middlename," ",u.firstname)enteredBy&qs.name status&COUNT(qd.Quote_quote_Id) totalQuotes'
+                data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&p.name&CONCAT(LEFT(q.subject , 30),IF(LENGTH(q.subject)>30, "…", "")) subject&CONCAT(u.lastname,", ",u.middlename," ",u.firstname)enteredBy&qs.name status&COUNT(qd.Quote_quote_Id) totalQuotes'
                 data.transactionMetaData.pageno = pageno-1;
                 data.transactionMetaData.itemsPerPage = vm.itemsPerPage;
                 data.transactionMetaData.queryMetaData.queryClause.andExpression = [];
@@ -102,7 +102,7 @@ angular.module('RFQ')
                 if(quoteId) {
                     var data=angular.copy(CommonServices.postData);
                     data.factName = 'Quote q, Party p, QuoteStatus qs, Currency c, Users u, Users uu';
-                    data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&q.subject&p.name party_party_id&qs.name quotestatus&c.code currency&q.entrydate&q.publishdate&q.duedate&q.approvedate&u.firstname&q.description&q.quote_approvedby_id&q.specificationandrequirement&concat(IFNULL(uu.firstname,""), ", ",IFNULL(uu.middlename,"")," ",IFNULL(uu.lastname,""))users_user_id';
+                    data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&q.eventowner&p.name party_party_id&qs.name quotestatus&c.code currency&q.entrydate&q.publishdate&q.duedate&q.approvedate&u.firstname&q.description&q.quote_approvedby_id&q.specificationandrequirement&concat(IFNULL(uu.firstname,""), ", ",IFNULL(uu.middlename,"")," ",IFNULL(uu.lastname,""))users_user_id';
                     data.transactionMetaData.queryMetaData.joinClause = {
                         'joinType':['JOIN','JOIN','JOIN','JOIN','LEFT JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_currency_id=c.currency_id','q.quote_enteredBy_id=u.user_id','q.users_user_id=uu.user_id']
                     }
@@ -245,9 +245,10 @@ angular.module('RFQ')
                 }
                 //Check for the manufacturers
                 vm.lineItems4Db = angular.copy(vm.lineItems);
-                        console.log(vm.lineItems);
+                        //console.log(vm.lineItems);
                 angular.forEach(vm.lineItems  , function(QuoteDetail, key) {
                     var QuoteDetail = {description: vm.lineItems[key].matDesc, quantity: vm.lineItems[key].qty};
+                    if(vm.quote.quote_id) QuoteDetail.id =  vm.lineItems[key].id; //If we are editing then, we need to pass along the QuoteDetail id.
                     angular.forEach(vm.lineItems[key].manus  , function(QuoteManufacturer, key2) {
                         vm.lineItems4Db[key].manus[key2] = {party_party_id:QuoteManufacturer.party_id};
                         //console.log(vm.lineItems4Db[key].manus[key2]);
@@ -269,7 +270,11 @@ angular.module('RFQ')
                         vm.isDisabled = false;
                         vm.dataLoading = false;
                     }else{
-                        vm.error="Record updated successfully";
+                        vm.error=response.data.message;
+                        vm.isDisabled = false;
+                        vm.dataLoading = false;
+                        vm.lineItems = [];
+                        vm.quoteFiles = null;
                         vm.goBack()
                     }
                     //vm.container[selectScope] = response.data.data;
