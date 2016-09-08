@@ -9,10 +9,10 @@
                 <li data-ng-repeat="lineItem in quotCtrl.quoteDash" class="col-sm-3 card">
                     <h2 class="text-center"><span>{{lineItem.Name}}</span></h2>
                     <div style="margin-top:50px; padding: 10px;">
-                        <button class="btn btn-success" >Total Quotes: {{lineItem.totalQuotes}}</button>
-                        <button class="btn btn-info">Submitted: {{lineItem.Submitted}}</button>
-                        <button class="btn btn-warning">In Progress: {{lineItem["In Progress"]}}</button>
-                        <button class="btn btn-default">TQ: {{lineItem.TQ}}</button>
+                        <button class="btn btn-success btn-xs" >Total Quotes: {{lineItem.totalQuotes}}</button>
+                        <button class="btn btn-info btn-xs">Submitted: {{lineItem.Submitted}}</button>
+                        <button class="btn btn-warning btn-xs">In Progress: {{lineItem["In Progress"]}}</button>
+                        <button class="btn btn-default btn-xs">TQ: {{lineItem.TQ}}</button>
                     </div>
                 </li>
             </ul>
