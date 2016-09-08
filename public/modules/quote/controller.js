@@ -6,6 +6,7 @@ angular.module('RFQ')
 
             var vm = this;
             vm.lineItems = []
+
             vm.open = function (options) {
                 switch(options.url) {
                     case 'quoteItems':
@@ -37,6 +38,7 @@ angular.module('RFQ')
                     console.log('Modal dismissed at: ' + new Date());
                 });
             };
+
             /*
              * This part gets all the quotes available
              */
@@ -62,6 +64,9 @@ angular.module('RFQ')
                 DataService.post('inboundService', data).then(function (response) {
                     vm.quotes = response.data.data;
                     vm.total_count = response.data.total_count;
+                    if(vm.total_count <= 0){
+                        vm.quotesLoading = "No quotes found!";
+                    }
                 })
             }
             vm.getData(vm.pageno);
@@ -69,7 +74,32 @@ angular.module('RFQ')
             vm.goBack = function () {
                 vm.edit=false;
                 vm.getData(vm.pageno);
-            };
+            };/*
+             * This part gets quotes summary by clients
+             */
+            CommonServices.postData.token = $rootScope.globals.currentUser.userDetails.token;
+            vm.getQuoteSummary = function(pageno) {
+                vm.quotes = []; // Initially make list empty so as to show the "loading data" notice!
+                var data=angular.copy(CommonServices.postData);
+                data.transactionEventType = "QuoteDash";
+                data.transactionMetaData.queryMetaData.queryClause.andExpression = [
+                    {
+                        "propertyName": "p.Party_PartyType_Id",
+                        "propertyValue": 201607131,
+                        "propertyDataType": "BIGINT",
+                        "operatorType": "="
+                    }
+                ];
+                data.transactionMetaData.groupingProperties = 'p.Party_Id';
+                DataService.post('quote', data).then(function (response) {
+                    vm.quoteDash = response.data.data;
+                    vm.total_count = response.data.total_count;
+                    if(vm.total_count <= 0){
+                        vm.quotesLoading = "No quotes found!";
+                    }
+                })
+            }
+            vm.getQuoteSummary();
             vm.deleteLineItem = function(index,id){
                 if(id){
                     if(confirm("Are you sure you want to delete this line item. Action is irreversible!")){
@@ -160,13 +190,13 @@ angular.module('RFQ')
                                 DataService.post('inboundService', data).then(function (response) {
                                     var items = {id:lineItem.quotedetail_id,matDesc:lineItem.description,qty:lineItem.quantity,manus:eval(response.data.data[0].manus)};
                                     vm.lineItems.push(items);
-                                    if(vm.lineItems.length <= 0){
-                                        vm.lineItemsLoading = "Click the + icon to add new items";
-                                    }else{
-                                        vm.originalLineItems = vm.lineItems;
-                                    }
                                 })
                             })
+                        }
+                        if(vm.lineItems.length <= 0){
+                            vm.lineItemsLoading = "Click the + icon to add new items";
+                        }else{
+                            vm.originalLineItems = vm.lineItems;
                         }
                     })
                 }else{

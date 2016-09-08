@@ -51,6 +51,43 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
     if (count($user) != 1) {
         throw new Exception("-110011");
     }
+    if ($data->transactionEventType == "QuoteDash") {
+        $q_str = "select p.Name, count(q.quote_id) totalQuotes ";
+        $q_str .= " , (select count(q.Quote_Status_Id) from Quote q where q.Quote_Status_Id=12141324 AND q.Party_Party_Id=p.party_id )Submitted ";
+	    $q_str .= " , (select count(q.Quote_Status_Id) from Quote q where q.Quote_Status_Id=12141325 AND q.Party_Party_Id=p.party_id )'In Progress' ";
+	    $q_str .= " , (select count(q.Quote_Status_Id) from Quote q where q.Quote_Status_Id=12141326 AND q.Party_Party_Id=p.party_id )'TQ' ";
+	    $q_str .= " , (select count(q.Quote_Status_Id) from Quote q where q.Quote_Status_Id=12141327 AND q.Party_Party_Id=p.party_id )'Sourcing for suppliers' ";
+	    $q_str .= " , (select count(q.Quote_Status_Id) from Quote q where q.Quote_Status_Id=12141328 AND q.Party_Party_Id=p.party_id )'Costing at suppliers' ";
+        $q_str .= " FROM party p LEFT JOIN quote q ON p.Party_Id=q.Party_Party_Id ";
+        if (!empty($data->transactionMetaData->queryMetaData->queryClause->andExpression)) {
+            $q_str .= " WHERE "; $files_id = '';
+            foreach ($data->transactionMetaData->queryMetaData->queryClause->andExpression as $field) {
+                $q_str .= $field->propertyName . " " . $field->operatorType . " ";
+                if($field->operatorType=="IN"){
+//                            echo $field->propertyName;
+                    $q_str .= "(".$field->propertyValue . ") AND";
+                }elseif($field->operatorType=="LIKE"){
+                    $q_str .= "'%".$field->propertyValue . "%' AND";
+                }else{
+                    $q_str .= $field->propertyValue . " AND";
+                }
+                $files_id .= $field->propertyValue.' ,';
+            }
+            $q_str = $fxns->_subStrAtDel($q_str, ' AND');
+            $files_id = $fxns->_subStrAtDel($files_id, ' ,');
+            $q_getFiles_str = "SELECT doc_id,doc_quote_id,docName,docCreateDate FROM Document WHERE doc_quote_Id IN ($files_id)";
+        }
+        if (!empty($data->transactionMetaData->groupingProperties)) {
+            $q_str .= " GROUP BY ".$data->transactionMetaData->groupingProperties;
+        }
+        $q_str_tot_count = $dbo->query("SELECT COUNT(*) as `count` FROM (" . $q_str . ") t");
+        $r_str_tot_count = $q_str_tot_count->fetch(PDO::FETCH_ASSOC);
+
+        $r_obj = $dbo->prepare($q_str);
+        $r_obj->execute(array());
+        $q_response = $r_obj->fetchAll(PDO::FETCH_ASSOC);
+        $response = array("response" => "Success", "token" => $data->token, "total_count" => $r_str_tot_count['count'], "data" => @$q_response);
+    }
     if ($data->transactionEventType == "PUT") {
         try {
             $dbo->beginTransaction();

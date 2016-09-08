@@ -5,11 +5,17 @@
             <div class="pull-right"><button type="button" class="btn btn-primary" data-ng-click="quotCtrl.editQuote()">+ Add new</button></div>
         </div>
         <div>
-            <!--<ul>-->
-                <!--<li data-ng-repeat="" style="background:rgba(24, 153, 213, 1);">-->
-                    <!--<h2></h2>-->
-                <!--</li>-->
-            <!--</ul>-->
+            <ul class="list-unstyled list-inline quoteDash">
+                <li data-ng-repeat="lineItem in quotCtrl.quoteDash" class="col-sm-3 card">
+                    <h2 class="text-center"><span>{{lineItem.Name}}</span></h2>
+                    <div style="margin-top:50px; padding: 10px;">
+                        <button class="btn btn-success" >Total Quotes: {{lineItem.totalQuotes}}</button>
+                        <button class="btn btn-info">Submitted: {{lineItem.Submitted}}</button>
+                        <button class="btn btn-warning">In Progress: {{lineItem["In Progress"]}}</button>
+                        <button class="btn btn-default">TQ: {{lineItem.TQ}}</button>
+                    </div>
+                </li>
+            </ul>
         </div>
         <dir-pagination-controls
                 max-size="8"
@@ -29,7 +35,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-if="quotCtrl.quotes.length <= 0"><td colspan="6" style="text-align:center;">Loading new data!!</td></tr>
+            <tr ng-if="quotCtrl.quotes.length <= 0"><td colspan="6" style="text-align:center;">{{ quotCtrl.quotesLoading || 'Loading new data!!' }}</td></tr>
             <tr dir-paginate="quote in quotCtrl.quotes|itemsPerPage:quotCtrl.itemsPerPage" total-items="quotCtrl.total_count">
                 <td>{{quote.name}}</td>
                 <td>{{quote.rfq_no}}</td>
@@ -57,41 +63,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="rfq_no">Request No <span ng-show="!quotCtrl.quote.rfq_no" class="text-danger">*</span></label>
-                        <input type="text" id="rfq_no" data-ng-model="quotCtrl.quote.rfq_no" class="form-control" data-ng-disabled="false" ng-required="true" />
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="eventOwner">Name of Event Owner</label>
-                        <input type="text" id="eventOwner" data-ng-model="quotCtrl.quote.eventowner" class="form-control" data-ng-disabled="false" />
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="publishDate">Publish Date <span ng-show="!quotCtrl.quote.publishdate" class="text-danger">*</span></label>
-                        <p class="input-group">
-                            <input type="text" id="publishDate" class="form-control"
-                                   uib-datepicker-popup="dd-MMM-yyyy" ng-model="quotCtrl.quote.publishdate" is-open="quotCtrl.publishdate" ng-focus="quotCtrl.publishdate=true"
-                                   ng-required="true" close-text="&times;" />
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" data-ng-click="quotCtrl.publishdate = !quotCtrl.publishdate"><i class="glyphicon glyphicon-calendar"></i></button>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="dueDate">Due Date <span ng-show="!quotCtrl.quote.duedate" class="text-danger">*</span></label>
-                        <p class="input-group">
-                            <input type="text" id="dueDate" class="form-control"
-                                   uib-datepicker-popup="dd-MMM-yyyy" ng-model="quotCtrl.quote.duedate" is-open="quotCtrl.dueDate" ng-focus="quotCtrl.dueDate=true"
-                                   ng-required="true" close-text="&times;" />
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="quotCtrl.dueDate = !quotCtrl.dueDate"><i class="glyphicon glyphicon-calendar"></i></button>
-                            </span>
-                        </p>
+                        <input type="text" id="rfq_no" data-ng-model="quotCtrl.quote.rfq_no" placeholder="Subject or Request number of quote" class="form-control" data-ng-disabled="false" ng-required="true" />
                     </div>
                 </div>
             </div>
@@ -114,14 +86,38 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="userId">Assign to <span data-ng-show="!quotCtrl.quote.users_user_id" class="text-danger">*</span></label>
-                        <select id="userId"
-                                class="form-control"
-                                data-ng-click="quotCtrl.getUsers(20161307)"
-                                data-ng-options="user.user_id as user.name for user in quotCtrl.container['users']"
-                                data-ng-model="quotCtrl.quote.users_user_id">
-                            <option value="">{{quotCtrl.quote.users_user_id || "--Select Name of Event Owner --"}}</option>
-                        </select>
+                        <label for="eventOwner">Name of Event Owner</label>
+                        <input type="text" id="eventOwner" data-ng-model="quotCtrl.quote.eventowner" placeholder="--Select Name of Event Owner --" class="form-control" data-ng-disabled="false" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="publishDate">Publish Date <span ng-show="!quotCtrl.quote.publishdate" class="text-danger">*</span></label>
+                        <p class="input-group">
+                            <input type="text" id="publishDate" class="form-control"
+                                   uib-datepicker-popup="dd-MMM-yyyy" ng-model="quotCtrl.quote.publishdate" is-open="quotCtrl.publishdate"
+                                   ng-focus="quotCtrl.publishdate=true" placeholder="Publish Date (dd-MMM-YYYY) e.g 08-Aug-2016"
+                                   ng-required="true" close-text="&times;" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" data-ng-click="quotCtrl.publishdate = !quotCtrl.publishdate"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="dueDate">Due Date <span ng-show="!quotCtrl.quote.duedate" class="text-danger">*</span></label>
+                        <p class="input-group">
+                            <input type="text" id="dueDate" class="form-control"
+                                   uib-datepicker-popup="dd-MMM-yyyy" ng-model="quotCtrl.quote.duedate" is-open="quotCtrl.dueDate"
+                                   data-ng-focus="quotCtrl.dueDate=true" placeholder="Due Date (dd-MMM-YYYY) e.g 08-Aug-2016"
+                                   ng-required="true" close-text="&times;" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="quotCtrl.dueDate = !quotCtrl.dueDate"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -139,6 +135,16 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="userId">Assign to <span data-ng-show="!quotCtrl.quote.users_user_id" class="text-danger">*</span></label>
+                        <select id="userId"
+                                class="form-control"
+                                data-ng-click="quotCtrl.getUsers(20161307)"
+                                data-ng-options="user.user_id as user.name for user in quotCtrl.container['users']"
+                                data-ng-model="quotCtrl.quote.users_user_id">
+                            <option value="">{{quotCtrl.quote.users_user_id || "--Select the in-house person to assign to--"}}</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
