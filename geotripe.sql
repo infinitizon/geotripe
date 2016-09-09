@@ -1,920 +1,627 @@
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+CREATE DATABASE  IF NOT EXISTS `geotripe` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `geotripe`;
+-- MySQL dump 10.13  Distrib 5.6.11, for osx10.6 (i386)
+--
+-- Host: 127.0.0.1    Database: geotripe
+-- ------------------------------------------------------
+-- Server version	5.6.24
 
-CREATE SCHEMA IF NOT EXISTS `geotripe` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-USE `geotripe` ;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- -----------------------------------------------------
--- Table `geotripe`.`AuthView`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`AuthView` (
-  `AuthView_Id` BIGINT NOT NULL AUTO_INCREMENT,
-  `parent_id` BIGINT NULL DEFAULT 0,
-  `Name` VARCHAR(200) NULL,
-  `ViewPath` VARCHAR(200) NULL,
-  `description` VARCHAR(255) NULL,
-  `css_class` VARCHAR(100) NULL,
-  PRIMARY KEY (`AuthView_Id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 13072016;
+--
+-- Table structure for table `AuthView`
+--
 
+DROP TABLE IF EXISTS `AuthView`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `AuthView` (
+  `AuthView_Id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `parent_id` bigint(20) DEFAULT '0',
+  `Name` varchar(200) DEFAULT NULL,
+  `ViewPath` varchar(200) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `css_class` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`AuthView_Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13072019 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- -----------------------------------------------------
--- Table `geotripe`.`PartyType`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`PartyType` (
-  `PartyType_Id` INT NOT NULL,
-  `Name` VARCHAR(200) NULL,
-  `description` VARCHAR(255) NULL,
-  PRIMARY KEY (`PartyType_Id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 201607130;
+--
+-- Dumping data for table `AuthView`
+--
 
+LOCK TABLES `AuthView` WRITE;
+/*!40000 ALTER TABLE `AuthView` DISABLE KEYS */;
+INSERT INTO `AuthView` VALUES (13072016,0,'Dashboard','home','Shows the dashboard on login','fa-tachometer'),(13072017,0,'Quotes','quotes','Monitors Quote Lifecycle','fa-files-o'),(13072018,0,'Setup','setup','Admin Setup page','fa-cogs');
+/*!40000 ALTER TABLE `AuthView` ENABLE KEYS */;
+UNLOCK TABLES;
 
--- -----------------------------------------------------
--- Table `geotripe`.`Country`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`Country` (
-  `Country_Id` BIGINT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(255) NULL,
-  `CountryCode` VARCHAR(45) NULL,
-  PRIMARY KEY (`Country_Id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 20160713;
+--
+-- Table structure for table `BankAccountDetail`
+--
 
-
--- -----------------------------------------------------
--- Table `geotripe`.`State`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`State` (
-  `State_Id` BIGINT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(255) NULL,
-  `State_Country_Id` BIGINT NOT NULL,
-  PRIMARY KEY (`State_Id`),
-  INDEX `fk_State_Country1_idx` (`State_Country_Id` ASC),
-  CONSTRAINT `fk_State_Country1`
-    FOREIGN KEY (`State_Country_Id`)
-    REFERENCES `geotripe`.`Country` (`Country_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-AUTO_INCREMENT = 67784783;
-
-
--- -----------------------------------------------------
--- Table `geotripe`.`BusinessType`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`BusinessType` (
-  `BusinessType_Id` BIGINT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(200) NULL,
-  `description` VARCHAR(255) NULL,
-  PRIMARY KEY (`BusinessType_Id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 20310741;
-
-
--- -----------------------------------------------------
--- Table `geotripe`.`PartyStatus`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`PartyStatus` (
-  `PartyStatus_Id` BIGINT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(200) NULL,
-  `description` VARCHAR(255) NULL,
-  PRIMARY KEY (`PartyStatus_Id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 1011257;
-
-
--- -----------------------------------------------------
--- Table `geotripe`.`Party`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`Party` (
-  `Party_Id` BIGINT NOT NULL AUTO_INCREMENT,
-  `Party_PartyType_Id` INT NOT NULL,
-  `AddressCity` VARCHAR(100) NULL,
-  `AddressLine1` VARCHAR(255) NULL,
-  `AddressLine2` VARCHAR(255) NULL,
-  `PostalCode` VARCHAR(45) NULL,
-  `ContactPhoneNumber` VARCHAR(45) NULL,
-  `Name` VARCHAR(45) NULL,
-  `EmailAddress` VARCHAR(45) NULL,
-  `Party_Country_Id` BIGINT NULL,
-  `Party_State_Id` BIGINT NULL,
-  `ClientId` VARCHAR(45) NULL,
-  `IsActive` BIT NULL,
-  `ContacLastname` VARCHAR(100) NULL,
-  `ContacFirstname` VARCHAR(100) NULL,
-  `ContacPersonTitle` VARCHAR(100) NULL,
-  `ContacMiddlename` VARCHAR(100) NULL,
-  `YearEstablished` INT NULL,
-  `Party_BusinessType_Id` BIGINT NOT NULL,
-  `OtherTypeOfBusiness` VARCHAR(555) NULL,
-  `MajorBusinessActivity` VARCHAR(455) NULL,
-  `TermConditionAccepted` BIT NULL,
-  `PartyStatus_PartyStatus_Id` BIGINT NOT NULL,
-  PRIMARY KEY (`Party_Id`),
-  INDEX `fk_Party_PartyType1_idx` (`Party_PartyType_Id` ASC),
-  INDEX `fk_Party_Country1_idx` (`Party_Country_Id` ASC),
-  INDEX `fk_Party_State1_idx` (`Party_State_Id` ASC),
-  INDEX `fk_Party_BusinessType1_idx` (`Party_BusinessType_Id` ASC),
-  INDEX `fk_Party_PartyStatus1_idx` (`PartyStatus_PartyStatus_Id` ASC),
-  CONSTRAINT `fk_Party_PartyType1`
-    FOREIGN KEY (`Party_PartyType_Id`)
-    REFERENCES `geotripe`.`PartyType` (`PartyType_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Party_Country1`
-    FOREIGN KEY (`Party_Country_Id`)
-    REFERENCES `geotripe`.`Country` (`Country_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Party_State1`
-    FOREIGN KEY (`Party_State_Id`)
-    REFERENCES `geotripe`.`State` (`State_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Party_BusinessType1`
-    FOREIGN KEY (`Party_BusinessType_Id`)
-    REFERENCES `geotripe`.`BusinessType` (`BusinessType_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Party_PartyStatus1`
-    FOREIGN KEY (`PartyStatus_PartyStatus_Id`)
-    REFERENCES `geotripe`.`PartyStatus` (`PartyStatus_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-AUTO_INCREMENT = 20161307;
-
-
--- -----------------------------------------------------
--- Table `geotripe`.`Users`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`Users` (
-  `User_Id` BIGINT NOT NULL AUTO_INCREMENT,
-  `Firstname` VARCHAR(200) NOT NULL,
-  `MiddleName` VARCHAR(200) NULL,
-  `LastName` VARCHAR(200) NOT NULL,
-  `WorkPhoneNumber` VARCHAR(45) NULL,
-  `ContactPhoneNumber` VARCHAR(45) NULL,
-  `User_Party_Id` BIGINT NOT NULL,
-  `IsAuthorizedPerson` TINYINT(1) NULL,
-  `Username` VARCHAR(100) NULL,
-  `Email` VARCHAR(100) NULL,
-  `Password` VARCHAR(200) NOT NULL,
-  `token` VARCHAR(200) NULL,
-  `Enabled` TINYINT(1) NULL,
-  `AccountLocked` TINYINT(1) NULL,
-  `AccountExpirationTime` DATETIME NULL,
-  `CredentialsExpirationTime` DATETIME NULL,
-  `DateCreated` DATETIME NULL,
-  `DateModified` DATETIME NULL,
-  PRIMARY KEY (`User_Id`),
-  INDEX `fk_User_Party1_idx` (`User_Party_Id` ASC),
-  CONSTRAINT `fk_User_Party1`
-    FOREIGN KEY (`User_Party_Id`)
-    REFERENCES `geotripe`.`Party` (`Party_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-AUTO_INCREMENT = 20160713;
-
-
--- -----------------------------------------------------
--- Table `geotripe`.`LoginDetail`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`LoginDetail` (
-  `LoginDetail_Id` BIGINT NOT NULL AUTO_INCREMENT,
-  `Username` VARCHAR(200) NOT NULL,
-  `RemoteAddress` VARCHAR(45) NULL,
-  `LoginDate` DATETIME NOT NULL,
-  `LoginSuccessful` BIT NOT NULL,
-  `FailureReason` VARCHAR(500) NULL,
-  `LoginDetail_User_Id` BIGINT NOT NULL,
-  PRIMARY KEY (`LoginDetail_Id`),
-  INDEX `fk_LoginDetail_User1_idx` (`LoginDetail_User_Id` ASC),
-  CONSTRAINT `fk_LoginDetail_User1`
-    FOREIGN KEY (`LoginDetail_User_Id`)
-    REFERENCES `geotripe`.`Users` (`User_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-AUTO_INCREMENT = 11223456;
-
-
--- -----------------------------------------------------
--- Table `geotripe`.`QuoteStatus`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`QuoteStatus` (
-  `QuoteStatus_Id` BIGINT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(200) NULL,
-  `description` VARCHAR(255) NULL,
-  PRIMARY KEY (`QuoteStatus_Id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 235366754;
-
-
--- -----------------------------------------------------
--- Table `geotripe`.`QuoteDirection`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`QuoteDirection` (
-  `QuoteDirection_Id` BIGINT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(200) NULL,
-  `description` VARCHAR(255) NULL,
-  PRIMARY KEY (`QuoteDirection_Id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 9924335
-COMMENT = 'Direction: Buy or sell of the quote';
-
-
--- -----------------------------------------------------
--- Table `geotripe`.`Currency`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`Currency` (
-  `currency_id` BIGINT NOT NULL AUTO_INCREMENT,
-  `code` VARCHAR(200) NULL,
-  `description` VARCHAR(255) NULL,
-  `decimalHTML` VARCHAR(10) NULL,
-  `hexHTML` VARCHAR(10) NULL,
-  `unicode` VARCHAR(10) NULL,
-  PRIMARY KEY (`currency_id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 19123589;
-
-
--- -----------------------------------------------------
--- Table `geotripe`.`PurchaseOrderStatus`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`PurchaseOrderStatus` (
-  `PurchaseOrderStatus_Id` BIGINT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(200) NULL,
-  `description` VARCHAR(255) NULL,
-  PRIMARY KEY (`PurchaseOrderStatus_Id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 25367784;
-
-
--- -----------------------------------------------------
--- Table `geotripe`.`PurchaseOrder`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`PurchaseOrder` (
-  `PurchaseOrder_Id` BIGINT NOT NULL AUTO_INCREMENT,
-  `PurchaseOrder_PurchaseOrderStatus_Id` BIGINT NOT NULL,
-  `EntryDate` DATETIME NULL,
-  `DateOfExcetuion` DATETIME NULL,
-  `PurchasePrice` DECIMAL(19,2) NULL,
-  PRIMARY KEY (`PurchaseOrder_Id`),
-  INDEX `fk_PurchaseOrder_PurchaseOrderStatus1_idx` (`PurchaseOrder_PurchaseOrderStatus_Id` ASC),
-  CONSTRAINT `fk_PurchaseOrder_PurchaseOrderStatus1`
-    FOREIGN KEY (`PurchaseOrder_PurchaseOrderStatus_Id`)
-    REFERENCES `geotripe`.`PurchaseOrderStatus` (`PurchaseOrderStatus_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-AUTO_INCREMENT = 83734667;
-
-
--- -----------------------------------------------------
--- Table `geotripe`.`Product`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`Product` (
-  `product_id` BIGINT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(200) NULL,
-  `description` VARCHAR(255) NULL,
-  `ins_yn` TINYINT(1) NULL,
-  PRIMARY KEY (`product_id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 357535533;
-
-
--- -----------------------------------------------------
--- Table `geotripe`.`Quote`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`Quote` (
-  `quote_Id` BIGINT NOT NULL AUTO_INCREMENT,
-  `subject` VARCHAR(200) NULL,
-  `Party_Party_Id` BIGINT NOT NULL,
-  `Quote_Status_Id` BIGINT NOT NULL,
-  `Quote_QuoteDirection_Id` BIGINT NOT NULL,
-  `QuoteAmount` DECIMAL(19,2) NULL,
-  `Quote_Currency_Id` BIGINT NOT NULL,
-  `EntryDate` DATETIME NULL,
-  `ApproveDate` DATETIME NULL,
-  `Quote_EnteredBy_Id` BIGINT NOT NULL,
-  `BidPrice` DECIMAL(19,2) NULL,
-  `AskPrice` DECIMAL(19,2) NULL,
-  `Quote_PurchaseOrder_Id` BIGINT NULL,
-  `Strike` DECIMAL(19,2) NULL,
-  `Description` VARCHAR(1000) NULL,
-  `Quantity` VARCHAR(45) NULL,
-  `Quote_Product_Id` BIGINT NOT NULL,
-  `ExpiryDate` DATETIME NULL,
-  `Quote_ApprovedBy_Id` BIGINT NULL,
-  `SpecificationAndRequirement` VARCHAR(2000) NULL,
-  PRIMARY KEY (`quote_Id`),
-  INDEX `fk_Quote_QuoteStatus1_idx` (`Quote_Status_Id` ASC),
-  INDEX `fk_Quote_QuoteDirection1_idx` (`Quote_QuoteDirection_Id` ASC),
-  INDEX `fk_Quote_Currency1_idx` (`Quote_Currency_Id` ASC),
-  INDEX `fk_Quote_User1_idx` (`Quote_EnteredBy_Id` ASC),
-  INDEX `fk_Quote_PurchaseOrder1_idx` (`Quote_PurchaseOrder_Id` ASC),
-  INDEX `fk_Quote_Product1_idx` (`Quote_Product_Id` ASC),
-  INDEX `fk_Quote_User2_idx` (`Quote_ApprovedBy_Id` ASC),
-  INDEX `fk_Quote_Party1_idx` (`Party_Party_Id` ASC),
-  CONSTRAINT `fk_Quote_QuoteStatus1`
-    FOREIGN KEY (`Quote_Status_Id`)
-    REFERENCES `geotripe`.`QuoteStatus` (`QuoteStatus_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Quote_QuoteDirection1`
-    FOREIGN KEY (`Quote_QuoteDirection_Id`)
-    REFERENCES `geotripe`.`QuoteDirection` (`QuoteDirection_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Quote_Currency1`
-    FOREIGN KEY (`Quote_Currency_Id`)
-    REFERENCES `geotripe`.`Currency` (`currency_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Quote_User1`
-    FOREIGN KEY (`Quote_EnteredBy_Id`)
-    REFERENCES `geotripe`.`Users` (`User_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Quote_PurchaseOrder1`
-    FOREIGN KEY (`Quote_PurchaseOrder_Id`)
-    REFERENCES `geotripe`.`PurchaseOrder` (`PurchaseOrder_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Quote_Product1`
-    FOREIGN KEY (`Quote_Product_Id`)
-    REFERENCES `geotripe`.`Product` (`product_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Quote_User2`
-    FOREIGN KEY (`Quote_ApprovedBy_Id`)
-    REFERENCES `geotripe`.`Users` (`User_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Quote_Party1`
-    FOREIGN KEY (`Party_Party_Id`)
-    REFERENCES `geotripe`.`Party` (`Party_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-AUTO_INCREMENT = 20160809;
-
-
--- -----------------------------------------------------
--- Table `geotripe`.`Document`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`Document` (
-  `Document_Id` BIGINT NOT NULL AUTO_INCREMENT,
-  `Document_Quote_Id` BIGINT NOT NULL,
-  `DocumentName` VARCHAR(45) NULL,
-  `DocumentMimeType` VARCHAR(45) NULL,
-  `DocumentBlob` BLOB NULL,
-  PRIMARY KEY (`Document_Id`),
-  INDEX `fk_Document_Quote1_idx` (`Document_Quote_Id` ASC),
-  CONSTRAINT `fk_Document_Quote1`
-    FOREIGN KEY (`Document_Quote_Id`)
-    REFERENCES `geotripe`.`Quote` (`quote_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-AUTO_INCREMENT = 24257886;
-
-
--- -----------------------------------------------------
--- Table `geotripe`.`BankAccountDetail`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`BankAccountDetail` (
-  `BankAccountDetail_Id` BIGINT NOT NULL AUTO_INCREMENT,
-  `BankAccountDetail_Party_Id` BIGINT NOT NULL,
-  `BankName` VARCHAR(45) NULL,
-  `BankAccountDetail_Currency_Id` BIGINT NOT NULL,
-  `AccountName` VARCHAR(100) NULL,
-  `AccountReference` VARCHAR(100) NULL,
-  `SWIFTCode` VARCHAR(45) NULL,
-  `IBAN` VARCHAR(45) NULL,
-  `NUBAN` VARCHAR(45) NULL,
-  `BankAccountDetail_Country_Id` BIGINT NOT NULL,
-  `BankAccountDetail_State_Id` BIGINT NOT NULL,
+DROP TABLE IF EXISTS `BankAccountDetail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `BankAccountDetail` (
+  `BankAccountDetail_Id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `BankAccountDetail_Party_Id` bigint(20) NOT NULL,
+  `BankName` varchar(45) DEFAULT NULL,
+  `BankAccountDetail_Currency_Id` bigint(20) NOT NULL,
+  `AccountName` varchar(100) DEFAULT NULL,
+  `AccountReference` varchar(100) DEFAULT NULL,
+  `SWIFTCode` varchar(45) DEFAULT NULL,
+  `IBAN` varchar(45) DEFAULT NULL,
+  `NUBAN` varchar(45) DEFAULT NULL,
+  `BankAccountDetail_Country_Id` bigint(20) NOT NULL,
+  `BankAccountDetail_State_Id` bigint(20) NOT NULL,
   PRIMARY KEY (`BankAccountDetail_Id`),
-  INDEX `fk_BankAccountDetail_Party1_idx` (`BankAccountDetail_Party_Id` ASC),
-  INDEX `fk_BankAccountDetail_Currency1_idx` (`BankAccountDetail_Currency_Id` ASC),
-  INDEX `fk_BankAccountDetail_Country1_idx` (`BankAccountDetail_Country_Id` ASC),
-  INDEX `fk_BankAccountDetail_State1_idx` (`BankAccountDetail_State_Id` ASC),
-  CONSTRAINT `fk_BankAccountDetail_Party1`
-    FOREIGN KEY (`BankAccountDetail_Party_Id`)
-    REFERENCES `geotripe`.`Party` (`Party_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_BankAccountDetail_Currency1`
-    FOREIGN KEY (`BankAccountDetail_Currency_Id`)
-    REFERENCES `geotripe`.`Currency` (`currency_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_BankAccountDetail_Country1`
-    FOREIGN KEY (`BankAccountDetail_Country_Id`)
-    REFERENCES `geotripe`.`Country` (`Country_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_BankAccountDetail_State1`
-    FOREIGN KEY (`BankAccountDetail_State_Id`)
-    REFERENCES `geotripe`.`State` (`State_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-AUTO_INCREMENT = 20081611;
+  KEY `fk_BankAccountDetail_Party1_idx` (`BankAccountDetail_Party_Id`),
+  KEY `fk_BankAccountDetail_Currency1_idx` (`BankAccountDetail_Currency_Id`),
+  KEY `fk_BankAccountDetail_Country1_idx` (`BankAccountDetail_Country_Id`),
+  KEY `fk_BankAccountDetail_State1_idx` (`BankAccountDetail_State_Id`),
+  CONSTRAINT `fk_BankAccountDetail_Country1` FOREIGN KEY (`BankAccountDetail_Country_Id`) REFERENCES `Country` (`Country_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_BankAccountDetail_Currency1` FOREIGN KEY (`BankAccountDetail_Currency_Id`) REFERENCES `Currency` (`currency_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_BankAccountDetail_Party1` FOREIGN KEY (`BankAccountDetail_Party_Id`) REFERENCES `Party` (`Party_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_BankAccountDetail_State1` FOREIGN KEY (`BankAccountDetail_State_Id`) REFERENCES `State` (`State_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `BankAccountDetail`
+--
 
--- -----------------------------------------------------
--- Table `geotripe`.`User_AuthView`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`User_AuthView` (
-  `AuthView_AuthView_Id` INT NOT NULL,
-  `User_User_Id` BIGINT NOT NULL,
-  `ius_yn` TINYINT(1) NULL,
-  INDEX `fk_user_authView_AuthView1_idx` (`AuthView_AuthView_Id` ASC),
-  INDEX `fk_user_authView_User1_idx` (`User_User_Id` ASC),
-  PRIMARY KEY (`AuthView_AuthView_Id`, `User_User_Id`))
-ENGINE = InnoDB;
+LOCK TABLES `BankAccountDetail` WRITE;
+/*!40000 ALTER TABLE `BankAccountDetail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `BankAccountDetail` ENABLE KEYS */;
+UNLOCK TABLES;
 
+--
+-- Table structure for table `BusinessType`
+--
 
--- -----------------------------------------------------
--- Table `geotripe`.`Mail`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`Mail` (
-  `mail_id` INT NOT NULL AUTO_INCREMENT,
-  `mail_to` VARCHAR(45) NULL,
-  `mail_from` VARCHAR(45) NULL,
-  `mail_subj` VARCHAR(45) NULL,
-  `mail_body` TEXT NULL,
-  `create_date` DATETIME NULL,
-  `modified_date` DATETIME NULL,
-  PRIMARY KEY (`mail_id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 45636744;
+DROP TABLE IF EXISTS `BusinessType`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `BusinessType` (
+  `BusinessType_Id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(200) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`BusinessType_Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20310742 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `BusinessType`
+--
 
--- -----------------------------------------------------
--- Table `geotripe`.`logs`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `geotripe`.`logs` (
-  `log_id` BIGINT NOT NULL AUTO_INCREMENT,
-  `users_user_id` BIGINT NOT NULL,
-  `log_table` VARCHAR(45) NULL,
-  `log_table_key` VARCHAR(45) NULL,
-  `log_changes` TEXT NULL,
-  `log_date` DATETIME NULL,
+LOCK TABLES `BusinessType` WRITE;
+/*!40000 ALTER TABLE `BusinessType` DISABLE KEYS */;
+INSERT INTO `BusinessType` VALUES (20310741,'Banking',NULL);
+/*!40000 ALTER TABLE `BusinessType` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Country`
+--
+
+DROP TABLE IF EXISTS `Country`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Country` (
+  `Country_Id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) DEFAULT NULL,
+  `CountryCode` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`Country_Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20160960 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Country`
+--
+
+LOCK TABLES `Country` WRITE;
+/*!40000 ALTER TABLE `Country` DISABLE KEYS */;
+INSERT INTO `Country` VALUES (20160713,'Afghanistan','AFG'),(20160714,'Aland Islands','ALA'),(20160715,'Albania','ALB'),(20160716,'Algeria','DZA'),(20160717,'American Samoa','ASM'),(20160718,'Andorra','AND'),(20160719,'Angola','AGO'),(20160720,'Anguilla','AIA'),(20160721,'Antarctica','ATA'),(20160722,'Antigua and Barbuda','ATG'),(20160723,'Argentina','ARG'),(20160724,'Armenia','ARM'),(20160725,'Aruba','ABW'),(20160726,'Australia','AUS'),(20160727,'Austria','AUT'),(20160728,'Azerbaijan','AZE'),(20160729,'Bahamas','BHS'),(20160730,'Bahrain','BHR'),(20160731,'Bangladesh','BGD'),(20160732,'Barbados','BRB'),(20160733,'Belarus','BLR'),(20160734,'Belgium','BEL'),(20160735,'Belize','BLZ'),(20160736,'Benin','BEN'),(20160737,'Bermuda','BMU'),(20160738,'Bhutan','BTN'),(20160739,'Bolivia','BOL'),(20160740,'Bosnia and Herzegovina','BIH'),(20160741,'Botswana','BWA'),(20160742,'Bouvet Island','BVT'),(20160743,'Brazil','BRA'),(20160744,'British Virgin Islands','VGB'),(20160745,'British Indian Ocean Territory','IOT'),(20160746,'Brunei Darussalam','BRN'),(20160747,'Bulgaria','BGR'),(20160748,'Burkina Faso','BFA'),(20160749,'Burundi','BDI'),(20160750,'Cambodia','KHM'),(20160751,'Cameroon','CMR'),(20160752,'Canada','CAN'),(20160753,'Cape Verde','CPV'),(20160754,'Cayman Islands','CYM'),(20160755,'Central African Republic','CAF'),(20160756,'Chad','TCD'),(20160757,'Chile','CHL'),(20160758,'China','CHN'),(20160759,'Hong Kong, Special Administrative Region of China','HKG'),(20160760,'Macao, Special Administrative Region of China','MAC'),(20160761,'Christmas Island','CXR'),(20160762,'Cocos (Keeling) Islands','CCK'),(20160763,'Colombia','COL'),(20160764,'Comoros','COM'),(20160765,'Congo (Brazzaville)','COG'),(20160766,'Congo, Democratic Republic of the','COD'),(20160767,'Cook Islands','COK'),(20160768,'Costa Rica','CRI'),(20160769,'Cote d\'Ivoire','CIV'),(20160770,'Croatia','HRV'),(20160771,'Cuba','CUB'),(20160772,'Cyprus','CYP'),(20160773,'Czech Republic','CZE'),(20160774,'Denmark','DNK'),(20160775,'Djibouti','DJI'),(20160776,'Dominica','DMA'),(20160777,'Dominican Republic','DOM'),(20160778,'Ecuador','ECU'),(20160779,'Egypt','EGY'),(20160780,'El Salvador','SLV'),(20160781,'Equatorial Guinea','GNQ'),(20160782,'Eritrea','ERI'),(20160783,'Estonia','EST'),(20160784,'Ethiopia','ETH'),(20160785,'Falkland Islands (Malvinas)','FLK'),(20160786,'Faroe Islands','FRO'),(20160787,'Fiji','FJI'),(20160788,'Finland','FIN'),(20160789,'France','FRA'),(20160790,'French Guiana','GUF'),(20160791,'French Polynesia','PYF'),(20160792,'French Southern Territories','ATF'),(20160793,'Gabon','GAB'),(20160794,'Gambia','GMB'),(20160795,'Georgia','GEO'),(20160796,'Germany','DEU'),(20160797,'Ghana','GHA'),(20160798,'Gibraltar','GIB'),(20160799,'Greece','GRC'),(20160800,'Greenland','GRL'),(20160801,'Grenada','GRD'),(20160802,'Guadeloupe','GLP'),(20160803,'Guam','GUM'),(20160804,'Guatemala','GTM'),(20160805,'Guernsey','GGY'),(20160806,'Guinea','GIN'),(20160807,'Guinea-Bissau','GNB'),(20160808,'Guyana','GUY'),(20160809,'Haiti','HTI'),(20160810,'Heard Island and Mcdonald Islands','HMD'),(20160811,'Holy See (Vatican City State)','VAT'),(20160812,'Honduras','HND'),(20160813,'Hungary','HUN'),(20160814,'Iceland','ISL'),(20160815,'India','IND'),(20160816,'Indonesia','IDN'),(20160817,'Iran, Islamic Republic of','IRN'),(20160818,'Iraq','IRQ'),(20160819,'Ireland','IRL'),(20160820,'Isle of Man','IMN'),(20160821,'Israel','ISR'),(20160822,'Italy','ITA'),(20160823,'Jamaica','JAM'),(20160824,'Japan','JPN'),(20160825,'Jersey','JEY'),(20160826,'Jordan','JOR'),(20160827,'Kazakhstan','KAZ'),(20160828,'Kenya','KEN'),(20160829,'Kiribati','KIR'),(20160830,'Korea, Democratic People\'s Republic of','PRK'),(20160831,'Korea, Republic of','KOR'),(20160832,'Kuwait','KWT'),(20160833,'Kyrgyzstan','KGZ'),(20160834,'Lao PDR','LAO'),(20160835,'Latvia','LVA'),(20160836,'Lebanon','LBN'),(20160837,'Lesotho','LSO'),(20160838,'Liberia','LBR'),(20160839,'Libya','LBY'),(20160840,'Liechtenstein','LIE'),(20160841,'Lithuania','LTU'),(20160842,'Luxembourg','LUX'),(20160843,'Macedonia, Republic of','MKD'),(20160844,'Madagascar','MDG'),(20160845,'Malawi','MWI'),(20160846,'Malaysia','MYS'),(20160847,'Maldives','MDV'),(20160848,'Mali','MLI'),(20160849,'Malta','MLT'),(20160850,'Marshall Islands','MHL'),(20160851,'Martinique','MTQ'),(20160852,'Mauritania','MRT'),(20160853,'Mauritius','MUS'),(20160854,'Mayotte','MYT'),(20160855,'Mexico','MEX'),(20160856,'Micronesia, Federated States of','FSM'),(20160857,'Moldova','MDA'),(20160858,'Monaco','MCO'),(20160859,'Mongolia','MNG'),(20160860,'Montenegro','MNE'),(20160861,'Montserrat','MSR'),(20160862,'Morocco','MAR'),(20160863,'Mozambique','MOZ'),(20160864,'Myanmar','MMR'),(20160865,'Namibia','NAM'),(20160866,'Nauru','NRU'),(20160867,'Nepal','NPL'),(20160868,'Netherlands','NLD'),(20160869,'Netherlands Antilles','ANT'),(20160870,'New Caledonia','NCL'),(20160871,'New Zealand','NZL'),(20160872,'Nicaragua','NIC'),(20160873,'Niger','NER'),(20160874,'Nigeria','NGA'),(20160875,'Niue','NIU'),(20160876,'Norfolk Island','NFK'),(20160877,'Northern Mariana Islands','MNP'),(20160878,'Norway','NOR'),(20160879,'Oman','OMN'),(20160880,'Pakistan','PAK'),(20160881,'Palau','PLW'),(20160882,'Palestinian Territory, Occupied','PSE'),(20160883,'Panama','PAN'),(20160884,'Papua New Guinea','PNG'),(20160885,'Paraguay','PRY'),(20160886,'Peru','PER'),(20160887,'Philippines','PHL'),(20160888,'Pitcairn','PCN'),(20160889,'Poland','POL'),(20160890,'Portugal','PRT'),(20160891,'Puerto Rico','PRI'),(20160892,'Qatar','QAT'),(20160893,'Reunion','REU'),(20160894,'Romania','ROU'),(20160895,'Russian Federation','RUS'),(20160896,'Rwanda','RWA'),(20160897,'Saint-Barthelemy','BLM'),(20160898,'Saint Helena','SHN'),(20160899,'Saint Kitts and Nevis','KNA'),(20160900,'Saint Lucia','LCA'),(20160901,'Saint-Martin (French part)','MAF'),(20160902,'Saint Pierre and Miquelon','SPM'),(20160903,'Saint Vincent and Grenadines','VCT'),(20160904,'Samoa','WSM'),(20160905,'San Marino','SMR'),(20160906,'Sao Tome and Principe','STP'),(20160907,'Saudi Arabia','SAU'),(20160908,'Senegal','SEN'),(20160909,'Serbia','SRB'),(20160910,'Seychelles','SYC'),(20160911,'Sierra Leone','SLE'),(20160912,'Singapore','SGP'),(20160913,'Slovakia','SVK'),(20160914,'Slovenia','SVN'),(20160915,'Solomon Islands','SLB'),(20160916,'Somalia','SOM'),(20160917,'South Africa','ZAF'),(20160918,'South Georgia and the South Sandwich Islands','SGS'),(20160919,'South Sudan','SSD'),(20160920,'Spain','ESP'),(20160921,'Sri Lanka','LKA'),(20160922,'Sudan','SDN'),(20160923,'Suriname','SUR'),(20160924,'Svalbard and Jan Mayen Islands','SJM'),(20160925,'Swaziland','SWZ'),(20160926,'Sweden','SWE'),(20160927,'Switzerland','CHE'),(20160928,'Syrian Arab Republic (Syria)','SYR'),(20160929,'Taiwan, Republic of China','TWN'),(20160930,'Tajikistan','TJK'),(20160931,'Tanzania *, United Republic of','TZA'),(20160932,'Thailand','THA'),(20160933,'Timor-Leste','TLS'),(20160934,'Togo','TGO'),(20160935,'Tokelau','TKL'),(20160936,'Tonga','TON'),(20160937,'Trinidad and Tobago','TTO'),(20160938,'Tunisia','TUN'),(20160939,'Turkey','TUR'),(20160940,'Turkmenistan','TKM'),(20160941,'Turks and Caicos Islands','TCA'),(20160942,'Tuvalu','TUV'),(20160943,'Uganda','UGA'),(20160944,'Ukraine','UKR'),(20160945,'United Arab Emirates','ARE'),(20160946,'United Kingdom','GBR'),(20160947,'United States of America','USA'),(20160948,'United States Minor Outlying Islands','UMI'),(20160949,'Uruguay','URY'),(20160950,'Uzbekistan','UZB'),(20160951,'Vanuatu','VUT'),(20160952,'Venezuela (Bolivarian Republic of)','VEN'),(20160953,'Viet Nam','VNM'),(20160954,'Virgin Islands, US','VIR'),(20160955,'Wallis and Futuna Islands','WLF'),(20160956,'Western Sahara','ESH'),(20160957,'Yemen','YEM'),(20160958,'Zambia','ZMB'),(20160959,'Zimbabwe','ZWE');
+/*!40000 ALTER TABLE `Country` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Currency`
+--
+
+DROP TABLE IF EXISTS `Currency`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Currency` (
+  `currency_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `code` varchar(200) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `decimalHTML` varchar(10) DEFAULT NULL,
+  `hexHTML` varchar(10) DEFAULT NULL,
+  `unicode` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`currency_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19923346 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Currency`
+--
+
+LOCK TABLES `Currency` WRITE;
+/*!40000 ALTER TABLE `Currency` DISABLE KEYS */;
+INSERT INTO `Currency` VALUES (19923342,'NGN','Naira','&#8358;','&#x20A6;','U+20A6'),(19923343,'USD','US Dollar','&#36;','&#x0024;','U+0024'),(19923344,'GBP','Pound','&#163;','&#x00A3;','U+00A3'),(19923345,'GHc','Cedi','&#8373;','&#x20B5;','U+20B5');
+/*!40000 ALTER TABLE `Currency` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Document`
+--
+
+DROP TABLE IF EXISTS `Document`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Document` (
+  `doc_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `doc_quote_id` bigint(20) NOT NULL,
+  `docName` varchar(300) DEFAULT NULL,
+  `docMimeType` varchar(300) DEFAULT NULL,
+  `docBlob` blob,
+  `docSize` int(11) DEFAULT NULL,
+  `docCreateDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`doc_id`),
+  KEY `fk_Document_Quote1_idx` (`doc_quote_id`),
+  CONSTRAINT `fk_Document_Quote1` FOREIGN KEY (`doc_quote_id`) REFERENCES `Quote` (`quote_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=24257896 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Document`
+--
+
+LOCK TABLES `Document` WRITE;
+/*!40000 ALTER TABLE `Document` DISABLE KEYS */;
+INSERT INTO `Document` VALUES (24257886,20160857,'ActiveGRC.xlsx','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','PK\0\0\0\0\0!\0O\r2f\0\0 \0\0\0[Content_Types].xml ¢( \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0Ì”ßNÂ0ÆïM|‡¥·†01Æ0¸ğÏ¥’ˆP×3ÖĞµMÏáí=+hŒ!C\"‰Ş¬ÙÚïû~mwÎh²nl¶‚ˆÆ»Bò¾ÈÀ•^7/ÄËì¡w-2$å´²ŞA!6€b2>?Í60cµÃBÔDáFJ,khæ>€ã™ÊÇF¿Æ¹ª\\¨9Èa¿%Kïõ¨õãÑTji)»_óç-	ËEv»]×FB…`M©ˆAe;+÷ê\"Xì®œşF×Û‘å¬LæX›€»„\'>šh4dSéQ5Ì!×V¾ù¸xõ~‘wcîIóUeJĞ¾\\6|9†Jc\r@ÍÓ˜7Ê¸ä§Å(Ó081H»¿d|$ÇğŸp\\şñÿ2=%ÉæÀ m,à‰w»5=”\\«ú™\"wŠ“|õîâà:šF;J„ãOá£ô[u/°D2ĞYüŸ‰ÜüVıĞö;\rzO¶Lıuü\0\0ÿÿ\0PK\0\0\0\0\0!\0P|NÁö\0\0\0L\0\0\0_rels/.rels ¢( \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0Œ’ÏJ1‡ï‚ïæŞÍ¶‚ˆ4Û‹½‰Ô“Ù?ìn&$Óº}{ƒ ¸°Ö“Ì|óÍlwÓ8¨ÅÔ±7°.JPä-»Î7ŞÏ«PIĞ;Ø“3%ØU·7ÛW\ZPrSj»T¦ød 	Z\'ÛÒˆ©à@>¿ÔG”|Œh{lHoÊò^Çß¨fLµwâŞ­AÎ!OşŸÍuİYzb{ÉËÂ=¯ÈdŒ\r‰iĞûwæ¾ÈÂ —]6×»ü½§IĞ¡ ¶ibN)J—sıÑql_òuúª¸$tw½Ğ|õ¥phòÜe%áÛHÏş@õ	\0\0ÿÿ\0PK\0\0\0\0\0!\0¨;ò\0\0Ô\0\0\Z\0xl/_rels/workbook.xml.rels ¢( \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0¼“ÁjÃ0†ïƒ½ƒÑ}q’neŒ:½”A¯[÷\0&QâĞÄ–º-o?“mi\n%»„]’ğÿü–7ÛÏ¶ïè©vVAÅ Ğæ®¨m¥àíğ|÷‚XÛB7Î¢‚	¶ÙíÍæÍá™º#T,)0Ìİ“””l5E®C&¥ó­æPúJv:?ê\ne\ZÇké§\Z]hŠ}¡Àï‹ˆCßç¿µ]YÖ9î\\~jÑòùáü‘\"Qí+dc‹ä0YEäu˜û%a8„„g¡”Ã™Ì1<,É@Ü7áEÇ4¾ë9ûõ¢öF{,^Ù‡u›RLÛs0É’0ã&œã[?Ë1û0é?Ã¤¿ÉÈ‹¿˜}\0\0ÿÿ\0PK\0\0\0\0\0!\0¹‡Œà\0\00\0\0\0\0\0xl/workbook.xmlŒRMoÛ0½ØtOìÈv’±‹.X€aè°®=«2µ$C’kÃşûheI\rì²‹IŠÏë»^Õä\r¬“Fçt6)-L)õ)§?÷“%%Îs]òÚhÈé½+>~XwÆ¾¾óJ@»œVŞ7«(r¢ÅİÔ4 1s4Vq¡=E®±ÀKWxUG,ç‘âRÓÃÊş‡9¥€­­í/$jîQ¾«dãh±>Ê\Z.Ş4ß¸Bİ}MIÍß•ÒC™ÓCÓÁûCJ‰m›Ï­¬1ËÒEü‰FÅ­ËKxëÍÆ(lÂ¹)|‹NNã5ÌáIBçŞBÒ?K]š.§Éçz¾FKºy–¥¯0³ôööä©ò¸‹y6\0¹ğò\rù¾µ¢Q±0K,\Z,Ñ¡ÑÃ|g¸´Á°ôíJ¢ce`£¿·`Ï#0ÙPnÔÉş:	â	^œÙ`‚–-\\-ZkquÌüôş«óÅ\Z-i­Ìé¯EÆ’]¶M&,Û\'“ûlOfó„Mæéeé†±4c¿¯w£úGIa3G?FE—›Á[ôÂé-/§W¬U¿º·¢:lÉ¾æ\'\\hè\Z(høeÑõØ‹?\0\0\0ÿÿ\0PK\0\0\0\0\0!\0é¦%¸‚\0\0S\0\0\0\0\0xl/theme/theme1.xmlìYOoÛ6¿Øw tom\'¶uŠØ±›­MÄn‡i™–XS¢@ÒI}Úã€Ãºa—»í0l+Ğ»tŸ&[‡­úöHJ²ËKÒÖÕ‡D\"|ÿßã#uõÚƒˆ¡C\"$åqÛ«]®zˆÄ>Ó8h{w†ıK’\nÇcÌxLÚŞœHïÚÖûï]Å›*$A°>–›¸í…J%›•ŠôaËË<!1ÌM¸ˆ°‚WTÆİˆUÖªÕf%Â4öPŒ# {{2¡>ACMÒÛÊˆ÷¼ÆJêŸ‰&Mœ;Ö4BÎe—	tˆYÛ>c~4$”‡–\n&Ú^Õü¼ÊÖÕ\nŞL1µbma]ßüÒué‚ñtÍğÁ(gZë×[WvrúÀÔ2®×ëu{µœ`ßM­,EšõşF­“Ñ,€ìã2ínµQ­»øıõ%™[N§ÑJe±D\rÈ>Ö—ğÕf}{ÍÁÅ7–ğõÎv·ÛtğdñÍ%|ÿJ«Ywñ2\ZO—ĞÚ¡ı~J=‡L8Û-…o\0|£šÂ(ˆ†<º4‹	ÕªX‹ğ}.ú\0Ğ@†‘š\'d‚}ˆâ.F‚bÍ\0o\\˜±C¾\\\ZÒ¼ôMTÛû0Áz¯ÿêùSôêù“ã‡ÏştüèÑñÃ--gá.ƒâÂ—ß~öç×£?~óòñåxYÄÿúÃ\'¿üüy92h!Ñ‹/ŸüöìÉ‹¯>ıı»Ç%ğmGEøFD¢[äğt3†q%\'#q¾ÃSgv	é\nà­9fe¸qwW@ñ(^Ÿİwd„b¦h	çaä\0÷8g.J\rpCó*Xx8‹ƒræbVÄ`|XÆ»‹cÇµ½YU3JÇöİ8bî3+˜(¤çø”íîQêØuú‚K>QèELKM2¤#\'‹vi~™—é®vl³wu8+Óz‡ºHHÌJ„æ˜ñ:)•‘âˆ\r~«°LÈÁ\\øE\\O*ğt@G½1‘²lÍmúœ~C½*uû›G.R(:-£ys^Dîği7ÄQR†Ğ8,b?SQŒö¹*ƒïq7Cô;øÇ+İ}—Çİ§‚;4pDZˆ™	íK(ÔNıhüwÅ˜Q¨Æ6Şã¶·\r[SYJì(Á«pÿÁÂ»ƒgñ>X_ŞxŞÕİwu×{ëëîª\\>kµ]X¨½ºy°}±é’£•Mò„26PsFnJÓ\'KØ,Æ}ÔëÌ‘ä‡¦$„Ç´¸;¸@`³	®>¢*„8»æi\"LI%\\ÂÙÎ—ÒÖxèÓ•=6ô™ÁÖ‰ÕÛáu=œ\rr2fË	Ìù3c´®	œ•Ùú•”(¨ı:ÌjZ¨3s«ÑL©s¸å*ƒ—UƒÁÜšĞ… è]ÀÊM8¢kÖp6ÁŒŒµİíœ¹Åxá\"]$C<&©´ŞË>ª\'e±b. vJ|¤Ïy§X­À­¥É¾·³8©È®¾‚]æ½7ñRÁ/é¼=‘,.&\'‹ÑQÛk5Ö\ZòqÒö&p¬…Ç(¯KİøaÀİ¯„\rûS“ÙdùÂ›­L17	jpSaí¾¤°S!Õ–¡\r\r3•†\0‹5\'+ÿZÌzQ\nØH\r)Ö7 ş5)À®kÉdB|UtvaDÛÎ¾¦¥”Ïƒp|„Fl&0¸_‡*è3¦n\'LEĞ/p•¦­m¦Üâœ&]ñËàì8fIˆÓr«S4Ëd7yœË`Ş\nân¥²åÎ¯ŠIùR¥Æÿ3Uô~×ëcínrF:_Û*äP…’ú}ƒ©-pÓTpŸlşr¨ÿÛœ³4LZÃ©OĞ\0	\nû‘\n!ûP–LôB¬–î]–$K	™ˆ*ˆ++öˆ6Ô5°©÷v…ê¦š¤eÀàNÆŸûfĞ(ĞMN1ßœ\Z’ï½6şéÎÇ&3(åÖaÓĞdöÏE,ÙUíz³<Û{‹Šè‰E›UÏ²˜¶‚Všö¯)Â9·Z[±–4^kdÂ—5†Á¼!JàÒé?°ÿQá3ûqBo¨C~\0µÁ·MÂ¢ú’m<.vp“´Á¤IYÓ¦­“¶Z¶Y_p§›ó=al-ÙYü}NcçÍ™ËÎÉÅ‹4vjaÇÖvl¥©Á³\'S†&ÙAÆ8Æ|Õ*~xâ£ûàè¸âŸ1%M0Ág%¡õ˜<€ä·ÍÒ­¿\0\0\0ÿÿ\0PK\0\0\0\0\0!\0ß¾cQ\0\03\0\0\0\0\0xl/worksheets/sheet2.xmlŒ“MoÛ0†ïöİcËNb\'ã¢(V ÅŠukÏŠLÇB-Ë“”/ûï£d8+ÖzˆBQÖCò%U\\UKö`¬Ôİš&£:¡+Ùm×ôÇ÷ÛÉ‚ëxWñVw°¦\'°ô¢üü©8hój\0GĞÙ5mœëWqlEŠÛH÷ĞáI­â·fÛŞ\0¯Â%ÕÆ)cY¬¸ìè@X™0t]K7Zìtn€h¹Ãüm#{;Ò”øNqóºë\'B«ÙJw\nPJ”Xİm;mø¦ÅºÉŒ‹‘6ïğJ\n£­®]„¸xHô}ÍËx#©,*‰xÙ‰zM/\Z—EçYÂÁ¾±‰ã›\'hA8¨°G”xí7Z¿úïĞÅgÃÇ…“{¸†¶Ejíû9È}€øá­=F»\rİz4dÃ-\\ëöEV®Á8Ô|×º¿ÎE´˜¦lš¤óóá7}ørÛ8¼2C±¼f«êtV`³|˜Ğ-†Ã•(éG•æÇ¡¬!Z>‹¦g²ØY§Õ˜G¨`\0„:n¸ãeaôàğ ÉöÜb²BÛg1ÏPáQ^‚\')%è¶èİ—	Ë–E¼Gş2*2P{¾…n¶²³¤…Ú§¡šf¨/ØN÷Á‹\nl´Ã<Ç]ƒs•ESJj­İ¸Áúáèî­ÿdgäšşÊfŒ¥ù4™\\fWl2÷Kšål’çir•_³eÆØïqöjõÏSûïà).b8\nm1<´²PÇÕãı3yĞÎ4võkXg°_÷£º„w1G¿†dãós/ÿ\0\0\0ÿÿ\0PK\0\0\0\0\0!\0ŸÚ\0\0U\0\0\0\0\0xl/worksheets/sheet3.xmlŒ“ËnÛ0E÷ú÷)Ù±lÃrÄ\Z A>’5M$Â\")t-£È¿w$Uio¼‘8|ÎÜ;\\ß¶º&¿ÀyeMFãˆSFÚ\\™2£?<N”ø L.jk £gğôvóùÓúdİÁW\0 ÁøŒV!4+Æ¼¬@Ù®Öi0t%ó‘÷‡tÍÎçLeè@X¹k¶(”„­•G\r&µ˜¿¯TãGš–×à´p‡c3‘V7ˆØ«Z…s¥DËÕSi¬û\Zënã™#».ğZIg½-B„86$zYó’-’6ë\\aìÄA‘Ñ»˜²ÍºçUÁÉÿ7&Ö{kİÂSQŞme{{­wì…‡[¿©<Th*zšC!uø7¹ˆÓ„Oãäæcñ›=}UVÌ°Ô®âU~Ş‚—(õß[ûK·\"Ì %¼W*ãI\rE·%J)q£Ûô³xËŞ†`õUØ	€óhJIamäB}èÿäèTFÏgœ\'é4ÜÍïùä¦û$ó”OÒ4‰ïÓ¾œsş>º£Ûë¬ÑB2h%ô­¸Zq³Öíj÷üJ^l®£r_\rì°Î~üö]Š®ı1MtaL–}<ˆÍ\0\0\0ÿÿ\0PK\0\0\0\0\0!\0ÚÜ÷|\0\0[E\0\0\0\0xl/worksheets/sheet1.xmlŒ}Ù’#7’íû5»ÿ «÷¡ƒlkil’¹0’’ví.ÏÕ¥ênYK*İª\ZõôßÏñp~Œ¬|Ğ‚\0p<\0ÇÂ?ÿûıúËw|üüåçO¿ığ®Z­ß}÷ñ·Ÿ~úù·¿ığîÿüïçÛ¾ûîË×÷¿ıôş—O¿}üáİ¿>~y÷ï?şÏÿñç~úü/ÿøñëwÈá·/?¼ûû×¯¿ÿéûï¿|øûÇ_ßY}úıão@şúéó¯ï¿â?ÿíû/¿şøş§Éè×_¾¯×ëÍ÷¿¾ÿù·wšÃŸ>KŸşú×Ÿ?||üôá?ıøÛWÍäóÇ_ŞEù¿üıçß¿Ì¹ıúá[²ûõıçüçïÿöáÓ¯¿#‹¿üüËÏ_ÿ5eúî»_?üiøÛoŸ>¿ÿË/¨÷UíûsŞÓÿ„ìıùÃçO_>ıõë\nÙ}¯uŞ}¿û9ıøçŸ~F\r¤Ù¿ûüñ¯?¼ûêO×zÛ¾ûşÇ?O-ôşøÏ/Ù\'\rş—OŸş!ÀğÓïÖÈãËÇ_>~ª÷ÿúããşã/¿üğn_5 íÿOÙÊ#Ëïoyæÿ=çÿ<‘tıüİ_Şù¸ÿôËÿûù§¯‡\Z †Ÿ>şõışò5%nWÛ¦^7UİİÀÿõéŸ‡?ÿíï_aÒ¢¤©şôÓ¿?~ù\0¤¤s¥ß}ÿãŸ?úçw »B!/Ò©şTmP›’úH†Íüÿ?®ÿüı(ğÃr¬òØ>Çj=æXã±§k=öœcÇ^rlã±Cõrlë±×Ûyì˜c5ÌÉÔ2£©iÎ¤¶¹8\ZçêÀÔ:ßƒŞÇu™cIÇmİì(ë‡zBà!¦?ß{©y5µÚRı4Úë¸‰¬\"ö^ìíÕºêºšäà,™[_¯®§œ_5çí®[o«Õ¬öŞõŒovúçëú¶ÇFWPÚYó¨šºFYĞ£ı+.Î–ZúšƒujXÇ»8 Bß–äÄ{[Q±š‰÷¦H»bı*)mòš‰×ôT¾éég”à>ñjROÄï¨rËšÀÁWl³¦×¾Z!«j»íV5Uá¨hS•áÓ2<æã=Ï/núz·ê¨s\\rÓšÀ«“BÏp÷%%9ã¹#	=´ÏUÛô»ªZµÔö\nGª5™yÒdjòg”á>Ój¢L¯‰CnY“k\Z|Õº^ûj9o¶U³êH&G«vÓöu»Ú‘üOËğ˜—+­¶M·kûUO_rKVßÕÉc9ñ±/ñ,ÉK<wÏ›~İoW\rµä^Aj¢GM\rk25ö3ŞŸc5ë–+}È-kÒßà«9¶’o6¡¥\nm@o·ª*sà»Iìôm®”DêÙêWCg]œu¾k6©Eß›2ß’œóM\r÷ £¸?~ÜtâÀı\'e¯Pt~\nÂ5™ryFî®&BøºŞ7;ä–\r‰nğõêZjÏWÍyÛnÛÕ¦¾‘º£wõ±M§&—9}zN‹èèÊGŸÕ´ªºMô–gI/½:0õ@Gv_&[’—Èî\'²ë~ÛW5:ÂÜ,Ôv{}Œ:À£¦Ö5™YGIî³nÅÖÛ0ZË-*Ãà+Y×œxëÕ–”~´·nëªïW›n®<=vú¶ÇFWÌä‚\'İœ5|1ªUC{q†ôò«“¥ã^¦÷…š$gÜo(ë‡íÄ}‹n¾­0~¤–İ+?àšX×dfe¸ÏºšH_oú\rYrË†Üßà«Ö±ï|µ²·›5œU?»£lúX»î»¶Ú¬*êw§exÌKØRñÏj‹Á`ƒ¶]SÎgJìêÀäEå»2å’¼Dùn¢¼Z¯kqïäİÜ†¡í£qM¦\\Q„ûŒ«Éäİûì³5õ‘CnÙR‹\r¾f‘qËyİmšnÅs¶£¢ø¤4ë~z]Ñ’Ö¾­ÆMÛ´=†çÄæÅ™R»:0ùGµDpJİ{J_\"È—\\>¤-”©oxìáÂ-Gòåf$œw\rORÎ–çƒ ™#ë–yµ«ÚõªO}e\"æ8£ë–ıŠëszåõIËÉù*ífŠ5Íª\'Q\\œ-E®MÄxâœ)/é‹ÄkP¦A½·Ro*Û¾R¼@¼ÜPOfˆwÑ£$ß©}^Ìh\"1ïl@SÛòl4«bx-i·éw˜•â­DúÛÍª¦¢¬hpÍE|ô…£}6ëm‡ ×j“È›ª}ñ¶T²«G““óÄKªğA¯$}‘x\r	¡µûª¯W˜™ÛŸoü=2Ï€I&9¤GC¢Ô\"( #…œe&\n€_¦†:Hmn½«#‚fu-(ÀÂ_ë¾İô+âíİİfÛn„¦9Id¾ñ¹Ñ—–šíl¹TıVB<o¹xcRãÕ£©£xMHtª¤	I_Ô„F ô->Q˜Ï²/8¢4=H!5E)X) …¶^)ä¶<˜¦•TÅ‚4óãÈõ*ò`.b¯ûfÛöíŠêZ†GyyR)ülÆhÙº^mÚ¹»±Ç½¸\\x¨{õh* €­JôÔ:-{Ú,çL}‡¯$æ¾»yî›„69®ıü\\Á)hQ	š”£¢Ôhr\n7ÔAÖnÍÍıh4«kœíYª®îv2¼âE´ç¶køÉ-Fë?r×§o|n”‚¥b\'·n#«òºß5˜eû²\\¼-ùÁ«G“ßñÚ`WI’icC¹?T\ZÚâ3Š@XÊİ¡h!ŞcvQj‘‡«¢\",&#Äª¡Æ;àUYÓ’ïÍjØuT‡W+i…e’İj›úÖTÃ£¡Û½b³âÒiåå‰uâõ<¿¹ézÌ®iôxñ¶„^=š¼g]\"^%Ö%}‘u…anZµ+jğı´ŒûÇ%ÖÕ.²®éõ<nYW#ñ`ˆ9 ©i{Êy4«auÍÁ¶\Z6RıÑj¸İ!*T­¶Ÿ–áÑ\n~6ãªo‰]İÕŠœÍÕgœhñ¤KÀ«Dº¤/’>‡ °^ê¼¯¥Ú<Zrd\\\'^ñxb-2®FÂx[·Ô“Î–§Sƒ Yõ\nŒ[*Dò(ë£Õ_ÌÉAœ–ÀÑŠLÏf*sOş]¼%•èêÑä9<Õå*Q-é‹Tkğ©nw=F£ÙW×*|è‰tkz ;TEº­ »îx³Ã…HRáµ®AĞ¬Šº-ó]»[UÄËÑ*XwõfS¦ıf[†G_²ä{í[®ÆM‡/9Oë/ÎtKÍuõhêjt	t•H—ôEÒ5…é°÷•E¸üØãÑ’#áú8Õà\'Ò\"áj$ı»©ât/·åƒäœU¯@ø-óUC½éhµÀŠ\rzKj8-¢£«‡§Îfı®vôÖ‹·¤ÈÕ£©LìúNhoJ_\"L¡½-¦X9ÔÁk¿îççˆvK´[:ÓäÚÍhrëm•|ÙÔ_ÎvKm8ºH»eÎ_‹£¥WÛk´÷àôÏRÛPŠÎ–K×…uñ†<óhò%^ì*tùÚÁ0Xñ4>àQÁfÓaË@XÆŞ\\Èù×ÿy¬.t{ËLø_7É;\0M\r»£œA—ù×m7ØrSÍ3WÌêhìt´Blúvİb›œë¤ÂÓ2<úB’ñÙŒ±4¹nVë4ÉOtN/¹ø\\¨„WŞİÕõ*IÁGÃ\nRĞhXS7pÉÛLÛ#×É[xù<Z27Ö“¥WÏR¶[‰*Ğwˆ\nª\r/5œ-•A—U ™c¦ŞdÍ¿ãŒVr´Â®š§EtôE¤&<›-&‰¼åâ\rÉÃ]=š¼£÷\0Ä+Ñ.é‹ß‹mÕXöZ¯*rûZá6ô‰Ü«Eà>‚Eî­“àµÚ^•tÃÛ¥A³*Æ¿•C9Tƒ:Õqëm½Ã?5şiåİ7EsÜğlÆ\rÂf!ppq¦XOõ]ëJpò(v	g•h÷a®Bo×€Òf]#´ÀÓ}­hzéä-9R®SñxjœH¹…´„òº¥W¼-GÕ—9·\Z`pÏÛVÍ\Zqä°ÚzZDG*WrÂSÍ¸*-ã’)õ´+ÁÉ}xÂ%ZU\"ÜG±\n„[œ®±Á6~ñï¥½\"‘sMœç­È¹\Z‰‹GÄ†ºâAÎÜ:Sµ¦®8¼Ì¹æ~\'dcU¼²Y†G*[òÂÆ»½º³!Û0ÂóÕNcO¼¬JÄû@VËj¨5µÁ\'u»­WëµE´©{{®°¢gH”@9h‡Ç3\Z‰ÅËL$Pï¢§w¶<å$ë\\˜xµÜ+¡ÁB¯Ú\r–Xuƒhu=G÷©§o|n”ò$ÅòÂØyÎ¦İµÛÕš4s!cê\rW‚“§ñ²¸Ì«}´« vák¹–İ„Iu6à38V‘³¸Š¨Ma1 g™©\ZøÛ|JdÍKs :ÎYh‘¦]¸\r5ÿÑ^İmdGOáÃo\rP†G*ZòÖæÔ\Z\"«y,}!SÒŞ•àTlÏ»„·JîÀ‡½\n¼kô	{Hw›öÏú\0ïk}®4ğS$\n@Óƒ\0ò0]ü\"¨Ñ$€Ux@!rË\Z^vš;æøM8İr´\ZVØá‚ÍÓ¼°sZ†G*\ZõŸ³Yï\Zìš¢¦½xÓììÌ¤ÿË+1ñpWI\0>V€†ÁÚf‹\r»°ía_+æ€DŞÕ ğGë\"ï·`ötñæÆ^•ñÎGR—y×ÜÌÃçç¿Ô™¦¦>Z•ZìÿhûjÕÍx©O¾ñ¹‘Ê|¶y-V[5qáB¶äì®\'‡ãTÑÜ	NéÙ40ŒğÀ4\0ìÛ\ZzÜ÷3?†UX:«É³ÔÎ/f$Ş\0ñ_êîoË÷AàEUXîp3]ØB}4°ƒfÖ˜3RNËğ(ïN_*>Ir6ë#°ğ¥¹-ÕúJpr4x	ƒÜAãÃcÑà!] ÃÎRİŞPò`–I/Gÿ¤©uéj4}vaàm¹€ƒÀË¤kî8TöP­\ZØÚºAl0P>·L	}¹x\'òÙ²î°\'œv²¤¶½œ¬=ßwÂ|„ø¶H^\r¯˜\'?2¹¨=ìEÑû)WƒĞÏC}–™ös^å:H’\\x;Ç ğ2åZ¤º]‹÷\'¹íİp0]× .ƒSšÓñpúÆçF*-õ óœ\rNˆÄ“€2&6®§ªx-H\0¬Ô÷}`¬ º58*ëÚäyöÂ-(µ éAy,Œì-ªÇ€æZ >:¼¬-ÎC¢+ò¾À£½»©[\\êÃGáô>Ré¨Ï³ùz\rßÊÑÁ\'Ç®Ã@g§C<÷w€¸×\0öµo°Á›;ÙöÓxÀG%-92¯æ#€–™0uW\Z,¤Ép€px™y«D}Ã{{u»©š>Â×ò´ˆT°ä ugÆõvƒm¼>ã™Ò{¯\'Wâ)—8X©»ûøXr\rRX#ş½İ¾tûFñBW ²®éuĞ¢6x±·ë¸?„l@sÖÉ!/³nE•ƒqÛ–½ñìÂ‚|ğùj}©tTµóœ}××Ø\nè[÷B¶ÔøW‚“+ñÜK\0¬Ä½Œ¸·íl›]‡ño\\ém/p¯\07Õ“ÏHÎø£z1#á^n\"ğ-tğ¶<^æ^‹Š™¸íèİG{7N5ô\ræz|ıô>úÒñ*õy6ïv<v|×,|ÂëJy\'—âÉ¿ëkŞŠõáqæXd’?ßê{¡C\"õšeô,ÅH›šÿÅ2êk,ğúB¼-7ß ğ2õVÃfHO:Ïä’önQ]	?½Tºä—ÍãëËqü‰Èc]È–à+Á©Õ<óè*u{\0+t{\r€5-®>K]ûÆÂcŒGK¼ëãw¯J5˜\ZçÅ2Şğ§ê€fšáƒƒÀË¼k‘°µƒ/9Ú‹›¶ÃÔôvZG*©él¶8	Ã!ˆY’ƒ»z8;ÄáÉ–èV‰lõ*­á%h|õ†\rù }£0QğhÉ‘m}<°íBsm5šzyË{uxUÆö†H^fÛ*ˆ½ö8“íU{´z4kLf°›V}ş™œé$ÈÓ7>7Ra)›³eƒ¥ıM¸ÁåB¶ÄÄ•àäOœÚ;±¼)})–‡Ôİïª5vp¯Ú¿õ)X:KÉ93š:~ÜÔE¶$ÊAàE)Ì¹¯q/Ã\n[Eç?ê¬G{á¹f(²=½Rì£Fz?Ïæk,8\"hxIûBÙv¯§JxAÜ‰ñµ>Aà†‚mrò¡¨½áA¨a„¦A,Æùì-÷ámÉuTÇ¸Ö7×¡Çè.Nô\r•C/Pg>-Ã£¼<‰€Ï’œÍºÁ	 nµ£Î~!cRÆ•àT2O½Ä¼\nß„ÖÇÂ\nÔk,á]l;;›÷°/Mó-9ò^öI)RûPy±Ì„÷¶å½ÕoË7·/;«ìâ\rÛøíÕ \0Ä³ñÓ\":RÁ’“ÖAŸ×[ÙÑIîëB¶_	N\ræ9—ØV‰só*p®1¯\n{q«ïùİ·\nVv\r‰´—ãzx|‰v5šº;&dşëpğ¶=9ÄAàeÚ­8škV\ZÁ<?{OËğHEKÎØˆ×7÷8Îa¥™’»z8‹{{Ş%²UâİG¼\n¼kÄ«ÆØGÔNhß–Cz–I/‡ôğøéV™åõ<;x[^q^&]so6Ø°ÁÑ«£Õ›Šú5©í´€T¨ä€n}\'.–Ä9 \"ôB¶ÔâW‚“ñ|KL«Ä·uøÖhU_ãî£¸Ğ±o.Lì\r‰”«Eø¬»˜\\òVS½XfS?ïø>ÂĞL.¼ì<¼L¹i\'×Ï´i˜Ç_Ù£•¢o°Úå[bâ´TJªâÙ¬Û¾ïàNoƒ<Ş¶p¡lÈ©]	NÅËAÂ\\%9øğWA\ZşBà¹Ç (Àöí½ŸQjäàbYÔV/–Ù$‡-OÒ@s9P\Z^–ƒ©ÃEI˜vQ_=ÎïŞÕpıëp¸îô>úÒñôõ<›÷kœÜã Ó…ŒÉ]	NE÷äß	ñµ>\0V _cPğ~¸D\nşs»‡½Œó\n#|\"÷š¸_ŒñÙ[„û¶+ùR‡4Jä<P#|-R‡:…{æwï¶;\\Ğµâ=C§7ğ‘J—|µ}ôå5öÄK\0.dÆ{¾æ©Ëxî%ØUêø>Và^ƒ`-®	À\"&ŸœÙ·\nS¡-92_òáñŒ½Tû¨‘0¿Æ‚›WßÁÛò¨ix¹×[\rp6Ä­\Zm[Õ¶õÏ=-Ã#•,¹dcİª…‹_ÂxêB¶Ôå®Æ´[›xÒ%æU\"İÇÂ\n¤k,ÛªB(rß*^èñ\nDŞ5=•sj‚gä³Ä»\Z	ïØÅG_İƒ³EÔÿÖSÖƒÀË¼[î-öå…m”G«!6ÓÉİêÕú>Ré’G6îÍ¼†C\rÇ†.dL5¿œ:„#¿»á›Òóu·<0MÛklÚÂ.^¾õnoxa/¿!üm{²tfÉì›‘°ÃˆŞƒ³­y<¼È¾åU+‰ñ­SNü\rî\Z\\´‹Ïkj§7ğQŞûÕ|Úälæ¸~>!cò:W‚“[ñôKÜ®Ğ÷;IÏé§ìğ€Ğ˜&*\n·7¸0Á7$ô}Kì»¸‰ğÅŒ„}Ü]ØÏmÃ}]Œó:v|Ã«å.Û´V5u¯ãV¸“=ÿ¶Á—\nqúÆçF)MÒoJ8[6(d¸áõB¦T‚+ÁÉÉx%Ü	ïu>úÕò@x@”Pş©ã\'À€(ƒrxOJqk°Ë2¬ãm\\Î–Ïƒ ™Ò1~ñŸˆWË³[Ü–ZÏ\\À\\û2~2k,ˆíGW¸šw Í¼®{Ä¹±.dLîéJp\Z}yâïÄø:ÿj·Ô0x@ˆÇOğ`®×¬ZzıŞğ÷jÈÕy2ƒàc|s)ô@¶ I75g8\'?‹‡Mô¾Zîrå_àÛ¼›úØq..aî13ãŞÀG)ÈMßØ§é5x6óª­d‹ ¹¢\'W?ÕáJp¢ÑËàNÈ¯ó±Bÿ·ˆXÛcÑ7œtİÃ~\Z\'ø\Z=ZrÔ€>N<>K)níÃ­ûb™IÿÇ=Ùd{p¶5ŸuÎ5€©mäTµıÑ^İà,)¾ƒ<#?-Ã#Tu6ë\n7{¯øëv![rLW‚S¹=ëü*}ÿ}P÷xş:\rŠa5¥opŠ‘J¾78¹œIŠ–Y/Gığøëj4}üã¢³­ùfÕAàœuVÍ«µëjœ— Æ=\ZØv¸z£ŸÔ¸S5OËğ(ïNb¦îz6cÜ!¸	\'gZó-W‚ÓpÉ“.!®é>ôU İÂwøHf“É©ÎûÎÂbñx!‘ôrlg­“ª0½æÅ2Ò1í$^ÎM/ÚAàeÒµHà`ÀMÄíÕ=b›ø´®h£>›1–Ëª/@^œiÍ>æJpê©t	ß•H—ôl¤{º†švãgf¨M÷…Ä|S?Zr$]\'ıŒÇ—H·È—|ãqIÕÁÙâ$­‡³\nv±§kîˆo`ù–ôv´z`³]c·nèéj{]Ñ\"éj\\É±n×‹3Å…8¾VW‚SGğ¤ß‰çu>ÜUèéuZ·2Á»‹öÈ@¾ê…±‘wM\'r¥ ÉRã¿Ø[¤³¯k¾ùÿàlk\r/ó®EÂ}	XºâÜó»qİ-~<)Íz©t48>›¹œ|Ç•7ô¼1ÁW‚S³yòïÄõ:ó*oa\'ízáía-ÌÇ+„\r‰Ô«E ~1ªg™MÔãKèq*ÜdƒµG/So5Äñ+¹Uİ›íİâmJøé\r|¤ÒÑwälæˆ÷ÈÉ|*û…ŒÉÙ]=|ïHÎæNToJOÎ¾ãaÑĞ9]‘{CY®–ÎNêÉÒ™y$gìñ±š³êåfOÎŒ‰»Aàœúp•òœ;Öp°C‡ğ8Ãøm™â§·¥I›<a8›=µÉ…¬È]\\	NÁõøD´\nßø)}‘væÍó[ßä{˜‹(\"íši×tªâ³”\"kú¢½Ø[îÑîíRó¬†‘v«a™Õãüòû´›ı½FªÉöl/ 6¹9ƒ+ÁÉ“xÚï„î6Úâñğ˜ˆ:;“n˜O~4£>Y:ÕïYŠpãœW/f49ù>Èp¶¸Ø—d8£<şÒ©å._oŞòwœ±5â…>-Ã£¼:Õ*±2MQÎfLMqqFØà«s%8õOµ¬J=œY®~ØÌÁ:áÚ¿zobÉ¯LUy4„¿O–N=#9kê/f4uğ6œ¼r¶¸ôØ—q8c»ãm<¯–;¶Xcqœ´rœ_e‚|Z†Gy÷İÚ²ÔgTó>´+ÁÉß{ºïå6³Š=[cVµü4DüM¸=ì¥ã–g	ƒ8K§Z>KARÓÆ­ø’c	”œÛÁÙÖì±3Æ7<}zµ\"ÕØX¦OÇÄ1SÙ5çÕtZDGyó­R¸”ÒŸÍ˜šâBVTÛ+ÁÉixÂ%,Uêß®âîó°±`âU4…yìŞğÂ°İ7?Y:UóÉ©q¢GO1¹Kâ¾åÎ?nâáAàŒq¬˜ø^­HXç‡¨=\Z\nÂp¡$AÎìô>ÊëíÙÑ(sëÅå…¬’ß¬®\'·æi¿‘ÛPÀ*Ò®+\\æƒ¦¸{éçÔ–Ì‘\'K”/FäÌhúˆ‡•‹Ğ¼Q)~2œQ¾áiø«åhÇå)Ô¸Gåh!‚„ÑQŞœ±°±]N^ÈŠ\ZöJpÒ¿gûN(nC‘ªÈ¶Œš\r1„[]ö°¶L¢r=Î1ûdé”ü,¹µMìãú\Z!1X²=8Ûšw‚\rg„ú¸æÂÃæÉ£W–Z0uN­;QvZDG*Wò¿Æ·¾–js!+rHWg§r<ßw¢pŠPE¾5B…ıl¸KR.Îœ~Î\ZcVï÷Èh\ZÇûäÇ9™ÔğdéT×g)Îëú½ñTğàlkŞ‡3œ³ÎkÅ¯V$l£Ú…£,G¥v56šQõOoà£¼=U,0¯£Ö¸8£°“ôJpòky	D•>ç â›\06s€\n×¯ñ›O<ÀÛÛáö¤ÇÙ’—1Ÿ z>#9kêS/f4±Şñ5Rg‹-\n^ƒÀëøÿÀ«åŞã§›ëÂ/[,§vÕt5˜F¥ÿsc-?7ºâòpòlo£ö¹8#(ñU¸œÚÏé ¿›ÒSØ\"şì˜z6éÇçñ#öç‹±·çb<Ş€0·tªí3’Ô`F¢Ì›S]\'zp¶5/hgjˆ?{7çŞL¿gEZ9\ZŠü•üT&Ï&Noà£¼şæğSñ¾ÏfŸ•’Í^¤äógÀÃÙ&/‚;Ñ¹ŞÇ®\n\"°8[ƒŸÁ­!¾ä{˜—Æx–‰×Çñy|-|ò-3!½‘¦6©@jÚp¦JàeâµHØZ€,s´W7P>¾ğî³Ó2<RÑÒğ[¿úfû§0Ú ğB¶ÔîW‚“d<é¥*|z½*>o,«6¨{ÜR„öBW ¯éxË¢>ıbo™ü?õyé¤ñäªc¡Çk‘0˜ÃÑ*¾‹ıhïÆd¯îğûÇ¼0}z©tTµ³™÷8+€“ŠÔ¥/dL’¿œDëÉ— U‰|Ì*o;äğsX¤àOÕ¾W¸p¬ÎH~1HõŒÇ±×«‘_ø¹[gËİvt¹Ókæ82-­|Pô8×Ç¦ñĞìRNËğèŠVs4ğlÖÎÑ`ÎLª½xcÖü•à4ñÌKğªÄ¼jµü}è5d¦w‡øî¶7¬µ3„cO–NıöÉK´§¨ì~ò…88Ûšwàç¼sôìÕŠ„{*¶|ÂÑ°İº„ÑQ^|óEÜcÎf‹ò®ÃÆ‹3Åñ5_ã+Á÷½¯JŒû VË-öĞk\\	»@¶¸ƒ@û×ï\r/8z5Œ}½¨zF>Y‘7|±·H_Ç-\rôÜ6\\¡4HÖ9é|öõõ–»\\øÎKŞGCq)†Øß>/C¦¾¥üo|n”âÜ¤€ŸÄõ\rz¶l 1œY\n~ßÛ¿ïáÔN¾÷KT«¤í*haçá*	üòsÊ~j€}_çYrB1†õŒÇSóD§¯F“°Í·İÁÙâãäáAàe!hîXşÁ7WgsÓ?S§šjz´*á‡²zD³jˆÓ2<ºRâ`‚/åÙ¬\'†\"u\\È–\ZàJp\Z3zÜ‰ğõ>úU€†¡ª-¶ÛÁ+ÚÃ^}¥/€\"LØ“YP<KAn]$j@3\rnÆ÷¶|ÊuxYsî¸‘=ÍÑÊ[áNd«	\'ª–áÑ-Üé6kOÇ’ùÙÙ’\"¯\'kO¼ºJ=ßÀ\nÄ[¯ÇşÎ¸÷tß+\\\"^‘H|1¬õŒŒ–ˆW£©ó÷!´ëlñ‹%¾[\r/o¹ã0İŠoÖ?Z\r1”ÿã¥£Ó2<RÑÈmŸÍ\ZGµ ¹Dİäk.dK¾æJpryø;‘¾ŞÇÀ\nÄkğ\nûV·›n¨æÉñì‘‘t}8ßìD¨Aèù‹ñ>Ël\0®ğó¯:Hen^#„ş— EjñKõøy_pç—ã¹œ¥›³No=0R©\rÏf¿i¶=Æ!|-ß…¬“oŸtr%8ùf\'„íPß”…úx˜ù€„`X:l/ç_Ø\\ğ\0†ğLåÉÒY\0HN$×oF\"\0ÄÙ¨/œ-ÎÃx}/\nÀrÇ×X¢¦NzœA\\¥‡ó®¼«ì´òîL›ÔKÎ³µœÓ\rá=²%Çv%8•Û/a®‚ëßúğ.vö­ö€&âREËƒ{ãèß€Èz9¾\'¥¸5Od]„uìHœ„p¶¸©ßqØ±N|µ¢âŠÿ5ÆrTÃãŒ®›­ìÅbüô>Êëo5Ã™_º³™cÿ~i;İÅóÙ°+ÁÉŸxæïÄø¶ã‹Ìkü­ù~n†Ü#QF|\"ùšº|§‹ä«Ñäóqc¼o¿ƒT\"5oíQ»m _s¯àóe\\só“w=Z]q!;× ĞKøé\r|¤rR5Îfeò£{ä.dLu¸œ¬½îDû¶>Vp\0\n«pb	k}¼÷mîÈ@(M2XŒöÙ[&Ï¿ãüA*‘É€\\ä@u,È@‹„\ri¸8mIúœ\\•ŠËdÒ1u½É\'¬´o=7R¹Éµ-9^3$š“ã»œ<—…DÄJßŠ”ñïÃVãp¶æï»åŞÀ‚k°\0\"5Ø“M¸°ÑúbF“&°øîËp\0ši‚7\rgß…¸Ïrßá—®ã¥:âw\"JğiåİI®<–8›55Æ…¬È]	Njñ|K0¬Ä·¤§`ùÖ¸¶ËŸoëıVÁßw¢€f@ù<#95LüXğEÂÁ$RÃÁÙ6¼ga8«`oÍ½İ\0\nÅV`œ»(â§7ğ‘J—œôä0ÎfNíq!+ªò•àä><åwâ}[\n‡EÊ5†	âÒ¼)fói`è¥ğ8\'SYŸ,jø,…¸uæôÅŒ¤‡cšêg#¿Ü¶á0Ü YgŒw|ØåÕrÇ˜›·\rBÕ±uc	§Et”÷Şª„ÕQß@g3¦†¸x«ìèÔT×+ÁÉzªïDö¶õŠTß¢^;¹İys¡º4»S$LïÍ‚*ù,å¸5Md{.„ôoöŠgÛğô|8c»Ğ¿-wLß¹‚G+.®_èø§ŞOØHeJ>×zµ¾’ZáBVa<—7~áF†§úN,oKq®HµÅ¹z•k£’”¦Bï‘Áñœ‘kM§Z>KA¸¶RÈœ.LÚÎ—[İš`*â@u,p­¹ã‡-¤s-G«!.ã¨eÃßÆwz©tä–ÎfNíq!«0\\Ë›+·*{Ö%ˆUú|Sp+²®Á-¹–\0cÉ¤)ãÜB_qoîV‘Hº¦S%Ÿñøéj4¹s|GoUœ\nqp¶á—;¸æ¶ËPæG«î­ÀšıŠWİNËğHE£.s6kjŒY…[ŞVM¶šâßİ‰ØMéiÀÏIãéûŒ†;9±–D:İÛ$ÄGK«õ–N•|Fòãf$ŒK)ˆqgÛtä3ÆãnlË]nÍÇôw_g¸’ß»Â¯Øñ¾àÓ[ŒR‚›kxñû<ÛwˆÙâ:ò3²&I^	Nôxş%~Uèñ;Šk1½x@øŸÆë¾İ÷‘Œ-™¯Ëy²ôÀ|Ú\nó[fpğØ\'ãKp\0š7,ip8g¾¥^çÜ±9\'yÊÉ\rB½q7£§Et”÷ŞøæPâÙl©.Î(\\\0rõpÖ­<Íw¢t;¥‹ó2<p—fnù¶4‹H³>NÕ{–¤6!¿Ü2“Øl¡;[œñ%^¦Y‹T òh/¾Gó­U\n¶£+V¤¹ØgÔğŒáJpòæ;Q¸ÂhÖÈÓt¡oÅ=l\'Gï“-9Ò¬šóZìÍj$~½™¾d)ıM\"Ø íK2påbo¶\Zôáª®£ÕõÆg›ërZDGW¬Hs±.ÎGy|]®§îài–àRÉiû nèòÙ?ì4>†ÍØîsÛ\\˜ˆÆi–NïyFrb,²öØÉá5_Æƒ³m¸Ï»NM½şÕŠ„(6¥4ï=7@wî½9Í¶›\"<RÑè«q6ëZ–Ù²yÕôæÙÒgåêá{‡©vwÂkSz6Z‹Äkô	{špB6\\Õ¼‡ıäå=–Y×Çë‹á5ËLú8ÎG¤áˆÎ¥©‡3T/³ná5ùÕ_Ş£´W7»MUa‘Èi©häÎf=í¨ãÌÙ’Ö¯§‚ùî.‘¦Rw÷¨Bw·Ú¦Ç‹¸¡jgûÑâ´ÌH¼ZâóTìîj$ÄW9ğªœxrˆƒÀËÄ[å€¯p­XT—ß‡ãwŸ–á‘ŠF¾älÖÈYS¾-ÉıJpò$x	:•ˆ÷Á¨ñ\ZÂtT–~s3Åc@}§@$¾jzÆã‰¼H¼\Z	ñøašTGëñ¹->zß3HÖËÄ[îíç\'øÇ.Vl¶èq><Ÿx]ÍpKš/İÙÌ‘;öÒğıÓêJpr(ü;¸ÀÈ×èfÄ8.6úìa/¾¾ô‘W$’¯éÔÏR›Ëä«ÑÔëÃ8çàl^p¨ø1ßş¯V‰ªÁ/Ïò²üq±W%ğ†—Ó2<Ê»oÕjxIÿ<[OgSuö‘÷¶äÌ®”ur(x‰D•z½Pˆ×U¿Å/üB}lö;…g‰Ä«E >,EâÕHˆÇÑVr|¼*o]‚—{½æsÁrÓ4ù”£U—›U¸YÃ§ex¤²Qæg³®ZÙ§°Mäõ¾bäÎ®>ïlÓ‚£ûËÜ+°4Â“\'¦1.½Áqa¾ dÃÃÇ\nüÏ\0@Ò‹A³Ù$ü¨ï»o¶Ù¾(‚ù½üú G¦3Š‹zq¾*0uz§÷\'ÀgVÎ³}µÆvİğSg6§nxeüÎ İç|ô*ú1)ôö­pÇ¦ş¡Ïx& 	}¼+¡éA(á\"[Ô7^æüDXn¡AäÖ¸NÖ‚ğ5Ÿƒùe¬8ğ=Xsàgcœ\ZrX‚¡_8ªÔ æ¸÷!mØ‘§Æ†.|FÔ- §V\"q\'”zï,éBCOL·Ølçé·<k.,¾Uò\n¤QŒk=OÅºõ¦‚¯P3‘.€¦Fƒ4òğ`Ø!\niøJ—¤aÆ]¶«›,ç?ê—‰>Ø¯±v„ß; ¢¡“EBÉ‹Š;‰¼Š!µ—œÖ+ïBŞœú$äáñÔR$;!@ì-|S…Ãïh6„AŠS÷„·Ğô‚$Š10H\"è$aå€$ÖÛ)ğÖ-ß?IøŠ–$¡/hpô=,«@özü]]8Œñäµkùt ùãGr$•AŞš\Z2ğx²\'Ü	â€ã›2ĞY¿iğ“,ØŒº¶“^5x {0Æf¨ 	µ¡ÎI,FçüÄKà86•^\"·ny7$á+]’„ñCŒğ“\'öç{1Ôa•ÆF]ÕÄé<{Ü9ÜÅ·=½øÂ\'¿?53ô¢Õ˜Ğ!ŠÓ\" oÏ#OÂ³ƒM¤˜;±Åjíco¥ïŠß0ÕŞÊ*”¢ÄxÃŒ„R1N¥Yúœ¨Ù$ü.™gBÉÃŒ˜$xBñu-	E_€©$°’oY‡Âí·Öãæ\n„AË@¾ˆÉÏÏrĞD…/ˆqf¶§ÏˆÏ?Õ€ä ·Â,{§œix³úƒ<!ÃO;Êì›ZP´¤³ãhËÓl½F<,|H4CC‡ßjñ%rë–—ï!_SÜÔásxË…Uª¤–†æv(âÂ\"%äåã¹.ü‚šÃ?ã,÷;4ì/1:)\"Ï§åf‚\"<Ú‰!¹¢\"|¨®å…X(Bcuè-~)’»%4¡8¹6Œ,4½àˆ‚ÈƒŠ\\SÌCÔL!¿Ûéé„ rk\\ÂçqÂWDø\' }¾\n›¸É÷†â7/:üP,~USÿR‹OŒA–ÍB\"¾Ääx¡Íg+qş„šÂpÖá\0ã©½H‘,\nC€,hÁK·†F	§ßPÅÜ­µĞJŞBfÎB¨<8WĞ†š‰6ª–¯t6rküŞ¢gÚğuíx7´¡/ˆ4~¾:5æüåPë–øitÿhb‡|ÉA\njßÖr¿|Ğ‚7\'\'\'áñ¤%Ò‚ğŠZğ‘½¶ â6×ñË-õ\nx	} ¤E\nZP j!Ö´`E?±æİĞBn†£Ğ‚¯kIú‚¦G´Ë±³#+—së5~Ğ;‹ùğdaE½ó\0táK­\n]hø>î Kò Ğ…7\'YBOö^Õ½Àæ,ú<!Ã	l2Dğ¯¡ìèÕÑ†ï/szÔ„MHIF–f&ş?t˜ê9ußƒ¼.Y·á<Ğ„g¾° 	{®<Ñã\\›Í\'Eq>ú&ê§§o}pä“?:ÏáªC¾ªèÂ¶ä¯Œ\'_D¢¸^ÉYT,‹B£nm,¸ÇŠf„P…âÉMM4Aš^P…QyT.z\nËoRÅ&Ûd;«\"·Æ©>/ÒAŠ“W´¤\n«vnÄûçê´Ør‚P7ûT¨A­ïà/5D ö˜xbµÅ*ğÆÄTàñäyHÂ+ª@€ehH\rC,ğ‡ßƒ\n/¬uÎPAj…Çß\nB°¢ÈğaÇ!l¸‡Üº\r‡‰&<«kIö‚-~n–‡\'ğ†â3!Sâ\nBXÄ!_>ro‚Úã¼Qæ÷P‚³§‹O¥#%Hä®¨–•0Ç7Xí‡NpW÷„¦T @TA~+¨`.ŞûäÖ˜zîÀ×³¤}†óô%†æwod·zjãÉAK0à‹–\\öd¨9‚c|Tô{[òrpO^†è—(]‘~¾3³ŒØ\'~§ã£FÏ¸Èaú£V€GĞãM23Rq<ãiF¢òÀ[AsÜN¢¬0h!·ÆÏx-øJÇŸø™Ë…ˆÎ¦Ç–C–a%À\'²—	ÀºéŸ´ñmB%¾ĞÉ¥Ï*ÑŒ0Bj1×ÏF¶şŒÏˆÄÉx<õ$’ŒÄëŠ’ñ¼–=2$cq4RaÎ;¸ } 0İ0$[ÅŸª¥¨ITJs+(EÍj|;ºøã@’k\ZZÆ_šğÌ;ÆŸšË…k«ğ{0€Næ¦Ø¡¨/u`ècùè\"/bˆÃ{híz³ÆÂ#ijğæÔk¡\'¿Ij€]Q\rdß‚\Z4˜†ÄªyøÂA†‡†”\nÔ @TCo+¨AÍD\r8YDm¿‘[·<äÄ7Ä×µ¤}~Ê+Ä5Ä (MvˆSğ©#ha‡|ù(HAíwk¸i>?%xëô©˜z”àñÔ:¤‰Ô•àCx%¿ !3¬·îp,\0û\'æïÂ 	}[\n¨”„BI(%‘Gâ\n’P³ÉA`ãº/	$‘[‡•!	_é’$ìëí¶Âı[Ô!\nÅñ©Yã‰K‰õóÊ-¨ãÛ„L|™é\0™X‰p¬#ºv3Ïxé“ÅøŒÒ—bVŒÃïÂİ«÷#@î;¨ùñ%ÑÈÚ1eú\r«¡PŠ>€Åä¨…\nJQ *%Ã”¢f¢¨1 ”Üšû>„âëŠ›Ç½Ô^çª ÊJ_A(ú~\\jŸµÀâñ|Ï)\'!”o{BÉ‹Ö Í_Î-öx‡klØ>};f}øüSAÉ£HL¯èQHúˆg«0ÔÉÂÊ6”¢ÜöDÑ•¨11ÖP \n$È¢f“@Z¾dÉ­C\nñµgãçrÕr}-BG©=§ö†+™[c³[7²\ZDŒ@\Zo<MøRR¯‚&Šm_áíHİøºx<ù\Z¯…ú^0sµ€\'¦µÑj‹Í±˜ÉogÇæ;Ú‹§Óƒ%ŸaÇŸf› 	)ÖBdÓòI4ØıäKr\\“uØ½7LxŞøŠë×¹\\¸Í»rÙ)g=u‹kÑ?ÌiĞWèô­S‘nÆ·ÃWé<gD\ru!»ì–ù\nßÙ)%Ò‡DõJ¾¢ ÓÇiğ‹\0:‘E„>ÄZæEB_èC,Ld\r	¿R;›P­Ÿ%==Æ\\$È³êkGn½Ñ¾ ‡¯ó†yX?óƒ}g^€>¬Mğ[õ-ö{ñõĞÅòĞƒ/#ù$èA3 –¼u+ã©mH•õ À²4î†½‘¸Xã®y0J’†ôALò=7„jw¡&”=äÑ¼‚ÔLÜ>gô:è!·ny%ô@uæ/ô`un*üÖ™ ƒ1ÄÀ|3”yhè+Y|Ûƒ‡/rrûS·‡<4#j(ÈÃÛÑòğxâŒä!Q¿¢»`Y\Z•kÜV…e#¨Âğ‚*,G•‚* t¨\"âT¡f¢\n8	jB¨\"·ny‡TAU-¨B_€}3PSCŠâÚDY]çSÃĞÂ\"	øòÑ§P{jHÀÛ‘÷ƒ<<I@‚}E	$®µÁCCnqãxÏ¹7PÇ„ôÁÂùŸâF‡Ô†ª\r1äá¹‚ÔLÄ€Û—È\ZbpÖ¼Gbğ•îXNpúühHá¯gXåRq^uƒÔú1äåÃ–FïX µGˆ£y^tƒ&¼9Mx<BIz•5!À²&4ÜÖá:A¹×€z¤`x!taPA\njCdB\nyl® 5S)ğxRÈ­q7ºojHÁ×µ$}Ü…_W¹Õøç¯¤`-QÆ!_>jIHAí1rÄ·Š\"A\nŞ<}æ¥Ã³(\0IAbzE÷ À²4Ü†K^{l]±˜¡} æ6¤ 5‰RÈƒs)XQdà€öòTC\n¹uX0|]KRĞtğºˆáR¿Ã7ÂŞßï¶;üØ_é\n1,?\05ø\"’·‡\Z4ƒ-‚§8sLb\Z¼yúÌjğxò;¤	çÕ À²\Z,<\'×Ìc·U\0bP¼´`nPA\rjÕŞ\nj°\0ß¤†ÿfìÌ’ãÖa(º£”{îşÍô2\'û_Í;@¸DËöGRÕ—Iñ¤ êD¡![/aZh¨uíhˆº²µºÎ]€…9læÈ~ûr#@aW‡„Z<¢v\'¶6×i€P­ÅëÑCT}‚$ X¸®¡Æñ8O§>lŒ\Z\"jÆ+¶œUGÙà	:·¦\Z¸a´àŠdF‘Cl\r	nf]ıµøHHÈÖËFtP+Ë§ÎZYFá.\"Rúe¢B\'^8Ø [ãëÀ°Ÿ\0\ZruŞ00¸ıíúÂI¿k„²Xóáº\ZòÕ‰¡¼êBƒ…æZ\ZLHnaÙ†se=*õ c+pá\\oİ‚K[hcpÀcl\rnf0œ^T†l}ÑE–ÀPëÚ,àˆº9W“\r€æß|È6o^¦°3wu3Tìê@Q‹*Ş*ÜŞ©”¸ˆj=û‚ÑWT}vvŠÓ³På&L(øğùŠÕ–ÃGn¿CáŸzªúi¨İÛDªÓù2lğ¯öû^\0*®·ù‡fG±n–q˜ğ¿êÉ-?F¹¸çĞ¯#¤Ÿ¯òKŸà×[	~K…´?Ã^îËßjvÑÓ?Õçc+X®s§\Zš[Î»„Œ‘ÓãNOö\"EOĞt¡4´Á6(ÈÁ6}òÿ9/tZ•ÇoÕú¢ı¾é…©\nx¹8t¾Ù\Z\nÆ­`\\³ß)ì\'€‚RAÉ\nÚûÙŒ#jÍ¡ èO×÷,îÖR`BöR2(ˆ@\Z_ı˜Û±8+(ğ®4´15(È1³†7Û|Ár¸!dkög®÷\n\nj]›ÏWQ¶ê&Î¤oÎPàù3¥/%ì®ãgÕ²}`Í	\ZŞ—*j‘eğí‹j\'İXT}ºwqxk±0a‰±ZƒIIl¶7úRá<<á\ZÌı<¤†6à9 Öğáfx­Ú*ğ‘­/ë’?ÓS¥;><¦‡Ø¦¼ú9@\\¿œo¼Ââ1G<Nn\n€¼/!€Ô2/¯\Zq!©+€T;ñ˜\0RõY@Ä‚q- &L@–M²ğ\'‹¹˜R@°ˆ0Úr\"\0X¸tÒW\'Æ®ÈÅà\"Õ\Z.ÜlãbÙ„.²5°*7øZW6©)è=<ƒ9Ï7ÖåJÀˆ3E;E0Ş—0J¡uù#.Ä“ÓÅ–S\'!¤^@|„T}º&!Äbt-!&LB–yâá³¯É„íÏc«]+§«·Pü÷õõ#„•“qk8ñë\'ø÷YãmL\'Ùú¢“à¤Ö¸yıˆr™ÃZş˜FÅÓ?ÇëG$ä¨™“$<É¸u­µ¨r}èˆ;jc^á2ªñ|»ˆ·Ñgá„Ùµd˜°O†‡ÒØV“¿ÚêĞàbûòáR„r-Gº5@¸™q¸ª;ˆl½ÌıˆZÑˆQ`Ûdt¡ü/:ÄŞ^¶sˆÈğ°\'ƒC-èôö[‹‚ƒ›3šdmôğP­…<EÑS¿+<XĞ®åÁ„ÄƒÆñPc_W»¨+\r.¬<äØ[Ãƒ›¹ƒX¿gPÌù*K¸’µ¢Í\n¨¨ÊÆ:İùd\r·àù³ÉI›\0ö@B-¢ø8HğÜ‰{°àT@…j.‚BÕ§ß,j×¢PÃyË4Pğp\ZÛ¯´(D°mıäv\r\nn²¢oÚ¼‘F9¬¯xhX×­/ºo(ÔŠv(x¡e£´!òçÔÈ.(ì\'\0…ZD\rü¬N¹±şo6åÆ\"(Tsñ\Z PõYAÁbv-\n&ì{…ˆÁ9õa£›pµó\n®4(¸°¢Ãm\r\nn¶y…eGPÈÖ¬Â©…ZÑ…È€ÓoÍ§­¨)3NÚ àöÏ€B)¢.á…(ÀõÎ¬õC§˜‹ß…zùét*\nçgáÊMH(¬+8Há»ÎÜîøF¶pª7ùÓ!44„²¾„†°ĞÀïÓË¯4„™Ñpbk-È7+È´^Îû¾é	ûfºşÈ€Ù.Ä dtösÔ”Ì-`Ãñsî)× E\\ç­„¿µÈâ	şŒOl8Íı}¤¦ãø¿z!)ú?Õç½Nˆyµ.ãlBâDg}<Â892‘æY¦À‰\'è8qeõ\Za²r’Cs\r\'Që@,œdëE‡“ZW6u¬Wø1ªr¾o‡VÉÍ†“q+ßàà_GŸr_ïM\'µÈr!8ñ™üÌë¨ÀQ­ÅMGÑÓg,Ã‚|]r6!Á¡GDíøHÀAôæiıÑ$°™~JIÈûj—šî ÄÍ¶®…kãL²õEk$µÎÌà­W\0ÏàÄëî‘ˆ–Üu(qWr¿Ùæë|ª·RÀE-¥”.<r`†Û}ï†Œj¿:EŸşIÈ°ğ^K†	™y”!ÃÃuìçø î§{€ˆp^½»ŸÇï\rn CË58¸Ù†Ãò1²õ2\0‡ZÑæ}tTä…õ»ê=!n›\n³~O§¸à)vu@¨å›ş=^CÃşÆ:Lvk­7ªµxLDÕçÃ\"X4¯ÅÀ„}<¦Æ™İ»ÇÙÕ®ëp¥ÁÀ…ƒ{k0p³\rƒ£Æ+Á [×–¦§ŠvxWjºa	.ói¼M\0û	 !q9|—à ˆÎv¹º:ŠyZÖ·\nUŸ(	\n°kQ¨‘¼e¡-Áhç[n0&æŒÿ›Îg+\n®ÁvT¸ÒPáÂJEË5T¸™QA“JÙšı#ëã…s¨ufıIMA_1\n|¿³İÌÚU¸Ì•_?>h_û	 \"qIö|ˆgöÿ²8*²ù²a#TT}ö#B…EíZ*L˜b	øAEÄÑ€‚Pgƒ…ë¥›ğßu¹õ—!¬$äˆ[C‚_ÏH 8!n²õE£m õÔW#H¬Ç-\r\'W\'êC@Ü€U£ñk©„_\\‚ÛÊ½ Õ«Ô–V¯úì6¤Õ-6×¶º	³ÕÏúäĞê#èÖw®vÀ•Æ¸ Uet£kM³»™5»Å«+e4{¶f÷ëªÓìµ¢ËD³GUÚà#İ‚ËÏ£“o$€ZDq10à90‰¾‹ÂB±_—ğ‰>} °`Á¹–öYQ7¶\\á°Œué\"¨¶LºÄ¸ÔààÂŠC°i{ÿ7®·áp\\gV’İ|óXæM‚C­k‡CÔ•\rO?èæıĞ*_D/‡éMğ»:,Ôò‰3…·?=ØLwi„„j-¹ãª>½`±¹–„\Z´[ãx…º=ØŠÉ$õi—»Y•!5 ¸Í\nB¯5 DôÎ„¤jIğÅZ§…B­*µ©WÀ/DG{9\Zñ&œ¡T\Z&<!ÛœÚd\\İA&vu˜ÈEåø­Z˜p{B_\'vØ­*LTëÙŒQcÕ§ƒ¬L\\…)7az‡‹¾+d†ó~bóß-Vv‹Zz£>„İ¤™¸ÆJGÒ:_íZóA_é³ÍM°UU½ißª5[ãWıû¦\'—xÕI1?F]l(Ï{~Eı9t¾2ğ-ƒEl1’Öâ¿Ş›ğ÷V¦×à]‚ög\\HîÔ_µ›İC\0Rîä%M@,4×9‹	û€xˆlû¤t¸/^0<A3š¥áÂM¤¶p‘j\rnæ\\hP.²õe9ÄmÓS];.\"¨àã÷â+¢>l$ÉÂpÂBOWú¾3!XÔ\"KŸ\0í‹j\'~åŸêÓ+	Œk±(]ã7<Bv½ÜXÎ¢§ËEéê³ùyüŞ á+9ÒÖ áf†#x±‰l‡¯ÅÁUÔzvHDE4Mü6o O\">ÃâHõnà&j P‹8]üö„ƒ€ÛJÕ@ Ú‰¢§R°\0\\‹€	ûÁckl–Nl³%„B ğgp¥ÁÀ©-!GÒ\ZÜÌ0¸°h¦63dë‹æ\nµ®Gô4Ë³h|—	3\\|¹Ğ8%ì\'\0ƒZDñ=`àªAµ“¡T}zÁÀp-&ìcà±Çüm3ëÍ‡×»ÉQ!iƒ|6R[0ÈQ´ÏÊ0`ãY¹‡`P¬uFÔºvxæmÒ\\ZfGÕJDÜ¾tá9tª<ìêà‹zÑ¯ËààörƒÀ¡ÚMÇ?ÆUŸQp°È[‹ƒ	û8xH	ÉœögëWV·à)ºİ¥..5@¸ õˆ@k€p³Í/,ß#\"[_ôë@ÔÚv@Œ¬¾ËÚ{8pÉ›,òe°f!á°PK)¬Á‚_Aî\r,d»e¿V\\CÕg&,Xì­eÁ„}\"¸öÂy4GÛÈoL¨­>ÂJçÇpÁ_Ã!Há!‡Ö\ZüzÎƒî&ÙšÕ‘µ˜ğ 5Öù¼YDÙn–-pÕÁCè|ì?±¾i9®ŞHµ”âòáÁ¯ ÷ªİì\n†o¨ú|n…Êµ<H´®4z°Œ¤Ø	‚›Ç¶Rxğ„+ş{šĞ¹•Ã©3<äğ[Ãƒ›m<\\›7ŠlÍZÜ…©±®áÁ3`İ#3c¤>àà2gIğ)ıÂ3&ÜJNPñ¾„ÀQ‹<üNú…äFGµ“’â,ª>Àa!ºöÅˆ¾±,ƒ,}ı\nO°®rÁODäMª.Èïp‘ƒm\rQ–m<©´á\'²u³lÇô\\Ù†Ï€y6œr².ñŒb_8<ûÀw›•‡(à“p‹¸~¸Šä¾€A6ã¨ŞJ<TıiŸaºö1ğ€YÿAûâ¢PMûûïÍ¸Á©íŸkMû»™ù…—æsv±n>g›jÙ<ƒëãÊ6YÓÓn)nÁU¶§ît¼Á®Nã—ÚÉ³LáærShül¶¸C\Z¿ê³ã©>àú,\Z¹	©ñõÿÈ«ÛdÇ.{É®ğ}\Zjó>vé-7ú…äR_íR{È0‹~a:»íªßª5s³jA¿ozníY~¼V·Ïn cQŞC¿Iü	ÙQÍ“%:’ç¯÷&ü½î5¹z†şı­fWı˜ÿOõé±\"W­g¸šàĞ%ÕÀáÁ0–[ßÙj/WWo?œxÂW\ZNÚ@œä@Ûê\'\"§“e9œdk¶¾ª…“ZgÎ÷­)àÄËÅ›Cœ–ãÔ„pâ	ùºÎÆR¬“˜÷c>öÀE-ìâ5âò(Fµ“‡0Š–\nŠëºŒ«	û`xˆŒØu±8¸,^öóø½¡\r¹C©50¸Ù\'ÆÕ†l}Õ÷€¡Ö³ƒ!*reÑ»~=…\0WÏWÖ®\'§À®Nû×òÉËÏŸa¿¶µ›½Âí_õé¸¤ı-×¶¿	ûíï±±3_K8y™æ s®4´ñ6Èñ´†7s‡°Îƒ+ÖË°\0j];¢*WæÖ²ÜûÕ#İàà	9\ZòÆrÖeµ-<ì\'\0ˆ\\Õåä€ğ¬@T;ñi\0Qõù k0!1‘Ú£§ğèXÌ€«\"4¸:óİ¬ğşû:ˆA*\n9˜Ö°à×ÛX`ÍC-ş [_u3,Ôj.´Ğ9x|‹²åPòàA€Ë\'Ş1º°Ÿ\0r›¡‚ÛKÍè²ÙU_Ÿ\0 êÏ^\"®}k0! ˆ@„åüÃm½ó\0!·ú;\0„•<K_† €Ak\0ˆëY¸ø¡«¬\0 Xë»\0H5×ó£À,w]\'©Óş¯7¡M@ûï\' ıK	åÁ¸½ÜÚ?›±«i½Ï´Õ\'¸â\0,ÚÖ¶¿	¹ı¥ÁhÏ§›8Z?lµT´¾ÿŞtm<ÖÏñ²¦õİl{ü—O´~¶fÖr-­_+Ù=şQÛ\"Mî1ïâù|¾w™¦ß“iøZ8¹¿´¼›¯-_ídJËW}>·ÒòWk[Ş„ı–÷øÖ}/ÚWÈ¥ä´~ØäNñì·3Z?ÄšÖw³­õ¯/³¢[_Cëgë«.£¡õ¥¢k¤9Êu|°	½å®îE\'SABT™¡Q$­¨Ã)à!·éÚ{„#ÈflŒ^3‡¢§E‚ƒ…ÓZLØÇÁãdöù£Şç!çB&^Áv¥BÒ~4ÜFX$kĞˆØ—“»A#[_Ï³wÜĞ\r©´Î*c\\àœ	òÑEÕ×Ò8S‹ad°3ñ–`¼/!|Ô2ËC„¿ğÉj\'\0ªO\')€X¼­Ä„HqŠPÚ™éÉ¬¾”>.\\ˆ¿ğß›Áb\\Š<k p³Í_,{\0E¶fm}’€¢Vôª£A ˆŠ°ø…\n$\\ee=Ëê–Ew°«@._ã Ü|mÿlvÕMŠhÿªO7ZÛÿö,â¸	»íOŠm™ö•sî©¹Æb?\"AóîÊŠ@RÛ¯v©½ c˜|;õ­ZÓJŠ€]=±Ş œÉ¼,\'—ÿ5=ÜW{YÓúõV‚ßµˆ+‘¿Ü—¿ÕìªŸÈÿ‰ştíÍ¢iØ„IA33š|—dÇ]íCÀõnjtH\rn#µ…‚[A\\Ï(`f•xR(ÈÖ×u}­é‰‚fjtdÀ•˜ã(”Á¸7v-oÁ¾µ|Rş?ãúÄj>hİ¡\Z/İèÏºƒ›EÒZLØ!‚d¬ã4,]0‚«ßçñ{C¬ä¨˜Ş‰ÿÆõ6\nšá£Õğ5†O(¨ç»™çŠvDELdÕõCP0ng7³ë4`W‡‚Z>¡\nÜíÅÁ@5.“àª>í¥K°HZË€	ûx\\ëÄÎ«/ë¾ı0àºÜtğßÚ@ Â\ZÜÌ ¢+÷O­™vº0P+Ú1àœ9ZôƒÆ£aÀU><±‡Òâ)``W‡R>”	nÿàÃ†Œq ÚŠUŸ^F °Z	ûxl‹u!8Y6Û ¸ÒpĞÆËà ÇÃ\ZÜÌ8`H?^¼Jë«N•ÂÔºvx\'´Å8\"³y•Œ:³M9{sPóyßã…á@‘«ÊX³B^”ûÕü:¡,ªµ<`QõÙf‚…ÖZ,LØÇÂC^6°ät#İá*\\o\n.5X´a4°Èa²73,˜£ ~÷­yÓ«w\Z,j];,FŒ‹×ÅtQÓÃ/É§Ézy¼ƒ÷2äÒ]u¾4¸9[Ÿ.”A5]Àè\"ª>=£``¶ö1ğøK¦^˜¿£ŒÀÀu¹+tş{Ã@Pƒ0kp3c€¨êä}¸†l}ÕÅ§0P+Ú1à°sW…1ºWO,,åyÕÙ@°«CA-Ÿ¸y(pûÇc=\nª±ø\"œAÕç X¤­¥À„}\n\"Æw=ÎÍ.ä·«ÕGü÷‚6Œ9LÖ@Å°qãÖš [_5µÓ\nìòù·ò%¹ìÜiqîà°\'CC-¨<<Ğàæ6¯¶Öª©<°Põi/,Xh­eÁ„}\"æÆ`Ÿ¥]<‚ëR)`ğßÚ0äXƒ›™G`Êˆ¸F`ÈÖpZo$0ÔŠv0DE,†°®œŒêœ9ë›¬€€[?Ña –O`†·gCàëòvÅZ—ƒAÕ§¿,˜Öb`Â>\';^ï8­ÛmóÈ`àúŠÿŞ`ĞFÎÀ GÆ\ZÜÌ0`Ò½¼}‚A¶¾¦e£[1Á V´Ã *r\"¨®Ÿ7è\\eÖ\Z,ó[Á`WƒZ¾é»·òÛÓ+–h\rTkñC`PõÙƒû³¨â&ìb@\n‹\'İÏœí¶lğ‰#(=ÜTŸ¾Ïã÷•‚0vüj3°Rf|	¬Ù}«ÖW]ñ}Óî\r3ƒ¥‘ÚÜùÇû¥<\n¿öåßZ81ÿ3Ì™\n¥ßÆşª­x¹ªO/#\0X,­ó÷\ZdkŠ¤0\0s±’XWš@DÙj‹\0€ÿŞ\0àÂ\n@˜5\0¸ÙÀM›\0\0²õUİ\0Ôzv\0DEØpJû<\0pñÌgœÃ²E\0ìÉ\0P7uø€0ç3]~\0ÕvŠ>ı‹\0`a´\0’ĞÚÇÃİ#\\œüsfp¨÷B_^€À¥VrH¬ÀÍ6X¨[™‚lÍ9ŒU‚Z×f×•(0±:eyP¡ jÊì<;¬gzÛ­Á`W‡ƒZ>±Ç¸ı6óuùh\nÕ|\ZŠ>‹/(X4­EÁ„„‚Â\nè²±9oÊº\\ïb!5(¸ÍŠBŒ5(DQlXpÒø\n(dëëºÒôT×ÎD\'\"I\Z…P_ÎG&pë|\0PØÕA¡–OP·gÖ–U!sCÕéª>ı€`á´öAğàÖíÎTˆ»˜\0.w¥Cj8p©ƒ	k8p3s	lä;İßöHÂA¶¾­ë MOUí8ğˆL]»­â£>ÌHÁi,ŞÜü‰µ€R@ˆúéx4¸	ÕZ<$T}z!Á\"h-	&L–“òp	ZëW9…Ú„–Ci8ğ®äPXÃA”ÃŞO:ù²õMW¡Ñ5HEu$öcT”c/K˜0nC«ƒÁ®µ|Ów!‚ÛßºMêÁ Z‹Ã\0ƒªOo#X­ÅÀ„}<¾õ|z7HˆĞØtS[¿î.¬$äpXC‚›™G8¼\\åª­9¸»:OHº6$xÏ	®²–òÉ aW‡„Z>)?Áíy>-±lH¨Öëp±êÓİ	IkI0aŸm±3\'G/ûĞ7„Ş‘àRã\\¶¢oÈÁ°†7ÛHxèU!![ßÖµo¦çº6$x7¶ú “Dğ	®²\"š QÕ±Âazá1n|_BØ¨%–Á†_ˆ-™ô2Ö×åˆÀ¤^hJV}º#ÁÄbl-&&ìcá/å„²ezœx‚®ëpE‡áÂŠI–5˜¸™aÒ-‘åª32Ñ,‘5=×µÁÄ38±ô²¼ãÃ‰Ë4\n;?_Ö óØO\0¹ˆ7%.ü,§ccÀéı7ü€¡Z‹NïQô´üC`°H[ƒ	†‰ÓVDã(\\vtlÆ“®w,¸Ò°àÂÊB˜5,¸Ùæ2î:ŞÂedë›Î4 óªê‹Ãˆ(ğ‘Ãºq%(¸Êê/VÓ.Õ…„]jùÄı‚Ûóõ·=Èªùì¶v‚„ªÏáf%áñ,Ü¸	™Aı#ï•[´)¾Ü×¾ùÓPõôÙÏC8éâ/CY8°¢¼Î;Z9ˆrv\nk-È7»ê´æÖªßô„<OvMñc”ËöË¸®ûmÿ|ÕG‚×#Dê…~½7áï­L³Æ2Fü3®cIÒyˆü·Z3¯²ãŸêó4,×9‰G\rĞõƒÆĞùg»Z\0Øp¹›ö’FÃmV8rĞ­ÃÍT±l­»çÂF­i…ŠbÙˆ	64ÎãN<Io¤€†\\È›F~ú,¾ˆĞm»à¡Ú/FÕÓM,$×òPcud†1[æëI\0ázŒ\n©Âm¤I¿ÚµæóŞ\0E1oÁ©hD¶¾é	\'QëÚØêGµ‡‡POìÂÏnÓ-Çør_‡…Z>ñv°à×g[\0vƒ––†„j½t\Z¢ÏÒ		‘kI0av\ZÍñ–q~¾o¹c¤]$<a·óoHÚxø·Y‘ÈA¶	7Û|Är´<Hdë›Æ/A¢VºCÂ38Ğ?é\"\nˆp‘/Û5Ì9eOîâ}	a$X»¥±…@Ëª Éæ7ƒH÷Qõ§İ‡…ëZHL˜0w¡¶=İGÒô¦Óé_-\\iÀpa#ÇÜ\Z0¢Öy0!µ0²5£ÀªF­(g­ÕŒ,<ƒşèJĞˆüŸmùFP¨E‡\0Q\0¶±]N2„bVÊÅSôyƒÄ]XÀ®%Á„}<–ÆwÎ+gÍØÌb+n\"‚m\r®40¸°Â#o\rnf^âĞLŒ¦ ³Û¹é~`¨uí`0qhyÉ—q\"W6åÑúâvuP¨”‡Âşn›C	© P­EÇ)T}²‹Øµ(˜°BÓ8jÉŞˆôÕ<Áò*†_p¥AÁ……zkPp³\r…e[uüB¶æ,·úÔƒB­k‡BdÀ7~ÖQô à2ìÙÍ‘¹(ây`a?0Ô\"N¾=VÀ0jÈ„ë×`]µäõB¢ÃEÕ§.,~×raÂ>H»œîL	åÜ…z»áÂt\\¸ÒpáÂÊEµ5\\¸™qÁØR¬á\"[³T¼.j];.\"Ş5Ø{aŞÌ­ÕàÂe<ºã]§û	à¢QÈƒ‹(À…¼:uªµ´0T}º Á¢t-&ìÃá;¾.ÇÃƒB×êÇAøï\r.HSñ’‘ãl\rnf ğŠ.íÙšoTµ8€PëÙà°2ƒ·b®òBÈ»Ø²vu(¨å›Î|x‡°¿ò#•‚j,Şª>]@`á¹ö!ğÈÙ‰~”-JÖyPˆÌÕÛş{C+9ÆÖPàfFèÏŠnw\n²õMWu@A­hGgpz0ÅE‡ŸP*Ë4ˆOê«(ìêPPË\'\r/{3Ñ}„  ë:,(¨út4…öè)paK±­®µ@=ÎJŠÿièMÌaHCPì÷9ø[@fÂ…>•»oÕú¦î|ßôDü\nÂÈ€Ù5l/}ğÏW•£ƒù|£§_oè¿·ü_£‘7]ÔógÚ3V˜\r¹QşW¥òÿTŸ¾F@°H\\ã˜ßô†;°«>9¯u™\n®· ¸Ô€àÂ\nBµ5 DQ¬_àğ„lïª: Ôºv Dgû+ÈÂköö½WD„]jù¤ü€0ì×Íƒ¡\Z¥€PõYxÁp-™[Â\nD`Ã#°’å\Zî…O°‡Ò€à&+9ÒÖ€àfæKË@	­oËªMÃ#DÛñ{\Z„—9P‚Í•9•NJ\0\nû	`¡Q{Xˆ<˜Š¥]00TkÉªşd¤ÈAYÏ`0a¿{ˆ(ØÑn!R;³Ø0x‚W\Z\\XaÈ³7Û`àèúÔC¶¾é«9^¡Öµó\n‘Áétb¤40¸LGy~p˜\nóã¯–(Ş—8j‘¥JÀza;I«Gµ7UŸnH<……ßZOQãrk\0’õÎî)89âÎàAÇfÀá	:8\\iàpa…#Ù\Z8ÜÌà`Vñ¬«\"­ iä¡£à¨uíàˆh‹µw—¬ò³C°m]Åö\'ÇûG.òMWƒG\\èÎô~É6ªñì%¶ûEO‹±„\r‹Æµl˜‡îÊò‘7.gƒ¯ş,!Öy á:³7êãóùU¾A~ÿj¿§Æ•çà¿afhÉ_ÑÈÖ˜V‹\ZRUØıpœ,Ñ=(4Æx°—gîH—û	@¡QºPğpÄÓõƒ\\ª±8pP¨úy\n\nkQ0a’„ã\\•ef9(¸Ş,]Ò#Xpae!Ò\Z7áf››X÷}´«N’nú™\Z¤®\rQÎ!\\ö«Wmc7^u~$ìê€PË\'¨‚ÛóşÂÖrÒÒP­åI€„ªO’„‹¿µ$˜°OBÄÅ®/§ÇË‘nAP†O±îq®4(¸°¢Ãh\r\nQÜÂ‰uõ±g8‘­oM!•mPğXo\"´§†(À•ãNFÚàğF\n€(¥ÔX*@øl[~Æ:û$ª½8?¨úl.AÂ\"q-&ì#áA2vÂ~\\d~`Cdÿ«\rpR¹uepá¿ëæp¸V.rd­á\"\n´u\n(\\dkve©ÅÄEHµã¦»ğN|3f\n½\\DØ\nîş8s2ñÓqæHx<½Üov‚W;æ€’\\æ›²%~¡ûÃâåGy€¤šK•¤ê³CH,P×BbÂ„dÁF1ĞÜ*Xo9d¸Ú¬Í’>|Àá6+9àÖÀáfÖ¼pÓkI€#[³@¦êÀQkºÎå:°18Sˆ%Ø7¢O€ËØO\0µˆÒ	ÀÂ¨¡+y(_ÿj] ¢^HŠ\nUŸCĞJÅáYèrv© Åºäd.;zX¦sÃ?ÑZ[Ân€Ò\nH ü>‡+ a¶r^6ş±’Lk\n\\oê÷MOBHdÀ:(b˜ó¦nÎğç¨)+›·É¶Òº¿ŞĞkù¤?ø3ìO~ôA·´ù«Ö³·ˆ·©ıt4‚„Åï:Gq0a	­ùN(õæ‚‹Ó?E¿7¸´ÒW»ĞlÅ†ßÃIA«ÅøV­×Ù÷›jÙ1µ¼±7œ~½„P·é0‹»:äÚİu6¸=‡í2‹RjÕZnö?Õ§‹ˆlõ˜°Ï@ÄôßŸq¢ç±-à°‰N„Òá&+9×E¢Û (O%DdëæµÃôTçÏà|·u2ë\"êc{Jßpë<½ş\'N6¢ o$’\\ä»n2$~¡;ÛZÜôµ™ÏüöğÁK½”^ª>y^,º×úöy‰(Û4²-î·&®ÉŸÇï\r$n°B’r\r$Qƒäº~ş¢Óéğ¦ººZÑÏ€gš5;£:G¥Ìáç)#QÎ7ÂH-ñÚ™ø…8º)î+ÕZ^À¨ú´0,²×‚aÂ>aóQu½ß`áj7ê©!Ãm¤íèPr8®!ÃÍ6ê<ªŒûÈÖw*@F­iGFÔôÉ¨3êCömÜFØ?I\0\nµˆò,á.F\rß\ZuÊ…f÷1†5£éj…\nêµT˜°O…ÛXĞÄÄOvR“\"\0†\'èºW\Z.\\X¹È±9møÿFNÛ[	…‹l}×ÎpQëÚqæ;éº%#\r—ù4Ä»´>SŞáã}	á¤yzû­yáÄ/Äø–ñ¬áˆ7^òÓ­”¥~ƒ“ªOß$œXÀ¯åÄ„}N<ÇÃ8Ÿ×j©œx‚W\ZN\\X9É‘»†7Û8aqêÂI¶¾ë1pRëÚqâ0¸`ÇŸé‰·{\r&®ûğÒ¼,×ı`QK(9€…_àÁÑ“§ec7`¨æ‚\']IÕçƒ$0XÈ¯…Á„	TÖ[ü‘¹EÛèéÌLO¶H\\}†ë3çíÖ1Æğß5°÷e’=IØ5$øõŒ¢rñÙš¹µ\Z ÕrıåbÆİ²ï, Œ»À”|D“ËÃÁ®µxÓ¹ïw‹Oõ/r+ \Z¯ÍªÏÇU °ø^	ûDà=áy\näæã\\®h0à¿ë½†Vr<®aÀÍŒ[hVÛ²õ=-sÛŠRO-xÍ·.pCÑÎ/,ªş[¿ÂÂûE-¯Ü>|CT·Ù‹Nm×1f½öl2aÂÂz-&d&$ƒ‡ÛxSµ‡ºŠ(\\oG™.éı‡V.rD®áÂÍœ}±‡‹l}_ÎDÛô\\W,Q`NÎd/‡Êd¸z»°úk\rk\0Ä®µ|r}8ˆê1£ìƒô\08‡j,‰¢êÓóTÏ‚™›0A8ë—˜ìÅ¹õ|aCFİ ëÓ…îÏ¯¿ëkë—¡,XQ^§)®Œrà.gı˜ıÍ®:­ù®U[ñû¦\'\n–c~Œr1Sb™ğôsˆÇ#ÃeÍİ¯}ù÷–ù¬š”íÏ°¾8]\0zMï¿y½õÒ÷´ÆK\0°eç	&$\0t~\0xXÍ\\â2€ ı]m‹¡¬n „€¡k\0ğœÌ\r\\®ë\'®š\0ĞÃª\0 V”\r:*\"\0½ŸmZ“È 0î{34	€`?ä\"êk„ı•±³¸jñşVk¢ìU‡„|õ{úh+$XÌ®%Á„L‚x*Hˆ “~ù«ùC‚«	®4$¸ —új—šmÙåØ\\î‰+ÈÖl¦Z\n	µ¢œÕQS@‚gp~áuAñˆ8éÔk˜ˆ’#éô¿Ûã	û	`\"¶aÂí·½–©0‘­ïºY/LT}VT˜°]Ë„	™	ñ]G•±¦’!›½kØ.<E³[ÄÖ÷É°YÁÈ±µŒˆ\0\Z‡ôlÙú¾,ìÛôT[¶#_ÀˆNÄ\"«ãn\\9Y9Ú¬tô¿š.Ş—>j™0œF\\ˆ —~˜…j/%†ªÏ\Z!ªk	©1¼³Ş‰\ZºìØ¨™ÃÖ*ğáz÷4¤†·YùÈQ¶†Íã-“mmøÈÖÌ”¬:£Öµã#2¸Úº.¹>t„Ê*¦,ëÎˆ@±«ÃB-ŸŒ¹`Áí!=Òd¨	Õzí?ª>û!Á‚s-	&d_!åƒ’n×ûo-3AÁt]ˆ+\r	.H[Ñ…ä8šŞŒÿFNG<…-3«-\r	Ùú¾¬ğÛôT×&ò4ªòr¼0gL;Pˆ[Álã¥°°Ÿ\0j§kß+`ğğÉæa³/E‡j/À1T}Â,8X®ÅÁ„}<8ÆÌäÛ…Aõn8×[Çq5AŒ—Vr$­ÁÁÍ6˜çµà­ïÚš8†Z×Ï€İÀXø[/!2„c\rÀÀÂ®\nµxR|PˆÚñà}8Í†Ün3 kÆUŸ¥,×‚`Â>»\\l\nÌdÀmxÉ?2Ç?DÂuCË!5ÂmV\"rX­!ÂÍŒö+6qÙú¾®ù3=Uº#Â3¸ñÕóƒ<|e¢µ,m»:DÔâIñ!ÂímıÁ¹Ï QÍE‰ªOß\"HXD®E¢†êš‰uG®g‚àx\0)(x‚®«p¥!Á…•„LkHp3#áÂ)bõá…„lÍtÙªãj];<†Ïi“¶‚—9÷œ]^ÖsS€a?4Ô\"\nMĞà`ï$ú*}‰€†j.}4T}º¡PUOƒ	ÓA¬;_\"ã8ÕúF®·=…K\r\r.¬4äˆZCCÅüçşÖÖ††l}×OZĞ uÕWJŞ=#ƒ{ÓÖÀ*û¯ŸÏô“,ìê PË7ù5¸=;o/K®¡\Z¯#ÈªO’+§gÁÈM˜ 0i¨ŞŞÌ\'Ş‚‘ñyµªŸ†Úø„°[)AÚñ«]j/f›O¸êlÇoÕšÙ^µ ß7=¯›éÿUyœ£*ìÏ¡òÀvú¯7ôß[ş;ñÈ¨İ…ÉVŒËÄ£ı­ÖwõˆÿTŸö‚äºŞá$‘:}Q”qÀõvåsÍ#FÂDxÂfº!5H¸ÍŠD¯­!²2$xë—&‰l}×İ$@B*­W\0‰‰\\ğò$PÄM±õ\nìpË@¥(Ğñ¾„`RË,ÿÏ¸S\'qzGà¤šÏ~aó5pRô§kıN®k91aº‹¦ßÀÔ&b_^Wû¸\"%\0Ğ›ñdH\rn³â‘Cmz3şY,0\0Ùš]Ì!umğğr]9šcÙC8Æ`º\rŒä»:(ÔòÉƒ\nnÏjxæãLÇ¯b-:$Ô«ÏÒ‰Ç VÕ“`B&AZ\Za2¦¡²³“}ç“$À0’Ô{ÿùUĞ#M¾ee!Õ\Z<§¶ü¨ùÁB¶f}TÕqµ¶$ZSà*<æùßø˜Ğ|Îz­ëã…ÓTlÉŸ”\"Æíx–(jA§£ÁÄ(Æã`gD‹Â?TsÑ¡¢êÓı•kıƒ	ûTDÀì…U	“,a ğ]ğ:¤õ«F+9ÀÖPÑ?<‚\'TdëûºîÏô\\[b@EdğBømİ>1î=Ç™u|[Üş/Ğx_B\0)eÖ;…×ˆqª; I•¤šK9\0¤êa„HVˆ	&v}Š(Üãxf(¤KÀÃuyDqş{Ó{¸°²‘£m\rnfƒÅyr£`#[3Õ¬ú<F­h¸Ÿ™w3÷XC0@â%9=\\š/áû:HÔ¢NW?|F\\ÿÂ÷ulQ­å¾CDÕ§G\",^×º2r«éH\"ÇzìËÅ|uö‡Ûşê=\rOØz—\Z:\\XéÈ!¸†73:øD/·:²õi ozª4Ïb­Ã38ª¥ë$Ÿø›OÜÖzĞá	—ï-,Õ²â;ŞH!¹¸ËH\Z§1jûà\0¨e—$©ö³ÛØÊ#UŸ-,ŒX¯eÄ„ÄˆÖ`Ä£kÇÇ‘Üe™W\n {Qu¥AÃi\Z^Ts(No7ÃÎ(\nh0kF¬A#[óUÇQëÊ\\°š4<>vÎË\'-€pùôBäÆV\0Éû	À!qı@>ì!îØìES¬:òÕ¾VO`° ^ƒ	û0Dt.¢Ú¯l4‚‚Ë­›p©aÁi-XÈ¸†737Á¤|y.`![?tâ#,Ôªv,x\'zæŠ¥›9¼ƒëPiS@Ã)À!—²Á!êÈÌÎãmdüÕû—È×áˆÍªFÕ\'·†ÅóZ0L˜`,ûÒã%F¨—Íö/Øªhû“†O(ãcş{Ã‡+9>×ğ2>Nú¨ÀG¶~hP>j9 ŞS|…gÀ70{ĞEÈ8‹(À™õn6›A‹o¤€ZJ¹iô~Âğì¥¥³Á¢šK[€EÕŸuçg!ÎM˜X,Çh~d&Ñ³8Ğ¹±fAÆ¼Ÿ†Ü…ºÃrå!i¯v­½ g˜mş‚yÑµ5¿UëÇ:¬°«ç\'`p0ç—\r©éÏQÓÃùzf×İöì×úo-Ÿ\\ÿÏ«=Qü…´¿j=;†E”{÷H›Vÿp¶°^ç6aÓY/`R\0@py:¦­`ŸÇï\rn°RÃpúÈı7®çèì.(ÈÖ¼èWJ¾oúx¹Îö:æÃëŸ\0‘-™íÌhyËˆ] jQåÎDØ³a\'R¿–CwË€z!)è?Õ§6,¦×²Qƒ}g\râ$<ÜÆ2rÛQ\n\0«ş{Ã†+90×°áfÆÆ‰¡TÍ6²5“’ªµÍDÌQ:±Ïœq%ï¬:…\Zöd`¨e›|{Œ€ÁÍÙ?_ïí_l×5|¢OÏ#íoq¼¶ıMÈ¾AP¥ı#8ÇœKûd»:‡\0.[}Á€KZ«/CXÈa¸†¿1\0òüÃ@¶~èK¨uå˜JÉQ.æ°`_®ãN0ş\'†$Ö`°«ÃA-Ÿ88öÌèÓƒP­¥tx‚ªÏv,v×’`B&Ar€„¡§õîá\nF¬nİÏ0$\rËA‚Û¬$äx[CBpò¼BB¶&ŞZK\n	µ®Íı(×Õ^%™âÈšMÿ“FŠqSfÒš\\¼•4rÕ{A†_b/NñÛƒ©7’|‡Næ’ªÏ\'X¯…Ä„	Ióªqö šEÉ^ò¬ãÎMÏ´y=hñ„İÛhH\r-n³Ò’cq\r-nf~ƒ\rÅƒAK¶fŸÚ~Ğ\"•Ö (~#2¸?lK\"VJÅŸtSĞâ	mFğíåÀ:áù˜n·XŞH+¥¸º8Xü\n§;D~¸ÎQXê…¤…€¥êó¾	,Óka1aÂÂX§ŞY<JÄ×naËş¹ÌGô§LŠ,°Ù1=Ïâ&’\'o\"9&×°2B~öfª/m°’­úùVj/º8V<ƒSePiDD¢\0ìÁ/?\"o¤\0‘ZJ¹ˆì–2ª½@\nUŸşUÈ°^K†ÄútZdx¬îÀ®Wf†Ğ32<aëF\\jÜˆ+\Z9B× áf›aŸÙ\n3hdë‡QAC*İ¸‘È€×PáPG\Z®Óåµ°/©ÓïñF\nĞ¨¥”+€†_átd{ñe%È¨æâ+!£èiÒša¾–¦Ïè:»1aètã\\L—ö?Ÿá	»	9!5d¸ÍJFÑ5dD(†]FÅÑBF¶fßôJdH¥2<‡=K	,\\äÛ:±.ŞÑÜÇûI-ğôüã%Šs%t¤oK0R­eÈ#UŸ\r\'ŒX¯eÄ„}F<òF?L\'ø¢Ó@Ãõæ£H(\rn²’‘£t\rn¶ùŒ£Î¤ŒlıĞík CªÚáœØ¶”Ø’<Î°ù³ë4Ãöfãí7ÀB-âôõƒÏaò™e6cäC ©RõBò”€EÕgU*—gñÎMØÅ‚Ûf™/Ì\\b£¯(n-ê§c$ì:•V@BX\0á÷½Èg˜m€œõ+ô7+É´æp-é÷MÏÏÂ\nÈkW¦é-Ó~ºâXØ¹†‰À:	è×›)~K)u5ÛŸq…#ß(9<´Öá¯Z‹{ü§úôF¡²Ö_\\L˜`4s/Há`ğ)‡StØ q¡¬1VrDouaf<°´7<dë‡®ß‡Z×fúEdÀÔ´î„úQS£cY)QÚXÀ0nU«ƒB-àtîá.†ı™íÏ—Y.°PÍ—‘§è“%aÁÂ}]ßq©qÀ³¿?Ia,lşR¿+‚«Å|¿“„Úk@ğëm 0¤¶ dë‡†‹\0¡V´ù„\ZUá°\\Ş¼t–0~!îË‹»°Ÿ\0j§C(øXvc{€ÏÇz“A¡šË£€[(zšp (XÔ¯EÁ„ä\Z\" çÌÚ àj‡‚+OpaE!Çî\ZÜÌP`¢‡< ­ú&\nµ¢\n[ğóV¡KPA!dÛ£¿I\0\nû	@¡QÚš\".p`êì‚B5§\nUŸNGP°°_‹‚		(â\"†ÇÎ9œ{$O#,¸Ü}*\r©ÁmVrŒ®!Jbï\Ze²õEãKÀP«Úu‘Á™ñâ{Ú ‘ğ…ø)óóêó{2Hä‚²#\\5	7?°‚»#¢ZÏ~`sQõ9Ø\",´×aÂ>f{â\\íœƒ+\r.¬<ä0\\Ãƒ›™s`n±´<dku²àPëÙáà×gƒyB›z p™Cm0ØO\0¹„¿°€à`pÌv—:âÁ7Tóµ›(zšp($Xà®%Á„}<šv¸l¶I3İÿâ	:\\i`pa…!GŞ\ZÜlƒá¦ó$€![³´Şjh¨uíhğN§;\'|éwqhp™ù¯g›ƒ\'>\Zö@C.\"ûÔ\"â¢†ç;çtè§Xh¨æ’?~¡ê³\'\Z,V×Ò`Â>\r@cšÕ§Œ7{i_<AGƒ+\r\r.¬4äh[Cƒ›\r8r¹Ğ­úå\Zj];\Z¢*Ì\Za7GqáĞàòùÄ´³‘ìé…7/\r\rû	 ¡Qr€¿Àå~µi\Z\"CC5Ş¡¡ê³|BƒÅçZ\ZL˜44Ç^\"RæS2+Ì\" ÷á(Eÿ<$ı¼Ãë„Û¬,ä¨ZÃ‚›má®/¸°­yºkIaAjªşQ®v¶%(¼Ş‡6(ì\'\0…\\B\rtABÔïd›æÕÒÃA¶}èèª>ûáÀ¢q-&ìsàQ²Çp|í²Ò<Aç\\i¼‚+	9Öàf›W`Üz¯ ![K®:$Ôº6ÇDFUˆ¾² ø!(‚çOÀ‰¹lD¤¤µ@a?(Ô\"®}D\\ÀözÑM €¡Z‹[†ª?ë\"®Ïâ›°)¶Ë—9dûõk±ŞªOÇH(ü<~_‘i´¯f0Ãˆ+afH°%²¸ÉoÕšOÜŠ„]=áß 0ÛsæÒß¼¹[ğsÔŒ)^LÛefäø“VúõŞ„¿µğÂûŸq!v»zÿUSÑÿ©ş¬û¸ZL®s›°OŠGÛ®|ÇP—.vûâ†Ô\0â6+ 9îÖ\0âfH·¤Ø*òºÈ¿YR,í\0ñ¬F\\–FB…«·—Û\r—¢óy€aW‡\\>–ÊT€aÀímL«ñAA5C¼jV=}¨ÇÕr-&d\n„³GL=<}böíÅ«¢Ä/@„\'ì>y†¤K€¿›•ˆ^kˆğ¬Œ¢Bıí¦à2²õMg\\ßô\\iİí÷Ç(×í…õ#t×\n÷„\rz9a‡…Çí·Øx_B ÉE~è£$q!n>ç<C`RÍÅaá,ª>=Ÿ`bÁº2&rÏÁdÑ./ìsÆp;œçŠ‰\'”*Ğ­øï)”ºµ&Œ¸°2’ãn\r#nfŒ°\nHîŒdëæIÓs5F\r#g*Ğ[è“#!ó%ãHˆY<lì\'€‰\\Dms{¶+^Ö›AD6fsõ:QõÙ3	±k‰0!¡³ƒ!ÂchF{4®Š¿p}æ¼µ7 øïú\0‚+9ÜÖ€àf‡a	¸€­—/Ç8‹ZÑf‚(Ëy®áÀ³g™è•Û \0Á`W‡‚Z>)?¸½h ¾ª­”\rª>{Àât-&ìCàñ3>ã°)êy	Ú@\'h^=Bi8p“•ƒlk8p3ç@ƒCp­uÔªvøõYQFä…ÙAãOî:DxBö{cK¥5dû	`\"—ÕúãútE”…¥ëºT*ÄZ\\4XH‚é<…‹Øµ\\˜°Ï…GÒXx³3o_Cı‚7|xÂvT×òã(\\»Â‹H¿5€¸™ÒmLQ¬›)LO•îñ¬×yXPµaE§->vG ã}	¡¤T÷EWºBI”çÁâm}±1_»I0=¹`b¡¼ö1ñsOl¾ª~ˆ†Á51¬\Z÷ñ?cçÖÇ„Ñ¿‚x7;\\–],ÛRğİ)Rò¼Á‹AaY6\nR”ÿSS=ÌÔ×µûÃT×tuÏ™êîš¾¸NMÇ0—ĞájF‡[Ieà>‚6M^|%q ±°ƒÍ°ä¸*É@\\|rÌ9ñûÉäíq98ˆ…òªCÉŸh¦®_Ñ¯†Ó[æ¥4˜`œ³MÙüÁ<l¬a`(Q¼x…_OHpAMÂ0\"—àj­Ÿ˜ëØ‚6h$Ä‚f$”’ÔkqàÀ…lÆÔdRáÆÄP Ö‰ó„‚’÷Æaa@tûv¡J‚­ãã¥˜`œ¯1ı–5”YÂåøõÈS¢±Fâ\\Í 8Li‰Ú¬¶¨ ˆ%Í ğè6òe_ô¡À¥l«ÍõÕ\Zs0•ÃA(c¤h ø\r8DC€ Êâìp’ ÷5±i˜m‹c¶‚QHaq	ÆvSü•¸£×|\0ó°E,Ö›îzÍAQ¨80KÂK5EÍ88ªNú`Ù\r´™ÃíùØ&ŸpPrØ?¬‡yŸ»â°ç‰óÛ¿oíy6.>¯¬ë}v«ÿ¥Óç›ˆ¾ª®ÿ.ª½§q¥Î`f‚q<tÆn|S\"Ù{Àü_ŸU[h(1ºzq`‘$<¸JÍÃ0\"—ğàjÆCÃşÑñqÃCĞ&EL\0±Ğ%ú‡U¿\"\\Ìü–ë±œ¸[0)u?—JÄf¡JŠE,LÕæND[<œH‚Ş	\'Ä°rNL0ÎI‰òE‰FC÷ƒ‡Ëûœ[lp~=Ã5Ã8[G±£…C÷¡6šŠXĞŒ\rÏ€˜ËtOw6\"mlgš=‰AÄ¨†ö·¸}@ğØªÁ\rDY^\r8½«,2—uf&çÀCfS†w±tyõZ‚‹\\P£0°%(¸šù	‚#ò¨A!hCmÅB,lÆ‚çÀÖÁœò%ú°àRvzgˆ*~£rXˆêTXğp°ÔèW7À;	9€!	zŸ)`X¤.Ãã`x×YŸQ-¿‡O„©Š$ÃUj0†A·W30èÙHe\0FĞnêE –`PØŒ’“h@€DÆ`Äº›Ò£«…@2\0JÄZqşPâwà  ==¯2D[ü3dH‚Ş!	¼KÉ0Á8Ic£†5NI?Óåb\ZşÂ¯\'X¸ Æ\"İú’´MÑûî~­¿`üXµ«Éwt+bA3*JAø Uñ\n.eù\nK3Få€0´o¿ÑÙX€à7`¬£íˆrß2´•’ ÷vÂ…èRL0ÎÇÊf¼qì·Öı£ŒOOQ‚jñ:@”°<º· \"„×j ü~ÄsÉbv\01Ô®V¿D,qD)“çtU)<¸~FÃG\rÉÇ0&††¡q¬ö‘²CCÉ;s\n¢+õ	’ BƒäRL0C‰”±£]rLÇ¬ˆã3¿®óí@ÀR\rïìú`ôX#Pî·\r¡v†€”S§0~êì¢ËÜ¿Qí+\0¥ŒI,Nü:\0Œ‰`hšŠyü¥>’TÔlt* ?Üšôôäñ[.}ü&>~éœr<M7%b6·œT>Àd½—&j´õ	.¨!µ\ZW3/0­¶¼Åmf3<UF›-n ¶ê‰Â€çÀa{të¥*À HY†qBA?ƒÂxP¥ˆÀàwš¡UEqB 	úfCH°P\\J‚	ÆIğ Ù–,P\0„DË.JHp”gbjRMt\\ÍHà‚<(HÚl-W‘›‘à9PV;—£¯ÍÎ#¸x~Ğœ0ú\0aLÑ¾zoÑ—jQ¬ÛI°­=˜o‹E¶‚!½Ki‹~z@\n‹EÌùÄÿtJ‹XòºK&×ßt×kÊ}¥ÌïLa¬](j-\n¬ŠOúCÔæX¶(ÿØÊØ³ÏBLñ©3˜Ï`IËĞUÆaÃé,z~õY§{œŠÏ£qló-}éôÅê¯•¢}Q%è}ats‹Àeî Œsà0Ö#°)¸h\0ÀåÔZ¬QpI=û©¤¸ ¢f•7(j†@¶caĞNv,4ù\0©~.æGô]·[øÜI¼A¶ñCÑŞ\"‡‚P:\Z—X_PàÙKµ@(V‚&èİ˜P`±¶”)ğ›µ‘×h8¸0›7[Dõ±$#3©£÷]V­¨NbÂ\rm¦âbI“!B1ŒE\rì…ÓÏxÑÀCW%TLÅ)ŒÊá!Úª¯	<ø\røPMÁ\nÑŒk[›º¥P˜`…dcÒÏÜÂ£ıYë±ÖÄÖ¸qE$ ¼ír@BäLj@ü~ãúB·­\Z€mmàC\n­quœ„gÀ§ê¤¿P„Ì<d]÷Q÷BÃÖÀáwù¿„PæóH¬[(ñ;I=ˆ(Öm‡$èı·x\r¾¥€˜`„›\'ìÇŸeş˜<\0ñ„LEï­hŸ€”hš@\\ ×$Ğj@\\Í\0ÉÜÚÕè@¤Ğ	 q™‚¤±Ü†‹ÙNuŞØ™¾İùwb(ˆü\\B	ntVñ;IMˆ(Ö\r‹$Ğ†eòp½\\nŞ,6‹W/~,¾/Ï÷ßoîvn—W|^Æ%ìîÜß|¿î~ß¬´W‰lı±ŞlÖ«î¯ëåâÛòŞş‚É«õzÓı1yõbù¸9{Ø´ÿïüuór÷ÖF6Ğ÷Ÿır|Ú<›Úfê4ÏfL‹?½æT¬¦ùwwçqu{÷ğ|õør÷z³ùñ|2y¸¼^®{«›ËûõÃúj³w¹^MÖWW7—ËÉjq9Y>^.o\'´îsş¼¹£ÿ»z|~qöÛÎùúÛëvw¾Ş-/(gûûï¿^.nÛ_±]l´Ÿ­±“¿×÷¶•óê?\0\0\0ÿÿ\0PK\0\0\0\0\0!\0lM_Y \0\0o}\0\0\0\0\0xl/sharedStrings.xmlŒ][oã8²~_`ÿÑgwX_÷Ìd!ÇJ¢Ä¶_&›=8r¬ÄJl)Ç²&ëùõç+Rîn¨X\Z“LW«X,ëFêçü{·U¿¥û2+ò_¾¸Î•æÏÅ:Ë_ù²\\\\ÿÔÿ¢ÊC’¯“m‘§¿|9¦å—\\şùO?—åA7/ù²9>şŞj•Ï›t—”ÅGšòRìwÉÿ»m•û4Y—›4=ì¶-Ïqº­]’å_ÔsQåĞmûŞUåÙÿUéUıWNÏùrùs™]ş|¸_^ÒçCö[:JéÏ­ÃåÏ-àÃ>ËŸ³dÛDù!İ§åafAZ¤y±o\"<f‡Í¦Ø®É¿› \Zc˜”YÙÏzÓ¢	¸ªÊC±K÷ÓdÇX$‡jŸ¶éœ¸~HÉjËPƒÉG\0NÓÃYø¬Øn¬ö,}i²‹yì«t}¢ŞÒdËç8*«]š0$?snın§åw»áHsş^~$ÏĞ(¨F™îK¿\\Nö*ŞV/é.S*X§ïU¾M•j ^N—ãqóï&“QËuü¶×$t9™´\\Ïé:íŠÈÁ(ÙeÛdÂq|¯	çàD­ÛoZSëy½@¢Vª›=„€é¾gù{õº²Ì·¦Öq;Akjı¾ß\0Ô²²$±Û„~èg|L·	H3!×Dİ®ÓjJdµ°kĞıÆGÙ—ê;H«äı£8&“ÆôzİA«)»šÁ8-n¿ÏV=,*~QWÇü°É0ßc±Nß2u³-ö™@Üí8ı–g2qF@‰:c8¾Õ<¡šÄ³p\Zİ‡×(¬Óiy2ŒCh¾ŸQíÕ_\'ûòâoj~¡†j”½¿?ÕºâChÂş İre‡Â\\û5O^²}v¬Tp¡‚Ï´”hv<®zwüæÊÑàù!İBsÕôwy¯ø/Š0avm¶ÁS<\nï\"µÀÄñk4å¨µ8;gÄiÑ)-Î6çk¨îÓM–¯Sl˜]Yä\"ÅîŠlC38hóÀŞ\'´=Ô[&Ï^WÅkf\'Š-ØoqĞæ€`KoÏ^su/\'Á|ÎT<^>£`±Y=Šf b·íÙ\0Ú‰.\nCü´¶H¶+ñ¼8l‹N’u‘ç‚íñ:Ûr…\rI@ivlÚ#¬g¼+XR²òe’Ç”ck­u]ÑºÆ±´Ö:l9ã›á2T×Ëé$â8D	3pÎMO8Hn ØÚ5¿fÏ2îÚ\n½àO„SÍíxƒ–Í«ä“Ğgë#qs¡fXüÙo)6OSò:Ğh®\'z;¹\0r4Ã3S»[£å[*E±\ZÆ7Ëé]|óAm¿w†6?`jûáZíÇ]±Éa©T3y,~Ï}s½6ö’8á¶¤pÇJlWéş ¢÷ªLÓu%ØIÈÑ9C³ÓT°Ú…¸œ™h®Å;‰FáÛ*H×bõµèÛ6˜•å²ÑqI®Ú(ùĞ;:=²Hãäù^‹³];k>×\Z:{á47Õ]ÖjrRß2(4¼¸c/İ®\\ŞÀmKŒŒciFÚl-†ÑdH\'C0®BOH¹Ã¿N°ãcl¯ë¶|£ÒÌ¾FpÛâ@Í–×ØTANÃ_‡q4ù\0zMq°¶Ü¦ kÇÕµºFöÜã˜>ÓûÇXM§Ád©x\ZÌ£yd§ê»¯Å]ˆzÁÒ‚[¼Šf8!#;&îq¼Ä1>Šçê&Œg7‚Ì<h^‹¯¹ÑeòIz|_Q`³DòA]m²Ïôl+KËä9=8M|“éé£’ğN°8óh:\ng‚‰…¦»gvÓ8ma]§ÍÙCìô2\n¯õáö–lÎ© Â”–Åt™	ÈÑÌ›gdÊïÇì\"Éà&¡ÚJ–Àí´qÄ11kL@‰¾ø°øó\nY¨#H~$¹Z®‹²Øp|-†¾×ÃHÀ8––Ïô1/Õõ˜‚8X é}8á¸DÑñÉğX>9š!ÉÔ`V”Zó¤LÔt—|ºì¸.+‚h	(Qdf!xK?$Z‚íË>]«ÉcêY8pÀE‚\0r43Å¦át‹tÍ:qÄG$F\\Z]Ï¢Ê\' G3Œpa‘ß¼níĞ$8_SLÃzş\0ŠÜœÉ)3 G34ù2Íp›ı¬ÒÃ†\\¦e™ıo“u¶Kßø0š:œRÙnÈÑuf·p¼Ä7KüQWá8œ/¢)r³>\0Ñul—@fè2vrK)Ú‹ÇáırªæÓG×TÛıL@f¨6Á®hp^²×$İRªñ3É³÷”â%È?…ê—|lÍ’×ÅIËõGÛU8â0^ƒí&yKÔ¢ØV[äÉÕ¤È‚?‡\01!W cÌä¼j9°´œ]H¶ŞU«}¶ÕgÊ:]g{˜U>&Íßï¸}1Û\0Ç2œpaÆ)Z 8aÃ±ˆ–çv0m¦¹µ_\0 G3Äø\"èí½ÊÈ{W/Xá·Š#ëùµİ8?À8–!Ù4‚¤ãy8Wám4Äëtû]ùô\0P¢/h$òà¾<›3ÓátÈ³ú\n5ÉJı«Z%ÙsRËæQ†qˆ!È‡¢S>g”äa”^©ı¯\rÕbƒˆ#ÄšÍÅ1¡ëğ4òtøi›»<Ù–jq?„|òZd®À Ë3Ís$ \'Áâ6|T£`\Z…Rı£Óµ˜µëòÕ¡İqUìP¦;h[XåˆèâuEÎ€go G˜ãX†6ß?Dû¾\"“sP×d¶IQn$C8ğÏxÒ¾`\\n–£\Z<Úwl¸Â±°£²LõŠ*^–K9¿‰XæmVX’ˆgË\0Ô(râºã\nãY|¯jÿrTH•ãœû¯d÷ñßØHÕ.Ë³j§t…OH—ø¾Å¦Ğ*z<-vuMãé<VÁ\rt3Pğ–‡ñH‡0rSöõ†ô,{˜¼ıMº©Ô1]ò™de;y^N%‹0QõãMÇİ_6­kóôµÊq2—Õ^ĞH,;²JvÆ!Z„<ÀX h½-¶GÌ²Ú?oT’U½`s>ÍÊÕ(7œÚ+  G3´»³1¤ˆß² ^¿„E´ª&‘bzªsãxŒÕ4\\<Æ³{jô`!gøçÔöq™½oÒ<Q7	<òé^«Dğ+üÎ@R@æ1]ÊĞ°MÁ\Zƒ]Ñz‹›™S\nÃÊërW¿ÏIçùŞ‘Uƒ:»P×é>GÏEú»HşÅ¸†W£PÊüÑ|“ñÓT…O(ÆÌƒ©©ÉPzC ì÷à±®§ GÃò9ıeOèMÚÅfişÓöP\ZŠ¦¿\"™„Ó…\n£›Û…\ZG8ÃÀhš_ÇaÎg·WW(n†Çõq·P€láW““ãã×øı)Õ1D©S0AH/uZl9ëu\0ŒO›¶‘Ó³\0ô:x8cmX\' 4Ÿğ~Å„öÏÙ\"‚\'y€Ití>èÅ¯EúºªòdÇQÍR¸rš~#Ç2‚ã»&:C³Ê–:U´%-ğÇ¯Eˆ\n1gÚìXÏ–:ÒdûÍ}cwXê°2€uP(Èo“Jn[¡•¶sé·%oÊaá¦‘	Nî¨ÌŒÍ°gÔt]‰e8ßë ƒ%0‡‰p$Há ßW»ê(œdğN;ÒŞ$˜D‹íÍ`| ! Ã@=÷Ë¡Â©FÅ6>­;’ÿˆŒš‹XÛ7r4š¥Ç}=´´P\r<„¹î@–,[áhRñ›d\"\\OE¡µB(Ñf³‚Ç\0Şğ…º‰¦÷•×v$û€q,3Q.ûø6˜LÂ\"h†J&d=†!Ç\'ªğò™±Ìääh†,·[HõN©Ä¤‚a¡BÁé!šRÇ1\"¤¬ˆ@1—¸¶»-‡MúIB¾NV¢&CgàòZ¤Iój&Ì¹Ñ†:E¤¢9ºªô=åÈ4,\\ZÙd\0Æ±ˆ$<ğ&@§ÜE‰†3¨ó&…×W{I\ZŸÍ2S=¦½‚=¢„BMv•m‹:‡N4EÙSòø~½º!ÎJ^h[ş†¦ÙRÍaü,ŸÚÒcBL(¦ğãµÙa¼%GxèÛLÇ[ü.ù¡®ÛFC_`\0Ø\\SÍï[lì¾>\n¥m••Yı7³â€@A|øpZùĞ¢#—ÚähXI§ßa*;ßd‡C¥É[µNS}´–“ñˆ®ã÷‘âfDÏ€ÍĞeÛğ\Zåe”xPÙ/\'Ë\'ÑÔ!ã~¦{@‰\"_\"lüp·Kò\nÁäM‰hüÌÄÉº¾ƒÉZÔS¯\0€é¦ÛüÜ§Ğcì’}öäy¥øˆšœIyµähZê<Ö\"U;¹Óï}<ßuÚ²ª# ãh†,¦z—<+2uä…]v¨ò7±cÊõ©m†ékP¢ÎtQäGÀu„%Ü;ıÄ¤[¿\'«`I®	{ÊS´í£ètU¼§{ªEìR­‹«jmM„ƒÓïrÙÿhM®6HëŠ²úpÓ\'ğQßƒn‹ÌdV‹@f™,òmU–(k«„ß´M¥8Gh‹§ºjÒ\0J¤™RÀ‹[Lgácp·D7‡àIømiãvXÓÙ%ŒÔ8¸ƒ›2\nçñ0¢×í´å;\0…yšvâ2B_ªBD6y!WÈĞgåÊJ ŞÀaúÜGS´øÃÃƒ;ÆIIqƒäLÉDÊü9§Éˆİb¢*È³vËbSì>Ä^\\Ô\ZP¶ì}c°Ú\\+u\ZhÀü#‰Ó°\Z]‡ºaö>ZS!²…‹¥ ·w®;À– 4àjøktµˆgQ ûŸÂGToí$]¯‹Üµ(¡Ú’L)>¡¡ÕâÛ¥Ôı:×S*@§¹v©OJuÃ¸ÜPˆ¥â÷´ø,D‡±İ‘›±ã#a÷l…8RDárµ0ëp¨\Z1ÙãğŸˆŸĞª(BF7C);ßöUğkvì3\0É&/‚,qÂÏ6Åš|ïcúYÁ§¼\nT.Qû—ø°ÙeH|0«e¶ïà-	ÃÆ!z8‹ûO±Ò0MûMXñ»Ô–ï!tÍ®Wğn7”=>àŞ¢ªæˆÒüÌ\ZÁŠ¼äŒë•êxgªQ¶•¦k‰Í£‰\Z¥õ“•rœ–­I<´õº± ‚q,M´Ã´•RGuj#*ÏÀ÷©RÎ‡Ô³ŒC±¦âªôª~É¤Kgê|³zğ\rd‡â¢p0œÍL-¯kÉ›cƒ¯®ƒyxK	‹1ıBM‰\nı—:•/\'/ºÔÉN_³o@İ.JÜ=bÒŸÇèüÉxÜ?â,\rZĞÃ:l†ã.˜zŠ¨Èp©çÏŒ‡Ghê\"FWÑÅHøğ„SÊG%\\,iÙªä5Íæ¡q9/ò\nwujá%{Ëä²@[èxv:,¹µDögŸQ›#µ|)véÁQÅqËõúä¥³eªcş®E¬Z¹;üü8e&˜Î?f[İï¿*vr¹§z/ïÌ Å]âÖÂ\ršà\'#ã¢UíniŸ;Z„Ğß\"L„€Í:¦9X¾#v>¤íÔÅQµtP¾·>`Ëlªı|DàŸC…p:R·ùœ¤WºëŸ¬Ùiã5[•úÌŒcè³Dß“Ê3˜COŞôƒpt\"Š£2¤N@FTû–{a(pÑh­æo®¢rT¢èõT	Æ±A6MÚV!²+ø/jğA8_¼^o ßp³\\d3æÁÒú¯‹CÙBvzhğ³HÍL\\Ìöq–ä/\"ûS)D¬»«òb%Ê´ïœ!j1Ç$Ó¥É2}H÷Å¡Zè$ÜfU©î²İîÈWE«¬×vEÃÇ]„ Y¡å7½t#!™!4tâ ¸€rk`lx³¢,h³ïÜ	yèÆU~µÄöÉ‹éÖr5r`vF8@`„ôítqT›4çó!ë]åÙU\\àZ\"ı@Ã!ù|Æ,\0È¹Ğ»ÔRf×gzMíö[­xQÓÕhF¸ĞÉIiÕkŸéÖŒc‘êÙt*¿Èp¹rƒã9?RãÉr>oª÷ÏŠ¢e‹ ¢¬m—DöY²z´¾ßÛÆµÛa|Ö<‘Í\'î1‘Õ^Ï²³jâñë¹t0[}üä\" 9ÂQa\02ÇµÁÂ¦ÁŸ¥Ì\"lö/µJxƒ3)PÀ8–^@K¿&IonàfÂ¹}öúZr\\š<AxWœñÚ»²Eî†$“]íaPdSçøuM·õÿ&’>—~µ¹|†4snP8Ešp8‹ÑäÌÆ¸Å&ĞlCSl½Z\0r4C³éßÔ…mßíôDc˜4s\\¨?î©*«…n(*Œ¼Ão 7i·Ê$mñ‘D‰&or%Zê]×I¡à\riûŸğk¸QÎh k¡I’õÛB¹´¦Ù¹¹OwxdFaC¡M[ä¢CmV|æšÀ8Ä¬¯°PÆlJëäÜKÇ„ße©×\n÷tp¢¯*ª‡™\'`îÒ-ŠÔœGÍ}—¥Q¿ËÄG9Uªø	™S³ê`õN88¼^¿\'¦6\0ãi©Y* z«n¨¯á–^p³]OˆîEZäãX†(Ûş“e\0æ!¦¨\"é¦·yDõäïö|msãKêY\"°BúH©hó‹‚‚Sõ`¦³?mYzåùœésáj5¤dgo¾¡†­˜š c‰î©@?u%1ÙÁƒ	â.LpSüGÜ|+¹ïp/eÿLnáêò²I-¬^Ón\\\"´¾QÃy $Æ½¾×j.\'ÖY‹°ï\'\rà±Ğh‚î^Ü\nÏÓT=ˆ•	˜Æâ‰w¶œ·ál¨fÑÕm0q>4‡^±:\rÇ\'¿ã´Òh³Áò¯SziÅ>4æÁ™&ÛÅ6’òáùï[xs]µY%¥àuÀí8wßÎ–+3Ù\"=$(µîéÚ0ÖïÚÅBOdòZ1Öô:;.Ş!ï·ÈÑa¶gÈÂ¾.–Ã%Ç¡CH‡ºEv\' G3¤˜rÔ,6{Ë–a£ñp3¢¹÷jıÅ	ËÍæê\nB…µ(øi\ZMğ:\rûGÆÄƒbrò\r@f&Á¹Ñº Ëqh\nX[în£R|—Íàh£´œ@÷£ëh=‹^Ï9“\"LkYÔòp¸)d‚Jà„r¶kŸ[rBÑÃD@#«…¯à¯q±Pk=^ó¹|r4-ZŞ~s\nfÈeAR«P!^r[§R7ªÓÅk?<oš€a¶ÏM»-,D	mƒÈl­?Éëáì„K0+IìU¦_æú}„›Ú¸9«ÿ‡£jÅí ¤(¶eÈÑŒt™M¡»9ÁïĞ…&º¨¯düVl`Tù£õÉÕ¦Ëœq†k-ˆ&ÎnèØºÀ|CÆâZğ¨S¼ÔF‚[û|éa ®ng®jÓàVw} 6v’}‚ ~ÎœK÷`,É¿ç‡\'…~|ùÓèu“®¥Hİwá!1©M5€œa#wË‚ĞR¹=rO¹PŒM\0P\Z±P¿ß¦NÏ~-àåÛ™ş™J*`Yv®E«}²Év*†ó‹Ä¥	f9¶VËúN‡•%“¡%€¾¡3Á¥p68¼7x{M7Ñ‡SÜĞºµsˆÊ\n²\"g@/•t?ô¸İÁÉ€´\ríÓsFÄïHãè\0j0ißªd!’\n•t43ÕoâS%}¼à!j\Z€\rj§¥á·.-›‹£Èâ‰ñF„b¢0‰bSÉìWÔÂ´†ŒQØ¾NJœJ|<½n>=¬gÙH\' GÓ[–/áôÓ£~÷(¾âÌ)Ş–|@}kVÖ#i{ñD*…cjº¯ËŞ“Ùœ³KÁ=œ‘€ÍÌ’ñB))¼»JĞ\'Zr,=ß?cıäh†³‚ñ,¾G/\Zİ„ÌƒYÄQ‰¢×G–I˜Á8–!È\0H±¡Í}Oê	U±\r£İÃƒ$|PbÅŒC9¾ä35©µğ.ˆÄn¿Àb| D©õ÷mL·iî“}•\n.î=àn	çÙø‡\0JT……p|rûÄñlÆÇˆ™OT= ùjOÅ¼Švb	0uÛû H™Sy/Avñ®¥úî™+@€ID™Hî‹¼^[?2w]åğ4Í-vjÉ“=\\ì:Ş.[û=q×Ù®ÌhEîtåÊ!`ÒlšæY7uàGÁET?¹ÌÑõFî¡­Ã2ô	Æ± \"pÓ™qÉz<RôXáÕírv…´ãµº‰G|\0\ZÚéŸ©w£º2«gJÛ–şººôÄ4½^=<À$¾¯‡`\"{|-fTúAv~-ÄîYø²¹P?Éû˜%Çœgİ{0Ä[¹^Ü3A·p\rÊğ#ñ›ÃoÓÂP;9Ÿ¦È”¦ÎÌÙ<¸¸Î•Pz}Àé°ÓsÚç+£iã¹ôï]‚ŠwGÖ\"í#«Å5@›o0¥Í-o°ÅCxØb‰VÚa`êÔz·ùš®ƒ ˆ<\'Mc Ş\n§™(\\iW×á8ú\'²ø·¡ô¾:óYæ¤·7€œW=[V³{“æiş)\rõ­ïBñ!‰nZ„®W“åpDb°—8ë\Z­X4è0îk·—Â$æ¤Øßá\nAoêêÆ÷h6aEï—öQñÈ,RÅ‚CD@FÂGœÎ\0{Ô§qñ€nƒe¯Ÿp5±…Ÿ7ûw&îÓUË¹JëàÈÑ4]ò}Wá\rÍôr¢¯úáàçc%§44}àƒ£iàÇ°¹¤‚9ëmö|z=÷F+tOÌòVT³Ç\09š¡Î·,t´I“üˆ5rè>¸ Çer)nCë>‹l\\X¹Çè$l5C¡üUz<õ”põ2RM~CSÈ£\ZÓ-¼%+ÿÔgÕâvÏˆÓÚ„¥ël.»@*îç·½Ìç<p`¼®2ÚÜöùúáÂ,;xkİ¹)Jj–Ÿà²/ºãé…£¿°ÁÔ“éàÑ1Ú3E;ÆµğÅ&+Ü\\ã¿<@0OĞŸPñô*úh,“Û\0r4C—MY§îõ·4Ö©ŠWhø“ÜF‚‚M,ŒC4UK^:g‚-úığ`&¾°)pkQpeü6òê‚1$˜D”MáÛˆõÉ‹Ï„UÏD›_Æ!4K´—r\0\rçõ‘¼=ãXf8&MzÂ¢gréa©ğ$—…š“›¸»ø³ú»æŠÜ’3d¤\"ôŞÑÒ7Qæñtú¤âüÚ„š½ƒµ“_½Œcie²\\%f¿†x%\ZDÏ¼«û+íYÎÂ9@/GÎ¿EiN0¥EÇ]ı$>’èÔ_>\nĞnŸğë¥‚‡ˆ˜CPc\nt-UZm).¢\rôï?ºeâ\rP¨±œzº€Idù.Ù;t(}ÀI6]\røÁe)>‚Vá3Ää™ãXZÌ¼Ys±¯ÊÃÌ\"Úƒsm¶Ï[ÓìØ‚o3.›(-•ZÜÆøxˆÂÄ‰^Nañ ªòY\0ãìhUµØ¦x¨Ì{ÅK…xyUáX©Æ‡5CO	»Y,<Æ±ôty50Æ7,´³­WĞ¤?…è\nâ³6ò§„Ä÷…\\:Ãåx²Tá4ˆî‘\\ÅM¢ÓÎ¸™.=… Ã8Dš·;ÓCÿS£·_âéˆãÕÔäãyle¨1Ãü»ã”a‚s’5D‹OÉIºïÓgC8‰š1‹…2Ä¹¡€›âø2U‘ãéêï¸¸¯*f>ÈùÑúd)QÑ	>Çõ«Ã¸Ô­_>Ÿ|i»(õğÁõdãM– õg:ªöà‘qd\'8j=è™”²­íØdf¢öóğá¹œcû*öh­©$bÏÃ=eÙ*•6 Yö;\r‡Ø.’EeN@.$³¬|½iYŸRã†^£‰Z~:¤\'ÿMËjš‚ˆı˜ègq¾ÉÂúÔ¯ÌÂoÆã“ÒIä¹=Ôjª´2e\04^zğT$UÚVjú™ï…ü®ì·D{ ÙoìDFÛä™ÚtıÄ\"Z­T\0r4ºkK‘Šïã.ƒÀÁ¤á,2ÓÃu,õKÛYúêÈd¾À‚ ­ß&âÄô¬|¼=`³\' G£)#gÀ5\nz\n„	x¾Å½ÔğlıÆ4F€;r6l‡ø&*µ~hV¾Ãó]\n­xğÈ º(ÿ İˆo`­\'äh†.›ºé%ÔDM7bBlh¢¹“{ûÆFâm$6¥ºw’4Ï‹å\Z§Õ]p§í÷:wÈ\r’& G3“e(xüMr	nßmÀ±ôŠâób6{Æ²_10~ÁZ¸†Tàèõp½A4í\0r4CÏĞüSõÖrb×9>YXÜáÁ=5}ŞÃÊÑ­Ç7œ¼œ!¢‹Ìä™\n G3óhªª”öA÷·yæMç$VÅÇ$VpiCv_ãXšK°eÌ.è™Â6ëjÆÌ¾nIYv‹#€\nÎÎ¦ëÌµÇOhÜåÇBä\'†ÿBØ3vïÓ§Î8#F¼¬³íDçpñ¹-;&¸„LßÛ’^òÛÈ=â\"gDKØV«3B÷™œ`ÒpCb&ŒÇ˜á¬ó>ïj¬í¥¹)-©±(Åàâg†hÒ§+d› G3Jgè9Ğg_¤ùYšõê9ØÊ“z¸6ÒÖ’~\0&qÇV/F‡WxeùÇor¥¯6˜¯p=}Bš>™ıUémU?|Zû+J¢õÇ´ÿü\'õU}û‚öWõã7³¿Ò“˜ß¾’ıÕ¼[Ÿ–§O_ïÇ/aë‘šŸ¿¥ï¼Ö„~üÄõWe>jŸÍÏXÿùO×³x¢ş¯ àµÊC©Ãï‡->ÕL_».ÿW=âjB¨ññøãWŸQ	ş¢Ÿİâ<å¿pÜ¿|jL¿ü\0\0\0ÿÿ\0PK\0\0\0\0\0!\0ôŒ/\0\0â\0\0\r\0\0\0xl/styles.xml””]oÛ †ï\'í? î’¬ë–Èv5MŠTi«&5“v‹18¨|X€S{¿~ìØÉzÑôÆ>‡—×Îî;­Ğ‘;/­Éñj±Äˆf+iêÿŞïn¾bä5UÖğ÷Üãûâã‡Ì‡^ñ§çÂøBh¶„xvàšú…m¸a¦†®&¾qœV>.ÒŠ¬—Ë;¢©4x l5»¢©{n›fuCƒ,¥’¡O,Œ4Û>ÔÆ:Z*hµ[İRvb§Á+¼–ÌYoEX\0X!$ã¯»Ü\rR‘	k‚GÌ¶&€V€;lŸ}1»8“CU‘ù¿èHdV˜³Ê:@h,eÕ|¨øN•,Œe‚j©ú!½‰$æX§%-&Iìc|yX$•šºZÇ Qd NàÎì`€Æxß7°½‹0©îêÚÑ~µş|¶€¤\r‹¬´®ãÌzœRE¦¸Ğ¨“õ!¾ƒmàYÚ@å\"«$­­¡\nB2@¦\0Ã¸ROÑ\\Ä»È´z§ÃC•c°iáÂAÆpà\rƒÈ?§\rì3ì\'ëıXÔ‰‰±úöË5]MËm\ZÕ?¶ºän—¾’Ñ\ZĞ«Núó›’µÑ|pi‘¿†!zq´Ùó.¹7ªÓ‰Q\"åLùİ\'Q´lc«\nÌ?ª€ÊVª Í¤É¬90«n¾Åe4Qˆgºßi8bÅmUØO“9ãŸ¼’­ŞLU¿äÑ†„Èñÿˆf[İ%£Î?§â\0\0\0ÿÿ\0PK\0\0\0\0\0!\0ñ7o•\0\0=\0\0\0docProps/app.xml ¢( \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0œ“AOã0…ïHû\"ß©SŠV¨rŒ°â°h‹ZØ³q&…kGiÔî¯g’¨4e9qÏ{yş<vÔõnã³º\n1ä\"ƒ`céÂºÏ«_çW\"C2¡4>(ÄP\\ëgj‘b‰`ÆQ5s)ÑÖ°18a9°RÅ´1ÄË´–±ªœ…»h·$/òü§„A(¡<o>Å8oé»¡e´¾¬ö\rkuÓ4ŞYC|JıèlŠ+Êu\"ÖÙıÎ‚WrlSÌ¹»Mö:Wr¼TKk<Üòº2AÉcC=€éÆ·0.¡V-Í[°S†îğBd¯¡+Dk’3°³\r‹¾ö\rRÒczÃ\Z€PI6Í¾{Çµ»Ô³ŞÀÅ©±@X8E\\9ò€ª…IôñlLÜ3¼Î²ã›ù>HŸ¶ö_*ıGèøPıœïĞoŞğ¹YÅ;CpøiS-k“ ä;:èÇ†zàY\'ß…ÜÖ&¬¡<xşº‡ò2ü\rzz9Ég9ßü¨§äñİëw\0\0\0ÿÿ\0PK\0\0\0\0\0!\0_Ø’«K\0\0e\0\0\0docProps/core.xml ¢( \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0Œ’QKÃ0…ßÿCÉ{›¦eUJÛá”áƒ‚àDñ-Kî¶`“”$Úíß›¶[íĞsÏ¹ç\\RÌ÷²¾ÀX¡U‰H£\0Ó\\¨m‰^VËğ\ZÖQÅi­”è\0Í«Ë‹‚59ÓŒnÀ86ğ$esÖ”hç\\“clÙ$µ‘w(/n´‘Ôù§Ùâ†²ºœÄq†%8Ê©£¸†ÍHDG$g#²ù4uàC\r”³˜Dÿxiÿ\\è•‰S\nwh|§cÜ)›³Aİ{+FcÛ¶Q›ö1|~‚ßûª¡Pİ­ ªà,g¨Ó¦Z¹ÖLºëÕÔºGè\0¾8T7ëÎUÓàZKU[<³¯0€>T>T8)¯éíİj‰ª$&Yg!¹Z‘4OfyJŞ»gû]Èa 9şML“|–Mˆ\'@Õç>ÿÕ7\0\0\0ÿÿ\0PK-\0\0\0\0\0\0!\0O\r2f\0\0 \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0[Content_Types].xmlPK-\0\0\0\0\0\0!\0P|NÁö\0\0\0L\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0Ÿ\0\0_rels/.relsPK-\0\0\0\0\0\0!\0¨;ò\0\0Ô\0\0\Z\0\0\0\0\0\0\0\0\0\0\0\0\0Æ\0\0xl/_rels/workbook.xml.relsPK-\0\0\0\0\0\0!\0¹‡Œà\0\00\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0	\0\0xl/workbook.xmlPK-\0\0\0\0\0\0!\0é¦%¸‚\0\0S\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0xl/theme/theme1.xmlPK-\0\0\0\0\0\0!\0ß¾cQ\0\03\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0Ñ\0\0xl/worksheets/sheet2.xmlPK-\0\0\0\0\0\0!\0ŸÚ\0\0U\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0X\0\0xl/worksheets/sheet3.xmlPK-\0\0\0\0\0\0!\0ÚÜ÷|\0\0[E\0\0\0\0\0\0\0\0\0\0\0\0\0\0h\0\0xl/worksheets/sheet1.xmlPK-\0\0\0\0\0\0!\0lM_Y \0\0o}\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0•“\0\0xl/sharedStrings.xmlPK-\0\0\0\0\0\0!\0ôŒ/\0\0â\0\0\r\0\0\0\0\0\0\0\0\0\0\0\0\0 ´\0\0xl/styles.xmlPK-\0\0\0\0\0\0!\0ñ7o•\0\0=\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0z¶\0\0docProps/app.xmlPK-\0\0\0\0\0\0!\0_Ø’«K\0\0e\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0E¹\0\0docProps/core.xmlPK\0\0\0\0\0\0\0\0Ç»\0\0\0\0',48873,'2016-08-11 16:51:35'),(24257887,20160857,'ActiveTbills.xlsx','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','PK\0\0\0\0\0!\0şÅI`\0\0\0\0\0[Content_Types].xml ¢( \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0ÄTÍN1¾›ø›^Ínƒ1†…ƒ?G% ngÙ†nÛt„·w¶ 1†,I¼l³m¿Ÿ™ô›ñtÓÚl\rw¥‘«¼6nQŠ×ùc~#2$å´²ŞA)¶€b:¹¼Ï·0c´ÃR4DáVJ¬\Zh>€ã“ÚÇVÿÆ…ªZªÈÑ`p-+ïåÔqˆÉøjµ²”=lx{ç„á\"»Ûİë¤J¡B°¦RÄFew*â\"Xì®şá.ß;+™È±1¯ö\nÏÜšh4d3éIµìCn¬|÷qùæı²è·y@Í×µ©@ûjÕr\n”Æ€Z[¤µh•q¿ĞO—Q¦exf#]}‰øD£òAüî@¦ïß[‘h´µ€g®vGzL¹QôENèÙ\r|çîóÁïw}@Nr„Ó»ğ¹&‚HzC÷¥ÈcàtÁ©ƒnÎhĞ´ešk“\0\0\0ÿÿ\0PK\0\0\0\0\0!\0P|NÁö\0\0\0L\0\0\0_rels/.rels ¢( \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0Œ’ÏJ1‡ï‚ïæŞÍ¶‚ˆ4Û‹½‰Ô“Ù?ìn&$Óº}{ƒ ¸°Ö“Ì|óÍlwÓ8¨ÅÔ±7°.JPä-»Î7ŞÏ«PIĞ;Ø“3%ØU·7ÛW\ZPrSj»T¦ød 	Z\'ÛÒˆ©à@>¿ÔG”|Œh{lHoÊò^Çß¨fLµwâŞ­AÎ!OşŸÍuİYzb{ÉËÂ=¯ÈdŒ\r‰iĞûwæ¾ÈÂ —]6×»ü½§IĞ¡ ¶ibN)J—sıÑql_òuúª¸$tw½Ğ|õ¥phòÜe%áÛHÏş@õ	\0\0ÿÿ\0PK\0\0\0\0\0!\0øí°ù\0\0\0G\0\0\Z\0xl/_rels/workbook.xml.rels ¢( \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0¼’ÍjÃ0„ï…¾ƒØ{-Ûı¡„È¹”B®mú\0B^[&¶$´Û¿}EBS‚{1=Î,šùØÕzó5ôâ#uŞ)(²:ãëÎµ\nŞvÏ7 ˆµ«uï*‘`S]_­_°×œ‘í‰”âHe+)ÉX4e> K“ÆÇAs’±•A›½nQ–yş ã4ª³L±­Äm}b7†Ôüw¶ošÎà“7ï:¾P!9qa\nÔ±EVpG³È(ÈËwK2}Zâ	â¨çêï­·:bıÊ1]xJ1µç`Š%a>}Ü“Eäßuœ,’‡ÉìaÊ†)6#Ï¾õ\r\0\0ÿÿ\0PK\0\0\0\0\0!\0pwƒÓ\0\0\0\0\0\0\0xl/workbook.xmlŒRMoÛ0½ØtOìÈvÒ±‹.X€aèĞ®=«2µ$C’kCÿû({iô²M‘~ä{|«›^Õä¬“Fçt6)-L)õ1§¿v“+JœçºäµÑÓ8zS|ı²êŒ}y6æ… €v9­¼o–QäDŠ»©i@cå`¬âS{Œ\\c—®ğªXÏ#Å¥¦#ÂÒş†9¤€­íG5÷¸¾«dãh±:È\ZGF„7ÍO®pï¾¦¤æÎoKé¡Ìi†©éàã!¥Ä¶Í·VÖXeé\"¾¦QñÎòÎŞz³6\nI8w\'…oñ#§qè\n:<JèÜÇ!%ı“Ô¥éêz:g³³n(=ÉÒWXO®çïoßA+Çˆ“ĞÈ…—¯ğÀŸñ%‹.¦\rbâÔ!=0½3¼Zˆû@™-%~Ø}9 \\vÿjÁ.š“‹f6Œºq†àµ@B¨3–-ª(Œ­µx5Vş	½ÿá|±ÂHZ+súg‘±d›m’	ËvÉä6ÛÆ“Ù<a“yºcYºf,ÍØÛÙ\nªÿä%…5ÎüT6@ûˆzƒ›®F7+Õ/o­¨ö²«ùo4òÀ]P¼ófÑÙ¿Å_\0\0\0ÿÿ\0PK\0\0\0\0\0!\0Mu\0í[\0\0;\0\0\r\0\0\0xl/styles.xml”TßkÛ0~ìb¯‰’,+Kf»…@a+ƒf0X÷ Û²#ªF’S{ıN’ã8ëC»<$§Óİwwß}JrİIÌX®UŠ—óFLºäªNñınö#ë¨*©ĞŠ¥¸g_goß$Öõ‚İs ”MñÁ¹fKˆ-LR;×\rSpSi#©ƒ£©‰m£¥õIRÕbqE$å\nG„­,^\"©yl›Y¡eCÏ¹à®XÉb{[+mh. Õn¹¦Å	;ÁK^muåæ\0GtUñ‚=ïrC6²Dµr\'E…n•¶FŠ7·%8¯ÖÅ¡ot	müz7[/6¿Ë‡™”òaÖÃçÓgL²„pYRi5EE¡Ùí£ÒOjç¯b)•%ö:R¥Ç(´Ğ9`*¢’Åˆ*xn¸«¨ä¢î•w„%\rq’e¡¡X„v ‰1Îº‚Y½#K€uÇŒÚÁ\rö¾o ¼D˜÷Btmh¿\\}˜$P0KrmJä”åèÊÁ*İ^ü¯Ó\r|çÚ9Ø^–”œÖZQ&9e†ª˜÷^´?«ì®šläï§÷‹ô&2˜/<ş-bO`ßYÿ‹ºjÄ¿È$õR[c>¢M#ú»VæÌìÂó´qúªQÿÁü\"x­$;‰èÉĞfÏºğ(<=]5p¬L¨¿ ~¤yÍ¦øÎ·*àÁ4 ¼åÂq5’r&0Ëî¼Æ…W‘ó¯>,x¬#–¬¢­pûñ2Ågû+y+7cÔw~Ô.@¤ølõj[^¥ÿõ²¿\0\0\0ÿÿ\0PK\0\0\0\0\0!\0‚QP\0\02\0\0\0\0\0xl/worksheets/sheet2.xmlŒ“KoÛ0ÇïöİcËvš} X+Ö­=+2•,ORÅ°ï>J†³bİ¡‡(eıHşI•çG­È¬“¦[Ó,a”@\'L-»íšşø~3YPâ<ïj®Lkú\nWŸ?•c_\\à	:·¦­÷ı*MhAs—˜:<iŒÕÜãÖnS×[àu¼¤Uš36K5—+û†i\Z)àÚˆ†ÎŠ{Ìßµ²w#M‹à4·/»~\"Œî±‘Jú×¥D‹Õí¶3–oÖ}Ì¦\\Œì¸y‡×RXãLãÄ¥C¢ïk^¦ËIUYK¬ ÈN,4kz‘Ñ´*£8OîM<ß<‚á¡ÆQ´ßó>¼ECœ‹^îá\n”Bjíû9(B€ôá­=F»‰İz°dÃ\\õ,kßbHœŠ\Z\Z¾Sş¯s‘,ŠœY~v:üf_@n[W¦(VĞlU¿^ƒØ¬\'f ŒÂp¸-ÃÈ¡Òü8”5D›M“âD;çóˆ€XÇ5÷¼*­9$¹‡QÌVh‡,¦9*#Â!ÊKğ$§İ½û*_eºGş1\n2@{¾…{n·²sDA²Oæ”Ø¡¼h{ÓG/\n°1Ów-9`P– ü1~Ü`ùpôwÎÇ²³rMÍ¦Œåó\"›\\Ì.Ùä,,ùlÎ&óy]Î¯ØrÆØïqô4JõÏKûïÜi.R8\nˆïl1¼³ªÔÇÕÃİ¹7546õkXg´Ÿ“›„w1Ç°ÆdÓÓk¯ş\0\0\0ÿÿ\0PK\0\0\0\0\0!\0é¦%¸‚\0\0S\0\0\0\0\0xl/theme/theme1.xmlìYOoÛ6¿Øw tom\'¶uŠØ±›­MÄn‡i™–XS¢@ÒI}Úã€Ãºa—»í0l+Ğ»tŸ&[‡­úöHJ²ËKÒÖÕ‡D\"|ÿßã#uõÚƒˆ¡C\"$åqÛ«]®zˆÄ>Ó8h{w†ıK’\nÇcÌxLÚŞœHïÚÖûï]Å›*$A°>–›¸í…J%›•ŠôaËË<!1ÌM¸ˆ°‚WTÆİˆUÖªÕf%Â4öPŒ# {{2¡>ACMÒÛÊˆ÷¼ÆJêŸ‰&Mœ;Ö4BÎe—	tˆYÛ>c~4$”‡–\n&Ú^Õü¼ÊÖÕ\nŞL1µbma]ßüÒué‚ñtÍğÁ(gZë×[WvrúÀÔ2®×ëu{µœ`ßM­,EšõşF­“Ñ,€ìã2ínµQ­»øıõ%™[N§ÑJe±D\rÈ>Ö—ğÕf}{ÍÁÅ7–ğõÎv·ÛtğdñÍ%|ÿJ«Ywñ2\ZO—ĞÚ¡ı~J=‡L8Û-…o\0|£šÂ(ˆ†<º4‹	ÕªX‹ğ}.ú\0Ğ@†‘š\'d‚}ˆâ.F‚bÍ\0o\\˜±C¾\\\ZÒ¼ôMTÛû0Áz¯ÿêùSôêù“ã‡ÏştüèÑñÃ--gá.ƒâÂ—ß~öç×£?~óòñåxYÄÿúÃ\'¿üüy92h!Ñ‹/ŸüöìÉ‹¯>ıı»Ç%ğmGEøFD¢[äğt3†q%\'#q¾ÃSgv	é\nà­9fe¸qwW@ñ(^Ÿİwd„b¦h	çaä\0÷8g.J\rpCó*Xx8‹ƒræbVÄ`|XÆ»‹cÇµ½YU3JÇöİ8bî3+˜(¤çø”íîQêØuú‚K>QèELKM2¤#\'‹vi~™—é®vl³wu8+Óz‡ºHHÌJ„æ˜ñ:)•‘âˆ\r~«°LÈÁ\\øE\\O*ğt@G½1‘²lÍmúœ~C½*uû›G.R(:-£ys^Dîği7ÄQR†Ğ8,b?SQŒö¹*ƒïq7Cô;øÇ+İ}—Çİ§‚;4pDZˆ™	íK(ÔNıhüwÅ˜Q¨Æ6Şã¶·\r[SYJì(Á«pÿÁÂ»ƒgñ>X_ŞxŞÕİwu×{ëëîª\\>kµ]X¨½ºy°}±é’£•Mò„26PsFnJÓ\'KØ,Æ}ÔëÌ‘ä‡¦$„Ç´¸;¸@`³	®>¢*„8»æi\"LI%\\ÂÙÎ—ÒÖxèÓ•=6ô™ÁÖ‰ÕÛáu=œ\rr2fË	Ìù3c´®	œ•Ùú•”(¨ı:ÌjZ¨3s«ÑL©s¸å*ƒ—UƒÁÜšĞ… è]ÀÊM8¢kÖp6ÁŒŒµİíœ¹Åxá\"]$C<&©´ŞË>ª\'e±b. vJ|¤Ïy§X­À­¥É¾·³8©È®¾‚]æ½7ñRÁ/é¼=‘,.&\'‹ÑQÛk5Ö\ZòqÒö&p¬…Ç(¯KİøaÀİ¯„\rûS“ÙdùÂ›­L17	jpSaí¾¤°S!Õ–¡\r\r3•†\0‹5\'+ÿZÌzQ\nØH\r)Ö7 ş5)À®kÉdB|UtvaDÛÎ¾¦¥”Ïƒp|„Fl&0¸_‡*è3¦n\'LEĞ/p•¦­m¦Üâœ&]ñËàì8fIˆÓr«S4Ëd7yœË`Ş\nân¥²åÎ¯ŠIùR¥Æÿ3Uô~×ëcínrF:_Û*äP…’ú}ƒ©-pÓTpŸlşr¨ÿÛœ³4LZÃ©OĞ\0	\nû‘\n!ûP–LôB¬–î]–$K	™ˆ*ˆ++öˆ6Ô5°©÷v…ê¦š¤eÀàNÆŸûfĞ(ĞMN1ßœ\Z’ï½6şéÎÇ&3(åÖaÓĞdöÏE,ÙUíz³<Û{‹Šè‰E›UÏ²˜¶‚Všö¯)Â9·Z[±–4^kdÂ—5†Á¼!JàÒé?°ÿQá3ûqBo¨C~\0µÁ·MÂ¢ú’m<.vp“´Á¤IYÓ¦­“¶Z¶Y_p§›ó=al-ÙYü}NcçÍ™ËÎÉÅ‹4vjaÇÖvl¥©Á³\'S†&ÙAÆ8Æ|Õ*~xâ£ûàè¸âŸ1%M0Ág%¡õ˜<€ä·ÍÒ­¿\0\0\0ÿÿ\0PK\0\0\0\0\0!\0HuOÂ™2\0\0ªø\0\0\0\0\0xl/worksheets/sheet1.xml”}]sÜH’äû™İñ}Š…Ïªjëîµ!)Ğ¬µÛİÛ}fST‹6¢¨#ÙÓ=vvÿı< =2PÒ¶í$DyfÂ=¿<‘Hüø/>}~÷‡—×Çç/?]›íÅ»‡/÷Ï¿üöÓÅÿşî/û‹w¯ow_>Ü}~şòğÓÅ?^/şåçÿù?~üãùåï¯ŸŞŞ!…/¯?]|z{ûúÃååëı§‡§»×Íó×‡/ˆ||~yº{Ã?_~»|ıúòp÷a=}¾,·ÛöòéîñË…¦ğÃË÷¤ñüñããıÃÍóıïO_Ş4‘—‡Ïwo(ÿë§Ç¯¯SjO÷ß“ÜÓİËßÿú—ûç§¯Hâ×ÇÏoÿ½x÷tÿÃğÛ—ç—»_?ã¾ÿ,ê»û)íñYòO÷/Ï¯Ïß6HîRšßóáòp‰”~şñÃ#î@h÷òğñ§‹¿?œŠ¶¸¸üùÇ‘¡ÿ||øã5ùû;!ü×çç¿K`øğÓÅi¼>|~¸—[÷ú|*—s2?ÿ¸ü}J²uùÛË»_ï^®Ÿ?ÿ×ã‡·O¨\0ĞÿÃÃÇ»ß?¿-÷›}Un«¢læà¿=ÿÑ?<şöé\r\Z´;?|øçÍÃë=d‘Âá>îŸ?#;üï»§G©\\àôîÏñÏ?,·rS´õ¶•„_ßş)<ãG¿>¼¾u’òÅ»ûß_ßŸ¦ÂY¢š\\iÉáOKîğİØÊ°øÓ°»ä¿³\0¸ïñ~ğ§%Ò.·óiàÆÇ4ğ§¥Qà~¾Ü\ZÎàÿv	v–ş´DêjÓNª|gIĞIŒ·?§’4›j®4ß™\nôSÁŸ–J»1ß‰–ª;Âå/S)ŠDÖÿv\r+æ\Z‹¿L)\"ñï-ĞTCEÒ	~øö]j»›ïÍİÛİÏ?¾<ÿñ½#JñúõNúÚâ¤‰¦%Wÿ*—Ç šÌ+®şãç¢ıñòhõ÷ö“+üd	î8xMÁ=oÒà–cïÓXqà`—K‡<R°`dOÁ’ƒ+ş‚ c¢¬ù\'·„o8x¢àÂá%øŸE€–‘rYDúë²<8:®D.ÓšíÖ±qm±íÆ•çFUënâ=2[äÜºh§¨¦,—;+Ê‘a.³ŞJÑ¶MsØì]¢c]Ê¿ğİ·­æ–Ğt»ÉÃ~—Ü?Q^:¢\\./”Wµ«GW•R¾‹œs\r¶›ƒ£áÆP{WñŞ#·„s×L:E5ÅÎñvd˜kz½Âªºi«fÓº¢Œõœóí7¥çœĞsÍ·D],×HÇ¨‘.—ÒWæ«Z[\0Ï9×IºÑ@‘qÌÎ]“êÕÔÇÌ‘`…km½eV–U‰Aß)2vëRş…ï¾©ú–ĞsË—x¡j.“  {—Ë	ãw?WVóvdÜ¯5˜¶¬±+¸1PÆ82[/\\èÕTµ«kG†¹ho°C»+‹M%qüÏ‘;P\"õLC³se»%´£^PK®s„¨Ç*¢^.Ÿ£¾©¯ÚıAÒ“)¾Ö`N½^Ï+;2K¨wıH§¨fÛ¸VpLa.Ö[VÕ®9´õfçšİB‹Œp¾ùœpBó½Ÿ4ãÚØ’\'ÙfD¸\\^¯×Í^íFÂeÍùÖ¼ŠF§ÿuMôF–©È:¡)ö(fg7¾Áæªt¯°ºÚïõ¦qUv lÆ?s±ó9ßÚñ¯ùÂ°%µ’øWô5r9á¿r%¾Úk_ AÇÜ^=¸Áù=rJèv\"u–T½u°c\nk]°·ÒíÛz×lüt`H¡ymç;ÏGSB;¶5_´²5¶ah\"¶åò9¶#ÛX\'ÁÿùŞEcl½š‘Œ²]£ê,›Ö]?¦(?Nöª÷ûı¦tÅRdN5ßvN5¡ÕvÛÛí’%Õkñ~Õãõs\\ã2A/[G9Ók‹-Yêj—3¶%¯„n×)w«wn˜<nï»ƒUÕ¶…§åÍ—pRÓrÊÏ‰Ÿ,gƒ9Àœ‹í\n:±ÏI®uÖ›à#çÛˆs-Y\Zçz9ç<µn…÷›åTl½<J!g±üàÚO%lÚíæ\0S7ıçšÊ@©ü3ÿi)\\·v²B4É´™ù÷ñÏ®,àß,êT^çÍEÎ’ÿz9çŸ^én¡W+şñsSµ®memdæïäî\rW´Mµ©İ`44 o? =ÍÚ•ød9c\rkÍ bÀ\"ÚÙ˜´›ëzu¤)-ÂÑpc—sÖÉã• nJ­.]}=JÙgÖ7úö†«ğG—é|óéiÎ.ñ“e¼_*	Wt±_ãlËÆï•×t\rî6uF»ÁüÔë½,yÏôŞywıZÑº¾ÿè€n’ß°ÚmëvS×Sosp\rœL6s”pÒñ¶…Ëç–ñÜÄOVˆõ¹c!V,’-Z ƒú°÷—« ±Hä†IÊ‘¨àÔëÛR]¹ÑòHÀÆµŞp°.‡ıÆaƒúÏÔS¡=õv«Ía½×[‘Ïv- _=YYÕBcùf!ó&@öÏ/5v–b“Y¸#\"©j®j÷,ö“²Å¹ÁyÅgö)sÏ¾İëªi-Ä’EÜ³U¸7?6ú&Îõ\Z‰J5¸7TÎ=Y?ß¹w–âÁ7û£”n0uÆ¼f×4\rVE]p hPí™€ø4ë¬Û×œa fn¸ßsñÎ¦-àİ|$º›¼ÃÑXÄûä#İxú¾ XºÎ½CX”„ƒ˜ocœ4W¹po¸bÑrãñÁy•gæ©Ğ\\²Ó”5:û9ÂÔ‹Y‹¨gW×Î®\\êÔê]Ô×›‹Û¸Zvc |C–ĞûˆÎ`M¸Bc>z×Ô®İav_¸J9 ¸4– Æ3ùR0ãgvÇr,ç¢XïèË\';^OœlëH¼Â¤\ZX«Êk½Z7v9#^2›{ŒÂ¤ÁšÊOôäö,á¶xNÌìÎª¼„“éMãGğ[Æsâ\'Ëº:$.¨Ê—bÖ‚*?^?K¼YÖòğ®±Œ÷;+y%¼»ù[‡°H¼÷w~$œ\n×l·?ÿLq h^ß%|t*²\']\\TåêÄ¦»ÑÎ6®Îë»ZÒRfK/6¶³k$:vÉ\\œ»œWwr„ÉÚõ˜Zg°¢®]>G)ü¬—§¶7c;e d@;ß}P×Óœ]v²ŒwÛô)WvñkëìãÖÕ©‚Šœt\reu]/ç¤“#¬¬+VÖI{ÕÎ‘„t7X÷†k1›©ÜH=2 o> =Í9#]\\$™ò[²k(W[¹(×ãîIJõÏ)\'ÿêŸbvk*/ÆQÊ8×ó¢r•¹7 ;T›b;ÛW¿bàdò™ø§bp‹:Y!ÊUşÅ¢EU­[À¿º3}ĞÊ™^c[ØÑèå\\\0r¾~v–\ZÜ“Ü²SnÀoÒè\r·Ç&“w\rAƒJÏ·fUúÉ¹&½×z±fëlÙÖÕ•IçîzİëRCY­×Ë9édş|ŞYjM=Ad!=ŸËhvuNÖ\rÔ#óŠÎ7pN9s;Y×\\S),bœ½Zí—ø®\0”º<>¨ç,¯-„uAÜX çœ|Ÿ&×¬¨[\'â‘…s¿ôÛ®İ™äÎÿ-r\"J%¨óLEşŒ›ñ|Ï\'+Än}po)À-PÀhàÊÉ¶f\nh W€üŸg²³ô0»º{DdQà\r¯š]U6~•s dÀ:ß~ÀzšsÖÓhÆõúDRœYÄ:;¶€u{¦¹ßF¼k0¨ù\ZÈy\'ÿèwÌt¥y`´2®VGDŞ5ê\'X]W»`^“Bâ™€xÂs¹N–õn[¬VøjÅ³×ë”u9øÁ8|ÖÁ“@‹åÌ[ c^r›ÇHLÖù>:ƒÁ±;rLv}Io8LnÊ=vYsªasê%œÚ§lûã9ñÓ”u»ö°Zñ¬ãõ³Ä›/\r·Hj, ^9ñdıã”…‘±Lãg5RÌY1Ÿlo¸O±­##>ÅÄ3y§¼}g3eİ¬ï“¬Ä¡İÍx}É8ïnğƒ‘}°\\`±€ú•ç¯’ÛÌ †S®@İ”Wå÷Ì	èW.{Ã¼ëÆïmPï¼k^ç©Ğ\\äÓ”u½[íé+ñiõìßêÍ¢Õ² Ïù^#Q‘% ^¾z¾—R$Ô»ºİYzxôí:¢#w®êõ†+÷E¹ñëšAæ™€ ÒS™™“å\\µëÄ‹A‹ˆgãoOF£!•ÆâW\\,\0)ñnBÔYzM“Ílxp²ô†«÷õ~ƒg€óNØR	4`.\r¨ø^½g¼5ÈNUâÖ\"ØÅ\n¨Q+‹`ƒDWªşŠ•R$Uß-³t–^]æ~\nôsÿ~ÁA\'ëÀyf–JÂçûû4k×èN–s³>»¬Ä²EÄ³•ˆW›ˆ-±AŸ£± ê¯XY)ÅB|òğF*‡–ÊO~ôK©½áğ \r»…]»\ZÔw& ¨ïTæ¹Z%>M%nÖç–âÕ\"âÙÃÄOQ£\Z¯±€x\rä}jK‹ÆÕŸ®R&çK»oğˆÈ¢XãÆçŞpèrñÆ[ÖÑ¤Ğ€x&  ğx+q»N¼Øµˆx¶qñêÔ\nLøòQVcñ\ZÈ‰\'Oè·Rw•Âª­_ö:\"²pSşŞpåaâ]ÿ54 	ˆO³vUå4•8ÙóÆ=¼˜µˆv6qífHe<‹}]­™Xä¬“!l{Á‚µyDÖ[¿x`¸3ßoAÖùşÖÓ¬3Ö•”x¦†X¯Wìx=™Íû®ó\n?.·ºñnÁıÆµû›	åkí{É/éà]_ÜÛR—ûĞ~Æ]¸Ÿ€xÛïúka¥À§“ÉFY	\'£l[»¦sËø™kíì­Õê~ùZL[P÷Çë‰\nşå½+ü@TÀ¢J0³·`ŞçX «ı’]\"‚¯3XSùaàÈ@\'^o¸v[í¦­æ	¦ãpàTr\rœ³õ;Æoï50s¿[Ÿå×+Îv¼~V5©Å>qç˜ÈE “èÇÎ`†r”RÎâU®~÷‹\\‚æ=„“ÊßäÄ§Y»œO–3t¬m,®Å½EµŸ]]×~³µ!ïk¶¹‰ 9ïdıNƒÎ`x‰ÒuîG)şL¼o\Z½áVˆO¡ñL@@<á}×=G¼X¶ˆx¶rñêÖŠ&ªğk¶¶^±µ¸¾ğ‡Æù6:ƒ5~ÕıH¸¬ÏÑÌªm™½Ÿ`2 o? JÌå=Yy«õNµX¶ˆv¶ríöĞ±\nVĞèJ?³âe¥sµ-üJXgéa²cïH@?Eê\rW¶¼àí´\ZÏÄS™=ñz£•<—œC<ÙËÏV. ^ıeQFõ}ÍËÖ+^×Sâ]ÙÍ07ù<Îï	ì\rVÖßí2ÆúåJ%€©$ ÒÏ<ÛDGo¹ZbR‹y‹$`SH ¾\r»L‚é¦Æ‚‰ò¾¢Ÿ®w(¤´¥dò\r¥øs£©²NGq%6nÊäµ\\7b”J sh–ÂÕŸ“¾L97qq‘ìîÌŞ†\n¬ÙÛzÅŞâúBdáwîuƒ®ş	èw¬õ†û¶”}>Õd.Ï•ä4bUqt‘ìôÔÌÅ“ı5«[k odıb}g0<NÌúÿèÜzÃáø,ìCsus@0Q=§	h\'¼§İ¬îú¿Y1»ãõs|ü`ì¢“-–w>Èˆ—Üæ>Ïøø6:ƒíıf§#áüho°â°ÃÃZ7tÍ;	Ÿà3|²œËd¿\"u8ÍŠ¹¯Ÿe]-\Zs0ìÏw,ÓNæÖ¯Áw“ı|G)ç¬—¦×O84”j³óÂÄËÒ2v²¬q<Éêƒ«F¬[ĞÕŒ×ÏroÏ]ƒ™&°+ÌÆµú÷’ÙL`áW’:K#»\'ô{Íú	w(ù‹S\rˆÿ–¥e¼\'^o´\\Ÿi6âÜ\"ŞÙÑå]<€Bntj–…‚fÅÑJ!ŞİHÚMéùYú‘p~Klo°bZ—=¬\"h@;ß~ŞÁ3ŞÓ®÷Yb\'ĞÒirW#Î-¢]@»yÓ`å¾Yó³È;\Zr‡İÎ`U6³A`‘ËïQî\r?†ù½“r h@;ß~@{šµk¾\'Ëyõ-ÁF\\[D:»¹€ts¦ékn™íÃò½b©ë;×‡w«¶ÉœL×	è³ô†[aòÌf3’òùQ•ğ¾²ë®³.F-b\r\\Àºz´Ñp×Íš•µ@^ÕÉú-Á‚§ƒˆ,rù\'\"½áŠ¦)6¾™\rê:ßP×Ó¬]5:YÎØc;SÃŒX³ˆu¶lëj\rqÌh’ôX¯\rıºrÖÉşùIgéá}„å&¬®ĞEû	WÖÅÆD5 ¸°Î÷°Nø™\\]6˜rN¡˜u±cëlÓÖÕ}o0p×Íšcµ@Î:Y>¿—²3&c®s>\"²Pç×°{Ãa³N¡=ó\n	¥ÀT¤¥Èª½’Q$®‚c	À†-+¶QO†ó©‚z¯±&{+Ö@¹äşü~Î`x‰ÄÕì#\"‹şÑco¸vW›[ğ\ZĞÎäoÅ2ëàÉr.ğàhmFÓ®XÖñz2÷+UWø”UôR¬Åræ-1/¹%£ë2û\ZÛo7¥‡¥W¾Ã#÷Îõ®.`\\¢Asæ%œ®~ÂtËx.×Ér^}\'ç’‡~¼~–vµ¥XOÏ+<À\"I@»rÚSçYøºÙMéåÇİH1g½ü#ÄŞp8/ÕÎ­a\rhw5§=ÍÚ÷3–sê±©ŸiWìêxı,íêÈdtuÿ\ZØÖWìªd6“Wø‡Gİ”áJu$ °Ÿp-3s\ra d@ºs«9éTd.ÖÉ2Æ²í`ÒW¼jËf-ïÜña¶-‚7êúŠY•ÜÖİ ÚMéå{è4é\r·ß5ØZ¹[‹¸¥†SÉæò>ßÛPñg¢u~c…ÀÆ°¥“c	Ä ãkËÆ­öOÛ®ğ‘@–äåÿ9ßk‹6ÙÛkÈ;ò~5«›ÒË©DdQÏï¹ï\r‡%²îÕoÔ~&¡ñKÎ·ŒgN–÷Ù£Ÿ[qjıìàòù%€cß¼Åc¡|Voœ{rƒÉ‘`6ÆjV­_9Jáç†“µb¹[ì÷Ûúea‚ÄóíçsJÆ{âµÀØ 6¸Î‹Q‹Hg®.{Áò\n¿f`[\rä¤“ô¯iuÃ^ó=ŒjXH÷ãô[!=…¤óí¤Ëušr^%]|ZD:û·€tõ¢x¹ \'}Í¿¶+ş×ò²cÎ:ƒa-ßÜ‘q®ï\rF±Élœ ¨øÏÍAN%ïé™‰€*=ñ4b}‰²£)À.PÀ<ÚvÜÅÈù^#Uéˆ‚ŞFyÅ\';èO\nê,½Ú¯^¥øsoã·†ô+µì¶t\n\r„\rj>30Ÿæíd=YÖe“¸?îoÄªEÄ³…ˆ7Ír4Ğ®œöÔ‰b	eìZ…aáËùĞ#\"ïşåÚŞp‡\nÇ dsË°Î·°Nx.ği*pr\0-‘¾[±¯ãõdBï—E®ğ©ĞÑ“?å¤[ #]2›ë,Nã{è†/RpàH8ê\\o°ìuqj\r„Ì9—p:›Ì6T2‹u²Œ×÷—íÄ£5}¼~–tõ¡ÑÑÀÆŒrÒÉú;ìÖø\'HG)ä,VòHywû	¶ÇRÍ2™?øê3P*\0ÂĞÂD^éï0.–úÂu~ÅÄîØÅå\r~ —Á1f\nêüŠ‰•Ìf\Z±¾Ä·ĞYzØméªî‘€‰_1ş5»\Z¯íø\'è!ÎùöÎ©È\\à“8©Ì¹ø³¨Ê³o8Ÿ)b¦ÀY^ï4p¾baH9÷ÖÒÃn×í	è_-è\rÿ¿KÈ€s¾ı€s*2p²Œ×_QÛ‰3‹XgÇ°®¶µ<+Ò\\éh4w4©õ,üğ×YzEå÷¥ôsñÛé{Ãáİı?ìu dÀ:ß~Àzš³ŸÈXÆÍêØ²ˆu¶këöH1ê_4Ôu\rä¬§®ï5qÕéPFQGE»ç(¥_Xw´7\\Ü¿¤È€u¾ı€uÂsO–ñjÿ\"®,âœİZÀ¹\ZÏñĞÎòz·fV-sNÎÏ‡;ƒí}u=\"°PîOõÃ\'[òC2 œï> <Í9«èzÿkÏœvbÄ\"ÊÙ ”«í)_³ªÈLê«çô½b®­8¼”%ì&o|räH@í\rsNYfşT>?u!<ëd¯r.,âÜY3ßª¯vj3ëèi“Åv¿$~c‘œõÔè¥™u)Ì` }™é²\"‹\\ŞÔöSv\r¾–ã÷n\rª:3Ğz;pËxO»y÷2)1Ï_Ä…EÄ;w–Ÿ˜SW¯w“;Í‰_±§@,ü•Ù\'K0xÂJÀì	«áxspã‡‚Ä3ñi™³>Æ5:ƒY\"~¿bPÇë‰CÈˆÇ¤Ç¨öÁ2¤Å‚\Zo‘¬ÆKvs?SfÏœ†Í~8% Ÿüô†Ûµ->Zä:¯ 9ñN:šœxÆÏô-ñd9’íÍÌûŠGİ;g–ó®æ_Îgì\0ëÜ1«ğÉyOİf¹óSvƒáx9J9gÁ²\'¬†«\n|QÁMöB´3íiÎ¾¾[ÆõúñM{±aAO3^?[áÍúÉš*‹}\rì\Zï+öTr›é+³M– >uéØ;ĞËÜOÁÇçü+%!ŞÙ¼§EÎx×ûDœ©áê.F,bİ´¼º«×Ä¹8í“Aõ<ÜìW*®\'´gÏ˜¼àM@ÿ…Şpx[/x\'G¶]ÁÀØlB#áóıLZèŒx½Ó¢Yëc/v,âmZ~+€R­…ù€|\ræG*{®ñ^Ê1×ùÂŸÌÑM¹Õ¾“:Ğ\r\0½Áğ’Ä¾l6^š°A­gòs\r?Wnëä•ƒsŸ]SqÏf-àŞ©’Ïù^ï5po¶ÓÏ@Ş‘rïz•ÎÄ™eY?Ï@7áì\rˆ¿ïğÈÇi3p®yÍgò)s&ádYcmom6¿{‘Ï¶- ßœYìVE¢Ò(î5Ô{2~Á±³ƒcˆ¥üKƒq-¿7\\‰sğq”M6¹!lN=SPOxO½İj•<2àî^LZÄ<›·€ùÄ».CÉØÚ®÷\Z˜×@À<YAÿ›ÎÄìÆq{D$aŞïè§’48ö<{¾ê°n}ù	§İ½_î¼e¼g^o½Â`âÅ¦EÄ³}ˆ7‡¦}ı’ºQ¯Ñ€zƒåNêD1\rœ‹;&Øí|?‘”z×¥ô¬aÎpæ¹\0;8tF>ÓT{Ê}²¼y*Âô‹Y‹ègĞ¯>­lä}³D\\£ßìjú‰8yúãVoöú»ìäÉ÷$¤úéRg8ì(qİÈ‘€©‰Ö°Ä[ƒ{4áf\rF_¦eïß—½e¼—CïV>ş»ÔW’ã°bnÇëÉ\\ë_áÒÉãûÁûtUúÆ.ûÙË{ÉlîÅKß]tË÷ œ°{CÕØ9ŒZ¹âÍi—pÚùúvËxG»eİ4ëoÿÄÃÍ`¼~–w3·ÛàÌD€Ç—‹sc—sÚS›XúŠİ¬i²¾_\n™èåÚXoÀr‹ÓBwÉYN®:”L P´PE¾¯[Æsğ4bıÑÔaÅæ×—|›¼ê«“+‹}°À\0t¨ÁŠË•Ì*]%î,5Çğ‘P~BÚyÄ3pÿÖş@Ø€ugrsÖÓ»YÁÉ²Æ.ÖÕgS1sQÍg“Ğn>.èı‘fHúŠÇ•\"$¤»{g©KôcDo8YÑñmm dÀ:ß|P×Ó\"g¬ë}®Œ{Xq·ãõ³]Ízä`cĞ!çzÙğ^2K8wÓÎR+üÎß#áüê[o0ì6®éĞïæD¥Ğï<n^éÓÒgôë-ãPå¥&ñ +..ªòìî‚*ofu‹m[¾L×³¸ÜñİØå\\€Ô)fÇwËzš•÷4Zœœ\\ãÔÊåîÇ©Ï€$ÉÒùîƒ:Ox¾Í“•·Ü­ú .¢]@»™78ö€vs·\\d&Í!§=u‰åÖÁvş:G)üÜ^üjo0,éà{ÿ¢á@Ø€x¾ÿ€ø4ï¬¶ë–í~½‹ÏÆ. Şlªtñy}7së‰×Ë9ñ©A-ı ŞÌ&6Ù³pDæÓåZĞ½üa»ñï3ìº¹_$|~NC™ó­,kqWs„;\Z1oñlêâÕl¶Ñ‡ælç,GnìrÎ{êËd«íë†]}nJ~Ddáİ?Xì\r\'½à¸>.Ë@Ğ Âóí>Í:«ğfàwëj<¬˜ÚñúÙV\r\Z>+Ôw¹ãiÆMj`KßŸtÃ*øRwFERÈ¥§qx?á¶òa©ì\rLÂÄ³{\rˆOóÎˆ×;ÅQi«=\ršg\\ã5pzù…YËÉA“ë)èÉŸ®gµ~Ìof±,Ü*A7¿¹æÈH¿ñ¯Ÿ€¼5¾iËeG«Ëaàtr-ÆøÙ¾Ç¥Àmì4¤(’Z@½O±]1µ\Z8/†ZW¼ı‰ûZI6l\nc~‰nR1ˆ¾AÔÛúE9¨aE©öBS#M\'Rã[î–KâÛÆTô¶´X§ÆŠ¿Å!J4å£üBˆE•‹Ôˆî\nšFêKÿü	jh‚ES:û5R¨Ÿç@\rE¶|EÖ¯]£A¤àHæ!ï\\\nYƒ0\"’£dœâê‚á¸Ø²İ‹0KW„í!¶»’ìJ{Hİcé¿Bb½j©L:8ŒE›’\n‰çxgÙ5&(æ)À<D\nP\n™VîäF§ÀŠõ-¶ìø\"&óœ,\'pa:VÜï˜ßL#Èâ;æ!¿^6zOX-†B…Öè˜óåeFG0‘işy?d_?Ï]ÔZ3`‰0=­\r3Jº±z=èˆRC‰å;f\"(ÏxİmB„ê§PĞ@‘UÛò×«iÀ<D\Z¤Ù»ÂadÖÜñ¥Àù\\3ÇvDl#Ì·Á·²¢ÀŠÀ2×Ä£ƒ¹¼j¦ÑåCA\nõûR €f‰Ïô”Ÿ.:¢Œq¾¿ŒñoÌ(ÆCÍ]^XzP§X¿Pö„‘f‹ñÕ¨`¦\ZÛb¬¤­\r©ÅÄ|‹ï­ÀrÃ‡w8„VB]ó\n,÷øT’ŸæB‚IÀ4D€Rà²AÍ½ZŸ‰`{Ø”n»Â[Ú#—˜Gg(LaW›o¦ëùSw‰$í {©|BŠ»f ‚–‡ò6{œ­áÚtH³t`6vÉ~ä±‘Şº8è ùŸ=M­iÁ1ÒÂ\\ášf¹XĞÂ`Ùcø±,ËĞìãhŠµ û\Zh¡Ğu-ïÚº%f#Ò‚Rà›†šÿy-Š5=×–·üBF`\n6şÇÙ_ã¸Ö1ŒMÎK§8Ö¡›)”Ñ’i¢†kŠİÄÎ~7%´@ıŞOÈò€=\rÍFwH±3#Mé-Dâé`áÍ-—Ä•ó4DKzs,Š5\'=Îk¢CE4Z\0/Š…’h($µ²eöFzaibE˜+\0I‘ş\rS(¢9V|±jã?W00:ÒÁYè@‡4ÿ\\Í*,ÕÓÉ 1\Z2\n¶A7…_Ñ UŒyAÃĞ`¨‚†R7[f¯¨OiÖŞ%C…é_³†\nšcS‚Ïg38™hÒìs4÷vÕDâC\rØ<F\Z¨=ÄS—H\r†\Zh(Ğ u£¥§“±nà†]ˆBıl ‚\"aâp©#	-!G\"0‘”×GôHš{“L]C—ŠÀö1A\r\"TE\"h0AC©-}¯Ì‘V‰²Å„–Â7!ˆ È²•+Ì4H±‘ÌD¤¥ÀéCÍ|uÃhQˆK5`ûi`ö44J ¡@‚Ô–{×ïC/ÅŒw1ïÙ[1²•%ÿ|`N³$`\"\"	(…L-vb.]+€ŒÀùQY\r¢8ˆ¨h4Ô@C©!-ıÓ4h À¦õË}è‹êßÌF;°ÂğVØÆ¿ö–Â#˜HJ!“A³_Ì‰•®5!ØDf‡­^	tœ²šùĞlqÀŒU©--}B(0ÿæöxs[(ı«ÃĞA‘ØãP0Còó+(‘f)Átäo,¹2%¦ÈºF!~1ì–ØHVş‘.´0«:¶‰%ı±³Æ$I£í&óÕ	|5\"K_úµTh¡i@—Ğõ/•AEâù3>”ê‹%Rt¤“ÑøÂ3P\n3Ù#,{ê=œbC!ØE¢]qêB}âø$4zB£E¬m!4\n\råÛ©%²Ğ‰708K(aH?íGï”\"ıwj „•f»=à°Ë|×‘Ãçk}’~ÒYGİ•€K)¬\0gì[¹f©ÇÀ2PRàÚ?ÉœÕ	u§A\Z\r¤°P …dºt3ş(ÂnJ}JG	-ĞÅ%ê÷°Ømñ¢üìHFBR?¯åï¦Å§)ÿŸB™Eâ6QŠEŒÚÄH„ğ“Á«¿…Øj«˜3°F1…a\\9t3!#%R?Š¯Ş3J˜#ÅÄ‰CP‚¡haÅÅç¾[¼ÊÍøñ‘ÂÔBHşŞ‡KÓ‡š?Œ^C¬b({È`¤(Õ%®LŸ,\ZŒÎ¯ê½/Yj6>ÙÊ÷)Ì7~}R0Ôé)ZÕ•˜¹±#œû!4IŠ4a^‚AƒSà{€&Z3©RŒc(	;ÊHóºExr?õ›O¤‰MR“Zúó7 ‰ÙÔìS¤Ğ$…Â3ĞD¡Ø¶ñ;ÿv…Çg+±’~Ò<\")¨œ?¤Ğü±f°~?^^Sƒ½e½uËè­ÌºÍõ+64\nÁåB_¥‘`*%…YFä5Æ±„ŠÄ¨áÆˆ‘BıÛœĞÂJ³opæ„¡	­\"EG­‚ÉÈr)ğ-C\n+x:¼ºQC|dØ*Ø`F:¨…”&ŒŞ\ZŒdĞH$CêXK´3dPdƒ£úùF!C\nÅCbC…öØ=“|÷Şo•…\"œËè—16¿0vëRà‚@-N0˜#Nq”¡ l5#AÔLâ‘şø¹Õ9ƒi×p$‰™à ›Jİkv|$QäŞ/MA‘é}9±,k#…÷–üº\n„ |>µ•ø7„ ˜\r¡8lñ¶úsRˆ¥¥`¯I¡nr769ùI]”F¢¶‘ÚßÒ¿Z	!‰÷Æ]•…uı\"¤P(và*ÿ¨	B¤ğ¨b2¢>ŠR`6 ÄtÏÅúÖ×R,e¨{ÍÚotÁh¡n^ğ˜}Qz’B£8ÕpicÃ…ÙĞ Q¤öµôÇ™AEbg‡›¡Aı!DĞÂ2Å‘è©üù\'#ÅGb0ÁÎN!Có—\rÿsÈ5\n±”¡ì5Q™æFF!…ºÉ=LT „7Ë$RÆÿ ºèıâ¦¹©•Åá+œ=dQ §º&\0YRhrëcÁ¡Š\"‹N—Øø³ JŠDafğ‹†1ƒRà(Zˆf—L×[HµfÃÇÀbvYğu#ßœùuaÑı7u±æºH	–Ù•·{İ”C‰cÒ9ó£„¨o£ıÅ±‡@‚ÂH<Cra8.ŞiÎ~ıávµfÊÇÀyY&SË¢ÑïEÈB.Û¢Yˆ7»İ²ÔÏÆ ‹B±í0–%…G²i7A{¡¸†Y,û3²ˆÛŒ:±ŠmhÔZÌ³Ş¥“´ñxiKß!‹ş0%5Ê8JëdQ ú¼µ¤PßıBEVåŸöèAÂK[‹Taj\"U(.8T±ì×M*1¡*ìHóCNñŞŒöaÑƒW‹å§ùN¨@„Ôàbœï\"hvxhÄ4é?C\rÌãƒ«·P ÅF\n0\rÁL‹Sà²AÍ<ñ·<´Wâ6CşÙ†Fü«Ñ”Ó—ò¡éJ£ˆĞH @jŒKÏ#0c‹ÿù.¡@\nõÏ €\"‹öĞ0ë›_kqëÁP#M\'RƒI‰Ô ¸œPC\"dò°Á)\"&<TDK)b6[Ö9kŒé\Z‹1Ÿìêæ{,½>õÍIBË.ğõÃ?Q$Şïİx1!Bšm$ó‰@)p±!‚e~Fñ™¡l@#	Ôbâœ‘\ZŒ40gšk\ZÚÒo;†\nŒ¶\" ´È—oE0äî€Oç«TD`&\"Òìİ}A-7–2—Öµñ˜¡l>#Ô^Vedÿ*\rF\"h$è™R3[úÃv ‚ıûtè˜R¤·\'h\nÄv2?cŸÁ‘LD¤Aš}®æ¾OVjœâ,C	ØrF¨©Ä²]Ô4I`^Ô•}Qj‚³çŠ@Ñ»-õ›¦ \"kœ¹ñ{Ğ¥ùF\Z0‘”BÖY¹×N	ÆÁk\Z°ÃŒ40k ÁHÍ u¬øÌß4P Èèê&P@k¤ØH&\"’€Ràb£+ÒÜ›U	ê5Ÿ=ÎÈø…LƒÂSÄğ]Àµ9’Er	$ÇÅWû-dİ”$ºU7Z%´@ıbb?!kŒóÿşŞÀà@I<™›\ZPö®êœ¦ÜÏœ(VÔâ£ÎhœWÁl­ŒÉÙÄğ•™ªER3[úO’BM²õ\rDH‘XKàº‰yj‹Ã7æ‰ª‚PBùR¹Ä¿!¥À Z<»XÊÈƒC-Ş0ÔƒMcĞ1*”££ˆôĞ`Ğ1,Ğ#5¡¥ÿ 3ôĞ$18¸U8’B“MÚ¶\nhÈjó—Ü\n\"4H±Q£`\"¢FA)d\Zh±SbC	Ø5Käµ™g8‘HFKä0_\"Gdé`Êä=µ‘K¨ ‰6#hîß‰#?q,×:¤G:0Á9§é Ç›5ë–¡gJÁ–1’BM!Şlˆ”Ğ`¨„¹Ú@‰Ô„–şÛ|PB‘x¶\rÔrË\0ã÷ù£ƒ²Lñ®¦—¹û¨1¤Há‘ÌF$¥IaÙãiÙª®Å†R°qŒ¤Pk¸ú8ïëéê@‘X–ñ¶o¦PğO\n³ğé]¤ĞDñvŠ[õC×”BıñPB‘Õ¶Å¹«~!”HÑ‘LF¤¥Àl`€ĞìKŒsÈõNbCØ;F:¨;ÔÇBsò#ÙĞAƒa“0W4‰Ô–¾‹ŠŒ6	\"´H¸ÜìX\ZÈ @¼%Pc}Ïµ\'È‚#˜‹HJÉ€–}Úu8Ä%†2°}ŒdPƒ¨ËŞË<`ÒA£¡\ZŠÚCêH±Ç÷,ËÆKˆöB±KŸ¡PbÊk\n‡ü‹¤L™˜H\n*ç),yş?ÇœâC-ØFFZ¨QÄ»¨Ñrk­ÑPzBß\0-&q.ô(0´0oZùã E\nÅÃ†BƒÖhjQçDğ@\n¦#’‚Ràì!…fm}g†	±¡ì\'#-Ô1®tO\Z¥ĞPÔ,R‡Zú—{!…yÔÚ?‚õ‡C\n…®vP)<ê ˜H\nJ!“Â²_ï š5{=cç{×+45H<isÖ?Y›…]§}3ãò6!y.ãµŸkvçØ¸®ë(¡Š¬˜‰~‚bi¸Üø§ƒG»Şí—1ºì[Í·.Îı4å¾îç\ZqŒQ{‰ş)#d0³Ë0¹DAÁ>rÉ1Á\rªA‘xıÉõY!…úo·CEÆ÷¸@ ÅMAâ‰{ÿŒP\nœ>$ĞÌÏH †1”€dğˆºQ¯ï³™‚ßÜÏa?:(DRIÜd’˜Å6Ú4ßhcÈ\nß$ÄÊÕ{ˆ’f‰ÂÔ´ş«W…RÈDÑ‚ŸİhÓˆuagéb>{l\Z®¶^HX,Å··Ø#aRó[&k˜6ˆ2Úi#·µ43ßK¢±héjœäÍ§)ÃäDÊ¤pı%š‹ÙîõéT#n2Ô…mf¤‹É]4úºX2Á@’úØÒïĞDƒQd´ÕFn+ÑÅ5	è¢ĞU]Rx¤“éB)d-F³?3ÍmÄ[†º°éŒtQ[‰áJşã¬Ñ^4úºX2.©«Åë<œtQd´×FnkÖÅ‚E‘mÓb±Ğ¿İ,EG²07‘,”ÍE³—cWæ»F¼f(›ĞtÁqìE0Â›=Æ¡*\ZüUô‡Q/–šÜì¤¨bùãóºóÍEÃˆŸBır¨¢H¼nÓàãpn*URt¤\nSÓú£Ê1¼P\n\\:¨b·Œã!æSElg¨\nûÑÀ‡4ê8¥%ªhğ;TÑFó°Ôï–~6U‰·…\\ç\rUêçiÅŠ¯\0bg.K\ndanv¾Z@Jaæ~¬4E³_%£\ZªÂÖ´ö3y´ó¾\"Ê\"ú˜1z0\râéFnJ4µÔì–şPvè`9/óÉ}Ì}Vé7Û@Ë»@ğõ¾3[£(¡Hæ%xŸSÈ±‚œ™‹\r%a‹\ZI¢&«‘$\Z%ÑP$IjzK¿‰’˜íõç™¢e’i€–#NÚÜn¶Ë@ç6Ñq¥ÉDz0)‘”-Ä\n²=³„Ò®9÷1XF?Ì^áÇqæ[=ç}=İÄçfº?\0”ü–Zî»“n6\0J şH?AëöpŞ«$t ‚ÄË¼WÉ)0§)w¼„°ú¸£W\Z5‹1ˆàO©ƒjH×Î\n±ğ·G)ß¿—vıiÆœ<¾°Â·aRhp¤AÇY0>ª\r!ï*Ó/cú‰4ÁÈÎ)pù Íìæ“^^‡öË×Oo7wow?ÿøõî·‡½{ùíñËë»ÏQKñY‹w/¿}šşşöüu¼Šéİ¯ÏooÏOÓ¿>=Ü}xx‘Á(}|~~›şq©éşûÃÛï_ß=¿<>|y»{{|şòÓÅ×ç—·—»Ç·üäáÏ·ÓëÛøç»ß_ºø¿-öJã¸•â/m¯¶iä0Şşe·+‹«İõö€éİÿ»x÷çÓç/¯?<ıùÓÅ§··¯?\\^¾Şzxº{İ<=Ş¿<¿>|ÛÜ??]>üøxÿpùtwùğçıÃçKœ¿´Ç?¿ m?ıùÃßNÿùî_Ÿ?<à.Şı¯/ãßÿëßïï>E)EåÇÂ^şñüò÷‘¿Ÿÿ¿\0\0\0\0ÿÿ\0PK\0\0\0\0\0!\0v$Óåo\0\0¬&\0\0\0\0\0xl/sharedStrings.xml”Z[SãÈ~ßªı§xÈ&U`ƒÁlf¼Õ²¶$bYCÈ[[X¢Ëï¯Ïwd†IõekóÄŒ?õésùÎ¥[úüÛòŒ¾%U–Å—£³Şé%ÅS¹N‹Í—£xysruDu#‹µÌÊ\"ùr´Oê£ßF?ÿô¹®ÂÚ¢şr´mš×_ûıúi›ä²î•¯Iä¹¬rÙà¿Õ¦_¿V‰\\×Û$iò¬?8=½ìç2-è©l‹æËÑåğüˆÚ\"ıw›Œ¿®/FŸëtô¹-“¢¬>÷›Ñç>ÿpø1ˆçsõ·å6¡i™íi¼m«§-•Ï4¦¿Èüõï©ÏŠ`²p(î‘û/ÏB{à1œ¸w-{$ğO/PŸğ‚¯n´ôİ`I®w;]ÒÜó½¥;QŸó«š¥ÌÚ¼İ§\nÈ>üµ~•Oğ-œT\'Õ·ähä×tSf²ŞÊuBî’ò­$R–ÄÜı\'9\"¸)¼ƒÀ»uBõ™¨,Ú¤0kßäsú’¹ªÁÈ¯ÈÍsY´IFAÂbŸlVm–(¢,šV,»Nö)Ñ]¹-ê²Ğ\rDdr\n\\\"›„ÄZîZ\nWi’§ê¦#6ìN‚Â¹˜ˆ{X:¢¡(7\n&^èÇäÂ›Á/$‚[wî=õ9÷ùy‚MÕŸEÎ´SuÒ,[vÒõ\"yVŸ·uSæI”*È\\ÛÑ+šñnÌ;GlÚZ•ãËÆ¤<DİçI£2ÏÓšS{¼•Õ&Y«ÅRÜ„äõÈ_¨PˆwjÿáLË8A|- pØ£¯Şx.ÈÑÒÕ6ó¥ûuwq‹ÍãÛîÂÈ½ŸRØ×\"é/h\"ÏóîSM€ãİ\n`á<~}\'$q\'=õ©;pd.–ä‡Ë8XÀLNõ»Ğñà­bà\'¤±\0İH<h?ŠÈÈ‹PìÍÎĞç /¹p×<t4B,ÃQøèòş^¤)0YĞ]ì{t#|oš5shai<°JµÂaä©1ó‚ˆ·3wáÂRÕµæLP%=\Z‡XGPFİaƒƒÏo\\èÉEq@‘ºJNM~Û¤²aá>yNj-kÜ›xIŞì¹?‰uq8âI,fäÌİ¾¿E%×¢4ÅN¼@¨CM™[7\\Üº—ĞqÂ¥b•Åˆæ#\\	*x(NÊšQ8ñD,@†©æ`p >€\Z#Ôsˆ	(˜Ä3Oæ}	VéF¢ZwU½Hw	…9Úz…º—Ïû.ÖÁr\nÊº‰¡‘ÎIÕû+dÿürİ¾B \ZF©õ€‘ƒ¢Ğ±\"fÔ¹\0ÄÖØ†ìDê=ˆÈ}ìˆà„\\–Á91×Ÿf5\'úúéT/$\'±!Ó\rş.ôv¼Bbí„b¬Ò:%ñ’®Ê½Zíî¦¯éSSV)š(<¿Y•ğ´ÉÏ ÙÌ¥Eì:n@¡©¢îÓb\'Ñ!±Vxu.1ejÈ¼u*wÛR’HÑÓ›¬¬0“©\Z#‰z´”)&˜–É©JB†@c?OÁnÌãi¬åGÇ§:/‰·r¤…*ÌZ±Æ>ü.C}à½¸Ç˜¡t£ˆwÁCãöñï\'Ìçqò”fp°`oVÒ4£ `ÈÕwÎ7¬‘EaPH,Áƒ›üwƒLµq¢­Ü¥êÑw{£mÚ4š±ßcAñN>mSKåïúĞâ·Õó¢Ñ}?EÖæi‘¶9u}¿\rš²Ä¼•nz4oÔÆlf#|Ëƒœ^˜Ivbtİ´\rÏyJplr0nyú<\\–/)†Ì?·²>Tš\n}LŒoø«,‰b6’—Ëw]¾oe¡M½#Q5ÑÉ{N$P¨_òÌYÈ\\•6K¾¥‡ò¥ÍÚ?x°›B7m–îËDfZ>pçö¸¾W¦X+Ënİ àÔ°/š-rœxIé)ÈààeUÇ÷zôƒoüC7Ch½Fì’$?ÙÖ²J0ş\"~{¡äù\\•McáºM!ÌAëruOO\"wvo-ÒÉï¨•DµĞ†Ç>¦\0Tow’‚\rØ»ÓöıÑc òaŸrºÁxœ_µ6Í¬DâDY#¢ªHi\n…w©Ü‚‡È	l 3q„¨-D°Da¿¢¥r*/pØQ‹™u—E¹Jª”-Ö§­éˆrŸ¼€]Y»+5åÁè²‘4ß£0Ó\"ÅII	”u_±{-+ô¼ÃŸ?»ÊoŸÛF¶pÉ©æ®¥Ø{êİ´8Íe ;Î•êó~|‘\'«\n9˜ĞXVYR$Š£°B\"\'©\nY­)DRb¿$+·Z˜—ÎÙéùàú´¦Ê»´xé(rƒóL[“*èlÕuèS_#Œ øo¨%d·ëùÅ\'}×ry®#a†ıA$Q¥E÷×ØØÌAV€Q\Z“S•O»7¹×Ğm~qfpÆG’sk€i}‰ÉY; |ˆ¨~9 Ÿ†šef•‘­ä?3§q¶MËN—ƒÀ«+Màè±(5çfõ€\\X‘¡¹´ ×ºnHóîşÅ\Z3kÄGÁ©™W×}›×º1f¸Å¯,Š=İË¦JŸR-yŞ=smµòº¯YÉ•ĞéuƒÒf…‘Jµ•#…ƒÎ{˜—\'Û“p#7æİ‡¸%Ó’­Ók8ĞÉqˆ%#fW0b%#æX2¢Yù=E&ò[Š’‘Ê¶jë‡æˆ³äOæ5CCV¤±ØÄb‹m@4Û>ö±h5v­¯¬ö\\[‘³S;d‰=t8³»áÌæ1¶rÂ1}ÁXI´h‹:y34 w?²ö±©hHÈ5¶Hríc-R×ÖH]÷m‘ºîÛ\"Km‘d‹ »¬‘Â*»#ÎlœÅ*»+Îl¬Å*‹3P|,º±ˆEs ÅXô>;³•¿!Ô¶Gj`ÔÀ©ÅZì5°˜ËÅ^†,3d±˜!{¤–Hñ*»7ÎíŞ8·xc`ï;R„3¾	<ºs¾²ıŠ‹Œëk.mnñ\'‹;X¼9ĞGCK]«ñ~¢N^·)¦a¹ñìz¨*Ÿ¬ˆJónü6£hépÂ\"\Z—9^‡5dö¤Z<Äâ \0±Ğˆ…]@,äbá[MdÈÂ-†T¾.Ùı`«‰¼Jõ„%&˜ûöˆ=\'~×”D“¶*q™Äd°ÆÆVWyg»?õºŠûË pi<õ¢ĞGÂ¸¡/”MÍŠO*Z–|Û„«	Ü“i¾yO›ßyGáº»Îı?–ºYú;.Ü\ZÍ½—3É\Z7VÚúîs»w\n‡—¥Š9|Ïû”Úï\'ÕpŸ®ùÒG4œ‹ñ^9Q×t9xn:hvÈàâÂÒ1SkğÉPÑî«ò·°{ÜƒQÈ—²5ş¥„©V•TñfÏóÌîdİV-‡óÿ-nş`*_–İ–ÙÚÌ4¶ØÌş‹sÃ!·ó#ªJïg: vijM1››ÁŠoc¼×:Ü0áÅ:ß#Ôf.®–Ğ‡ö^~f1×˜M`D5á½† ›=2dÈ&ĞTËËÿìe©´¼—¥40d©µYŠ- ‹S#-Ù®s±½¸´Åƒ³›1{‰³“1ûˆ³‹±xèÌ¦õphGl)2ÚR„³¥Œ˜-^¢æÃpa¸‰2§ªù\"}B­1†¼ ,ªêa9µİØ˜Ã7Úª#«n^syªŸ\rgÄ¾Æì<^cv#fš0b¦ÉğÊæğá•µ¤\\YiÄlÏˆÙFÌö0b¶‡›=:íÍ4¹Ç÷Uã²ÎË\Zm%7&Ä»ÄJ£d×wqõãÎ_]¹swŒï–ŸÃc æ`éû\'/ÇÔ}uÅ?¬ñeÉ1ıøºå˜ø{–Ÿ¢ãÃË¬XñÊ‹?[9Æ»¡îC•îÃ§) ~ŒB?ÿt³À$´ä=kzÀ‹_÷]}¡_Â_~èÜÇ×f£ÿ\0\0ÿÿ\0PK\0\0\0\0\0!\0l›@šQ\0\0e\0\0\0docProps/core.xml ¢( \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0„’QKÃ0…ßÿCÉ{›fİª„¶Ã)ÃÁŠâ[–ÜmÁ&-ItÛ¿7m·Ú¡àcî9÷ãœK²ù^UÁ+k#Å(\0Ík!õ&G/å2¼FuLVÕ\Zrt\0‹æÅåEÆÊkO¦nÀ8	6ğ$m)or´u®¡[¾ÅläÚ‹ëÚ(æüÓlpÃøÛ\0ÄqŠ8&˜c¸†Í@DG¤à²ù4UC\n´³˜Dÿxeÿ\\è”‘SIwh|§cÜ1[ğ^Ü{+ãn·‹vIÃç\'øíñá¹«\ZJİŞŠ*2Á)7À\\mŠ…T«:Ã£I{½ŠY÷è½– ‡âfÕº*Ü3k™Îğo‹gvz0ˆÀ‡¢}…“òšÜŞ•KTLb’†ñ,LHIb:R2{oœí·!û:æø—˜†äª$Sš¤t–ˆ\'@Ñå>ÿÅ7\0\0\0ÿÿ\0PK\0\0\0\0\0!\0lQS}\0\0\"\0\0\0docProps/app.xml ¢( \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0œ’MOã0†ïHû\"ß©C!T9F+ØE-ìÙëL\Z×<Ó¨å×3I(M—·ùxõÎãñ¨«íÚg-$t1âl’‹‚¥«B<-ÿœ^ŠÉ„Òø ;@q¥œ¨yŠ\r$r€[,DMÔÌ¤D[ÃÚà„Û;ULkCœ¦•ŒUå,ÜD»YC 9Íó	[‚PByÚ|ŠÁqÖÒwMËh;>|^î\ZÖêWÓxg\rñ+õ½³)b¬(»7ÖŠXg¿·¼’c™bÎØMr´Ó¹’ãT-¬ñpÍ#te<‚’‡‚ºÓ­on\\B­Zšµ`)¦İ+/p*²¡+Dk’3°“\rIû)é¿1½`\r@¨$†bµãØëi/ààXØ Ü8F\\:ò€ÕÜ$úŠ¸gxœEÇ7Ì|çû }Ü@Ú}\"ï—ÁÿM½sáŸše¼1û­Õ¢6	Jşˆ}ÿPP·¼Ğä;“ëÚ„”{ÍçFw\rÏÃÉë³óIş3çïÕ”<·~\0\0ÿÿ\0PK-\0\0\0\0\0\0!\0şÅI`\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0[Content_Types].xmlPK-\0\0\0\0\0\0!\0P|NÁö\0\0\0L\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0™\0\0_rels/.relsPK-\0\0\0\0\0\0!\0øí°ù\0\0\0G\0\0\Z\0\0\0\0\0\0\0\0\0\0\0\0\0À\0\0xl/_rels/workbook.xml.relsPK-\0\0\0\0\0\0!\0pwƒÓ\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0ù\0\0xl/workbook.xmlPK-\0\0\0\0\0\0!\0Mu\0í[\0\0;\0\0\r\0\0\0\0\0\0\0\0\0\0\0\0\0ù\n\0\0xl/styles.xmlPK-\0\0\0\0\0\0!\0‚QP\0\02\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\r\0\0xl/worksheets/sheet2.xmlPK-\0\0\0\0\0\0!\0é¦%¸‚\0\0S\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0xl/theme/theme1.xmlPK-\0\0\0\0\0\0!\0HuOÂ™2\0\0ªø\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0¸\0\0xl/worksheets/sheet1.xmlPK-\0\0\0\0\0\0!\0v$Óåo\0\0¬&\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0‡I\0\0xl/sharedStrings.xmlPK-\0\0\0\0\0\0!\0l›@šQ\0\0e\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0(U\0\0docProps/core.xmlPK-\0\0\0\0\0\0!\0lQS}\0\0\"\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0°W\0\0docProps/app.xmlPK\0\0\0\0\0\0Æ\0\0sZ\0\0\0\0',23887,'2016-08-11 16:51:35'),(24257894,20160809,'contacts.xlsx','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','PK\0\0\0\0\0!\0;H@l\0\0Ä\0\0\0[Content_Types].xml ¢( \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0¬”ËNÃ0E÷HüCä-JÜ²@5í‚Ç*Q>ÀÄ“ÄÔ/yÜÒş=—\"T…TİÄŠÇsïkÆ“ÙÆèl\r•³%#–­œT¶)ÙÛâ)¿eFa¥ĞÎBÉ¶€l6½¼˜,¶0£l‹%kcôwœcÕ‚X8–\"µFDú\r\r÷¢ZŠøõhtÃ+g#Ø˜ÇNƒM\'P‹•Ùã†¶w$”Î²ûİ¹ÎªdÂ{­*	”wQŞ›@ã@âÚÊºü›¬ Ì$­òxõ·Ã‡‡æÀA™®´ ªºÎ $dsâ³0ÄÎ7šº°|wnY—ÖCèêZU ]µ2tkú\0Bb.ÒZ¡ìyÀ?F–ñ™Aºú’ğH=<}ÿdbÜjÀ3W»=æÜŠ\0ò5š¦³üÖâ ¾™ç‘¦.Àé·°.;÷$!*ø¾fûq¤‘=İğ Û¡{$ÈoŞ é\0\0\0ÿÿ\0PK\0\0\0\0\0!\0}ÌT\r\0\0İ\0\0\0_rels/.rels ¢( \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0¬’MNÃ0…÷HÜÁš}ã´ „PnRw…LíibÿÈv!½=†EC¤U‚¥=ãçïÍ›õf0={§µ³–E	Œ¬tJÛFÀkı´¸Z…½³$àH6ÕõÕú…zLùQlµ,«Ø( MÉ?peKcá<Ù\\Ù»`0åch¸GÙaC|U–w<üÔ€j¢É¶J@Øª`õÑçŸÿ¢Í\r%T˜KháC&Ig/¬ÆĞP œ|Î×ñ»£ÈÔÀÏİ^äö{-éÑÉƒ!›Îxæ4$²ŠÔ<z?G´üO¢)ó8Ÿ¡ç.t;çº9–Õå,¿¯ÂWjfgQ÷#È)¨S­xóÔ|ÅÅ\'KY}\0\0ÿÿ\0PK\0\0\0\0\0!\0Œ–Ånó\0\0\0º\0\0\Z\0xl/_rels/workbook.xml.rels ¢( \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0¬’ÏjÃ0Æïƒ½ƒÑ}qÒ1F^Æ ×-{\0c+qhbKû“·ŸÉ M¡t—\\Ÿ„¿ï\'¡íîgÄ&êƒWP%ô&ØŞw\n>š×»\'ÄÚ[=\n&$ØÕ·7Û74çOäúH\"»xRà˜ã³”dšŠÑçNÒ¨9ËÔÉ¨ÍAw(7eù(ÓÒê3O±·\nÒŞŞƒh¦˜“ÿ÷mÛ|	æsDÏ\"$ñ4äD£S‡¬àO™äåø‡UãNhß9åí.)–åk0Õš0ß!È!òiÇÉ¹S]ƒÙ¬	Ãù`ğ2K9¿Gyvqõ/\0\0\0ÿÿ\0PK\0\0\0\0\0!\0aà›ÒÎ\0\0ë\0\0\0\0\0xl/workbook.xmlŒRÛnœ0}¯Ô°üÎ^Ø$+ ÚîE]©ª¢^’gÇ˜ÅZ_m\nQÕï`JÚª/õËŒ=3sÎLq?*‰¾që„Ñ%NW	F\\3S})ñ×/§è#ç©®©4š—ø…;|_½}SÆ^Ÿ¹\"\0Ğ®Ä­÷İ6k¹¢ne:®!Ò«¨‡«½Ä®³œÖ®åÜ+“$ÙÄŠ\ng„­ıÓ4‚ñƒa½âÚÏ –Kê¡}×ŠÎáªh„ä3#D»î#UĞ÷(1’Ôùc-<¯KœÃÕü¯Ûwïz!!J²›äÇÕ+Ë‹\\k†³¾î´6>Ô+1ˆE{oöF5çó=8S\0r\'uÜo˜éŠÆ\'¡k3„ô—ÅO	€\r!ğ$jßBù&y}{ÏÅ¥õ0 »dúèéó§©à VüG± 0\ré@ÿó¤z\n£œì‚o·{®Ó€°¤1*ĞLø˜%p0bF³ŞZP}‘_ùè?8_`QoE‰¿ßäd}Ìëˆä§u´ËI”nÖ$Úd\'’g{B²œüXF®Æf®³Æ™Æ¯˜Qñ<nXó‘ñ°5·óÖT…\Z·;ËÚó$½€ê$ğ€^@¥³xÙÓê\'\0\0\0ÿÿ\0PK\0\0\0\0\0!\0¨°¶o\0\0ƒ	\0\0\0\0\0xl/sharedStrings.xmltVÛn7}/Ğ ö9xYŞIìÚ¨ë8Nª¦úFI´–ñ.¹İåÚQ¾¾³IUÖ‹g8÷sf´|û¥kÉ“Æâªb¯iE|Ü§CˆÇUõé÷ëŸLEÆìâÁµ)úUuòcõvıãËqÌlã¸ªšœû7‹Å¸o|çÆ×©÷4iè\\†‡ãbìïcã}îÚ§T-:bEöiŠyUYU‘)†¿\'ù]`tµ^a½Ìkj˜°ÊjÁér‘×ËÅ,ş®ºl$Ú¹Rşg]ß“ÛS©”Jlèµ¹(å›xôm)¼o§}Èïö¾ÔAbJ1­¥ê6ä|ºu¹”kÅ¤tZ•òÛĞíüĞÈÏî)J-ª…°Rr†UTqf¹Ğ¶T}œBÌ¨5Ûéè†òé»ôäsUf\0BŠ¥šZ*˜as©¥ê/€M)ŒîèInüàú0¢.È}­ö†¡Œÿ€÷dÓú/a,}ŞMØ\r5TsQkÅëòùÍ\Zû/)=\"·sg•ÔB\ZYº¸õ](eTSe4µL¡F€\'ÊŒ5V¢}ü>¤	×ÔiëÚ\"ü|œ¼G}Cp®kÉÎ!a\ZÀÜ$äk™E9İ¹¡ìĞÌæ7c@_U@×ÑO¾Z_•²?3­`†KQ×(ùís&½{†oitáİTÊfp)ğRãªîÂ™Xj9µÚpÎ“`ÀI\\îUŒ\'ráÎR˜×\\K¡Ko—€ŞátL-¦#dL™’\\ Ò7{tdû{®ôu\ZÊ¥’#•†9) ±D”˜g.k˜¢BV¿úÃƒGd~Y~(Šaœ²Ú*\\İ†Á}†¿Òäª÷ä;&]yu¥„›Ò`Fœ‚X†÷ŞÅ}	¹µŞ1·s{ÔÇOñ1¦çû›t\'Ò7pzŠPçÑ:ÇgP §‚À§°Y_=A¡ä½oÏ-¹™ÛFp¸6¥Ùu\Zò„2˜“º[¨·´¸y(ó]Ï©Õ¬65CÀı-ø¹¡ÆÎÄĞèùıˆú¸ÍƒÇ&“œÈô	6™’vúAxL¹·\'²;Ã\rH˜[ÍGÜøv*Zæ~hØªFÛq›Z?—)}[hBp+QËïOí¿Mº46éÕyLŞ…¯_ÉÎ[ÎEÒ”A ]sŒ}ß¶¨”ùXLı+òÂ¥CşOäÍá@:?ƒõå}ÿ2fs3¦6ı§\\À¨õ?\0\0\0ÿÿ\0PK\0\0\0\0\0!\00ˆk\0\0Ş\0\0\0\0\0xl/theme/theme1.xmlìYOoE¿#ñF{oc\'v\ZGuªØ±[hÓF±[Ôãx=öN3»³š\'ñ\rµG$$DA\\¸q@@¥VâR>M ŠÔ¯À›™İõN<nœ@@sh½³¿÷æ½ßû3öêµã˜¡C\"$åI3¨^®ˆ$!ÒdÜîö»—6$N†˜ñ„4ƒ)‘Áµ­wß¹Š7UDb‚@>‘›¸DJ¥›++2„a,/ó”$ğnÄEŒ<ŠñÊPà#Ğ³•ÕJe}%Æ4	P‚cP{g4¢!A}­2ØÊ•w<&Jê‰VM	ƒT5BNe›	tˆY3€y†ü¨OU€–\n^4ƒŠùV¶®®àÍLˆ©²%¹®ùËä2áÁª™SŒÅ¤Õn­qe§Ğo\0LÍã:N»S-ô\0CğÔÚRÖYënT[¹ÎÈşœ×İ®Ô+5_Ò¿6gs£ÕjÕ™-V©ÙŸµ9üFe½¶½êà\rÈâësøZk»İ^wğdñësøî•ÆzÍÅPÄhr0‡Öív3ídÄÙ\r/|à•>CA6Ù¥§ñD-Êµ?à¢\0\rdXÑ©iJF8„,nãx (ÖàM‚KoìP(ç†ô\\H†‚¦ª¼Ÿb¨ˆ™¾WÏ¿}õü)zõüÉÉÃg\'8yôèäá÷V—#x\'ã²àË¯?ùıËÑoO¿zùø3?^–ñ?÷ÑO?~êBÍ,zñù“_=yñÅÇ¿~óØßxP†÷iL$ºMĞ>Á7CŒk9ˆóIô#L	nêŠàí)f>\\‹¸äİĞ<|Àë“­½HLõÌ|3Šà.ç¬Å…—€›z®ÃıI2öO.&eÜ>Æ‡¾¹Û8qBÛ™¤Ğ5ó¤t¸oGÄ1sáDá1IˆBú? Äãİ}J^wi(¸ä#…îSÔÂÔKIŸœDš	İ 1ÄeêóBíp³{µ8óy½C]$fãû„94^Ç…cŸÊ>Y™ğ[XE>#{S–q© ÒcÂ8ê‰”>™;ü-ı&†~å\rû.›Æ.R(zàÓys^Fîğƒv„ãÔ‡íÑ$*cß“¢íqåƒïr·Bô3Ä\'Ã}\'Üg7‚»tì˜4Kıf\"<±¼N¸“¿½)abº´t§SÇ4y]Ûfú¶ámÛnÛ°ˆùŠçÆ©f½÷/lÑ;x’ì¨Šù%êm‡~Û¡ƒÿ|‡^TËß—g­º´ŞØ½¶ÙyÇ7Ş#ÊXOM¹%ÍŞ[Â4ìÂ –3‡NRÄÒ~êJ†	ÜX`#ƒWPõ\"œÂ¾½\Zh%c™©K”r	çE3ìÕ­ñ°÷Wö´Y×çÛ9$V»|h‡×ôp~Ü(Ô«ÆæL›O´¦,;ÙÚ•L)øö&“UµQKÏV5¦™¦èÌV¸¬)6çr ¼p\r6agƒ`?,¯Ã±_O\rçÌÈPónc”‡ÅDá¯	Qæµu$ÂCbCä—Ø¬šØå)4çŸvÏæÈùØ,XÒÎ6Â¤ÅâüY’ä\\ÁŒd<]M,)×KĞQ3hÔWë\nqÚFpÒ…Ÿq\nA“z/ˆÙ®‹B%lÖY‹¦Hg7üYU…Ë‹ã”q*¤ÚÁ2²14¯²P±DÏdí_­×t²]Œf²œk\"ÿ˜j7´d4\"¡*»4¢¹³Y\'äED/\Z¡›ˆ}áNµ?C*áÂÂ´~€Û5Í¶yåöÖ¬Ó”ï´Îc–F8ë–úv&¯87ı¤°Á<•Ìß¼¶çÎïŠ®ø‹r¥œÆÿ3Wôr\07kC.wFºRš*âĞ…Òˆ†]ë¾é-pC¯|¸b6ÿr¨ÿ·5gu˜²†ƒ Ú§c$(,\'*„ìA[2Ùw†²j¶ôX•,Sd2ªd®L­ÙrHX_÷ÀuİƒAª›n’µƒ;îsVAƒ±Ş£”ëÍédÅÒikàïŞ¸Øb§Ní%tşæü&«ûlõ³òF<_#Ëè³]R-¯\ngñk4²©ŞĞ„eàÒZk;ÖœÇ«õÜ8ˆâ¼Ç0XìgR¸BúXÿ¨™ı^¡Ô>ß‡ŞŠàóƒåAV_Ò]\r2H7Hûk\0û;h“I«²Ôf;ÍZ¾X_ğFµ˜÷ÙÚ²eâ}N²‹M”;S‹IvÆ°Ãµ[H5Döt‰ÂĞ(?‡˜À˜]åoQ|ğ\0½·şf¿NÉL¤{Âd×€§ÙO&í‚k³NŸa4’%ûd„èğ8?LØ²_Hò-²Ak1h…àšïĞà\nfx-jWËBxõláBÂÌ-»6j>ğ},kÜúhxÛd­×º¸r¦Xòg([Âx?eŞ“Ï²”Ùƒâkõ”©ã×S–1äÍ\'|á^=ÓaÑ±™nRvë\0\0\0ÿÿ\0PK\0\0\0\0\0!\09woë\0\0\0\0\r\0\0\0xl/styles.xmlìXKoÛ0¾Øtogé+°]l‚õ°¢@3`WÙ–¡z’ÜÆûõ£ä$N‘¦kgcØÁ—D¢ÉOä\'J&]¯GT¦dŒÃÓ	FTf*g²Œñåâä#c‰Ì	W’Æ¸¡_\'?DÆ6œŞ¯(µ ¤‰ñÊÚj&[QAÌ©ª¨„\'…Ò‚X˜ê20•¦$7ÎHğ`:™œ‚0‰[„¹ÈŞ\"ˆ~¨«“L‰ŠX–2Îlã±0Ùü¦”J“”ƒ«ëpF²-¶ŸÀ–ieTaO.PEÁ2zèåUp\0RJZƒ2UKãO\0íV˜?Hõ$î¸ÑJ\"ó=’)’(S\\idp,tIm5¾ÎRÍœ° ‚ñ¦{;OæFO0ÍiÎÖ›$ªAğÚZ“¹Ø@‘ù\0\rDÈ8ßñ=uÔ‚ ‰`ß-Õr´/›\nˆ•¢-A^ïÚ¥&M8=Û3ü‚I”*Ã‘Øî´ÛÔV”Dœ×¬\\¹«*øM•µ?I”3R*I8ƒ­Åf\0ád”ó{wl~ö€¯$k±ö&1œ@·¿Û!D²¶€í8f‚ıËFˆTonk‘R½ğÇÒ¯æ¥ÌnöÅĞÍ?sVJA]Úƒ{ŞàN+K3ë¯\rŸcÇü™şgşŒüÀùó×ù<æÏ˜?}îÃ1Æüó§½ì—SmqµWW¹jñXEâ*¬#Òºx¹¾š]½¥*C[ó—*-_{§ÁÍ½bğy)¸\n¹!ÆÅ¹z¢9ú®æL>@Ûá„º*­·L:—Á¿Ësêš8÷v;Îl œóp á$®¶y ¡˜‡¢:|×©¯ =f€ğWSçÀ:ß>ægıÌ/ú™ÃAéã|Ø“»°\'yáûØ»umß^ÏO„ïº[î¤|İ5¦ş©u_R|Ëº»¥\0#§©¹]îÆ¸§9«°¼ÑºcÊzˆwãVkæ{ïîKRò\0\0ÿÿ\0PK\0\0\0\0\0!\0‰R6]é\0\0j\0\0\0\0\0xl/worksheets/sheet1.xmlŒXYâF~”ÿ`ù}ğ‰\rXqÌ(+í*£l²ûlL3XkÓÄî¹6ÊOUÛ¸ú°£}SÕıÕñUPËoUé¼°º)øeåßuØ%çÇâò´rÿúóánæ:È.Ç¬ä¶rßYã~XÿúËò•×ß›3cÂ„K³rÏB\\×ägVeÍ„_Ù4\'^W™€õ“×\\k–å¥ªôBßO¼*+.n‹°¨ƒŸNEÎö<®ØE´ 5+3ş7çâÚÜĞªügàª¬şş|½ËyuˆCQâ]‚ºN•/>>]xJˆû-ˆ³ü†-?XğU‘×¼á\'18¯uÔyîÍ=@Z/D€iwjvZ¹›pñ®·^Ê}-Øk£<;\";|a%Ë;O®#øõ;‰+K¸7däÀùw¼úù`¤‘WĞH–‹â…µÇï£Xı[ÚÅg0êõVÕç›’ÅÇÚ9d\rÛñò[qgpªåÈNÙs)şà¯¿±âé,@:…<aºÇ÷=krà	#9/^ª€j!ÉÙ›|í\0ÃI…~„€ÑˆwÌ<Dv`x(ÚuòçFğêæ@‡ÚâE¼wx¡?	’ØOî\'AânÜœ‚dıÿe¯\rL¦pŸ‰l½¬ù«õ6×»#X$@GÂ-Je,QÒ—µ¿ô^ ïywb\'z] ëöª.Ôu÷ªnÚë<ğ¦w	’c»´io0ê/Jwwª.îu\Z($Íİ¢T3é¯·Ğp¢7›ö:\r\ZÁJá¤ıÅY±Uuó^§bù[ [”êşDŒv?¼Rã¾AŞô~{{UI:Í0NcÛq”ê†C3Óp„ßkÊŠçƒ–Qª[¨îZ:àY6ÜÚkÊ‘\nÀ)c½A1›E k©¤Oš6!9€icÛİJ±shÒŒgzßBâRZßëZ\"Cc:À)aS-Å†ub¬Í8!ëÄ‡?8¶Š\r|â¥ÃW\'BH™×ñ‡gB`…Ğ`g‡gzÿ£1vÃ¿|ÿ#‹uBDÄîÿğŒì!ƒ]~àùo°ó€¤cG0qÿÍØ#&2Zj‡gŸ¸Ó£S‰‚?0I,vÔi±¯ßák†j×‚ëõ›üâ™>ñHı„jw+ø(6ğ©BZ~ñ*áûºÿjÿ*ø(6ğ\nÙ…jÿÆ#ªı«àÛı›‚WÉªİ^ÓÎÆ¬«İ­X·»;¦\né²§u7Å®gOínßîîÀb_ínå;VÇW»[Á·»;¦úìü×ú—üï²§jÊ­n}¸»C»»§T½uµ»§Fì{Dè™RİêÖ{ª}=5jf‹Z£n§Tùo\Z‚•M;VWÃs#´çÆ”rÛY‡3;U{48U6(¦»&ãš6!FtäáyÙó$1XÛá™Şz2ÂZ4<O¤XŸ\'‰É!|âE÷_\'ô_%²çIBÜµ™Ç3„O•£ã«CÁ·\'Fb2©#cV\n¾=1‹_ub¤Ä¯Œn©ÚE\'µ÷š6%fõØÕiÓû¶Áá}ŞRâ½Ëª¦%Nudu’ôÈÛÈ$)ñŞá«³\"%Nu|l{ûWhdOƒÔÈÌÏPtÄ©¯ö»â¿İï)ñŞù¯ö{jpºTíŒ8Õ¬Çê4 ëR¬÷”ò+¥µgúèf#¼ãVf {R¬ãÏLöñáûÒú^×\ZÌâ\Z‰îZÿnÚMO»¦¸fOìsV?—Æ)a›{šI\nõ^·›œölš¤³.`ó\"Ï°Çc°Êğ\'pøÄ¹¸}€%b~aâùêğº€İ\\Í­Ü+¯EÂuÎ ÿÁAQî¯ÅÊÃy<OÒpS\n‘¢ÈmÀ²7ñ©òİy®áŞ?°ØñÃ4\nî6ÉÖ¿›âK˜¤ş]š†Á6İùóÄ÷ÿ½­ì*Ø3ÊÁ}]•å{Ë™ÜOÎÚıäzY½-?}u>ó#,¤€ùß/ìÂ”Ïß¾€Ãò×hàfû*õú-éú?\0\0\0ÿÿ\0PK\n\0\0\0\0\0\0\0!\0hÌ«èÌy\0\0Ìy\0\0\0\0\0docProps/thumbnail.jpegÿØÿà\0JFIF\0\0H\0H\0\0ÿá\0tExif\0\0MM\0*\0\0\0\0\Z\0\0\0\0\0\0\0>\0\0\0\0\0\0\0F(\0\0\0\0\0\0\0‡i\0\0\0\0\0\0\0N\0\0\0\0\0\0\0H\0\0\0\0\0\0H\0\0\0\0 \0\0\0\0\0\0\0 \0\0\0\0\0\0\0‹\0\0\0\0ÿí\08Photoshop 3.0\08BIM\0\0\0\0\0\08BIM%\0\0\0\0\0ÔŒÙ\0²é€	˜ìøB~ÿâ¸ICC_PROFILE\0\0\0¨appl \0\0mntrRGB XYZ Ù\0\0\0\0\Z\0acspAPPL\0\0\0\0appl\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0öÖ\0\0\0\0\0Ó-appl\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0desc\0\0\0\0\0odscm\0\0x\0\0lcprt\0\0ä\0\0\08wtpt\0\0\0\0\0rXYZ\0\00\0\0\0gXYZ\0\0D\0\0\0bXYZ\0\0X\0\0\0rTRC\0\0l\0\0\0chad\0\0|\0\0\0,bTRC\0\0l\0\0\0gTRC\0\0l\0\0\0desc\0\0\0\0\0\0\0Generic RGB Profile\0\0\0\0\0\0\0\0\0\0\0Generic RGB Profile\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0mluc\0\0\0\0\0\0\0\0\0\0skSK\0\0\0(\0\0xhrHR\0\0\0(\0\0 caES\0\0\0$\0\0ÈptBR\0\0\0&\0\0ìukUA\0\0\0*\0\0frFU\0\0\0(\0\0<zhTW\0\0\0\0\0ditIT\0\0\0(\0\0znbNO\0\0\0&\0\0¢koKR\0\0\0\0\0ÈcsCZ\0\0\0\"\0\0ŞheIL\0\0\0\0\0\0deDE\0\0\0,\0\0huHU\0\0\0(\0\0JsvSE\0\0\0&\0\0¢zhCN\0\0\0\0\0rjaJP\0\0\0\Z\0\0ˆroRO\0\0\0$\0\0¢elGR\0\0\0\"\0\0ÆptPO\0\0\0&\0\0ènlNL\0\0\0(\0\0esES\0\0\0&\0\0èthTH\0\0\0$\0\06trTR\0\0\0\"\0\0ZfiFI\0\0\0(\0\0|plPL\0\0\0,\0\0¤ruRU\0\0\0\"\0\0ĞarEG\0\0\0&\0\0òenUS\0\0\0&\0\0daDK\0\0\0.\0\0>\0Va\0e\0o\0b\0e\0c\0n\0ı\0 \0R\0G\0B\0 \0p\0r\0o\0f\0i\0l\0G\0e\0n\0e\0r\0i\r\0k\0i\0 \0R\0G\0B\0 \0p\0r\0o\0f\0i\0l\0P\0e\0r\0f\0i\0l\0 \0R\0G\0B\0 \0g\0e\0n\0è\0r\0i\0c\0P\0e\0r\0f\0i\0l\0 \0R\0G\0B\0 \0G\0e\0n\0é\0r\0i\0c\0o030;L=89\0 ?@>D09;\0 \0R\0G\0B\0P\0r\0o\0f\0i\0l\0 \0g\0é\0n\0é\0r\0i\0q\0u\0e\0 \0R\0V\0B\Zu(\0 \0R\0G\0B\0 ‚r_icÏğ\0P\0r\0o\0f\0i\0l\0o\0 \0R\0G\0B\0 \0g\0e\0n\0e\0r\0i\0c\0o\0G\0e\0n\0e\0r\0i\0s\0k\0 \0R\0G\0B\0-\0p\0r\0o\0f\0i\0lÇ|¼\0 \0R\0G\0B\0 Õ¸\\ÓÇ|\0O\0b\0e\0c\0n\0ı\0 \0R\0G\0B\0 \0p\0r\0o\0f\0i\0läèÕäÙÜ\0 \0R\0G\0B\0 ÛÜÜÙ\0A\0l\0l\0g\0e\0m\0e\0i\0n\0e\0s\0 \0R\0G\0B\0-\0P\0r\0o\0f\0i\0l\0Á\0l\0t\0a\0l\0á\0n\0o\0s\0 \0R\0G\0B\0 \0p\0r\0o\0f\0i\0lfn\Z\0 \0R\0G\0B\0 cÏğe‡NöN\0‚,\0 \0R\0G\0B\0 0×0í0Õ0¡0¤0ë\0P\0r\0o\0f\0i\0l\0 \0R\0G\0B\0 \0g\0e\0n\0e\0r\0i\0c“µ½¹ºÌ\0 ÀÁ¿Æ¯»\0 \0R\0G\0B\0P\0e\0r\0f\0i\0l\0 \0R\0G\0B\0 \0g\0e\0n\0é\0r\0i\0c\0o\0A\0l\0g\0e\0m\0e\0e\0n\0 \0R\0G\0B\0-\0p\0r\0o\0f\0i\0e\0lB#D%L\0 \0R\0G\0B\0 1H\'D\0G\0e\0n\0e\0l\0 \0R\0G\0B\0 \0P\0r\0o\0f\0i\0l\0i\0Y\0l\0e\0i\0n\0e\0n\0 \0R\0G\0B\0-\0p\0r\0o\0f\0i\0i\0l\0i\0U\0n\0i\0w\0e\0r\0s\0a\0l\0n\0y\0 \0p\0r\0o\0f\0i\0l\0 \0R\0G\0B1I89\0 ?@>D8;L\0 \0R\0G\0BEDA\0 *91JA\0 \0R\0G\0B\0 \'D9\'E\0G\0e\0n\0e\0r\0i\0c\0 \0R\0G\0B\0 \0P\0r\0o\0f\0i\0l\0e\0G\0e\0n\0e\0r\0e\0l\0 \0R\0G\0B\0-\0b\0e\0s\0k\0r\0i\0v\0e\0l\0s\0etext\0\0\0\0Copyright 2007 Apple Inc., all rights reserved.\0XYZ \0\0\0\0\0\0óR\0\0\0\0ÏXYZ \0\0\0\0\0\0tM\0\0=î\0\0ĞXYZ \0\0\0\0\0\0Zu\0\0¬s\0\04XYZ \0\0\0\0\0\0(\Z\0\0Ÿ\0\0¸6curv\0\0\0\0\0\0\0Í\0\0sf32\0\0\0\0\0B\0\0Şÿÿó&\0\0’\0\0ı‘ÿÿû¢ÿÿı£\0\0Ü\0\0ÀlÿÀ\0\0‹\0\0ÿÄ\0\0\0\0\0\0\0\0\0\0\0	\nÿÄ\0µ\0\0\0}\0!1AQa\"q2‘¡#B±ÁRÑğ$3br‚	\n\Z%&\'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyzƒ„…†‡ˆ‰Š’“”•–—˜™š¢£¤¥¦§¨©ª²³´µ¶·¸¹ºÂÃÄÅÆÇÈÉÊÒÓÔÕÖ×ØÙÚáâãäåæçèéêñòóôõö÷øùúÿÄ\0\0\0\0\0\0\0\0	\nÿÄ\0µ\0\0w\0!1AQaq\"2B‘¡±Á	#3RğbrÑ\n$4á%ñ\Z&\'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz‚ƒ„…†‡ˆ‰Š’“”•–—˜™š¢£¤¥¦§¨©ª²³´µ¶·¸¹ºÂÃÄÅÆÇÈÉÊÒÓÔÕÖ×ØÙÚâãäåæçèéêòóôõö÷øùúÿÛ\0C\0ÿÛ\0Cÿİ\0\0 ÿÚ\0\0\0?\0ş¤4)|.4]$\\è\Z%ÅÀÓìÄÓË§[¼²Ëä&ù$s	.ìÙ,Ä’Ç’NI­Ò—¢û1ŸÖšÚâºî¾ó¹ğ·†ôOê±i:_†ü.’?Í5Íå¥…­­¬#—šY%KmPYa‰^i1„Œ€YGÈ·û¹cÿ\0ïéçké>x_Âº—í1ñÏáî«áÿ\0ëºÃÿ\0\nü=‹EÆi,Í¯ézş¡s­ukı ou+›4šİ\"Æ›mcm!–he•ò“½´²ÖÖ·ãç¯Ÿâ”CìøT_?èø/ÿ\0	½\'ÿ\0‘*@æ|kàŸ„ş\nğŠ|a?Â¯kø_ÃÚÏˆHÑ<a¨ë:¨Ò4û‹á¦i\Z}­„×7º `–E$·SE#3@#şÅZGüQ¤|Iğ_íGğSKĞ¾\'x7Äúf½§jZ§ÃŸhÚ^³à?ˆÚ<~!Ñtİ&÷Áw:ç„õGğˆ ñÃé$´Õç×&Ñ|7áÍsÅ6¶Z¿ˆ$I@>Şÿ\0…Eğ³ş‰ß‚ÿ\0ğ›Òù€<·ã?ÃO‡šOÃ½^ÿ\0KğG…tûØµOÇİ–…¦Û\\G×Œ´K”I¡¶Igµky€`d²®ÊÀ¥ÿ\0\n‹ágı¿ÿ\0á7¤ÿ\0ò%\0ğ¨¾Ñ;ğ_şzOÿ\0\"PÆ?·~sğãàe§ˆ~ø\'AÒüW7Äÿ\0†\Z&¥©èŞÒu{?Â\Z×‹,¬|Uw>>|Q}*Â*IZû]‹À\'—I·İw™3¨*í³§‚<;ãO€ŸüYñá¦oãÏü5ğn«ã8üKğÃDğ.¼|Qw¡YK®Ëªx6¹‹Ã7SêfæwÑb™’ÀH°*ÄD Íÿ\0\n‹ágı¿ÿ\0á7¤ÿ\0ò%\0pßş|7Ó¾\ZüCÔ,<	á++ëx¶òÊò×@Ó ¹´»µĞ5	í®mæÙd†x&D–cexäEu`À\0è¼?ğŸáŒú‡4ßü,Ói\Zl²Ë\'‡t§’I$²ŞGvµ,ÎìK31Ë1$äš\0×ÿ\0…Eğ³ş‰ß‚ÿ\0ğ›Òù€øT_?èø/ÿ\0	½\'ÿ\0‘(\0ÿ\0…Eğ³ş‰ß‚ÿ\0ğ›Òù€>Zı¯ü/€şéÚßÃ‡ú>šÓüKøg£|Dño…¾hş7ñ_Ãÿ\0„ZÏ‹tû‰;ğÏ…Ã¾!]_Vğ÷‡¥ewğçˆ—G³–óÄDÔF` Xø=ğãàÎ·ğ÷CÔ´kX>$é“¶¤-<iãè:/ˆõ˜ãÕ/#İygià[46Œ¦ÆÆòY¥õ½½Ùıå{ë€Mÿ\0…Eğ³ş‰ß‚ÿ\0ğ›Òù€øT_?èø/ÿ\0	½\'ÿ\0‘(\0ÿ\0…Eğ³ş‰ß‚ÿ\0ğ›Òù€8o‰ÿ\0¾éß\r~!êğ••õ¼[yeyk i\\Ú]Úè\Z„ö×6óGl²C<\"K±²¼r\"º°`\n€tzÂ†3èZ,Ó|?ğt³M¤é²Ë,ÒI$’ÎyšÔ³;±,ÌNI99Í\0kÂ¢øYÿ\0DïÁøMé?ü‰@ü*/…ŸôNüÿ\0„Ş“ÿ\0È”ñ×í—áıÀ>ø/uáşmÄ|;á¯Š~.ğÂøãÄ:Ãk¯|FÔïï!Óo>ü@†Æñ>“á;Y5Sá«¦ŠKˆ¬Ä‘}¸î\0îdïIãO€¾\nñ\'Æ¯†¶ñíõÏ‹¢šãXøi£ø\']×</§ø×ÄZwÃÿ\0ø‡Á«§Z¯…|CâÏZxkÄšæ€¶vLÕ5K«oìİ0§öu¨ÑŸğ¨¾Ñ;ğ_şzOÿ\0\"Pÿ\0\n‹ágı¿ÿ\0á7¤ÿ\0ò%\0xWí?ğïÀ~ıœ~:ëÚƒ|3£kz7ÂojzN¯¦hº}–£¦j6^Ô®,ï¬o-íãÖîÖxÒh\'‰ÒH¤Eu @ÿĞşÇ|û)ü3ñ7‚|\'âCSø‡ş·áİ#T¼ÇÇšİ’\\ŞØÃq2ÚZBâkq$Œ!‚ (öÆ¹Û–w}ßßıZtÄşşÍ?¾<jŸ\ZtßˆÖ¢Ô>|nñÂ]-ÏÄsÅğê\Zm¿‚~øÒÛ^ãZÑôÉ´»İFÛÆ°Új:uµ³[Ã6²;ÛèÊÎÂ“]~ımåø\\¦¾~Ìÿ\0¾x¿[²øym¯h1ë^°ºÔd·×¯[‡·Ôîâ‰IˆÂ»NH ±!rÄ**\r·ÿ\0\roëúîĞ_ğ‰Aÿ\0AÏÿ\0áE¨ÿ\0ñú@ğ‰Aÿ\0AÏÿ\0áE¨ÿ\0ñú\0?áƒşƒ+ÿ\0Â‹Qÿ\0ãô\0Â%ı<Wÿ\0…£ÿ\0Çèñ÷‚ôëŸ_Cy©x’òÜİèö÷:ş¡$.ñkºd°³!˜‚ÑMsFqòÉ\Z7Øÿ\0Â%ı<Wÿ\0…£ÿ\0Çè\0ÿ\0„Júx¯ÿ\0\n-Gÿ\0Ğÿ\0”ôñ_şZÿ\0 ş(?è9â¿ü(µş?@ü\"PĞsÅøQj?ü~€9ßx6Æ	x¢WÄ×VÓxw[ŠâÚjÄi—I,\'ŸóÅ,lÑÈ¿ÄŒGz\0ÔÓ<!jšn±ë>)5±´T<E¨…Dñ…ExÂª€£ƒµ\0^ÿ\0„Júx¯ÿ\0\n-Gÿ\0Ğÿ\0”ôñ_şZÿ\0 ş(?è9â¿ü(µş?@ü\"PĞsÅøQj?ü~€øD ÿ\0 çŠÿ\0ğ¢Ôøı\0ğ‰Aÿ\0AÏÿ\0áE¨ÿ\0ñú\0?áƒşƒ+ÿ\0Â‹Qÿ\0ãô\0Â%ı<Wÿ\0…£ÿ\0Çèñ‡ƒlgğ—Š ¹Õ|Mum7‡u¸®-§ñ ğ\\A&™t’Á2yÿ\0<RÆÍ‹üHÄw \rM3Â6«¦éë³â˜ã[EHÓÄZˆTAaQG0ª\0P1ĞvÅ\0^ÿ\0„Júx¯ÿ\0\n-Gÿ\0Ğÿ\0”ôñ_şZÿ\0 ş(?è9â¿ü(µş?@ü\"PĞsÅøQj?ü~€øD ÿ\0 çŠÿ\0ğ¢Ôøı\0ğ‰Aÿ\0AÏÿ\0áE¨ÿ\0ñú\0óŒ^Òï¾üI²Ô¯¼A©é÷~ñ=µî®êÙ_ZÏ£İÇ=­Ü|Mm<lÑÍÀ’6*HÎhÿÑş×~\ZX|o‡	}Åíô¦ğ¶†Úl\Z‚¼Qw\r‘Ó­Í´W·Vş9³·¹ºHŠ¬óÁik²ñÛÄ¥Q@<oà.«©ê2ø×áß†zÂÏ†^;ğïˆü?ñsMÔ~kŞÕuÍOÅšmæ­á¯êšWÄ«ëMz]gMòhæº¾mrÎ-ZÎÄMdô‡gñF?Şø‡À·7‡ÃV†ÚMÂzõ¥º[j]xo<aw#ÎeÃ$±Ìˆ#Ê‹\rìèfñ§ı¼5ÿ\0„Ş¥ÿ\0ÍE\0fñ§ı¼5ÿ\0„Ş¥ÿ\0ÍE\0fñ§ı¼5ÿ\0„Ş¥ÿ\0ÍE\0fñ§ı¼5ÿ\0„Ş¥ÿ\0ÍE\0rş2µñğõÚÉ«xzEk­%vEáıF9›X°	µÛÄ’ó•$;”Iß@xÇş\nqû;øoÃâ?ˆ—ÖßğëšŠ“CğSâÅ¯Š ğıÿ\0Äİ\'Äş\"ğMÚêbßÅ~ğÎ¯ğkân“ªêº\\Ò«ê~6Zd:•Æ»áˆµ Kñí³ğçÀŞø©â­oÄZßöÁO‰ZWÂß‰×¶Ÿ>&J|/­êŞĞ<oo­Kk5äº‡ƒWÃ¾&Ñî“Å:M½ş™©\\]%‰&©vğÅ(!{ÿ\0øg­ë_Ü^xŸLñ¢øEğı§Â¶£ñZOüLğ¡sğëí\Zİµ¯Š´=Ä~*é:î¹ms™¦OàBIî¶¡ \\jàÕ¿à¢?´Íâ×‰m5¿ø‹Iø)ş©ã¹¼7ğ#â©$Ò5¯‰>Öş\"hñ\rb&×|¢ø»áÄ?	ê~\"ÓDñA®ø|[Z\rWE¸Ô€7|Mûvü>ğ…ŸÆİzãÇV‘|³ğ¾¹ñN$ı~\'ÜİøWÁ>,±ñ†¥cñöÎÚş[¥ğ=•—Ãÿ\0Ï«êæ4Á4U/bÃWĞNªÖøSöğÆ-â·Ãx¶+¿x@ñ•Åãj_\r|] hŞ(Ó<+âü3ñ†©à=UÖ!Ó¼Y§xSâ‡5¯x‚ÿ\0K7éší¬JË=õ…ÕØ5ã?ÛkáÇÃ\rOÅ:Š<K‘ğÏÄ_<ñâ	|a\'ÂŸøÛâ6©ğïIĞ|)â¯‰“ëÖÓ5»K_Š>\n×õûi5=š>‰«Å%Ô«©Ó\\gÅß¶·Áévº¾­ñ·á¥Å®³ã/‡şğ|zE½®«uñYø™mğÒûÃ|=¶µñÛKâı-´ÿ\0‹~Ôoïô¥t´°ÕïdIi-Øî—û]üÔl&½¸ı¤>h>Òüo­h¾%ÖôM_ğß…õ¦ğúiz¿‰4«™ôk;Ù<Yáhí§»+ïâMa–S«Ø€\r-ö©ø\'âSAı¨?g-oLÔüM£x/OÔtŸhz…ç‹|Eko{ ønŞêÓÇ’Á&µ¬Zİ[K¦éèææğOÁ»¢0Ğfñ§ı¼5ÿ\0„Ş¥ÿ\0ÍE\0fñ§ı¼5ÿ\0„Ş¥ÿ\0ÍE\0fñ§ı¼5ÿ\0„Ş¥ÿ\0ÍE\0fñ§ı¼5ÿ\0„Ş¥ÿ\0ÍE\0fñ§ı¼5ÿ\0„Ş¥ÿ\0ÍE\0aøÛÆ#Ã^!2ëhÆ‡«?j(ìŸ`¸ŞÛÄ²*9\\…fG\npJ0häÏ~İ_şxãáÿ\0¾*é:Š´Wø¹§ßi7_¼m$‘Kğà÷…>9üFe¸ƒU{Y¡³ø[ã?\rø£C¸ID>)‡P6š¾½‚âİ\0:~Úß¾ øOSñ…Çï„^±Ğ|m©|:ñ.—ãciáOø[ÆZŠ¼Wàø´hzŸ£¾ğş£«ê¾	ñ$º-¦¨–÷\Z†Ÿ¦]]Ç‹[Ä·\0ŞğÇíoğKÆ6:†¡áÿ\0ÚCàmå¾•7Ä8u%šq§İØ…>%Ô¼#ñæêÃQñmô:†¼C¤ßØ^jOl¶yi´¹¹³š‰@.¿íUğB)LşÔŸ³dS/„mü|ñËâßFÑøîÒÆş×ÅÒ‰<~¾W‡nluM:ößW¥ŒÖ—–÷1NğÈ¯@Ú‡íğßIğ_„ş#jŸ´À­;À><¾KğWŒïµm6×Ã>+Ô¤k¤ÖçñÂiúµâ5ğšÚÊy¦ƒì7¾rGö[‚€N£û^ü±ñ7‡ü)ÇÏƒºŞ¥­üE¼øU{7‡®4ıcNğwlü7ã.‡ã»ëO<^»¿_xBÓaÔÌwŞ)µŠ~&H\0>„Ğµ}_ÄúrêşñŸµı%ï5M=5=J¹Ô¬ûDÕ/4MbÍnìüY,\rs¥ë\Zuş—¨@Ég¨Y]YÎx$D\0æ¾)[øµ~xñ®µ_Ël<#â<Ph:„<_Ùw[Ö)ŸÄW	…s±Ş	•[£p\nĞÿÒş×¾\ZxïÆö_<ggğkÆZµ¥·…´8-µ;]{áôÚ„1éÖëå¼7Ş,¶½…XÒêÚ…FQ,1¸( /û2\\éŸ´ÿ\0ˆ:WÃ\r3âŸÅÅ¾ñ¾¡«øÎçÄ?¾\0ø»ZÑüg©KqyªcXğÖ©£ê÷:úOmÿ\0	eŞ­}m¥éºN™¦Mg¥iÖöŠï%ğî«­ø·ÇŞ¼øw¡hŞÓ–ûQñoŠ|a§ÛÁw¯IkÜúœ~\'—N¶†[ë‹{Öææ)¤ºãüÔ \r]Gö„ø£¥Äš®µá­:;OXxŞéï|{àe·ğv©=­®›â™Ú_(‹@¿¸¾³†ÏU+‰ní’)¦@À—tD½’èiöñé¾·ñÖ óxÃÁ­—‚®ÍÚÚø¶è¿ˆTAáÛ–°¾X5™\nØLÖ—9˜Âá@9¦ı¤~§Ù÷x—ÂKö¿	Â{mŸˆ?àŸôø«bÿ\0Š£÷Í¥Ğş×PlI·™EÆc} \ZÆÿ\0ø£Y·ğï†îô]_ºğı—Šít]#ÆŞÔuKêQC6Ÿâlm|I5Ìº=ì76òÚê)µš9¢xåeu,­ão\\>ºÏ„u[|]é&}KÃÅQ“Y°dÈ‹Xgå€P@à¶IUÔùÓãßø%¯À_ˆë«ÃâM\'ãeÅ…î©âK­Ho|+¿Ñ¼¢x»Ä|[¯x[Ã\ZNµáİZÇì?ğ–üiñ§Š|;âv\rsÇ¾ñ¿„µ?ø¿ÃÓxCC6à‘ã¯ØSÁÿ\0ôñf©ñÇVğßÇÏxgÅŞ8Ñ5\r_à6¯­Ç…<¦|1Ñìü-ªëÕ<IáÉí< ørŞÇÆ:Øø‘£kZŠ4\Zé^#—RÔõ\0/âWüö{ø«â_xÓÅñ´~1ø…­Ï¨ê$Ñcø¤ŞYiŞø¯áMSÃVÖPx5ô}R-[DøÕñ5ø¯LñÄùu[í+ÄKã´×ü?£ê6€ö•û|Ó5ˆºø}ã	fø§â_„ú×Œá‚ëá6…m­h?ü}ñ3Á~ÕãğÆ¢·ˆü1qâİJöóÆzŠ¤×|uãûiä±ñŒu‹GhØ7Ç°_‚¼âˆş2Ô5/:>½ñWÆ\r|Wã6ğŞ­ğIÒ|Amğ“Yñ§ˆü\ráOøoş+xïÃúv¿ãYµÛŸˆZ_ŠüW®Cáèºç‰õxy4›€Bğ/ìÏá?‚ú÷Äÿ\0ˆşÑ~$êz¿Š|9ñNÓ¬üSâßè^Ñ¾!|@ñ_Æoé^³Ò£Óoã°ñ?Ä¿ê¾(ÔŸ\\½ñ¡n±iš.u§hZU––€2şÎ_õ‰,¸YøŸe7<wğƒö–ñÇÁM3Ç„u/ˆŸ\rõï‡7^ø¡q£_i×¾8Óíµ}Wà…tıVÎÏÅV^Ö.4]Nå4˜µû›íI€<ºÃş	£ğ#E¼Ğ¯43ã^†t»ï\rŞjYøÿ\0áÔĞø§Gğ–«ğÄ:7‡5Á¨é—ÒE¡CâÙ«ánµ4Ş“BÖ¦šÃW³mdi:´šz\0^ğ¿ìû5ÀÚo†ô\rÇúçÂx3Ä÷–üBğö£¤ø›Ağìï†ôÿ\0Ã2¤øğ§VşÎ»HòŞ÷RÔ d·Ö,ŞÈˆ?à™uû/icGøé¢èú3èÚÄoZi\"áß‹|QãGâ=:k+«Kùl¼Eâí^ê=F8mµ[X¥h4Ëëu¨=èéWöæ»ÿ\0B^¯ÿ\0ƒ?\ròæ€íÍwş„½_ÿ\0~\Zÿ\0åÍ\0Ûšïı	z¿şü5ÿ\0Ëš\0?·5ßúõüøkÿ\0—4\0nk¿ô%êÿ\0ø3ğ×ÿ\0.hÄúÖ¶ş\Zñ\n7ƒõX•´=YZWÔ¼:Ë\Zµ…À22Ç¬4…P|Ä\"³0ªX€ÀüRı€~üqøƒ¯|[ñ×ÃïˆÓø¯Æ?ğ¤/5ìøsMÒ_ƒ\Z”·p=<İNÖÑ|MğÔ–?\rş.Çö†4øq¢è¾?Ù¯b/\\œø—ÿ\0Øø\'ñCGÖô=WLøí¡éŞ\'[µñ=·†>#ø#N·ñ&™â/ˆ´ÄÍWJ×,î¬uJÉ¼UûJ|D¾±76²]i3[xVûL×UĞ¿´n€6üCûxÄ\ZŞ¤š—í	áÉæ—ã)´“Â=øiáBÆËã‡Ä|Oñg‡æñ‘¡ÛxŸÄ°ñ·‹<C¬ø{Â>3ÖüIáÍ>}CÌ¸Óof‚)hæËÿ\0ø$W„×Ã3ğ§‡<añgGĞ.›Às|0Òîî¾êŞ\0Ö|\'à+À:—uK{k¯øÓQğàñ^¥.l¼¤AâX¥ŸÁ:ö“kxÀWx³ö\Zøuã/‡>øs«Y|dMñäê¾(³ñ‡Ãx|Oã›Ú‹Qñ«ûBi>-i4»,~\'ßø£X¹Ô$ğ®á}KÃ,)àCÃP@\"`Æ¿ğMÿ\0ƒŞ ğÆ»¥è>ñö‹­Ü|?øàÏßj\'ğ®¥£è—¾6ƒö¡Û]¼Ó »±½¿¸ğş½ûYüHÖ´émõKø.l<)5½ìWº<—w iüğK|øKğãá‡<\'âİáÏƒt	[j—ÚŸ†§­É£iĞZŞø‡X‘5œ\\k\"¿Ks[¼bÒ^ê×÷·s;Ë3»\0hüRÖ5™¾xò)¼\'ªZÅ\'„|@’\\Ë¨x~HàFÒîƒJé­$Î¨2Åbä=I8`ÿÓşàş|Bğ%‡Ã_Ù^øËÃ·–¾Ğ ¹¶Ÿ\\Ó¡Şx´Ëd–¢iÃÇ,N\nI€ÈêU‚E\0|ùû<ZÚx;ãí+ñ+Äº§‚<áß‹Wÿ\0\reğ÷‡åø‘¦xÏ_“Uğn—â}3Ä¾!½Öä»¿šÃ@Ö Ô¼;máoÃªÿ\0eør\r\'Q}?AĞ$Õ/Rü´ı m¼ñsÂ~,ğËx_Eøß§K¥xR>Óş$ÅàIu=_Â´èw6ş1°Ö´y´{ïë:â[Aı«`·²iKe,’Aq$€~eü(ı”¿i¯‡ú÷‹õoŠ¶Şøá¼aÿ\0ƒû\'ã\r¿…¥ø»?Áÿ\0Ù·á§‡ü¡Å$z^Ô>ø‡á‡Ä/Úx×C>¸×tíSCŠßP—PÔ/ì´€Ÿtïø&¯í‹¦]x[ÆÚÇÅ_‚ş-¸Ñ¾\rüıõÿ\0„±ê\Z&›¥ëÿ\0>ø/àŠ,4$ñkxbİ[Ã¾.øËğCÄ¶ö~¹ÓíôÍÏâö±¬]ÌÖø—K¿\0úNı‚<n<ûJêZ“ğæü`¹øK®øcÀÚ/ÄF°·ğï†,ÿ\0lÿ\0Œß´—Ä¯„šn±bÚ^£jÚwÃïˆÚw‚¼âí-tèô¯[CÃ:ï‡-l­5è\0!ıa¿‹Ÿh„|ggğâÆ×À÷ê\ZÇ4ßˆj\rà¿Ùß^øQmğ~Ã±ŸÅV0?¼I­üChî¥gá\rZ?øL5‡ñ¥´ûqã_hrønõ#Ö4×ss¤«{lI¬X3y‚Äö\0“ĞĞUÿ\0	ÿ\0A­/ÿ\0­¿øå\0ğ‘èô\ZÒÿ\0ğ:Ûÿ\0Pÿ\0	ÿ\0A­/ÿ\0­¿øå\0ğ‘èô\ZÒÿ\0ğ:Ûÿ\0Pÿ\0	ÿ\0A­/ÿ\0­¿øå\0ax§Ä:øgÄHšÎ˜Îú®ª«{lY™´û€ª\0“$’p\0êx Ä??±WíEñö­øûFøWã?ƒô¿üMoüŸÀÚw‹Â^.ÒgmÛà®¾náø ÚYx’¾ñçÃoëx7MÕ,ît‘ñW]ÓYû]±¿\0ùâOìÇû|x‡ã7¾x;â_Å\néúgÁK¿ü#ø‘eã?ë¾\0ÑmWâ÷õx‹]°ĞµKCàÌ_ğ¤,4ÍwRÕõ‰<g¬Û^jñiZ5Ïí\0?e¿`o‚ş7ı¼1ñÏâçÄ_x‡ÆoŠ5rÂ÷Å:ÌŞø	ğÓáŞ·uâ‘m«ë¶°j«¯ø[R·D´×õ»il`´\rBX¤E@¿á#Ğ?è5¥ÿ\0àu·ÿ\0 ş=şƒZ_ş[ñÊ\0?á#Ğ?è5¥ÿ\0àu·ÿ\0 ş=şƒZ_ş[ñÊ\0?á#Ğ?è5¥ÿ\0àu·ÿ\0 ş=şƒZ_ş[ñÊ\0ÂñOˆt\'ğÏˆ‘51ô-]UVöØ³3i÷T&I$àÔñ@\Z:wˆ´ÓìTëZX\"ÎØöën†0GúÎÆ€.ÂG ĞkKÿ\0Àëoş9@ü$zı´¿ü¶ÿ\0ã”\0ÂG ĞkKÿ\0Àëoş9@ü$zı´¿ü¶ÿ\0ã”\0ÂG ĞkKÿ\0Àëoş9@ü$zı´¿ü¶ÿ\0ã”ÀüT×´Iş\Zxşu}6YeğˆR8ÒòİGm*è*\"«–fc€ªIàg4ÿÔşâ>øÁ7Ÿ¼ywà¿\nŞŞÜx?@¸{Ÿèó\\]\\I¥Û;É4óY³É,®K<²»3³v$“@2şÊšÆ\râíoûEüğß…´ëmsÀWÿ\0\rô´ğï€/|5¤iº¯†î›Yğÿ\0†5­\nÖâëÄióÚé÷Z®­«]Kq&³¨_G\ZmºÅ¥Ú\0}aá_é¾6¹ƒMğŞ§Ã/…­f–+-NµYWVºE’D‚Ş%yÀìàPqı‰£ÿ\0Ğ\'Lÿ\0ÀOş7@ö&ÿ\0@3ÿ\0\0-?øİ\0Øš?ıtÏü\0´ÿ\0ãt\0bhÿ\0ô	Ó?ğÓÿ\0Ğ/ã-GOÜ·öfûfŒÒÆÔ2£kZz¹GŸ¸X¹9\"€?o¿¿à£úKøù~hß–ò\ZxÒÓX¶ÿ\0…\'áÇÑü¯é+ı¨`ğ‚¾j¿ğ®µ™¼Eá¿xAø­[Üj–Ş&%ñ6££é:ğ&ãëCE\0öÏ_k½÷ã-‡Ã¯üCñ6™á¿ÚL¶¶û7Â;ø’ÃáMßì¬|U¦|;ğ.§Ãi:„Zïí+¢êÆ\Z‰âk}{ö¿£Xjú^¡`Zÿ\0ö€ı±ì,>=j^*ğgÄ_êŞı¢¾Ûh_4¯hv?Ÿö ñ\'†5†\Z~ÿ\0\nÆ-FêmcöpÒ´ß‰+ñŞ—âŸˆ¯g«ZÍ£ê^¾»³²PtøŸ¡~Õ7ğşÕÚ‡ÃOˆŸ´¸î¾(|+øIû1ØMà?ƒ²6Ÿâÿ\0È\"ñïÄk¦¿ø/s$ÿ\0\0ü!{ñ+K†íuq¨kißuë«—×îÀ<ÏÅ·‹µOÚÏÁQêß|=¬Ø|FğŸ‚?gé?\n~ØXiZ‡ˆ~7|QøhºßGˆ¾êšpğ~ƒğİüñÄ–:lŞ$M_Â¾°ñ§<5{ãŸÙ\0}­ğo^ø±ª|ı²<!âïøHüKğsÂ¾	ğdŸ\r|Aâ?iZ5†›ãU¼ø§§|CĞtÍR/\0xk’tûjVº}¼¾;°ƒL{Mv´!:Eøßâ7í©¦şÒü/¢ø7W	m>#üğÿ\0ìóy£ü7Ò5-Ä:v¿eû/§Æiş!ë‡E¸Ô-¼?àEñOŒ5¯\n%Æ–Ş*†ÿ\0â½ÇŠín|¤Ûi@g¢ş×ß¶Ï‚<\' x§Ç_|ã‹xöFĞtß\rÂ¡ñ?ÃËø~/|{Ñ|oğÓYy/uRú,¼7ûM†Ú4#_øoÀ:¶¹âˆŠZZÛ<à´ŸÚ‡öñøià¯j^=ø­üDø™sñÖçÃ>ğ§Á·¿øeâŸ‰GDñJëú\Ziz™ã¯ZèÓè—ñj#R¶Ğ¬4İAá‹Äñ×‰üBú‘û#ë|oğçQøé£h|JÒ~&ü_ğ¦«\r‡€®ühšO…~&xŸCğ”iz½Ö£-Ü7¾³Ñ55«[©,5{{È®íIìÀNbhÿ\0ô	Ó?ğÓÿ\0Ğı‰£ÿ\0Ğ\'Lÿ\0ÀOş7@ö&ÿ\0@3ÿ\0\0-?øİ\0Øš?ıtÏü\0´ÿ\0ãt\0bhÿ\0ô	Ó?ğÓÿ\0ĞŠtm!<1â7M+MVMWee±µ¬º}ÁAdÈ<Š\0ÑÓ´] éö$é:i&ÎØ’l-2I†<“û±Î}¿*\0¹ı‰£ÿ\0Ğ\'Lÿ\0ÀOş7@ö&ÿ\0@3ÿ\0\0-?øİ\0Øš?ıtÏü\0´ÿ\0ãt\0bhÿ\0ô	Ó?ğÓÿ\0Ğı‰£ÿ\0Ğ\'Lÿ\0ÀOş7@ö&ÿ\0@3ÿ\0\0-?øİ\0p´*/†_$‹LÓã‘<â&I#²¶GF\ZUÑ¬¨Yz†S‘Ôc€?ÿÕşÖ¾|ğŞ¯ğûÁ:¥Æ¹ãØgÔ<-¡]Í—<Agg³é¶îémi\rêÃm±\"(\"U$4Uv€xìÔ·_¼Gñ›Âo|Ká¯ü/ñ6g7…tOxú[7Ã~\"¹ñÕ5\rböxôgş\r\'E[È&Ğ®\'Òx¯¬ï’ˆUÓ>0Y[|ğ_Å/ˆ\Z¿äÿ\0ÂğÎê:—Ä¿øÎã@°Ñ|7}w¨x†k›\Z=W\\ÊhV·Ïce§Ù\\=æ¦¶pùcÍ. ŸÁA¾!Øèß,¼cğ›MğoÅ‚¿³Æ«ñ!ü¯øãâ5™â?‰>ø#ğkãÄÏCã!áÙ´{\r#Â\ZOÆ\r?ÃqC1júæ)µÓVÑE\0õß~Öt/üTğw‡>ÛêšÅ‚<ãßšLŞ*ñıÍÇÄßŞ^|\0´ø³ãÕ4­2ëDKO†’üdÕboiú…×‹5‡ğåœ–zcAª`\0É›ş\nğÃÄ¾\Zñt/mï|SàßÙÛö™¼ñ_ˆ|Mâ˜~ê>Ò4…šÏŒ´H,t¿¶üCÑ¼S\r·Å¯\nÇáÏ\rx—ÂºF¯«ÏªYÆ– — ÷öXıªuï¼Qğ;â‡n~øÏÂˆj:\"ñæ­6£ñÂ¾ø#â/‹¶úV½6™eáÇğçƒuß:_†lRMGûkUKXuˆì…¬÷j÷ÏŒ¼\'¥ÁáÛÉVãZ,·:PõÍQ×æÕìPü­tÊHJ’Ö‡\"€:øCt¯ùù×?ğ«ò]\0ğ†é_óó®àÿ\0Vÿ\0äº\0?á\rÒ¿çç\\ÿ\0Áş­ÿ\0Ét\0Â¥ÏÎ¹ÿ\0ƒı[ÿ\0’è\0ÿ\0„7Jÿ\0Ÿsÿ\0ú·ÿ\0%Ğ‰ü#¥Åá¯È·\ZÑhô=YÔ6»ªº’–7+]eÈåHÁæ€?/¼OûvÙøCãÿ\0ÆŸ‚Ú‡‚¯tíàOŒ¾	xkTñ5ÿ\0Œ|Eı§ã7ã$\0ÎohqF©ªÜøFïâ®·ç7i§ø`IğëÏšY<Y<zh-¯ÁG¼®øRÚÿ\0CıŸş-[ø‰õßƒ÷Ò¾\"kŞK\rlxÃÇ±úßÁ¥ßZø¶úßFñNŸğ×öÄøsâıQÕ¤Ó4»Z{Í2ûT²½Ğµ˜-@:M+ş\nğÄGW‡Ã?hoŞèšwƒ ¿¶ÓÚ1><ñ§‰>ø[Lø{&¡qâHtèõ©üIĞÖ5ßü!šƒQ\Zf¿röÛÖşşØø¡ñN?€ş)ğ—|9ñz÷Æÿ\0m4ı&ÏY¿¼ÑÃO…Ÿ~8ü8ÿ\0„ömM5I#’ÃLÕşiş	ñT¶ÆXí¼yâıÚÏí:^©izÀ0xkş\n{ x[áÓüCøñàqg§j?ş|sĞãøUñ3Q×®m¼7ñ*‹z¡á\rvÓÅmá‰á>ğv‡ğ[ñÆ‰¢6­>»¢¼·ºTR>ù-À=oXÿ\0‚‹ü·ñ´Ñ|!ñGRºÓõÿ\0|;ñ6•>£q§jv¬¾*xsá.—ğÉ/ïµË}MÕ×WñO†<C®j\ZŞ£c¢i¾ñ§…5ù5iwpĞ\0}}û$øèşÑ³¿ÃO:î‘ªx[VñŞŸ¬ßİøz×ÄÚ­ÔZIÓüO­è‘Z•¾–9æ[}2&¹’f¶{†”ÛM-¿—#€}ÿ\0n•ÿ\0?:çşõoşK şİ+ş~uÏüêßü—@~\'ğ—†¼C\"ÜkE£ĞõgPÚîªêJX\\0Ü­tU—#•#psš\0Ñ°ğ~”öLn5°ZÒÙˆ\Zö¬\0&<t\0ğ\0ü±@ÿ\0á\rÒ¿çç\\ÿ\0Áş­ÿ\0Ét\0Â¥ÏÎ¹ÿ\0ƒı[ÿ\0’è\0ÿ\0„7Jÿ\0Ÿsÿ\0ú·ÿ\0%Ğÿ\0n•ÿ\0?:çşõoşK şİ+ş~uÏüêßü—@ü!ºWüüëŸø?Õ¿ù.€8OŠ>Ó-~øòæ9õ†’ø‚Tëzœ±M.ä¨’).Y$L™YXpF	ÜÿÖş×>hŸßáß‚§Ó> øFÃK\nè’ÙZ]øêöâÒÌé¶íŞ/Š-–æXbÚ’N¶ğ	YL‚$İ¶€<öSøÆ­Å^$øâ‡~Ó/o¬uİNX¾iÚ©âˆõ¹uhô¯j:v™ãY5¯—u>™w«\0óÚ0X\n¼W0Dôªø7Åzî»¬h5¯x¿OÔ¼-b³é÷^I4{›(õ™¥û&¡¤j:Ş¡m|ÔQ\\#K˜Á@D€êoÄ<âÍGÄÚ¿Š<ğ£ÄZ¯tkxÃSÖ¾è:•ÿ\0ŠtI,å·Ñ|Aywu-Æ¯¥DúvšEô—Ì4İ92º}˜€+ş§á‡‘«ÛÂ»ø;äkú6‘áÍn/øT¾Ûªè:shz-÷úQ3ézCi\ZKéö/›kgÒôé\"E{c…¿ìûàKËíF×À¿-oµ=/IĞõ»„†{íB}MHºxçC6™¥?…ü2Ú}ƒîµµ>Ğ¼¨—ûMà-Ã\r?Kñ~³ñMÓü§øïÄVVÚn¿ã+/‡Úm¯Š5­>Ñm’ÚÏU×a¿MJşÚì¬cH®®eO*ÂÂ2\nXÚ,\0xËOñKxzé__Ó¥\rw¤/–šFÌÍ¬Ø*aÿ\0µäÆ©#iÜ^7e@?9ş ÿ\0ÁUş|4]ro]øâ+-;YÕôİQ‹áÍ¡°ñ‡‡üCñsÂ:Ö½á«‰|cŸN¶ñGÁO\ZhVqŞKÍSP—Ã‘YA(×­\0=_âWíïğçá?…ş1xŸÆš§Š4µø3ñ_Ãß5mO‡‘\rÅ ñ‚¼)ñÛTğv|X?µ¼7gà\'ŠuVYm>Ë¢èÚÅëÃ¶è;â/üÁ&øû‰WÅ›ÿ\0fıWÁŸ>Ãà­*à.“ñOÇáİ{I\'Æ±}¶–ğ6«·O#Tq}¡´oíT0\0r—¿ğS_…VÚÇ‰´®<]q©øcÇV\n¹Fğ.ilb½×ş5xU¼Wyywã(àĞ|1kâ€~>Óç½ñö\\Øo\rİ¥»Úx†Æe\0íuïÛËÃ:„><xİ¬<g©h³·Œµ¿xş=3ÁZDºÈ°ğî³âÍTñ“¢Oã[}BûÃßø>úİ,_iñ\\·ú<\Z­õÅğ‰\0=¿Bø¾ßuÚ#áŞ™yªiú×Àéì¼9âÁ®ø,ivº±ñO ñv“©xnäxŠåï´›­2ûÊKÙ`µo´Ã(ìÀ;¹~x{^kcYğÿ\0Ãm[T3Ã­\rKTøi£j:ö´Ú†ì¤ÔšúêñîP’ÏÂ>µ–ó,>ğò1+¢é«j¥ğ\'ÁzÎ›>«ø?áF§¤ÜÛ-•Æ™ğ§Ã÷vZ%¯…lc¶’Ò{™`hc³ğ/‚mbŒ®Øíüáˆ£Úš”-@ ²øàM6îÖÿ\0NğWÂkËCğõÍŸÂ­Ş[]Ãšv£á½\"Òùv¿Òt»Íİw¥ÜiÖ2Ù^Ö@X|\nğş•ñ->/i¶Ş°ñü^\r×|µgáaj-ü3âŸ\Zÿ\0ÂÅñU¥½¤\Z¼vñÜx£ÆÂ/xŠûËk­cT··»¼–Yãi?f„Ñèw^á‡Àôğíî¯ˆ/t$ø1áTÒnõË{[ë5k­=e·ğØjZ•„W2£Êš~¡}`¥lï. ”TøàİrvßXğ‡ÂRŞêº—‰#¿øU İ.¿©k–Ú–³©kmÓGQÕm</á›mBşèËww‡t8ç™×I±\0vğmß„t];Ã~›Â\Zğîn-4@ğU®£i–¡™ÖÛOÓ4ıNŞÊÊÜ;»má0ÌÄ($ĞÏØ<Yÿ\0C™ÿ\0„ëòæ€°x³ş†=3ÿ\0	Öÿ\0åÍ\0aø¢ÇÅ#Ã^!2x‡NxÆ‡«|>ÈÎ‚Âãr«ÿ\0l6ÆeÈ\rµ¶“œb€44û}‚Çoˆ´Ğ¿c¶Ú‡˜<”À\'û`dÆp3×8 Ÿ`ñgızgş­ÿ\0Ëš\0>ÁâÏúôÏü\'[ÿ\0—4\0}ƒÅŸô1éŸøN·ÿ\0.h\0û‹?ècÓ?ğoş\\ĞöĞÇ¦á:ßü¹ ì,ÿ\0¡Lÿ\0Âu¿ùs@Å;/\'Ã_½Æ½§ÏøGÄ\r41è-ËÓ.KÆ“kKå3.@“Ê}¤çccÿ×şÕ~ø£âµ¿ÃßÛi¿<3¨i±x[D†ÊòçÆzÅ¤÷v‰§@°Ï=¬^½Š	&‹kÉW—	1EP¸‹şÏğÿ\0Â½OÆ0üğÃëÍF{Ãúå…Æ-G_—ÃğÖ¥â›ŸøRÚÒßÀ>‹¡hºŸˆ¼TtË	”¼SŞ_Eç?•² §|;¬üCÔ¼c}&±á\rè÷QxjÑ!…<U«]Å=»j—e¥3?ƒ¬İ%IÏ(@ÈQƒw|”é?hñ‡ı<5ÿ\0…©ÿ\0Ì½\0hñ‡ı<5ÿ\0…©ÿ\0Ì½\0hñ‡ı<5ÿ\0…©ÿ\0Ì½\0hñ‡ı<5ÿ\0…©ÿ\0Ì½\0rş2¹ñhğõÛI¥øz4[­!·Åâ\rIäV]bÀ¦Õo\rÄ§ç\n	Ş6©,²€?<<mûşÈ^\'ŸÆRx§ş(_ëqêğËñÊKh<qã›¿Šº§ˆ<§Z]xu ğŞ•â}SâÇÄb]\nhÖøêZœ×ÚlöÓi¶ínÔøÏö:ı•¼ooñ®ßâU·‚<c§|@ñn‘¨xêÏÅ¿o\'´ğW‹!ğ]·Ã=.ßDeÑ-&ğ†¡qà}OğœvW›‹İ/G·µ1ÊĞÎìsÆ²ìûñçã)ñ­£ßÜ|QÔ¼;àïŠ±§Æ -½×àğïÂíB5ğ›7Lšïâ\'‰í´İ\Zçoˆ$êÖ\rI^ÆÍPŞ-ı–?g-vÛãL^!Õ¼#iÿ\0_ZÓ|7ñ~ñ~2Yé·WÖÃãkm7áN±sÿ\0œfÇÃò\ZøÅ¡ğõÖÍfâ{Û™…ô“[«ÄãïÙ7ölñ¡â­Å0ÑôSş_‡÷Zî¬Ÿ´è³h7ßï<yâ‡Şºi<3½¶áÍ[Åş(ñ™á}j+©¡em}#Lº:€=ãÂŸ\r<3áO~Ñ¿|­éŞ!ñÅ&ŠR|Tºñ5¶•uá¿]hû>‡†“ûhô8>ÉÉÚííSæS;\0{µ‡Œ§]CNğŸÛ~¯‰äÒ­ïağÓøé×Ä2X‹a\'Ú×EşÀ:‹[ˆ‘äiÖDvó\n«\Z\0èF«âCxúx³ğ‰Ô#¶ŠöKâ@Ş%œÒË7omÿ\0×œ¶ÒÍo<1ÎPDòÃ,jåãuP	£½ñd¡ŒZg…äï˜üK©8Y#%d¶ø`ít`UĞüÊA(ÿ\0hñ‡ı<5ÿ\0…©ÿ\0Ì½\0hñ‡ı<5ÿ\0…©ÿ\0Ì½\0hñ‡ı<5ÿ\0…©ÿ\0Ì½\0hñ‡ı<5ÿ\0…©ÿ\0Ì½\0hñ‡ı<5ÿ\0…©ÿ\0Ì½\0hñ‡ı<5ÿ\0…©ÿ\0Ì½\0ax¢Ÿ\rxˆI¥xqc:¬$dñ¦î©öÅ¼5\Z»ÉUg@Ç‚êê\0©iâû«{[[ynşÃ46÷1<øâHgô]>Ş÷WX›@/ºM”ğ]êq°İam,sİátz\0ÖÒ|A­kÖ1êš$~ÕôÙ¥»‚ı7Å··ÖrÍcw=…ìq\\Ûxeá‘íom®m\'Ubb¸‚X_ª~;ßL¥âÓ</*’2Ñø—RuC#E*_¾)Qâ‘z¤ˆÈØe\"€öĞ#Ã_øQjŸüËĞöĞ#Ã_øQjŸüËĞ­s^±ºÓ,o-üky¬ÜÏg¤ZÜx®şNîÚÆëS¸¶°†O¬—sÁ§XŞ_KŞ;K[‹†Q.êí0ÿ\0 G†¿ğ¢Õ?ù— â”ş)?\r|z.t¿Çn|#â<kÚŒÓ$GKºŞñC\'‡mã–E\\”ç…\\ŒÔÿĞşØ~\Z|iøe£ü<ğ>•¨ø¢;{ı?ÂºäÙ:ì¾MÍ¾oÑyéÍ†9¼Nñ±RQÙpXÌ>ê?	şkŸ¼w¯ëş‡Æÿ\0üm©_ÜMá	kšfcàPÔm>øz4E·3ÜÚh÷7\Zæ½y y/|Uâ-zà9…­Õ@=óEøàmÆ7—º>¸/m­¼5ik3¦™¬G²wÕ.¥T)5Œns\'r†NÛƒ´è?ğšøkş‚ÿ\0‚íKÿ\0‘(\0ÿ\0„×Ã_ôüj_ü‰@ü&¾\Zÿ\0 ƒÿ\0à»Rÿ\0äJ\0?á5ğ×ıÿ\0Ú—ÿ\0\"Pãÿ\0ˆ>Ó¼%«jZ·ma§iŸ`ÔµíF»>ËOÓõ;;ËëËëÛ¨!¶´³µµ‚iînn%aä‘Õš¦s…(N¥IÆ:q”êTœ”!NNSœå&£Æ)ÊR“I$Ûi+‘R¥:4êU«R©R„ªU«RQ…:tá)Ô©95BNR”šŒb›m$Ùü÷xçöñÇÇÍ;Äúÿ\0Ã/ß	üGáëßüC´°ñ_„5cX?àñWŒj[x¯Æ:¾˜—úTÚß…Sãşà½kI§¼ºğæƒ®Yi—z{Í¡=–XlVIVÂbhb¨¶âªá«S¯IÊ?UJRœ[]Uîºô1Âã0˜êJ¾†ÆPrqU°µéb)9GâŠ©JSƒ”n®“º¾»oˆ?àîu(<A |[ğn“âk^#N¹Óáñ=½§Ä}CÄ\ZßíEâ=âÇì®´Ëëkı{áö¯ñ÷ÃbğõÜ7QjZoƒu==n Iô6µÜé>ƒñçìÃñÅÓşÑ\"—JøMqãˆf|>Ôl\'ñ>‰¢GàoÙËâ®¥ñOÕu.ÒÁ6|Bñ$š—‰n|A«¸¸7w>5M(;i~Ò…\0p^4ı…~#\\ÚşÓ0xWSğ~£áÿ\0ÚÄŞğËøCÅ—ºıíŞğÖ_ˆ~#|Kñ†‰â1¦3ØüHñ,¿åğg„5YÖMGÁ~Ímuçi\Z\Z@êŞ+ı<Gñ+ÅŸµSø›Pğ.—àÚOQøákí\"K\r[Ä\Z†à_x×â-ïÅ-Ã—i¦‹â_ü9ñş§á-)öË©išî©«ërjmnštà¥ğöpş6~ÔßÅÏÁ_|3âxÁ¶­©65_ˆÿ\0>*jş&Ö/e°ˆomGÇ­£xoO¸içğö‰Ú2\\eÛi±Dóçíû+|rñÄx‹áf½àëCãßÉñoGøÉöÍFø¯ğãIÕeÛŸ€1øOg±{kÏ	øSÅMmãÙ4ËI-KE¸Ômm­ÛÄ­\rÕ\0hêŸ²ßíAñ#Zñ\'ˆü}ñî7‹oµûùôj¾0·mÓşÚ\n?øzÏ_M:+û+Bñ¯~x†æßr[ÎŞ¾HĞ†Œ¸<+û-~Ó>ñïÃ›ıãN—o iŸµF¯ñãâV¶Ú—ïuŸè~*ñÂ{Å^‹M¼…¬l4½CFÒş&ø8ièmõ=/S‚+x¦¸Úû9ÿ\0	¯†¿è ÿ\0ø.Ô¿ù€øM|5ÿ\0Aÿ\0Áv¥ÿ\0È”\0Âká¯ú?şµ/şD ş_\rĞAÿ\0ğ]©ò%\0ğšøkş‚ÿ\0‚íKÿ\0‘(\0ÿ\0„×Ã_ôüj_ü‰@~\'ñ‡eğ×ˆbK÷/&‡«F€Øj*=…Â¨,Ö¡FI±Àêp\0~9şÑ°~0üpñ‡ÄÏüf°ğŸ…<Ew¡_èšÙø¡ntÏø]~\0Ğ>\0~ØæamÛI/ˆ¾	x#ÂZ·ÃæTÆŸñ\n]cS›`¸.À÷Š?bŸÚCÂ¾ñ§„~\0üyÓ|!gã?k¾5‚«¯ù>ñ¥ñö¨ñæ™®øJ!käi±Yh¾\néZ”ªö×«à}HÇ²›v`£şgö‘ğ•Ïˆlş|TÒmô{¹jµ[oëŞ8Õ´íRËã/ÅßüDğUå›F.t/éZˆôÏ\nİ]¤Ò¡³Ğ8VÙÀû5ÿ\0ÁBìtOZÁñsT×5ÿ\0xÀğïˆm¼{â\r9ş\"Ù§€</áïøbÏM’ÜZxzÆ×ÄòËâGÆ7¦\\^xJæßOÃ«@e\0ûÇß\0ÿ\0hıözø/ğïÃŸ?²|cá=cã-Ö¿7öÏŒb]|}ªx¢ïà¾£kâ8ì[Tñ[~Î:v±£évZv¨<\r;›Ã,‘ÄÉükû ~ÑPÃ¨xÇFøÿ\0«ø›ÆoˆŸ<+·¾!}Iş36‡ûdXx)¼<ú¼:~‹¥_éŸ¿gßjÚS¼ZlÚ7‚u‹iZ$™\'pÕÙêçUğOÁO†Şø£âËŸüMƒÃVš—Ä}^H5+È®<}â&ñŒ¡ÓgûØv#Õu-?Ãğ¯Ëm¡ÚiöÊJÄ\0u?¼[ ]ü6ñå´ÌóOáEAÈú]ÈUŞöª‹¸àe™Tg’:ĞÿÑşê¾YY¿Âï‡ö–Ìíàßf·ˆ³¥ZòIBI=I\'\'©ÎhâŸØ3ÁŸ´­üq¹øõ¥ø™lüCªè\ZÇ†¿á-¾µ¾:^«6½ñ\n_ø{OWWƒUM+J¸ğ”mã;X|?kâ-<èöcÃöW:Ä·\0xÅmofAj|\'lHH‘#Xº!UA w<ı?ˆ°òãşâß@—÷şøZ\0<¸ÿ\0¸Ÿ÷ÂĞåÇıÄÿ\0¾€<Ÿã¯|?ñ/áÄ‡\'äøkâ‡.üâ!§Êm/Î…â¶AÖÊê0d¶»m>şà[Îƒ|2”‘pÊ+—ƒ£˜`q™~#›Øc°¸Œ~GË?c‰£:59dµŒ¹*>V¶zœy†i—ãòÌO?Õ³+ˆä—,ı†.„ğõy%ögìêK–]ŸCğëá¿ì©ûRøSÁ?>ø\'FøÓğ¿Â°júGÃï^øâMç‡|1àÏëß´—ÅÍ9~0ü4‹Bñdkà¯‡ÿ\0²–¹á=v÷C»‚Î/xëLğ¦©¡_jöz¾¤‘—eØ,§†Ë²ü<0Ø<-8Ò£FšÒ1[É½å9»Î¤åyNmÉ¶Ûde™f&Àa²Ü·\rO‚ÂSTèÑ¦¬’ZÊrwrJ’nujM¹ÔœœäÛ“f/ü\'ÿ\09Óõ½^çÃ:OÆOh5ñø‹ k>5šâÏÇŞ.ÓüIûRŞü-\r®ôoˆŞÖü/ğ—Sğõçìá¡øÊïNÔô¶Xô‹«ÿ\0k/¡ø…_´ï=Oø[ûy|AÔ?køÈ|qğÓ|Bø™á\r/àÎ½¥|OÔt+„¶ş$øãñoCñŒtûÆ|K¤|>øâ/x»FOÓ|/¢êIáß\0xKWğ~¥âM/[ñĞ\rñáŸü‚ûHø´</®ü~ÓµË=SÄ–vštş*{ı+âÄÛ¯şÓö?5Oêº_ÄPğ?Ã_\røZıŸ¼C¬Ş‰,4ÛİcÂú—¯øGYx5¹PÒ>0iÿ\0·ôr|fÒü£ügñ=½Ÿí	ğïÄ-ö­TYé>0ğ”?²·ˆt­_ÃŸ\r®t/ˆş×¼9ğãRı©t>±me¨x~]7AÕ¿·[NÔí%Õìœße\r/öº·øÍûbk´™ã{‡Ş!Ò5Ûï‡úwˆ<E±á¿_Gñâ„¶ºG†ó­jqjÖÓxûÁ²iZÖ‘¢øÛOğÍ‡áİ{DÖüUcªx†è3Åzïí‰ğÏö”ø¡â‡ŞøñOá.«¬ü.Ôï¿´[M1xgÂ‰eàßë¾øCámGÇ©áØ_É6±ã÷ñ-Æ‡àÏxzæßÅ\Zf£âH5m\" ´OÛ;ş\nuã	¾7xKAøu®Kñ‡À¾ğ†¡øKøà8´›YxRÂOëú®µ®Ùy\r£\\üBû/ƒ¿±WšMr×ÄW^.ğV¡gáŸ\\\\(íÇìÚÿ\0µ/øÏ]øı-½·ˆµŠ¿G„ü)m£èz}¯„~\Zé7×tO‡Ö‘]éFkf]oÂZ~‘â[­GW»¸¿7\Z³ÀËl‘x€>Šòãşâß@—÷şøZ\0<¸ÿ\0¸Ÿ÷ÂĞåÇıÄÿ\0¾€.?î\'ığ´\0yqÿ\0q?ï… Çü\"ş$ùş@\ZÇğ¯ı®hKM?ìë‘?ãÊ×øşxG@|¸ÿ\0¸Ÿ÷ÂĞåÇıÄÿ\0¾€.?î\'ığ´\0yqÿ\0q?ï… Ëû‰ÿ\0|-\0\\ÜOûáhÏ¾,Æƒá‡Ä\"r<â>Š¹ñ*ºçğı(ÿÒş×>\Z|ø]«ü<ğN«¨øNÆçPÔ¼-¡ŞŞÜ<—!çº¸Ó­åšWÛ6ĞÒHÅxb€>7ın.¾1xÛâ÷ƒ¾+ü4ğªŸ\0è¾ÔßZğÈ²“ÃÚ_‹üS­|D²ñÃí\'ZĞµ½VÏÄvÒ</ámfËR¿–ÛÄ«‰Jëö6¯-”j÷¾‡ğ·À^ñ•í‘áË+KkŸÚ]Mù®¯:j—Q,‡Ìw`Â3³‚:ƒ€hÑ?á\nğ¯ıl¿ïÛPÿ\0W…èeÿ\0~Ú€øB¼+ÿ\0@[/ûöÔ\0Âá_úÙß¶ ı >Ãâï‚Ÿ¼%àëØ|âßøCVğÇ†<gmÿ\0hğ–¿â¤x–³Ëşv‡yo©ÇäÏÛíG—,oµ×‹2Ã×ÅåØü.»Ââq8,^\rŠ76\Z½j§G¹Z•èÔ”j.W{ÇKèpf¸lF7+Ì°x<KÁâñxf‹76_\rV•Ly%sP«8Õ\\²Œ¯\rşç·Â?µwíû8|+ñ\'‚4(|5ñ¢_†qüAÔ¼QâŸˆr\\ëÿ\0´oxOâí#à_ü0ñM§ˆüo¡ŸxÇâŞ«ğwÁZ¥†áé ñ‡<+â½_QğŸ…54øzX¹òL²YF[†ÀÔÆâó\Z´£zØÜmYV¯ˆ­-jM¹7É-!N6Œ#d®Ó”¹²ªy.W†Ëêãñ™zQ¾#­:ØŒMyYÕ¨ÜÛötÜ´¥F>í8%vœçí>\"ÿ\0‚„ügÓüñ‹ÆxCáŸ«xÊ×ÅÖ½Ğÿ\0âwàû½;ãÇo‡:ßÀÏjx»H¸Ö|w/…~é>ÏáÛy|q{g¨j‘ø[Âº®«á¦‹Õ=ƒ¿ıªo_üÿ\0†ŒÒü¢üñ_ˆ¾~Ñz€|7§ÚÙM%Í§Ã«ÿ\0Ùo[øá1ñE¾¡â›{y|MgãÜøoY÷M¾Ôlâ×|?àÍ\nóÆöºfšà§ãÏÛPğ¯…ÿ\0j½rßPıŸ¼ÿ\0€Ÿ´¯ìáà)/`Ô­R_…¿´ƒº–»e«Ú^x¦Ø<¦Iã?ÚFé-ì4ëêÑ\\ø~9´;ØmÀ&ø¹ñkö‡Ğï¿j‰~êÿ\05+á·~|\'ø$—\n®/&ñ¯Æÿ\0‹ÜËkğªK¨|SZ…áË|øîƒû8ÜxòF‰WÃ×J /ìÉûEø³ãwÆÿ\0Ûá|)à»-àå§‰`ğ.§áí\"êÚçSO|Gø¥ğÓTº¼”ê—÷Zi?ğ…i7¥ø²ËDÖnµ;ÍOTğÄ:¯‚JÕ%\0óïŠÿ\0¶Eÿ\0Â4;øB~ ü)øE?<9âO\0øoÃ6Òüb_kŞë^Ğ­“Yÿ\0YÒ<?àÛ+íI¡Ãk/Š¾ xkÃºmâİhZÊJÖ|?ı¾|9ãOxwÂ¶¿³^—-•÷Œ|á?\Z|@ğ§Ä_xNØ|Hñÿ\0>øGVğV³kàÛ8ş\"ØYëÿ\04›oL\'Ñ\"ğåÎƒã\r8I{s¢ƒtúÃÿ\0W…èeÿ\0~Ú€øB¼+ÿ\0@[/ûöÔ\0Âá_úÙß¶ ş¯\nÿ\0ĞËşıµ\0ğ…xWş€¶_÷í¨\0ÿ\0„+Â¿ô²ÿ\0¿m@ü!^ÿ\0 -—ıûj\0Ãñ?ƒ|1†¼C$z=šI‡«::£®–¬b¬ôù¹ñöÓ‡áÏÅü;³Ş ğo‚<O…õˆ6ş5·³Ûi?ğÊpø³Z±ğˆğßÚOÚÓÁƒG± GÖ¿áñ“=Æœ-mƒ€y‡?à¨\r<N­&•ğÖòÕüIñÂúN£Ä=6×OñF¯ğûà·ƒ¾5xJÃCm[@Ó/­Oôÿ\0c]êş#°Ñ<;àMSÃºÄ>-Õ¬nî,,\\”ñ7üÏà‡íæ–ÏàÅ¯ˆC|7ğOŒ-n´ßê¶öV¾$ñW‰¾øfçÂºäZ‡­õ{(mãf©éšæ›¦k6:í…¬\rî“›  >şÚÖ\Z¯ş8ø{ÃŸ³ö.¿ğ‹à¦¡ñÚMGÆÚ&µ¦ë6²ğü[oá·ÑaşÖºğî·{ã˜l</ã½ÛQÑ<M§x{WÕl¿Ú´ËI@>sğçüŸ\\Ğ<9â|Kı´{ÂºŞŸğæóáõÿ\0Ãı·L°×üKğ+öMñç‰|=¯^İx}Rh¾ ı uRÿ\0â\rÖ¡1Ñ4ÏêúMößØÒ_P¡x¿ş\nMá¿ü/ñWÅŸşÌØÚ†5‡z\ZUïÄ;+Í{Å^\'ñoÁ(>=ø‡EğÉĞü-«xzñtÍäèš„!H<[ª)³´Êù­ôë€ËÏø)O†ï¼GâM/Ã?\0­u¼âÿ\0ŠzMÄ:Ğo\"×m>i¿µÖ”t?ë:•¤i_\n¼Wªx£öb\Zå†—ª_jF_\nø¯C¸’íEÏ•vôOÁOv´Ÿ?iıGşøsCğàKŸ‡÷š&¹«j\Zö¿á‰¿³§€>/Úøƒ[Ñu­B¾Ò­“Tñ¥¢h×ÿ\0eŠ\rSûQµ6°Şè×¯8ÿÓşÂ¼O}ã?„¿²Ş«ñ¦ÏâÄ-jÃáïÂ~ Ïà#ş¶’Eğç†ÿ\0·5-?MÕµŸjÒGö-.Öé­\rë_\\Üı8\ZGša%\0y­¯Ç«è¾5hÿ\0íümñN×KÕ¼]à?‡z—¢‡á<0éß~&|ñÇOxşØş}§QÒŸÁ\Z‹¨øœjPµ¾½ªiö	¤Ü[-íõ¸²|jñwŠgo\nxËâ\\ú·ÄŸ‹÷zà‹xt3NğÜZÃCâˆúOƒ¦»oøG|4Z‡—]oø’ú-U¼Óô#S¼R€<[âü7àÿ\0‚¾øãâÎ‰âoˆ.ü\ráë’è\rôíZğÿ\0‰¼S®ü<°ø«/<ñ6ïÂÚw‚|C«h?¯Ç¼GskzGğ=¦¡â»X¨XZ€Zğ×üá»ão‰>¸ñW,›Á_n¾øcOÓôxüKñâoŒ4MwÅ^ñkxCáÖƒàK½RûÃ^×<ãy|Ec¨j6ëká½R÷X·ĞXÇzÆxş\n5áßˆÚ·Ä3ÃŞø«tŸ\r?j/„ß³‹®£Õ~+xkYø·ñXø/¥kŞ\'°½ÓìµÑüM¥Z^êšoâ6}#Ä¾šÇU¸º_ÚødØe_ÛÂ?µw~8ü<ğ¦­âÍ_ø©XÛë¶7Ú¯5MR-KÆ¿üioâ½LÒ^ÿ\0À3ZøKâ;ıCÀ!ÚÖ>\ZÕ¼#®4ÒÇ¯ù@YøÏBÔ£ğíã¿‹5é”\\é9HtbÀ˜ôupTÃï(Èe%hi¼YÛ_ÔÙä¸K¹´ï’î5eK—\'ÃäµÂ+²¤ÌZEØnH üæëú“™®êRÚo…˜ËtŸræBtuşX³püĞ?‚D¦S&½¨ÈÓJ“Ì_Mğ³§™£šRŞ&IQ™$bÎ¥˜†c@\nş\nóÂM{Rqs\"ËpMğ³‰S~É&Ï‡ñ,‹æ>×}Ì»ßnb á¼ÿ\0¡§[ÿ\0Z\'ÿ\0O\rÿ\0¯PÍÿ\0 1ûĞ&7€\0b€0|Eák‹_x¢æjë$ú.­5Ñ[?FnÙtûøùxtH¥—pKwí\'kƒ‚ \nx×öİø5ğ“Å/ğïÄÍgÅ^»øsâÏè>×om<-¦‡àİá¿Ã/\Zè.%‡E–ö\rø×YøÇğ£áÇ‡-Š­óøßÅŸÙ—aÑµ+„\0³kÿ\0ı‘‚µŸˆºOÆO]ü4ğàm[Äÿ\04Ÿ†·RøÂö¾?=K@\Z§‰¡ğ@Ñ¢¼Š7K­JÂÒêæûN¹’ÚŞ[vÔo´ë[ ‹öˆı²¼3û<|EÕ>\ZêÇâ?‰5m/àÄŸsêÚ`ğ·‡ Õ|àÿ\0øÿ\0Â¿õ\rB]âæÇÅüğ{ã&½áéÅ•Å‡ÃRKÕ2j\ZlW\0ÚgügöEÔõ]{ÃĞ~Ñº­Ïˆ¼/ã\rü1×´}\'Ãã^Óâ7‹oüYáÿ\0x:Ñüwö_^ñ¯|Wà\nHµã-.\rOY¦Ö´\'Ô€=ƒö|ı¤~şÑ÷~ Ñ<	ñÄ·~%ğf“áıWÆšuµ…Æ›áÑâµ»ºğí”šåïƒôxnïu=&Ù5hcŠÕc{i¤Hdkõµ\0úwşıSş‡ÿ\0ßŸòš€øGõOú<Cÿ\0~|=ÿ\0Êj\0?áÕ?èpñıùğ÷ÿ\0)¨\0ÿ\0„Tÿ\0¡ÃÄ?÷çÃßü¦ ?è:šxkÄ.Ş-×ä	¡êÌcxt\r’°¸%f¯µ€ÚÛ[å`pTÕ…î¤±³vñ>³™--Ù¿Ğü6yhm‰É:1ÿ\0QRIò!Ë)\n€(ğB¨\0kºˆÏÀ\Zg…p>Ò¡n0?á\0yêÍÇï}À\rÀOÄ€ø©áçğ¯Ä+dñ^€×š^¢ºv©£xZDƒPÑ.c¼Ò/­%M.-/4Ë˜’[+›i!šİ—÷N¡™h¨ğïÃM7Â\Z>“áÿ\0\nê7>Ğô-Kğî¤èÚG…4ë\r/@Ñ,âÓô}\ZÆÚÛ@Š;m7L°·‚ÎÆÎ5[[E1\"¢*ĞŸü!Ïäùğ‘j¾AVCö…ü®‰¯—ı³kG\Z#\r¸dDS€ (7ƒ]âXÄ:£@,-§ø\\Ä­b(™c>(\Z(•cŒ”B)\n\0P|$Ğ<!¤Í ø^âMF¸ÔõİfãMÓt\n[ZOªø›WÔõÿ\0jB-Ş±¬ëZ¾£4›âëQ»‘É3¸ ‰ËáÇîÄ:³àíhMÙ<=\n]Ek¥]mç{m\Z	Ì„ÆŠ’+E²ÄÉš\0ÿÔş¾<o¬M¯~ÊºŸƒ>#ø2ÿ\0Ã?	õß…vşñwáiøGÁVíàı[GƒJÕ$“XÕLK¢ZëšmÄº|¾sÅrj\ro‰tÈÔÄèüañ·ÁÚü^×5¯ŠZ7‡¼9ãë	_üpğ…åÏˆî|àËÿ\0„^øÉ«øN)RmGVÒ|âû¯AâE¶Lhu2ñK¨ZØ\\[€}+âüñ\"ohè4øS©]øsIKM{Â>5ğä~&´ŠÛÄ|×:mûXjv0¤Íi÷p^X\\,Ö³Ê|Á”å7ÿ\0‚c~ÎSü9ñ/Áëï†~2Ô~ø‹J·‚\0ß|NºŸGğßŠ—á<?¯ş#øjäÿ\0ÄçLñæµğâ êúÀÔæŠínuK¯²-Î·¬Iz¸?àŸ\nì¼L0ğö—ñ[ÂŞ\"Ğ¼K{â†z–‡ñaâ“áïˆu¯x‡Ç¶ßcº¶»†ÃOø‹«ø¿Ä÷~/´ÕcÕÒèë3Çblb‚É-À+iŸğO‡Z™ªé\Z?<<šŸ¾øÕnôÿ\0‰úsßÙAğCâ¯¾7ü4ğœWÚ=ä—Ğ>+|Bñ?ŒßûGíºÎ©y®««Şé–¶öHõGÃ¿…“|=ñ¿Äˆé¦x¿Å6øœú%µ®ø»Æz~¥6™á_\nßx£Rğü?m¥•á\r_xÓÅWVClo®®5»»Vÿ\0Q˜C$@¾:|O›á¯Áÿ\0ˆŸü[ákë|>ğ¾£ãŸÍa©X__G¡xEˆ5SefE¸º»6:tâÚ<\"YŠ!‘®\\v2]‚Æf«àp¸Œeg:ÇFuªòEÊ*Sä„¹båŞJ÷c¡•åøüÏÏõl»ŠÇb=œTê{%\n˜ŠŞÎQRŸ³§.X¹EJVNJ÷Œ|ÿ\0‚‚|\røÏğÆŠö\ZÆ…ğûÃÏ©ZiWz_Å¯ˆ?<âÍóT\Zƒèpx›Ãóx–ş\r]x†ÛIÕo´=;[šËT¾°Óoï‚Ak;§.K›QÏ2ì>i†ÃãpØ|T\\èCAa±¥r·²Uk5Jª÷©JN.pjj<’„¥Ç‘gT8ƒ,ÃfØ\\.?	†Å©OÆ„0ØŠ´ohb(V®½eïĞ›’ö´ÜjA:r„çêZ×í_ğkÃkâñÄÏƒz~×#ğÏŠ¤Ö~5ü<Ó#ğ×ˆå·Ôn£Ğµ÷¼Õa]WkmWœiú‚çÊÒu7òñ§Şy¡ì¯?j„Úrë¯ñá%Šx_ÄZ„|J×~Û¯‡üW«-Ûé~\ZÖšmMF—¯j)a¨=–“z`¾¹M>ı¢…•Ñˆï‹hÿ\0†ş:ğñ×Œşø1¼+{£i¾)_ü\\ğ7‡ÛÃZ‡ˆô«ÍwÃÖ> \Z®¡ht[½wCÓµ\rgG·ÔVÚ]KJ±¼ÔlÒk;i¦P\nzŸíAğ£EşÕ:ÇÄ„ºPĞu-FÖÛRøÇàÑõÛÏwá½+S{N$°ÔµëK[›ÍÆä¥Î£io5Í¬rÁº€túÇÄ(õh|á+móÄğäw>+ğıŒ´íÂö^$ÒõI´ÍD¶gÔ´›}rßNÔgÑdÔ ¶MV->õì^eµĞáïŒŸ²ïìŸñßâGmş&xwKÕş\'~Ğ?\nô^ ğ¤?4Ù®µ„Z¯…>8-Õ¿ƒ€¼±¶ñNˆWáoˆüG{«i¬—şÒ¾iÚİµÖ‘y¥Yê\0¾=ÿ\0‚]~Î_şGğkÄŸuÿ\0øBá(ğw‹®4½/ÅÒ4ùµ|(ºø7£Íƒ§hvşÒD~¼âØèš.›.‹â?+Ä~—IÕ­à\0=#ãGìğ/ãß|UñSâÂn÷â_Š`ÓôÆñÍ‡dÓüE¡xjËáï‰şOá^[ì\ZO†5\nxçÇ–ÚÎ“\n4:×<Ey>g¼W@Mÿ\0‚b~Îº%Ç‹fĞ>xÃqø·ã‹ñòèxgÆ:O†õŠş×üQãO	ø²Oèš]‡Š5ÛŸ	|Añn¥ãÏÚø§Z×¬tÃ¦>™k¦ÚYDí¿?d|\0ø¨|Oğƒ|L<E{ğËIøG\Zê2Óîí-|£x›Qñ…¦œÂ;.u7‡ÄZÆ«¨ióëw\Z“ègVÖ­ü>t«]oX·½\0úßûkÄßô\'¿ş,?øÅ\0Û^&ÿ\0¡=ÿ\0ğyaÿ\0Æ(\0şÚñ7ı	ïÿ\0ƒËş1@ö×‰¿èOüXñŠ\0Ãñ6±â6ğßˆVO	¼q¶‡«+ÉıµbşZ€Ï´BlR[h œ`h;OøoæXè‰€ú¸ÔãğªéCÆŞşÓoAáX|c/‡E€İoEàçOK£ù\'PÃNšëÛ.˜Ëu@\Zú÷.ü+¡k^\'ñ.‹e øsÃšN£¯xƒ\\Õ¼K¦Yiz.‰£ÙÍ¨jº¶¥y4K\r¦Ÿ§XÛÜ^^\\ÊËĞË,Œ	P\rD×|G\",‘øH¼nªèé®Ø2:0Ê²°€†V àƒ‘š\0wö×‰¿èOüXñŠ\0?¶¼Mÿ\0B{ÿ\0àòÃÿ\0ŒPıµâoúßÿ\0–üb€í¯Ğÿ\0ø<°ÿ\0ãÂ|QÕ¼C/ÃGqág¶ü#â–ãûbÊ_%—uºSÂ\Z@ƒæ(¤3€A ĞÿÕş¾<yâO|Lı’üIğ6ÃÅh>\"ñçÁ{Ï†“jº¯ÃOˆŞ%Òtgñ7…ÛÃº –ú6fš­Æ›kyus¦½¬-$Ô!µË-°`àZMå·Æï‚Ÿ5èí§|6øâßƒ¾#Ò¬>\r|c†û[¿ñ†§à\rf÷XÒ5K‹Kˆ4ëM:÷á¾Ÿ¦êZ¤ÆÓUÖ<ûÖ™l¤P©´?Š^ñŒ/ot›í^âŞÛÃV–³|%âû9gÕ.¥@!¿Ğ¬æt(ïc¢6.0 ‡ÿ\0	·‡¿ç®©ÿ\0„ßˆÿ\0ù[@ü&Şÿ\0º§ş~#ÿ\0åm\0ğ›x{şzêŸøMøÿ\0•´\0Âmáïùëªá7â?şVĞñOÇ~\0·øâ{¯ÜÛÃákK¼ñ4Ş&Ğ5H<7‡lîíîuÉuùu]9tÈôXô¸®ŸTm@‹?±,ßiıÉzÇ,<põå‹tc…\Z’ÄËÈ°ñÃ¨IÖuİKSTU5\'QÔ|ŠÎVÌ1RÃC‰–5Ğ4*Ë,W\"ÃG\r\Zruåˆut¨*JN«©î(s9û·?\n5ø\'¦ƒûKxvûÅ\njÏ‡^-ğ:k¿4_x“À~ñ¦«m¨x_Æ2ı¥<a«Éãø\'ÅŠ<KâŸ\nk´eş…£i×~ñ×…|5¬øCâ…}¡|Cñ•a–Ì0ñÄeØ¼.7ÌéÆ¶µ,Ehi(F¥J†‰Å?wf‘_˜eù–\Z8œ¯„Ça9¥J5ğUéb0üÔô”#RŒ§NğÑ8§îìÏ¥ü#ÿ\0ú¹°Ó|cá?|`Óuïx½ü\'à]b-/àç‹ômgÆ?¬?hŸŠ?´WÄøÂâ-JK	ü_ñçâ]÷Â½SYÒll´;Àoâ[‹=(ê~)h´n³´Õø½û|MøÉ§~Öz~¹ñáÕ½çí)«øÃz\'‰ôŸ†?tCÀ_<íüàÙ4\rø×HÑ|Uuákßk)×lµØï<-ñG^ñW´Ïh²xORĞ´?\0iÙşÁÏQı©!¾ı üeã\r~×Z×Â	¾(ÇâÏ„Aâ‹Ÿ	xOâ|Kñ_Ã°øÂ^ğÓ]·Ä?\0xŞoƒú£{k4ğ1iöizšvˆ–\0¿ûüUHøùà¯	|{Ñ®>|wø—âÄ?\rüiğçãF³¢êß<yñKâ¯Å?ˆZtñ‡ÀŞ\"ñŸñHø/w¬ü2Óü/§İ|*Ğ59äÒí¼c®iºï†\0>¡ø?û9Züø»ûW|l›ãŒ|{íá?CÃş!øsm§İè¾ ğ¿ˆ~1ëÑH¾)Ñü)¤ê\Z¾¢è_4Ÿø.ÃVi®<=á\néÚeåş¥\r¦štğhØŸYñg‹ş2~Ñ\n<rÖß/tÏxÇààïéRø7âÆ£à¯ØŸLøw&«â›ì:‡…,¼Gû$jQxßMÉ-¼Mà¿‰ºÇ‡š$[YŸR\0ı;øO†>|1øğŞ\roÄúúxÁŞğ³øƒ[Ñ¼U¬ë÷\Z.•kaw®ê÷·V\\]jšÍÔjz…Ä®ï-İÔÎIÈ A>5ğø$5PG\rø#ëÿ\0Áü¿:\0OøM¼=ÿ\0=uOü&üGÿ\0ÊÚ\0?á6ğ÷üõÕ?ğ›ñÿ\0+h\0ÿ\0„ÛÃßó×Tÿ\0ÂoÄü­ şoÏ]Sÿ\0	¿ÿ\0ò¶€øM¼=ÿ\0=uOü&üGÿ\0ÊÚ\0?á6ğ÷üõÕ?ğ›ñÿ\0+hÄş2Ğ%ğßˆbIu=òhz´i»ÃŞ!EÜö\n»ôàˆ2FYˆU±\0f€?->6şÁpüYñoş%xkãçÄø¿Æÿ\05‰öZÚ|`¸ğn“¦jß±‹û.ŸIà7Å\ZO†N©©^ésê¾\"ñŞa£øºûÁš¾¡á\rWN›ÉÖPÊ¼Mÿ\0áñ÷Šô{\nïö—›KÓ5¿üHğÓÚiŸ~,IÃÉûD´Ÿ\r¾[ßx®koƒ·¶¼9á¿h~\'²ÕµmCAø?á[k»}\0}Oû0şÍ^,øñcFñ¦¿ñªïâ¤ü¼øIª¶©àˆ7/ñæ©mñûÅøƒ¯ê¾ ¿Ö­ü?â©ôíCS—â+xE4İâ\'‹u‰5ûF]H¶ˆôWşoÏ]Sÿ\0	¿ÿ\0ò¶€øM¼=ÿ\0=uOü&üGÿ\0ÊÚ\0?á6ğ÷üõÕ?ğ›ñÿ\0+h\0ÿ\0„ÛÃßó×Tÿ\0ÂoÄü­ â‹´;¿†ş<¶†MDÍ?„|AbM^¾—r<ÓiëJN’WH×«º¨, ÿÖşÊş*xsÅ^1ı†<YáO‡úˆ5_ˆ>!øq£x×Â~#ÂšúxÒÿ\0Â«máKÛoIâ¦™™¯I§ê:„Òë0!Ó­n¢{}A´û°ÃŞøŸ®şÔ¿üc«|2ø•à?	x3á]´:÷\"ñ¯„5\r3ÇŞ*Öüw¦ŞxCâ‡í¾$]Í§ø{À×KÕ‚h~ñ¾ øs§ëc[Ótâã^\0ûn6ş©¶”Çü\"vÿ\0tŒgûbçÓ¾1@~WÔ~t\0e}Gç@WÔ~t\0e}Gç@Yñ»ÁŞøğŸÇ<]o5ï„üy¡Oà¿ÙZİÍesyáßË‡­Ú[Ş[2\\ZOs¦_]CÍ»¤ğ;‰ae‘T×67	G0Áâğ˜ÊX|n\Z¾IÂS¡‰¥:5cÆÒ‹•9Ê*IŞ7ºµL~™àq¹n.2–0Âbp8˜BNFt+B3½	JIEIkî¶?Ÿ~ÇğP_xCZøuû?xsâÏ€<+ ë¾*ÓMğ¯Æm&ÓÂ¾ Ô­<SûR^|\'ñÃÅñ‹Âòø3À¶^ñGÀO\r]^ÿ\0jxFïÁ¾,Òü;âıkáÅEøkªéºÔàp8<·	‡À`0ô°˜<-(ÑÃáèÅB:qÙ$·mûÒ”¯9ÍÊsnnR’ËòüU‚ÃeÙv\Z–„¥\Z8|=òÂ8ıîR“nu*MÊ¥IÊU*JS”¥/¬~9ü-ÿ\0‚‡øÃÁÿ\0µ×…>é¿¼/?‰~;xCâƒïüwûB/‡õxGGø1à;+ßüñ¾…{ãKÁŞ¹øñá=KUÖü9­i´í[áõÄºmœvã-zÎË¬ì8Ÿüÿ\0‚…ß^üt½¾ğ·üG¬GñßÄ_¾\Z+âå¿‡> ÜCâ?ÚOøUğ¿Ä¦Çö¡ğ-Ö™û8è_\rüOğ~ëZñ‡´†ş3Ğüq¦D.¾üC·Ñï®¢\0õOÚöoı¦5~Ù>%ø[§|bÒ<ñ;Å~Ğ>øWÂŸ\Z¼UªXhwşğ—ˆ¼C¨üe3k?´Ãı;Àpxßâ¯µÏY¾Ú­Ÿ„</à†~%Ô¾\rø„i÷º@û@ü	ÿ\0‚‡k\ZÆï|Ò¾0ÁaâŒ—?´ßÜüT‡MñÄÚ–³ şÑÒÿ\0Â i°şÑzv‰{ğWÁŞ!ñÁ»O‡>3ÓÛáˆ|)vš?Œ<UğâM·ÃëŸ\\\0}ëû8ø\'ã×ƒ<ûZKñDñqøuãK¯xwÅ_¼ZÚß‰Æ:¶µñûZğ?ƒ¬tï‰5ğıÏÂoøzûÃ¶ñ\Zø+á¿}m4Zvµá}F}<I¤\0|ññ_Á_ğRO|mı£~ |!“_ñ7<S®ü4‹ö³·ñ§„®-~øNşÍZgÇ½^‡~2Öbğ×‰üCã‹\r\'ÆëğŸşkxƒÁşè®>,Ùkš e¦iŸğUsâ-^Ôüyo>—cqáI5?Zø3àN x†ßF?±Å¾¸—qñ‹4ñ”^&ı±u-rÒÇÆ×·\Z5×‚<eáSN·:kø°ô+öiÓ>\"h\0¾é-ÅŸÄİ;Á\Z-¯í´\"Õ<Åo¶ş3¨A}©ExDgşé\\œ‰Ÿ“@á•õ\0_QùĞ•õ\0_QùĞ•õ\0_QùĞŠÊÿ\0Â/âNGü€5ÿ\0õ¹ \r-5‡öu‡#ş<­{ÿ\0Ó ¹_QùĞ•õ\0_QùĞ•õ\0_QùĞ•õ\0yïÅ¢?áWüBäÈ›â>ÿ\0õ\nº ÿ×ş¶ş3x?À¾ı‰¼qñw@ğ¯Ãİ\'â\'†¾^øËAñ½àÅ¨øÊÇÃ?Ú:>Ÿs¥j;\"Õï|S­%¶‡.ÓÜMyªÆmàèÃ€yÒËàKïÚköeğo†ô…Ş#øñgáÖ­­øßÃúO„ü¯\\i—Ñü>ÔüS ëdÒô{xGFÔõoøN5sRğEÜòYø\"×Bƒ^Ö-5[P¾tO…ß<;ã+Ë=ÀŞÒí.|3kuqoi¢ØÅ·	ª]D“<b¦Uˆ˜Ãá[gÊr(Ğÿ\0áğ‡ı\nŞÿ\0ÁE‡ÿ\0 ş¿Ğ­áÿ\0üXñŠ\0?áğ‡ı\nŞÿ\0ÁE‡ÿ\0 ş¿Ğ­áÿ\0üXñŠ\0ñÿ\0Úáã¯‚Ÿ| >Ÿà=oÆ¾Õ|¤øãIÒ`\Z§ƒµÃı‡iâ;ì’i÷F÷Aı5KQoe3Mj‹ÔD©Å™ajãrì~\n†\"XJØ¼+Kg<-LE	Ò†\"²Œ¹èJj¬yesEZIÙÇƒ5ÂVÌ2¼Ë‡ÄÏ_€Æ`èã)©:˜J¸œ=Z4ñTÔgNNxyMU‡,á.h+N.Ò?šè?j/ÚöMø_ª|-øuÿ\0ÿ\0ÄIüâoézş¯ñWÁ×>#ñï€<Sá?şÕ:T>ñ÷üoâ1£ø“Æü9ğwáÏÄ›?\nMw¡ø«Åz>½©øKà”—=øVš>K•SÉrÜ6]OŒÆ{şóÄTÄâ±U¥gV½Z•%.WRZÆ”9iÒ¡eÍ.|‹\'¥åxl¶–\'t#zØÜ~\"¦\'‹ÄKZØŠ³©)({Ik\Z4¹hÑ‡-:qJ-Ëìß¶ßÄ/	j?¼;àİàR\\|<øÙâ=@ñ\'¿\Z—aûÙümømğ_ÄŞ¹ñ=Ş¥7ş(|qÓüEğõ¹ntÍZûXÑ<EàŸ\rxsIñÃiVúoªzç?ûHşİß>é¬<eğ7PñçÃÏÚÁ^Óü;ià-gğW‚5¯Ù7Xø½ªxKÄwºÿ\0Š¤Ñ5¿è¿ü=}àû·–÷B×¾#Üiş!øgğË@Ó¾%ßørŞĞÏ~0şŞµ—€ôÏ¥ø#àİôñö•¥è#ÓüàY|# İ]YşÕ:úü6´ñ\r×.lÄ¶ŞøKğ_Ä>\'ğWÅˆüñ”ø›Åş,øYáßÁã\Z|*û([âÛ7ö˜ÑµŒWº®›ğcLğWÃ?h\ZÖ±©ø{Â_¶ï4‹Ëÿ\0Ú+ì¿ş\riş\"ñ†¨ş-øó¯x7Á<Q©|(ø£eà/‹:‰µoøY4H Ö<2\0~“üø©añ;âçí¿ğÇX“á†¯kğfÿ\0ÁxJğÿ\0ƒ­¼=âoø{Æ?\níu½GEñ‚O­ë³ê\"Ğ¼U§§êš¤i¢Çkª%Ö’t‹±T üMñ·ö¥ğ§íñ–×Âÿ\0~xûàG„~.ü ıŸ|-Šô½#Àv‰ã/‹ı‘?áñ‡ü>¾=ñî¹c¢jÿ\0\Z¾+kŸ$Õ~ZøfËAğ¯…tÏ	ø’}u¼E\r¨?„?à¢¯âïÃáÛÿ\0Ù_À¬µ\ZïÂËOüJø‘£iº~/†æñœ>ñv‘ øÄ¾#ğ§ÆoÂ#ÇÃ¿\0ø“FÒô¯Ç¯ôß<ºÚj\0ß\r?à¤v7ñøb×Ç¿³v‡¦iÖşø3¨üBñ.¥ªG¥ø£À>/Õ?eİ+Åß~*x@|7²Ñ<ğÊçNı¡µÿ\0x]´ñÍ¾¿gğ‹ÆK{gá»%Ô®<&ôçìyûZø[öªñ¯ˆ<+wğ7Ã_ã²øWğûâ§‡Ù/—ÅWú®‰ãH—Î}v;iV~»¶¼™-ô¿x®çKñf¿¥Ä<W¤h×¾»{Û\0Ğ¿øBü!ÿ\0B·‡ÿ\0ğQaÿ\0Æ(\0ÿ\0„/Âô+xÿ\0üb€øBü!ÿ\0B·‡ÿ\0ğQaÿ\0Æ(\0ÿ\0„/Âô+xÿ\0üb€øBü!ÿ\0B·‡ÿ\0ğQaÿ\0Æ(Åğœ^\Zñ‘øgAHô=Yã‘4«tt°¸ete„2²°¬ Œ‚1š\0ĞÓüá°±fğÆ€ÌÖvÌÌÚM‰,L(I$ÀI$œ’NIëš\0¹ÿ\0_„?èVğÿ\0ş\n,?øÅ\0ğ…øCş…oÿ\0à¢Ãÿ\0ŒPÿ\0_„?èVğÿ\0ş\n,?øÅ\0ğ…øCş…oÿ\0à¢Ãÿ\0ŒPÿ\0_„?èVğÿ\0ş\n,?øÅ\0ğ…øCş…oÿ\0à¢Ãÿ\0ŒPñOÂ^µøkãÛ›oh–÷xGÄÁ<:]”rÃ,zeË$‘È†GF•”†#4ÿĞıAñGíëûZø/Ä¾ ğ‡†>0_i~ğÆ±¨h:šğÊXi:]Ì–vkq{ák›É–ŞÚ(âÜÜO;…Ydr]€0¿áã¶—ııCÿ\0ÿ\0‡?üÈPØ²ßíûFü@´ñ·âÿ\0‰wzÎ©§]é:U•ÓøÂ6†\r>h.ï$·éşµÃ\\/™$O(û«\" (àXÃEügÿ\0¡Úãÿ\0ÿ\0å5\0ğÑÿ\0èv¸ÿ\0ÁG‡¿ùM@ü4_Æú®?ğQáïşSPÿ\0\rñŸş‡küx{ÿ\0”ÔRûãÿ\0ÅİBÙí/<c<Öò<ñ+AL´Å<GtzDn6K8ÃrW2’¬oş\Z/ã?ı×ø(ğ÷ÿ\0)¨\0ÿ\0†‹øÏÿ\0CµÇş\n<=ÿ\0Êj\0?á¢ş3ÿ\0Ğíqÿ\0‚òš€øh¿Œÿ\0ô;\\à£Ãßü¦ ş\Z/ã?ı×ø(ğ÷ÿ\0)¨½ßíñ‚öÖæÎçÆwÛ]ÛÍmqÒ´A<m±–M]wÆÌ¹VVÊ°<¨±şÑ\"\"O\ZÜ*F‹\Z/öO‡ÎÕAµFNÄà\02Y©9&€ÿ\0\rñŸş‡küx{ÿ\0”Ô\0ÃEügÿ\0¡Úãÿ\0ÿ\0å5\0ğÑÿ\0èv¸ÿ\0ÁG‡¿ùM@ü4_Æú®?ğQáïşSPÿ\0\rñŸş‡küx{ÿ\0”Ô\0ÃEügÿ\0¡Úãÿ\0ÿ\0å5\0ğÑÿ\0èv¸ÿ\0ÁG‡¿ùM@ü4_Æú®?ğQáïşSP{¿Úãí­ÍÏŒî%¶»·šÚâ#¥h\n$‚xÚ)c,š:ºï™r¬¬3•`yP	cı¢>2E\ZD5¸T4_ìŸªƒjŒ‰À\0d³RrM\0?ş\Z/ã?ı×ø(ğ÷ÿ\0)¨\0ÿ\0†‹øÏÿ\0CµÇş\n<=ÿ\0Êj\0?á¢ş3ÿ\0Ğíqÿ\0‚òš€øh¿Œÿ\0ô;\\à£Ãßü¦ ş\Z/ã?ı×ø(ğ÷ÿ\0)¨\0ÿ\0†‹øÏÿ\0CµÇş\n<=ÿ\0Êj\0ÏÕ¾<|YÖ´½GHÔü_=Ö©Ù]X_[/BŒ\\Z]BğÜBd‡J†TDì…¢•s”enXÿÙ\0\0\0PK\0\0\0\0\0!\0ÑÏğ‘J\0\0o\0\0\0docProps/core.xml ¢( \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0„’]KÃ0…ïÿCÉ}›tÃáJÛáÃ‚Å»,y·›’h·oÚnµ2ÁËäœ÷É9/É{YG_`Ğª@iBPŠi.Ô¶@/Õ2¾F‘óTqZk:€C‹òò\"g&cÚÂ“Õ¬à¢@R.c¦@;ïM†±c;Ô%Á¡‚¸ÑVRv‹\retxBÈKğ”SOqŒÍ@DG$gÒ|Úºp†¡	Ê;œ&)şñz°Òı9Ğ)#§ş`B§cÜ1›³^Ü{\'cÓ4I3íb„ü)~[=>wUc¡Ú]1@eÎYÆ,P¯my³r­k\Z=Pç¨ÊñHk÷XSçWaåüöpn?·zW¦xâe}™“ò:½»¯–¨œt“iLæUJ²«ëŒLŞÛ¿æÛ¸ı…<æø— óŠÌ;\"O€2Çg_¤ü\0\0ÿÿ\0PK\0\0\0\0\0!\0×Sœ0\0\0\0\0\0docProps/app.xml ¢( \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0œ’MoÛ0†ïöİ9]1¬¢H;ô°b’vgM¦c¡²$ˆ¬‘ì×¶‘ÆÙvÚ/^>¢¨n/zÈèb¨ÄrQŠ‚µûJ<ï¾^}’	µñ1@%€âVü 69&Èä\0¶X‰–(­¤DÛBgpÁíÀ&æÎ§y/cÓ8÷Ñ¾uH^—åg	‚PC}•Ş\rÅä¸êéMëh>|Ùku—’wÖ¿R?9›#Æ†Š\'c] ˆmñp°à•œËsnÁ¾eGG]*9OÕÖ\Zk¡ã”<Ô#˜a}ã2jÕÓªK1è~ñ¯EñÓ `•èMv&²)cŸ²şó+¶\0„J²`*á\\;İ^.…ƒÁÂKÄ#ø½Ù˜Lÿ ^Î‰G†‰wÂÙ|ÓÌ9ßødô‡÷:vÉ„#7Ş£o.¼âsÚÅ{CpZçeQm[“¡æ8õÏõÈ›Ì~0Y·&ì¡>işngğ2İº^Ş,ÊO%ÿë¬¦äùªõo\0\0\0ÿÿ\0PK-\0\0\0\0\0\0!\0;H@l\0\0Ä\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0[Content_Types].xmlPK-\0\0\0\0\0\0!\0}ÌT\r\0\0İ\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0¥\0\0_rels/.relsPK-\0\0\0\0\0\0!\0Œ–Ånó\0\0\0º\0\0\Z\0\0\0\0\0\0\0\0\0\0\0\0\0ã\0\0xl/_rels/workbook.xml.relsPK-\0\0\0\0\0\0!\0aà›ÒÎ\0\0ë\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0	\0\0xl/workbook.xmlPK-\0\0\0\0\0\0!\0¨°¶o\0\0ƒ	\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0xl/sharedStrings.xmlPK-\0\0\0\0\0\0!\00ˆk\0\0Ş\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0²\0\0xl/theme/theme1.xmlPK-\0\0\0\0\0\0!\09woë\0\0\0\0\r\0\0\0\0\0\0\0\0\0\0\0\0\0ô\0\0xl/styles.xmlPK-\0\0\0\0\0\0!\0‰R6]é\0\0j\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\n\0\0xl/worksheets/sheet1.xmlPK-\0\n\0\0\0\0\0\0\0!\0hÌ«èÌy\0\0Ìy\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0)\0\0docProps/thumbnail.jpegPK-\0\0\0\0\0\0!\0ÑÏğ‘J\0\0o\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0*™\0\0docProps/core.xmlPK-\0\0\0\0\0\0!\0×Sœ0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0«›\0\0docProps/app.xmlPK\0\0\0\0\0\0Å\0\0q\0\0\0\0',41292,'2016-09-06 09:56:32'),(24257895,20160809,'exec.sql','application/octet-stream','exec db_datasync.MergeAndCloseDupe_PM \'21023389\',\'0221022532150\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023074\',\'0221022532280\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023183\',\'0221022531960\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023245\',\'0221022531960\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321655002550\',\'0221022531960\';\nexec db_datasync.MergeAndCloseDupe_PM \'0221022523920\',\'0221022531960\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023182\',\'0221022532490\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321655002520\',\'0221022532490\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023180\',\'0221022532370\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321655002320\',\'0221022532370\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023198\',\'0221022525980\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023725\',\'0221022526740\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023202\',\'0221022512780\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023177\',\'0221022532420\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024355\',\'0221022526100\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321655002450\',\'0221022526100\';\nexec db_datasync.MergeAndCloseDupe_PM \'21025100\',\'0221022532000\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023173\',\'0221022532000\';\nexec db_datasync.MergeAndCloseDupe_PM \'0221022510700\',\'0221022532000 \';\nexec db_datasync.MergeAndCloseDupe_PM \'21022891\',\'0221022532220\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023171\',\'0221022516560\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321655002410\',\'0221022516560\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023188\',\'0221022524760\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321655002230\',\'0221022524760\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024813\',\'0221022525600\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023191\',\'0221022532430\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023192\',\'0221022532380\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023561\',\'0221022527290\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023193\',\'0221022532390\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023196\',\'0221022532410\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321655002280\',\'0221022532410\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023195\',\'0221022532450\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023197\',\'0221022532460\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023132\',\'0221022532230\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024445\',\'0221022525370\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024444\',\'0221022524690\';\nexec db_datasync.MergeAndCloseDupe_PM \'21025215\',\'0221022524890\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023168\',\'0221022532110\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024383\',\'0221022524330\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023277\',\'0221022532330\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024269\',\'0221022525380 \';\nexec db_datasync.MergeAndCloseDupe_PM \'21023199\',\'0221022525000\';\nexec db_datasync.MergeAndCloseDupe_PM \'0221022532440\',\'0221022525000\';\nexec db_datasync.MergeAndCloseDupe_PM \'21025271\',\'0221022525000\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024145\',\'0221022525410\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023542\',\'0221022527310\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321655002120\',\'0221022527310\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024270\',\'0221022525040\';\nexec db_datasync.MergeAndCloseDupe_PM \'21020940\',\'0221022532510\';\nexec db_datasync.MergeAndCloseDupe_PM \'0221022530900\',\'0221022532510\';\nexec db_datasync.MergeAndCloseDupe_PM \'21020073\',\'0221022532510\';\nexec db_datasync.MergeAndCloseDupe_PM \'21022876\',\'0221022532210\';\nexec db_datasync.MergeAndCloseDupe_PM \'21022878\',\'0221022519710\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321655002500\',\'0221022519710\';\nexec db_datasync.MergeAndCloseDupe_PM \'21025099\',\'0221022512550\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321655002370\',\'0221022512550\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024069\',\'0221022525690\';\nexec db_datasync.MergeAndCloseDupe_PM \'21025134\',\'0221022525030\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023115\',\'0221022525050\';\nexec db_datasync.MergeAndCloseDupe_PM \'0221022529830\',\'0221022525050\';\nexec db_datasync.MergeAndCloseDupe_PM \'21025266\',\'0221022525050\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024333\',\'0221022525360\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024384\',\'0221022525610\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024397\',\'0221022525260\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024244\',\'0221022524980\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024154\',\'0221022525960\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024468\',\'0221022525630\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024092\',\'0221022525660\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024272\',\'0221022525470\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024246\',\'0221022525390\';\nexec db_datasync.MergeAndCloseDupe_PM \'21025110\',\'0221022524570\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023624\',\'0221022527440\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023796\',\'0221022503500\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023723\',\'0221022526540\';\nexec db_datasync.MergeAndCloseDupe_PM \'21020033\',\'0221022531990\';\nexec db_datasync.MergeAndCloseDupe_PM \'21022572\',\'0221022532160\';\nexec db_datasync.MergeAndCloseDupe_PM \'21020139\',\'0221022519330\';\nexec db_datasync.MergeAndCloseDupe_PM \'21022860\',\'0221022519850\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024818\',\'0221022524420\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023033\',\'0221022532300\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023201\',\'0221022532400\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023131\',\'0221022519380\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023169\',\'0221022532350\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024264\',\'0221022526660\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321655002200\',\'0221022526660\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023599\',\'0221022527360\';\nexec db_datasync.MergeAndCloseDupe_PM \'21022571\',\'0221022532180\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023194\',\'0221022527300\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023423\',\'0221022526950\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023244\',\'0221022532310\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321655002440\',\'0221022532310\';\nexec db_datasync.MergeAndCloseDupe_PM \'21022573\',\'0221022532170\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024451\',\'0221022524440\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023187\',\'0221022531950\';\nexec db_datasync.MergeAndCloseDupe_PM \'21024146\',\'0221022524450\';\nexec db_datasync.MergeAndCloseDupe_PM \'21025264\',\'0221022524990\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321655002260\',\'0221022507150\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023203\',\'0221022507150\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023179\',\'0221022532320\';\nexec db_datasync.MergeAndCloseDupe_PM \'21025142\',\'0221022526040\';\nexec db_datasync.MergeAndCloseDupe_PM \'21025221\',\'0221022524870\';\nexec db_datasync.MergeAndCloseDupe_PM \'21025206\',\'0221022524430\';\nexec db_datasync.MergeAndCloseDupe_PM \'21025265\',\'0221022525480\';\nexec db_datasync.MergeAndCloseDupe_PM \'21023082\',\'0221022523800\';\nexec db_datasync.MergeAndCloseDupe_PM \'21020887\',\'0221022529770\';\nexec db_datasync.MergeAndCloseDupe_PM \'0221022529771\',\'0221022529770\';\nexec db_datasync.MergeAndCloseDupe_PM \'21025260\',\'0221022524300\';\nexec db_datasync.MergeAndCloseDupe_PM \'21025259\',\'0221022524910\';\nexec db_datasync.MergeAndCloseDupe_PM \'21022972\',\'0221022523550\';\nexec db_datasync.MergeAndCloseDupe_PM \'21022914\',\'0221022503250\';\nexec db_datasync.MergeAndCloseDupe_PM \'21014266\',\'21013177\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321205000930\',\'21014445\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321205000970\',\'21014383\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321205001220\',\'21013277\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321205001210\',\'21014269\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321205001370\',\'21014270\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321205001310\',\'21015134\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321205001250\',\'21014384\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321205001300\',\'21014397\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321205001360\',\'21014244\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321205001060\',\'21014154\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321205000890\',\'21014468\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321205001190\',\'21014271\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321205001080\',\'21013033\';\nexec db_datasync.MergeAndCloseDupe_PM \'21014267\',\'21013131\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321205001160\',\'21013169\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321205001340\',\'21013194\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321205001200\',\'21014451\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321205001230\',\'21015142\';\nexec db_datasync.MergeAndCloseDupe_PM \'0321205001280\',\'21015206\';\nexec db_datasync.MergeAndCloseDupe_PM \'21015394\',\'21010887\';\nexec db_datasync.MergeAndCloseDupe_PM \'21012566\',\'21011920\';\nexec db_datasync.MergeAndCloseDupe_PM \'0221022531970\',\'0221022520380\';\nexec db_datasync.MergeAndCloseDupe_PM \'0221022510700\',\'0221022532000\';\n',8931,'2016-09-06 09:56:32');
+/*!40000 ALTER TABLE `Document` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `LoginDetail`
+--
+
+DROP TABLE IF EXISTS `LoginDetail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LoginDetail` (
+  `LoginDetail_Id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `Username` varchar(200) NOT NULL,
+  `RemoteAddress` varchar(45) DEFAULT NULL,
+  `LoginDate` datetime NOT NULL,
+  `LoginSuccessful` bit(1) NOT NULL,
+  `FailureReason` varchar(500) DEFAULT NULL,
+  `LoginDetail_User_Id` bigint(20) NOT NULL,
+  PRIMARY KEY (`LoginDetail_Id`),
+  KEY `fk_LoginDetail_User1_idx` (`LoginDetail_User_Id`),
+  CONSTRAINT `fk_LoginDetail_User1` FOREIGN KEY (`LoginDetail_User_Id`) REFERENCES `Users` (`User_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `LoginDetail`
+--
+
+LOCK TABLES `LoginDetail` WRITE;
+/*!40000 ALTER TABLE `LoginDetail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `LoginDetail` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Mail`
+--
+
+DROP TABLE IF EXISTS `Mail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Mail` (
+  `mail_id` int(11) NOT NULL AUTO_INCREMENT,
+  `mail_to` varchar(45) DEFAULT NULL,
+  `mail_from` varchar(45) DEFAULT NULL,
+  `mail_subj` varchar(45) DEFAULT NULL,
+  `mail_body` text,
+  `create_date` datetime DEFAULT NULL,
+  `modified_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`mail_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Mail`
+--
+
+LOCK TABLES `Mail` WRITE;
+/*!40000 ALTER TABLE `Mail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Mail` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Party`
+--
+
+DROP TABLE IF EXISTS `Party`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Party` (
+  `Party_Id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `Party_PartyType_Id` int(11) NOT NULL,
+  `AddressCity` varchar(100) DEFAULT NULL,
+  `AddressLine1` varchar(255) DEFAULT NULL,
+  `AddressLine2` varchar(255) DEFAULT NULL,
+  `PostalCode` varchar(45) DEFAULT NULL,
+  `ContactPhoneNumber` varchar(45) DEFAULT NULL,
+  `Name` varchar(45) DEFAULT NULL,
+  `EmailAddress` varchar(45) DEFAULT NULL,
+  `Party_Country_Id` bigint(20) DEFAULT NULL,
+  `Party_State_Id` bigint(20) DEFAULT NULL,
+  `ClientId` varchar(45) DEFAULT NULL,
+  `IsActive` bit(1) DEFAULT NULL,
+  `ContactLastname` varchar(100) DEFAULT NULL,
+  `ContactFirstname` varchar(100) DEFAULT NULL,
+  `ContactPersonTitle` varchar(100) DEFAULT NULL,
+  `ContactMiddlename` varchar(100) DEFAULT NULL,
+  `YearEstablished` int(11) DEFAULT NULL,
+  `Party_BusinessType_Id` bigint(20) DEFAULT NULL,
+  `OtherTypeOfBusiness` varchar(555) DEFAULT NULL,
+  `MajorBusinessActivity` varchar(455) DEFAULT NULL,
+  `TermConditionAccepted` bit(1) DEFAULT NULL,
+  `PartyStatus_PartyStatus_Id` bigint(20) NOT NULL,
+  PRIMARY KEY (`Party_Id`),
+  KEY `fk_Party_PartyType1_idx` (`Party_PartyType_Id`),
+  KEY `fk_Party_Country1_idx` (`Party_Country_Id`),
+  KEY `fk_Party_State1_idx` (`Party_State_Id`),
+  KEY `fk_Party_BusinessType1_idx` (`Party_BusinessType_Id`),
+  KEY `fk_Party_PartyStatus1_idx` (`PartyStatus_PartyStatus_Id`),
+  CONSTRAINT `fk_Party_BusinessType1` FOREIGN KEY (`Party_BusinessType_Id`) REFERENCES `BusinessType` (`BusinessType_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Party_Country1` FOREIGN KEY (`Party_Country_Id`) REFERENCES `Country` (`Country_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Party_PartyStatus1` FOREIGN KEY (`PartyStatus_PartyStatus_Id`) REFERENCES `PartyStatus` (`PartyStatus_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Party_PartyType1` FOREIGN KEY (`Party_PartyType_Id`) REFERENCES `PartyType` (`PartyType_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Party_State1` FOREIGN KEY (`Party_State_Id`) REFERENCES `State` (`State_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=20161326 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Party`
+--
+
+LOCK TABLES `Party` WRITE;
+/*!40000 ALTER TABLE `Party` DISABLE KEYS */;
+INSERT INTO `Party` VALUES (20161307,201607130,'Lagos','Samuel Manua Street','Off Keffi',NULL,NULL,'Geoscape Limited',NULL,20160874,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,20310741,NULL,NULL,NULL,1011),(20161317,201607131,'Lagos','Address 1','Address 2',NULL,NULL,'Chevron','david.jaiyeola@gmail.com',20160874,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1011),(20161320,201607132,NULL,NULL,NULL,NULL,NULL,'Samsung',NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1011),(20161321,201607132,NULL,NULL,NULL,NULL,NULL,'Mitsubishi',NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1011),(20161323,201607131,'Lagos','Total HQ',NULL,NULL,NULL,'Total Petroleum','info@total.com',20160874,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1011),(20161324,201607131,'Victoria Island','Adeola Odeku',NULL,NULL,NULL,'Sapetro','info@sapetro.com',20160874,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1011),(20161325,201607131,'Lagos','Lekki-Ajah Express way','Lekki',NULL,NULL,'Mobil','info@mobil.com',20160874,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1011);
+/*!40000 ALTER TABLE `Party` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `PartyStatus`
+--
+
+DROP TABLE IF EXISTS `PartyStatus`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `PartyStatus` (
+  `PartyStatus_Id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(200) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`PartyStatus_Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1013 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `PartyStatus`
+--
+
+LOCK TABLES `PartyStatus` WRITE;
+/*!40000 ALTER TABLE `PartyStatus` DISABLE KEYS */;
+INSERT INTO `PartyStatus` VALUES (1011,'Approved',NULL),(1012,'Rejected',NULL);
+/*!40000 ALTER TABLE `PartyStatus` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `PartyType`
+--
+
+DROP TABLE IF EXISTS `PartyType`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `PartyType` (
+  `PartyType_Id` int(11) NOT NULL,
+  `Name` varchar(200) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`PartyType_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `PartyType`
+--
+
+LOCK TABLES `PartyType` WRITE;
+/*!40000 ALTER TABLE `PartyType` DISABLE KEYS */;
+INSERT INTO `PartyType` VALUES (201607130,'Internal Organisation',NULL),(201607131,'Client',NULL),(201607132,'Manufacturers',NULL),(201607133,'Suppliers',NULL);
+/*!40000 ALTER TABLE `PartyType` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Quote`
+--
+
+DROP TABLE IF EXISTS `Quote`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Quote` (
+  `quote_Id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `subject` varchar(200) DEFAULT NULL COMMENT 'You can give any subject you want',
+  `rfq_no` varchar(45) DEFAULT NULL COMMENT 'Request Number',
+  `Party_Party_Id` bigint(20) NOT NULL,
+  `Quote_Status_Id` bigint(20) NOT NULL,
+  `Quote_Currency_Id` bigint(20) NOT NULL,
+  `PublishDate` datetime DEFAULT NULL,
+  `DueDate` datetime DEFAULT NULL,
+  `EntryDate` datetime DEFAULT NULL,
+  `EventOwner` varchar(200) DEFAULT NULL,
+  `Users_User_Id` bigint(20) DEFAULT NULL,
+  `ApproveDate` datetime DEFAULT NULL,
+  `Quote_EnteredBy_Id` bigint(20) NOT NULL,
+  `Description` varchar(1000) DEFAULT NULL,
+  `Quote_ApprovedBy_Id` bigint(20) DEFAULT NULL,
+  `SpecificationAndRequirement` varchar(2000) DEFAULT NULL,
+  PRIMARY KEY (`quote_Id`),
+  KEY `fk_Quote_QuoteStatus1_idx` (`Quote_Status_Id`),
+  KEY `fk_Quote_Currency1_idx` (`Quote_Currency_Id`),
+  KEY `fk_Quote_User1_idx` (`Quote_EnteredBy_Id`),
+  KEY `fk_Quote_User2_idx` (`Quote_ApprovedBy_Id`),
+  KEY `fk_Quote_Party1_idx` (`Party_Party_Id`),
+  KEY `fk_Quote_Users1_idx` (`Users_User_Id`),
+  CONSTRAINT `fk_Quote_Currency1` FOREIGN KEY (`Quote_Currency_Id`) REFERENCES `Currency` (`currency_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Quote_Party1` FOREIGN KEY (`Party_Party_Id`) REFERENCES `Party` (`Party_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Quote_QuoteStatus1` FOREIGN KEY (`Quote_Status_Id`) REFERENCES `QuoteStatus` (`QuoteStatus_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Quote_User1` FOREIGN KEY (`Quote_EnteredBy_Id`) REFERENCES `Users` (`User_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Quote_User2` FOREIGN KEY (`Quote_ApprovedBy_Id`) REFERENCES `Users` (`User_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=20160880 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Quote`
+--
+
+LOCK TABLES `Quote` WRITE;
+/*!40000 ALTER TABLE `Quote` DISABLE KEYS */;
+INSERT INTO `Quote` VALUES (20160809,'A test quote','RFQ5370',20161317,12141324,19923342,'2016-05-04 02:00:00','2016-05-04 02:00:00',NULL,'Yinka Akinoso',20160715,NULL,20160713,'Nice stuff',NULL,NULL),(20160857,'gertyer','PSI2234',20161317,12141325,19923342,NULL,NULL,NULL,NULL,20160714,NULL,20160713,NULL,NULL,NULL),(20160858,'A test quote','RFQ5356',20161317,12141325,19923342,'2016-08-10 01:00:00',NULL,NULL,NULL,20160713,NULL,20160713,NULL,NULL,NULL),(20160878,'A test quote','RFQ5356',20161317,12141325,19923342,'2016-08-31 01:00:00',NULL,'2016-09-02 17:07:03',NULL,20160715,NULL,20160713,NULL,NULL,NULL),(20160879,NULL,'RFQ663442',20161323,12141325,19923342,'2016-09-05 01:00:00','2016-09-07 01:00:00','2016-09-08 11:56:43','Samson Fagade',20160713,NULL,20160713,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `Quote` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `QuoteDetail`
+--
+
+DROP TABLE IF EXISTS `QuoteDetail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `QuoteDetail` (
+  `QuoteDetail_Id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `serialNumber` varchar(200) DEFAULT NULL,
+  `description` varchar(500) DEFAULT NULL,
+  `price` decimal(19,2) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `Quote_quote_Id` bigint(20) NOT NULL,
+  PRIMARY KEY (`QuoteDetail_Id`),
+  KEY `fk_QuoteDetail_Quote1_idx` (`Quote_quote_Id`),
+  CONSTRAINT `fk_QuoteDetail_Quote1` FOREIGN KEY (`Quote_quote_Id`) REFERENCES `Quote` (`quote_Id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=235366791 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `QuoteDetail`
+--
+
+LOCK TABLES `QuoteDetail` WRITE;
+/*!40000 ALTER TABLE `QuoteDetail` DISABLE KEYS */;
+INSERT INTO `QuoteDetail` VALUES (235366775,NULL,'REtest',NULL,3,20160878),(235366777,NULL,'Test',NULL,2,20160809),(235366778,NULL,'Test',NULL,2,20160809),(235366779,NULL,'test',NULL,2,20160857),(235366780,NULL,'Test',NULL,2,20160809),(235366781,NULL,'Test',NULL,2,20160809),(235366782,NULL,'test',NULL,2,20160857),(235366783,NULL,'test',NULL,2,20160857),(235366784,NULL,'test',NULL,2,20160857),(235366785,NULL,'Test',NULL,2,20160809),(235366786,NULL,'Test',NULL,2,20160809),(235366787,NULL,'Test',NULL,2,20160809),(235366788,NULL,'Test',NULL,2,20160809),(235366789,NULL,'A Material',NULL,4,20160879),(235366790,NULL,'Another Material',NULL,24,20160879);
+/*!40000 ALTER TABLE `QuoteDetail` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `QuoteDetail_Manufacturer`
+--
+
+DROP TABLE IF EXISTS `QuoteDetail_Manufacturer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `QuoteDetail_Manufacturer` (
+  `QuoteDetail_QuoteDetail_Id` bigint(20) NOT NULL,
+  `Party_Party_Id` bigint(20) NOT NULL,
+  PRIMARY KEY (`QuoteDetail_QuoteDetail_Id`,`Party_Party_Id`),
+  KEY `fk_QuoteDetail_Manufacturer_QuoteDetail1_idx` (`QuoteDetail_QuoteDetail_Id`),
+  KEY `fk_QuoteDetail_Manufacturer_Party1_idx` (`Party_Party_Id`),
+  CONSTRAINT `fk_QuoteDetail_Manufacturer_Party1` FOREIGN KEY (`Party_Party_Id`) REFERENCES `Party` (`Party_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_QuoteDetail_Manufacturer_QuoteDetail1` FOREIGN KEY (`QuoteDetail_QuoteDetail_Id`) REFERENCES `QuoteDetail` (`QuoteDetail_Id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `QuoteDetail_Manufacturer`
+--
+
+LOCK TABLES `QuoteDetail_Manufacturer` WRITE;
+/*!40000 ALTER TABLE `QuoteDetail_Manufacturer` DISABLE KEYS */;
+INSERT INTO `QuoteDetail_Manufacturer` VALUES (235366775,20161320),(235366775,20161321),(235366777,20161320),(235366778,20161320),(235366778,20161321),(235366779,20161320),(235366780,20161320),(235366781,20161320),(235366781,20161321),(235366782,20161320),(235366783,20161320),(235366784,20161320),(235366785,20161320),(235366786,20161320),(235366787,20161320),(235366787,20161321),(235366788,20161320),(235366788,20161321),(235366789,20161320),(235366789,20161321),(235366790,20161320);
+/*!40000 ALTER TABLE `QuoteDetail_Manufacturer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `QuoteStatus`
+--
+
+DROP TABLE IF EXISTS `QuoteStatus`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `QuoteStatus` (
+  `QuoteStatus_Id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(200) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`QuoteStatus_Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12141329 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `QuoteStatus`
+--
+
+LOCK TABLES `QuoteStatus` WRITE;
+/*!40000 ALTER TABLE `QuoteStatus` DISABLE KEYS */;
+INSERT INTO `QuoteStatus` VALUES (12141324,'Submitted','Submitted'),(12141325,'In Progress','In Progress'),(12141326,'TQ','TQ'),(12141327,'Sourcing for suppliers','Sourcing for suppliers'),(12141328,'Costing at suppliers','Costing at suppliers');
+/*!40000 ALTER TABLE `QuoteStatus` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `State`
+--
+
+DROP TABLE IF EXISTS `State`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `State` (
+  `State_Id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) DEFAULT NULL,
+  `State_Country_Id` bigint(20) NOT NULL,
+  PRIMARY KEY (`State_Id`),
+  KEY `fk_State_Country1_idx` (`State_Country_Id`),
+  CONSTRAINT `fk_State_Country1` FOREIGN KEY (`State_Country_Id`) REFERENCES `Country` (`Country_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=20160755 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `State`
+--
+
+LOCK TABLES `State` WRITE;
+/*!40000 ALTER TABLE `State` DISABLE KEYS */;
+INSERT INTO `State` VALUES (20160719,'ABIA',20160874),(20160720,'ADAMAWA',20160874),(20160721,'AKWAIBOM',20160874),(20160722,'ANAMBRA',20160874),(20160723,'BAUCHI',20160874),(20160724,'BAYELSA',20160874),(20160725,'BENUE',20160874),(20160726,'BORNO',20160874),(20160727,'CROSSRIVER',20160874),(20160728,'DELTA',20160874),(20160729,'EBONYI',20160874),(20160730,'EDO',20160874),(20160731,'EKITI',20160874),(20160732,'ENUGU',20160874),(20160733,'GOMBE',20160874),(20160734,'IMO',20160874),(20160735,'JIGAWA',20160874),(20160736,'KADUNA',20160874),(20160737,'KANO',20160874),(20160738,'KATSINA',20160874),(20160739,'KEBBI',20160874),(20160740,'KOGI',20160874),(20160741,'KWARA',20160874),(20160742,'LAGOS',20160874),(20160743,'NASSARAWA',20160874),(20160744,'NIGER',20160874),(20160745,'OGUN',20160874),(20160746,'ONDO',20160874),(20160747,'OSUN',20160874),(20160748,'OYO',20160874),(20160749,'PLATEAU',20160874),(20160750,'RIVERS',20160874),(20160751,'SOKOTO',20160874),(20160752,'TARABA',20160874),(20160753,'YOBE',20160874),(20160754,'ZAMFARA',20160874);
+/*!40000 ALTER TABLE `State` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `User_AuthView`
+--
+
+DROP TABLE IF EXISTS `User_AuthView`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `User_AuthView` (
+  `AuthView_AuthView_Id` int(11) NOT NULL,
+  `User_User_Id` bigint(20) NOT NULL,
+  `ius_yn` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`AuthView_AuthView_Id`,`User_User_Id`),
+  KEY `fk_user_authView_AuthView1_idx` (`AuthView_AuthView_Id`),
+  KEY `fk_user_authView_User1_idx` (`User_User_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `User_AuthView`
+--
+
+LOCK TABLES `User_AuthView` WRITE;
+/*!40000 ALTER TABLE `User_AuthView` DISABLE KEYS */;
+INSERT INTO `User_AuthView` VALUES (13072016,20160713,1),(13072016,20160715,1),(13072017,20160713,1),(13072017,20160715,1),(13072018,20160713,1);
+/*!40000 ALTER TABLE `User_AuthView` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Users`
+--
+
+DROP TABLE IF EXISTS `Users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Users` (
+  `User_Id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `Firstname` varchar(200) NOT NULL,
+  `MiddleName` varchar(200) DEFAULT NULL,
+  `LastName` varchar(200) NOT NULL,
+  `WorkPhoneNumber` varchar(45) DEFAULT NULL,
+  `ContactPhoneNumber` varchar(45) DEFAULT NULL,
+  `User_Party_Id` bigint(20) NOT NULL,
+  `IsAuthorizedPerson` tinyint(1) DEFAULT NULL,
+  `Username` varchar(100) DEFAULT NULL,
+  `Email` varchar(100) DEFAULT NULL,
+  `Password` varchar(200) NOT NULL,
+  `token` varchar(200) DEFAULT NULL,
+  `Enabled` tinyint(1) DEFAULT NULL,
+  `AccountLocked` tinyint(1) DEFAULT NULL,
+  `AccountExpirationTime` datetime DEFAULT NULL,
+  `CredentialsExpirationTime` datetime DEFAULT NULL,
+  `DateCreated` datetime DEFAULT NULL,
+  `DateModified` datetime DEFAULT NULL,
+  PRIMARY KEY (`User_Id`),
+  KEY `fk_User_Party1_idx` (`User_Party_Id`),
+  CONSTRAINT `fk_User_Party1` FOREIGN KEY (`User_Party_Id`) REFERENCES `Party` (`Party_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=20160716 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Users`
+--
+
+LOCK TABLES `Users` WRITE;
+/*!40000 ALTER TABLE `Users` DISABLE KEYS */;
+INSERT INTO `Users` VALUES (20160713,'Abimbola','S','Hassan','07065725667',NULL,20161307,NULL,NULL,'infinitizon@yahoo.com','c20ad4d76fe97759aa27a0c99bff6710','cd06e7823b89ed77b0758fe940c3887e21ebf281',1,0,NULL,NULL,NULL,NULL),(20160714,'Labake',NULL,'Hassan','143131513','135135153151',20161317,NULL,NULL,NULL,'72a9034327785dab5ad6a914b73c16b8',NULL,1,NULL,NULL,NULL,NULL,NULL),(20160715,'Deribigbe',NULL,'Ajasa','75365653','345673546356',20161317,NULL,NULL,NULL,'960a92425e165e5ec9830f78e28dafc7',NULL,1,NULL,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `Users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `logs`
+--
+
+DROP TABLE IF EXISTS `logs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `logs` (
+  `log_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `users_user_id` bigint(20) NOT NULL,
+  `log_table` varchar(45) DEFAULT NULL,
+  `log_table_key` varchar(45) DEFAULT NULL,
+  `log_changes` text,
+  `log_date` datetime DEFAULT NULL,
   PRIMARY KEY (`log_id`),
-  INDEX `fk_logs_Users1_idx` (`users_user_id` ASC),
-  CONSTRAINT `fk_logs_Users1`
-    FOREIGN KEY (`users_user_id`)
-    REFERENCES `geotripe`.`Users` (`User_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-AUTO_INCREMENT = 36785984;
+  KEY `fk_logs_Users1_idx` (`users_user_id`),
+  CONSTRAINT `fk_logs_Users1` FOREIGN KEY (`users_user_id`) REFERENCES `Users` (`User_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=36786043 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `logs`
+--
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+LOCK TABLES `logs` WRITE;
+/*!40000 ALTER TABLE `logs` DISABLE KEYS */;
+INSERT INTO `logs` VALUES (36785984,20160713,'Quote',':tblColKey','inserted new lines for: subject=>A test quote, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>25432, Quote_Product_Id=>20160908, SpecificationAndRequirement=>Tester&#039;s notes','2016-08-11 14:00:11'),(36785985,20160713,'Quote','20160821','inserted new lines for: subject=>A test quote, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>25432, Quote_Product_Id=>20160908, SpecificationAndRequirement=>Tester&#039;s notes','2016-08-11 14:01:56'),(36785986,20160713,'Quote','20160822','inserted new lines for: subject=>A test quote, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>25432, Quote_Product_Id=>20160908, SpecificationAndRequirement=>Tester&#039;s notes','2016-08-11 14:02:34'),(36785987,20160713,'Quote','20160823','inserted new lines for: subject=>etet, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>623463, Quote_Product_Id=>20160908, SpecificationAndRequirement=>Tester&#039;s new quote','2016-08-11 14:08:31'),(36785988,20160713,'Quote','20160824','inserted new lines for: subject=>etet, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>623463, Quote_Product_Id=>20160908, SpecificationAndRequirement=>Tester&#039;s new quote','2016-08-11 14:09:24'),(36785989,20160713,'Quote','20160825','inserted new lines for: subject=>etet, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>623463, Quote_Product_Id=>20160908, SpecificationAndRequirement=>Tester&#039;s new quote','2016-08-11 14:09:25'),(36785990,20160713,'Quote','20160826','inserted new lines for: subject=>etet, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>623463, Quote_Product_Id=>20160908, SpecificationAndRequirement=>Tester&#039;s new quote','2016-08-11 14:10:32'),(36785991,20160713,'Quote','20160827','inserted new lines for: subject=>gertyer, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>242, Quote_Product_Id=>20160908','2016-08-11 14:33:13'),(36785992,20160713,'Quote','20160828','inserted new lines for: subject=>ytdytfyuf, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922342, Quote_Currency_Id=>19923343, Quote_EnteredBy_Id=>20160713, Quantity=>356464, Quote_Product_Id=>20160908','2016-08-11 14:34:32'),(36785993,20160713,'Quote','20160829','inserted new lines for: subject=>gertyer, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>2234, Quote_Product_Id=>20160908','2016-08-11 15:56:26'),(36785994,20160713,'Quote','20160830','inserted new lines for: subject=>etet, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>24634, Quote_Product_Id=>20160908','2016-08-11 15:59:16'),(36785995,20160713,'Quote','20160831','inserted new lines for: subject=>wrr, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922342, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>422, Quote_Product_Id=>20160908','2016-08-11 16:02:13'),(36785996,20160713,'Quote','20160832','inserted new lines for: subject=>reytetr, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>1431, Quote_Product_Id=>20160908','2016-08-11 16:04:17'),(36785997,20160713,'Quote','20160833','inserted new lines for: subject=>gertyer, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>7475, Quote_Product_Id=>20160908','2016-08-11 16:13:26'),(36785998,20160713,'Quote','20160834','inserted new lines for: subject=>gertyer, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923343, Quote_EnteredBy_Id=>20160713, Quantity=>2452, Quote_Product_Id=>20160908','2016-08-11 16:15:58'),(36785999,20160713,'Quote','20160835','inserted new lines for: subject=>etet, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>24423, Quote_Product_Id=>20160908','2016-08-11 16:19:21'),(36786000,20160713,'Quote','20160836','inserted new lines for: subject=>reytetr, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>343, Quote_Product_Id=>20160908','2016-08-11 16:21:13'),(36786001,20160713,'Quote','20160837','inserted new lines for: Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>354, Quote_Product_Id=>20160908','2016-08-11 16:22:41'),(36786002,20160713,'Quote','20160838','inserted new lines for: Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>354, Quote_Product_Id=>20160908','2016-08-11 16:23:53'),(36786003,20160713,'Quote','20160839','inserted new lines for: Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>354, Quote_Product_Id=>20160908','2016-08-11 16:24:16'),(36786004,20160713,'Quote','20160840','inserted new lines for: Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>354, Quote_Product_Id=>20160908','2016-08-11 16:24:42'),(36786005,20160713,'Quote','20160841','inserted new lines for: Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>354, Quote_Product_Id=>20160908','2016-08-11 16:25:03'),(36786006,20160713,'Quote','20160842','inserted new lines for: Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>354, Quote_Product_Id=>20160908','2016-08-11 16:25:31'),(36786007,20160713,'Quote','20160843','inserted new lines for: Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>354, Quote_Product_Id=>20160908','2016-08-11 16:25:57'),(36786008,20160713,'Quote','20160844','inserted new lines for: Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>354, Quote_Product_Id=>20160908','2016-08-11 16:26:41'),(36786009,20160713,'Quote','20160845','inserted new lines for: Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>354, Quote_Product_Id=>20160908','2016-08-11 16:27:29'),(36786010,20160713,'Quote','20160846','inserted new lines for: Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>354, Quote_Product_Id=>20160908','2016-08-11 16:29:07'),(36786011,20160713,'Quote','20160847','inserted new lines for: subject=>etet, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>3443, Quote_Product_Id=>20160908','2016-08-11 16:30:21'),(36786012,20160713,'Quote','20160848','inserted new lines for: subject=>etet, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>3443, Quote_Product_Id=>20160908','2016-08-11 16:33:58'),(36786013,20160713,'Quote','20160849','inserted new lines for: subject=>gertyer, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quote_Product_Id=>20160908','2016-08-11 16:36:07'),(36786014,20160713,'Quote','20160850','inserted new lines for: subject=>gertyer, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922342, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>87576, Quote_Product_Id=>20160908','2016-08-11 16:40:16'),(36786015,20160713,'Quote','20160851','inserted new lines for: subject=>gertyer, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922342, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>87576, Quote_Product_Id=>20160908','2016-08-11 16:41:16'),(36786016,20160713,'Quote','20160852','inserted new lines for: subject=>gertyer, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>232, Quote_Product_Id=>20160908','2016-08-11 16:42:56'),(36786017,20160713,'Quote','20160853','inserted new lines for: subject=>gertyer, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>232, Quote_Product_Id=>20160908','2016-08-11 16:43:24'),(36786018,20160713,'Quote','20160854','inserted new lines for: subject=>gertyer, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>232, Quote_Product_Id=>20160908','2016-08-11 16:43:43'),(36786019,20160713,'Quote','20160855','inserted new lines for: subject=>gertyer, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>232, Quote_Product_Id=>20160908','2016-08-11 16:48:37'),(36786020,20160713,'Quote','20160856','inserted new lines for: subject=>gertyer, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>232, Quote_Product_Id=>20160908','2016-08-11 16:49:45'),(36786021,20160713,'Quote','20160857','inserted new lines for: subject=>gertyer, Party_Party_Id=>20161307, Quote_QuoteDirection_Id=>1922341, Quote_Currency_Id=>19923342, Quote_EnteredBy_Id=>20160713, Quantity=>232, Quote_Product_Id=>20160908','2016-08-11 16:51:35'),(36786022,20160713,'Party','20161308','inserted new lines for: Party_PartyType_Id=>201607132, Name=>Test, IsActive=>1, PartyStatus_PartyStatus_Id=>1011','2016-08-26 12:34:02'),(36786023,20160713,'Party','20161309','inserted new lines for: Party_PartyType_Id=>201607132, Name=>Ibile, IsActive=>1, PartyStatus_PartyStatus_Id=>1011','2016-08-26 13:48:24'),(36786024,20160713,'Party','20161310','inserted new lines for: Party_PartyType_Id=>201607132, Name=>Ibile, IsActive=>1, PartyStatus_PartyStatus_Id=>1011','2016-08-26 13:49:21'),(36786025,20160713,'Party','20161311','inserted new lines for: Party_PartyType_Id=>201607132, Name=>tesrtr, IsActive=>1, PartyStatus_PartyStatus_Id=>1011','2016-08-26 13:50:30'),(36786026,20160713,'Party','20161312','inserted new lines for: Party_PartyType_Id=>201607132, Name=>eryrre, IsActive=>1, PartyStatus_PartyStatus_Id=>1011','2016-08-26 13:52:10'),(36786027,20160713,'Party','20161313','inserted new lines for: Party_PartyType_Id=>201607132, Name=>twrrwr, IsActive=>1, PartyStatus_PartyStatus_Id=>1011','2016-08-26 13:52:18'),(36786028,20160713,'Party','20161314','inserted new lines for: Party_PartyType_Id=>201607132, Name=>det, IsActive=>1, PartyStatus_PartyStatus_Id=>1011','2016-08-26 13:53:58'),(36786029,20160713,'Party','20161315','inserted new lines for: Party_PartyType_Id=>201607132, Name=>gdhfgcguvj, IsActive=>1, PartyStatus_PartyStatus_Id=>1011','2016-08-26 13:54:22'),(36786030,20160713,'Party','20161316','inserted new lines for: Party_PartyType_Id=>201607132, Name=>Bimbo, IsActive=>1, PartyStatus_PartyStatus_Id=>1011','2016-08-26 14:05:41'),(36786031,20160713,'Party','20161317','inserted new lines for: Party_PartyType_Id=>201607131, AddressCity=>david.jaiyeola@gmail.com, AddressLine1=>Address 1, AddressLine2=>Address 2, Name=>Chevron, Party_Country_Id=>20160874, PartyStatus_PartyStatus_Id=>1011','2016-08-29 09:35:52'),(36786032,20160713,'Users','20160714','inserted new lines for: Firstname=>Labake, LastName=>Hassan, WorkPhoneNumber=>143131513, ContactPhoneNumber=>135135153151, User_Party_Id=>20161317, Password=>72a9034327785dab5ad6a914b73c16b8, Enabled=>1','2016-08-29 09:37:02'),(36786033,20160713,'Users','20160715','inserted new lines for: Firstname=>Deribigbe, LastName=>Ajasa, WorkPhoneNumber=>75365653, ContactPhoneNumber=>345673546356, User_Party_Id=>20161317, Password=>960a92425e165e5ec9830f78e28dafc7, Enabled=>1','2016-08-29 10:00:26'),(36786034,20160713,'Party','20161318','inserted new lines for: Party_PartyType_Id=>201607132, Name=>Samsung, IsActive=>1, PartyStatus_PartyStatus_Id=>1011','2016-08-29 10:03:29'),(36786035,20160713,'Party','20161319','inserted new lines for: Party_PartyType_Id=>201607132, Name=>Samsung, IsActive=>1, PartyStatus_PartyStatus_Id=>1011','2016-08-29 10:04:43'),(36786036,20160713,'Party','20161320','inserted new lines for: Party_PartyType_Id=>201607132, Name=>Samsung, IsActive=>1, PartyStatus_PartyStatus_Id=>1011','2016-08-29 10:05:44'),(36786037,20160713,'Quote','20160858','inserted new lines for: subject=>A test quote, rfq_no=>RFQ5356, Party_Party_Id=>20161317, Quote_Status_Id=>12141325, Quote_Currency_Id=>19923342, PublishDate=>2016-08-09T23:00:00.000Z, DueDate=>2016-08-12T23:00:00.000Z, Users_User_Id=>20160715, Quote_EnteredBy_Id=>20160713','2016-08-29 10:28:52'),(36786038,20160713,'Party','20161321','inserted new lines for: Party_PartyType_Id=>201607132, Name=>Mitsubishi, IsActive=>1, PartyStatus_PartyStatus_Id=>1011','2016-08-29 12:12:58'),(36786039,20160713,'Party','20161322','inserted new lines for: Party_PartyType_Id=>201607132, IsActive=>1, PartyStatus_PartyStatus_Id=>1011','2016-09-01 16:26:05'),(36786040,20160713,'Party','20161323','inserted new lines for: Party_PartyType_Id=>201607131, AddressCity=>info@total.com, AddressLine1=>Total HQ, Name=>Total Petroleum, Party_Country_Id=>20160874, PartyStatus_PartyStatus_Id=>1011','2016-09-07 09:57:01'),(36786041,20160713,'Party','20161324','inserted new lines for: Party_PartyType_Id=>201607131, AddressCity=>Victoria Island, AddressLine1=>Adeola Odeku, Name=>Sapetro, EmailAddress=>info@sapetro.com, Party_Country_Id=>20160874, PartyStatus_PartyStatus_Id=>1011','2016-09-07 10:27:59'),(36786042,20160713,'Party','20161325','inserted new lines for: Party_PartyType_Id=>201607131, AddressCity=>Lagos, AddressLine1=>Lekki-Ajah Express way, AddressLine2=>Lekki, Name=>Mobil, EmailAddress=>info@mobil.com, Party_Country_Id=>20160874, PartyStatus_PartyStatus_Id=>1011','2016-09-07 10:29:14');
+/*!40000 ALTER TABLE `logs` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
--- -----------------------------------------------------
--- Data for table `geotripe`.`AuthView`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `geotripe`;
-INSERT INTO `geotripe`.`AuthView` (`AuthView_Id`, `parent_id`, `Name`, `ViewPath`, `description`, `css_class`) VALUES (13072016, 0, 'Dashboard', 'home', 'Shows the dashboard on login', 'fa-tachometer');
-INSERT INTO `geotripe`.`AuthView` (`AuthView_Id`, `parent_id`, `Name`, `ViewPath`, `description`, `css_class`) VALUES (13072017, 0, 'Quotes', 'quotes', 'Monitors Quote Lifecycle', 'fa-files-o');
-INSERT INTO `geotripe`.`AuthView` (`AuthView_Id`, `parent_id`, `Name`, `ViewPath`, `description`, `css_class`) VALUES (13072018, 0, 'Setup', 'setup', 'Admin Setup page', 'fa-cogs');
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `geotripe`.`PartyType`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `geotripe`;
-INSERT INTO `geotripe`.`PartyType` (`PartyType_Id`, `Name`, `description`) VALUES (201607130, 'Geoscape', NULL);
-INSERT INTO `geotripe`.`PartyType` (`PartyType_Id`, `Name`, `description`) VALUES (201607131, 'Client', NULL);
-INSERT INTO `geotripe`.`PartyType` (`PartyType_Id`, `Name`, `description`) VALUES (201607132, 'Supplier', NULL);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `geotripe`.`Country`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `geotripe`;
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160713, 'Afghanistan', 'AFG');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160714, 'Aland Islands', 'ALA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160715, 'Albania', 'ALB');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160716, 'Algeria', 'DZA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160717, 'American Samoa', 'ASM');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160718, 'Andorra', 'AND');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160719, 'Angola', 'AGO');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160720, 'Anguilla', 'AIA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160721, 'Antarctica', 'ATA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160722, 'Antigua and Barbuda', 'ATG');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160723, 'Argentina', 'ARG');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160724, 'Armenia', 'ARM');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160725, 'Aruba', 'ABW');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160726, 'Australia', 'AUS');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160727, 'Austria', 'AUT');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160728, 'Azerbaijan', 'AZE');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160729, 'Bahamas', 'BHS');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160730, 'Bahrain', 'BHR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160731, 'Bangladesh', 'BGD');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160732, 'Barbados', 'BRB');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160733, 'Belarus', 'BLR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160734, 'Belgium', 'BEL');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160735, 'Belize', 'BLZ');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160736, 'Benin', 'BEN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160737, 'Bermuda', 'BMU');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160738, 'Bhutan', 'BTN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160739, 'Bolivia', 'BOL');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160740, 'Bosnia and Herzegovina', 'BIH');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160741, 'Botswana', 'BWA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160742, 'Bouvet Island', 'BVT');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160743, 'Brazil', 'BRA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160744, 'British Virgin Islands', 'VGB');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160745, 'British Indian Ocean Territory', 'IOT');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160746, 'Brunei Darussalam', 'BRN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160747, 'Bulgaria', 'BGR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160748, 'Burkina Faso', 'BFA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160749, 'Burundi', 'BDI');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160750, 'Cambodia', 'KHM');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160751, 'Cameroon', 'CMR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160752, 'Canada', 'CAN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160753, 'Cape Verde', 'CPV');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160754, 'Cayman Islands', 'CYM');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160755, 'Central African Republic', 'CAF');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160756, 'Chad', 'TCD');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160757, 'Chile', 'CHL');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160758, 'China', 'CHN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160759, 'Hong Kong, Special Administrative Region of China', 'HKG');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160760, 'Macao, Special Administrative Region of China', 'MAC');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160761, 'Christmas Island', 'CXR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160762, 'Cocos (Keeling) Islands', 'CCK');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160763, 'Colombia', 'COL');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160764, 'Comoros', 'COM');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160765, 'Congo (Brazzaville)', 'COG');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160766, 'Congo, Democratic Republic of the', 'COD');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160767, 'Cook Islands', 'COK');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160768, 'Costa Rica', 'CRI');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160769, 'CÃ´te d\'Ivoire', 'CIV');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160770, 'Croatia', 'HRV');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160771, 'Cuba', 'CUB');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160772, 'Cyprus', 'CYP');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160773, 'Czech Republic', 'CZE');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160774, 'Denmark', 'DNK');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160775, 'Djibouti', 'DJI');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160776, 'Dominica', 'DMA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160777, 'Dominican Republic', 'DOM');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160778, 'Ecuador', 'ECU');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160779, 'Egypt', 'EGY');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160780, 'El Salvador', 'SLV');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160781, 'Equatorial Guinea', 'GNQ');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160782, 'Eritrea', 'ERI');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160783, 'Estonia', 'EST');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160784, 'Ethiopia', 'ETH');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160785, 'Falkland Islands (Malvinas)', 'FLK');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160786, 'Faroe Islands', 'FRO');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160787, 'Fiji', 'FJI');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160788, 'Finland', 'FIN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160789, 'France', 'FRA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160790, 'French Guiana', 'GUF');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160791, 'French Polynesia', 'PYF');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160792, 'French Southern Territories', 'ATF');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160793, 'Gabon', 'GAB');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160794, 'Gambia', 'GMB');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160795, 'Georgia', 'GEO');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160796, 'Germany', 'DEU');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160797, 'Ghana', 'GHA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160798, 'Gibraltar', 'GIB');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160799, 'Greece', 'GRC');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160800, 'Greenland', 'GRL');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160801, 'Grenada', 'GRD');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160802, 'Guadeloupe', 'GLP');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160803, 'Guam', 'GUM');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160804, 'Guatemala', 'GTM');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160805, 'Guernsey', 'GGY');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160806, 'Guinea', 'GIN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160807, 'Guinea-Bissau', 'GNB');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160808, 'Guyana', 'GUY');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160809, 'Haiti', 'HTI');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160810, 'Heard Island and Mcdonald Islands', 'HMD');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160811, 'Holy See (Vatican City State)', 'VAT');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160812, 'Honduras', 'HND');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160813, 'Hungary', 'HUN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160814, 'Iceland', 'ISL');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160815, 'India', 'IND');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160816, 'Indonesia', 'IDN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160817, 'Iran, Islamic Republic of', 'IRN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160818, 'Iraq', 'IRQ');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160819, 'Ireland', 'IRL');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160820, 'Isle of Man', 'IMN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160821, 'Israel', 'ISR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160822, 'Italy', 'ITA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160823, 'Jamaica', 'JAM');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160824, 'Japan', 'JPN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160825, 'Jersey', 'JEY');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160826, 'Jordan', 'JOR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160827, 'Kazakhstan', 'KAZ');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160828, 'Kenya', 'KEN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160829, 'Kiribati', 'KIR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160830, 'Korea, Democratic People\'s Republic of', 'PRK');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160831, 'Korea, Republic of', 'KOR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160832, 'Kuwait', 'KWT');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160833, 'Kyrgyzstan', 'KGZ');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160834, 'Lao PDR', 'LAO');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160835, 'Latvia', 'LVA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160836, 'Lebanon', 'LBN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160837, 'Lesotho', 'LSO');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160838, 'Liberia', 'LBR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160839, 'Libya', 'LBY');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160840, 'Liechtenstein', 'LIE');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160841, 'Lithuania', 'LTU');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160842, 'Luxembourg', 'LUX');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160843, 'Macedonia, Republic of', 'MKD');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160844, 'Madagascar', 'MDG');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160845, 'Malawi', 'MWI');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160846, 'Malaysia', 'MYS');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160847, 'Maldives', 'MDV');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160848, 'Mali', 'MLI');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160849, 'Malta', 'MLT');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160850, 'Marshall Islands', 'MHL');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160851, 'Martinique', 'MTQ');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160852, 'Mauritania', 'MRT');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160853, 'Mauritius', 'MUS');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160854, 'Mayotte', 'MYT');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160855, 'Mexico', 'MEX');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160856, 'Micronesia, Federated States of', 'FSM');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160857, 'Moldova', 'MDA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160858, 'Monaco', 'MCO');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160859, 'Mongolia', 'MNG');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160860, 'Montenegro', 'MNE');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160861, 'Montserrat', 'MSR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160862, 'Morocco', 'MAR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160863, 'Mozambique', 'MOZ');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160864, 'Myanmar', 'MMR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160865, 'Namibia', 'NAM');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160866, 'Nauru', 'NRU');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160867, 'Nepal', 'NPL');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160868, 'Netherlands', 'NLD');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160869, 'Netherlands Antilles', 'ANT');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160870, 'New Caledonia', 'NCL');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160871, 'New Zealand', 'NZL');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160872, 'Nicaragua', 'NIC');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160873, 'Niger', 'NER');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160874, 'Nigeria', 'NGA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160875, 'Niue', 'NIU');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160876, 'Norfolk Island', 'NFK');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160877, 'Northern Mariana Islands', 'MNP');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160878, 'Norway', 'NOR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160879, 'Oman', 'OMN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160880, 'Pakistan', 'PAK');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160881, 'Palau', 'PLW');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160882, 'Palestinian Territory, Occupied', 'PSE');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160883, 'Panama', 'PAN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160884, 'Papua New Guinea', 'PNG');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160885, 'Paraguay', 'PRY');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160886, 'Peru', 'PER');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160887, 'Philippines', 'PHL');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160888, 'Pitcairn', 'PCN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160889, 'Poland', 'POL');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160890, 'Portugal', 'PRT');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160891, 'Puerto Rico', 'PRI');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160892, 'Qatar', 'QAT');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160893, 'RÃ©union', 'REU');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160894, 'Romania', 'ROU');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160895, 'Russian Federation', 'RUS');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160896, 'Rwanda', 'RWA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160897, 'Saint-BarthÃ©lemy', 'BLM');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160898, 'Saint Helena', 'SHN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160899, 'Saint Kitts and Nevis', 'KNA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160900, 'Saint Lucia', 'LCA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160901, 'Saint-Martin (French part)', 'MAF');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160902, 'Saint Pierre and Miquelon', 'SPM');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160903, 'Saint Vincent and Grenadines', 'VCT');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160904, 'Samoa', 'WSM');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160905, 'San Marino', 'SMR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160906, 'Sao Tome and Principe', 'STP');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160907, 'Saudi Arabia', 'SAU');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160908, 'Senegal', 'SEN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160909, 'Serbia', 'SRB');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160910, 'Seychelles', 'SYC');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160911, 'Sierra Leone', 'SLE');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160912, 'Singapore', 'SGP');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160913, 'Slovakia', 'SVK');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160914, 'Slovenia', 'SVN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160915, 'Solomon Islands', 'SLB');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160916, 'Somalia', 'SOM');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160917, 'South Africa', 'ZAF');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160918, 'South Georgia and the South Sandwich Islands', 'SGS');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160919, 'South Sudan', 'SSD');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160920, 'Spain', 'ESP');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160921, 'Sri Lanka', 'LKA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160922, 'Sudan', 'SDN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160923, 'Suriname *', 'SUR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160924, 'Svalbard and Jan Mayen Islands', 'SJM');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160925, 'Swaziland', 'SWZ');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160926, 'Sweden', 'SWE');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160927, 'Switzerland', 'CHE');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160928, 'Syrian Arab Republic (Syria)', 'SYR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160929, 'Taiwan, Republic of China', 'TWN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160930, 'Tajikistan', 'TJK');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160931, 'Tanzania *, United Republic of', 'TZA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160932, 'Thailand', 'THA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160933, 'Timor-Leste', 'TLS');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160934, 'Togo', 'TGO');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160935, 'Tokelau', 'TKL');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160936, 'Tonga', 'TON');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160937, 'Trinidad and Tobago', 'TTO');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160938, 'Tunisia', 'TUN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160939, 'Turkey', 'TUR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160940, 'Turkmenistan', 'TKM');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160941, 'Turks and Caicos Islands', 'TCA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160942, 'Tuvalu', 'TUV');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160943, 'Uganda', 'UGA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160944, 'Ukraine', 'UKR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160945, 'United Arab Emirates', 'ARE');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160946, 'United Kingdom', 'GBR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160947, 'United States of America', 'USA');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160948, 'United States Minor Outlying Islands', 'UMI');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160949, 'Uruguay', 'URY');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160950, 'Uzbekistan', 'UZB');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160951, 'Vanuatu', 'VUT');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160952, 'Venezuela (Bolivarian Republic of)', 'VEN');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160953, 'Viet Nam', 'VNM');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160954, 'Virgin Islands, US', 'VIR');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160955, 'Wallis and Futuna Islands', 'WLF');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160956, 'Western Sahara', 'ESH');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160957, 'Yemen', 'YEM');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160958, 'Zambia', 'ZMB');
-INSERT INTO `geotripe`.`Country` (`Country_Id`, `Name`, `CountryCode`) VALUES (20160959, 'Zimbabwe', 'ZWE');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `geotripe`.`State`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `geotripe`;
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160719, 'ABIA', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160720, 'ADAMAWA', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160721, 'AKWAIBOM', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160722, 'ANAMBRA', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160723, 'BAUCHI', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160724, 'BAYELSA', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160725, 'BENUE', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160726, 'BORNO', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160727, 'CROSSRIVER', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160728, 'DELTA', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160729, 'EBONYI', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160730, 'EDO', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160731, 'EKITI', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160732, 'ENUGU', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160733, 'GOMBE', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160734, 'IMO', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160735, 'JIGAWA', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160736, 'KADUNA', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160737, 'KANO', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160738, 'KATSINA', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160739, 'KEBBI', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160740, 'KOGI', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160741, 'KWARA', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160742, 'LAGOS', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160743, 'NASSARAWA', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160744, 'NIGER', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160745, 'OGUN', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160746, 'ONDO', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160747, 'OSUN', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160748, 'OYO', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160749, 'PLATEAU', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160750, 'RIVERS', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160751, 'SOKOTO', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160752, 'TARABA', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160753, 'YOBE', 20160874);
-INSERT INTO `geotripe`.`State` (`State_Id`, `Name`, `State_Country_Id`) VALUES (20160754, 'ZAMFARA', 20160874);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `geotripe`.`BusinessType`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `geotripe`;
-INSERT INTO `geotripe`.`BusinessType` (`BusinessType_Id`, `Name`, `description`) VALUES (20310741, 'Banking', NULL);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `geotripe`.`PartyStatus`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `geotripe`;
-INSERT INTO `geotripe`.`PartyStatus` (`PartyStatus_Id`, `Name`, `description`) VALUES (1011, 'Approved', NULL);
-INSERT INTO `geotripe`.`PartyStatus` (`PartyStatus_Id`, `Name`, `description`) VALUES (1012, 'Rejected', NULL);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `geotripe`.`Party`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `geotripe`;
-INSERT INTO `geotripe`.`Party` (`Party_Id`, `Party_PartyType_Id`, `AddressCity`, `AddressLine1`, `AddressLine2`, `PostalCode`, `ContactPhoneNumber`, `Name`, `EmailAddress`, `Party_Country_Id`, `Party_State_Id`, `ClientId`, `IsActive`, `ContacLastname`, `ContacFirstname`, `ContacPersonTitle`, `ContacMiddlename`, `YearEstablished`, `Party_BusinessType_Id`, `OtherTypeOfBusiness`, `MajorBusinessActivity`, `TermConditionAccepted`, `PartyStatus_PartyStatus_Id`) VALUES (20161307, 201607130, 'Lagos', 'Samuel Manua Street', 'Off Keffi', NULL, NULL, 'Geoscape Limited', NULL, 20160874, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, 20310741, NULL, NULL, NULL, 1011);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `geotripe`.`Users`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `geotripe`;
-INSERT INTO `geotripe`.`Users` (`User_Id`, `Firstname`, `MiddleName`, `LastName`, `WorkPhoneNumber`, `ContactPhoneNumber`, `User_Party_Id`, `IsAuthorizedPerson`, `Username`, `Email`, `Password`, `token`, `Enabled`, `AccountLocked`, `AccountExpirationTime`, `CredentialsExpirationTime`, `DateCreated`, `DateModified`) VALUES (20160713, 'Abimbola', 'S', 'Hassan', '07065725667', NULL, 20161307, NULL, NULL, 'infinitizon@yahoo.com', 'c20ad4d76fe97759aa27a0c99bff6710', NULL, 1, 0, NULL, NULL, NULL, NULL);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `geotripe`.`QuoteStatus`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `geotripe`;
-INSERT INTO `geotripe`.`QuoteStatus` (`QuoteStatus_Id`, `Name`, `description`) VALUES (12141324, 'Not Processed', 'Not Processed');
-INSERT INTO `geotripe`.`QuoteStatus` (`QuoteStatus_Id`, `Name`, `description`) VALUES (12141325, 'Pending Approval', 'Pending Approval');
-INSERT INTO `geotripe`.`QuoteStatus` (`QuoteStatus_Id`, `Name`, `description`) VALUES (12141326, 'Approved', 'Approved');
-INSERT INTO `geotripe`.`QuoteStatus` (`QuoteStatus_Id`, `Name`, `description`) VALUES (12141327, 'Sourcing for suppliers', 'Sourcing for suppliers');
-INSERT INTO `geotripe`.`QuoteStatus` (`QuoteStatus_Id`, `Name`, `description`) VALUES (12141328, 'Costing at suppliers', 'Costing at suppliers');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `geotripe`.`QuoteDirection`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `geotripe`;
-INSERT INTO `geotripe`.`QuoteDirection` (`QuoteDirection_Id`, `Name`, `description`) VALUES (1922341, 'Buy', 'Buy');
-INSERT INTO `geotripe`.`QuoteDirection` (`QuoteDirection_Id`, `Name`, `description`) VALUES (1922342, 'Sell', 'Sell');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `geotripe`.`Currency`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `geotripe`;
-INSERT INTO `geotripe`.`Currency` (`currency_id`, `code`, `description`, `decimalHTML`, `hexHTML`, `unicode`) VALUES (19923342, 'NGN', 'Naira', '&#8358;', '&#x20A6;', 'U+20A6');
-INSERT INTO `geotripe`.`Currency` (`currency_id`, `code`, `description`, `decimalHTML`, `hexHTML`, `unicode`) VALUES (19923343, 'USD', 'US Dollar', '&#36;', '&#x0024;', 'U+0024');
-INSERT INTO `geotripe`.`Currency` (`currency_id`, `code`, `description`, `decimalHTML`, `hexHTML`, `unicode`) VALUES (19923344, 'GBP', 'Pound', '&#163;', '&#x00A3;', 'U+00A3');
-INSERT INTO `geotripe`.`Currency` (`currency_id`, `code`, `description`, `decimalHTML`, `hexHTML`, `unicode`) VALUES (19923345, 'GHc', 'Cedi', '&#8373;', '&#x20B5;', 'U+20B5');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `geotripe`.`Product`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `geotripe`;
-INSERT INTO `geotripe`.`Product` (`product_id`, `name`, `description`, `ins_yn`) VALUES (20160908, 'Shipments', 'Shipments', 1);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `geotripe`.`Quote`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `geotripe`;
-INSERT INTO `geotripe`.`Quote` (`quote_Id`, `subject`, `Party_Party_Id`, `Quote_Status_Id`, `Quote_QuoteDirection_Id`, `QuoteAmount`, `Quote_Currency_Id`, `EntryDate`, `ApproveDate`, `Quote_EnteredBy_Id`, `BidPrice`, `AskPrice`, `Quote_PurchaseOrder_Id`, `Strike`, `Description`, `Quantity`, `Quote_Product_Id`, `ExpiryDate`, `Quote_ApprovedBy_Id`, `SpecificationAndRequirement`) VALUES (20160809, 'A test quote', 20161307, 12141324, 1922341, 5000000, 19923342, NULL, NULL, 20160713, NULL, NULL, NULL, NULL, 'Nice stuff', NULL, 20160908, NULL, NULL, NULL);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `geotripe`.`User_AuthView`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `geotripe`;
-INSERT INTO `geotripe`.`User_AuthView` (`AuthView_AuthView_Id`, `User_User_Id`, `ius_yn`) VALUES (13072016, 20160713, 1);
-INSERT INTO `geotripe`.`User_AuthView` (`AuthView_AuthView_Id`, `User_User_Id`, `ius_yn`) VALUES (13072017, 20160713, 1);
-INSERT INTO `geotripe`.`User_AuthView` (`AuthView_AuthView_Id`, `User_User_Id`, `ius_yn`) VALUES (13072018, 20160713, 1);
-
-COMMIT;
-
+-- Dump completed on 2016-09-09 12:48:09

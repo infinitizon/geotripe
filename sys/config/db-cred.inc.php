@@ -11,7 +11,7 @@ $C['DB_HOST'] = '127.0.0.1';
 /*
 * The database username
 */
-$C['DB_USER'] = 'root';	 //
+$C['DB_USER'] = 'root';	 //cummins_geotripe
 /*
 * The database password
 */

@@ -259,7 +259,7 @@ if($env['PATH_INFO']==="/inboundService") {
                             $mime = $_FILES['file']['type'][$i];
                             $blob = $dbo->quote(file_get_contents($_FILES['file']['tmp_name'][$i]));
                             $size = intval($_FILES['file']['size'][$i]);
-                            $query = "INSERT INTO document (doc_quote_id,docName,docMimeType,docBlob,docSize,docCreateDate) VALUES ({$lastId},'{$name}','{$mime}',{$blob},{$size},NOW())";
+                            $query = "INSERT INTO Document (doc_quote_id,docName,docMimeType,docBlob,docSize,docCreateDate) VALUES ({$lastId},'{$name}','{$mime}',{$blob},{$size},NOW())";
                             $r_query = $dbo->prepare($query);
                             $r_query->execute();
                         }
