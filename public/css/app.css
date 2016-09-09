@@ -189,6 +189,6 @@ ul.quoteDash li h2:after{
     border-left: solid 20px transparent;
     border-right: solid 20px transparent;
 }
-ul.quoteDash li h2 div{
-    margin:30px;
+ul.quoteDash li div{
+    margin-top:50px; padding: 10px;
 }

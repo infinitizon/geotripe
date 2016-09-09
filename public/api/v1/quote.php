@@ -52,7 +52,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
         throw new Exception("-110011");
     }
     if ($data->transactionEventType == "QuoteDash") {
-        $q_str = "select p.Name, count(q.quote_id) totalQuotes ";
+        $q_str = "select p.party_id, p.Name, count(q.quote_id) totalQuotes ";
         $q_str .= " , (select count(q.Quote_Status_Id) from Quote q where q.Quote_Status_Id=12141324 AND q.Party_Party_Id=p.party_id )Submitted ";
 	    $q_str .= " , (select count(q.Quote_Status_Id) from Quote q where q.Quote_Status_Id=12141325 AND q.Party_Party_Id=p.party_id )'In Progress' ";
 	    $q_str .= " , (select count(q.Quote_Status_Id) from Quote q where q.Quote_Status_Id=12141326 AND q.Party_Party_Id=p.party_id )'TQ' ";

@@ -59,6 +59,16 @@ angular.module('School', ['Auth', 'Home', 'RFQ', 'Setup', 'ui.router', 'ngCookie
                      }
                  }
              })
+             .state('quoteStatus', {
+                 url:'/quotestatus/:client',
+                 views: {
+                     'app_pages': {
+                         templateUrl: 'modules/quote/views/quoteByStatus.html',
+                         controller: 'QuoteByStatusController',
+                         controllerAs : 'quotCtrl'
+                     }
+                 }
+             })
    }])
    .run(['$rootScope', '$location', '$cookieStore', '$uibModalStack'
       , function ($rootScope, $location, $cookieStore,$uibModalStack) {
