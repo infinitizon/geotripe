@@ -60,7 +60,7 @@ angular.module('School', ['Auth', 'Home', 'RFQ', 'Setup', 'ui.router', 'ngCookie
                  }
              })
              .state('quoteStatus', {
-                 url:'/quotestatus/:client',
+                 url:'/quotestatus/:client/:clientStatus',
                  views: {
                      'app_pages': {
                          templateUrl: 'modules/quote/views/quoteByStatus.html',

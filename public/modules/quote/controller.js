@@ -33,8 +33,8 @@ angular.module('RFQ')
             }
             vm.getQuoteSummary();
         }])
-    .controller('QuoteByStatusController', ['$scope', '$location', '$rootScope','DataService','CommonServices','$state', '$uibModal',
-        function ($scope, $location, $rootScope, DataService, CommonServices, $state, $uibModal) {
+    .controller('QuoteByStatusController', ['$scope', '$location', '$rootScope','DataService','CommonServices','$stateParams', '$uibModal',
+        function ($scope, $location, $rootScope, DataService, CommonServices, $stateParams, $uibModal) {
             $rootScope.pageTitle = "Quotes";
             $rootScope.pageHeader = "Quotes";
 
@@ -90,7 +90,23 @@ angular.module('RFQ')
                 data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&p.name&CONCAT(LEFT(q.subject , 30),IF(LENGTH(q.subject)>30, "…", "")) subject&CONCAT(u.lastname,", ",u.middlename," ",u.firstname)enteredBy&qs.name status&COUNT(qd.Quote_quote_Id) totalQuotes'
                 data.transactionMetaData.pageno = pageno-1;
                 data.transactionMetaData.itemsPerPage = vm.itemsPerPage;
-                data.transactionMetaData.queryMetaData.queryClause.andExpression = [];
+                data.transactionMetaData.queryMetaData.queryClause.andExpression = [
+                    {
+                        "propertyName": "q.Party_Party_Id",
+                        "propertyValue": $stateParams.client,
+                        "propertyDataType": "BIGINT",
+                        "operatorType": "="
+                    }
+                ];
+                if($stateParams.clientStatus){
+                    var clientStatus = {
+                        "propertyName": "q.Quote_Status_Id",
+                        "propertyValue": $stateParams.clientStatus,
+                        "propertyDataType": "BIGINT",
+                        "operatorType": "="
+                    }
+                    data.transactionMetaData.queryMetaData.queryClause.andExpression.push(clientStatus);
+                }
                 data.transactionMetaData.queryMetaData.joinClause = {
                     'joinType':['JOIN','JOIN','JOIN','LEFT JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_enteredBy_id=u.user_id','q.quote_Id=qd.Quote_quote_Id']
                 }
@@ -139,6 +155,7 @@ angular.module('RFQ')
 
                 vm.edit=true;
                 if(quoteId) {
+                    vm.disableClient = false;
                     var data=angular.copy(CommonServices.postData);
                     data.factName = 'Quote q, Party p, QuoteStatus qs, Currency c, Users u, Users uu';
                     data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&q.eventowner&p.name party_party_id&qs.name quotestatus&c.code currency&q.entrydate&q.publishdate&q.duedate&q.approvedate&u.firstname&q.description&q.quote_approvedby_id&q.specificationandrequirement&concat(IFNULL(uu.firstname,""), ", ",IFNULL(uu.middlename,"")," ",IFNULL(uu.lastname,""))users_user_id';
@@ -213,6 +230,7 @@ angular.module('RFQ')
                     vm.quote = null;
                     vm.lineItems = [];
                     vm.quoteFiles = null;
+                    vm.disableClient = true;
                 }
             }
             vm.container = [];
@@ -278,6 +296,7 @@ angular.module('RFQ')
                     data.append("putType", "many");
                     data.append("putOrder", "Quote-Quote_quote_Id,QuoteDetail-QuoteDetail_QuoteDetail_Id,QuoteDetail_Manufacturer");
                     vm.quote.quote_enteredby_id = $rootScope.globals.currentUser.userDetails.authDetails.user_id;
+                    vm.quote.party_party_id = $stateParams.client; // This should be added when adding new quote
                     vm.quote.quote_status_id = 12141325; // Pending Approval...Hopefully this will not change
                     vm.quote.entrydate = new Date();
                     data.append("factObjects[quote]", [JSON.stringify(vm.quote)]);

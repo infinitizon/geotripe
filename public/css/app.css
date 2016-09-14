@@ -5,6 +5,27 @@
 body{
     font-family: 'Open Sans', sans-serif;
 }
+/****
+* This css helps to get an animated image
+* rather than using html image works on Firefox, Chrome and IE 11+
+****/
+.loader {
+    border-radius: 50%;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    width: 20px;  height: 20px;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+}
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/****  End Animation  ****/
 /* The following manage the look of the loginform */
 .loginForm{
     margin-top:6em;
@@ -34,20 +55,6 @@ body{
 .loginForm input:focus{
      box-shadow: none;
 }
-/* End: loginform */
-
-/*** This is for the home screen
-.logo-holder:after{
-    content: "";
-    position: absolute;
-    right: -2px;
-    top: -13px;
-    width: 0;height: 0;
-    border-top: 40px solid transparent;
-    border-left: 10px solid #997F53;
-    border-bottom: 40px solid transparent;
-}
-**/
 .row.global-container {height: 1500px}
 
 .global-header{

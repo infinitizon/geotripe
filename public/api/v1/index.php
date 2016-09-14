@@ -124,15 +124,15 @@ if($env['PATH_INFO']==="/inboundService") {
                         $q_str .= $field->propertyName . " " . $field->operatorType . " ";
                         if($field->operatorType=="IN"){
 //                            echo $field->propertyName;
-                            $q_str .= "(".$field->propertyValue . ") AND";
+                            $q_str .= "(".$field->propertyValue . ") AND ";
                         }elseif($field->operatorType=="LIKE"){
-                            $q_str .= "'%".$field->propertyValue . "%' AND";
+                            $q_str .= "'%".$field->propertyValue . "%' AND ";
                         }else{
-                            $q_str .= $field->propertyValue . " AND";
+                            $q_str .= $field->propertyValue . " AND ";
                         }
                         $files_id .= $field->propertyValue.' ,';
                     }
-                    $q_str = $fxns->_subStrAtDel($q_str, ' AND');
+                    $q_str = $fxns->_subStrAtDel($q_str, ' AND ');
                     $files_id = $fxns->_subStrAtDel($files_id, ' ,');
                     $q_getFiles_str = "SELECT doc_id,doc_quote_id,docName,docCreateDate FROM Document WHERE doc_quote_Id IN ($files_id)";
                 }

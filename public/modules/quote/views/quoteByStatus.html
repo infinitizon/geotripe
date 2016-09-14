@@ -66,7 +66,8 @@
                                                                                     'operatorType': '='
                                                                                 }]})"
                                 data-ng-options="party.party_id as party.name for party in quotCtrl.container['parties']"
-                                data-ng-model="quotCtrl.quote.party_party_id">
+                                data-ng-model="quotCtrl.quote.party_party_id"
+                                data-ng-disabled="quotCtrl.disableClient">
                             <option value="">{{quotCtrl.quote.party_party_id || "--Select Company name --"}}</option>
                         </select>
                     </div>
