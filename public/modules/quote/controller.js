@@ -73,6 +73,15 @@ angular.module('RFQ')
                 });
             };
 
+            vm.getDueDateDisplay = function(numDays, status){
+                console.log(numDays);
+                if(numDays <= 0 && status == "In Progress"){
+                    return 'Expired';
+                }else if(numDays <= 0){
+                    return 'Done';
+                }
+            }
+
             /*
              * This part gets all the quotes available in a tabular format
              */
@@ -87,6 +96,9 @@ angular.module('RFQ')
                 vm.quotes = []; // Initially make list empty so as to show the "loading data" notice!
                 var data=angular.copy(CommonServices.postData);
                 data.factName = 'Quote q, Party p, QuoteStatus qs, Users u, QuoteDetail qd';
+                /** We could exclude weekends in datediff using the following
+                 * SELECT (5 * (DATEDIFF('2016-08-31', '2016-08-01') DIV 7) + MID('0123444401233334012222340111123400012345001234550', 7 * WEEKDAY('2016-08-01') + WEEKDAY('2016-08-31') + 2, 1))
+                 */
                 data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&p.name&CONCAT(LEFT(q.subject , 30),IF(LENGTH(q.subject)>30, "…", "")) subject&CONCAT(u.lastname,", ",u.middlename," ",u.firstname)enteredBy&qs.name status&COUNT(qd.Quote_quote_Id) totalQuotes&DATEDIFF(q.duedate,NOW())remDays&q.entrydate'
                 data.transactionMetaData.pageno = pageno-1;
                 data.transactionMetaData.itemsPerPage = vm.itemsPerPage;

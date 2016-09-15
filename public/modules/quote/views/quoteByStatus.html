@@ -30,7 +30,9 @@
                 <td>{{quote.status}}</td>
                 <td>{{quote.totalQuotes}}</td>
                 <td>{{quote.enteredBy}}</td>
-                <td><span ng-class="{'label label-danger blink_me':quote.remDays==1,'text-danger':quote.remDays==0,'text-success':quote.remDays>1}">{{quote.remDays==0?'Expired':quote.remDays}}</span></td>
+                <td ng-init="dueDisp = quote.getDueDateDisplay(quote.remDays,quote.status)">
+                    <span ng-class="{'label label-danger blink_me':quote.remDays==1,'text-danger':quote.remDays<=0,'text-success':quote.remDays>1}">{{dueDisp}}</span>
+                </td>
                 <td class="text-center">
                     <div class="row">
                         <button  type="button" class="btn btn-primary" ng-click="quotCtrl.editQuote(quote.quote_id)"><i class="fa fa-pencil"></i> Edit</button>
