@@ -6,7 +6,7 @@ body{
     font-family: 'Open Sans', sans-serif;
 }
 /****
-* This css helps to get an animated image
+* This css helps to get an animated loading image
 * rather than using html image works on Firefox, Chrome and IE 11+
 ****/
 .loader {
@@ -24,6 +24,13 @@ body{
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+.blink_me {
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% { opacity: 0.0; }
 }
 /****  End Animation  ****/
 /* The following manage the look of the loginform */
