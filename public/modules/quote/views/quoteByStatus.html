@@ -23,7 +23,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-if="quotCtrl.quotes.length <= 0"><td colspan="6" style="text-align:center;">{{ quotCtrl.quotesLoading || 'Loading new data!!' }}</td></tr>
+            <tr ng-if="quotCtrl.quotes.length <= 0"><td colspan="7" style="text-align:center;">{{ quotCtrl.quotesLoading || 'Loading new data!!' }}</td></tr>
             <tr dir-paginate="quote in quotCtrl.quotes|itemsPerPage:quotCtrl.itemsPerPage" total-items="quotCtrl.total_count">
                 <td>{{quote.name}}</td>
                 <td>{{quote.rfq_no}}</td>
@@ -139,6 +139,19 @@
                     </div>
                 </div>
             </div>
+            <div class="container">
+                <label for="aSwitch">Turn on if RFQ is submitted</label>
+                    <span class="switch">
+                        <input id="aSwitch" type="checkbox" disabled="disabled" ng-checked="false">
+                        <div class="slider round"></div>
+                    </span>
+
+                <label class="switch">
+                    <input type="checkbox">
+                    <div class="slider round"></div>
+                </label>
+            </div>
+
             <div class="form-group">
                 <label for="notes">Attachments <small><small>(ctrl+click to select multiple files)</small></small></label>
                 <input type="file" id="file" name="file" multiple onchange="angular.element(this).scope().getFileDetails(this)" />
