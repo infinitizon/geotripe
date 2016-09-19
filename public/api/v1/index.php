@@ -34,7 +34,7 @@ if(!$data){
         }
         $input .= "}";
     }
-    echo $input;exit;
+//    echo $input;exit;
     $data = json_decode($input);
 }
 //echo $input;exit;

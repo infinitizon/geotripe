@@ -1,13 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="Author" content="Timo Van Neerden" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Pure-CSS toggle switch with label</title>
+    <style>
+/*div.checkbox{width:}*/
+.switch .slider {
+    cursor: pointer;
+    position: relative;
+}
+.switch .slider::before {
+    position: absolute;  right: -63px;  top: -2px;
+    display: block;
+    width: 50px;  height: 30px;
+    background:  rgba(137,137,137,1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    content: '';
+}
+.switch .slider::after {
+    position: absolute;  right: -40px;  top: 0;
+    display: block;
+    width: 26px;  height: 26px;
+    background: #fff;
+    box-shadow: 0px 3px 3px rgba(0,0,0,0.05);
+    content: '';
+    transition: all 0.3s ease;
+}
+.switch .slider.round::before {border-radius: 34px;}
+.switch .slider.round::after {border-radius: 100%;}
+.switch .slider:active::after {
+    transform: scale(1.15, 0.85); /* This gives the oval effect when we click to drag */
+}
+
+.switch input {  display: none;  }
+.switch input:checked + .slider:before {  background: rgba(23,149,136,0.5);  }
+.switch input:checked + .slider::after {
+    right: -62px;  background: rgba(23,149,136,1);
+}
+.switch input:disabled + .slider::before {  background: rgba(137,137,137,0.3);  cursor:not-allowed;  }
+.switch input:disabled + .slider:active::after {  transform: none;cursor:not-allowed;  }
+.switch input:disabled + .slider::after {  background: rgba(137,137,137,0.5); cursor:not-allowed; }
+.switch input:disabled:checked + .slider::before {  background: rgba(23,149,136,0.3);  cursor:not-allowed;  }
+.switch input:disabled:checked + .slider:active::after {  transform: none;cursor:not-allowed;  }
+.switch input:disabled:checked + .slider::after {  background: rgba(23,149,136,0.5); cursor:not-allowed; }
+
+
+    </style>
 </head>
-<body>
-<label class="switch">
-    <input type="checkbox">
-    <div class="slider round"></div>
-</label>
+<body style="text-align: center;">
+    <p class="switch">
+        <input id="cbx1" type="checkbox" checked />
+        <label for="cbx1" class="slider">Turn on if RFQ is submitted</label>
+    </p>
+    <p class="switch">
+        <input id="cbx2" type="checkbox" />
+        <label for="cbx2" class="slider round">Label Off</label>
+    </p>
+    <p class="switch">
+        <input id="cbx3" type="checkbox" checked disabled />
+        <label for="cbx3" class="slider">Label Disabled</label>
+    </p>
 </body>
 </html>

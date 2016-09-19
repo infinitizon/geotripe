@@ -170,7 +170,7 @@ angular.module('RFQ')
                     vm.disableClient = false;
                     var data=angular.copy(CommonServices.postData);
                     data.factName = 'Quote q, Party p, QuoteStatus qs, Currency c, Users u, Users uu';
-                    data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&q.eventowner&p.name party_party_id&qs.name quotestatus&c.code currency&q.entrydate&q.publishdate&q.duedate&q.approvedate&u.firstname&q.description&q.quote_approvedby_id&q.specificationandrequirement&concat(IFNULL(uu.firstname,""), ", ",IFNULL(uu.middlename,"")," ",IFNULL(uu.lastname,""))users_user_id';
+                    data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&q.eventowner&p.name party_party_id&q.quote_status_id&qs.name quotestatus&c.code quote_currency_id&q.entrydate&q.publishdate&q.duedate&q.approvedate&u.firstname&q.description&q.quote_approvedby_id&q.specificationandrequirement&concat(IFNULL(uu.firstname,""), ", ",IFNULL(uu.middlename,"")," ",IFNULL(uu.lastname,""))users_user_id';
                     data.transactionMetaData.queryMetaData.joinClause = {
                         'joinType':['JOIN','JOIN','JOIN','JOIN','LEFT JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_currency_id=c.currency_id','q.quote_enteredBy_id=u.user_id','q.users_user_id=uu.user_id']
                     }
@@ -191,6 +191,11 @@ angular.module('RFQ')
                         vm.originalQuoteData.duedate = new Date(vm.originalQuoteData.duedate);
                         vm.quote.publishdate = new Date(vm.quote.publishdate);
                         vm.quote.duedate = new Date(vm.quote.duedate);
+
+                        vm.tqChecked = (vm.quote.quote_status_id==12141326)?true:false;
+                        vm.submittedChecked = (vm.quote.quote_status_id==12141324)?true:false;
+                        vm.submittedDisabled = vm.submittedChecked;
+                        vm.hideTQ = vm.submittedChecked;
 
                         vm.total_count = response.data.total_count;
                     })
@@ -290,6 +295,8 @@ angular.module('RFQ')
                 //I'm editing a quote here
                 if(vm.quote.quote_id){
                     vm.changedObjs = CommonServices.GetFormChanges(vm.originalQuoteData,vm.quote);
+                    (vm.submittedChecked==true && vm.originalQuoteData.quote_status_id != 12141324) ? vm.changedObjs["quote_status_id"] = 12141324 : ''; // If we checked the button to submit
+                    (vm.tqChecked==true && vm.originalQuoteData.quote_status_id != 12141326) ? vm.changedObjs["quote_status_id"] = 12141326 : ''; // If we checked the button to submit
                     if(+vm.originalQuoteData.publishdate == +vm.quote.publishdate){
                         delete vm.changedObjs["publishdate"];
                     }

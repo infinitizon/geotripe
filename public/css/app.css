@@ -210,52 +210,50 @@ ul.quoteDash li div{
 /**
  ** The following css will achieve beautifulswitches
  ** I need certain checkbox switches to be rounded
- **
+ ** .switch - the box around the slider
+ ** .slider - The label that is used instead of the checkbox input ( the input is hidden)
  **/
-/* The switch - the box around the slider */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-}
-label{text-align: center;
-    vertical-align: middle;
-    line-height: 90px; }
-/* Hide default HTML checkbox */
-.switch input {display:none;}
-/* The slider */
+/* The  */
 .switch .slider {
-    position: absolute;
     cursor: pointer;
-    top: 0;  left: 0;  right: 0;  bottom: 0;
-    background-color: #898989;
-    transition: .4s; -webkit-transition: .4s;
+    position: relative;
 }
-.switch .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;  width: 26px;
-    left: 4px;  bottom: 4px;
-    background-color: white;
-    transition: .4s;  -webkit-transition: .4s;
+.switch .slider::before {
+    position: absolute;  right: -63px;  top: -2px;
+    display: block;
+    width: 50px;  height: 30px;
+    background:  rgba(137,137,137,1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    content: '';
 }
-.switch input:checked + .slider {
-    background-color: #2196F3;
+.switch .slider::after {
+    position: absolute;  right: -40px;  top: 0;
+    display: block;
+    width: 26px;  height: 26px;
+    background: #fff;
+    box-shadow: 0px 3px 3px rgba(0,0,0,0.05);
+    content: '';
+    transition: all 0.3s ease;
 }
-.switch input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+.switch .slider.round::before {border-radius: 34px;}
+.switch .slider.round::after {border-radius: 100%;}
+.switch .slider:active::after {
+    transform: scale(1.15, 0.85); /* This gives the oval effect when we click to drag */
 }
-.switch input:checked + .slider:before {
-    transform: translateX(26px);    -ms-transform: translateX(26px);    -webkit-transform: translateX(26px);
+
+.switch input {  display: none;  }
+.switch input:checked + .slider:before {  background: rgba(23,149,136,0.5);  }
+.switch input:checked + .slider::after {
+    right: -62px;  background: rgba(23,149,136,1);
 }
-/* Rounded sliders */
-.switch .slider.round {
-    border-radius: 34px;
-}
-.switch .slider.round:before {
-    border-radius: 50%;
-}
+.switch input:disabled + .slider::before {  background: rgba(137,137,137,0.3);  cursor:not-allowed;  }
+.switch input:disabled + .slider:active::after {  transform: none;cursor:not-allowed;  }
+.switch input:disabled + .slider::after {  background: rgba(137,137,137,0.5); cursor:not-allowed; }
+.switch input:disabled:checked + .slider::before {  background: rgba(23,149,136,0.3);  cursor:not-allowed;  }
+.switch input:disabled:checked + .slider:active::after {  transform: none;cursor:not-allowed;  }
+.switch input:disabled:checked + .slider::after {  background: rgba(23,149,136,0.5); cursor:not-allowed; }
+
 /**
 ** End: beautiful switches
 **/
