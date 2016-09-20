@@ -4,19 +4,94 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        li {
+            list-style: none;
+        }
+        li:before {
+            content: "✓ ";
+        }
+        input {
+            border: none;
+            width: 80px;
+            font-size: 14px;
+            padding: 2px;
+        }
+        input:hover {
+            background-color: #eee;
+        }
+        input:focus {
+            background-color: #ccf;
+        }
+        input:not(:focus) {
+            text-align: right;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        td,th {
+            border: 1px solid #999;
+            padding: 0;
+        }
+        th, td:first-child {
+            background-color: #ccc;
+            padding: 1px 3px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+    </style>
+
+    <p>Inspired by <a href="http://thomasstreet.net/blog/spreadsheet.html">http://thomasstreet.net/blog/spreadsheet.html</a>. Features:</p>
+
+    <ul>
+        <li>Under 41 lines of vanilla JavaScript</li>
+        <li>Libraries used: <strong>none</strong></li>
+        <li>Excel-like syntax (formulas start with "=")</li>
+        <li>Support for arbitrary expressions (=A1+B2*C3)</li>
+        <li>Circular reference prevention</li>
+        <li>Automatic localStorage persistence</li>
+    </ul>
+
+    <table></table>
+
+    <footer><p>&copy; 2013 <a href="http://ondras.zarovi.cz/">Ondřej Žára</a></p></footer>
     <script>
         for (var i=0; i<6; i++) {
             var row = document.querySelector("table").insertRow(-1);
-            for (var j=0; j<100; j++) {
+            for (var j=0; j<8; j++) {
                 var letter = colName(j-1) ;
-                row.insertCell(-1).innerHTML = i&&j ? "<input id='"+ letter+i +"'/>" : i||letter;
+                if(i&&j){
+                    row.insertCell(-1).innerHTML = "<input id='"+ letter+i +"' />";
+                }else{
+                    if(i){
+                        row.insertCell(-1).innerHTML = i;
+                    }else{
+                        th = document.createElement('th');
+                        th.innerHTML = letter;
+                        row.appendChild(th);
+                    }
+//                    row.insertCell(-1).outerHTML = "<th>"+ i||letter +"</th>";
+                }
+//                row.insertCell(-1).innerHTML = i&&j ? "<input id='"+ letter+i +"' />" : i||letter;
             }
+        }
+        function isOnBorderRight(objTable,objTh,event){
+            var width = objTh.offsetWidth;
+            var left = objTh.offsetLeft;
+            var pos = findPos(objTable);
+            var absRight = pos[0] + left + width;
+
+            if( event.clientX > (absRight - iEdgeThreshold) ){
+                return true;
+            }
+
+            return false;
         }
         function colName(n) {
             var ordA = 'A'.charCodeAt(0);
             var ordZ = 'Z'.charCodeAt(0);
             var len = ordZ - ordA + 1;
-
             var s = "";
             while(n >= 0) {
                 s = String.fromCharCode(n % len + ordA) + s;
@@ -36,7 +111,7 @@
             var getter = function() {
                 var value = localStorage[elm.id] || "";
                 if (value.charAt(0) == "=") {
-                    with (DATA) return eval(value.substring(1));
+                    with (DATA) return eval(value.substring(1).replace("%", "*0.01"));
                 } else { return isNaN(parseFloat(value)) ? value : parseFloat(value); }
             };
             Object.defineProperty(DATA, elm.id, {get:getter});
@@ -45,6 +120,7 @@
         (window.computeAll = function() {
             INPUTS.forEach(function(elm) { try { elm.value = DATA[elm.id]; } catch(e) {} });
         })();
+
 
     </script>
 </head>
