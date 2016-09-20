@@ -79,6 +79,7 @@
         <script src="scripts/dirPagination.js" type="text/javascript"></script>
         <script src="scripts/app.js" type="text/javascript"></script>
         <script src="modules/common/services.js" type="text/javascript"></script>
+        <script src="modules/common/directives.js" type="text/javascript"></script>
         <script src="modules/auth/controller.js" type="text/javascript"></script>
         <script src="modules/auth/services.js" type="text/javascript"></script>
         <script src="modules/home/controller.js" type="text/javascript"></script>

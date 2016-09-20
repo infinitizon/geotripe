@@ -16,4 +16,23 @@ angular.module('Common')
                 });
             }
         };
-    }]);
+    }]).directive('input', function() {
+        return {
+            restrict: 'E',
+            require: '?ngModel',
+            link: function(scope, element, attrs, ngModel) {
+                if (
+                    'undefined' !== typeof attrs.type
+                    && 'number' === attrs.type
+                    && ngModel
+                ) {
+                    ngModel.$parsers.push(function (value) {
+                        return '' + value;
+                    });
+                    ngModel.$formatters.push(function (value) {
+                        return parseFloat(value);
+                    });
+                }
+            }
+        };
+    });

@@ -42,6 +42,7 @@
             </tr>
             </tbody>
         </table>
+        {{40*5%}}
     </div>
     <div class="drillDown" ng-if="quotCtrl.edit">
         <div class="row" style="padding:20px;">
@@ -172,7 +173,7 @@
                     <fieldset style="margin-top:25px;">
                         <legend>
                             <i class="fa fa-plus pull-right text-primary" aria-hidden="true" style="cursor: pointer;"
-                               ng-click="quotCtrl.open({'modalSize':'lg', 'url':'quoteItems'})">
+                               ng-click="quotCtrl.open({'modalSize':'lg', 'url':'quoteItems', 'data':{'edit':(quotCtrl.quote.quote_id)?true:false}})">
                             </i>
                             Add Quote Items:
                         </legend>
@@ -218,45 +219,45 @@
                                 <tr ng-if="quotCtrl.lineItems.length <= 0"><td colspan="5" style="text-align:center;">{{ quotCtrl.lineItemsLoading || 'Loading new data!!' }}</td></tr>
                                 <tr ng-repeat="lineItem in quotCtrl.lineItems track by $index">
                                     <td>
-                                        <i class="fa fa-pencil-square-o fa-2x text-success" ng-click="quotCtrl.open({'modalSize':'lg', 'url':'quoteItems', 'data':{index:$index,item:lineItem}})" aria-hidden="true"></i>
-                                        <i class="fa fa-minus-circle fa-2x text-danger" ng-click="quotCtrl.deleteLineItem($index,lineItem.id)" aria-hidden="true"></i>
+                                        <i class="fa fa-pencil-square-o fa-2x text-success" style="display:inline-block" ng-click="quotCtrl.open({'modalSize':'lg', 'url':'quoteItems', 'data':{index:$index,item:lineItem, 'edit':(quotCtrl.quote.quote_id)?true:false}})" aria-hidden="true"></i>
+                                        <i class="fa fa-minus-circle fa-2x text-danger" style="display:inline-block" ng-click="quotCtrl.deleteLineItem($index,lineItem.id)" aria-hidden="true"></i>
                                     </td>
                                     <td>{{$index+1}}</td>
                                     <td>{{lineItem.matDesc}}</td>
                                     <td>{{lineItem.qty}}</td>
                                     <td>{{(lineItem.manus.length >1) ? 'Many' : lineItem.manus[0].name }}</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">UOM</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">Unit Price</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">Cross Rate</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">Unit Price (USD)</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">MFR Total</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">Cert Of Origin</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">Weight</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">G/F</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">Packaging</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">INT/F</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">INS@0.35%</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">CIF</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">Custom@20%</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">SURCH@7%</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">CISS@1%</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">ETLS@0.5%</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">VAT@5%</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">NAFDAC/SONCAP</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">SURCH@7%</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">Clearing</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">Sub Total</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">Goods In Transit INS@0.35%</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">LT/ONNE</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">BCH</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">F/R</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">COF</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">TOTAL</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">MK UP@8%</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">TOTAL</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">nlcf@1%</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">TOTAL</td>
-                                    <td data-ng-if="quotCtrl.quote.quote_id">U/P@7.2%</td>
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.unitofmeasure}}</td> <!-- UOM -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.unitprice}}</td> <!-- Unit Price -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.crossrrate}}</td> <!-- Cross Rate -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.unit_price_usd}}</td> <!-- Unit Price (USD) -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.mfr_total}}</td> <!-- MFR Total -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.certOfOrigin}}</td> <!-- Cert Of Origin -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.weight}}</td> <!-- Weight -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.g_f}}</td> <!-- G/F -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.packaging}}</td> <!-- Packaging -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.int_f}}</td> <!-- INT/F -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.ins}}</td> <!-- INS@0.35% -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.cif}}</td> <!-- CIF -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.custom}}</td> <!-- Custom@20% -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.surch}}</td> <!-- SURCH@7% -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.ciss}}</td> <!-- CISS@1% -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.etls}}</td> <!-- ETLS@0.5% -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.qty}}</td> <!-- VAT@5% -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.nafdac_soncap}}</td> <!-- NAFDAC/SONCAP -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.qty}}</td> <!-- SURCH@7% -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.clearing}}</td> <!-- Clearing -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.qty}}</td> <!-- Sub Total -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.qty}}</td> <!-- Goods In Transit INS@0.35% -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.lt_onne}}</td> <!-- LT/ONNE -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.qty}}</td> <!-- BCH -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.f_r}}</td> <!-- F/R -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.qty}}</td> <!-- COF -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.qty}}</td> <!-- TOTAL -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.qty}}</td> <!-- MK UP@8% -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.qty}}</td> <!-- TOTAL -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.nlcf}}</td> <!-- nlcf@1% -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.qty}}</td> <!-- TOTAL -->
+                                    <td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.qty}}</td> <!-- U/P@7.2% -->
                                 </tr>
                             </tbody>
                         </table>

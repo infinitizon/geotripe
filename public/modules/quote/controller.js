@@ -62,7 +62,16 @@ angular.module('RFQ')
                 });
 
                 modalInstance.result.then(function (selectedItem) {
-                    console.log(selectedItem);
+                    selectedItem.unit_price_usd = selectedItem.unitprice * selectedItem.crossrrate;
+                    selectedItem.mfr_total = selectedItem.unit_price_usd * selectedItem.qty;
+                    selectedItem.int_f = selectedItem.weight * 8.2;
+                    selectedItem.ins = (selectedItem.int_f + selectedItem.packaging + selectedItem.g_f + selectedItem.certOfOrigin + selectedItem.mfr_total)*0.0028;
+                    selectedItem.cif = selectedItem.ins + selectedItem.int_f + selectedItem.packaging + selectedItem.g_f + selectedItem.certOfOrigin + selectedItem.mfr_total;
+                    selectedItem.custom = selectedItem.cif * 0.00;
+                    selectedItem.surch = selectedItem.custom * 0.07;
+                    selectedItem.ciss = selectedItem.cif * 0.00;
+                    selectedItem.etls = selectedItem.custom * 0.005;
+
                     if(selectedItem.index != null){
                         vm.lineItems[selectedItem.index] = selectedItem;
                     }else{
@@ -407,14 +416,26 @@ angular.module('RFQ')
                 }
             }
             vm.addLineItems = function () {
-                vm.allergies={
+                vm.lineItemsAdded={
                     "index":vm.indexSelected,
                     "id":vm.id,
                     "matDesc":vm.matdesc,
                     "qty":vm.qty,
-                    "manus":vm.selectedManufacturers
+                    "manus":vm.selectedManufacturers,
+                    "unitofmeasure":vm.unitofmeasure,
+                    "unitprice":vm.unitprice,
+                    "crossrrate":vm.crossrrate,
+                    "certOfOrigin":vm.certOfOrigin,
+                    "weight":vm.weight,
+                    "g_f":vm.g_f,
+                    "packaging":vm.packaging,
+                    "nafdac_soncap":vm.nafdac_soncap,
+                    "clearing":vm.clearing,
+                    "lt_onne":vm.lt_onne,
+                    "f_r":vm.f_r,
+                    "nlcf":vm.nlcf
                 }
-                $uibModalInstance.close(vm.allergies);
+                $uibModalInstance.close(vm.lineItemsAdded);
             }
         }])
     .filter('propsFilter', function() {

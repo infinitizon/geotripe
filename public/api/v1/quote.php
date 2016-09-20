@@ -58,7 +58,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
 	    $q_str .= " , (select count(q.Quote_Status_Id) from Quote q where q.Quote_Status_Id=12141326 AND q.Party_Party_Id=p.party_id )'TQ' ";
 	    $q_str .= " , (select count(q.Quote_Status_Id) from Quote q where q.Quote_Status_Id=12141327 AND q.Party_Party_Id=p.party_id )'Sourcing for suppliers' ";
 	    $q_str .= " , (select count(q.Quote_Status_Id) from Quote q where q.Quote_Status_Id=12141328 AND q.Party_Party_Id=p.party_id )'Costing at suppliers' ";
-        $q_str .= " FROM party p LEFT JOIN quote q ON p.Party_Id=q.Party_Party_Id ";
+        $q_str .= " FROM Party p LEFT JOIN Quote q ON p.Party_Id=q.Party_Party_Id ";
         if (!empty($data->transactionMetaData->queryMetaData->queryClause->andExpression)) {
             $q_str .= " WHERE "; $files_id = '';
             foreach ($data->transactionMetaData->queryMetaData->queryClause->andExpression as $field) {

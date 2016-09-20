@@ -3,7 +3,7 @@
 angular.module('Common', []);
 angular.module('Auth', ['Common']);
 angular.module('Home', []);
-angular.module('RFQ', [])
+angular.module('RFQ', ['Common'])
 angular.module('Setup', ['Common']);
  
 angular.module('School', ['Auth', 'Home', 'RFQ', 'Setup', 'ui.router', 'ngCookies', 'ngSanitize', 'ui.bootstrap', 'ui.bootstrap', 'ui.select','angularUtils.directives.dirPagination'])
