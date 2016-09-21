@@ -27,7 +27,8 @@
                 </tbody>
             </table>
         </div>
-        <input type="file" ng-mouseleave="loadFile($event)" />
+        <!--<input type="file" ng-mouseleave="loadFile($event)" ng-change="loadFile($event)" onchange="angular.element($event).scope().getFileDetails(this)" />-->
+        <input type="file"  onchange="angular.element(this).scope().getFileDetails(this)" />
     </div>
 </div>
 
@@ -52,7 +53,13 @@
                 $rootScope.eData = data;     //  eData contains the JSON representation of the Excel sheet rows
             });
         };
-
+        $scope.getFileDetails = function (event) {
+            console.log(event)
+            alasql('SELECT * FROM FILE(?,{headers:true})', [event], function (data) {
+                console.log(data)
+                $rootScope.eData = data;     //  eData contains the JSON representation of the Excel sheet rows
+            });
+        };
         $scope.items = [{
             name: "John Smith",
             email: "j.smith@example.com",
