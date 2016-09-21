@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="pinterest">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Spreadsheet made with AngularJS</title>
+    <style>
+        body { font-family: sans-serif; }
+        .output, input {
+            font-size: 10pt;
+            position: absolute;
+            height: 1.2em;
+            width: 50pt;
+            height: 16pt;
+            overflow: hidden;
+            padding-left: 4pt;
+        }
+        input { border: none;}
+        .output {
+            background: white;
+            pointer-events: none;
+            padding-top: 2pt;
+            height: 14pt;
+        }
+        input:focus + .output { display: none; }
+
+        table { border-collapse: collapse; }
+        td > div {
+            width: 55pt;
+            height: 16pt;
+        }
+        td { border: 1px solid #EEE; }
+        .column-label  > td, .row-label {
+            text-align: center;
+            background: #EEE;
+        }
+        .row-label { width: 2em; }
+    </style>
+</head>
+
+<body>
+    <div ng-controller="sheet">
+        <table>
+            <tr class="column-label">
+                <td></td>
+                <td ng-repeat="column in columns">{{column}}</td>
+            </tr>
+            <tr ng-repeat="row in rows">
+                <td class="row-label">{{row}}</td>
+                <td ng-repeat="column in columns">
+                    <div>
+                        <input ng-model="cells[column+row]" />
+                        <div ng-bind="compute(column+row)" class="output"></div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script src="../../../scripts/angular/1.5.7/angular.js"></script>
+    <script>
+        var app = angular.module('pinterest', []);
+
+        app.controller('sheet', function($scope, $parse) {
+            $scope.columns = ['A', 'B', 'C', 'D'];
+            $scope.rows = [1, 2, 3, 4];
+            $scope.cells = {};
+            var exp = '';
+            process = function(value) {
+                if(value){
+                    if (value.charAt(0) == "=") {
+                        return value.substring(1).replace("%", "*0.01").replace(/[A-Z]\d+/g, function(ref) {
+//                    return value.replace(/[A-Z]\d+/g, function(ref) {
+//                            console.log(ref)
+//                            console.log(value)
+                            return 'compute("' + ref + '")';
+                        })
+                    }
+//                    else{
+//                        return 'compute("' + value + '")';
+//                    }
+                }
+            }
+            $scope.compute = function(cell) {
+                if($scope.cells[cell] && $scope.cells[cell].charAt(0) != "="){
+                    console.log($scope.cells[cell])
+                    return $scope.cells[cell];
+                }
+                return $parse(process($scope.cells[cell]))($scope);
+            };
+        });
+    </script>
+</body>
+
+</html>

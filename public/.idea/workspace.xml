@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d05ef40-3f7a-41b2-81e7-eb6b1d801a63" name="Default" comment="UI-boot">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/excel/expandTable.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/excel/angularJs/1.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/excel/angularJs/alasql/1.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/excel/angularJs/alasql/alasql.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/excel/angularJs/alasql/xlsx.core.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/excel/angularJs/angular1.0.6.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/excel/angularJs/me.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/excel/1.html" afterPath="$PROJECT_DIR$/tests/excel/pureJs/1.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/excel/expandTable.html" afterPath="$PROJECT_DIR$/tests/excel/pureJs/expandTable.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/excel/1.html" afterPath="$PROJECT_DIR$/tests/excel/1.html" />
     </list>
     <ignored path="public.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,32 +46,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="quote.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/v1/quote.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.764706">
-              <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
-              <folding>
-                <marker date="1474358985000" expanded="true" signature="2188:2226" placeholder="SELECT * FRO... Users" />
-                <marker date="1474358985000" expanded="true" signature="2520:3411" placeholder="select p.Nam... party" />
-                <marker date="1474358985000" expanded="true" signature="4365:4461" placeholder="SELECT doc_i... Document" />
-                <marker date="1474358985000" expanded="true" signature="4677:4727" placeholder="SELECT COUNT... ${$q_str}" />
-                <marker date="1474358985000" expanded="true" signature="5610:5627" placeholder="INSERT INTO quote... " />
-                <marker date="1474358985000" expanded="true" signature="7087:7233" placeholder="INSERT INTO document... " />
-                <marker date="1474358985000" expanded="true" signature="7594:7617" placeholder="INSERT INTO QuoteDetail... " />
-                <marker date="1474358985000" expanded="true" signature="8699:8735" placeholder="INSERT INTO QuoteDetail_Manufacturer... " />
-                <marker date="1474358985000" expanded="true" signature="10739:10755" placeholder="UPDATE quote... " />
-                <marker date="1474358985000" expanded="true" signature="11925:12096" placeholder="INSERT INTO document... " />
-                <marker date="1474358985000" expanded="true" signature="12901:12948" placeholder="SELECT * FRO... QuoteDetail" />
-                <marker date="1474358985000" expanded="true" signature="13321:13343" placeholder="UPDATE Quote... " />
-                <marker date="1474358985000" expanded="true" signature="14454:14477" placeholder="INSERT INTO QuoteDetail... " />
-                <marker date="1474358985000" expanded="true" signature="16033:16069" placeholder="INSERT INTO QuoteDetail_Manufacturer... " />
-                <marker date="1474358985000" expanded="true" signature="18610:18639" placeholder="DELETE FROM " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="quoteItems.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/quote/views/templates/quoteItems.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -98,28 +78,61 @@
         </entry>
       </file>
       <file leaf-file-name="1.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/excel/1.html">
+        <entry file="file://$PROJECT_DIR$/tests/excel/pureJs/1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.0">
-              <caret line="67" column="57" selection-start-line="67" selection-start-column="57" selection-end-line="67" selection-end-column="57" />
+            <state vertical-scroll-proportion="13.3529415">
+              <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="43" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="expandTable.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/excel/expandTable.html">
+      <file leaf-file-name="1.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/excel/angularJs/1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.1318408">
-              <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
-              <folding>
-                <element signature="n#style#0;n#TABLE#0;n#div#0;n#BODY#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#TH#0;n#TR#0;n#THEAD#0;n#TABLE#0;n#div#0;n#BODY#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#TH#1;n#TR#0;n#THEAD#0;n#TABLE#0;n#div#0;n#BODY#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#TH#2;n#TR#0;n#THEAD#0;n#TABLE#0;n#div#0;n#BODY#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#TH#3;n#TR#0;n#THEAD#0;n#TABLE#0;n#div#0;n#BODY#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#TBODY#0;n#TABLE#0;n#div#0;n#BODY#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-31.5">
+              <caret line="62" column="31" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="me.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/excel/angularJs/me.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-22.75">
+              <caret line="45" column="32" selection-start-line="45" selection-start-column="32" selection-end-line="46" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="1.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/excel/angularJs/alasql/1.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.62189054">
+              <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="alasql.min.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/excel/angularJs/alasql/alasql.min.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="69" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="xlsx.core.min.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/excel/angularJs/alasql/xlsx.core.min.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -127,18 +140,8 @@
       <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.88889">
+            <state vertical-scroll-proportion="-14.444445">
               <caret line="72" column="68" selection-start-line="72" selection-start-column="68" selection-end-line="72" selection-end-column="68" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/common/services.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -154,23 +157,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/setup/controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -221,6 +214,14 @@
         <option value="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" />
         <option value="$PROJECT_DIR$/tests/excel/expandTable.html" />
         <option value="$PROJECT_DIR$/tests/excel/1.html" />
+        <option value="$PROJECT_DIR$/tests/excel/angularJs/angular1.0.6.js" />
+        <option value="$PROJECT_DIR$/tests/excel/pureJs/1.html" />
+        <option value="$PROJECT_DIR$/tests/excel/angularJs/1.html" />
+        <option value="$PROJECT_DIR$/tests/excel/angularJs/me.html" />
+        <option value="$PROJECT_DIR$/tests/excel/angularJs/xls2tbl_1.html" />
+        <option value="$PROJECT_DIR$/tests/excel/angularJs/alasql/alasql.min.js" />
+        <option value="$PROJECT_DIR$/tests/excel/angularJs/alasql/xlsx.core.min.js" />
+        <option value="$PROJECT_DIR$/tests/excel/angularJs/alasql/1.html" />
       </list>
     </option>
   </component>
@@ -325,6 +326,58 @@
               <option name="myItemId" value="excel" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pureJs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="excel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angularJs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="excel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angularJs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alasql" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -337,6 +390,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1.5.7" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -584,18 +659,18 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/excel/angularJs/alasql" />
+      <recent name="$PROJECT_DIR$/tests/excel/pureJs" />
+      <recent name="$PROJECT_DIR$/api" />
+      <recent name="$PROJECT_DIR$/scripts/angular/1.5.7" />
+      <recent name="$PROJECT_DIR$/scripts/angular" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/css" />
       <recent name="$PROJECT_DIR$/scripts" />
       <recent name="$PROJECT_DIR$/api" />
       <recent name="$PROJECT_DIR$/tests/fileWtUpload/1" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/api" />
-      <recent name="$PROJECT_DIR$/scripts/angular/1.5.7" />
-      <recent name="$PROJECT_DIR$/scripts/angular" />
-      <recent name="$PROJECT_DIR$/tests/fileWtUpload/2" />
-      <recent name="C:\xampp\htdocs\geotripe\public\tests\fileWtUpload\1" />
     </key>
   </component>
   <component name="RunManager">
@@ -1064,12 +1139,12 @@
       <workItem from="1473326870503" duration="16381000" />
       <workItem from="1473853359887" duration="9847000" />
       <workItem from="1474039596579" duration="1344000" />
-      <workItem from="1474043516706" duration="30876000" />
+      <workItem from="1474043516706" duration="43953000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="305586000" />
+    <option name="totallyTimeSpent" value="318663000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="53" y="23" width="2132" height="1327" extended-state="0" />
@@ -1086,6 +1161,7 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16791745" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1336773" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1098,7 +1174,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1119,48 +1194,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/modules/auth/services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/ssPaging/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/dirPagination.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_PLUGINS_DIR$/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/mysql.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="662" column="37" selection-start-line="662" selection-start-column="37" selection-end-line="662" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/ssPaging/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="37" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/ssPaging/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1193,13 +1226,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/angular/1.5.7/angular.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1494,14 +1520,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.88889">
-          <caret line="72" column="68" selection-start-line="72" selection-start-column="68" selection-end-line="72" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-12.941176">
@@ -1521,26 +1539,149 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/excel/1.html">
+    <entry file="file://$PROJECT_DIR$/tests/excel/pureJs/expandTable.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.0">
-          <caret line="67" column="57" selection-start-line="67" selection-start-column="57" selection-end-line="67" selection-end-column="57" />
+        <state vertical-scroll-proportion="-2.9104478">
+          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/excel/expandTable.html">
+    <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.1318408">
-          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+        <state vertical-scroll-proportion="-14.444445">
+          <caret line="72" column="68" selection-start-line="72" selection-start-column="68" selection-end-line="72" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/excel/angularJs/angular1.0.6.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-173.60976">
+          <caret line="42" column="16" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
           <folding>
-            <element signature="n#style#0;n#TABLE#0;n#div#0;n#BODY#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#TH#0;n#TR#0;n#THEAD#0;n#TABLE#0;n#div#0;n#BODY#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#TH#1;n#TR#0;n#THEAD#0;n#TABLE#0;n#div#0;n#BODY#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#TH#2;n#TR#0;n#THEAD#0;n#TABLE#0;n#div#0;n#BODY#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#TH#3;n#TR#0;n#THEAD#0;n#TABLE#0;n#div#0;n#BODY#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#TBODY#0;n#TABLE#0;n#div#0;n#BODY#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#591921#591962#0" expanded="false" />
+            <marker date="1474458142000" expanded="true" signature="217024:217105" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="217182:217566" placeholder="..." />
+            <marker date="1474458142000" expanded="true" signature="273598:274384" placeholder="..." />
+            <marker date="1474458142000" expanded="true" signature="274918:275616" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="274968:275335" placeholder="{&quot;templateUrl&quot;: 'book.html'...}" />
+            <marker date="1474458142000" expanded="true" signature="275066:275322" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="275161:275307" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="275400:275493" placeholder="{&quot;templateUrl&quot;: 'chapter.html'...}" />
+            <marker date="1474458142000" expanded="true" signature="275696:275831" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="275890:275980" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="276042:276135" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="276280:276897" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="355613:356413" placeholder="..." />
+            <marker date="1474458142000" expanded="true" signature="355657:355762" placeholder="..." />
+            <marker date="1474458142000" expanded="true" signature="356548:357312" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="356668:357156" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="356876:356975" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="357023:357140" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="357214:357299" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="357549:357797" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="357880:358127" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="358252:358498" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="477310:477411" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="477430:477470" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="477601:478442" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="477620:478431" placeholder="{&quot;restrict&quot;: 'A'...}" />
+            <marker date="1474458142000" expanded="true" signature="477814:478419" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="477974:478047" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="478169:478222" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="478333:478405" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="478512:478756" placeholder="..." />
+            <marker date="1474458142000" expanded="true" signature="478539:478613" placeholder="..." />
+            <marker date="1474458142000" expanded="true" signature="478860:479166" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="502384:502415" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="502504:502975" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="503834:503975" placeholder="..." />
+            <marker date="1474458142000" expanded="true" signature="503870:503964" placeholder="..." />
+            <marker date="1474458142000" expanded="true" signature="503926:503953" placeholder="..." />
+            <marker date="1474458142000" expanded="true" signature="504029:504060" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="504072:504104" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="504215:504437" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="505291:505453" placeholder="..." />
+            <marker date="1474458142000" expanded="true" signature="505327:505442" placeholder="..." />
+            <marker date="1474458142000" expanded="true" signature="505383:505431" placeholder="..." />
+            <marker date="1474458142000" expanded="true" signature="505507:505538" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="505550:505582" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="505693:505915" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="521127:521376" placeholder="..." />
+            <marker date="1474458142000" expanded="true" signature="521200:521254" placeholder="..." />
+            <marker date="1474458142000" expanded="true" signature="521447:521655" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="521486:521599" placeholder="[...]" />
+            <marker date="1474458142000" expanded="true" signature="521905:522026" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="522078:522238" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="522286:522410" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="549694:549727" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="549816:550220" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="556827:557445" placeholder="..." />
+            <marker date="1474458142000" expanded="true" signature="557835:558242" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="557884:557968" placeholder="{&quot;templateUrl&quot;: 'book.html'...}" />
+            <marker date="1474458142000" expanded="true" signature="558032:558122" placeholder="{&quot;templateUrl&quot;: 'chapter.html'...}" />
+            <marker date="1474458142000" expanded="true" signature="558310:558441" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="558488:558575" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="558625:558715" placeholder="{...}" />
+            <marker date="1474458142000" expanded="true" signature="558824:559365" placeholder="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/excel/pureJs/1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="13.3529415">
+          <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="43" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/excel/angularJs/me.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.75">
+          <caret line="45" column="32" selection-start-line="45" selection-start-column="32" selection-end-line="46" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/angular/1.5.7/angular.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/excel/angularJs/alasql/alasql.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/excel/angularJs/alasql/xlsx.core.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/excel/angularJs/1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-31.5">
+          <caret line="62" column="31" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/excel/angularJs/alasql/1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.62189054">
+          <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>

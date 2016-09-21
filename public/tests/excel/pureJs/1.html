@@ -1,4 +1,5 @@
 <!--http://jsfiddle.net/hYfN3/2120/-->
+<!--http://team-lab.github.io/cell-cursor/example.html (angularJs)-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,16 +54,17 @@
         <li>Automatic localStorage persistence</li>
     </ul>
 
-    <table></table>
-
-    <footer><p>&copy; 2013 <a href="http://ondras.zarovi.cz/">Ondřej Žára</a></p></footer>
+    <table id="spreadsheet"></table>
+    <!--<footer><p>&copy; 2013 <a href="http://ondras.zarovi.cz/">Ondřej Žára</a></p></footer>-->
     <script>
         for (var i=0; i<6; i++) {
-            var row = document.querySelector("table").insertRow(-1);
-            for (var j=0; j<8; j++) {
+//            var row = document.querySelector("table").insertRow(-1);
+            var row = document.getElementById("spreadsheet").insertRow(-1);
+            for (var j=0; j<30; j++) {
                 var letter = colName(j-1) ;
+//                row.insertCell(-1).innerHTML = i&&j ? "<input id='"+ letter+i +"' />" : i||letter;   //If I do not the first row to be a 'th' else do below
                 if(i&&j){
-                    row.insertCell(-1).innerHTML = "<input id='"+ letter+i +"' />";
+                        row.insertCell(-1).innerHTML = "<input class='spreadsheet_input' id='"+ letter+i +"' />";
                 }else{
                     if(i){
                         row.insertCell(-1).innerHTML = i;
@@ -71,22 +73,8 @@
                         th.innerHTML = letter;
                         row.appendChild(th);
                     }
-//                    row.insertCell(-1).outerHTML = "<th>"+ i||letter +"</th>";
                 }
-//                row.insertCell(-1).innerHTML = i&&j ? "<input id='"+ letter+i +"' />" : i||letter;
             }
-        }
-        function isOnBorderRight(objTable,objTh,event){
-            var width = objTh.offsetWidth;
-            var left = objTh.offsetLeft;
-            var pos = findPos(objTable);
-            var absRight = pos[0] + left + width;
-
-            if( event.clientX > (absRight - iEdgeThreshold) ){
-                return true;
-            }
-
-            return false;
         }
         function colName(n) {
             var ordA = 'A'.charCodeAt(0);
@@ -99,10 +87,12 @@
             }
             return s;
         }
-        var DATA={}, INPUTS=[].slice.call(document.querySelectorAll("input"));
+        var DATA={}, INPUTS=[].slice.call(document.getElementsByClassName("spreadsheet_input"));
         INPUTS.forEach(function(elm) {
             elm.onfocus = function(e) {
                 e.target.value = localStorage[e.target.id] || "";
+//                dId = e.target.id;
+//                console.log(dId.match(/[a-zA-Z]+|[0-9]+/g));
             };
             elm.onblur = function(e) {
                 localStorage[e.target.id] = e.target.value;
@@ -112,15 +102,20 @@
                 var value = localStorage[elm.id] || "";
                 if (value.charAt(0) == "=") {
                     with (DATA) return eval(value.substring(1).replace("%", "*0.01"));
-                } else { return isNaN(parseFloat(value)) ? value : parseFloat(value); }
+                } else {
+                    return isNaN(parseFloat(value)) ? value : parseFloat(value);
+                }
             };
             Object.defineProperty(DATA, elm.id, {get:getter});
             Object.defineProperty(DATA, elm.id.toLowerCase(), {get:getter});
         });
         (window.computeAll = function() {
-            INPUTS.forEach(function(elm) { try { elm.value = DATA[elm.id]; } catch(e) {} });
+            INPUTS.forEach(function(elm) {
+                try {
+                    elm.value = DATA[elm.id];
+                } catch(e) {}
+            });
         })();
-
 
     </script>
 </head>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="me">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li {
+            list-style: none;
+        }
+        li:before {
+            content: "✓ ";
+        }
+        input {
+            border: none;
+            width: 80px;
+            font-size: 14px;
+            padding: 2px;
+        }
+        input:hover {
+            background-color: #eee;
+        }
+        input:focus {
+            background-color: #ccf;
+        }
+        input:not(:focus) {
+            text-align: right;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        td,th {
+            border: 1px solid #999;
+            padding: 0;
+        }
+        th, td:first-child {
+            background-color: #ccc;
+            padding: 1px 3px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body ng-controller="sheet">
+
+<table id="spreadsheet"></table>
+<script src="../../../scripts/angular/1.5.7/angular.js"></script>
+<script>
+    var app = angular.module('me', []);
+
+    app.controller('sheet', function($scope, $parse) {
+//        $scope.columns = ['A', 'B', 'C', 'D'];
+//        $scope.rows = [1, 2, 3, 4];
+        $scope.cells = {};
+//        var exp = '';
+        for (var i=0; i<6; i++) {
+            var row = document.getElementById("spreadsheet").insertRow(-1);
+            for (var j=0; j<30; j++) {
+                var letter = colName(j-1) ;
+                if(i&&j){
+                    row.insertCell(-1).innerHTML = "<input class='spreadsheet_input' id='"+ letter+i +"'  ng-model='cells[\"" + letter+i + "\"]'  />";
+                }else{
+                    if(i){
+                        row.insertCell(-1).innerHTML = i;
+                    }else{
+                        th = document.createElement('th');
+                        th.innerHTML = letter;
+                        row.appendChild(th);
+                    }
+                }
+            }
+        }
+        function colName(n) {
+            var ordA = 'A'.charCodeAt(0);
+            var ordZ = 'Z'.charCodeAt(0);
+            var len = ordZ - ordA + 1;
+            var s = "";
+            while(n >= 0) {
+                s = String.fromCharCode(n % len + ordA) + s;
+                n = Math.floor(n / len) - 1;
+            }
+            return s;
+        }
+    });
+</script>
+</body>
+</html>
