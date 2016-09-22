@@ -17,13 +17,13 @@
            For Firefox 3.6, you will also need to include jQuery and ECMAScript 5 shim
          -->
         <!--[if lt IE 9]>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.2.0/es5-shim.js"></script>
-        <script>
-            document.createElement('ui-select');
-            document.createElement('ui-select-match');
-            document.createElement('ui-select-choices');
-        </script>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+            <script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.2.0/es5-shim.js"></script>
+            <script>
+                document.createElement('ui-select');
+                document.createElement('ui-select-match');
+                document.createElement('ui-select-choices');
+            </script>
         <![endif]-->
 
     </head>
@@ -67,6 +67,10 @@
         <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script-->
         <script src="scripts/angular/1.5.7/angular.js" type="text/javascript"></script>
         <script src="scripts/angular-ui-router.js" type="text/javascript"></script>
+        <script src="scripts/excel2json/alasql.min.js" type="text/javascript"></script>
+<!--        <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js" type="text/javascript"></script>-->
+        <script src="scripts/excel2json/xlsx.core.min.js" type="text/javascript"></script>
+<!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js" type="text/javascript"></script>-->
         <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-cookies.js"></script-->
         <script src="scripts/angular/1.5.7/angular-cookies.min.js" type="text/javascript"></script>
         <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js"></script-->

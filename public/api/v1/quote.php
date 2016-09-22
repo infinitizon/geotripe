@@ -232,10 +232,12 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                             foreach ($r_fields as $fields) {
                                 $fieldNm = strtolower($fields['Field']);
                                 if (@$data->factObjects[0]->QuoteDetail[$key]->$fieldNm && $QuoteDetailFields[0][$fieldNm] != $data->factObjects[0]->QuoteDetail[$key]->$fieldNm) {
-                                    $inserts .= "{$fields['Field']} = ".$fxns->_formatFieldValue($data->factObjects[0]->QuoteDetail[$key]->$fieldNm, array('type'=>$fields['Type'])).",";
+                                    $inserts .= "{$fields['Field']} = ".$fxns->_formatFieldValue($data->factObjects[0]->QuoteDetail[$key]->$fieldNm, array('type'=>$fields['Type']))." ,";
                                 }
                             }
-                            $q_str_quoteDetail .= $inserts." WHERE Quote_quote_Id={$data->factObjects[0]->QuoteDetail[$key]->id}";
+                            $inserts = $fxns->_subStrAtDel($inserts, ' ,');
+                            $q_str_quoteDetail .= $inserts." WHERE QuoteDetail_Id={$data->factObjects[0]->QuoteDetail[$key]->id}";
+                            echo $q_str_quoteDetail;
                             if($inserts != ""){
                                 $r_str = $dbo->prepare($q_str_quoteDetail);
                                 $r_str->execute();
@@ -259,6 +261,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         }
 
                         if(isset($data->factObjects[0]->QuoteDetail_Manufacturer[$key])){
+                            $dbo->query("delete from QuoteDetail_Manufacturer where QuoteDetail_QuoteDetail_Id = {$lastQuoteDetailId}");
 
                             $q_fields = $dbo->query("DESCRIBE QuoteDetail_Manufacturer");
                             $r_fields = $q_fields->fetchAll(PDO::FETCH_ASSOC);
@@ -268,7 +271,6 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                                 }
                             }
                             foreach($data->factObjects[0]->QuoteDetail_Manufacturer[$key] as $values){
-
                                 $q_str_quoteDetail_Manufacturer = "INSERT INTO QuoteDetail_Manufacturer ";
                                 $ins_fields = " (QuoteDetail_QuoteDetail_Id ,";
                                 $ins_values = " VALUES ({$lastQuoteDetailId},";
@@ -302,7 +304,6 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                     }
                 }
             }
-
             $dbo->commit();
             $data=array('token'=> $data->token);
             $response = array("response" => "Success", "message" => "Record Saved Successfully", "data"=>$data);

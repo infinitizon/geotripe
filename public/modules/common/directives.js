@@ -35,4 +35,16 @@ angular.module('Common')
                 }
             }
         };
-    });
+    }).directive('importFromExcel',
+        ['ImportExportToExcel',
+            function(ImportExportToExcel) {
+                //Factory object ImportExportToExcel would be needed.
+                return {
+                    restrict: 'A',
+                    link: function (scope, element) {
+                        element.on('change',function (event) {
+                            ImportExportToExcel.importFromExcel(event);
+                        });
+                    }
+                };
+    }]);

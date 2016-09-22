@@ -33,13 +33,102 @@ angular.module('RFQ')
             }
             vm.getQuoteSummary();
         }])
-    .controller('QuoteByStatusController', ['$scope', '$location', '$rootScope','DataService','CommonServices','$stateParams', '$uibModal',
-        function ($scope, $location, $rootScope, DataService, CommonServices, $stateParams, $uibModal) {
+    .controller('QuoteByStatusController', ['$scope', '$location', '$rootScope','DataService','CommonServices','$stateParams', '$uibModal', 'ImportExportToExcel',
+        function ($scope, $location, $rootScope, DataService, CommonServices, $stateParams, $uibModal,ImportExportToExcel) {
             $rootScope.pageTitle = "Quotes";
             $rootScope.pageHeader = "Quotes";
 
             var vm = this;
             vm.lineItems = []
+            vm.export = function (quoteId) {
+                var toExport = [];
+                angular.forEach(vm.lineItems , function(lineItem, key) {
+                    var items = {id:lineItem.id,'MaterialDesciption':lineItem.matDesc,qty:lineItem.qty};
+                    if(quoteId) {
+                        items['UOM'] = lineItem.unitofmeasure;
+                        items['Unit Price'] = lineItem.unitprice;
+                        items['Cross Rate'] = lineItem.crossrrate;
+                        items['Unit Price (USD)'] = lineItem.unit_price_usd;
+                        items['MFR Total'] = lineItem.mfr_total;
+                        items['Cert Of Origin'] = lineItem.certOfOrigin;
+                        items['Weight'] = lineItem.weight;
+                        items['G/F'] = lineItem.g_f;
+                        items['Packaging'] = lineItem.packaging;
+                        items['INT/F'] = lineItem.int_f;
+                        items['INS@0.35%'] = lineItem.ins;
+                        items['CIF'] = lineItem.cif;
+                        items['Custom@20%'] = lineItem.custom;
+                        items['SURCH@7%'] = lineItem.surch;
+                        items['CISS@1%'] = lineItem.ciss;
+                        items['ETLS@0.5%'] = lineItem.etls;
+                        items['VAT@5%'] = lineItem.vat;
+                        items['NAFDAC/SONCAP'] = lineItem.nafdac_soncap;
+                        items['Clearing'] = lineItem.clearing;
+                        items['Sub Total'] = lineItem.sub_total;
+                        items['Goods In Transit INS@0.35%'] = lineItem.goods_in_transit;
+                        items['LT/ONNE'] = lineItem.lt_onne;
+                        items['BCH'] = lineItem.bch;
+                        items['F/R'] = lineItem.f_r;
+                        items['COF'] = lineItem.cof;
+                        items['TOTAL1'] = lineItem.total1;
+                        items['MK UP@8%'] = lineItem.mk_up;
+                        items['TOTAL2'] = lineItem.total2;
+                        items['nlcf@1%'] = lineItem.nlcf;
+                        items['TOTAL3'] = lineItem.total3;
+                        items['U/P@7.2%'] = lineItem.u_p;
+                    }
+                    toExport.push(items);
+                });
+                ImportExportToExcel.exportToExcel('RFQ_from_ERP', toExport);
+            };
+            $scope.$on('import-excel-data', function (e, values) {
+                var originalLineItems=angular.copy(vm.lineItems);
+                vm.lineItems = [];
+                angular.forEach(values, function(lineItem, key) {
+                    var items = {};
+                    items.id=lineItem.id;
+                    angular.forEach(originalLineItems, function(old, key) {
+                        if(old.id == lineItem.id){
+                            items.manus = old.manus;
+                        }
+                    });
+                    items.matDesc=lineItem['MaterialDesciption'];
+                    items.qty=lineItem.qty;
+                    items.unitofmeasure=lineItem['UOM'];
+                    items.unitprice=lineItem['Unit Price'];
+                    items.crossrrate=lineItem['Cross Rate'];
+                    items.unit_price_usd=lineItem['Unit Price (USD)'];
+                    items.mfr_total=lineItem['MFR Total'];
+                    items.certOfOrigin=lineItem['Cert Of Origin'];
+                    items.weight=lineItem['Weight'];
+                    items.g_f=lineItem['G/F'];
+                    items.packaging=lineItem['Packaging'];
+                    items.int_f=lineItem['INT/F'];
+                    items.ins=lineItem['INS@0.35%'];
+                    items.cif=lineItem['CIF'];
+                    items.custom=lineItem['Custom@20%'];
+                    items.surch=lineItem['SURCH@7%'];
+                    items.ciss=lineItem['CISS@1%'];
+                    items.etls=lineItem['ETLS@0.5%'];
+                    items.vat=lineItem['VAT@5%'];
+                    items.nafdac_soncap=lineItem['NAFDAC/SONCAP'];
+                    items.clearing=lineItem['Clearing'];
+                    items.sub_total=lineItem['Sub Total'];
+                    items.goods_in_transit=lineItem['Goods In Transit INS@0.35%'];
+                    items.lt_onne=lineItem['LT/ONNE'];
+                    items.bch=lineItem['BCH'];
+                    items.f_r=lineItem['F/R'];
+                    items.cof=lineItem['COF'];
+                    items.total1=lineItem['TOTAL1'];
+                    items.mk_up=lineItem['MK UP@8%'];
+                    items.total2=lineItem['TOTAL2'];
+                    items.nlcf=lineItem['nlcf@1%'];
+                    items.total3=lineItem['TOTAL3'];
+                    items.u_p=lineItem['U/P@7.2%'];
+                    vm.lineItems.push(items);
+                });
+                $scope.$apply()
+            });
 
             vm.open = function (options) {
                 switch(options.url) {
@@ -62,16 +151,6 @@ angular.module('RFQ')
                 });
 
                 modalInstance.result.then(function (selectedItem) {
-                    selectedItem.unit_price_usd = selectedItem.unitprice * selectedItem.crossrrate;
-                    selectedItem.mfr_total = selectedItem.unit_price_usd * selectedItem.qty;
-                    selectedItem.int_f = selectedItem.weight * 8.2;
-                    selectedItem.ins = (selectedItem.int_f + selectedItem.packaging + selectedItem.g_f + selectedItem.certOfOrigin + selectedItem.mfr_total)*0.0028;
-                    selectedItem.cif = selectedItem.ins + selectedItem.int_f + selectedItem.packaging + selectedItem.g_f + selectedItem.certOfOrigin + selectedItem.mfr_total;
-                    selectedItem.custom = selectedItem.cif * 0.00;
-                    selectedItem.surch = selectedItem.custom * 0.07;
-                    selectedItem.ciss = selectedItem.cif * 0.00;
-                    selectedItem.etls = selectedItem.custom * 0.005;
-
                     if(selectedItem.index != null){
                         vm.lineItems[selectedItem.index] = selectedItem;
                     }else{
@@ -211,7 +290,7 @@ angular.module('RFQ')
                     /*Now get the quote details*/
                     var data=angular.copy(CommonServices.postData);
                     data.factName = 'QuoteDetail qd, QuoteDetail_Manufacturer qdm';
-                    data.transactionMetaData.responseDataProperties = 'qd.quotedetail_id&qd.serialnumber&qd.description&qd.price&qd.quantity&qd.quote_quote_id&group_concat(qdm.Party_Party_Id)Party_Party_Id';
+                    data.transactionMetaData.responseDataProperties = 'qd.quotedetail_id&qd.quote_quote_id&qd.quantity&qd.serialnumber&qd.description&group_concat(qdm.Party_Party_Id)Party_Party_Id&qd.unitofmeasure&qd.crossrrate&qd.unit_price_usd&qd.mfr_total&qd.certOfOrigin&qd.weight&qd.g_f&qd.packaging&qd.int_f&qd.ins&qd.cif&qd.custom&qd.surch&qd.ciss&qd.etls&qd.vat&qd.nafdac_soncap&qd.clearing&qd.sub_total&qd.goods_in_transit&qd.lt_onne&qd.bch&qd.f_r&qd.cof&qd.total1&qd.mk_up&qd.nlcf&qd.total3&qd.u_p';
                     data.transactionMetaData.queryMetaData.joinClause = {
                         'joinType':['JOIN'],'joinKeys':['qd.QuoteDetail_Id=qdm.QuoteDetail_QuoteDetail_Id']
                     }
@@ -240,15 +319,17 @@ angular.module('RFQ')
                                     }
                                 ];
                                 DataService.post('inboundService', data).then(function (response) {
+
                                     var items = {id:lineItem.quotedetail_id,matDesc:lineItem.description,qty:lineItem.quantity,manus:eval(response.data.data[0].manus)};
                                     vm.lineItems.push(items);
+                                    vm.originalLineItems = angular.copy(vm.lineItems);
                                 })
                             })
                         }
                         if(vm.lineItems.length <= 0){
                             vm.lineItemsLoading = "Click the + icon to add new items";
                         }else{
-                            vm.originalLineItems = vm.lineItems;
+                            vm.originalLineItems = angular.copy(vm.lineItems);;
                         }
                     })
                 }else{
@@ -331,16 +412,53 @@ angular.module('RFQ')
                 }
                 //Check for the manufacturers
                 vm.lineItems4Db = angular.copy(vm.lineItems);
-                        //console.log(vm.lineItems);
+                vm.originalLineItems4Db = vm.originalLineItems;
                 angular.forEach(vm.lineItems  , function(QuoteDetail, key) {
                     var QuoteDetail = {description: vm.lineItems[key].matDesc, quantity: vm.lineItems[key].qty};
+                    if(vm.quote.quote_id){
+                        QuoteDetail.unitofmeasure = vm.lineItems[key].unitofmeasure;
+                        QuoteDetail.unitprice = vm.lineItems[key].unitprice;
+                        QuoteDetail.crossrrate = vm.lineItems[key].crossrrate;
+                        QuoteDetail.unit_price_usd = vm.lineItems[key].unit_price_usd;
+                        QuoteDetail.mfr_total = vm.lineItems[key].mfr_total;
+                        QuoteDetail.certOfOrigin = vm.lineItems[key].certOfOrigin;
+                        QuoteDetail.weight = vm.lineItems[key].weight;
+                        QuoteDetail.g_f = vm.lineItems[key].g_f;
+                        QuoteDetail.packaging = vm.lineItems[key].packaging;
+                        QuoteDetail.int_f = vm.lineItems[key].int_f;
+                        QuoteDetail.ins = vm.lineItems[key].ins;
+                        QuoteDetail.cif = vm.lineItems[key].cif;
+                        QuoteDetail.custom = vm.lineItems[key].custom;
+                        QuoteDetail.surch = vm.lineItems[key].surch;
+                        QuoteDetail.ciss = vm.lineItems[key].ciss;
+                        QuoteDetail.etls = vm.lineItems[key].etls;
+                        QuoteDetail.vat = vm.lineItems[key].vat;
+                        QuoteDetail.nafdac_soncap = vm.lineItems[key].nafdac_soncap;
+                        QuoteDetail.clearing = vm.lineItems[key].clearing;
+                        QuoteDetail.sub_total = vm.lineItems[key].sub_total;
+                        QuoteDetail.goods_in_transit = vm.lineItems[key].goods_in_transit;
+                        QuoteDetail.lt_onne = vm.lineItems[key].lt_onne;
+                        QuoteDetail.bch = vm.lineItems[key].bch;
+                        QuoteDetail.f_r = vm.lineItems[key].f_r;
+                        QuoteDetail.cof = vm.lineItems[key].cof;
+                        QuoteDetail.total1 = vm.lineItems[key].total1;
+                        QuoteDetail.mk_up = vm.lineItems[key].mk_up;
+                        QuoteDetail.total2 = vm.lineItems[key].total2;
+                        QuoteDetail.nlcf = vm.lineItems[key].nlcf;
+                        QuoteDetail.total3 = vm.lineItems[key].total3;
+                        QuoteDetail.u_p = vm.lineItems[key].u_p;
+                    }
                     if(vm.quote.quote_id) QuoteDetail.id =  vm.lineItems[key].id; //If we are editing then, we need to pass along the QuoteDetail id.
                     angular.forEach(vm.lineItems[key].manus  , function(QuoteManufacturer, key2) {
                         vm.lineItems4Db[key].manus[key2] = {party_party_id:QuoteManufacturer.party_id};
                         //console.log(vm.lineItems4Db[key].manus[key2]);
                     });
+                    angular.forEach(vm.originalLineItems[key].manus  , function(QuoteManufacturer, key2) {
+                        vm.originalLineItems4Db[key].manus[key2] = {party_party_id:QuoteManufacturer.party_id};
+                    });
                     data.append("factObjects[QuoteDetail]["+key+"]", [JSON.stringify(QuoteDetail)]);
                     data.append("factObjects[QuoteDetail_Manufacturer]["+key+"]", [JSON.stringify(vm.lineItems4Db[key].manus)]);
+                    data.append("factObjects[QuoteDetail_ManufacturerOld]["+key+"]", [JSON.stringify(vm.originalLineItems4Db[key].manus)]);
                 });
                 //Check for files
                 for (var i in vm.files) {
