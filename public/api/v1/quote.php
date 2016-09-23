@@ -92,14 +92,14 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
         try {
             $dbo->beginTransaction();
                 if($data->factObjects[0]->quote){
-                    $q_fields = $dbo->query("DESCRIBE quote");
+                    $q_fields = $dbo->query("DESCRIBE Quote");
                     $r_fields = $q_fields->fetchAll(PDO::FETCH_ASSOC);
                     foreach ($r_fields as $fields) {
                         if ($fields['Key'] == 'PRI') {
                             $priKy = $fields['Field'];
                         }
                     }
-                    $q_str = "INSERT INTO quote ";
+                    $q_str = "INSERT INTO Quote ";
                     $ins_fields = " (";
                     $ins_values = " VALUES (";
                     foreach($r_fields as $fields) {
@@ -179,14 +179,14 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
         try {
             $dbo->beginTransaction();
             if($data->factObjects[0]->quote){
-                $q_fields = $dbo->query("DESCRIBE quote");
+                $q_fields = $dbo->query("DESCRIBE Quote");
                 $r_fields = $q_fields->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($r_fields as $fields) {
                     if ($fields['Key'] == 'PRI') {
                         $priKy = $fields['Field'];
                     }
                 }
-                $q_str_quotes = "UPDATE quote SET ";
+                $q_str_quotes = "UPDATE Quote SET ";
                 $inserts = "";
                 foreach ($r_fields as $fields) {
                     $fieldNm = strtolower($fields['Field']);
@@ -237,7 +237,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                             }
                             $inserts = $fxns->_subStrAtDel($inserts, ' ,');
                             $q_str_quoteDetail .= $inserts." WHERE QuoteDetail_Id={$data->factObjects[0]->QuoteDetail[$key]->id}";
-                            echo $q_str_quoteDetail;
+//                            echo $q_str_quoteDetail;
                             if($inserts != ""){
                                 $r_str = $dbo->prepare($q_str_quoteDetail);
                                 $r_str->execute();
