@@ -1,6 +1,6 @@
 <?php
 header("Content-Type:application/json");
-
+//echo 'problem in quote!';
 $scriptName = $_SERVER['SCRIPT_NAME']; // <-- "e.g /api/v1/index.php"
 $requestUri = $_SERVER['REQUEST_URI']; // <-- "e.g /api/v1/login"
 $physicalPath = str_replace('\\', '', dirname($scriptName)); // <-- "e.g /api/v1"
@@ -35,7 +35,9 @@ if(!$data){
         }
         $input .= "}";
     }
-//    echo $input;exit;
+//    var_dump($_FILES);
+//    echo $input;
+//    exit;
     $data = json_decode($input);
 }
 include_once "core/init.inc.php";
@@ -123,7 +125,10 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                             $mime = $_FILES['file']['type'][$i];
                             $blob = $dbo->quote(file_get_contents($_FILES['file']['tmp_name'][$i]));
                             $size = intval($_FILES['file']['size'][$i]);
-                            $query = "INSERT INTO document (doc_quote_id,docName,docMimeType,docBlob,docSize,docCreateDate) VALUES ({$lastId},'{$name}','{$mime}',{$blob},{$size},NOW())";
+                            $query = "INSERT INTO document (doc_quote_id,docName,docMimeType,docBlob,docSize,docCreateDate";
+                            $query .= isset($data->factObjects[0]->fileType[$i])?",documentType_id)":")";
+                            $query .= " VALUES ({$lastQuoteId},'{$name}','{$mime}',{$blob},{$size},NOW()";
+                            $query .= isset($data->factObjects[0]->fileType[$i])?",{$data->factObjects[0]->fileType[$i]})":")";
                             $r_query = $dbo->prepare($query);
                             $r_query->execute();
                         }
@@ -207,7 +212,10 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         $mime = $_FILES['file']['type'][$i];
                         $blob = $dbo->quote(file_get_contents($_FILES['file']['tmp_name'][$i]));
                         $size = intval($_FILES['file']['size'][$i]);
-                        $query = "INSERT INTO document (doc_quote_id,docName,docMimeType,docBlob,docSize,docCreateDate) VALUES ({$data->factObjects[0]->quote->id},'{$name}','{$mime}',{$blob},{$size},NOW())";
+                        $query = "INSERT INTO document (doc_quote_id,docName,docMimeType,docBlob,docSize,docCreateDate";
+                        $query .= isset($data->factObjects[0]->fileType[$i])?",documentType_id)":")";
+                        $query .= " VALUES ({$data->factObjects[0]->quote->id},'{$name}','{$mime}',{$blob},{$size},NOW()";
+                        $query .= isset($data->factObjects[0]->fileType[$i])?",{$data->factObjects[0]->fileType[$i]})":")";
                         $r_query = $dbo->prepare($query);
                         $r_query->execute();
                     }

@@ -199,23 +199,35 @@ angular.module('Setup')
                 vm.edit=true;
                 vm.dataLoading = false;
                 /* This part helps get the pages a user can view */
+                //var data=angular.copy(CommonServices.postData);
+                //data.factName = 'AuthView a, User_Authview b';
+                //data.transactionMetaData.responseDataProperties = 'a.authview_id&a.name&b.authview_authview_id&b.user_user_id&b.ius_yn';
+                //theuserId = (typeof userId === "undefined")?'null':userId;
+                //data.transactionMetaData.queryMetaData.joinClause = {
+                //    'joinType':['LEFT JOIN'],'joinKeys':['a.authview_id = b.authview_authview_id AND b.user_user_id = '+theuserId]
+                //}
+                //DataService.post('inboundService', data).then(function (response) {
+                //    vm.userViews = response.data.data;
+                //    vm.originalAuthViewsData = angular.copy(vm.userViews);
+                //    vm.total_count = response.data.total_count;
+                //})
+                /* This part helps get the Roles of a user */
                 var data=angular.copy(CommonServices.postData);
-                data.factName = 'AuthView a, User_Authview b';
-                data.transactionMetaData.responseDataProperties = 'a.authview_id&a.name&b.authview_authview_id&b.user_user_id&b.ius_yn';
+                data.factName = 'AuthRoles a, User_AuthRole b';
+                data.transactionMetaData.responseDataProperties = "a.authroles_id&a.name&a.description&IF(b.authroles_authroles_id,'true','false')ius_yn";
                 theuserId = (typeof userId === "undefined")?'null':userId;
                 data.transactionMetaData.queryMetaData.joinClause = {
-                    'joinType':['LEFT JOIN'],'joinKeys':['a.authview_id = b.authview_authview_id AND b.user_user_id = '+theuserId]
+                    'joinType':['LEFT JOIN'],'joinKeys':['a.authroles_id = b.authroles_authroles_id AND b.users_user_id = '+theuserId]
                 }
                 DataService.post('inboundService', data).then(function (response) {
-                    vm.userViews = response.data.data;
-                    vm.originalAuthViewsData = angular.copy(vm.userViews);
-                    vm.total_count = response.data.total_count;
+                    vm.userRoles = response.data.data;
+                    vm.originalUserRolesData = angular.copy(vm.userRoles);
                 })
                 /* This part helps get the user details */
                 var data=angular.copy(CommonServices.postData);
                 if(userId) {
                     data.factName = 'Users';
-                    data.transactionMetaData.responseDataProperties = 'user_id&firstname&middlename&lastname&workphonenumber&contactphonenumber&user_party_id&isauthorizedperson&username&Email&password&token&enabled&accountlocked&accountexpirationtime&credentialsexpirationtime&datecreated&datemodified';
+                    data.transactionMetaData.responseDataProperties = 'user_id&firstname&middlename&lastname&workphonenumber&contactphonenumber&user_party_id&isauthorizedperson&username&email&password&token&enabled&accountlocked&accountexpirationtime&credentialsexpirationtime&datecreated&datemodified';
                     data.transactionMetaData.queryMetaData.queryClause.andExpression = [
                         {
                             "propertyName": "user_id",
@@ -264,102 +276,79 @@ angular.module('Setup')
                 var data=angular.copy(CommonServices.postData);
 
                 vm.originalUserViewsFromDb = [];
-                vm.userCheckedArray = [];
-                vm.userUnCheckedArray = [];
+                //vm.userCheckedArray = [];
+                //vm.userUnCheckedArray = [];
+                vm.userRolesCheckedArray = [];
+                vm.userRolesUnCheckedArray = [];
                 vm.insert = [];
                 vm.update = [];
-                angular.forEach(vm.originalAuthViewsData, function(userViews){
-                    if (userViews.ius_yn==1) {
-                        vm.originalUserViewsFromDb.push(userViews.authview_id);
-                    }
-                });
-                angular.forEach(vm.userViews, function(userViews){
-                    if (userViews.ius_yn==1){
-                        vm.userCheckedArray.push(userViews.authview_id);
+
+                //angular.forEach(vm.originalAuthViewsData, function(userViews){
+                //    if (userViews.ius_yn==1) {
+                //        vm.originalUserViewsFromDb.push(userViews.authview_id);
+                //    }
+                //});
+                //angular.forEach(vm.userViews, function(userViews){
+                //    if (userViews.ius_yn==1){
+                //        vm.userCheckedArray.push(userViews.authview_id);
+                //    }else{
+                //        vm.userUnCheckedArray.push(userViews.authview_id);
+                //    }
+                //});
+                angular.forEach(vm.userRoles, function(userRole){
+                    if (userRole.ius_yn=="true"){
+                        //console.log(userRole.ius_yn + "checked=" + userRole.authroles_id + '-'+userRole.name);
+                        vm.userRolesCheckedArray.push(userRole.authroles_id);
                     }else{
-                        vm.userUnCheckedArray.push(userViews.authview_id);
+                        //console.log(!userRole.ius_yn + "unchecked=" + userRole.authroles_id + '-'+userRole.name);
+                        vm.userRolesUnCheckedArray.push(userRole.authroles_id);
                     }
                 });
-                angular.forEach(vm.userUnCheckedArray, function(values){
-                    index = vm.originalUserViewsFromDb.indexOf(values);
-                    if(index > -1){
-                        vm.update.push({
-                            'authview_authview_id':vm.originalUserViewsFromDb[index],
-                            'user_user_id':vm.user.user_id,
-                            'ius_yn':0
-                        });
-                    }
-                });
-                data.factName = 'Users';
+
+                var data = new FormData();
+                data.append("factName", "Users");
+                data.append("token", $rootScope.globals.currentUser.userDetails.token);
+                data.append("transactionMetaData[currentLocale]", "NG");
+                data.append("transactionMetaData[queryStore]", "MySql");
                 vm.changedUsrObjs = CommonServices.GetFormChanges(vm.originalUserData, vm.user);
-                if( !angular.equals({}, vm.changedUsrObjs) && vm.user.user_id ) { //If anything changed?
+                data.append("factObjects[rolesChecked]", [JSON.stringify(vm.userRolesCheckedArray)]);
+                if(vm.user.user_id ) { //We are in the edit mode and trying to update stuff
                     vm.changedUsrObjs['id'] = vm.user.user_id;
+                    data.append("transactionEventType", "UPDATE");
+                    data.append("factObjects[users]", [JSON.stringify(vm.changedUsrObjs)]);
+                    data.append("factObjects[rolesUnChecked]", [JSON.stringify(vm.userRolesUnCheckedArray)]);
 
-                    data.transactionEventType = "Update"
-                    data.factObjects = [vm.changedUsrObjs];
-
-                    DataService.post('inboundService', data).then(function (response) {
-                        vm.result = response.data.response;
-                        vm.message = response.data.message;
-
-                        //If result is success try these
-                        var data = angular.copy(CommonServices.postData);
-                        data.factName = 'User_AuthView';
-                        if(vm.update.length > 0){       //Check for any pagees updated and modify accordingly
-                            data.transactionEventType = "Update"
-                            data.factObjects = [vm.update];
-                            DataService.post('inboundService', data).then(function (response) {
-                                vm.result = response.data.response;
-                                vm.message = response.data.message;
-                            })
-                        }
-
-                        angular.forEach(vm.userCheckedArray, function(values){
-                            index = vm.originalUserViewsFromDb.indexOf(values);
-                            if(index == -1){
-                                vm.insert.push({
-                                    'authview_authview_id':values,
-                                    'user_user_id':vm.user.user_id,
-                                    'ius_yn':1
-                                });
-                            }
-                        });
-
-                        if(vm.insert.length > 0){
-                            if(vm.user.user_id == null){    //Check if pages are added and modify accordingly
-                                vm.dataLoading = false;
-                                vm.result = 'Failure';
-                                vm.message = "You need to create a user first";
-                            }else {
-                                vm.message = "Trying to insert pages for user";
-                                data.transactionEventType = "PUT"
-                                data.factObjects = [vm.insert];
-                                DataService.post('inboundService', data).then(function (response) {
-                                    vm.result = response.data.response;
-                                    vm.message = response.data.message;
-                                    if(vm.result == "Failure") {
-                                        vm.message += "Error saving the pages to the user";
-                                    }
-                                    vm.insert = [];
-                                });
-                            }
+                    DataService.post('users', data, {
+                        transformRequest: angular.identity,
+                            headers: {'Content-Type': undefined, 'Process-Data': false}
+                    }).then(function (response) {
+                        if(response.data.response == "Failure") {
+                            vm.result = response.data.response;
+                            vm.message += "Error updating user... " + response.data.message;
+                        }else{
+                            vm.result = response.data.response;
+                            vm.message = response.data.message;
+                            vm.getData(vm.pageno);
                         }
                     })
                 }else if(vm.user.user_id == null){ //A new insert
+                    data.append("transactionEventType", "PUT");
+                    data.append("factObjects[users]", [JSON.stringify(vm.user)]);
                     if(vm.user == null){
                         vm.dataLoading = false;
                         vm.result = 'Failure';
                         vm.message = "You need to create a user first";
-                    }else if(vm.userCheckedArray.length == 0){
+                    }else if(vm.userRolesCheckedArray.length == 0){
                         vm.dataLoading = false;
                         vm.result = 'Failure';
-                        vm.message = "You need to add default pages to the user";
+                        vm.message = "You need to add Roles to the user";
                         vm.activeUsrTab = 1
                     }else{
-                        data.transactionEventType = "PUT"
-                        data.factObjects = [vm.user];
 
-                        DataService.post('inboundService', data).then(function (response) {
+                        DataService.post('users', data, {
+                            transformRequest: angular.identity,
+                            headers: {'Content-Type': undefined, 'Process-Data': false}
+                        }).then(function (response) {
                             vm.dataLoading = false;
 
                             vm.user.user_id = response.data.data.insertId;
@@ -367,51 +356,15 @@ angular.module('Setup')
                                 vm.result = response.data.response;
                                 vm.message += "Error saving user... " + response.data.message;
                             }else{
-                                angular.forEach(vm.userCheckedArray, function(values){
-                                    index = vm.originalUserViewsFromDb.indexOf(values);
-                                    if(index == -1){
-                                        vm.insert.push({
-                                            'authview_authview_id':values,
-                                            'user_user_id':vm.user.user_id,
-                                            'ius_yn':1
-                                        });
-                                    }
-                                });
-                                if(vm.insert.length > 0){
-                                    data.factName = 'User_AuthView';
-                                    if(vm.user.user_id == null){     //Check if pages are added and modify accordingly
-                                        vm.dataLoading = false;
-                                        vm.result = 'Failure';
-                                        vm.message = "You need to create a user first";
-                                    }else {
-                                        vm.message = "Saving pages for user...";
-                                        data.transactionEventType = "PUT"
-                                        data.factObjects = [vm.insert];
-                                        DataService.post('inboundService', data).then(function (response) {
-                                            if(response.data.response == "Failure") {
-                                                vm.result = response.data.response;
-                                                vm.message = "Error saving the pages to the user... "+response.data.message;
-                                            }else{
-                                                vm.result = response.data.response;
-                                                vm.message = response.data.message;
-                                            }
-                                            vm.insert = [];
-                                        });
-                                    }
-                                }else{
-                                    vm.result = response.data.response;
-                                    vm.message = response.data.message;
-
-                                }
+                                vm.result = response.data.response;
+                                vm.message = response.data.message;
+                                vm.getData(vm.pageno);
                             }
 
                         })
                     }
 
                 }
-
-
-
             }
             vm.cancel = function () {
                 $uibModalInstance.dismiss('cancel');

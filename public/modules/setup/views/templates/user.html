@@ -60,6 +60,10 @@
                                 <input type="text" class="form-control" id="contactPhoneNumber" ng-model="UsrCtrl.user.contactphonenumber">
                             </div>
                             <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="text" class="form-control" id="email" ng-model="UsrCtrl.user.email">
+                            </div>
+                            <div class="form-group">
                                 <label for="party">Select party user belongs:</label>
                                 <select id="party" required="required"
                                         class="form-control"
@@ -79,10 +83,10 @@
                             </div>
                         </ng-form>
                     </uib-tab>
-                    <uib-tab index="1" heading="Pages">
+                    <uib-tab index="1" heading="User Roles">
                         <ng-form name="PagesTab">
-                            <div class="form-group" ng-repeat="userView in UsrCtrl.userViews">
-                                <label><input type="checkbox" ng-model="userView.ius_yn" ng-true-value="'1'" value="{{userView.authview_id}}" ng-false-value="'0'" > {{userView.name}}</label>
+                            <div class="form-group" ng-repeat="userRole in UsrCtrl.userRoles">
+                                <label><input type="checkbox" ng-model="userRole.ius_yn" ng-true-value="'true'" ng-false-value="'false'" value="{{userRole.authroles_id}}"> {{userRole.name}}</label> <small>({{userRole.description}})</small>
                             </div>
                         </ng-form>
                     </uib-tab>

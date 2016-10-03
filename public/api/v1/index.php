@@ -1,5 +1,6 @@
 <?php
 header("Content-Type:application/json");
+//echo 'problem in index!';
 
 $scriptName = $_SERVER['SCRIPT_NAME']; // <-- "e.g /api/v1/index.php"
 $requestUri = $_SERVER['REQUEST_URI']; // <-- "e.g /api/v1/login"
@@ -34,10 +35,13 @@ if(!$data){
         }
         $input .= "}";
     }
-//    echo $input;exit;
+    echo $input;
+    exit;
     $data = json_decode($input);
 }
-//echo $input;exit;
+//$incoming = json_encode($data);
+//echo $incoming;
+//exit;
 include_once "core/init.inc.php";
 $fxns = new Functions($dbo);
 
@@ -54,24 +58,30 @@ if($env['PATH_INFO']==="/login"){
             $qryGivToken = "UPDATE Users SET token =:token WHERE email=:email AND password = :password";
             $qryGivToken = $dbo->prepare($qryGivToken);
             $qryGivToken->execute(array(":token" => $token, ":email" => $data->usr, ":password" => md5(base64_decode($data->pwd))));
-            $r_getViews = $dbo->query("SELECT av.authview_id, av.name, av.parent_id, av.viewpath, av.description, av.css_class
-                          FROM User_AuthView ua
-                        JOIN AuthView av
-                          ON ua.authview_authview_id=av.authview_id
-                        WHERE ua.ius_yn=1 AND ua.User_User_Id=".$user[0]['user_id']);
-            // Create a multidimensional array to conatin a list of items and parents
+            $r_getRoles = $dbo->query("SELECT AuthRoles_Id,Name from User_AuthRole ua
+                          JOIN authroles ar
+                          ON ua.AuthRoles_AuthRoles_Id=ar.AuthRoles_Id
+                        WHERE ua.Users_User_Id=".$user[0]['user_id']);
+//            $r_getViews = $dbo->query("SELECT av.authview_id, av.name, av.parent_id, av.viewpath, av.description, av.css_class
+//                          FROM User_AuthView ua
+//                        JOIN AuthView av
+//                          ON ua.authview_authview_id=av.authview_id
+//                        WHERE ua.ius_yn=1 AND ua.User_User_Id=".$user[0]['user_id']);
+//            // Create a multidimensional array to conatin a list of items and parents
 
-            $menu = array('items' => array(), 'parents' => array());
-            // Builds the array lists with data from the menu table
-            while ($items = $r_getViews->fetch(PDO::FETCH_ASSOC)) {
-                $menu['items'][$items['authview_id']] = $items;
-                $menu['parents'][$items['parent_id']][] = $items['authview_id'];
-
-            }
-            $authViews = json_decode($fxns->_buildMenu(0, $menu, array('method' => "json")));
+//            $menu = array('items' => array(), 'parents' => array());
+//            // Builds the array lists with data from the menu table
+//            while ($items = $r_getViews->fetch(PDO::FETCH_ASSOC)) {
+//                $menu['items'][$items['authview_id']] = $items;
+//                $menu['parents'][$items['parent_id']][] = $items['authview_id'];
+//
+//            }
+            $authRoles = $r_getRoles->fetchAll(PDO::FETCH_ASSOC);
+//            $authViews = json_decode($fxns->_buildMenu(0, $menu, array('method' => "json")));
             $response = array("response" => "Success", "token" => $token
             , "authDetails" => $user[0]
-            , "authViews" => $authViews);
+//            , "authViews" => $authViews);
+            , "authRoles" => $authRoles);
 
         }elseif (count($user) > 1) {
             $response = array("response" => "Failure", "message" => "More than one record exists for your login.\nPlease contact admin");
@@ -134,7 +144,7 @@ if($env['PATH_INFO']==="/inboundService") {
                     }
                     $q_str = $fxns->_subStrAtDel($q_str, ' AND ');
                     $files_id = $fxns->_subStrAtDel($files_id, ' ,');
-                    $q_getFiles_str = "SELECT doc_id,doc_quote_id,docName,docCreateDate FROM Document WHERE doc_quote_Id IN ($files_id)";
+                    $q_getFiles_str = "SELECT doc_id,doc_quote_id,docName,docCreateDate,documentType_id FROM Document WHERE doc_quote_Id IN ($files_id)";
                 }
                 if (!empty($data->transactionMetaData->groupingProperties)) {
                     $q_str .= " GROUP BY ".$data->transactionMetaData->groupingProperties;
@@ -294,6 +304,28 @@ if($env['PATH_INFO']==="/inboundService") {
                 }
                 $data=array('token'=> $data->token,'insertId'=>$lastId);
                 $response = array("response" => "Success", "message" => "Record Saved Successfully", "data"=>$data);
+            }
+            if (@$data->transactionEventType == "DELETE") {
+                try{
+                    $q_del = "DELETE FROM {$data->factName} WHERE ";
+                    foreach ($data->transactionMetaData->queryMetaData->queryClause->andExpression as $field) {
+                        $q_del .= $field->propertyName . " " . $field->operatorType . " ";
+                        if($field->operatorType=="IN"){
+                            $q_del .= "(".$field->propertyValue . ") AND";
+                        }elseif($field->operatorType=="LIKE"){
+                            $q_del .= "'%".$field->propertyValue . "%' AND";
+                        }else{
+                            $q_del .= $field->propertyValue . " AND";
+                        }
+                    }
+                    $q_del = $fxns->_subStrAtDel($q_del, ' AND');
+                    $r_str = $dbo->prepare($q_del);
+                    $r_str->execute();
+                    $data=array('token'=> $data->token);
+                    $response = array("response" => "Success", "message" => "Record Deleted Successfully", "data"=>$data);
+                }catch(Exception $e){
+                    $response = array("response"=>"Warning","message"=>$e->getMessage(),"token"=>$data->token);
+                }
             }
         }
     }catch(Exception $e){

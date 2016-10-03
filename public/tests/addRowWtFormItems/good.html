@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="addRowWtFormItems">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/font-awesome-4.6.3/css/font-awesome.min.css">
+    <title>Title</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+</head>
+<body ng-controller="formItems as fi">
+<table>
+    <tr ng-repeat="upload in fi.uploads">
+        <!--<td><input type="text" ng-model="upload.name"></td>-->
+        <td><select ng-model="upload.select" ng-options="type for type in fi.assetTypes"></select></td>
+        <td><input type="file" file-model="upload.myFile"/></td>
+        <!--<td><label class="fa fa-cloud-upload upload-file"><input type="file" multiple file-model="myFile[upload.id]"/> Browse</label></td>-->
+    </tr>
+    <input type="button" ng-click="fi.addNew()" value="Add New"/>
+    <button ng-click="fi.uploadFile()">upload me</button>
+</table>
+<script src="../../scripts/angular/1.5.7/angular.js"></script>
+<script  type="text/javascript">
+    angular.module('Common', []);
+</script>
+<script src="../../modules/common/services.js"></script>
+<script src="../../modules/common/directives.js"></script>
+<script>
+    var app = angular.module('addRowWtFormItems', ['Common']);
+    app.controller('formItems', ['$scope', '$http', function($scope, $http){
+        var vm = this;
+        vm.assetTypes = [ 'Rent', 'Mortgage' ];
+        vm.uploads = [];
+        vm.myFile = []
+        vm.addNew = function(){
+            vm.uploads.push({
+                'name': "",
+                'select': "",
+                'myFile': ''
+            });
+        }
+        vm.uploadFile = function(){
+            var fd = new FormData();
+            angular.forEach(vm.uploads, function(lineItem, key) {
+                var file = lineItem.myFile;
+                fd.append("fileType["+key+"]", lineItem.select);
+                fd.append("file["+key+"]", file);
+            });
+            $http.post("api/index", fd, {
+                        transformRequest: angular.identity,
+                        headers: {'Content-Type': undefined, 'Process-Data': false}
+            })
+            .success(function(){
+                console.log("Success");
+            })
+            .error(function(){
+                console.log("Success");
+            });
+        };
+    }]);
+    </script>
+</body>
+</html>

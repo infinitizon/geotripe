@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="addRowWtFormItems">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/font-awesome-4.6.3/css/font-awesome.min.css">
+    <title>Title</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+</head>
+<body ng-controller="formItems">
+<style>
+    label.upload-file {
+        pointer: cursor;
+        /* Style as you please, it will become the visible UI component. */
+    }
+    label.upload-file input {
+        opacity: 0;
+        position: absolute;
+        z-index: -1;
+    }
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+</style>
+<table>
+    <tr ng-repeat="upload in uploads">
+        <!--<td><input type="text" ng-model="upload.name"></td>-->
+        <td><select ng-model="upload.select" ng-options="type for type in assetTypes"></select></td>
+        <td><input type="file" file-model="myFile[upload.id]"/></td>
+        <!--<td><label class="fa fa-cloud-upload upload-file"><input type="file" multiple file-model="myFile[upload.id]"/> Browse</label></td>-->
+    </tr>
+    <input type="button" ng-click="addNew()" value="Add New"/>
+    <button ng-click="uploadFile()">upload me</button>
+</table>
+<script src="../../scripts/angular/1.5.7/angular.js"></script>
+<script  type="text/javascript">
+    angular.module('Common', []);
+</script>
+<script src="../../modules/common/services.js"></script>
+<script src="../../modules/common/directives.js"></script>
+<script>
+    var app = angular.module('addRowWtFormItems', ['Common']);
+    app.controller('formItems', ['$scope', '$http', function($scope, $http){
+        var i=0;
+        $scope.assetTypes = [ 'Rent', 'Mortgage' ];
+        $scope.uploads = [];
+        $scope.myFile = []
+        $scope.addNew = function(){
+            $scope.uploads.push({
+                'name': "",
+                'select': "",
+                'id': i,
+            });
+            i++;
+            console.log($scope.uploads)
+        }
+        $scope.uploadFile = function(){
+            var fd = new FormData();
+            angular.forEach($scope.uploads, function(lineItem, key) {
+                console.log(lineItem);
+                var file = $scope.myFile[lineItem.id];
+                file.dispFileName = lineItem.name
+                fd.append("fileType["+lineItem.id+"]", lineItem.select);
+                fd.append("file["+lineItem.id+"]", file);
+            });
+            $http.post("api/index", fd, {
+                        transformRequest: angular.identity,
+                        headers: {'Content-Type': undefined, 'Process-Data': false}
+            })
+            .success(function(){
+                console.log("Success");
+            })
+            .error(function(){
+                console.log("Success");
+            });
+        };
+    }]);
+    </script>
+</body>
+</html>
