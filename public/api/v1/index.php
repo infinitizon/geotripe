@@ -58,10 +58,13 @@ if($env['PATH_INFO']==="/login"){
             $qryGivToken = "UPDATE Users SET token =:token WHERE email=:email AND password = :password";
             $qryGivToken = $dbo->prepare($qryGivToken);
             $qryGivToken->execute(array(":token" => $token, ":email" => $data->usr, ":password" => md5(base64_decode($data->pwd))));
-            $r_getRoles = $dbo->query("SELECT AuthRoles_Id,Name from User_AuthRole ua
+            $r_getRoles = $dbo->query("SELECT AuthRoles_Id,Name FROM User_AuthRole ua
                           JOIN authroles ar
                           ON ua.AuthRoles_AuthRoles_Id=ar.AuthRoles_Id
                         WHERE ua.Users_User_Id=".$user[0]['user_id']);
+            //Get all pages for the app
+            $r_getPages = $dbo->query("SELECT av.authview_id, av.name, av.parent_id, av.viewpath, av.description, av.css_class, av.roles FROM AuthView av");
+            //Get the pages the user can view
 //            $r_getViews = $dbo->query("SELECT av.authview_id, av.name, av.parent_id, av.viewpath, av.description, av.css_class
 //                          FROM User_AuthView ua
 //                        JOIN AuthView av
@@ -69,19 +72,21 @@ if($env['PATH_INFO']==="/login"){
 //                        WHERE ua.ius_yn=1 AND ua.User_User_Id=".$user[0]['user_id']);
 //            // Create a multidimensional array to conatin a list of items and parents
 
-//            $menu = array('items' => array(), 'parents' => array());
+            $menu = array('items' => array(), 'parents' => array());
 //            // Builds the array lists with data from the menu table
-//            while ($items = $r_getViews->fetch(PDO::FETCH_ASSOC)) {
-//                $menu['items'][$items['authview_id']] = $items;
-//                $menu['parents'][$items['parent_id']][] = $items['authview_id'];
-//
-//            }
+            while ($items = $r_getPages->fetch(PDO::FETCH_ASSOC)) {
+                $menu['items'][$items['authview_id']] = $items;
+                $menu['parents'][$items['parent_id']][] = $items['authview_id'];
+
+            }
             $authRoles = $r_getRoles->fetchAll(PDO::FETCH_ASSOC);
-//            $authViews = json_decode($fxns->_buildMenu(0, $menu, array('method' => "json")));
+            $appPages = $fxns->_buildMenu(0, $menu, array('method' => "json")); //Same concept was used in getting authViews b4 it was commented
+            $appPages = json_decode($appPages);
             $response = array("response" => "Success", "token" => $token
             , "authDetails" => $user[0]
 //            , "authViews" => $authViews);
-            , "authRoles" => $authRoles);
+            , "authRoles" => $authRoles
+            , "appPages" => $appPages);
 
         }elseif (count($user) > 1) {
             $response = array("response" => "Failure", "message" => "More than one record exists for your login.\nPlease contact admin");

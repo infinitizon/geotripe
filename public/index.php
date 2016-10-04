@@ -28,10 +28,10 @@
 
     </head>
     <body>
-        <!-- https://apps.gndf.io/#/settings/project/ -->
-        <!-- Charts : https://jtblin.github.io/angular-chart.js/  -->
-		<!-- https://www.youtube.com/channel/UCO9JvZ75Usyzgd1puurLF6A -->
-        <!-- File uploads: http://jsfiddle.net/danialfarid/maqbzv15/1118/ -->
+<!--         https://apps.gndf.io/#/settings/project/ -->
+<!--         Charts : https://jtblin.github.io/angular-chart.js/  -->
+<!--		 https://www.youtube.com/channel/UCO9JvZ75Usyzgd1puurLF6A -->
+<!--         File uploads: http://jsfiddle.net/danialfarid/maqbzv15/1118/ -->
 
         <div class="global-content container-fluid" ng-if="$root.globals.currentUser">
             <div class="row global-header">
@@ -44,7 +44,7 @@
                 <div class="col-sm-3 global-sidenav">
                     <div class="nav-list-group">
                         <ul class="main-menu">
-                            <li ng-repeat="menu in $root.globals.currentUser.userDetails.authViews" ng-include="'menuTree'"></li>
+                            <li ng-repeat="menu in $root.globals.currentUser.userDetails.appPages" ng-init="$root.show(menu.roles,menu.authview_id)" ng-include="'menuTree'"></li>
                         </ul>
                     </div>
                 </div>
@@ -54,11 +54,11 @@
             </div>
         </div>
         <script type="text/ng-template" id="menuTree">
-            <a ui-sref="{{ menu.viewpath }}" class="side-bar-nav" ui-sref-active="navActive">
+            <a ui-sref="{{ menu.viewpath }}" ng-if="$root.container[menu.authview_id]" class="side-bar-nav" ui-sref-active="navActive">
                 <i class="fa fa-2x {{menu.css_class}}"></i>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ menu.name }}
             </a>
             <ul ng-if="menu.child">
-                <li ng-repeat="menu in menu.child" ng-include="'menuTree'">
+                <li ng-repeat="menu in menu.child" ng-init="$root.show(menu.roles,menu.authview_id)" ng-include="'menuTree'">
                 </li>
             </ul>
         </script>
@@ -71,11 +71,11 @@
 <!--        <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js" type="text/javascript"></script>-->
         <script src="scripts/excel2json/xlsx.core.min.js" type="text/javascript"></script>
 <!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js" type="text/javascript"></script>-->
-        <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-cookies.js"></script-->
+<!--        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-cookies.js" type="text/javascript"></script>-->
         <script src="scripts/angular/1.5.7/angular-cookies.min.js" type="text/javascript"></script>
-        <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js"></script-->
+<!--        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js" type="text/javascript"></script>-->
         <script src="scripts/angular/1.5.7/angular-animate.min.js" type="text/javascript"></script>
-        <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-touch.min.js"></script-->
+<!--        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-touch.min.js" type="text/javascript"></script>-->
         <script src="scripts/angular/1.5.7/angular-touch.min.js" type="text/javascript"></script>
         <script src="scripts/angular/1.5.7/angular-sanitize.min.js" type="text/javascript"></script>
         <script src="scripts/select.min.js" type="text/javascript"></script>

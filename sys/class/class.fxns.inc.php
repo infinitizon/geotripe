@@ -372,6 +372,7 @@ class Functions extends DB_Connect {
      */
 
     public function _buildMenu($parent, $menu, $options=array('classNm' => "main_nav", 'method'=>"json")) {
+//        var_dump($menu);
         $html = "";
         if (isset($menu['parents'][$parent])) {
             if($options['method']=="json"){
@@ -382,7 +383,8 @@ class Functions extends DB_Connect {
                         $html .= '"authview_id":"'.$menu['items'][$itemId]['authview_id'].'",';
                         $html .= '"name":"'.$menu['items'][$itemId]['name'].'",';
                         $html .= '"viewpath":"'.$menu['items'][$itemId]['viewpath'].'",';
-                        $html .= '"css_class":"'.$menu['items'][$itemId]['css_class'].'"';
+                        $html .= '"css_class":"'.$menu['items'][$itemId]['css_class'].'",';
+                        $html .= '"roles":"'.$menu['items'][$itemId]['roles'].'"';
                         $html .= '},';
                     }
                     if(isset($menu['parents'][$itemId])) {
@@ -391,6 +393,7 @@ class Functions extends DB_Connect {
                         $html .= '"name":"'.$menu['items'][$itemId]['name'].'",';
                         $html .= '"viewpath":"'.$menu['items'][$itemId]['viewpath'].'",';
                         $html .= '"css_class":"'.$menu['items'][$itemId]['css_class'].'",';
+                        $html .= '"roles":"'.$menu['items'][$itemId]['roles'].'",';
                         $html .= '"child":['.$this->_buildMenu($itemId, $menu, $options);
                         $html .= "]},";
                     }
@@ -414,6 +417,7 @@ class Functions extends DB_Connect {
                 $html .= "</ul> \n";
             }
         }
+//        echo $html;
         return $html;
     }
     /*
