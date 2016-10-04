@@ -404,6 +404,15 @@ angular.module('RFQ')
             }
             vm.container = [];
 
+            vm.supervisor = function(){
+                angular.forEach($rootScope.globals.currentUser.userDetails.authRoles  , function(authRole, key) {
+                    if ('RFQ_SUPERVISOR,RFQ_ADMIN,SUPPORT_ADMIN'.indexOf(authRole.Name) >= 0){
+                        return true;
+                        console.log("returned true");
+
+                    }
+                });
+            }
             vm.getLOVs = function(factName, selectScope, options) {
                 if (vm.container[selectScope] == null) {
                     if(options.placeholder) vm.container[options.placeholder] = 'Loading...';

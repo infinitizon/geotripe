@@ -2,15 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d05ef40-3f7a-41b2-81e7-eb6b1d801a63" name="Default" comment="UI-boot">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/setup/views/templates/roles.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Geoscape.mwb" afterPath="$PROJECT_DIR$/../Geoscape.mwb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Geoscape.mwb.bak" afterPath="$PROJECT_DIR$/../Geoscape.mwb.bak" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/v1/index.php" afterPath="$PROJECT_DIR$/api/v1/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/auth/controller.js" afterPath="$PROJECT_DIR$/modules/auth/controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/controller.js" afterPath="$PROJECT_DIR$/modules/quote/controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" afterPath="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../sys/class/class.fxns.inc.php" afterPath="$PROJECT_DIR$/../sys/class/class.fxns.inc.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/setup/views/templates/roles.html" afterPath="$PROJECT_DIR$/modules/setup/views/templates/roles.html" />
     </list>
     <ignored path="public.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,6 +36,10 @@
         <option name="myItemId" />
         <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
       </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="MySQL - geotripe@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
     </PATH>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
@@ -46,24 +48,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/auth/views/login.html">
+      <file leaf-file-name="quoteByStatus.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.625">
-              <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
-              <folding />
+            <state vertical-scroll-proportion="-4.3846154">
+              <caret line="213" column="82" selection-start-line="213" selection-start-column="82" selection-end-line="213" selection-end-column="82" />
+              <folding>
+                <marker date="1475616732259" expanded="true" signature="3810:4383" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
+                <marker date="1475616732259" expanded="true" signature="3845:4382" placeholder="[...]" />
+                <marker date="1475616732259" expanded="true" signature="3846:4381" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.php">
+      <file leaf-file-name="controller.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.647058">
-              <caret line="60" column="100" selection-start-line="60" selection-start-column="100" selection-end-line="60" selection-end-column="100" />
-              <folding>
-                <marker date="1475583812000" expanded="true" signature="1257:1452" placeholder="..." />
-              </folding>
+            <state vertical-scroll-proportion="0.6139456">
+              <caret line="410" column="51" selection-start-line="410" selection-start-column="51" selection-end-line="410" selection-end-column="51" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -72,68 +76,7 @@
         <entry file="file://$PROJECT_DIR$/modules/auth/controller.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="roles.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/modules/setup/views/templates/roles.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.111202635">
-              <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="quoteByStatus.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-31.509804">
-              <caret line="269" column="76" selection-start-line="269" selection-start-column="76" selection-end-line="269" selection-end-column="76" />
-              <folding>
-                <marker date="1475585189000" expanded="true" signature="3810:4383" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
-                <marker date="1475585189000" expanded="true" signature="3845:4382" placeholder="[...]" />
-                <marker date="1475585189000" expanded="true" signature="3846:4381" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/v1/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.5">
-              <caret line="82" column="38" selection-start-line="82" selection-start-column="38" selection-end-line="82" selection-end-column="38" />
-              <folding>
-                <marker date="1475575360000" expanded="true" signature="2294:2533" placeholder="SELECT u.use... Users" />
-                <marker date="1475575360000" expanded="true" signature="2813:2887" placeholder="UPDATE Users... " />
-                <marker date="1475575360000" expanded="true" signature="3118:3327" placeholder="SELECT AuthR... User_AuthRole" />
-                <marker date="1475575360000" expanded="true" signature="3430:3541" placeholder="SELECT AuthR... User_AuthRole" />
-                <marker date="1475575360000" expanded="true" signature="3430:3544" placeholder="SELECT av.au... AuthView" />
-                <marker date="1475575360000" expanded="true" signature="3430:3546" placeholder="SELECT * FRO... AuthView" />
-                <marker date="1475575360000" expanded="true" signature="5513:5551" placeholder="SELECT * FRO... Users" />
-                <marker date="1475575360000" expanded="true" signature="8127:8239" placeholder="SELECT doc_i... Document" />
-                <marker date="1475575360000" expanded="true" signature="8527:8577" placeholder="SELECT COUNT... ${$q_str}" />
-                <marker date="1475575360000" expanded="true" signature="10098:10110" placeholder="INSERT INTO $... " />
-                <marker date="1475575360000" expanded="true" signature="11666:11694" placeholder="UPDATE ${{$d... " />
-                <marker date="1475575360000" expanded="true" signature="12590:12602" placeholder="INSERT INTO $... " />
-                <marker date="1475575360000" expanded="true" signature="12654:12731" placeholder="INSERT INTO logs... " />
-                <marker date="1475575360000" expanded="true" signature="14717:14863" placeholder="INSERT INTO Document... " />
-                <marker date="1475575360000" expanded="true" signature="16675:16710" placeholder="DELETE FROM " />
-                <marker date="1475575360000" expanded="true" signature="18129:18176" placeholder="UPDATE Users... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-42.148148">
-              <caret line="548" column="34" selection-start-line="548" selection-start-column="25" selection-end-line="548" selection-end-column="34" />
+              <caret line="16" column="52" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -208,7 +151,6 @@
         <option value="$PROJECT_DIR$/tests/addRowWtFormItems/api/index.php" />
         <option value="$PROJECT_DIR$/tests/addRowWtFormItems/1.html" />
         <option value="$PROJECT_DIR$/tests/addRowWtFormItems/3.html" />
-        <option value="$PROJECT_DIR$/modules/quote/controller.js" />
         <option value="$PROJECT_DIR$/api/v1/quote.php" />
         <option value="$PROJECT_DIR$/api/v1/.htaccess" />
         <option value="$PROJECT_DIR$/api/v1/user.php" />
@@ -219,8 +161,9 @@
         <option value="$PROJECT_DIR$/../sys/class/class.fxns.inc.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/modules/auth/controller.js" />
-        <option value="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" />
         <option value="$PROJECT_DIR$/modules/setup/views/templates/roles.html" />
+        <option value="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" />
+        <option value="$PROJECT_DIR$/modules/quote/controller.js" />
       </list>
     </option>
   </component>
@@ -246,9 +189,10 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="2110" />
-    <option name="height" value="1335" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="754" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -275,6 +219,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -481,9 +428,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -849,18 +793,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner />
       <method />
@@ -1010,14 +942,15 @@
       <workItem from="1475474761288" duration="3912000" />
       <workItem from="1475516823152" duration="14315000" />
       <workItem from="1475566798723" duration="10898000" />
+      <workItem from="1475611051029" duration="3372000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="437621000" />
+    <option name="totallyTimeSpent" value="440993000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="2110" height="1335" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1029,8 +962,8 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1521327" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1364929" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15153733" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20278184" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1064,13 +997,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tests/test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/phpinfo.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1333,7 +1259,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.2181816">
           <caret line="62" column="49" selection-start-line="62" selection-start-column="49" selection-end-line="62" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1364,7 +1289,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.99505764">
           <caret line="322" column="5" selection-start-line="314" selection-start-column="12" selection-end-line="322" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1384,9 +1308,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../sys/class/class.fxns.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48764417">
+          <caret line="385" column="91" selection-start-line="385" selection-start-column="91" selection-end-line="385" selection-end-column="91" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/setup/views/templates/roles.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/v1/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.028764805">
+          <caret line="87" column="38" selection-start-line="87" selection-start-column="38" selection-end-line="87" selection-end-column="38" />
+          <folding>
+            <marker date="1475610909074" expanded="true" signature="2294:2533" placeholder="SELECT u.use..Users..." />
+            <marker date="1475610909074" expanded="true" signature="2813:2887" placeholder="UPDATE Users..." />
+            <marker date="1475610909074" expanded="true" signature="3118:3327" placeholder="SELECT AuthR..User_AuthRole..." />
+            <marker date="1475610909074" expanded="true" signature="3430:3544" placeholder="SELECT av.au..AuthView..." />
+            <marker date="1475610909074" expanded="true" signature="5513:5551" placeholder="SELECT * FRO..Users..." />
+            <marker date="1475610909074" expanded="true" signature="8127:8239" placeholder="SELECT doc_i..Document..." />
+            <marker date="1475610909074" expanded="true" signature="8527:8577" placeholder="SELECT COUNT..${$q_str}..." />
+            <marker date="1475610909074" expanded="true" signature="10098:10110" placeholder="INSERT INTO ${{$data-&gt;factName}..." />
+            <marker date="1475610909074" expanded="true" signature="11666:11694" placeholder="UPDATE ${{$d..." />
+            <marker date="1475610909074" expanded="true" signature="12590:12602" placeholder="INSERT INTO ${{$data-&gt;factName}..." />
+            <marker date="1475610909074" expanded="true" signature="12654:12731" placeholder="INSERT INTO logs..." />
+            <marker date="1475610909074" expanded="true" signature="14717:14863" placeholder="INSERT INTO Document..." />
+            <marker date="1475610909074" expanded="true" signature="16675:16710" placeholder="DELETE FROM ..." />
+            <marker date="1475610909074" expanded="true" signature="18129:18176" placeholder="UPDATE Users..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/14559179-e102-438c-af62-2ee20b0f613c/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/auth/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="52" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/auth/views/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.625">
+        <state vertical-scroll-proportion="0.5837563">
           <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
           <folding />
         </state>
@@ -1394,83 +1373,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.647058">
-          <caret line="60" column="100" selection-start-line="60" selection-start-column="100" selection-end-line="60" selection-end-column="100" />
+        <state vertical-scroll-proportion="0.030456852">
+          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding>
-            <marker date="1475583812000" expanded="true" signature="1257:1452" placeholder="..." />
+            <marker date="1475610909074" expanded="true" signature="1257:1452" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../sys/class/class.fxns.inc.php">
+    <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48764417">
-          <caret line="385" column="91" selection-start-line="385" selection-start-column="91" selection-end-line="385" selection-end-column="91" />
+        <state vertical-scroll-proportion="-4.3846154">
+          <caret line="213" column="82" selection-start-line="213" selection-start-column="82" selection-end-line="213" selection-end-column="82" />
           <folding>
-            <marker date="1475580037000" expanded="true" signature="13491:13642" placeholder="SELECT page_... pages" />
-            <marker date="1475580037000" expanded="true" signature="16892:16904" placeholder="..." />
-            <marker date="1475580037000" expanded="true" signature="16953:16965" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/v1/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.5">
-          <caret line="82" column="38" selection-start-line="82" selection-start-column="38" selection-end-line="82" selection-end-column="38" />
-          <folding>
-            <marker date="1475575360000" expanded="true" signature="2294:2533" placeholder="SELECT u.use... Users" />
-            <marker date="1475575360000" expanded="true" signature="2813:2887" placeholder="UPDATE Users... " />
-            <marker date="1475575360000" expanded="true" signature="3118:3327" placeholder="SELECT AuthR... User_AuthRole" />
-            <marker date="1475575360000" expanded="true" signature="3430:3541" placeholder="SELECT AuthR... User_AuthRole" />
-            <marker date="1475575360000" expanded="true" signature="3430:3544" placeholder="SELECT av.au... AuthView" />
-            <marker date="1475575360000" expanded="true" signature="3430:3546" placeholder="SELECT * FRO... AuthView" />
-            <marker date="1475575360000" expanded="true" signature="5513:5551" placeholder="SELECT * FRO... Users" />
-            <marker date="1475575360000" expanded="true" signature="8127:8239" placeholder="SELECT doc_i... Document" />
-            <marker date="1475575360000" expanded="true" signature="8527:8577" placeholder="SELECT COUNT... ${$q_str}" />
-            <marker date="1475575360000" expanded="true" signature="10098:10110" placeholder="INSERT INTO $... " />
-            <marker date="1475575360000" expanded="true" signature="11666:11694" placeholder="UPDATE ${{$d... " />
-            <marker date="1475575360000" expanded="true" signature="12590:12602" placeholder="INSERT INTO $... " />
-            <marker date="1475575360000" expanded="true" signature="12654:12731" placeholder="INSERT INTO logs... " />
-            <marker date="1475575360000" expanded="true" signature="14717:14863" placeholder="INSERT INTO Document... " />
-            <marker date="1475575360000" expanded="true" signature="16675:16710" placeholder="DELETE FROM " />
-            <marker date="1475575360000" expanded="true" signature="18129:18176" placeholder="UPDATE Users... " />
+            <marker date="1475616732259" expanded="true" signature="3810:4383" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
+            <marker date="1475616732259" expanded="true" signature="3845:4382" placeholder="[...]" />
+            <marker date="1475616732259" expanded="true" signature="3846:4381" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-42.148148">
-          <caret line="548" column="34" selection-start-line="548" selection-start-column="25" selection-end-line="548" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-31.509804">
-          <caret line="269" column="76" selection-start-line="269" selection-start-column="76" selection-end-line="269" selection-end-column="76" />
-          <folding>
-            <marker date="1475585189000" expanded="true" signature="3810:4383" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
-            <marker date="1475585189000" expanded="true" signature="3845:4382" placeholder="[...]" />
-            <marker date="1475585189000" expanded="true" signature="3846:4381" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/auth/controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/setup/views/templates/roles.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.111202635">
-          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.6139456">
+          <caret line="410" column="51" selection-start-line="410" selection-start-column="51" selection-end-line="410" selection-end-column="51" />
           <folding />
         </state>
       </provider>
