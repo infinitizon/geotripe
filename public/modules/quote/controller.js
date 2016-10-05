@@ -316,7 +316,6 @@ angular.module('RFQ')
                         vm.tqChecked = (vm.quote.quote_status_id==12141326)?true:false;
                         vm.submittedChecked = (vm.quote.quote_status_id==12141324)?true:false;
                         vm.submittedDisabled = vm.submittedChecked;
-                        vm.hideTQ = vm.submittedChecked;
 
                         vm.total_count = response.data.total_count;
                     })
