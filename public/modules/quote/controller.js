@@ -404,14 +404,14 @@ angular.module('RFQ')
             }
             vm.container = [];
 
-            vm.supervisor = function(){
+            vm.supervisor = function(quoteId){
+                var i = 0;
                 angular.forEach($rootScope.globals.currentUser.userDetails.authRoles  , function(authRole, key) {
-                    if ('RFQ_SUPERVISOR,RFQ_ADMIN,SUPPORT_ADMIN'.indexOf(authRole.Name) >= 0){
-                        return true;
-                        console.log("returned true");
-
+                    if (quoteId && "RFQ_SUPERVISOR,RFQ_ADMIN,SUPPORT_ADMIN".indexOf(authRole.Name) >= 0){
+                        i++;
                     }
                 });
+                return (i>0)?true:false;
             }
             vm.getLOVs = function(factName, selectScope, options) {
                 if (vm.container[selectScope] == null) {
@@ -490,7 +490,7 @@ angular.module('RFQ')
                 angular.forEach(vm.lineItems  , function(QuoteDetail, key) {
                     var QuoteDetail = {partno_modelno:vm.lineItems[key].partno_modelno,description: vm.lineItems[key].matDesc, quantity: vm.lineItems[key].qty};
                     if(vm.quote.quote_id){
-                        QuoteDetail.unitofmeasure = vm.lineItems[key].unitofmeasure.unitofmeasure_id;
+                        QuoteDetail.unitofmeasure = (vm.lineItems[key].unitofmeasure)?vm.lineItems[key].unitofmeasure.unitofmeasure_id:null;
                         QuoteDetail.unitprice = vm.lineItems[key].unitprice;
                         //QuoteDetail.crossrrate = vm.lineItems[key].crossrrate;
                         //QuoteDetail.unit_price_usd = vm.lineItems[key].unit_price_usd;
@@ -587,9 +587,10 @@ angular.module('RFQ')
             if(vm.data.item){
                 vm.indexSelected = vm.data.index;
                 vm.id = vm.data.item.id;
-                vm.partno_modelno = vm.data.partno_modelno;
+                vm.partno_modelno = vm.data.item.partno_modelno;
                 vm.matdesc = vm.data.item.matDesc;
                 vm.qty = vm.data.item.qty;
+                vm.unitprice = vm.data.item.unitprice;
                 vm.selectedManufacturers = vm.data.item.manus;
                 if(vm.data.item.unitofmeasure) {
                     vm.getLOVs('unitofmeasure', 'unitofmeasures', {

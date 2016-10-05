@@ -70,19 +70,19 @@ angular.module('School', ['Auth', 'Home', 'RFQ', 'Setup', 'ui.router', 'ngCookie
                  }
              })
    }])
-   .run(['$rootScope', '$location', '$cookieStore', '$uibModalStack'
-      , function ($rootScope, $location, $cookieStore,$uibModalStack) {
-         // keep user logged in after page refresh
-         $rootScope.globals = $cookieStore.get('globals') || {};
-         $rootScope.$on('$locationChangeStart', function (event, next, current) {
-             $uibModalStack.dismissAll();
-            // redirect to login page if not logged in
-            if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
-                $location.path('/login');
-            }
-         });
+    .run(['$rootScope', '$location', '$cookieStore', '$uibModalStack'
+        , function ($rootScope, $location, $cookieStore,$uibModalStack) {
+             // keep user logged in after page refresh
+             $rootScope.globals = $cookieStore.get('globals') || {};
+             $rootScope.$on('$locationChangeStart', function (event, next, current) {
+                 $uibModalStack.dismissAll();
+                // redirect to login page if not logged in
+                if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
+                    $location.path('/login');
+                }
+            });
 
-         $rootScope.authenticated = false;
+            $rootScope.authenticated = false;
 //            Data.get('session').then(function (results) {
 //                if (results.uid) {
 //                    $rootScope.authenticated = true;
@@ -98,4 +98,15 @@ angular.module('School', ['Auth', 'Home', 'RFQ', 'Setup', 'ui.router', 'ngCookie
 //                    }
 //                }
 //            });
-      }])
+            // With this part, I'm able to hide and show pages based on the ROLE assigned to a user
+            $rootScope.container = [];
+            $rootScope.show = function(roles, authId){
+               angular.forEach($rootScope.globals.currentUser.userDetails.authRoles  , function(authRole, key) {
+                   if (roles.indexOf(authRole.Name) >= 0){
+                       $rootScope.container[authId] = true;
+                   } else {
+                       $rootScope.container[authId] = false;
+                   }
+               });
+            }
+    }])

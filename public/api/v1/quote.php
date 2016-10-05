@@ -234,7 +234,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                             $r_QuoteDetailFields = $dbo->prepare($q_QuoteDetailFields);
                             $r_QuoteDetailFields->execute(array(":token" => $token));
                             $QuoteDetailFields = $r_QuoteDetailFields->fetchAll(PDO::FETCH_ASSOC);
-
+                            
                             $q_str_quoteDetail = "UPDATE QuoteDetail SET ";
                             $inserts = "";
                             foreach ($r_fields as $fields) {
