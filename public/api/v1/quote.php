@@ -154,7 +154,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         if(isset($data->factObjects[0]->QuoteDetail_Manufacturer[$key])){
                             foreach($data->factObjects[0]->QuoteDetail_Manufacturer[$key] as $subVals){
                                 $q_str = "INSERT INTO QuoteDetail_Manufacturer ";
-                                $ins_fields = " (QuoteDetail_QuoteDetail_Id,";
+                                $ins_fields = " (QuoteDetail_QuoteDetail_Id ,";
                                 $ins_values = " VALUES ($lastQuoteDetailId,";
                                 foreach($subVals as $col => $value){
                                     $ins_fields .= $col . " ,";
