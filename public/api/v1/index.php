@@ -59,7 +59,7 @@ if($env['PATH_INFO']==="/login"){
             $qryGivToken = $dbo->prepare($qryGivToken);
             $qryGivToken->execute(array(":token" => $token, ":email" => $data->usr, ":password" => md5(base64_decode($data->pwd))));
             $r_getRoles = $dbo->query("SELECT AuthRoles_Id,Name FROM User_AuthRole ua
-                          JOIN authroles ar
+                          JOIN AuthRoles ar
                           ON ua.AuthRoles_AuthRoles_Id=ar.AuthRoles_Id
                         WHERE ua.Users_User_Id=".$user[0]['user_id']);
             //Get all pages for the app

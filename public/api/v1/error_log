@@ -1,0 +1,94 @@
+[09-Sep-2016 07:01:51 America/Chicago] PHP Warning:  include_once(core/init.inc.php): failed to open stream: No such file or directory in /home3/cummins/public_html/geotripe/api/v1/index.php on line 41
+[09-Sep-2016 07:01:51 America/Chicago] PHP Warning:  include_once(): Failed opening 'core/init.inc.php' for inclusion (include_path='.:/opt/php54/lib/php') in /home3/cummins/public_html/geotripe/api/v1/index.php on line 41
+[09-Sep-2016 07:01:51 America/Chicago] PHP Fatal error:  Class 'Functions' not found in /home3/cummins/public_html/geotripe/api/v1/index.php on line 42
+[09-Sep-2016 07:10:10 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'cummins_geotripe.party' doesn't exist' in /home3/cummins/public_html/geotripe/api/v1/quote.php:83
+Stack trace:
+#0 /home3/cummins/public_html/geotripe/api/v1/quote.php(83): PDO->query('SELECT COUNT(*)...')
+#1 {main}
+  thrown in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 83
+[09-Sep-2016 07:12:44 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'cummins_geotripe.party' doesn't exist' in /home3/cummins/public_html/geotripe/api/v1/quote.php:83
+Stack trace:
+#0 /home3/cummins/public_html/geotripe/api/v1/quote.php(83): PDO->query('SELECT COUNT(*)...')
+#1 {main}
+  thrown in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 83
+[09-Sep-2016 07:14:15 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'cummins_geotripe.quote' doesn't exist' in /home3/cummins/public_html/geotripe/api/v1/quote.php:83
+Stack trace:
+#0 /home3/cummins/public_html/geotripe/api/v1/quote.php(83): PDO->query('SELECT COUNT(*)...')
+#1 {main}
+  thrown in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 83
+[09-Sep-2016 08:33:55 America/Chicago] PHP Fatal error:  Uncaught exception 'Exception' with message '-110011' in /home3/cummins/public_html/geotripe/api/v1/quote.php:52
+Stack trace:
+#0 {main}
+  thrown in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 52
+[09-Sep-2016 09:21:36 America/Chicago] PHP Fatal error:  Uncaught exception 'Exception' with message '-110011' in /home3/cummins/public_html/geotripe/api/v1/quote.php:52
+Stack trace:
+#0 {main}
+  thrown in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 52
+[09-Sep-2016 09:21:44 America/Chicago] PHP Fatal error:  Uncaught exception 'Exception' with message '-110011' in /home3/cummins/public_html/geotripe/api/v1/quote.php:52
+Stack trace:
+#0 {main}
+  thrown in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 52
+[09-Sep-2016 09:21:47 America/Chicago] PHP Fatal error:  Uncaught exception 'Exception' with message '-110011' in /home3/cummins/public_html/geotripe/api/v1/quote.php:52
+Stack trace:
+#0 {main}
+  thrown in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 52
+[09-Sep-2016 09:24:01 America/Chicago] PHP Fatal error:  Uncaught exception 'Exception' with message '-110011' in /home3/cummins/public_html/geotripe/api/v1/quote.php:52
+Stack trace:
+#0 {main}
+  thrown in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 52
+[09-Sep-2016 09:24:02 America/Chicago] PHP Fatal error:  Uncaught exception 'Exception' with message '-110011' in /home3/cummins/public_html/geotripe/api/v1/quote.php:52
+Stack trace:
+#0 {main}
+  thrown in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 52
+[09-Sep-2016 09:24:23 America/Chicago] PHP Fatal error:  Uncaught exception 'Exception' with message '-110011' in /home3/cummins/public_html/geotripe/api/v1/quote.php:52
+Stack trace:
+#0 {main}
+  thrown in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 52
+[09-Sep-2016 09:26:32 America/Chicago] PHP Fatal error:  Uncaught exception 'Exception' with message '-110011' in /home3/cummins/public_html/geotripe/api/v1/quote.php:52
+Stack trace:
+#0 {main}
+  thrown in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 52
+[16-Sep-2016 08:44:27 America/Chicago] PHP Fatal error:  Uncaught exception 'Exception' with message '-110011' in /home3/cummins/public_html/geotripe/api/v1/quote.php:52
+Stack trace:
+#0 {main}
+  thrown in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 52
+[16-Sep-2016 08:44:50 America/Chicago] PHP Fatal error:  Uncaught exception 'Exception' with message '-110011' in /home3/cummins/public_html/geotripe/api/v1/quote.php:52
+Stack trace:
+#0 {main}
+  thrown in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 52
+[20-Sep-2016 03:08:17 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'cummins_geotripe.party' doesn't exist' in /home3/cummins/public_html/geotripe/api/v1/quote.php:83
+Stack trace:
+#0 /home3/cummins/public_html/geotripe/api/v1/quote.php(83): PDO->query('SELECT COUNT(*)...')
+#1 {main}
+  thrown in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 83
+[20-Sep-2016 03:08:22 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'cummins_geotripe.party' doesn't exist' in /home3/cummins/public_html/geotripe/api/v1/quote.php:83
+Stack trace:
+#0 /home3/cummins/public_html/geotripe/api/v1/quote.php(83): PDO->query('SELECT COUNT(*)...')
+#1 {main}
+  thrown in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 83
+[20-Sep-2016 03:08:25 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'cummins_geotripe.party' doesn't exist' in /home3/cummins/public_html/geotripe/api/v1/quote.php:83
+Stack trace:
+#0 /home3/cummins/public_html/geotripe/api/v1/quote.php(83): PDO->query('SELECT COUNT(*)...')
+#1 {main}
+  thrown in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 83
+[20-Sep-2016 03:08:28 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'cummins_geotripe.party' doesn't exist' in /home3/cummins/public_html/geotripe/api/v1/quote.php:83
+Stack trace:
+#0 /home3/cummins/public_html/geotripe/api/v1/quote.php(83): PDO->query('SELECT COUNT(*)...')
+#1 {main}
+  thrown in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 83
+[20-Sep-2016 03:08:32 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'cummins_geotripe.party' doesn't exist' in /home3/cummins/public_html/geotripe/api/v1/quote.php:83
+Stack trace:
+#0 /home3/cummins/public_html/geotripe/api/v1/quote.php(83): PDO->query('SELECT COUNT(*)...')
+#1 {main}
+  thrown in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 83
+[20-Sep-2016 03:08:40 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'cummins_geotripe.party' doesn't exist' in /home3/cummins/public_html/geotripe/api/v1/quote.php:83
+Stack trace:
+#0 /home3/cummins/public_html/geotripe/api/v1/quote.php(83): PDO->query('SELECT COUNT(*)...')
+#1 {main}
+  thrown in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 83
+[20-Sep-2016 03:08:48 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'cummins_geotripe.party' doesn't exist' in /home3/cummins/public_html/geotripe/api/v1/quote.php:83
+Stack trace:
+#0 /home3/cummins/public_html/geotripe/api/v1/quote.php(83): PDO->query('SELECT COUNT(*)...')
+#1 {main}
+  thrown in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 83
+[23-Sep-2016 07:29:54 America/Chicago] PHP Parse error:  syntax error, unexpected 'm' (T_STRING), expecting ',' or ';' in /home3/cummins/public_html/geotripe/api/v1/quote.php on line 179
