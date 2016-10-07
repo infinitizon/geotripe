@@ -4,7 +4,6 @@ angular.module('Auth')
             var vm = this;
             // reset login status
             AuthenticationService.ClearCredentials(function(response){
-                console.log(response.data.response);
                 if(response.data.response==="Failure"){
                     $location.path('/home');
                 }

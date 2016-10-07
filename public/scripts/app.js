@@ -7,69 +7,69 @@ angular.module('RFQ', ['Common'])
 angular.module('Setup', ['Common']);
  
 angular.module('School', ['Auth', 'Home', 'RFQ', 'Setup', 'ui.router', 'ngCookies', 'ngSanitize', 'ui.bootstrap', 'ui.bootstrap', 'ui.select','angularUtils.directives.dirPagination'])
-   .config(['$stateProvider', '$httpProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider'
-      , function ($stateProvider, $httpProvider, $urlMatcherFactoryProvider, $urlRouterProvider) {
-         $urlRouterProvider.otherwise('/login');
-         $urlMatcherFactoryProvider.caseInsensitive(true);
+    .config(['$stateProvider', '$httpProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider'
+        , function ($stateProvider, $httpProvider, $urlMatcherFactoryProvider, $urlRouterProvider) {
+             $urlRouterProvider.otherwise('/login');
+             $urlMatcherFactoryProvider.caseInsensitive(true);
 
-         //Set default headers to $http
-         $httpProvider.defaults.useXDomain = true;
-         $httpProvider.defaults.withCredentials = true;
-         delete $httpProvider.defaults.headers.common["X-Requested-With"];
-         $httpProvider.defaults.headers.common["Accept"] = "application/json";
-         
-         $stateProvider
-            .state('login', {
-                url:'/login',
-                views: {
-                    'login': {
-                        templateUrl: 'modules/auth/views/login.html',
-                        controller: 'LoginController',
-                        controllerAs : 'loginCtrl'
+             //Set default headers to $http
+             $httpProvider.defaults.useXDomain = true;
+             $httpProvider.defaults.withCredentials = true;
+             delete $httpProvider.defaults.headers.common["X-Requested-With"];
+             $httpProvider.defaults.headers.common["Accept"] = "application/json";
+
+             $stateProvider
+                .state('login', {
+                    url:'/login',
+                    views: {
+                        'login': {
+                            templateUrl: 'modules/auth/views/login.html',
+                            controller: 'LoginController',
+                            controllerAs : 'loginCtrl'
+                        }
                     }
-                }
-            })
-             .state('home', {
-                 url:'/home',
-                 views: {
-                     'app_pages': {
-                         templateUrl: 'modules/home/views/home.html',
-                         controller: 'HomeController',
-                         controllerAs : 'homeCtrl'
+                })
+                 .state('home', {
+                     url:'/home',
+                     views: {
+                         'app_pages': {
+                             templateUrl: 'modules/home/views/home.html',
+                             controller: 'HomeController',
+                             controllerAs : 'homeCtrl'
+                         }
                      }
-                 }
-             })
-             .state('setup', {
-                 url:'/setup',
-                 views: {
-                     'app_pages': {
-                         templateUrl: 'modules/setup/views/setup.html',
-                         controller: 'SetupController',
-                         controllerAs : 'setupCtrl'
+                 })
+                 .state('setup', {
+                     url:'/setup',
+                     views: {
+                         'app_pages': {
+                             templateUrl: 'modules/setup/views/setup.html',
+                             controller: 'SetupController',
+                             controllerAs : 'setupCtrl'
+                         }
                      }
-                 }
-             })
-             .state('quotes', {
-                 url:'/quotes',
-                 views: {
-                     'app_pages': {
-                         templateUrl: 'modules/quote/views/quotes.html',
-                         controller: 'QuoteController',
-                         controllerAs : 'quotCtrl'
+                 })
+                 .state('quotes', {
+                     url:'/quotes',
+                     views: {
+                         'app_pages': {
+                             templateUrl: 'modules/quote/views/quotes.html',
+                             controller: 'QuoteController',
+                             controllerAs : 'quotCtrl'
+                         }
                      }
-                 }
-             })
-             .state('quoteStatus', {
-                 url:'/quotestatus/:client/:clientStatus',
-                 views: {
-                     'app_pages': {
-                         templateUrl: 'modules/quote/views/quoteByStatus.html',
-                         controller: 'QuoteByStatusController',
-                         controllerAs : 'quotCtrl'
+                 })
+                 .state('quoteStatus', {
+                     url:'/quotestatus/:client/:clientStatus',
+                     views: {
+                         'app_pages': {
+                             templateUrl: 'modules/quote/views/quoteByStatus.html',
+                             controller: 'QuoteByStatusController',
+                             controllerAs : 'quotCtrl'
+                         }
                      }
-                 }
-             })
-   }])
+                })
+    }])
     .run(['$rootScope', '$location', '$cookieStore', '$uibModalStack'
         , function ($rootScope, $location, $cookieStore,$uibModalStack) {
              // keep user logged in after page refresh

@@ -40,6 +40,7 @@ angular.module('RFQ')
 
             var vm = this;
             vm.uploads = [];
+            console.log(CommonServices.formatNumber(123456789.12345, {dp:0}) );
             vm.addNewFile = function(){
                 vm.uploads.push({
                     'documentType': {},
@@ -80,6 +81,7 @@ angular.module('RFQ')
                     if(quoteId) {
                         items['UOM'] = (lineItem.unitofmeasure) ? lineItem.unitofmeasure.name : '';
                         items['Unit Price'] = lineItem.unitprice;
+                        items['oem_description'] = lineItem.oem_description;
                         //items['Cross Rate'] = lineItem.crossrrate;
                         //items['Unit Price (USD)'] = lineItem.unit_price_usd;
                         //items['MFR Total'] = lineItem.mfr_total;
@@ -127,6 +129,7 @@ angular.module('RFQ')
                         }
                     });
                     items.matDesc=lineItem['MaterialDesciption'];
+                    items.oem_description=lineItem['oem_description'];
                     items.qty=lineItem.qty;
                     item.partno_modelno=lineItem.partno_modelno;
                     items.unitprice=lineItem['Unit Price'];
@@ -322,7 +325,7 @@ angular.module('RFQ')
                     /*Now get the quote details*/
                     var data=angular.copy(CommonServices.postData);
                     data.factName = 'QuoteDetail qd, UnitOfMeasure uom, QuoteDetail_Manufacturer qdm';
-                    data.transactionMetaData.responseDataProperties = "qd.quotedetail_id&qd.quote_quote_id&qd.quantity&qd.partno_modelno&qd.description&unitprice&group_concat(qdm.Party_Party_Id)Party_Party_Id&concat('{"+'"unitofmeasure_id":"'+"',uom.unitofmeasure_id,'"+'","name":"'+"',uom.name,'"+'"}'+"')unitofmeasure&qd.crossrrate&qd.unit_price_usd&qd.mfr_total&qd.certOfOrigin&qd.weight&qd.g_f&qd.packaging&qd.int_f&qd.ins&qd.cif&qd.custom&qd.surch&qd.ciss&qd.etls&qd.vat&qd.nafdac_soncap&qd.clearing&qd.sub_total&qd.goods_in_transit&qd.lt_onne&qd.bch&qd.f_r&qd.cof&qd.total1&qd.mk_up&qd.nlcf&qd.total3&qd.u_p";
+                    data.transactionMetaData.responseDataProperties = "qd.quotedetail_id&qd.quote_quote_id&qd.quantity&qd.partno_modelno&qd.description&qd.oem_description&unitprice&group_concat(qdm.Party_Party_Id)Party_Party_Id&concat('{"+'"unitofmeasure_id":"'+"',uom.unitofmeasure_id,'"+'","name":"'+"',uom.name,'"+'"}'+"')unitofmeasure&qd.crossrrate&qd.unit_price_usd&qd.mfr_total&qd.certOfOrigin&qd.weight&qd.g_f&qd.packaging&qd.int_f&qd.ins&qd.cif&qd.custom&qd.surch&qd.ciss&qd.etls&qd.vat&qd.nafdac_soncap&qd.clearing&qd.sub_total&qd.goods_in_transit&qd.lt_onne&qd.bch&qd.f_r&qd.cof&qd.total1&qd.mk_up&qd.nlcf&qd.total3&qd.u_p";
                     data.transactionMetaData.queryMetaData.joinClause = {
                         'joinType':['LEFT JOIN','JOIN'],'joinKeys':['qd.unitofmeasure=uom.unitofmeasure_id','qd.QuoteDetail_Id=qdm.QuoteDetail_QuoteDetail_Id']
                     }
@@ -351,7 +354,11 @@ angular.module('RFQ')
                                     }
                                 ];
                                 DataService.post('inboundService', data).then(function (response) {
-                                    var items = {id:lineItem.quotedetail_id,partno_modelno:lineItem.partno_modelno,matDesc:lineItem.description,qty:lineItem.quantity,manus:JSON.parse(response.data.data[0].manus),unitofmeasure:JSON.parse(lineItem.unitofmeasure)};
+                                    var items = {
+                                        id:lineItem.quotedetail_id, partno_modelno:lineItem.partno_modelno, matDesc:lineItem.description
+                                        , oem_description:lineItem.oem_description, qty:lineItem.quantity, manus:JSON.parse(response.data.data[0].manus)
+                                        , unitofmeasure:JSON.parse(lineItem.unitofmeasure)
+                                    };
                                     items.unitprice = lineItem.unitprice;
                                     //items.unit_price_usd = lineItem.crossrrate;
                                     //items.crossrrate = lineItem.crossrrate;
@@ -489,6 +496,7 @@ angular.module('RFQ')
                 angular.forEach(vm.lineItems  , function(QuoteDetail, key) {
                     var QuoteDetail = {partno_modelno:vm.lineItems[key].partno_modelno,description: vm.lineItems[key].matDesc, quantity: vm.lineItems[key].qty};
                     if(vm.quote.quote_id){
+                        QuoteDetail.oem_description = vm.lineItems[key].oem_description;
                         QuoteDetail.unitofmeasure = (vm.lineItems[key].unitofmeasure)?vm.lineItems[key].unitofmeasure.unitofmeasure_id:null;
                         QuoteDetail.unitprice = vm.lineItems[key].unitprice;
                         //QuoteDetail.crossrrate = vm.lineItems[key].crossrrate;
@@ -588,6 +596,7 @@ angular.module('RFQ')
                 vm.id = vm.data.item.id;
                 vm.partno_modelno = vm.data.item.partno_modelno;
                 vm.matdesc = vm.data.item.matDesc;
+                vm.oem_description = vm.data.item.oem_description;
                 vm.qty = vm.data.item.qty;
                 vm.unitprice = vm.data.item.unitprice;
                 vm.selectedManufacturers = vm.data.item.manus;
@@ -638,6 +647,7 @@ angular.module('RFQ')
                     "id":vm.id,
                     "partno_modelno":vm.partno_modelno,
                     "matDesc":vm.matdesc,
+                    "oem_description":vm.oem_description,
                     "qty":vm.qty,
                     "manus":vm.selectedManufacturers,
                     "unitofmeasure":vm.unitofmeasure,

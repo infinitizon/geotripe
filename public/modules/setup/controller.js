@@ -10,6 +10,10 @@ angular.module('Setup')
                         options.controller = 'UserController';
                         options.controllerAs = 'UsrCtrl';
                         break;
+                    case 'roles':
+                        options.controller = 'RolesController';
+                        options.controllerAs = 'RoleCtrl';
+                        break;
                     default:
                         options.controller = 'PartyController';
                         options.controllerAs = 'PartyCtrl';
@@ -29,6 +33,12 @@ angular.module('Setup')
                 });
             };
         }])
+    .controller('RolesController', ['$rootScope','$uibModalInstance','DataService','CommonServices',
+        function ($rootScope, $uibModalInstance,DataService,CommonServices) {
+            var vm = this;
+
+        }])
+
     .controller('PartyController', ['$rootScope','$uibModalInstance','DataService','CommonServices',
         function ($rootScope, $uibModalInstance,DataService,CommonServices) {
             var vm = this;

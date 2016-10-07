@@ -80,6 +80,25 @@ angular.module('Common')
                 strLn = strLn || 8;
                 return Math.random().toString(36).substr(2,strLn);
             };
+            Service.formatNumber = function(num, opts) {
+                /**
+                 * formatMoney(num, opts)
+                 *
+                 * @param Number num: The number to formaat
+                 * @param object {}: can have the following options
+                 *      curr    : In case it is a money value, the currency symbol to use
+                 *      dp      : Decimal places
+                 *      point   : The character to use for decimal point.....default "."
+                 *      comma   : Character to use as seperator......default ","
+                 */
+                c = isNaN(opts.dp = Math.abs(opts.dp)) ? 2 : opts.dp,
+                d = opts.point == undefined ? "." : opts.point,
+                t = opts.comma == undefined ? "," : opts.comma,
+                s = num < 0 ? "-" : "",
+                i = String(parseInt(num = Math.abs(Number(num) || 0).toFixed(c))),
+                j = (j = i.length) > 3 ? j % 3 : 0;
+                return ((opts.curr)? opts.curr + " " :'') + s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(num - i).toFixed(c).slice(2) : "");
+            };
             Service.postData = {
                 "transactionEventType"   : "Query",
                 "factName": "Party",

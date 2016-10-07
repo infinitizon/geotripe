@@ -119,7 +119,7 @@
                         <label for="currency">Currency  <span ng-show="!quotCtrl.quote.quote_currency_id" class="text-danger">*</span></label>
                         <select id="currency" required
                                 class="form-control"
-                                data-ng-click="quotCtrl.getLOVs('currency','currencies', {'response':'currency_Id&code'})"
+                                data-ng-click="quotCtrl.getLOVs('Currency','currencies', {'response':'currency_Id&code'})"
                                 data-ng-options="currencies.currency_Id as currencies.code for currencies in quotCtrl.container['currencies']"
                                 data-ng-model="quotCtrl.quote.quote_currency_id">
                             <option value="">{{quotCtrl.quote.quote_currency_id || "--Select Currency --"}}</option>
@@ -222,7 +222,7 @@
                             <thead>
                                 <tr>
                                     <th>Options</th><th>S/N</th><th>Part No./Model</th>
-                                    <th>Material Description</th><th>Qty</th><th>Manufacturers</th>
+                                    <th>Material Description</th><th>OEM Description</th><th>Qty</th><th>Manufacturers</th>
                                     <th data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)">UOM</th>
                                     <th data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)">Unit Price</th>
                                     <!--<th data-ng-if="quotCtrl.quote.quote_id">Cross Rate</th>-->
@@ -257,7 +257,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-if="quotCtrl.lineItems.length <= 0"><td colspan="{{quotCtrl.quote.quote_id?8:6}}" style="text-align:center;">{{ quotCtrl.lineItemsLoading || 'Loading new data!!' }}</td></tr>
+                                <tr ng-if="quotCtrl.lineItems.length <= 0"><td colspan="{{quotCtrl.quote.quote_id?9:7}}" style="text-align:center;">{{ quotCtrl.lineItemsLoading || 'Loading new data!!' }}</td></tr>
                                 <tr ng-repeat="lineItem in quotCtrl.lineItems track by $index">
                                     <td>
                                         <i class="fa fa-pencil-square-o fa-2x text-success" style="cursor: pointer;" ng-click="quotCtrl.open({'modalSize':'lg', 'url':'quoteItems', 'data':{index:$index,item:lineItem, 'edit':(quotCtrl.quote.quote_id)?true:false}})" aria-hidden="true"></i>
@@ -266,6 +266,7 @@
                                     <td>{{$index+1}}</td>
                                     <td>{{lineItem.partno_modelno}}</td> <!-- UOM -->
                                     <td>{{lineItem.matDesc}}</td>
+                                    <td>{{lineItem.oem_description}}</td>
                                     <td>{{lineItem.qty}}</td>
                                     <td>{{(lineItem.manus.length >1) ? 'Many' : lineItem.manus[0].name }}</td>
                                     <td data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)">{{lineItem.unitofmeasure.name}}</td> <!-- UOM -->
