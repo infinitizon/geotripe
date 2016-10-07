@@ -40,7 +40,7 @@ angular.module('RFQ')
 
             var vm = this;
             vm.uploads = [];
-            console.log(CommonServices.formatNumber(123456789.12345, {dp:0}) );
+            //console.log(CommonServices.fmtNum(123456789.12345, {dp:0}) );
             vm.addNewFile = function(){
                 vm.uploads.push({
                     'documentType': {},
@@ -48,24 +48,26 @@ angular.module('RFQ')
                 });
             }
             vm.deleteFile = function(file){
-                var index = vm.quoteFiles.indexOf(file);
+                if(confirm("Are you sure you want to delete this file")){
+                    var index = vm.quoteFiles.indexOf(file);
 
-                var data=angular.copy(CommonServices.postData);
-                data.factName = 'Document';
-                data.transactionEventType = "DELETE"
-                data.transactionMetaData.queryMetaData.queryClause.andExpression = [
-                    {
-                        "propertyName": "doc_id",
-                        "propertyValue": file.doc_id,
-                        "propertyDataType": "BIGINT",
-                        "operatorType": "="
-                    }
-                ];
-                DataService.post('inboundService', data).then(function (response) {
-                    if(response.data.response == 'Success'){
-                        vm.quoteFiles.splice(index, 1);
-                    };
-                });
+                    var data=angular.copy(CommonServices.postData);
+                    data.factName = 'Document';
+                    data.transactionEventType = "DELETE"
+                    data.transactionMetaData.queryMetaData.queryClause.andExpression = [
+                        {
+                            "propertyName": "doc_id",
+                            "propertyValue": file.doc_id,
+                            "propertyDataType": "BIGINT",
+                            "operatorType": "="
+                        }
+                    ];
+                    DataService.post('inboundService', data).then(function (response) {
+                        if(response.data.response == 'Success'){
+                            vm.quoteFiles.splice(index, 1);
+                        };
+                    });
+                }
             }
             vm.lineItems = []
             vm.checkTheBox = function(e){
@@ -199,10 +201,17 @@ angular.module('RFQ')
             };
 
             vm.getDueDateDisplay = function(numDays, status){
-                console.log(numDays);
-                if(numDays <= 0 && status == "In Progress"){
-                    return 'Expired';
-                }else if(numDays <= 0){
+                if(status == "In Progress"){
+                    if(numDays < 0){
+                        return 'Expired';
+                    }else if(numDays == 0){
+                        return "Expiring today";
+                    }else{
+                        return numDays;
+                    }
+                }else if(status == "TQ"){
+                    return 'Pending TQ clearance';
+                }else if(status == "Submitted"){
                     return 'Done';
                 }
             }

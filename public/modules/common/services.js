@@ -80,9 +80,9 @@ angular.module('Common')
                 strLn = strLn || 8;
                 return Math.random().toString(36).substr(2,strLn);
             };
-            Service.formatNumber = function(num, opts) {
+            Service.fmtNum = function(num, opts) {
                 /**
-                 * formatMoney(num, opts)
+                 * formatMoney(num, opts) : Format number
                  *
                  * @param Number num: The number to formaat
                  * @param object {}: can have the following options

@@ -35,7 +35,15 @@ angular.module('Common')
                 }
             }
         };
-    }).directive('importFromExcel',
+    }).directive('izNumber', ['$parse','CommonServices', function($parse, CommonServices) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                var opt = scope.$eval(attrs.izOptions);
+                element.html(CommonServices.fmtNum(scope.$eval(attrs.izNumber), opt));
+            }
+        };
+    }]).directive('importFromExcel',
         ['ImportExportToExcel',
             function(ImportExportToExcel) {
                 //Factory object ImportExportToExcel would be needed.
