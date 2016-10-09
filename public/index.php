@@ -55,7 +55,7 @@
                                     <p class="text-left"><strong>{{$root.globals.currentUser.userDetails.authDetails.firstname}} {{$root.globals.currentUser.userDetails.authDetails.lastname}}</strong></p>
                                     <p class="text-left small">{{$root.globals.currentUser.userDetails.authDetails.email}}</p>
                                     <p class="text-left">
-                                        <a href="#" class="btn btn-primary btn-block btn-sm">My Account</a>
+                                        <a ui-sref="home.profile" class="btn btn-primary btn-block btn-sm">My Account</a>
                                     </p>
                                 </div>
                             </div>

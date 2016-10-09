@@ -1,6 +1,10 @@
-<div class="row wrapper">
+<div class="row wrapper" data-ng-if="parent.hideParent">
     <div class="card bg-hot col-sm-3 text-center" style="color:#FFF;">
         <i class="fa fa-weixin fa-3x" aria-hidden="true"></i><br>
         Open Quotes
     </div>
+</div>
+
+<div ui-view="home_pages">
+    soled
 </div>
