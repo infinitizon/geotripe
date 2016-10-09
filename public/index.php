@@ -39,11 +39,11 @@
 <!--                    <input type="text" placeholder="Search..." />-->
                     <!-- Single button -->
                     <div class="btn-group" uib-dropdown>
-                        <a href="#"  id="user-button" type="button" uib-dropdown-toggle>
+                        <span  id="user-button" type="button" uib-dropdown-toggle>
                             <span class="glyphicon glyphicon-user"></span>
                             <strong>{{$root.globals.currentUser.userDetails.authDetails.firstname}}</strong>
                             <span class="glyphicon glyphicon-chevron-down"></span>
-                        </a>
+                        </span>
                         <div class="dropdown-menu dropdown-menu-right user-details" style="width:305px;" uib-dropdown-menu role="menu" aria-labelledby="user-button">
                             <div class="row" style="padding:10px;">
                                 <div class="col-lg-4">
@@ -64,8 +64,8 @@
                             </div>
                         </div>
                     </div>
-                    <div>{{$root.pageHeader}}</div>
                 </div>
+                <div>{{$root.pageHeader}}</div>
             </div>
             <div class="row global-container">
                 <div class="col-sm-3 global-sidenav">

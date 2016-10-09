@@ -139,7 +139,9 @@ ul.main-menu > li > ul li:hover > ul{
     background: #FFFFFF;
     min-height: 100%;
 }
-
+#user-button{
+    cursor: pointer;
+}
 .user-details{
     margin-top:15px;
 }
