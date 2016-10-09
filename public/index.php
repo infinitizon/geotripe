@@ -36,9 +36,36 @@
         <div class="global-content container-fluid" ng-if="$root.globals.currentUser">
             <div class="row global-header">
                 <div class="pull-right">
-                    <input type="text" placeholder="Search..." />&nbsp;&nbsp;&nbsp;{{$root.globals.currentUser.userDetails.authDetails.firstname}}
+<!--                    <input type="text" placeholder="Search..." />-->
+                    <!-- Single button -->
+                    <div class="btn-group" uib-dropdown>
+                        <a href="#"  id="user-button" type="button" uib-dropdown-toggle>
+                            <span class="glyphicon glyphicon-user"></span>
+                            <strong>{{$root.globals.currentUser.userDetails.authDetails.firstname}}</strong>
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right user-details" style="width:305px;" uib-dropdown-menu role="menu" aria-labelledby="user-button">
+                            <div class="row" style="padding:10px;">
+                                <div class="col-lg-4">
+                                    <p class="text-center">
+                                        <img src="http://placehold.it/90x90" class="img-circle">
+                                    </p>
+                                </div>
+                                <div class="col-lg-8">
+                                    <p class="text-left"><strong>{{$root.globals.currentUser.userDetails.authDetails.firstname}} {{$root.globals.currentUser.userDetails.authDetails.lastname}}</strong></p>
+                                    <p class="text-left small">{{$root.globals.currentUser.userDetails.authDetails.email}}</p>
+                                    <p class="text-left">
+                                        <a href="#" class="btn btn-primary btn-block btn-sm">My Account</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div  style="border-top:1px solid #C4C4C4; padding:10px; ">
+                                <p class="pull-right"><a href="#" class="btn btn-danger"><i class="fa fa-sign-out"></i> Logout</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>{{$root.pageHeader}}</div>
                 </div>
-                <div>{{$root.pageHeader}}</div>
             </div>
             <div class="row global-container">
                 <div class="col-sm-3 global-sidenav">

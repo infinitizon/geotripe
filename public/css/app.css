@@ -139,6 +139,24 @@ ul.main-menu > li > ul li:hover > ul{
     background: #FFFFFF;
     min-height: 100%;
 }
+
+.user-details{
+    margin-top:15px;
+}
+.user-details:after{
+    bottom: 100%;
+    right: 12px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(136, 183, 213, 0);
+    border-bottom-color: #FFFFFF;
+    border-width: 10px;
+    margin-left: -10px;
+}
 .card{
     margin:20px 10px 10px 10px ;
     padding:2em;

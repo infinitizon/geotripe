@@ -87,6 +87,12 @@ if($env['PATH_INFO']==="/login"){
 //            , "authViews" => $authViews);
             , "authRoles" => $authRoles
             , "appPages" => $appPages);
+            $usrnm = ($user[0]['username'])? $user[0]['username'] :$user[0]['email'];
+            $q_loginDetail = "INSERT INTO LoginDetail";
+            $q_loginDetail .= "(Username,RemoteAddress,LoginDate,LoginSuccessful,LoginDetail_User_Id)";
+            $q_loginDetail .= "VALUES";
+            $q_loginDetail .= "('{$usrnm}','{$_SERVER['HTTP_REFERER']}',NOW(),1,{$user[0]['user_id']})";
+            $q_fields = $dbo->query($q_loginDetail);
 
         }elseif (count($user) > 1) {
             $response = array("response" => "Failure", "message" => "More than one record exists for your login.\nPlease contact admin");
