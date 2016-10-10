@@ -42,12 +42,13 @@ angular.module('School', ['Auth', 'Home', 'RFQ', 'Setup', 'ui.router', 'ngCookie
                  .state('home.profile', {
                      url:'/profile',
                      views: {
-                         'home_pages': {
+                         'home_pg': {
                              templateUrl: 'modules/home/views/profile.html',
                              controller: 'ProfileController',
                              controllerAs : 'proCtrl'
                          }
                      }
+
                  })
                  .state('setup', {
                      url:'/setup',
