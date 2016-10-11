@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
         <link href="css/select.min.css" rel="stylesheet" type="text/css" />
         <link href="css/app.css" rel="stylesheet" type="text/css"/>
+        <link href="css/xeditable.min.css" rel="stylesheet" type="text/css"/>
         <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
         <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
@@ -108,6 +109,7 @@
         <script src="scripts/select.min.js" type="text/javascript"></script>
         <script src="scripts/ui-bootstrap-tpls-2.1.3.min.js" type="text/javascript"></script>
         <script src="scripts/dirPagination.js" type="text/javascript"></script>
+        <script src="scripts/xeditable.min.js" type="text/javascript"></script>
         <script src="scripts/app.js" type="text/javascript"></script>
         <script src="modules/common/services.js" type="text/javascript"></script>
         <script src="modules/common/directives.js" type="text/javascript"></script>

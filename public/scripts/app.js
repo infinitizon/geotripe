@@ -6,7 +6,7 @@ angular.module('Home', []);
 angular.module('RFQ', ['Common'])
 angular.module('Setup', ['Common']);
  
-angular.module('School', ['Auth', 'Home', 'RFQ', 'Setup', 'ui.router', 'ngCookies', 'ngSanitize', 'ui.bootstrap', 'ui.bootstrap', 'ui.select','angularUtils.directives.dirPagination'])
+angular.module('School', ['ui.router', 'ngCookies', 'ngSanitize', 'ui.bootstrap', 'ui.select','angularUtils.directives.dirPagination', 'xeditable', 'Auth', 'Home', 'RFQ', 'Setup'])
     .config(['$stateProvider', '$httpProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider'
         , function ($stateProvider, $httpProvider, $urlMatcherFactoryProvider, $urlRouterProvider) {
              $urlRouterProvider.otherwise('/login');
@@ -81,8 +81,9 @@ angular.module('School', ['Auth', 'Home', 'RFQ', 'Setup', 'ui.router', 'ngCookie
                      }
                 })
     }])
-    .run(['$rootScope', '$location', '$cookieStore', '$uibModalStack'
-        , function ($rootScope, $location, $cookieStore,$uibModalStack) {
+    .run(['$rootScope', '$location', '$cookieStore', '$uibModalStack', 'editableOptions'
+        , function ($rootScope, $location, $cookieStore,$uibModalStack, editableOptions) {
+            editableOptions.theme = 'bs3';
              // keep user logged in after page refresh
              $rootScope.globals = $cookieStore.get('globals') || {};
              $rootScope.$on('$locationChangeStart', function (event, next, current) {

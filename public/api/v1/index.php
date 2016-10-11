@@ -48,7 +48,7 @@ $fxns = new Functions($dbo);
 $token = isset($data->token)? $data->token : $token; //Get or Generate token
 if($env['PATH_INFO']==="/login"){
     try {
-        $stmtChkUsr = "SELECT u.user_id, u.firstname, u.middlename, u.lastname, u.username, u.email
+        $stmtChkUsr = "SELECT u.user_id, u.firstname, u.middlename, u.lastname, u.username, u.email, u.workphonenumber, u.contactphonenumber
                     FROM Users u
                     WHERE (u.username=:email OR u.email=:email) AND u.password = :password AND u.enabled=1 and u.accountlocked<>1 ";
         $stmtChkUsr = $dbo->prepare($stmtChkUsr);

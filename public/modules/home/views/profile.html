@@ -1,8 +1,99 @@
-Got the profile page....thanks
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <a ng-click="" class="btn btn-primary pull-right">Submit</a>
+        <h2 style="height:60px; line-height:60px;">
+            <span style="vertical-align:middle;">{{ $root.globals.currentUser.userDetails.authDetails.firstname || 'empty' }}</span>
+            <small><span style="vertical-align:middle;">&mdash; Profile</span></small>
+        </h2>
 
-<ui-select ng-model="proCtrl.unitofmeasure" theme="bootstrap" close-on-select="true">
-    <ui-select-match placeholder="{{proCtrl.container['UOMPlaceholder'] || 'Select or search a person in the list...'}}">{{$select.selected.name}}</ui-select-match>
-    <ui-select-choices repeat="item in proCtrl.container['unitofmeasures'] | filter: $select.search">
-        <div ng-bind-html="item.name | highlight: $select.search"></div>
-    </ui-select-choices>
-</ui-select>
+    </div>
+    <div class="panel-body">
+        <div class="row top-buffer">
+            <div class="col-sm-3 text-right">
+                First Name:
+            </div>
+            <div class="col-sm-9 text-left">
+                <a href="#" editable-text="$root.globals.currentUser.userDetails.authDetails.firstname" e-placeholder="Enter your first name">
+                    {{ $root.globals.currentUser.userDetails.authDetails.firstname || 'Click to enter your first name' }}
+                </a>
+            </div>
+        </div>
+        <div class="row top-buffer">
+            <div class="col-sm-3 text-right">
+                Middle Name:
+            </div>
+            <div class="col-sm-9 text-left">
+                <a href="#" editable-text="$root.globals.currentUser.userDetails.authDetails.middlename" e-placeholder="Enter your middle name">
+                    {{ $root.globals.currentUser.userDetails.authDetails.middlename || 'Click to enter your middle name' }}
+                </a>
+            </div>
+        </div>
+        <div class="row top-buffer">
+            <div class="col-sm-3 text-right">
+                Last Name:
+            </div>
+            <div class="col-sm-9 text-left">
+                <a href="#" editable-text="$root.globals.currentUser.userDetails.authDetails.lastname" e-placeholder="Enter your last name">
+                    {{ $root.globals.currentUser.userDetails.authDetails.lastname || 'Click to enter your last name' }}
+                </a>
+            </div>
+        </div>
+        <div class="row top-buffer">
+            <div class="col-sm-3 text-right">
+                Username:
+            </div>
+            <div class="col-sm-9 text-left">
+                <a href="#" editable-text="$root.globals.currentUser.userDetails.authDetails.username" e-placeholder="Enter your user name">
+                    {{ $root.globals.currentUser.userDetails.authDetails.username || 'Click to enter user name' }}
+                </a>
+            </div>
+        </div>
+        <div class="row top-buffer">
+            <div class="col-sm-3 text-right">
+                Email:
+            </div>
+            <div class="col-sm-9 text-left">
+                <a href="#" editable-email="$root.globals.currentUser.userDetails.authDetails.email" e-placeholder="E.g: name@company.com">
+                    {{ $root.globals.currentUser.userDetails.authDetails.email || 'Click to enter your email' }}
+                </a>
+            </div>
+        </div>
+        <div class="row top-buffer">
+            <div class="col-sm-3 text-right">
+                Contact Phone Number:
+            </div>
+            <div class="col-sm-9 text-left">
+                <a href="#" editable-tel="$root.globals.currentUser.userDetails.authDetails.contactphonenumber" e-pattern="\d{11}" e-title="xxxxxxxxxxx" e-placeholder="E.g: 07066477223">
+                    {{ $root.globals.currentUser.userDetails.authDetails.contactphonenumber || 'Click to enter contact phone number' }}
+                </a>
+            </div>
+        </div>
+        <div class="row top-buffer">
+            <div class="col-sm-3 text-right">
+                Work Phone Number:
+            </div>
+            <div class="col-sm-9 text-left">
+                <a href="#" editable-tel="$root.globals.currentUser.userDetails.authDetails.workphonenumber" e-pattern="\d{11}" e-title="xxxxxxxxxxx" e-placeholder="E.g: 07066477223">
+                    {{ $root.globals.currentUser.userDetails.authDetails.workphonenumber || 'Click to enter work phone number' }}
+                </a>
+            </div>
+        </div>
+        <div class="row top-buffer">
+            <div class="col-sm-3 text-right">
+                Password:
+            </div>
+            <div class="col-sm-9 text-left">
+                <a href="#" editable-tel="$root.globals.currentUser.userDetails.authDetails.workphonenumber" e-pattern="\d{11}" e-title="xxxxxxxxxxx" e-placeholder="E.g: 07066477223">
+                    {{ $root.globals.currentUser.userDetails.authDetails.workphonenumber || 'Click to enter work phone number' }}
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--<ui-select ng-model="proCtrl.unitofmeasure" theme="bootstrap" close-on-select="true">-->
+    <!--<ui-select-match placeholder="{{proCtrl.container['UOMPlaceholder'] || 'Select or search a person in the list...'}}">{{$select.selected.name}}</ui-select-match>-->
+    <!--<ui-select-choices repeat="item in proCtrl.container['unitofmeasures'] | filter: $select.search">-->
+        <!--<div ng-bind-html="item.name | highlight: $select.search"></div>-->
+    <!--</ui-select-choices>-->
+<!--</ui-select>-->
