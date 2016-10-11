@@ -35,8 +35,8 @@ if(!$data){
         }
         $input .= "}";
     }
-    echo $input;
-    exit;
+//    echo $input;
+//    exit;
     $data = json_decode($input);
 }
 //$incoming = json_encode($data);
@@ -185,9 +185,9 @@ if($env['PATH_INFO']==="/inboundService") {
                 }
                 $response = array("response" => "Success", "token" => $data->token, "total_count" => $r_str_tot_count['count'], "data" => @$q_response);
 
-//                var_dump($response);
+                var_dump($response);
                 $response = json_encode($response);
-                echo $response;exit;
+//                echo $response;exit;
             }
             /**
              * An Update is an Update

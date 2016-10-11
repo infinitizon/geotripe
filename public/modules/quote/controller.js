@@ -47,6 +47,42 @@ angular.module('RFQ')
                     'myFile': ''
                 });
             }
+            vm.openPDF = function (resData, fileName) {
+                var ieEDGE = navigator.userAgent.match(/Edge/g);
+                var ie = navigator.userAgent.match(/.NET/g); // IE 11+
+                var oldIE = navigator.userAgent.match(/MSIE/g);
+
+                var blob = new window.Blob([resData], { type: 'application/pdf' });
+
+                if (ie || oldIE || ieEDGE) {
+                    window.navigator.msSaveBlob(blob, fileName);
+                }
+                else {
+                    var reader = new window.FileReader();
+                    reader.onloadend = function () {
+                        window.location.href = reader.result;
+                    };
+                    reader.readAsDataURL(blob);
+                }
+            }
+            vm.downFile = function(file){
+                var data=angular.copy(CommonServices.postData);
+                data.factName = 'Document d';
+                data.transactionMetaData.responseDataProperties = "d.doc_quote_id&d.docMimeType&d.docName&d.docBlob&d.docCreateDate&d.documentType_id";
+                data.transactionMetaData.queryMetaData.queryClause.andExpression = [
+                    {
+                        "propertyName": "d.doc_id",
+                        "propertyValue": file.doc_id,
+                        "propertyDataType": "BIGINT",
+                        "operatorType": "="
+                    }
+                ];
+                DataService.post('inboundService', data).then(function (response) {
+                    //if(response.data.response == 'Success'){
+                        console.log(response)
+                    //};
+                });
+            }
             vm.deleteFile = function(file){
                 if(confirm("Are you sure you want to delete this file")){
                     var index = vm.quoteFiles.indexOf(file);
