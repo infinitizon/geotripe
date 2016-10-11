@@ -33,8 +33,8 @@ angular.module('RFQ')
             }
             vm.getQuoteSummary();
         }])
-    .controller('QuoteByStatusController', ['$scope', '$location', '$rootScope','DataService','CommonServices','$stateParams', '$uibModal', 'ImportExportToExcel',
-        function ($scope, $location, $rootScope, DataService, CommonServices, $stateParams, $uibModal,ImportExportToExcel) {
+    .controller('QuoteByStatusController', ['$http', '$scope', '$location', '$rootScope','DataService','CommonServices','$stateParams', '$uibModal', 'ImportExportToExcel',
+        function ($http, $scope, $location, $rootScope, DataService, CommonServices, $stateParams, $uibModal,ImportExportToExcel) {
             $rootScope.pageTitle = "Quotes";
             $rootScope.pageHeader = "Quotes";
 
@@ -68,7 +68,8 @@ angular.module('RFQ')
             vm.downFile = function(file){
                 var data=angular.copy(CommonServices.postData);
                 data.factName = 'Document d';
-                data.transactionMetaData.responseDataProperties = "d.doc_quote_id&d.docMimeType&d.docName&d.docBlob&d.docCreateDate&d.documentType_id";
+                data.transactionEventType = "downFile"
+                data.transactionMetaData.responseDataProperties = "d.docBlob";
                 data.transactionMetaData.queryMetaData.queryClause.andExpression = [
                     {
                         "propertyName": "d.doc_id",
@@ -77,10 +78,19 @@ angular.module('RFQ')
                         "operatorType": "="
                     }
                 ];
-                DataService.post('inboundService', data).then(function (response) {
-                    //if(response.data.response == 'Success'){
-                        console.log(response)
-                    //};
+                DataService.post('inboundService', data, {
+                    responseType: 'arraybuffer',
+                    cache: true,
+                    headers: {
+                        'Content-type': 'application/json',
+                        'Accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                    }
+                }).then(function (response) {
+                    //var file = new Blob([response.data.docBlob], {type: response.data.docMimeType});
+                    //var fileURL = URL.createObjectURL(file);
+                    var blob = new Blob([response], {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+                    var objectUrl = URL.createObjectURL(blob);
+                    window.open(objectUrl);
                 });
             }
             vm.deleteFile = function(file){

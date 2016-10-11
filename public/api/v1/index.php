@@ -124,6 +124,18 @@ if($env['PATH_INFO']==="/inboundService") {
                         $priKy = $fields['Field'];
                     }
                 }
+            }/**
+             * A Query is a select
+             */
+            if ($data->transactionEventType == "downFile") {
+                $file = file_get_contents("john.xlsx") ;
+                header('Content-disposition: attachment; filename='.$file);
+                header('Content-Length: ' . filesize($file));
+                header('Content-Transfer-Encoding: binary');
+                header('Cache-Control: must-revalidate');
+                header('Pragma: public');
+                echo json_encode(readfile($file));
+                exit;
             }
             /**
              * A Query is a select
@@ -185,8 +197,8 @@ if($env['PATH_INFO']==="/inboundService") {
                 }
                 $response = array("response" => "Success", "token" => $data->token, "total_count" => $r_str_tot_count['count'], "data" => @$q_response);
 
-                var_dump($response);
-                $response = json_encode($response);
+//                var_dump($response);
+//                $response = json_encode($response);
 //                echo $response;exit;
             }
             /**
