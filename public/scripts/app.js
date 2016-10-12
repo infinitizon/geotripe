@@ -7,8 +7,10 @@ angular.module('RFQ', ['Common'])
 angular.module('Setup', ['Common']);
  
 angular.module('School', ['ui.router', 'ngCookies', 'ngSanitize', 'ui.bootstrap', 'ui.select','angularUtils.directives.dirPagination', 'xeditable', 'Auth', 'Home', 'RFQ', 'Setup'])
-    .config(['$stateProvider', '$httpProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider'
-        , function ($stateProvider, $httpProvider, $urlMatcherFactoryProvider, $urlRouterProvider) {
+    .config(['$stateProvider', '$httpProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider', '$compileProvider'
+        , function ($stateProvider, $httpProvider, $urlMatcherFactoryProvider, $urlRouterProvider, $compileProvider) {
+            $compileProvider.aHrefSanitizationWhitelist(/^\s*(|blob|):/);
+
              $urlRouterProvider.otherwise('/login');
              $urlMatcherFactoryProvider.caseInsensitive(true);
 

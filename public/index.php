@@ -110,6 +110,7 @@
         <script src="scripts/ui-bootstrap-tpls-2.1.3.min.js" type="text/javascript"></script>
         <script src="scripts/dirPagination.js" type="text/javascript"></script>
         <script src="scripts/xeditable.min.js" type="text/javascript"></script>
+        <script src="scripts/blob.js" type="text/javascript"></script>
         <script src="scripts/app.js" type="text/javascript"></script>
         <script src="modules/common/services.js" type="text/javascript"></script>
         <script src="modules/common/directives.js" type="text/javascript"></script>

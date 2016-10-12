@@ -78,17 +78,41 @@ angular.module('RFQ')
                         "operatorType": "="
                     }
                 ];
-                DataService.post('inboundService', data, {
-                    responseType: 'arraybuffer',
-                    cache: true,
+                DataService.post('inboundService', data
+                    , {
+                    responseType : "arraybuffer",
+                //transformRequest: angular.identity ,
+                //    cache: true,
                     headers: {
                         'Content-type': 'application/json',
-                        'Accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                        //'Process-Data': false
                     }
                 }).then(function (response) {
+                    //var data = CommonServices.base64Decode(response.data.data[0].docBlob);
+
+                    //var data = CommonServices.encode('Hello World!');
+                    //console.log(data);
+                    //var data = CommonServices.decode(data);
+                    //console.log(data);
+
+                    //$scope.toJSON = angular.toJson(data);
+                    //var blob = new Blob(data, { type:file.docMimeType });
+                    //var downloadLink = angular.element('<a></a>');
+                    //downloadLink.attr('href',window.URL.createObjectURL(blob));
+                    //downloadLink.attr('download', file.docName);
+                    //downloadLink[0].click();
+                    //var data = CommonServices.base64Decode(response.data.data[0].docBlob),
+                    //    blob = new Blob([data], { type: file.docMimeType}),
+                    //    url = window.URL || window.webkitURL;
+                    //$scope.fileUrl = url.createObjectURL(blob);
+
                     //var file = new Blob([response.data.docBlob], {type: response.data.docMimeType});
                     //var fileURL = URL.createObjectURL(file);
-                    var blob = new Blob([response], {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+                    //console.log(response.data.data[0]);
+                    //console.log(CommonServices._utf8_decode(response.data.data[0].docBlob))
+                    //vm.openPDF(CommonServices._utf8_decode(response.data.data[0].docBlob), response.data.data[0].docName);
+
+                    var blob = new Blob([response], {type: file.docMimeType});
                     var objectUrl = URL.createObjectURL(blob);
                     window.open(objectUrl);
                 });
@@ -341,6 +365,7 @@ angular.module('RFQ')
 
             }
             vm.editQuote = function (quoteId) {
+                vm.uploads = [];
                 vm.isDisabled = false;
                 vm.quoteFiles = vm.files = null;vm.lineItems = [];
 

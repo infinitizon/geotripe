@@ -128,13 +128,21 @@ if($env['PATH_INFO']==="/inboundService") {
              * A Query is a select
              */
             if ($data->transactionEventType == "downFile") {
-                $file = file_get_contents("john.xlsx") ;
-                header('Content-disposition: attachment; filename='.$file);
-                header('Content-Length: ' . filesize($file));
-                header('Content-Transfer-Encoding: binary');
-                header('Cache-Control: must-revalidate');
-                header('Pragma: public');
-                echo json_encode(readfile($file));
+                $stmt = $dbo->prepare("SELECT docName, docMimeType, docSize, docBlob FROM Document WHERE doc_id = :fileid");
+                $stmt->bindParam(':fileid', $data->transactionMetaData->queryMetaData->queryClause->andExpression[0]->propertyValue, PDO::PARAM_INT, 11);
+                $stmt->execute();
+                $fRes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+//var_dump($fRes);
+
+                header("Cache-Control: public");
+                header("Content-Description: File Transfer");
+                header("Content-length: ".$fRes[0]['docSize']);
+                header("Content-type: ".$fRes[0]['docMimeType']);
+//header("Content-Transfer-Encoding: Binary");
+                header("Content-Disposition: attachment; filename=\"".$fRes[0]['docName']."\"");
+//                echo json_encode(readfile($fRes[0]['docBlob']));
+                echo $fRes[0]['docBlob'];
                 exit;
             }
             /**
@@ -167,7 +175,7 @@ if($env['PATH_INFO']==="/inboundService") {
                     }
                     $q_str = $fxns->_subStrAtDel($q_str, ' AND ');
                     $files_id = $fxns->_subStrAtDel($files_id, ' ,');
-                    $q_getFiles_str = "SELECT doc_id,doc_quote_id,docName,docCreateDate,documentType_id FROM Document WHERE doc_quote_Id IN ($files_id)";
+                    $q_getFiles_str = "SELECT doc_id,doc_quote_id,docName,docMimeType,docCreateDate,documentType_id FROM Document WHERE doc_quote_Id IN ($files_id)";
                 }
                 if (!empty($data->transactionMetaData->groupingProperties)) {
                     $q_str .= " GROUP BY ".$data->transactionMetaData->groupingProperties;
@@ -184,6 +192,12 @@ if($env['PATH_INFO']==="/inboundService") {
                 $r_obj = $dbo->prepare($q_str);
                 $r_obj->execute(array());
                 while ($items = $r_obj->fetch(PDO::FETCH_ASSOC)) {
+                    foreach($items as $kname=>$kval){
+                        if($kname == 'docBlob'){
+                            $items['docBlob'] = base64_encode($items['docBlob']);
+//                            $items['docBlob'] = utf8_encode($items['docBlob']);
+                        }
+                    }
                     $q_response[] = $items;
                 }
                 if(isset($q_getFiles_str)) {
@@ -290,6 +304,12 @@ if($env['PATH_INFO']==="/inboundService") {
                         for($i=0; $i<count($_FILES['file']['name']); $i++ ){
                             $name = $_FILES['file']['name'][$i];
                             $mime = $_FILES['file']['type'][$i];
+//
+//                            $fp      = fopen($_FILES['userfile']['tmp_name'], 'r');
+//                            $blob = fread($fp, filesize($_FILES['userfile']['tmp_name']));
+//                            $blob = addslashes($blob);
+//                            fclose($fp);
+
                             $blob = $dbo->quote(file_get_contents($_FILES['file']['tmp_name'][$i]));
                             $size = intval($_FILES['file']['size'][$i]);
                             $query = "INSERT INTO Document (doc_quote_id,docName,docMimeType,docBlob,docSize,docCreateDate) VALUES ({$lastId},'{$name}','{$mime}',{$blob},{$size},NOW())";
