@@ -304,15 +304,16 @@ if($env['PATH_INFO']==="/inboundService") {
                         for($i=0; $i<count($_FILES['file']['name']); $i++ ){
                             $name = $_FILES['file']['name'][$i];
                             $mime = $_FILES['file']['type'][$i];
-//
-//                            $fp      = fopen($_FILES['userfile']['tmp_name'], 'r');
-//                            $blob = fread($fp, filesize($_FILES['userfile']['tmp_name']));
-//                            $blob = addslashes($blob);
-//                            fclose($fp);
-
-                            $blob = $dbo->quote(file_get_contents($_FILES['file']['tmp_name'][$i]));
+                            $temp = $_FILES['file']['tmp_name'][$i];
                             $size = intval($_FILES['file']['size'][$i]);
-                            $query = "INSERT INTO Document (doc_quote_id,docName,docMimeType,docBlob,docSize,docCreateDate) VALUES ({$lastId},'{$name}','{$mime}',{$blob},{$size},NOW())";
+                            $newfilename = substr(md5(time()), 0, 10) . '.' . end($temp);
+                            $path = 'files/' . $newfilename;
+                            move_uploaded_file($_FILES['file']['tmp_name'], $path);
+
+//                            $blob = $dbo->quote(file_get_contents($_FILES['file']['tmp_name'][$i]));
+                            $query = "INSERT INTO Document (doc_quote_id,docName,docMimeType,docPath,docSize,docCreateDate)
+                                        VALUES
+                                      ({$lastId},'{$name}','{$mime}','{$path}',{$size},NOW())";
                             $r_query = $dbo->prepare($query);
                             $r_query->execute();
                         }

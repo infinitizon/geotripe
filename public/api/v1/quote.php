@@ -121,13 +121,21 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                     $lastQuoteId = $dbo->lastInsertId();
                     if($_FILES){
                         for($i=0; $i<count($_FILES['file']['name']); $i++ ){
+
                             $name = $_FILES['file']['name'][$i];
                             $mime = $_FILES['file']['type'][$i];
-                            $blob = $dbo->quote(file_get_contents($_FILES['file']['tmp_name'][$i]));
+                            $temp = $_FILES['file']['tmp_name'][$i];
                             $size = intval($_FILES['file']['size'][$i]);
-                            $query = "INSERT INTO Document (doc_quote_id,docName,docMimeType,docBlob,docSize,docCreateDate";
+//                        $newfilename = substr(md5(time()), 0, 10) . '.' . end($temp);
+                            $newfilename = md5(time()).".".pathinfo($name, PATHINFO_EXTENSION);
+                            $path = $_SERVER['DOCUMENT_ROOT'].'/uploads/' . $newfilename;
+                            $webPath = WEB_ROOT.'/uploads/' . $newfilename;
+                            move_uploaded_file($temp, $path);
+
+//                            $blob = $dbo->quote(file_get_contents($_FILES['file']['tmp_name'][$i]));
+                            $query = "INSERT INTO Document (doc_quote_id,docName,docMimeType,docPath,docSize,docCreateDate";
                             $query .= isset($data->factObjects[0]->fileType[$i])?",documentType_id)":")";
-                            $query .= " VALUES ({$lastQuoteId},'{$name}','{$mime}',{$blob},{$size},NOW()";
+                            $query .= " VALUES ({$lastQuoteId},'{$name}','{$mime}','{$path}',{$size},NOW()";
                             $query .= isset($data->factObjects[0]->fileType[$i])?",{$data->factObjects[0]->fileType[$i]})":")";
                             $r_query = $dbo->prepare($query);
                             $r_query->execute();
@@ -208,13 +216,21 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                 }
                 if($_FILES){
                     for($i=0; $i<count($_FILES['file']['name']); $i++ ){
+
                         $name = $_FILES['file']['name'][$i];
                         $mime = $_FILES['file']['type'][$i];
-                        $blob = $dbo->quote(file_get_contents($_FILES['file']['tmp_name'][$i]));
+                        $temp = $_FILES['file']['tmp_name'][$i];
                         $size = intval($_FILES['file']['size'][$i]);
-                        $query = "INSERT INTO Document (doc_quote_id,docName,docMimeType,docBlob,docSize,docCreateDate";
+//                        $newfilename = substr(md5(time()), 0, 10) . '.' . end($temp);
+                        $newfilename = md5(time()).".".pathinfo($name, PATHINFO_EXTENSION);
+                        $path = $_SERVER['DOCUMENT_ROOT'].'/uploads/' . $newfilename;
+                        $webPath = WEB_ROOT.'/uploads/' . $newfilename;
+                        move_uploaded_file($temp, $path);
+
+//                            $blob = $dbo->quote(file_get_contents($_FILES['file']['tmp_name'][$i]));
+                        $query = "INSERT INTO Document (doc_quote_id,docName,docMimeType,docPath,docSize,docCreateDate";
                         $query .= isset($data->factObjects[0]->fileType[$i])?",documentType_id)":")";
-                        $query .= " VALUES ({$data->factObjects[0]->quote->id},'{$name}','{$mime}',{$blob},{$size},NOW()";
+                        $query .= " VALUES ({$data->factObjects[0]->quote->id},'{$name}','{$mime}','{$webPath}',{$size},NOW()";
                         $query .= isset($data->factObjects[0]->fileType[$i])?",{$data->factObjects[0]->fileType[$i]})":")";
                         $r_query = $dbo->prepare($query);
                         $r_query->execute();
@@ -244,7 +260,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                                 }
                             }
                             $inserts = $fxns->_subStrAtDel($inserts, ' ,');
-                            $q_str_quoteDetail .= $inserts." WHERE QuoteDetail_Id={$data->factObjects[0]->QuoteDetail[$key]->id}";
+                            $q _str_quoteDetail .= $inserts." WHERE QuoteDetail_Id={$data->factObjects[0]->QuoteDetail[$key]->id}";
 //                            echo $q_str_quoteDetail;
                             if($inserts != ""){
                                 $r_str = $dbo->prepare($q_str_quoteDetail);
