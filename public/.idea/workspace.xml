@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d05ef40-3f7a-41b2-81e7-eb6b1d801a63" name="Default" comment="UI-boot">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/v1/index.php" afterPath="$PROJECT_DIR$/api/v1/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/v1/quote.php" afterPath="$PROJECT_DIR$/api/v1/quote.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpinfo.php" afterPath="$PROJECT_DIR$/phpinfo.php" />
     </list>
     <ignored path="public.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -102,24 +98,24 @@
       <file leaf-file-name="quote.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/v1/quote.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46015424">
-              <caret line="132" column="61" selection-start-line="132" selection-start-column="61" selection-end-line="132" selection-end-column="61" />
+            <state vertical-scroll-proportion="1.0025707">
+              <caret line="262" column="30" selection-start-line="262" selection-start-column="30" selection-end-line="262" selection-end-column="30" />
               <folding>
-                <marker date="1476371658000" expanded="true" signature="2247:2285" placeholder="SELECT * FRO... Users" />
-                <marker date="1476371658000" expanded="true" signature="4424:4520" placeholder="SELECT doc_i... Document" />
-                <marker date="1476371658000" expanded="true" signature="4736:4786" placeholder="SELECT COUNT... ${$q_str}" />
-                <marker date="1476371658000" expanded="true" signature="5669:5686" placeholder="INSERT INTO Quote... " />
-                <marker date="1476371658000" expanded="true" signature="7631:7715" placeholder="INSERT INTO Document... " />
-                <marker date="1476371658000" expanded="true" signature="8419:8442" placeholder="INSERT INTO QuoteDetail... " />
-                <marker date="1476371658000" expanded="true" signature="9524:9560" placeholder="INSERT INTO QuoteDetail_Manufacturer... " />
-                <marker date="1476371658000" expanded="true" signature="11565:11581" placeholder="UPDATE Quote... " />
-                <marker date="1476371658000" expanded="true" signature="13220:13304" placeholder="INSERT INTO Document... " />
-                <marker date="1476371658000" expanded="true" signature="14463:14510" placeholder="SELECT * FRO... QuoteDetail" />
-                <marker date="1476371658000" expanded="true" signature="14911:14933" placeholder="UPDATE Quote... " />
-                <marker date="1476371658000" expanded="true" signature="16177:16200" placeholder="INSERT INTO QuoteDetail... " />
-                <marker date="1476371658000" expanded="true" signature="17205:17277" placeholder="delete from " />
-                <marker date="1476371658000" expanded="true" signature="17892:17928" placeholder="INSERT INTO QuoteDetail_Manufacturer... " />
-                <marker date="1476371658000" expanded="true" signature="20468:20497" placeholder="DELETE FROM " />
+                <marker date="1476380126000" expanded="true" signature="2247:2285" placeholder="SELECT * FRO... Users" />
+                <marker date="1476380126000" expanded="true" signature="4424:4520" placeholder="SELECT doc_i... Document" />
+                <marker date="1476380126000" expanded="true" signature="4736:4786" placeholder="SELECT COUNT... ${$q_str}" />
+                <marker date="1476380126000" expanded="true" signature="5669:5686" placeholder="INSERT INTO Quote... " />
+                <marker date="1476380126000" expanded="true" signature="7631:7715" placeholder="INSERT INTO Document... " />
+                <marker date="1476380126000" expanded="true" signature="8419:8442" placeholder="INSERT INTO QuoteDetail... " />
+                <marker date="1476380126000" expanded="true" signature="9524:9560" placeholder="INSERT INTO QuoteDetail_Manufacturer... " />
+                <marker date="1476380126000" expanded="true" signature="11565:11581" placeholder="UPDATE Quote... " />
+                <marker date="1476380126000" expanded="true" signature="13220:13304" placeholder="INSERT INTO Document... " />
+                <marker date="1476380126000" expanded="true" signature="14463:14510" placeholder="SELECT * FRO... QuoteDetail" />
+                <marker date="1476380126000" expanded="true" signature="14911:14933" placeholder="UPDATE Quote... " />
+                <marker date="1476380126000" expanded="true" signature="16176:16199" placeholder="INSERT INTO QuoteDetail... " />
+                <marker date="1476380126000" expanded="true" signature="17204:17276" placeholder="delete from " />
+                <marker date="1476380126000" expanded="true" signature="17891:17927" placeholder="INSERT INTO QuoteDetail_Manufacturer... " />
+                <marker date="1476380126000" expanded="true" signature="20467:20496" placeholder="DELETE FROM " />
               </folding>
             </state>
           </provider>
@@ -1221,7 +1217,7 @@
       <workItem from="1476090920716" duration="17104000" />
       <workItem from="1476215574838" duration="6817000" />
       <workItem from="1476224821063" duration="548000" />
-      <workItem from="1476255957741" duration="23110000" />
+      <workItem from="1476255957741" duration="23438000" />
     </task>
     <task id="LOCAL-00001" summary="Completed work on the RFQ">
       <created>1475831179986</created>
@@ -1233,7 +1229,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="515054000" />
+    <option name="totallyTimeSpent" value="515382000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1840" height="1315" extended-state="0" />
@@ -1690,24 +1686,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/v1/quote.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46015424">
-          <caret line="132" column="61" selection-start-line="132" selection-start-column="61" selection-end-line="132" selection-end-column="61" />
+        <state vertical-scroll-proportion="1.0025707">
+          <caret line="262" column="30" selection-start-line="262" selection-start-column="30" selection-end-line="262" selection-end-column="30" />
           <folding>
-            <marker date="1476371658000" expanded="true" signature="2247:2285" placeholder="SELECT * FRO... Users" />
-            <marker date="1476371658000" expanded="true" signature="4424:4520" placeholder="SELECT doc_i... Document" />
-            <marker date="1476371658000" expanded="true" signature="4736:4786" placeholder="SELECT COUNT... ${$q_str}" />
-            <marker date="1476371658000" expanded="true" signature="5669:5686" placeholder="INSERT INTO Quote... " />
-            <marker date="1476371658000" expanded="true" signature="7631:7715" placeholder="INSERT INTO Document... " />
-            <marker date="1476371658000" expanded="true" signature="8419:8442" placeholder="INSERT INTO QuoteDetail... " />
-            <marker date="1476371658000" expanded="true" signature="9524:9560" placeholder="INSERT INTO QuoteDetail_Manufacturer... " />
-            <marker date="1476371658000" expanded="true" signature="11565:11581" placeholder="UPDATE Quote... " />
-            <marker date="1476371658000" expanded="true" signature="13220:13304" placeholder="INSERT INTO Document... " />
-            <marker date="1476371658000" expanded="true" signature="14463:14510" placeholder="SELECT * FRO... QuoteDetail" />
-            <marker date="1476371658000" expanded="true" signature="14911:14933" placeholder="UPDATE Quote... " />
-            <marker date="1476371658000" expanded="true" signature="16177:16200" placeholder="INSERT INTO QuoteDetail... " />
-            <marker date="1476371658000" expanded="true" signature="17205:17277" placeholder="delete from " />
-            <marker date="1476371658000" expanded="true" signature="17892:17928" placeholder="INSERT INTO QuoteDetail_Manufacturer... " />
-            <marker date="1476371658000" expanded="true" signature="20468:20497" placeholder="DELETE FROM " />
+            <marker date="1476380126000" expanded="true" signature="2247:2285" placeholder="SELECT * FRO... Users" />
+            <marker date="1476380126000" expanded="true" signature="4424:4520" placeholder="SELECT doc_i... Document" />
+            <marker date="1476380126000" expanded="true" signature="4736:4786" placeholder="SELECT COUNT... ${$q_str}" />
+            <marker date="1476380126000" expanded="true" signature="5669:5686" placeholder="INSERT INTO Quote... " />
+            <marker date="1476380126000" expanded="true" signature="7631:7715" placeholder="INSERT INTO Document... " />
+            <marker date="1476380126000" expanded="true" signature="8419:8442" placeholder="INSERT INTO QuoteDetail... " />
+            <marker date="1476380126000" expanded="true" signature="9524:9560" placeholder="INSERT INTO QuoteDetail_Manufacturer... " />
+            <marker date="1476380126000" expanded="true" signature="11565:11581" placeholder="UPDATE Quote... " />
+            <marker date="1476380126000" expanded="true" signature="13220:13304" placeholder="INSERT INTO Document... " />
+            <marker date="1476380126000" expanded="true" signature="14463:14510" placeholder="SELECT * FRO... QuoteDetail" />
+            <marker date="1476380126000" expanded="true" signature="14911:14933" placeholder="UPDATE Quote... " />
+            <marker date="1476380126000" expanded="true" signature="16176:16199" placeholder="INSERT INTO QuoteDetail... " />
+            <marker date="1476380126000" expanded="true" signature="17204:17276" placeholder="delete from " />
+            <marker date="1476380126000" expanded="true" signature="17891:17927" placeholder="INSERT INTO QuoteDetail_Manufacturer... " />
+            <marker date="1476380126000" expanded="true" signature="20467:20496" placeholder="DELETE FROM " />
           </folding>
         </state>
       </provider>

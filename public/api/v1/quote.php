@@ -260,7 +260,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                                 }
                             }
                             $inserts = $fxns->_subStrAtDel($inserts, ' ,');
-                            $q _str_quoteDetail .= $inserts." WHERE QuoteDetail_Id={$data->factObjects[0]->QuoteDetail[$key]->id}";
+                            $q_str_quoteDetail .= $inserts." WHERE QuoteDetail_Id={$data->factObjects[0]->QuoteDetail[$key]->id}";
 //                            echo $q_str_quoteDetail;
                             if($inserts != ""){
                                 $r_str = $dbo->prepare($q_str_quoteDetail);
