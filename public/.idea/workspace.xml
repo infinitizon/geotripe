@@ -2,7 +2,288 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d05ef40-3f7a-41b2-81e7-eb6b1d801a63" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/background.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/image/hs-2004-27-a-large-web.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/navigate/arrow-down.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/navigate/arrow-left.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/navigate/arrow-right.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/navigate/arrow-up.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/images/interp_cardinal.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/images/interp_linear.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/images/interp_step.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/images/offset_pct.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/images/offset_stack.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/images/offset_stream.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/images/offset_value.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/images/om_bar.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/images/om_curves.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/images/om_lines.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/images/om_percent.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/images/om_scatter.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/images/om_stack.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/images/om_step.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/images/om_stream.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/screenshots/ajax.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/screenshots/colors.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/screenshots/extensions.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/screenshots/lines.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/screenshots/logscale.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/screenshots/scaled.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/screenshots/scatterplot.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/screenshots/simple.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/screenshots/start.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/screenshots/status.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/screenshots/stops.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/screenshots/y_axis.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/jquery-3.1.1.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/menu/1/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/styles/urban.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/styles/urban.skins.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/angular-flot/.bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/angular-flot/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/angular-flot/AUTHORS" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/angular-flot/CHANGELOG.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/angular-flot/CONTRIBUTING.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/angular-flot/LICENSE.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/angular-flot/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/angular-flot/angular-flot.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/angular-flot/bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/angular-flot/example/app.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/angular-flot/example/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/angular-flot/logo.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/angular-flot/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/d3/.bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/d3/.gitattributes" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/d3/CONTRIBUTING.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/d3/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/d3/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/d3/bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/d3/d3.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/d3/d3.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/d3/package.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/.bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/API.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/CONTRIBUTING.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/FAQ.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/LICENSE.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/Makefile" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/NEWS.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/PLUGINS.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/component.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/ajax/data-eu-gdp-growth-1.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/ajax/data-eu-gdp-growth-2.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/ajax/data-eu-gdp-growth-3.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/ajax/data-eu-gdp-growth-4.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/ajax/data-eu-gdp-growth-5.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/ajax/data-eu-gdp-growth.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/ajax/data-japan-gdp-growth.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/ajax/data-usa-gdp-growth.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/ajax/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/annotating/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-interacting/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-multiple/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/date.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/tz/africa" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/tz/antarctica" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/tz/asia" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/tz/australasia" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/tz/backward" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/tz/etcetera" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/tz/europe" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/tz/factory" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/tz/iso3166.tab" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/tz/leapseconds" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/tz/northamerica" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/tz/pacificnew" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/tz/solar87" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/tz/solar88" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/tz/solar89" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/tz/southamerica" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/tz/systemv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/tz/yearistype.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time-zones/tz/zone.tab" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/axes-time/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/basic-options/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/basic-usage/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/canvas/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/categories/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/examples.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/image/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/interacting/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/navigate/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/percentiles/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/realtime/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/resize/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/selection/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/series-errorbars/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/series-pie/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/series-toggle/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/series-types/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/shared/jquery-ui/jquery-ui.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/stacking/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/symbols/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/threshold/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/tracking/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/visitors/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/examples/zooming/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/excanvas.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/excanvas.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/flot.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/jquery.colorhelpers.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/jquery.flot.canvas.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/jquery.flot.categories.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/jquery.flot.crosshair.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/jquery.flot.errorbars.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/jquery.flot.fillbetween.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/jquery.flot.image.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/jquery.flot.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/jquery.flot.navigate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/jquery.flot.pie.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/jquery.flot.resize.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/jquery.flot.selection.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/jquery.flot.stack.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/jquery.flot.symbol.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/jquery.flot.threshold.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/jquery.flot.time.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/jquery.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/flot/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/.bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/.jshintignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/.jshintrc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/.rock.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/CONTRIBUTING.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/Makefile" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/ajax.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/bars.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/colors.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/css/extensions.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/css/lines.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/data/data.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/data/data.jsonp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/data/data2.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/data/status.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/extensions.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/fixed.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/formatter.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/gaps.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/hover.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/inconsistent.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/js/extensions.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/jsonp.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/legend.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/lineplot.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/lines.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/logscale.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/milliseconds.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/multi.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/negative.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/refresh.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/resize.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/scaled.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/scatterplot.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/series.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/simple.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/socket.io/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/socket.io/app.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/socket.io/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/socket.io/socket.io.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/sparse.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/start.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/status.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/stops.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/timescale.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/x_axis.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/examples/y_axis.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/rickshaw.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/rickshaw.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/rickshaw.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/rickshaw.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/css/detail.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/css/graph.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/css/legend.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/helpers/endUMD.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/helpers/startUMD.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Class.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Color.Palette.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Compat.ClassList.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Fixtures.Color.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Fixtures.Number.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Fixtures.RandomData.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Fixtures.Time.Local.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Fixtures.Time.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.Ajax.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.Annotate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.Axis.Time.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.Axis.X.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.Axis.Y.Scaled.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.Axis.Y.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.Behavior.Series.Highlight.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.Behavior.Series.Order.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.Behavior.Series.Toggle.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.HoverDetail.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.JSONP.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.Legend.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.RangeSlider.Preview.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.RangeSlider.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.Renderer.Area.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.Renderer.Bar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.Renderer.Line.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.Renderer.LinePlot.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.Renderer.Multi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.Renderer.ScatterPlot.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.Renderer.Stack.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.Renderer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.Smoother.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.Socketio.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Graph.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Series.FixedDuration.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.Series.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/src/js/Rickshaw.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tests/Rickshaw.Class.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tests/Rickshaw.Fixtures.Time.Local.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tests/Rickshaw.Fixtures.Time.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tests/Rickshaw.Graph.Axis.X.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tests/Rickshaw.Graph.Axis.Y.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tests/Rickshaw.Graph.Legend.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tests/Rickshaw.Graph.RangeSlider.Preview.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tests/Rickshaw.Graph.Renderer.Multi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tests/Rickshaw.Graph.Renderer.Scatterplot.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tests/Rickshaw.Graph.Renderer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tests/Rickshaw.Graph.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tests/Rickshaw.Series.FixedDuration.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tests/Rickshaw.Series.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tests/data/simple.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tutorial/example_01.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tutorial/example_02.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tutorial/example_03.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tutorial/example_04.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tutorial/example_05.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tutorial/example_06.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tutorial/example_07.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tutorial/introduction.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tutorial/style.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tutorial/transform.pl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tutorial/transform_epoch.pl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tutorial/transform_region.pl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tutorial/vendor/prettify/prettify.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/tutorial/vendor/prettify/prettify.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/vendor/d3.layout.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/vendor/d3.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/vendor/d3.v2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/rickshaw/vendor/d3.v3.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpinfo.php" afterPath="$PROJECT_DIR$/phpinfo.php" />
     </list>
     <ignored path="public.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,13 +322,9 @@
       <file leaf-file-name="quoteByStatus.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.3076923">
+            <state vertical-scroll-proportion="-124.375">
               <caret line="199" column="45" selection-start-line="199" selection-start-column="45" selection-end-line="199" selection-end-column="45" />
-              <folding>
-                <marker date="1476390552023" expanded="true" signature="4085:4658" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
-                <marker date="1476390552023" expanded="true" signature="4120:4657" placeholder="[...]" />
-                <marker date="1476390552023" expanded="true" signature="4121:4656" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -55,18 +332,8 @@
       <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.5862069">
-              <caret line="68" column="42" selection-start-line="68" selection-start-column="42" selection-end-line="68" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/app.js">
-          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="115" selection-start-line="10" selection-start-column="115" selection-end-line="10" selection-end-column="115" />
+              <caret line="68" column="42" selection-start-line="68" selection-start-column="42" selection-end-line="68" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -75,26 +342,9 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/v1/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.384615">
+            <state vertical-scroll-proportion="0.0">
               <caret line="177" column="81" selection-start-line="177" selection-start-column="81" selection-end-line="177" selection-end-column="81" />
-              <folding>
-                <marker date="1476389124333" expanded="true" signature="2298:2578" placeholder="SELECT u.use..Users..." />
-                <marker date="1476389124333" expanded="true" signature="2858:2932" placeholder="UPDATE Users..." />
-                <marker date="1476389124333" expanded="true" signature="3163:3372" placeholder="SELECT AuthR..User_AuthRole..." />
-                <marker date="1476389124333" expanded="true" signature="3475:3589" placeholder="SELECT av.au..AuthView..." />
-                <marker date="1476389124333" expanded="true" signature="5087:5110" placeholder="INSERT INTO LoginDetail..." />
-                <marker date="1476389124333" expanded="true" signature="6002:6040" placeholder="SELECT * FRO..Users..." />
-                <marker date="1476389124333" expanded="true" signature="6918:7000" placeholder="SELECT docNa..Document..." />
-                <marker date="1476389124333" expanded="true" signature="9654:9786" placeholder="SELECT doc_i..Document..." />
-                <marker date="1476389124333" expanded="true" signature="10074:10124" placeholder="SELECT COUNT..${$q_str}..." />
-                <marker date="1476389124333" expanded="true" signature="11964:11976" placeholder="INSERT INTO ${{$data-&gt;factName}..." />
-                <marker date="1476389124333" expanded="true" signature="13532:13560" placeholder="UPDATE ${{$d..." />
-                <marker date="1476389124333" expanded="true" signature="14456:14468" placeholder="INSERT INTO ${{$data-&gt;factName}..." />
-                <marker date="1476389124333" expanded="true" signature="14520:14597" placeholder="INSERT INTO logs..." />
-                <marker date="1476389124333" expanded="true" signature="16981:17207" placeholder="INSERT INTO Document..." />
-                <marker date="1476389124333" expanded="true" signature="19019:19054" placeholder="DELETE FROM ..." />
-                <marker date="1476389124333" expanded="true" signature="20473:20520" placeholder="UPDATE Users..." />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -102,34 +352,68 @@
       <file leaf-file-name="quote.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/v1/quote.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.730769">
+            <state vertical-scroll-proportion="0.0">
               <caret line="222" column="68" selection-start-line="222" selection-start-column="68" selection-end-line="228" selection-end-column="0" />
-              <folding>
-                <marker date="1476387910322" expanded="true" signature="2247:2285" placeholder="SELECT * FRO..Users..." />
-                <marker date="1476387910322" expanded="true" signature="4424:4520" placeholder="SELECT doc_i..Document..." />
-                <marker date="1476387910322" expanded="true" signature="4736:4786" placeholder="SELECT COUNT..${$q_str}..." />
-                <marker date="1476387910322" expanded="true" signature="5669:5686" placeholder="INSERT INTO Quote..." />
-                <marker date="1476387910322" expanded="true" signature="7631:7715" placeholder="INSERT INTO Document..." />
-                <marker date="1476387910322" expanded="true" signature="8419:8442" placeholder="INSERT INTO QuoteDetail..." />
-                <marker date="1476387910322" expanded="true" signature="9524:9560" placeholder="INSERT INTO QuoteDetail_Manufacturer..." />
-                <marker date="1476387910322" expanded="true" signature="11565:11581" placeholder="UPDATE Quote..." />
-                <marker date="1476387910322" expanded="true" signature="13220:13304" placeholder="INSERT INTO Document..." />
-                <marker date="1476387910322" expanded="true" signature="14463:14510" placeholder="SELECT * FRO..QuoteDetail..." />
-                <marker date="1476387910322" expanded="true" signature="14911:14933" placeholder="UPDATE Quote..." />
-                <marker date="1476387910322" expanded="true" signature="16176:16199" placeholder="INSERT INTO QuoteDetail..." />
-                <marker date="1476387910322" expanded="true" signature="17204:17276" placeholder="delete from ..." />
-                <marker date="1476387910322" expanded="true" signature="17891:17927" placeholder="INSERT INTO QuoteDetail_Manufacturer..." />
-                <marker date="1476387910322" expanded="true" signature="20467:20496" placeholder="DELETE FROM ..." />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="services.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/common/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49594814">
-              <caret line="214" column="36" selection-start-line="214" selection-start-column="36" selection-end-line="214" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="239" column="0" selection-start-line="239" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/menu/1/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-39.375">
+              <caret line="63" column="51" selection-start-line="63" selection-start-column="51" selection-end-line="63" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="messages.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/themeforest/angular/app/scripts/services/messages.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/themeforest/angular/app/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-18.705883">
+              <caret line="65" column="45" selection-start-line="65" selection-start-column="45" selection-end-line="65" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="preloader.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/themeforest/angular/app/scripts/directives/preloader.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.router.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/themeforest/angular/app/scripts/config.router.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.277778">
+              <caret line="42" column="29" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -156,11 +440,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tests/ssPaging/app.js" />
-        <option value="$PROJECT_DIR$/scripts/angular-sanitize.min.js" />
-        <option value="$PROJECT_DIR$/modules/setup/views/templates/party.html" />
-        <option value="$PROJECT_DIR$/api/v1/mailer.php" />
-        <option value="$PROJECT_DIR$/api/mailer.php" />
         <option value="$PROJECT_DIR$/modules/quote/views/quotes.html" />
         <option value="$PROJECT_DIR$/tests/switches/1.html" />
         <option value="$PROJECT_DIR$/tests/switches/2.html" />
@@ -202,11 +481,16 @@
         <option value="$PROJECT_DIR$/scripts/app.js" />
         <option value="$PROJECT_DIR$/js.js" />
         <option value="$PROJECT_DIR$/modules/common/services.js" />
-        <option value="$PROJECT_DIR$/phpinfo.php" />
         <option value="$PROJECT_DIR$/api/v1/quote.php" />
         <option value="$PROJECT_DIR$/api/v1/index.php" />
         <option value="$PROJECT_DIR$/modules/quote/controller.js" />
         <option value="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" />
+        <option value="$PROJECT_DIR$/scripts/jquery-3.1.1.min.js" />
+        <option value="$PROJECT_DIR$/tests/menu/1/index.html" />
+        <option value="$PROJECT_DIR$/phpinfo.php" />
+        <option value="$PROJECT_DIR$/themeforest/angular/app/scripts/app.main.js" />
+        <option value="$PROJECT_DIR$/themeforest/angular/app/scripts/config.router.js" />
+        <option value="$PROJECT_DIR$/themeforest/angular/app/scripts/directives/c3.js" />
       </list>
     </option>
   </component>
@@ -232,10 +516,9 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="754" />
+    <option name="y" value="23" />
+    <option name="width" value="1820" />
+    <option name="height" value="1312" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -262,6 +545,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -269,40 +554,6 @@
               <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PHP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PHP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -324,7 +575,65 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
+              <option name="myItemId" value="themeforest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themeforest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="no-bower-grunt-angular" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themeforest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="customizer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themeforest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="customizer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fonts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -620,8 +929,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -652,19 +959,19 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\geotripe\public\tests\addRowWtFormItems" />
-      <recent name="C:\xampp\htdocs\geotripe\public\tests\addRowWtFormItems\api" />
-      <recent name="$PROJECT_DIR$/css" />
-      <recent name="$PROJECT_DIR$/scripts" />
-      <recent name="$PROJECT_DIR$/api" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/scripts/excel2json" />
       <recent name="$PROJECT_DIR$/scripts" />
       <recent name="$PROJECT_DIR$/tests/excel/angularJs/alasql" />
       <recent name="$PROJECT_DIR$/tests/excel/pureJs" />
       <recent name="$PROJECT_DIR$/api" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/themeforest/angular/app/vendor" />
+      <recent name="$PROJECT_DIR$/themeforest/angular/app/styles" />
+      <recent name="C:\xampp\htdocs\geotripe\public\tests\addRowWtFormItems" />
+      <recent name="C:\xampp\htdocs\geotripe\public\tests\addRowWtFormItems\api" />
+      <recent name="$PROJECT_DIR$/css" />
     </key>
   </component>
   <component name="RunManager">
@@ -988,6 +1295,18 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner />
       <method />
@@ -1148,6 +1467,7 @@
       <workItem from="1476224821063" duration="548000" />
       <workItem from="1476255957741" duration="23438000" />
       <workItem from="1476388203032" duration="3043000" />
+      <workItem from="1476443427228" duration="6896000" />
     </task>
     <task id="LOCAL-00001" summary="Completed work on the RFQ">
       <created>1475831179986</created>
@@ -1171,36 +1491,36 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="518425000" />
+    <option name="totallyTimeSpent" value="525321000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="0" y="23" width="1820" height="1312" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293461" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13909224" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13836017" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15604396" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.104945056" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1228,153 +1548,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scripts/excel2json/alasql.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.024772914">
-          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/excel/angularJs/alasql/1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6425041">
-          <caret line="52" column="53" selection-start-line="52" selection-start-column="45" selection-end-line="52" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/addRowWtFormItems/api/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/addRowWtFormItems/api/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.028764805">
-          <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/addRowWtFormItems/2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.030456852">
-          <caret line="56" column="15" selection-start-line="56" selection-start-column="15" selection-end-line="57" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/addRowWtFormItems/1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.028764805">
-          <caret line="57" column="56" selection-start-line="57" selection-start-column="56" selection-end-line="57" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/excel/pureJs/1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19458544">
-          <caret line="32" column="15" selection-start-line="32" selection-start-column="15" selection-end-line="32" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/excel/angularJs/1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8900169">
-          <caret line="62" column="58" selection-start-line="58" selection-start-column="69" selection-end-line="62" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/fileWtUpload/1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9864636">
-          <caret line="44" column="51" selection-start-line="44" selection-start-column="51" selection-end-line="44" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/fileWtUpload/2/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/ssPaging/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/ssPaging/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.85109985">
-          <caret line="43" column="19" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/addRowWtFormItems/good.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.230769">
-          <caret line="46" column="15" selection-start-line="42" selection-start-column="12" selection-end-line="46" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/views/quotes.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.327273">
-          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/v1/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.086440675">
-          <caret line="3" column="21" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/idea.jar!/resources/html5-schema/html5/core-scripting.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1453958">
-          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/setup/views/templates/roles.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/auth/views/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3088962">
-          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/v1/user.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.09308072">
-          <caret line="101" column="23" selection-start-line="101" selection-start-column="23" selection-end-line="101" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/setup/views/setup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.625">
-          <caret line="9" column="87" selection-start-line="9" selection-start-column="82" selection-end-line="9" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/setup/controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1484,7 +1657,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1547,66 +1719,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/phpinfo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/v1/quote.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.730769">
+        <state vertical-scroll-proportion="0.0">
           <caret line="222" column="68" selection-start-line="222" selection-start-column="68" selection-end-line="228" selection-end-column="0" />
-          <folding>
-            <marker date="1476387910322" expanded="true" signature="2247:2285" placeholder="SELECT * FRO..Users..." />
-            <marker date="1476387910322" expanded="true" signature="4424:4520" placeholder="SELECT doc_i..Document..." />
-            <marker date="1476387910322" expanded="true" signature="4736:4786" placeholder="SELECT COUNT..${$q_str}..." />
-            <marker date="1476387910322" expanded="true" signature="5669:5686" placeholder="INSERT INTO Quote..." />
-            <marker date="1476387910322" expanded="true" signature="7631:7715" placeholder="INSERT INTO Document..." />
-            <marker date="1476387910322" expanded="true" signature="8419:8442" placeholder="INSERT INTO QuoteDetail..." />
-            <marker date="1476387910322" expanded="true" signature="9524:9560" placeholder="INSERT INTO QuoteDetail_Manufacturer..." />
-            <marker date="1476387910322" expanded="true" signature="11565:11581" placeholder="UPDATE Quote..." />
-            <marker date="1476387910322" expanded="true" signature="13220:13304" placeholder="INSERT INTO Document..." />
-            <marker date="1476387910322" expanded="true" signature="14463:14510" placeholder="SELECT * FRO..QuoteDetail..." />
-            <marker date="1476387910322" expanded="true" signature="14911:14933" placeholder="UPDATE Quote..." />
-            <marker date="1476387910322" expanded="true" signature="16176:16199" placeholder="INSERT INTO QuoteDetail..." />
-            <marker date="1476387910322" expanded="true" signature="17204:17276" placeholder="delete from ..." />
-            <marker date="1476387910322" expanded="true" signature="17891:17927" placeholder="INSERT INTO QuoteDetail_Manufacturer..." />
-            <marker date="1476387910322" expanded="true" signature="20467:20496" placeholder="DELETE FROM ..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/v1/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.384615">
+        <state vertical-scroll-proportion="0.0">
           <caret line="177" column="81" selection-start-line="177" selection-start-column="81" selection-end-line="177" selection-end-column="81" />
-          <folding>
-            <marker date="1476389124333" expanded="true" signature="2298:2578" placeholder="SELECT u.use..Users..." />
-            <marker date="1476389124333" expanded="true" signature="2858:2932" placeholder="UPDATE Users..." />
-            <marker date="1476389124333" expanded="true" signature="3163:3372" placeholder="SELECT AuthR..User_AuthRole..." />
-            <marker date="1476389124333" expanded="true" signature="3475:3589" placeholder="SELECT av.au..AuthView..." />
-            <marker date="1476389124333" expanded="true" signature="5087:5110" placeholder="INSERT INTO LoginDetail..." />
-            <marker date="1476389124333" expanded="true" signature="6002:6040" placeholder="SELECT * FRO..Users..." />
-            <marker date="1476389124333" expanded="true" signature="6918:7000" placeholder="SELECT docNa..Document..." />
-            <marker date="1476389124333" expanded="true" signature="9654:9786" placeholder="SELECT doc_i..Document..." />
-            <marker date="1476389124333" expanded="true" signature="10074:10124" placeholder="SELECT COUNT..${$q_str}..." />
-            <marker date="1476389124333" expanded="true" signature="11964:11976" placeholder="INSERT INTO ${{$data-&gt;factName}..." />
-            <marker date="1476389124333" expanded="true" signature="13532:13560" placeholder="UPDATE ${{$d..." />
-            <marker date="1476389124333" expanded="true" signature="14456:14468" placeholder="INSERT INTO ${{$data-&gt;factName}..." />
-            <marker date="1476389124333" expanded="true" signature="14520:14597" placeholder="INSERT INTO logs..." />
-            <marker date="1476389124333" expanded="true" signature="16981:17207" placeholder="INSERT INTO Document..." />
-            <marker date="1476389124333" expanded="true" signature="19019:19054" placeholder="DELETE FROM ..." />
-            <marker date="1476389124333" expanded="true" signature="20473:20520" placeholder="UPDATE Users..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5862069">
+        <state vertical-scroll-proportion="0.0">
           <caret line="68" column="42" selection-start-line="68" selection-start-column="42" selection-end-line="68" selection-end-column="42" />
           <folding />
         </state>
@@ -1614,13 +1745,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3076923">
+        <state vertical-scroll-proportion="-124.375">
           <caret line="199" column="45" selection-start-line="199" selection-start-column="45" selection-end-line="199" selection-end-column="45" />
-          <folding>
-            <marker date="1476390552023" expanded="true" signature="4085:4658" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
-            <marker date="1476390552023" expanded="true" signature="4120:4657" placeholder="[...]" />
-            <marker date="1476390552023" expanded="true" signature="4121:4656" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1628,14 +1755,189 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/common/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49594814">
-          <caret line="214" column="36" selection-start-line="214" selection-start-column="36" selection-end-line="214" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="239" column="0" selection-start-line="239" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/jquery-3.1.1.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.061728396">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/menu/1/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-39.375">
+          <caret line="63" column="51" selection-start-line="63" selection-start-column="51" selection-end-line="63" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/scripts/services/messages.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phpinfo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4282116">
+          <caret line="34" column="7" selection-start-line="25" selection-start-column="4" selection-end-line="34" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/scripts/app.main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18939394">
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/styles/panel.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/styles/urban.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.056701">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/views/docs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.324741">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/views/directives/toggle-offscreen.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/vendor/ocLazyLoad/dist/ocLazyLoad.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.93434346">
+          <caret line="74" column="23" selection-start-line="74" selection-start-column="23" selection-end-line="74" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/scripts/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/views/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/scripts/config.router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.277778">
+          <caret line="42" column="29" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/scripts/directives/anchor-scroll.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/scripts/directives/c3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8737374">
+          <caret line="154" column="4" selection-start-line="110" selection-start-column="2" selection-end-line="154" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/scripts/directives/chosen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/scripts/directives/navigation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/scripts/directives/offscreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/scripts/directives/panel-control-collapse.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/scripts/directives/panel-control-refresh.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.705883">
+          <caret line="65" column="45" selection-start-line="65" selection-start-column="45" selection-end-line="65" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/scripts/directives/preloader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

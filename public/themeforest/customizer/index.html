@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Template Customizer</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+
+  <link rel="stylesheet" href="styles/app.min.css">
+
+</head>
+
+<body>
+
+  <div id="customizer">
+    <div class="sidebar">
+      <div class="scrollable">
+        <div class="text-center m30">
+          <img src="images/avatar.png" alt="">
+        </div>
+
+        <nav class="navigation" role="navigation"></nav>
+
+        <footer class="footer mt25">
+          <div class="row mb25">
+            <div class="col-xs-12 mb15">
+              <a href="#" class="btn btn-primary btn-block btn-lg btn-compile">Compile</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <div class="wrapper">
+      <div class="preloader">
+        <div class="load">
+          <div class="spinner"></div>
+          <div class="text">Initializing Customizer</div>
+        </div>
+      </div>
+      <iframe id="theme-preview" src="guide.html"></iframe>
+    </div>
+  </div>
+
+  <div id="modal" class="md-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="md-content text-center">
+      <div class="md-header">
+        <h3 class="md-title"></h3>
+      </div>
+      <div class="md-body">
+        <div class="alert alert-danger">
+          <div class="message"></div>
+        </div>
+        <div class="form-group input-purchase-code no-margin">
+          <input class="superhero" type="text" name="superhero" style="display:none;visibility:hidden">
+          <input class="form-control input-lg" type="text" placeholder="Your purchase code">
+          <p class="help-block text-left mb0 small"><a href="https://help.market.envato.com/hc/en-us/articles/202822600-Where-Can-I-Find-my-Purchase-Code-" target="_blank">Where can I find my purchase code?</a></p>
+        </div>
+      </div>
+      <div class="md-footer no-border">
+        <a href="javascript:;" class="btn btn-primary btn-verify-code btn-lg">Verify</a>
+        <a href="javascript:;" class="btn btn-default btn-lg md-close">Cancel</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="md-overlay"></div>
+
+  <script src="scripts/app.js"></script>
+
+</body>
+
+</html>

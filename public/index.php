@@ -86,8 +86,7 @@
                 <i class="fa fa-2x {{menu.css_class}}"></i>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ menu.name }}
             </a>
             <ul ng-if="menu.child">
-                <li ng-repeat="menu in menu.child" ng-init="$root.show(menu.roles,menu.authview_id)" ng-include="'menuTree'">
-                </li>
+                <li ng-repeat="menu in menu.child" ng-init="$root.show(menu.roles,menu.authview_id)" ng-include="'menuTree'"></li>
             </ul>
         </script>
         <div ui-view="login"></div>
