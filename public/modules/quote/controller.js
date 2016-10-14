@@ -66,56 +66,7 @@ angular.module('RFQ')
                 }
             }
             vm.downFile = function(file){
-                var data=angular.copy(CommonServices.postData);
-                data.factName = 'Document d';
-                data.transactionEventType = "downFile"
-                data.transactionMetaData.responseDataProperties = "d.docBlob";
-                data.transactionMetaData.queryMetaData.queryClause.andExpression = [
-                    {
-                        "propertyName": "d.doc_id",
-                        "propertyValue": file.doc_id,
-                        "propertyDataType": "BIGINT",
-                        "operatorType": "="
-                    }
-                ];
-                DataService.post('inboundService', data
-                    , {
-                    responseType : "arraybuffer",
-                //transformRequest: angular.identity ,
-                //    cache: true,
-                    headers: {
-                        'Content-type': 'application/json',
-                        //'Process-Data': false
-                    }
-                }).then(function (response) {
-                    //var data = CommonServices.base64Decode(response.data.data[0].docBlob);
-
-                    //var data = CommonServices.encode('Hello World!');
-                    //console.log(data);
-                    //var data = CommonServices.decode(data);
-                    //console.log(data);
-
-                    //$scope.toJSON = angular.toJson(data);
-                    //var blob = new Blob(data, { type:file.docMimeType });
-                    //var downloadLink = angular.element('<a></a>');
-                    //downloadLink.attr('href',window.URL.createObjectURL(blob));
-                    //downloadLink.attr('download', file.docName);
-                    //downloadLink[0].click();
-                    //var data = CommonServices.base64Decode(response.data.data[0].docBlob),
-                    //    blob = new Blob([data], { type: file.docMimeType}),
-                    //    url = window.URL || window.webkitURL;
-                    //$scope.fileUrl = url.createObjectURL(blob);
-
-                    //var file = new Blob([response.data.docBlob], {type: response.data.docMimeType});
-                    //var fileURL = URL.createObjectURL(file);
-                    //console.log(response.data.data[0]);
-                    //console.log(CommonServices._utf8_decode(response.data.data[0].docBlob))
-                    //vm.openPDF(CommonServices._utf8_decode(response.data.data[0].docBlob), response.data.data[0].docName);
-
-                    var blob = new Blob([response], {type: file.docMimeType});
-                    var objectUrl = URL.createObjectURL(blob);
-                    window.open(objectUrl);
-                });
+                window.open(file.docPath);
             }
             vm.deleteFile = function(file){
                 if(confirm("Are you sure you want to delete this file")){

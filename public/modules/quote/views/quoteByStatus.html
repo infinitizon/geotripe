@@ -197,7 +197,7 @@
                         </div>
                         <div data-ng-if="quotCtrl.quoteFiles" class="well">Files already attached are:
                             <ul><li data-ng-repeat="file in quotCtrl.quoteFiles">
-                                    <a data-ng-click="quotCtrl.downFile(file)">{{file.docName}}</a>
+                                    <a href="" data-ng-click="quotCtrl.downFile(file)">{{file.docName}}</a>
                                     <span class="fa-stack fa-lg" style="cursor:pointer;" data-ng-click="quotCtrl.deleteFile(file)" title="Delete file">
                                       <i class="fa fa-trash-o fa-stack-1x"></i>
                                       <i class="fa fa-ban fa-stack-2x text-danger"></i>

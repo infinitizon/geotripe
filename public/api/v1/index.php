@@ -175,7 +175,7 @@ if($env['PATH_INFO']==="/inboundService") {
                     }
                     $q_str = $fxns->_subStrAtDel($q_str, ' AND ');
                     $files_id = $fxns->_subStrAtDel($files_id, ' ,');
-                    $q_getFiles_str = "SELECT doc_id,doc_quote_id,docName,docMimeType,docCreateDate,documentType_id FROM Document WHERE doc_quote_Id IN ($files_id)";
+                    $q_getFiles_str = "SELECT doc_id,doc_quote_id,docName,docPath,docMimeType,docCreateDate,documentType_id FROM Document WHERE doc_quote_Id IN ($files_id)";
                 }
                 if (!empty($data->transactionMetaData->groupingProperties)) {
                     $q_str .= " GROUP BY ".$data->transactionMetaData->groupingProperties;
@@ -306,9 +306,12 @@ if($env['PATH_INFO']==="/inboundService") {
                             $mime = $_FILES['file']['type'][$i];
                             $temp = $_FILES['file']['tmp_name'][$i];
                             $size = intval($_FILES['file']['size'][$i]);
-                            $newfilename = substr(md5(time()), 0, 10) . '.' . end($temp);
-                            $path = 'files/' . $newfilename;
-                            move_uploaded_file($_FILES['file']['tmp_name'], $path);
+
+                            $newfilename = md5(time()).".".pathinfo($name, PATHINFO_EXTENSION);
+                            $path = $_SERVER['DOCUMENT_ROOT'].'/uploads/' . $newfilename;
+                            $webPath = WEB_ROOT.'/uploads/' . $newfilename;
+                            move_uploaded_file($temp, $path);
+
 
 //                            $blob = $dbo->quote(file_get_contents($_FILES['file']['tmp_name'][$i]));
                             $query = "INSERT INTO Document (doc_quote_id,docName,docMimeType,docPath,docSize,docCreateDate)
