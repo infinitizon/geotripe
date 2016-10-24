@@ -383,6 +383,7 @@ class Functions extends DB_Connect {
                         $html .= '"authview_id":"'.$menu['items'][$itemId]['authview_id'].'",';
                         $html .= '"name":"'.$menu['items'][$itemId]['name'].'",';
                         $html .= '"viewpath":"'.$menu['items'][$itemId]['viewpath'].'",';
+                        $html .= '"parentViewPath":"'.$menu['items'][$itemId]['parentViewPath'].'",';
                         $html .= '"css_class":"'.$menu['items'][$itemId]['css_class'].'",';
                         $html .= '"roles":"'.$menu['items'][$itemId]['roles'].'"';
                         $html .= '},';
@@ -392,6 +393,7 @@ class Functions extends DB_Connect {
                         $html .= '"authview_id":"'.$menu['items'][$itemId]['authview_id'].'",';
                         $html .= '"name":"'.$menu['items'][$itemId]['name'].'",';
                         $html .= '"viewpath":"'.$menu['items'][$itemId]['viewpath'].'",';
+                        $html .= '"parentViewPath":"'.$menu['items'][$itemId]['parentViewPath'].'",';
                         $html .= '"css_class":"'.$menu['items'][$itemId]['css_class'].'",';
                         $html .= '"roles":"'.$menu['items'][$itemId]['roles'].'",';
                         $html .= '"child":['.$this->_buildMenu($itemId, $menu, $options);

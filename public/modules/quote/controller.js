@@ -1,15 +1,12 @@
-angular.module('RFQ')
-    .controller('QuoteController', ['$scope', '$location', '$rootScope','DataService','CommonServices','$http', '$uibModal',
-        function ($scope, $location, $rootScope,DataService,CommonServices,$http, $uibModal) {
-            $rootScope.pageTitle = "Quotes";
-            $rootScope.pageHeader = "Quotes";
-
+angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
+    .controller('QuoteController', ['$scope', '$location', '$localStorage','DataService','CommonServices','$http', '$uibModal',
+        function ($scope, $location, $localStorage, DataService,CommonServices,$http, $uibModal) {
             var vm = this;
             vm.lineItems = [];
             /*
              * This part gets quotes summary by clients
              */
-            CommonServices.postData.token = $rootScope.globals.currentUser.userDetails.token;
+            CommonServices.postData.token = $localStorage.globals.currentUser.userDetails.token;
             vm.getQuoteSummary = function(pageno) {
                 vm.quotes = []; // Initially make list empty so as to show the "loading data" notice!
                 var data=angular.copy(CommonServices.postData);
@@ -33,10 +30,10 @@ angular.module('RFQ')
             }
             vm.getQuoteSummary();
         }])
-    .controller('QuoteByStatusController', ['$http', '$scope', '$location', '$rootScope','DataService','CommonServices','$stateParams', '$uibModal', 'ImportExportToExcel',
-        function ($http, $scope, $location, $rootScope, DataService, CommonServices, $stateParams, $uibModal,ImportExportToExcel) {
-            $rootScope.pageTitle = "Quotes";
-            $rootScope.pageHeader = "Quotes";
+    .controller('QuoteByStatusController', ['$http', '$scope', '$location', '$localStorage','DataService','CommonServices','$stateParams', '$uibModal', 'ImportExportToExcel',
+        function ($http, $scope, $location, $localStorage, DataService, CommonServices, $stateParams, $uibModal,ImportExportToExcel) {
+            $localStorage.pageTitle = "Quotes";
+            $localStorage.pageHeader = "Quotes";
 
             var vm = this;
             vm.uploads = [];
@@ -245,7 +242,7 @@ angular.module('RFQ')
             vm.pageno = 1; // initialize page no to 1
             vm.total_count = 0;
             vm.itemsPerPage = 15; //this could be a dynamic value from a drop down
-            CommonServices.postData.token = $rootScope.globals.currentUser.userDetails.token;
+            CommonServices.postData.token = $localStorage.globals.currentUser.userDetails.token;
             vm.getData = function(pageno) {
                 vm.quotes = []; // Initially make list empty so as to show the "loading data" notice!
                 var data=angular.copy(CommonServices.postData);
@@ -443,7 +440,7 @@ angular.module('RFQ')
 
             vm.supervisor = function(quoteId){
                 var i = 0;
-                angular.forEach($rootScope.globals.currentUser.userDetails.authRoles  , function(authRole, key) {
+                angular.forEach($localStorage.globals.currentUser.userDetails.authRoles  , function(authRole, key) {
                     if (quoteId && "RFQ_SUPERVISOR,RFQ_ADMIN,SUPPORT_ADMIN".indexOf(authRole.Name) >= 0){
                         i++;
                     }
@@ -473,7 +470,7 @@ angular.module('RFQ')
                     'operatorType': '='
                 }]});
             }
-            CommonServices.postData.token = $rootScope.globals.currentUser.userDetails.token;
+            CommonServices.postData.token = $localStorage.globals.currentUser.userDetails.token;
 
             vm.postData = function () {
                 vm.isDisabled = true; //Disable submit button
@@ -481,7 +478,7 @@ angular.module('RFQ')
                 //FILL FormData WITH FILE DETAILS.
                 var data = new FormData();
                 data.append("factName", "Quote");
-                data.append("token", $rootScope.globals.currentUser.userDetails.token);
+                data.append("token", $localStorage.globals.currentUser.userDetails.token);
                 data.append("transactionMetaData[currentLocale]", "NG");
                 data.append("transactionMetaData[queryStore]", "MySql");
                 //  Lets deal with the files first
@@ -515,7 +512,7 @@ angular.module('RFQ')
                     data.append("transactionEventType", "PUT");
                     data.append("putType", "many");
                     data.append("putOrder", "Quote-Quote_quote_Id,QuoteDetail-QuoteDetail_QuoteDetail_Id,QuoteDetail_Manufacturer");
-                    vm.quote.quote_enteredby_id = $rootScope.globals.currentUser.userDetails.authDetails.user_id;
+                    vm.quote.quote_enteredby_id = $localStorage.globals.currentUser.userDetails.authDetails.user_id;
                     vm.quote.party_party_id = $stateParams.client; // This should be added when adding new quote
                     vm.quote.quote_status_id = 12141325; // Pending Approval...Hopefully this will not change
                     vm.quote.entrydate = new Date();
@@ -597,8 +594,8 @@ angular.module('RFQ')
                 });
             }
         }])
-    .controller('quoteItemsController', ['$scope','$rootScope','$uibModalInstance', 'data', 'DataService', 'CommonServices',
-        function ($scope, $rootScope, $uibModalInstance,data,DataService,CommonServices)  {
+    .controller('quoteItemsController', ['$scope','$uibModalInstance', 'data', 'DataService', 'CommonServices',
+        function ($scope, $uibModalInstance,data,DataService,CommonServices)  {
             var vm = this;
             vm.insertingManu = false;
             vm.showNewManu = true;
@@ -632,7 +629,7 @@ angular.module('RFQ')
                 vm.unitprice = vm.data.item.unitprice;
                 vm.selectedManufacturers = vm.data.item.manus;
                 if(vm.data.item.unitofmeasure) {
-                    vm.getLOVs('unitofmeasure', 'unitofmeasures', {
+                    vm.getLOVs('UnitOfMeasure', 'unitofmeasures', {
                         'response': 'unitofmeasure_id&name',
                         'placeholder': 'UOMPlaceholder'
                     });

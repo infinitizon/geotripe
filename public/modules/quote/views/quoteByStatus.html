@@ -143,16 +143,30 @@
             </div>
             <div class="row" data-ng-if="quotCtrl.quote.quote_id">
                 <div class="col-sm-6">
-                    <p class="switch">
-                        <input id="submitted" type="checkbox" data-ng-disabled="quotCtrl.submittedDisabled" data-ng-click="quotCtrl.checkTheBox($event)" data-ng-model="quotCtrl.submittedChecked" />
-                        <label for="submitted" class="slider round">Turn on if RFQ is submitted<br>
-                            <!--<em style="font-size:smaller;">Once submitted, it cannot be undone</em>-->
+                    <!--<p class="switch">-->
+                        <!--<input id="submitted" type="checkbox" data-ng-disabled="quotCtrl.submittedDisabled" data-ng-click="quotCtrl.checkTheBox($event)" data-ng-model="quotCtrl.submittedChecked" />-->
+                        <!--<label for="submitted" class="slider round">Turn on if RFQ is submitted<br>-->
+                            <!--&lt;!&ndash;<em style="font-size:smaller;">Once submitted, it cannot be undone</em>&ndash;&gt;-->
+                        <!--</label>-->
+                    <!--</p>-->
+                    <!--<p class="switch">-->
+                        <!--<input id="TQ" type="checkbox" data-ng-model="quotCtrl.tqChecked" />-->
+                        <!--<label for="TQ" class="slider round">Turn on if there's a TQ</label>-->
+                    <!--</p>-->
+                    <div class="col-sm-3">
+                        <span class="text-right" style="display: inline-block">Turn on if RFQ is submitted</span>
+                        <label class="switch switch-sm pull-right">
+                            <input type="checkbox" data-ng-disabled="quotCtrl.submittedDisabled" data-ng-click="quotCtrl.checkTheBox($event)" data-ng-model="quotCtrl.submittedChecked">
+                            <span><i class="handle"></i></span>
                         </label>
-                    </p>
-                    <p class="switch">
-                        <input id="TQ" type="checkbox" data-ng-model="quotCtrl.tqChecked" />
-                        <label for="TQ" class="slider round">Turn on if there's a TQ</label>
-                    </p>
+                    </div>
+                    <div class="col-sm-3">
+                        <span>Turn on if there's a TQ</span>
+                        <label class="switch switch-sm pull-right">
+                            <input type="checkbox" data-ng-model="quotCtrl.tqChecked">
+                            <span><i class="handle"></i></span>
+                        </label>
+                    </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">

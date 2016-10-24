@@ -63,7 +63,7 @@ if($env['PATH_INFO']==="/login"){
                           ON ua.AuthRoles_AuthRoles_Id=ar.AuthRoles_Id
                         WHERE ua.Users_User_Id=".$user[0]['user_id']);
             //Get all pages for the app
-            $r_getPages = $dbo->query("SELECT av.authview_id, av.name, av.parent_id, av.viewpath, av.description, av.css_class, av.roles FROM AuthView av");
+            $r_getPages = $dbo->query("SELECT av.authview_id, av.name, av.parent_id, av.viewpath, av.parentViewPath, av.description, av.css_class, av.roles FROM AuthView av");
             //Get the pages the user can view
 //            $r_getViews = $dbo->query("SELECT av.authview_id, av.name, av.parent_id, av.viewpath, av.description, av.css_class
 //                          FROM User_AuthView ua

@@ -5,8 +5,8 @@
 
 angular.module('Auth')
     .factory('AuthenticationService',
-            ['Base64', '$http', '$cookieStore', '$rootScope', '$state', 'DataService',
-        function (Base64, $http, $cookieStore, $rootScope, $state, DataService) {
+            ['Base64', '$http', '$localStorage', '$rootScope', '$state', 'DataService',
+        function (Base64, $http, $localStorage, $rootScope, $state, DataService) {
             var service = {};
 
             service.Login = function (username, password, callback) {
@@ -19,26 +19,25 @@ angular.module('Auth')
                });
             };
             service.SetCredentials = function (details) {
-                $rootScope.globals = {
+                $localStorage.globals = {
                     "currentUser": {
                         "userDetails":details
                     }
                 };
-
-                $cookieStore.put('globals', $rootScope.globals);
+                $localStorage.pages = $localStorage.globals.currentUser.userDetails.appPages;
             };
 
             service.ClearCredentials = function (callback) {
-                if($cookieStore.get('globals')) {
+                if($localStorage.globals) {
                     var data = {
-                        token:$cookieStore.get('globals').currentUser.userDetails.token
+                        token : $localStorage.globals.currentUser.userDetails.token
                     }
                     DataService.post('logout', data).then(function (response) {
                         callback(response);
                     });
                 }
                 $rootScope.globals = {};
-                $cookieStore.remove('globals');
+                //$localStorage.removeItem(globals);
             };
 
             return service;

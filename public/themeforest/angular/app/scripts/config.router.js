@@ -85,25 +85,25 @@ angular
           resolve: {
             deps: ['$ocLazyLoad', function ($ocLazyLoad) {
               return $ocLazyLoad.load([
-                {
-                  insertBefore: '#load_styles_before',
-                  files: [
+                  {
+                      insertBefore: '#load_styles_before',
+                      files: [
                                 'vendor/checkbo/src/0.1.4/css/checkBo.min.css',
                                 'vendor/chosen_v1.4.0/chosen.min.css'
                             ]
-                        },
-                {
-                  files: [
+                  },
+                  {
+                      files: [
                                 'vendor/checkbo/src/0.1.4/js/checkBo.min.js',
                                 'vendor/chosen_v1.4.0/chosen.jquery.min.js'
                             ]
-                        }]).then(function () {
-                return $ocLazyLoad.load('scripts/controllers/bootstrap.ui.js');
-              });
-                    }]
+                  }]).then(function () {
+                      return $ocLazyLoad.load('scripts/controllers/bootstrap.ui.js');
+                  });
+              }]
           },
           data: {
-            title: 'Bootstrap Directives',
+              title: 'Bootstrap Directives',
           }
       })
       .state('app.ui.tabs_accordion', {
@@ -212,12 +212,11 @@ angular
           url: '/notifications',
           templateUrl: 'views/ui-notifications.html',
           resolve: {
-            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-              return $ocLazyLoad.load([
-                {
-                  insertBefore: '#load_styles_before',
-                  files: ['vendor/chosen_v1.4.0/chosen.min.css']
-                        },
+              deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                  return $ocLazyLoad.load([{
+                      insertBefore: '#load_styles_before',
+                      files: ['vendor/chosen_v1.4.0/chosen.min.css']
+                      },
                 {
                   serie: true,
                   files: [
@@ -231,10 +230,10 @@ angular
                     }]
           },
           data: {
-            title: 'Notifications',
+              title: 'Notifications',
           }
-        })
-        .state('app.ui.alert', {
+      })
+      .state('app.ui.alert', {
           url: '/alert',
           templateUrl: 'views/ui-alert.html',
           resolve: {

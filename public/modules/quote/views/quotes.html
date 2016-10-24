@@ -2,12 +2,12 @@
     <div>
         <ul class="list-unstyled list-inline quoteDash">
             <li data-ng-repeat="lineItem in quotCtrl.quoteDash" class="col-sm-3 card">
-                <h2 class="text-center" ui-sref="quoteStatus({client:lineItem.party_id})"><span>{{lineItem.Name}}</span></h2>
+                <h2 class="text-center" ui-sref="app.quotes.status({client:lineItem.party_id})"><span>{{lineItem.Name}}</span></h2>
                 <div>
-                    <a ui-sref="quoteStatus({client:lineItem.party_id})" class="btn btn-success btn-sm" role="button">Total Quotes: {{lineItem.totalQuotes}}</a>
-                    <a ui-sref="quoteStatus({client:lineItem.party_id, clientStatus:12141325})" class="btn btn-warning btn-sm" role="button">In Progress: {{lineItem["In Progress"]}}</a>
-                    <a ui-sref="quoteStatus({client:lineItem.party_id, clientStatus:12141324})" class="btn btn-info btn-sm" role="button">Submitted: {{lineItem.Submitted}}</a>
-                    <a ui-sref="quoteStatus({client:lineItem.party_id, clientStatus:12141326})" class="btn btn-default btn-sm" role="button">TQ: {{lineItem.TQ}}</a>
+                    <a ui-sref="app.quotes.status({client:lineItem.party_id})" class="btn btn-success btn-sm" role="button">Total Quotes: {{lineItem.totalQuotes}}</a>
+                    <a ui-sref="app.quotes.status({client:lineItem.party_id, clientStatus:12141325})" class="btn btn-warning btn-sm" role="button">In Progress: {{lineItem["In Progress"]}}</a>
+                    <a ui-sref="app.quotes.status({client:lineItem.party_id, clientStatus:12141324})" class="btn btn-info btn-sm" role="button">Submitted: {{lineItem.Submitted}}</a>
+                    <a ui-sref="app.quotes.status({client:lineItem.party_id, clientStatus:12141326})" class="btn btn-default btn-sm" role="button">TQ: {{lineItem.TQ}}</a>
                 </div>
             </li>
         </ul>
