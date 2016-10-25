@@ -16,45 +16,23 @@
   <!-- /toggle small sidebar menu -->
 
 </div>
-{{app.show('SUPPORT_ADMIN','dashboard')}}
-{{app.show('RFQ_OFFICER,RFQ_SUPERVISOR,RFQ_ADMIN,SUPPORT_ADMIN','quote')}}
-{{app.show('SUPPORT_ADMIN','procurement')}}
-{{app.show('SUPPORT_ADMIN','setup')}}
-{{app.show('SUPPORT_ADMIN','test')}}
 <!-- main navigation -->
-<nav role="navigation" side-navigation>
+
+<nav role="navigation">
   <ul class="nav">
-    <li ui-sref-active="active" ng-if="app.container['dashboard']">
-      <a  ui-sref="app.home">
-        <i class="fa fa-tachometer"></i>
-        <span>Dashboard</span>
-      </a>
-    </li>
-    <li ui-sref-active="active" ng-if="app.container['quote']">
-      <a  ui-sref="app.quotes.clients">
-        <i class="fa fa-files-o"></i>
-        <span>Quotes</span>
-      </a>
-    </li>
-    <li ui-sref-active="active" ng-if="app.container['procurement']">
-      <a  ui-sref="app.procurement">
-        <i class="fa fa-cart-plus"></i>
-        <span>Procurement</span>
-      </a>
-    </li>
-    <li data-ng-class="{open: $state.includes('app.setup')}" ng-if="app.container['setup']">
-      <a href="javascript:;">
-        <i class="fa fa-cogs"></i>
-        <span>Setup</span>
-      </a>
-      <ul class="sub-menu">
-        <li ui-sref-active="active" ng-if="app.container['test']">
-          <a ui-sref="app.setup.test">
-            <span>Tests</span>
-          </a>
-        </li>
-      </ul>
-    </li>
+    <li ng-if="menu.viewpath != 'javascript:;'" ng-repeat="menu in app.pages" ng-include="'menuTree'" ui-sref-active="active" side-navigation=""></li>
+    <li ng-if="menu.viewpath == 'javascript:;'" ng-repeat="menu in app.pages" ng-include="'menuTree'" class="menu-accordion" data-ng-class="{open: $state.includes({{ '\'' + menu.parentViewPath + '\''}})}" side-navigation=""></li>
   </ul>
 </nav>
+
+<script type="text/ng-template" id="menuTree">
+  <a ui-sref="{{ menu.viewpath }}" class="side-bar-nav" ui-sref-active="navActive">
+    <i class="{{menu.css_class}}" data-ng-if="menu.css_class"></i>
+    <span>{{ menu.name }}</span>
+  </a>
+  <ul ng-if="menu.child" class="sub-menu">
+    <li ng-if="menu.viewpath != 'javascript:;'" ng-repeat="menu in menu.child" ng-include="'menuTree'" ui-sref-active="active" side-navigation=""></li>
+    <li ng-if="menu.viewpath == 'javascript:;'" ng-repeat="menu in menu.child" ng-include="'menuTree'" class="menu-accordion" data-ng-class="{open: $state.includes({{ '\'' + menu.parentViewPath + '\''}})}" side-navigation=""></li>
+  </ul>
+</script>
 <!-- /main navigation -->

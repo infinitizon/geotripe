@@ -2,439 +2,73 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d05ef40-3f7a-41b2-81e7-eb6b1d801a63" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/animate.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/feather.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/login.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/panel.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/directives/anchor-scroll.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/directives/c3.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/directives/chosen.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/directives/navigation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/directives/offscreen.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/directives/panel-control-collapse.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/directives/panel-control-refresh.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/directives/panel-control-remove.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/directives/preloader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/directives/quick-launch.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/directives/rickshaw.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/directives/scrollup.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/directives/vector.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/filters.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/views/dashboard.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/views/directives/toggle-offscreen.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/views/footer.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/views/header.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/views/layout.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/views/options.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/views/sidebar-panel.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/angular-ui-utils/.bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/angular-ui-utils/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/angular-ui-utils/CHANGELOG.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/angular-ui-utils/bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/angular-ui-utils/ui-utils-ieshiv.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/angular-ui-utils/ui-utils-ieshiv.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/angular-ui-utils/ui-utils.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/angular-ui-utils/ui-utils.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/app.config.router.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/app.main.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/extensions/dirPagination.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/extensions/lib.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/extensions/modernizr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-ui-utils/.bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-ui-utils/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-ui-utils/CHANGELOG.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-ui-utils/bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-ui-utils/ui-utils-ieshiv.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-ui-utils/ui-utils-ieshiv.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-ui-utils/ui-utils.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-ui-utils/ui-utils.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/bootstrap/3.3.6/bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/bootstrap/3.3.6/css/bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/excel2json/alasql.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/excel2json/xlsx.core.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/fastclick/.bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/fastclick/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/fastclick/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/fastclick/bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/fastclick/lib/fastclick.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/.bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/MIT-LICENSE.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/dist/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/dist/jquery.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/dist/jquery.min.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/ajax.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/ajax/jsonp.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/ajax/load.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/ajax/parseJSON.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/ajax/parseXML.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/ajax/script.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/ajax/var/nonce.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/ajax/var/rquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/ajax/xhr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/attributes.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/attributes/attr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/attributes/classes.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/attributes/prop.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/attributes/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/attributes/val.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/callbacks.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/core.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/core/access.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/core/init.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/core/parseHTML.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/core/ready.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/core/var/rsingleTag.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/css.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/css/addGetHookIf.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/css/curCSS.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/css/defaultDisplay.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/css/hiddenVisibleSelectors.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/css/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/css/swap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/css/var/cssExpand.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/css/var/getStyles.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/css/var/isHidden.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/css/var/rmargin.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/css/var/rnumnonpx.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/data.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/data/Data.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/data/accepts.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/data/var/data_priv.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/data/var/data_user.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/deferred.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/deprecated.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/dimensions.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/effects.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/effects/Tween.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/effects/animatedSelector.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/event.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/event/ajax.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/event/alias.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/event/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/exports/amd.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/exports/global.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/intro.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/manipulation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/manipulation/_evalUrl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/manipulation/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/manipulation/var/rcheckableType.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/offset.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/outro.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/queue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/queue/delay.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/selector-native.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/selector-sizzle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/selector.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/serialize.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/sizzle/dist/sizzle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/sizzle/dist/sizzle.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/sizzle/dist/sizzle.min.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/traversing.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/traversing/findFilter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/traversing/var/rneedsContext.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/var/arr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/var/class2type.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/var/concat.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/var/hasOwn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/var/indexOf.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/var/pnum.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/var/push.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/var/rnotwhite.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/var/slice.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/var/strundefined.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/var/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/var/toString.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jquery/src/wrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ngstorage/.bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ngstorage/.bowerrc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ngstorage/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ngstorage/CHANGELOG.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ngstorage/Gruntfile.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ngstorage/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ngstorage/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ngstorage/bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ngstorage/ngStorage.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ngstorage/ngStorage.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ngstorage/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ngstorage/test/spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/.editorconfig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/.npmignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/CHANGELOG.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/LICENSE.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/changelog.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/dist/modules/ocLazyLoad.core.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/dist/modules/ocLazyLoad.directive.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/dist/modules/ocLazyLoad.loaders.common.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/dist/modules/ocLazyLoad.loaders.core.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/dist/modules/ocLazyLoad.loaders.cssLoader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/dist/modules/ocLazyLoad.loaders.jsLoader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/dist/modules/ocLazyLoad.loaders.requireJSLoader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/dist/modules/ocLazyLoad.loaders.templatesLoader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/dist/modules/ocLazyLoad.polyfill.ie8.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/dist/ocLazyLoad.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/dist/ocLazyLoad.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/dist/ocLazyLoad.require.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/dist/ocLazyLoad.require.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/examples/complexExample/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/examples/complexExample/bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/examples/complexExample/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/examples/complexExample/js/AppCtrl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/examples/complexExample/js/app.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/examples/complexExample/js/gridModule.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/examples/complexExample/partials/main.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/examples/complexExample/partials/modal.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/examples/requireJSExample/css/ng-grid.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/examples/requireJSExample/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/examples/requireJSExample/js/angular.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/examples/requireJSExample/js/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/examples/requireJSExample/js/lazymodule.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/examples/requireJSExample/js/main.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/examples/requireJSExample/js/ng-grid-2.0.11.debug.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/examples/requireJSExample/js/require.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/examples/requireJSExample/js/testmodule.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/examples/requireJSExample/partials/grid.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/examples/simpleExample/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/examples/simpleExample/js/testApp.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/gulpfile.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/karma.conf.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/src/ocLazyLoad.core.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/src/ocLazyLoad.directive.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/src/ocLazyLoad.loaders.common.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/src/ocLazyLoad.loaders.core.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/src/ocLazyLoad.loaders.cssLoader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/src/ocLazyLoad.loaders.jsLoader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/src/ocLazyLoad.loaders.requireJSLoader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/src/ocLazyLoad.loaders.templatesLoader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/src/ocLazyLoad.polyfill.ie8.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/tests/unit/lazyLoad/myContainer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/tests/unit/lazyLoad/test.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/tests/unit/lazyLoad/test.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/tests/unit/lazyLoad/testModule.fakejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/tests/unit/lazyLoad/testModule.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/tests/unit/lazyLoad/testModule2.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/tests/unit/lazyLoad/testModule3.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/tests/unit/lazyLoad/testModule4.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/tests/unit/lazyLoad/testModule5.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/tests/unit/lazyLoad/testModule6.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/tests/unit/mocks/app.mock.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/tests/unit/specs/ocLazyLoad.spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ocLazyLoad/validate-commit-msg.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/perfect-scrollbar/.bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/perfect-scrollbar/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/perfect-scrollbar/bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/perfect-scrollbar/css/perfect-scrollbar.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/perfect-scrollbar/js/min/perfect-scrollbar.jquery.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/perfect-scrollbar/js/min/perfect-scrollbar.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/perfect-scrollbar/js/perfect-scrollbar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/ui-bootstrap-tpls/2.2.0.min.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/.bowerrc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/.cz.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/.jscsrc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/.jshintrc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/Copyright" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/build/angular-vertical-menu.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/build/angular-vertical-menu.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/build/angular-vertical-menu.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/build/angular-vertical-menu.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/demo/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/demo/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/demo/app/animation.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/demo/app/badge.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/demo/app/basic-usage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/demo/app/bullet-icon.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/demo/app/demo.controller.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/demo/app/demo.module.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/demo/app/menu.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/demo/app/route.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/demo/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/demo/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/demo/lib/angular-sidebar-menu.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/demo/lib/angular-sidebar-menu.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/demo/lib/angular-vertical-menu.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/demo/lib/angular-vertical-menu.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/demo/styles/app.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/gulp.config.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/gulpfile.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/karma.conf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/src/angular-vertical-menu.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/src/angular-vertical-menu.module.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/src/directive/angular-vertical-menu.directive.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/src/directive/angular-vertical-menu.directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/src/directive/angular-vertical-menu.directive.spec.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/travis.karma.conf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/xeditable.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/blob.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/jquery-3.1.1.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/xeditable.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/.editorconfig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/.gitattributes" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/.github/ISSUE_TEMPLATE.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/CHANGELOG.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/CONTRIBUTING.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/composer.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/deploy-docs.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/dist/select.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/dist/select.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/dist/select.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/dist/select.min.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/dist/select.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/dist/select.min.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/assets/app.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/assets/demo.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/assets/docs.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/assets/plunkr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/examples/demo-append-to-body.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/examples/demo-basic.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/examples/demo-bind-to-single-property-async.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/examples/demo-bind-to-single-property.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/examples/demo-bootstrap.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/examples/demo-disable-search.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/examples/demo-dropdown-position.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/examples/demo-event-on-selection.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/examples/demo-focus.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/examples/demo-group-by.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/examples/demo-group-filter.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/examples/demo-multiple-selection.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/examples/demo-object-as-source.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/examples/demo-select2-with-bootstrap.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/examples/demo-selectize-with-bootstrap.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/examples/demo-tagging.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/partials/_footer.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/docs/partials/_header.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/gulpfile.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/karma.conf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/.jshintrc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/bootstrap/choices.tpl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/bootstrap/match-multiple.tpl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/bootstrap/match.tpl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/bootstrap/no-choice.tpl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/bootstrap/select-multiple.tpl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/bootstrap/select.tpl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/common.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/common.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/select2/choices.tpl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/select2/match-multiple.tpl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/select2/match.tpl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/select2/no-choice.tpl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/select2/select-multiple.tpl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/select2/select.tpl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/selectize/choices.tpl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/selectize/match.tpl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/selectize/no-choice.tpl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/selectize/select.tpl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/uiSelectChoicesDirective.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/uiSelectController.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/uiSelectDirective.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/uiSelectMatchDirective.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/uiSelectMultipleDirective.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/uiSelectNoChoiceDirective.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/uiSelectSingleDirective.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/uiSelectSortDirective.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/uisDebounceService.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/uisOpenCloseDirective.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/src/uisRepeatParserService.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/test/helpers.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ui-select-master/test/select.spec.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/angular-vertical-menu-master/CHANGELOG.md" afterPath="$PROJECT_DIR$/modules/quote/css/quote.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/css/app.css" afterPath="$PROJECT_DIR$/css/app2.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/css/select.min.css" afterPath="$PROJECT_DIR$/vendor/ui-select/css/select.min.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/angular-ui-router.js" afterPath="$PROJECT_DIR$/vendor/angular/angular-ui-router.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/angular-ui-router.min.js" afterPath="$PROJECT_DIR$/vendor/angular/angular-ui-router.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/angular/1.5.7/angular-animate.js" afterPath="$PROJECT_DIR$/vendor/angular/1.5.7/angular-animate.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/angular/1.5.7/angular-animate.min.js" afterPath="$PROJECT_DIR$/vendor/angular/1.5.7/angular-animate.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/angular/1.5.7/angular-cookies.js" afterPath="$PROJECT_DIR$/vendor/angular/1.5.7/angular-cookies.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/angular/1.5.7/angular-cookies.min.js" afterPath="$PROJECT_DIR$/vendor/angular/1.5.7/angular-cookies.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/angular/1.5.7/angular-sanitize.min.js" afterPath="$PROJECT_DIR$/vendor/angular/1.5.7/angular-sanitize.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/angular/1.5.7/angular-touch.js" afterPath="$PROJECT_DIR$/vendor/angular/1.5.7/angular-touch.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/angular/1.5.7/angular-touch.min.js" afterPath="$PROJECT_DIR$/vendor/angular/1.5.7/angular-touch.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/angular/1.5.7/angular.js" afterPath="$PROJECT_DIR$/vendor/angular/1.5.7/angular.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/angular/1.5.7/angular.min.js" afterPath="$PROJECT_DIR$/vendor/angular/1.5.7/angular.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/app.js" afterPath="$PROJECT_DIR$/scripts/app2.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/select.min.js" afterPath="$PROJECT_DIR$/vendor/ui-select/js/select.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/ui-bootstrap-tpls-1.3.3.min.js" afterPath="$PROJECT_DIR$/vendor/ui-bootstrap-tpls/1.3.3.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/ui-bootstrap-tpls-2.1.3.min.js" afterPath="$PROJECT_DIR$/vendor/ui-bootstrap-tpls/2.1.3.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Geoscape.mwb" afterPath="$PROJECT_DIR$/../Geoscape.mwb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Geoscape.mwb.bak" afterPath="$PROJECT_DIR$/../Geoscape.mwb.bak" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/climacons/fonts/climacons-webfont.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/climacons/fonts/climacons-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/climacons/fonts/climacons-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/feather/fonts/feather-webfont.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/feather/fonts/feather-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/feather/fonts/feather-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/panel/fonts/panel-icon.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/panel/fonts/panel-icon.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/panel/fonts/panel-icon.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/panel/fonts/panel.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/panel/fonts/panel.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/panel/fonts/panel.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/app.skins.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/climacons/climacons-font.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/climacons/fonts/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/climacons/fonts/climacons-webfont.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/feather/fonts/feather-webfont.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/panel/fonts/panel-icon.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/panel/fonts/panel.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/panel/fonts/selection.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/views/quick-launch-panel.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/css/font-awesome.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/css/font-awesome.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/fonts/FontAwesome.otf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/fonts/fontawesome-webfont.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/fonts/fontawesome-webfont.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/fonts/fontawesome-webfont.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/fonts/fontawesome-webfont.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/fonts/fontawesome-webfont.woff2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/less/animated.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/less/bordered-pulled.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/less/core.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/less/fixed-width.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/less/font-awesome.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/less/icons.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/less/larger.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/less/list.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/less/mixins.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/less/path.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/less/rotated-flipped.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/less/screen-reader.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/less/stacked.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/less/variables.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/scss/_animated.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/scss/_bordered-pulled.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/scss/_core.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/scss/_fixed-width.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/scss/_icons.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/scss/_larger.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/scss/_list.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/scss/_mixins.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/scss/_path.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/scss/_rotated-flipped.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/scss/_screen-reader.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/scss/_stacked.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/scss/_variables.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/font-awesome-4.6.3/scss/font-awesome.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/login.css" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/css/feather.css" afterPath="$PROJECT_DIR$/css/feather/feather.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/css/panel.css" afterPath="$PROJECT_DIR$/css/panel/panel.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/v1/index.php" afterPath="$PROJECT_DIR$/api/v1/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/app.css" afterPath="$PROJECT_DIR$/css/app.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/auth/controller.js" afterPath="$PROJECT_DIR$/modules/auth/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/auth/services.js" afterPath="$PROJECT_DIR$/modules/auth/services.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/auth/views/login.html" afterPath="$PROJECT_DIR$/modules/auth/views/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/controller.js" afterPath="$PROJECT_DIR$/modules/quote/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" afterPath="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/views/quotes.html" afterPath="$PROJECT_DIR$/modules/quote/views/quotes.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/app.js" afterPath="$PROJECT_DIR$/scripts/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/fileWtUpload/1/index.html" afterPath="$PROJECT_DIR$/tests/fileWtUpload/1/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/fileWtUpload/2/index.html" afterPath="$PROJECT_DIR$/tests/fileWtUpload/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/menu/index.html" afterPath="$PROJECT_DIR$/tests/menu/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/angular/app/images/cd-icon-location.svg" afterPath="$PROJECT_DIR$/themeforest/angular/app/images/cd-icon-location.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/angular/app/scripts/config.router.js" afterPath="$PROJECT_DIR$/themeforest/angular/app/scripts/config.router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/angular/app/vendor/angular-ui-utils/ui-utils.js" afterPath="$PROJECT_DIR$/themeforest/angular/app/vendor/angular-ui-utils/ui-utils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/html/app/images/cd-icon-location.svg" afterPath="$PROJECT_DIR$/themeforest/html/app/images/cd-icon-location.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/images/cd-icon-location.svg" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/images/cd-icon-location.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/angular-file-upload/README.md" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/angular-file-upload/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/angular-sweetalert/README.md" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/angular-sweetalert/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/angular-sweetalert/SweetAlert.js" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/angular-sweetalert/SweetAlert.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/angular-sweetalert/bower.json" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/angular-sweetalert/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/angular-ui-calendar/LICENSE" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/angular-ui-calendar/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/angular-ui-calendar/README.md" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/angular-ui-calendar/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/angular-ui-calendar/src/calendar.js" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/angular-ui-calendar/src/calendar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/angular-ui-utils/ui-utils.js" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/angular-ui-utils/ui-utils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/jquery.tagsinput/Gruntfile.js" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/jquery.tagsinput/Gruntfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/jquery.tagsinput/grunt-tasks/assets_production.js" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/jquery.tagsinput/grunt-tasks/assets_production.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/jquery.tagsinput/grunt-tasks/options/cssmin.js" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/jquery.tagsinput/grunt-tasks/options/cssmin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/jquery.tagsinput/grunt-tasks/options/uglify.js" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/jquery.tagsinput/grunt-tasks/options/uglify.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/moment/Moment.js.nuspec" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/moment/Moment.js.nuspec" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/prism/components/prism-autohotkey.js" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/prism/components/prism-autohotkey.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/prism/components/prism-ini.js" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/prism/components/prism-ini.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/wysihtml5x/lib/rangy/rangy-core.js" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/wysihtml5x/lib/rangy/rangy-core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/wysihtml5x/lib/rangy/rangy-selectionsaverestore.js" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/vendor/wysihtml5x/lib/rangy/rangy-selectionsaverestore.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/views/common/sidebar-panel.html" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/views/common/sidebar-panel.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/images/cd-icon-location.svg" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/images/cd-icon-location.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/gmaps/examples/elevation_locations.html" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/gmaps/examples/elevation_locations.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/gmaps/examples/elevation_routes.html" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/gmaps/examples/elevation_routes.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/jquery.tagsinput/Gruntfile.js" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/jquery.tagsinput/Gruntfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/jquery.tagsinput/grunt-tasks/assets_production.js" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/jquery.tagsinput/grunt-tasks/assets_production.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/jquery.tagsinput/grunt-tasks/options/cssmin.js" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/jquery.tagsinput/grunt-tasks/options/cssmin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/jquery.tagsinput/grunt-tasks/options/uglify.js" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/jquery.tagsinput/grunt-tasks/options/uglify.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/moment/Moment.js.nuspec" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/moment/Moment.js.nuspec" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/prism/components/prism-autohotkey.js" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/prism/components/prism-autohotkey.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/prism/components/prism-ini.js" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/prism/components/prism-ini.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/wysihtml5x/lib/rangy/rangy-core.js" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/wysihtml5x/lib/rangy/rangy-core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/wysihtml5x/lib/rangy/rangy-selectionsaverestore.js" afterPath="$PROJECT_DIR$/themeforest/no-bower-grunt-html/vendor/wysihtml5x/lib/rangy/rangy-selectionsaverestore.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../sys/class/class.fxns.inc.php" afterPath="$PROJECT_DIR$/../sys/class/class.fxns.inc.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/common/views/header.html" afterPath="$PROJECT_DIR$/modules/common/views/header.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/common/views/options.html" afterPath="$PROJECT_DIR$/modules/common/views/options.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/common/views/sidebar-panel.html" afterPath="$PROJECT_DIR$/modules/common/views/sidebar-panel.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/addRowWtFormItems/1.html" afterPath="$PROJECT_DIR$/tests/addRowWtFormItems/1.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/addRowWtFormItems/good.html" afterPath="$PROJECT_DIR$/tests/addRowWtFormItems/good.html" />
     </list>
     <ignored path="public.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -470,63 +104,71 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="sidebar-panel.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/common/views/sidebar-panel.html">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/themeforest/no-bower-grunt-angular/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.705882">
-              <caret line="33" column="37" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
+            <state vertical-scroll-proportion="-6.1764708">
+              <caret line="21" column="51" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controller.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="feather.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/themeforest/no-bower-grunt-angular/styles/feather.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="font-awesome.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/themeforest/no-bower-grunt-angular/styles/font-awesome.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-0.0">
               <caret line="0" column="74" selection-start-line="0" selection-start-column="74" selection-end-line="0" selection-end-column="74" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/app.js">
+      <file leaf-file-name="sidebar-panel.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/common/views/sidebar-panel.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.5882354">
+              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/modules/common/views/header.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app2.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/app2.css">
+      <file leaf-file-name="app.main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/app.main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.98039216">
-              <caret line="112" column="24" selection-start-line="112" selection-start-column="24" selection-end-line="112" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.375">
-              <caret line="15" column="51" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
-              <folding>
-                <marker date="1477329794000" expanded="true" signature="1614:1777" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/app.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.372549">
-              <caret line="2245" column="20" selection-start-line="2245" selection-start-column="20" selection-end-line="2245" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -542,17 +184,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quoteByStatus.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
+      <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/app.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-97.5">
-              <caret line="156" column="77" selection-start-line="156" selection-start-column="77" selection-end-line="156" selection-end-column="77" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#4;n#form#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <marker date="1477328392000" expanded="true" signature="4085:4658" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
-                <marker date="1477328392000" expanded="true" signature="4120:4657" placeholder="[...]" />
-                <marker date="1477328392000" expanded="true" signature="4121:4656" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
-              </folding>
+            <state vertical-scroll-proportion="-7.745098">
+              <caret line="596" column="38" selection-start-line="596" selection-start-column="24" selection-end-line="596" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -560,8 +197,8 @@
       <file leaf-file-name="options.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/common/views/options.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.125">
-              <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
+            <state vertical-scroll-proportion="-15.0">
+              <caret line="24" column="36" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -589,7 +226,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../sys/config/db-cred.inc.php" />
         <option value="$PROJECT_DIR$/modules/setup/views/setup.html" />
         <option value="$PROJECT_DIR$/modules/setup/controller.js" />
         <option value="$PROJECT_DIR$/modules/common/directives.js" />
@@ -629,17 +265,18 @@
         <option value="$PROJECT_DIR$/modules/auth/services.js" />
         <option value="$PROJECT_DIR$/themeforest/no-bower-grunt-angular/views/common/sidebar-panel.html" />
         <option value="$PROJECT_DIR$/../sys/class/class.fxns.inc.php" />
-        <option value="$PROJECT_DIR$/modules/common/views/options.html" />
         <option value="$PROJECT_DIR$/scripts/app.main.js" />
         <option value="$PROJECT_DIR$/modules/home/views/home.html" />
         <option value="$PROJECT_DIR$/modules/quote/css/quote.css" />
         <option value="$PROJECT_DIR$/modules/quote/views/quotes.html" />
-        <option value="$PROJECT_DIR$/modules/common/views/sidebar-panel.html" />
         <option value="$PROJECT_DIR$/api/v1/index.php" />
         <option value="$PROJECT_DIR$/scripts/app.config.router.js" />
         <option value="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" />
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/modules/quote/controller.js" />
+        <option value="$PROJECT_DIR$/modules/common/views/options.html" />
+        <option value="$PROJECT_DIR$/modules/common/views/sidebar-panel.html" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/modules/common/views/header.html" />
       </list>
     </option>
   </component>
@@ -722,227 +359,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui-select" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui-select" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themeforest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themeforest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="no-bower-grunt-angular" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="extensions" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="quote" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="quote" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="quote" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -970,39 +387,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v1" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1043,18 +428,18 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/css" />
       <recent name="$PROJECT_DIR$/vendor/ui-select/js" />
       <recent name="$PROJECT_DIR$/scripts/ui-bootstrap-tpls" />
       <recent name="$PROJECT_DIR$/scripts/excel2json" />
       <recent name="$PROJECT_DIR$/scripts" />
-      <recent name="$PROJECT_DIR$/tests/excel/angularJs/alasql" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/vendor/ui-select/css" />
+      <recent name="$PROJECT_DIR$/modules/common/views" />
       <recent name="$PROJECT_DIR$/css" />
+      <recent name="$PROJECT_DIR$/vendor/ui-select/css" />
       <recent name="$PROJECT_DIR$/scripts" />
       <recent name="$PROJECT_DIR$/modules/common" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunManager">
@@ -1552,7 +937,7 @@
       <workItem from="1476388203032" duration="3043000" />
       <workItem from="1476443427228" duration="6896000" />
       <workItem from="1476959495797" duration="17183000" />
-      <workItem from="1477293460668" duration="25324000" />
+      <workItem from="1477293460668" duration="35914000" />
     </task>
     <task id="LOCAL-00001" summary="Completed work on the RFQ">
       <created>1475831179986</created>
@@ -1576,23 +961,23 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="567828000" />
+    <option name="totallyTimeSpent" value="578418000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2024" height="1334" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293461" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1403162" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.131917" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1403162" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.131917" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1608,6 +993,33 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.131917" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293461" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1403162" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -1633,42 +1045,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tests/menu/1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7934509">
-          <caret line="63" column="51" selection-start-line="63" selection-start-column="51" selection-end-line="63" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/common/services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.419753">
-          <caret line="239" column="0" selection-start-line="239" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/v1/quote.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.4307306">
-          <caret line="222" column="68" selection-start-line="222" selection-start-column="68" selection-end-line="228" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/scripts/config.router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.012396694">
-          <caret line="42" column="29" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themeforest/no-bower-grunt-angular/scripts/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/themeforest/no-bower-grunt-angular/styles/animate.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="5.1602025">
@@ -1681,14 +1057,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.8235295">
           <caret line="113" column="6" selection-start-line="113" selection-start-column="6" selection-end-line="113" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themeforest/no-bower-grunt-angular/scripts/directives/navigation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -1797,26 +1165,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/login.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.125">
-          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/auth/views/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.625">
           <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/common/views/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.5416665">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1849,14 +1201,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/common/directives/navigation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5763946">
-          <caret line="130" column="24" selection-start-line="130" selection-start-column="24" selection-end-line="130" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/themeforest/no-bower-grunt-angular/scripts/app.main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12396694">
@@ -1873,26 +1217,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/themeforest/no-bower-grunt-angular/views/common/sidebar-panel.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.075885326">
-          <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/auth/services.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2724333">
           <caret line="26" column="93" selection-start-line="26" selection-start-column="93" selection-end-line="26" selection-end-column="93" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/app.main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.69118834">
-          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1970,14 +1298,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/common/views/options.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.125">
-          <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-97.5">
@@ -2001,30 +1321,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/themeforest/no-bower-grunt-angular/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08853288">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/common/views/sidebar-panel.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.705882">
-          <caret line="33" column="37" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/app2.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.98039216">
@@ -2033,20 +1329,117 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
+    <entry file="file://$PROJECT_DIR$/modules/common/views/options.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.375">
-          <caret line="15" column="51" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
-          <folding>
-            <marker date="1477329794000" expanded="true" signature="1614:1777" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="-15.0">
+          <caret line="24" column="36" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/no-bower-grunt-angular/scripts/directives/navigation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.012396694">
+          <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/no-bower-grunt-angular/styles/urban.skins.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33304572">
+          <caret line="269" column="17" selection-start-line="269" selection-start-column="1" selection-end-line="269" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/app.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.372549">
-          <caret line="2245" column="20" selection-start-line="2245" selection-start-column="20" selection-end-line="2245" selection-end-column="20" />
+        <state vertical-scroll-proportion="-7.745098">
+          <caret line="596" column="38" selection-start-line="596" selection-start-column="24" selection-end-line="596" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/common/directives/navigation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15763944">
+          <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/no-bower-grunt-angular/styles/feather.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/no-bower-grunt-angular/styles/font-awesome.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/no-bower-grunt-angular/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.1764708">
+          <caret line="21" column="51" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.729596">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding>
+            <marker date="1477407917000" expanded="true" signature="1677:1840" placeholder="..." />
+            <marker date="1477407917000" expanded="true" signature="2206:2745" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/no-bower-grunt-angular/views/common/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/no-bower-grunt-angular/views/common/sidebar-panel.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6070826">
+          <caret line="54" column="10" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="74" selection-start-line="0" selection-start-column="74" selection-end-line="0" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/common/views/sidebar-panel.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.5882354">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.060630556">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -2059,10 +1452,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
+    <entry file="file://$PROJECT_DIR$/scripts/app.main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="74" selection-start-line="0" selection-start-column="74" selection-end-line="0" selection-end-column="74" />
+          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/common/views/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="8" />
           <folding />
         </state>
       </provider>

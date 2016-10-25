@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'panel-icon';
-	src:url('../fonts/panel/panel-icon.eot?qmqrp1');
-	src:url('../fonts/panel/panel-icon.eot?#iefixqmqrp1') format('embedded-opentype'),
-		url('../fonts/panel/panel-icon.woff?qmqrp1') format('woff'),
-		url('../fonts/panel/panel-icon.ttf?qmqrp1') format('truetype'),
-		url('../fonts/panel/panel-icon.svg?qmqrp1#panel-icon') format('svg');
+	src:url('fonts/panel-icon.eot?qmqrp1');
+	src:url('fonts/panel-icon.eot?#iefixqmqrp1') format('embedded-opentype'),
+		url('fonts/panel-icon.woff?qmqrp1') format('woff'),
+		url('fonts/panel-icon.ttf?qmqrp1') format('truetype'),
+		url('fonts/panel-icon.svg?qmqrp1#panel-icon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }

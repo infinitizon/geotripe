@@ -12,13 +12,15 @@
     <link href="vendor/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
     <link rel="stylesheet" href="vendor/perfect-scrollbar/css/perfect-scrollbar.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+
+    <link href="css/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link href="vendor/ui-select/css/select.min.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="css/panel.css">
-    <link rel="stylesheet" href="css/feather.css">
+    <link rel="stylesheet" href="css/panel/panel.css">
+    <link rel="stylesheet" href="css/feather/feather.css">
     <link rel="stylesheet" href="css/animate.css">
 
     <link href="css/app.css" rel="stylesheet" type="text/css"/>
+    <link href="css/app.skins.css" rel="stylesheet" type="text/css"/>
 
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
@@ -39,7 +41,21 @@
 </head>
 <body data-ng-controller="AppCtrl" class="{{ app.layout.sidebarTheme }} {{ app.layout.headerTheme }}">
 
-<div class="app {{$state.current.data.appClasses}}" data-ng-class="{'layout-small-menu': app.layout.isSmallSidebar, 'layout-chat-open': app.layout.isChatOpen, 'layout-fixed-header': app.layout.isFixedHeader, 'layout-boxed': app.layout.isBoxed, 'layout-static-sidebar': app.layout.isStaticSidebar, 'layout-right-sidebar': app.layout.isRightSidebar, 'layout-fixed-footer': app.layout.isFixedFooter, 'message-open': app.isMessageOpen}" data-ui-view>
+<!-- quick launch panel -->
+<div class="quick-launch-panel" data-ng-include="'modules/common/views/quick-launch-panel.html'"></div>
+<!-- /quick launch panel -->
+
+
+<div class="app {{$state.current.data.appClasses}}"
+     data-ng-class="{'layout-small-menu': app.layout.isSmallSidebar
+                        , 'layout-chat-open': app.layout.isChatOpen
+                        , 'layout-fixed-header': app.layout.isFixedHeader
+                        , 'layout-boxed': app.layout.isBoxed
+                        , 'layout-static-sidebar': app.layout.isStaticSidebar
+                        , 'layout-right-sidebar': app.layout.isRightSidebar
+                        , 'layout-fixed-footer': app.layout.isFixedFooter
+                        , 'message-open': app.isMessageOpen}"
+     data-ui-view>
 </div>
 
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
