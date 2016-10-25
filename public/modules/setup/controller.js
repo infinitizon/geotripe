@@ -1,6 +1,6 @@
-angular.module('Setup')
-    .controller('SetupController', ['$location', '$rootScope', '$uibModal',
-        function ($location, $rootScope, $uibModal) {
+angular.module('Setup',['angularUtils.directives.dirPagination','ui.select'])
+    .controller('SetupController', ['$location', '$localStorage', '$uibModal',
+        function ($location, $localStorage, $uibModal) {
             var vm = this;
             // reset login status
 
@@ -33,14 +33,14 @@ angular.module('Setup')
                 });
             };
         }])
-    .controller('RolesController', ['$rootScope','$uibModalInstance','DataService','CommonServices',
-        function ($rootScope, $uibModalInstance,DataService,CommonServices) {
+    .controller('RolesController', ['$localStorage', 'DataService','CommonServices',
+        function ($localStorage, DataService,CommonServices) {
             var vm = this;
 
         }])
 
-    .controller('PartyController', ['$rootScope','$uibModalInstance','DataService','CommonServices',
-        function ($rootScope, $uibModalInstance,DataService,CommonServices) {
+    .controller('PartyController', ['$localStorage', 'DataService','CommonServices',
+        function ($localStorage, DataService,CommonServices) {
             var vm = this;
 
             vm.edit=false;
@@ -50,7 +50,7 @@ angular.module('Setup')
             vm.total_count = 0;
             vm.itemsPerPage = 15; //this could be a dynamic value from a drop down
 
-            CommonServices.postData.token = $rootScope.globals.currentUser.userDetails.token;
+            CommonServices.postData.token = $localStorage.globals.currentUser.userDetails.token;
             vm.getData = function(pageno) {
                 data=angular.copy(CommonServices.postData);
                 data.transactionMetaData.responseDataProperties = 'party_id&party_partytype_id&addressline1&addressline2&addresscity&name'
@@ -164,14 +164,9 @@ angular.module('Setup')
                 }
             }
 
-
-            //console.log()
-            vm.cancel = function () {
-                $uibModalInstance.dismiss('cancel');
-            };
         }])
-    .controller('UserController', ['$scope','$rootScope','$uibModalInstance','DataService','CommonServices',
-        function ($scope, $rootScope, $uibModalInstance,DataService,CommonServices) {
+    .controller('UserController', ['$scope','$localStorage','DataService','CommonServices',
+        function ($scope, $localStorage, DataService,CommonServices) {
             var vm = this;
 
             vm.edit=false;
@@ -181,7 +176,7 @@ angular.module('Setup')
             vm.total_count = 0;
             vm.itemsPerPage = 15; //this could be a dynamic value from a drop down
 
-            CommonServices.postData.token = $rootScope.globals.currentUser.userDetails.token;
+            CommonServices.postData.token = $localStorage.globals.currentUser.userDetails.token;
             vm.getData = function(pageno) {
                 var data=angular.copy(CommonServices.postData);
                 data.factName = 'Users u, Party p';
@@ -317,7 +312,7 @@ angular.module('Setup')
 
                 var data = new FormData();
                 data.append("factName", "Users");
-                data.append("token", $rootScope.globals.currentUser.userDetails.token);
+                data.append("token", $localStorage.globals.currentUser.userDetails.token);
                 data.append("transactionMetaData[currentLocale]", "NG");
                 data.append("transactionMetaData[queryStore]", "MySql");
                 vm.changedUsrObjs = CommonServices.GetFormChanges(vm.originalUserData, vm.user);
@@ -354,7 +349,6 @@ angular.module('Setup')
                         vm.message = "You need to add Roles to the user";
                         vm.activeUsrTab = 1
                     }else{
-
                         DataService.post('users', data, {
                             transformRequest: angular.identity,
                             headers: {'Content-Type': undefined, 'Process-Data': false}
@@ -370,13 +364,9 @@ angular.module('Setup')
                                 vm.message = response.data.message;
                                 vm.getData(vm.pageno);
                             }
-
                         })
                     }
 
                 }
             }
-            vm.cancel = function () {
-                $uibModalInstance.dismiss('cancel');
-            };
         }]);

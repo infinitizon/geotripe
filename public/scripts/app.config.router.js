@@ -100,15 +100,19 @@ angular
                 })
 
                 .state('app.setup', {
-                    template: '<div ui-view></div>',
-                    abstract: true,
-                    url: '/setup'
-                })
-                .state('app.setup.test', {
-                    url: '/test',
-                    templateUrl: 'modules/home/views/home.html',
-                    data: {
-                        title: 'Buttons',
+                    template: '<div ui-view></div>'
+                    , abstract: true
+                    , url: '/setup'
+                    , resolve     : {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(['modules/setup/controller.js', 'modules/setup/services.js']);
+                        }]
                     }
+                })
+                .state('app.setup.clients', {
+                    url: '/clients'
+                    , templateUrl: 'modules/setup/views/templates/party.html'
+                    , controller: 'PartyController'
+                    , controllerAs: 'PartyCtrl'
                 })
         }])
