@@ -111,9 +111,7 @@
   <li class="dropdown" uib-dropdown>
     <a href="javascript:;" class="dropdown-toggle" uib-dropdown-toggle>
       <img data-ng-src="{{user.avatar}}" class="header-avatar img-circle ml10" alt="user" title="user">
-      <span class="pull-left">
-        {{user.fname}} {{user.lname}}
-      </span>
+      <span class="pull-left">{{user.fname}} {{user.lname}}</span>
     </a>
     <ul class="dropdown-menu" uib-dropdown-menu role="menu">
       <li>
@@ -126,11 +124,11 @@
             </div>
             <div class="col-lg-8">
               <p class="text-left">
-                <strong>Nombre Apellido</strong>
+                <strong>{{user.fname}} {{user.lname}}</strong>
               </p>
-              <p class="text-left small">correoElectronico@email.com</p>
+              <p class="text-left small">{{user.email}}</p>
               <p class="text-left">
-                <a class="btn btn-primary btn-block btn-sm" href="#">Actualizar Datos</a>
+                <a class="btn btn-primary btn-block btn-sm" href="#">Profile</a>
               </p>
             </div>
           </div>

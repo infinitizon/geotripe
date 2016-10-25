@@ -15,7 +15,6 @@ angular.module('Auth', [])
                 vm.dataLoading = true;
                 AuthenticationService.Login(vm.username, vm.password, function(response) {
                     if(response.data.token) {
-                        //console.log(response.data)
                         AuthenticationService.SetCredentials(response.data);
                         $location.path('/home');
                     } else {

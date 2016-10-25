@@ -1,0 +1,35 @@
+
+/* The following manage the look of the loginform */
+#loginForm_bg{
+    background: #FFFFFF;
+    position: absolute;
+    width: 100%; height: 100%;
+}
+.loginForm{
+    margin-top:6em;
+}
+.loginForm .logo {
+    text-align: center;
+    margin-bottom:30px;
+}
+.loginForm .wrapper {
+    overflow: hidden;
+    padding:25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+.loginForm .form-actions button.btn{
+    width: 30%;
+}
+.loginForm input{
+    font-size:0.9em; padding:0;
+    border:none; border-radius: 0;
+    border-bottom:1px solid #CCC;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.loginForm input:focus{
+    box-shadow: none;
+}

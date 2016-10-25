@@ -28,11 +28,14 @@ angular.module('Auth')
             };
 
             service.ClearCredentials = function (callback) {
-                if($localStorage.globals) {
+                if($localStorage.globals && $localStorage.globals.currentUser.userDetails.token!=null) {
                     var data = {
                         token : $localStorage.globals.currentUser.userDetails.token
                     }
                     DataService.post('logout', data).then(function (response) {
+                        if(response.data.response=='Success' && angular.isDefined($localStorage.globals)){
+                            $localStorage.globals.currentUser.userDetails.token=null;
+                        }
                         callback(response);
                     });
                 }

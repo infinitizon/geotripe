@@ -387,7 +387,7 @@ if($env['PATH_INFO']==="/logout"){
         $qryGivToken = "UPDATE Users SET token =null WHERE token=:token";
         $qryGivToken = $dbo->prepare($qryGivToken);
         $qryGivToken->execute(array(":token"=>$token));
-        $response = array("response"=>"Success","token"=>"You have been logged out");
+        $response = array("response"=>"Success","message"=>"You have been logged out");
     }catch(Exception $e){
         $response = array("response"=>"Failure","message"=> $e->getMessage());
     }

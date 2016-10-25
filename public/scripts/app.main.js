@@ -31,12 +31,6 @@ angular
                 isConfigOpen: false
             };
 
-            $scope.user = {
-                fname: 'Abimbola',
-                lname: 'Hassan',
-                jobDesc: 'Human Resources Guy',
-                avatar: 'images/avatar.jpg',
-            };
 
             if (angular.isDefined($localStorage.layout)) {
                 $scope.app.layout = $localStorage.layout;
@@ -48,6 +42,15 @@ angular
                 $scope.app.pages = $localStorage.pages;
             }
 
+            if (angular.isDefined($localStorage.globals)) {
+                $scope.user = {
+                    fname: $localStorage.globals.currentUser.userDetails.authDetails.firstname,
+                    mname: $localStorage.globals.currentUser.userDetails.authDetails.middlename,
+                    lname: $localStorage.globals.currentUser.userDetails.authDetails.lastname,
+                    email: $localStorage.globals.currentUser.userDetails.authDetails.email,
+                    avatar: 'images/avatar.jpg',
+                };
+            }
             $scope.$watch('app.layout', function () {
                 $localStorage.layout = $scope.app.layout;
             }, true);

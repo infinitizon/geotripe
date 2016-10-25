@@ -8,23 +8,22 @@ angular
             // keep user logged in after page refresh
             $rootScope.globals = $localStorage.globals || {};
 
-            //$rootScope.$on('$locationChangeStart', function (event, next, current) {
-            //    // redirect to login page if not logged in
-            //    if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
-            //        console.log($rootScope.globals.currentUser);
-            //        $location.path('/login');
-            //    }
-            //});
+            $rootScope.$on('$locationChangeStart', function (event, next, current) {
+                // redirect to login page if not logged in
+                if ($location.path() !== '/login' && $localStorage.globals.currentUser.userDetails.token == null) {
+                    $location.path('/login');
+                }
+            });
 
-            //$rootScope.show = function(roles, authId){
-            //    angular.forEach($rootScope.globals.currentUser.userDetails.authRoles  , function(authRole, key) {
-            //        if (roles.indexOf(authRole.Name) >= 0){
-            //            $rootScope.container[authId] = true;
-            //        } else {
-            //            $rootScope.container[authId] = false;
-            //        }
-            //    });
-            //}
+            $rootScope.show = function(roles, authId){
+                angular.forEach($rootScope.globals.currentUser.userDetails.authRoles  , function(authRole, key) {
+                    if (roles.indexOf(authRole.Name) >= 0){
+                        $rootScope.container[authId] = true;
+                    } else {
+                        $rootScope.container[authId] = false;
+                    }
+                });
+            }
         }])
     .config(['$stateProvider','$sceDelegateProvider','$httpProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider', '$compileProvider'
         , function ($stateProvider,$sceDelegateProvider,$httpProvider, $urlMatcherFactoryProvider, $urlRouterProvider, $compileProvider) {
@@ -52,7 +51,7 @@ angular
                             return $ocLazyLoad.load([
                                 {
                                     files: [
-                                        'css/login.css'
+                                        'modules/auth/css/login.css'
                                     ]
                                 }]).then(function () {
                                 return $ocLazyLoad.load(['modules/auth/controller.js', 'modules/auth/services.js']);
