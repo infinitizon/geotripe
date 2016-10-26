@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d05ef40-3f7a-41b2-81e7-eb6b1d801a63" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/common/directives/iz-dirs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Geoscape.mwb" afterPath="$PROJECT_DIR$/../Geoscape.mwb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Geoscape.mwb.bak" afterPath="$PROJECT_DIR$/../Geoscape.mwb.bak" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/controller.js" afterPath="$PROJECT_DIR$/modules/quote/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/css/quote.css" afterPath="$PROJECT_DIR$/modules/quote/css/quote.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" afterPath="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/setup/views/templates/party.html" afterPath="$PROJECT_DIR$/modules/setup/views/templates/party.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/app.config.router.js" afterPath="$PROJECT_DIR$/scripts/app.config.router.js" />
     </list>
     <ignored path="public.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,26 +38,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="quoteByStatus.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="quoteByStatus.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.529411">
-              <caret line="29" column="80" selection-start-line="29" selection-start-column="75" selection-end-line="29" selection-end-column="80" />
+            <state vertical-scroll-proportion="0.25210086">
+              <caret line="20" column="120" selection-start-line="20" selection-start-column="120" selection-end-line="20" selection-end-column="120" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <marker date="1477510674000" expanded="true" signature="5775:6348" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
-                <marker date="1477510674000" expanded="true" signature="5810:6347" placeholder="[...]" />
-                <marker date="1477510674000" expanded="true" signature="5811:6346" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
+                <marker date="1477511028000" expanded="true" signature="5884:6457" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
+                <marker date="1477511028000" expanded="true" signature="5919:6456" placeholder="[...]" />
+                <marker date="1477511028000" expanded="true" signature="5920:6455" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controller.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5439162">
-              <caret line="285" column="41" selection-start-line="285" selection-start-column="41" selection-end-line="285" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="284" column="34" selection-start-line="284" selection-start-column="34" selection-end-line="284" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -173,8 +164,8 @@
         <option value="$PROJECT_DIR$/modules/quote/css/quoteStatus.css" />
         <option value="$PROJECT_DIR$/modules/quote/css/quote.css" />
         <option value="$PROJECT_DIR$/modules/common/directives/iz-dirs.js" />
-        <option value="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" />
         <option value="$PROJECT_DIR$/modules/quote/controller.js" />
+        <option value="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" />
       </list>
     </option>
   </component>
@@ -1075,7 +1066,7 @@
       <workItem from="1477426706773" duration="2721000" />
       <workItem from="1477466765072" duration="2477000" />
       <workItem from="1477481497038" duration="7391000" />
-      <workItem from="1477501120915" duration="2579000" />
+      <workItem from="1477501120915" duration="2847000" />
     </task>
     <task id="LOCAL-00001" summary="Completed work on the RFQ">
       <created>1475831179986</created>
@@ -1105,7 +1096,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="598531000" />
+    <option name="totallyTimeSpent" value="598799000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2074" height="1338" extended-state="0" />
@@ -1549,24 +1540,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
+    <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.529411">
-          <caret line="29" column="80" selection-start-line="29" selection-start-column="75" selection-end-line="29" selection-end-column="80" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <marker date="1477510674000" expanded="true" signature="5775:6348" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
-            <marker date="1477510674000" expanded="true" signature="5810:6347" placeholder="[...]" />
-            <marker date="1477510674000" expanded="true" signature="5811:6346" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="284" column="34" selection-start-line="284" selection-start-column="34" selection-end-line="284" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
+    <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5439162">
-          <caret line="285" column="41" selection-start-line="285" selection-start-column="41" selection-end-line="285" selection-end-column="41" />
-          <folding />
+        <state vertical-scroll-proportion="0.25210086">
+          <caret line="20" column="120" selection-start-line="20" selection-start-column="120" selection-end-line="20" selection-end-column="120" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <marker date="1477511028000" expanded="true" signature="5884:6457" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
+            <marker date="1477511028000" expanded="true" signature="5919:6456" placeholder="[...]" />
+            <marker date="1477511028000" expanded="true" signature="5920:6455" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
+          </folding>
         </state>
       </provider>
     </entry>

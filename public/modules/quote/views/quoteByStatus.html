@@ -12,13 +12,14 @@
                     </div>
                     <div class="buttons-wrapper">
                         <input type="button" class="btn btn-xs btn-primary" id="filter-add" value="Add Filter" />
-                        <button  type="button" class="btn btn-xs btn-danger" data-ng-click="quotCtrl.applyFilters()"><i class="fa fa-trash"></i> Apply Filters</button>
+                        <button  type="button" class="btn btn-xs btn-danger" data-ng-click="quotCtrl.applyFilters()">Apply Filters</button>
                     </div>
                 </fieldset>
                 <!-- hidden templates -->
                 <div class="templates">
                     <div class="template filter-chooser">
-                        <input type="button" class="filter-remover" value="X" />
+                        <button  type="button" class="btn btn-xs btn-danger filter-remover" ><i class="fa fa-trash"></i></button>
+                        <!--<input type="button" class="filter-remover" value="X" />-->
 
                         <select name="filter" class="filter-type">
                             <option value="" data-template-type="" selected="selected">Choose a filter</option>
