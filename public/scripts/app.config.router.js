@@ -115,4 +115,10 @@ angular
                     , controller: 'PartyController'
                     , controllerAs: 'PartyCtrl'
                 })
+                .state('app.setup.users', {
+                    url: '/users'
+                    , templateUrl: 'modules/setup/views/templates/party.html'
+                    , controller: 'PartyController'
+                    , controllerAs: 'PartyCtrl'
+                })
         }])

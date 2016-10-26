@@ -283,6 +283,11 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 })
             }
             vm.getData(vm.pageno);
+            vm.applyFilters = function(){
+                if(angular.isDefined(vm.filters.rfqno)){
+                    return;
+                }
+            }
 
             vm.goBack = function () {
                 vm.edit=false;

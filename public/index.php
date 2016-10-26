@@ -103,6 +103,7 @@
 <script src="modules/common/directives/rickshaw.js"></script>
 <script src="modules/common/directives/scrollup.js"></script>
 <script src="modules/common/directives/vector.js"></script>
+<script src="modules/common/directives/iz-dirs.js"></script>
 <!-- endbuild -->
 </body>
 </html>
