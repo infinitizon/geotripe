@@ -185,10 +185,13 @@ if($env['PATH_INFO']==="/inboundService") {
                 $q_str_tot_count = $dbo->query("SELECT COUNT(*) as `count` FROM (" . $q_str . ") t");
                 $r_str_tot_count = $q_str_tot_count->fetch(PDO::FETCH_ASSOC);
 
+//                var_dump( $r_str_tot_count );
                 if (!is_null($data->transactionMetaData->pageno)) {
                     $start = $data->transactionMetaData->pageno * $data->transactionMetaData->itemsPerPage;
                     $q_str .= " LIMIT {$start},{$data->transactionMetaData->itemsPerPage}";
                 }
+
+//                echo $q_str;
                 $r_obj = $dbo->prepare($q_str);
                 $r_obj->execute(array());
                 while ($items = $r_obj->fetch(PDO::FETCH_ASSOC)) {
@@ -201,7 +204,7 @@ if($env['PATH_INFO']==="/inboundService") {
                     $q_response[] = $items;
                 }
                 if(isset($q_getFiles_str)) {
-//                    var_dump($q_getFiles_str);
+                    var_dump($q_getFiles_str);
                     $r_getFiles_str = $dbo->prepare($q_getFiles_str);
                     $r_getFiles_str->execute();
                     $files = $r_getFiles_str->fetchAll(PDO::FETCH_ASSOC);

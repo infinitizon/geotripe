@@ -7,10 +7,12 @@
  * anchor-scroll - scroll to id directive
  */
 
-function searchFilters() {
+function searchFilters($compile, $parse) {
     return {
-        restrict: 'A',
-        link: function (scope, element, attrs) {
+        restrict: 'A'
+        //, transclude: true
+        //, template: '<div ng-transclude></div>'
+        , link: function (scope, element, attrs) {
 
             var $filters = element.find('#filters');
             var templatesAvailable = element.find('.template', '.templates').not('.filter-chooser').length;
@@ -38,7 +40,7 @@ function searchFilters() {
                     return;
                 }
 
-                var $filterChooser = $('div.template.filter-chooser')
+                var $filterChooser = angular.element('div.template.filter-chooser')
                     .clone()
                     .removeClass('filter-chooser')
                     .addClass('filter');
@@ -50,23 +52,29 @@ function searchFilters() {
                         return filterInUse.indexOf(angular.element(this).data('template-type')) >= 0;
                     })
                     .remove();
-                    $filterChooser.appendTo($filters);
+
+                $filterChooser.appendTo($filters)
             }).click();
             element.find('#filters').on('change', '.filter-type', function() {
-                    var $this = angular.element(this)
-                    var $filter = $this.closest('.filter');
-                    var filterType = $this.find(':selected').data('template-type');
+                var $this = angular.element(this)
+                var $filter = $this.closest('.filter');
+                var filterType = $this.find(':selected').data('template-type');
 
-                    $('.qualifier', $filter).remove();
-                    $('div.template.' + filterType)
-                        .clone()
-                        .addClass('qualifier')
-                        .appendTo($filter);
-                    $this.find('option[value=""]').remove();
-                }).on('click', '.filter-remover', function() {
-                    angular.element(this).closest('.filter').remove();
-                });
+                angular.element('.qualifier', $filter).remove();
+                var temp = $compile($('div.template.' + filterType).clone().addClass('qualifier'))(scope)
+                temp.appendTo($filter);
+
+                $this.find('option[value=""]').remove();
+
+            }).on('click', '.filter-remover', function() {
+                $(this).closest('.filter').remove();
+                var qualifierList = $(this).closest('.filter').find('.qualifier').children('[data-ng-model]').map(function(){ return $(this).attr('data-ng-model') })
+                angular.forEach(qualifierList, function(qualifier, key){
+                    console.log(eval('scope.'+qualifier+'=null'))
+                })
+            });
         }
+
     };
 }
 

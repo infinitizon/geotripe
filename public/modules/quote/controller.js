@@ -243,7 +243,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
             vm.total_count = 0;
             vm.itemsPerPage = 15; //this could be a dynamic value from a drop down
             CommonServices.postData.token = $localStorage.globals.currentUser.userDetails.token;
-            vm.getData = function(pageno) {
+            vm.getData = function(pageno, filters) {
                 vm.quotes = []; // Initially make list empty so as to show the "loading data" notice!
                 var data=angular.copy(CommonServices.postData);
                 data.factName = 'Quote q, Party p, QuoteStatus qs, Users u, QuoteDetail qd';
@@ -270,6 +270,14 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                     }
                     data.transactionMetaData.queryMetaData.queryClause.andExpression.push(clientStatus);
                 }
+                if(angular.isDefined(filters)){
+                    if(angular.isDefined(filters.andExpre)){
+                        angular.forEach(filters.andExpre, function(andExpr, key){
+                            data.transactionMetaData.queryMetaData.queryClause.andExpression.push(andExpr)
+                        })
+                    }
+                }
+                console.log(data.transactionMetaData.queryMetaData.queryClause.andExpression)
                 data.transactionMetaData.queryMetaData.joinClause = {
                     'joinType':['JOIN','JOIN','JOIN','LEFT JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_enteredBy_id=u.user_id','q.quote_Id=qd.Quote_quote_Id']
                 }
@@ -283,10 +291,26 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 })
             }
             vm.getData(vm.pageno);
+            $scope.filters={}, vm.filters={};
             vm.applyFilters = function(){
-                if(angular.isDefined(vm.filters.rfqno)){
-                    return;
+                vm.filters.andExpre = []
+                if(angular.isDefined($scope.filters.rfqno)){
+                    vm.filters.andExpre.push({
+                            "propertyName": "q.rfq_no",
+                            "propertyValue": $scope.filters.rfqno,
+                            "propertyDataType": "VARCHAR",
+                            "operatorType": "LIKE"
+                        })
                 }
+                if(angular.isDefined($scope.filters.status)){
+                    vm.filters.andExpre.push({
+                        "propertyName": "q.rfq_no",
+                        "propertyValue": $scope.filters.rfqno,
+                        "propertyDataType": "BIGINT",
+                        "operatorType": "LIKE"
+                    })
+                }
+                vm.getData(vm.pageno, vm.filters);
             }
 
             vm.goBack = function () {

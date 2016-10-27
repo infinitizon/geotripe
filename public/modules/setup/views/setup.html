@@ -12,3 +12,43 @@
         <p class="card-text">Use this to Add or remove user roles</p>
     </div>
 </div>
+
+
+
+<div data-search-filters>
+    <fieldset>
+        <legend>Filters</legend>
+        <div id="filters">
+        </div>
+        <div class="buttons-wrapper">
+            <input type="button" class="btn btn-xs btn-primary" id="filter-add" value="Add Filter" />
+            <button  type="button" class="btn btn-xs btn-danger" data-ng-click="quotCtrl.applyFilters()">Apply Filters</button>
+        </div>
+    </fieldset>
+    <!-- hidden templates -->
+    <div class="templates">
+        <div class="template filter-chooser">
+            <button  type="button" class="btn btn-xs btn-danger filter-remover" ><i class="fa fa-trash"></i></button>
+            <!--<input type="button" class="filter-remover" value="X" />-->
+
+            <select name="filter" class="filter-type">
+                <option value="" data-template-type="" selected="selected">Choose a filter</option>
+                <option value="rfqno" data-template-type="template-rfqno">Request No.</option>
+                <option value="status" data-template-type="template-status">Status</option>
+            </select>
+        </div>
+        <div class="template template-rfqno">
+            <input type="text" data-ng-model="quotCtrl.filters.rfqno" />
+        </div>
+
+        <div class="template template-status">
+            <select
+                    class="form-control"
+                    data-ng-click="quotCtrl.getLOVs('QuoteStatus','quoteStatuses', {'response':'quotestatus_id&name','placeholder':'QuoteStatusHolder'})"
+                    data-ng-options="quoteStatus.quotestatus_id as quoteStatus.name for quoteStatus in quotCtrl.container['quoteStatuses']"
+                    data-ng-model="quotCtrl.filters.status">
+                <option value="">{{quotCtrl.container['QuoteStatusHolder'] || 'Select quote status...'}}</option>
+            </select>
+        </div>
+    </div>
+</div>

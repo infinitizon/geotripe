@@ -45,7 +45,7 @@ ul.quoteDash li div{
 .filter {
     margin-bottom: 0.5em;
 }
-.template.qualifier{
+.filter-type,.template.qualifier{
     display: inline-block;
     /* IE 6-7 Hack */
     *display: inline;
