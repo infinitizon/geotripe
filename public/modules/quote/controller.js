@@ -277,7 +277,6 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                         })
                     }
                 }
-                console.log(data.transactionMetaData.queryMetaData.queryClause.andExpression)
                 data.transactionMetaData.queryMetaData.joinClause = {
                     'joinType':['JOIN','JOIN','JOIN','LEFT JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_enteredBy_id=u.user_id','q.quote_Id=qd.Quote_quote_Id']
                 }
@@ -291,11 +290,11 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 })
             }
             vm.getData(vm.pageno);
-            $scope.filters={}, vm.filters={};
+            $scope.filters={}, vm.filterOpts={};
             vm.applyFilters = function(){
-                vm.filters.andExpre = []
+                vm.filterOpts.andExpre = []
                 if(angular.isDefined($scope.filters.rfqno)){
-                    vm.filters.andExpre.push({
+                    vm.filterOpts.andExpre.push({
                             "propertyName": "q.rfq_no",
                             "propertyValue": $scope.filters.rfqno,
                             "propertyDataType": "VARCHAR",
@@ -303,14 +302,14 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                         })
                 }
                 if(angular.isDefined($scope.filters.status)){
-                    vm.filters.andExpre.push({
-                        "propertyName": "q.rfq_no",
-                        "propertyValue": $scope.filters.rfqno,
+                    vm.filterOpts.andExpre.push({
+                        "propertyName": "q.quote_status_id",
+                        "propertyValue": $scope.filters.status,
                         "propertyDataType": "BIGINT",
                         "operatorType": "LIKE"
                     })
                 }
-                vm.getData(vm.pageno, vm.filters);
+                vm.getData(vm.pageno, vm.filterOpts);
             }
 
             vm.goBack = function () {
@@ -365,7 +364,6 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                     ];
                     DataService.post('inboundService', data).then(function (response) {
                         vm.quote = response.data.data[0];
-                        vm.quoteFiles = response.data.data['files'];
 
                         vm.originalQuoteData = angular.copy(vm.quote);
                         vm.originalQuoteData.publishdate = new Date(vm.originalQuoteData.publishdate);
@@ -378,6 +376,21 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                         vm.submittedDisabled = vm.submittedChecked;
 
                         vm.total_count = response.data.total_count;
+
+                        var data=angular.copy(CommonServices.postData);
+                        data.factName = 'Document d';
+                        data.transactionMetaData.responseDataProperties = 'd.doc_id&d.doc_quote_id&d.docName&d.docPath&d.docMimeType&d.docCreateDate&d.documentType_id';
+                        data.transactionMetaData.queryMetaData.queryClause.andExpression = [
+                            {
+                                "propertyName": "doc_quote_id",
+                                "propertyValue": quoteId,
+                                "propertyDataType": "BIGINT",
+                                "operatorType": "="
+                            }
+                        ];
+                        DataService.post('inboundService', data).then(function (response) {
+                            vm.quoteFiles = response.data.data  ;
+                        });
                     })
                     /*Now get the quote details*/
                     var data=angular.copy(CommonServices.postData);
@@ -465,7 +478,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                     vm.disableClient = true;
                 }
             }
-            vm.container = [];
+            vm.container = {};
 
             vm.supervisor = function(quoteId){
                 var i = 0;
@@ -478,7 +491,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
             }
             vm.getLOVs = function(factName, selectScope, options) {
                 if (vm.container[selectScope] == null) {
-                    if(options.placeholder) vm.container[options.placeholder] = 'Loading...';
+                    if(options.placeholder) vm.container[selectScope] = [options.placeholder];
                     var data = angular.copy(CommonServices.postData);
                     data.factName = factName;
                     data.transactionMetaData.responseDataProperties = options.response;

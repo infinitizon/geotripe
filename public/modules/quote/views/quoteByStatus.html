@@ -6,6 +6,7 @@
         </div>
         <div class="input-group pull-right col-sm-3">
             <!--Filters start here-->
+            {{quotCtrl.container.QuoteStatusHolder}}
             <div data-search-filters>
                     <fieldset>
                         <legend>Filters</legend>
@@ -31,11 +32,17 @@
                         </div>
 
                         <div class="template template-status">
+                            <!--<select data-ng-model="filters.status"-->
+                                    <!--data-ng-click="quotCtrl.getLOVs('QuoteStatus','quoteStatuses', {'response':'quotestatus_id&name','placeholder':'QuoteStatusHolder'})"-->
+                                    <!--data-ng-options="quoteStatus.quotestatus_id as quoteStatus.name for quoteStatus in quotCtrl.container['quoteStatuses']"-->
+                            <!--&gt;-->
+                                <!--<option value="">{{quotCtrl.container['QuoteStatusHolder']}}</option>-->
+                            <!--</select>-->
                             <select data-ng-model="filters.status"
-                                    data-ng-click="quotCtrl.getLOVs('QuoteStatus','quoteStatuses', {'response':'quotestatus_id&name','placeholder':'QuoteStatusHolder'})"
+                                    data-ng-click="quotCtrl.getLOVs('QuoteStatus','quoteStatuses', {'response':'quotestatus_id&name','placeholder':{'quotestatus_id':1,'name':'Loading...'}})"
                                     data-ng-options="quoteStatus.quotestatus_id as quoteStatus.name for quoteStatus in quotCtrl.container['quoteStatuses']"
-                                    >
-                                <option value="">{{quotCtrl.container['QuoteStatusHolder'] || 'Select quote status...'}}</option>
+                            >
+                                <option value="">-- Select Quote Status --</option>
                             </select>
                         </div>
                     </div>

@@ -10,8 +10,6 @@
 function searchFilters($compile, $parse) {
     return {
         restrict: 'A'
-        //, transclude: true
-        //, template: '<div ng-transclude></div>'
         , link: function (scope, element, attrs) {
 
             var $filters = element.find('#filters');
@@ -70,7 +68,7 @@ function searchFilters($compile, $parse) {
                 $(this).closest('.filter').remove();
                 var qualifierList = $(this).closest('.filter').find('.qualifier').children('[data-ng-model]').map(function(){ return $(this).attr('data-ng-model') })
                 angular.forEach(qualifierList, function(qualifier, key){
-                    console.log(eval('scope.'+qualifier+'=null'))
+                    eval('scope.'+qualifier+'=null')
                 })
             });
         }
