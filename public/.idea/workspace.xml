@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8d05ef40-3f7a-41b2-81e7-eb6b1d801a63" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/v1/index.php" afterPath="$PROJECT_DIR$/api/v1/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/common/directives/iz-dirs.js" afterPath="$PROJECT_DIR$/modules/common/directives/iz-dirs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/controller.js" afterPath="$PROJECT_DIR$/modules/quote/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/css/quote.css" afterPath="$PROJECT_DIR$/modules/quote/css/quote.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" afterPath="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/setup/views/setup.html" afterPath="$PROJECT_DIR$/modules/setup/views/setup.html" />
     </list>
     <ignored path="public.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,39 +38,49 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/v1/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="42.941177">
+              <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+              <folding>
+                <marker date="1477653697000" expanded="true" signature="2298:2578" placeholder="SELECT u.use... Users" />
+                <marker date="1477653697000" expanded="true" signature="2858:2932" placeholder="UPDATE Users... " />
+                <marker date="1477653697000" expanded="true" signature="3163:3372" placeholder="SELECT AuthR... User_AuthRole" />
+                <marker date="1477653697000" expanded="true" signature="3475:3608" placeholder="SELECT av.au... AuthView" />
+                <marker date="1477653697000" expanded="true" signature="5106:5129" placeholder="INSERT INTO LoginDetail... " />
+                <marker date="1477653697000" expanded="true" signature="6021:6059" placeholder="SELECT * FRO... Users" />
+                <marker date="1477653697000" expanded="true" signature="6937:7019" placeholder="SELECT docNa... Document" />
+                <marker date="1477653697000" expanded="true" signature="9675:9807" placeholder="SELECT doc_i... Document" />
+                <marker date="1477653697000" expanded="true" signature="10095:10145" placeholder="SELECT COUNT... ${$q_str}" />
+                <marker date="1477653697000" expanded="true" signature="12063:12075" placeholder="INSERT INTO $... " />
+                <marker date="1477653697000" expanded="true" signature="13631:13659" placeholder="UPDATE ${{$d... " />
+                <marker date="1477653697000" expanded="true" signature="14555:14567" placeholder="INSERT INTO $... " />
+                <marker date="1477653697000" expanded="true" signature="14619:14696" placeholder="INSERT INTO logs... " />
+                <marker date="1477653697000" expanded="true" signature="17080:17306" placeholder="INSERT INTO Document... " />
+                <marker date="1477653697000" expanded="true" signature="19118:19153" placeholder="DELETE FROM " />
+                <marker date="1477653697000" expanded="true" signature="20572:20619" placeholder="UPDATE Users... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-35.555557">
-              <caret line="305" column="14" selection-start-line="305" selection-start-column="14" selection-end-line="305" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.27100495">
+              <caret line="267" column="53" selection-start-line="267" selection-start-column="52" selection-end-line="267" selection-end-column="53" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/api/v1/index.php">
+      <file leaf-file-name="app.config.router.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/app.config.router.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6983193">
-              <caret line="206" column="44" selection-start-line="206" selection-start-column="29" selection-end-line="206" selection-end-column="44" />
-              <folding>
-                <marker date="1477584129000" expanded="true" signature="2298:2578" placeholder="SELECT u.use... Users" />
-                <marker date="1477584129000" expanded="true" signature="2858:2932" placeholder="UPDATE Users... " />
-                <marker date="1477584129000" expanded="true" signature="3163:3372" placeholder="SELECT AuthR... User_AuthRole" />
-                <marker date="1477584129000" expanded="true" signature="3475:3608" placeholder="SELECT av.au... AuthView" />
-                <marker date="1477584129000" expanded="true" signature="5106:5129" placeholder="INSERT INTO LoginDetail... " />
-                <marker date="1477584129000" expanded="true" signature="6021:6059" placeholder="SELECT * FRO... Users" />
-                <marker date="1477584129000" expanded="true" signature="6937:7019" placeholder="SELECT docNa... Document" />
-                <marker date="1477584129000" expanded="true" signature="9673:9805" placeholder="SELECT doc_i... Document" />
-                <marker date="1477584129000" expanded="true" signature="10093:10143" placeholder="SELECT COUNT... ${$q_str}" />
-                <marker date="1477584129000" expanded="true" signature="12061:12073" placeholder="INSERT INTO $... " />
-                <marker date="1477584129000" expanded="true" signature="13629:13657" placeholder="UPDATE ${{$d... " />
-                <marker date="1477584129000" expanded="true" signature="14553:14565" placeholder="INSERT INTO $... " />
-                <marker date="1477584129000" expanded="true" signature="14617:14694" placeholder="INSERT INTO logs... " />
-                <marker date="1477584129000" expanded="true" signature="17078:17304" placeholder="INSERT INTO Document... " />
-                <marker date="1477584129000" expanded="true" signature="19116:19151" placeholder="DELETE FROM " />
-                <marker date="1477584129000" expanded="true" signature="20570:20617" placeholder="UPDATE Users... " />
-              </folding>
+            <state vertical-scroll-proportion="0.0">
+              <caret line="94" column="46" selection-start-line="94" selection-start-column="38" selection-end-line="94" selection-end-column="46" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -84,14 +88,24 @@
       <file leaf-file-name="quoteByStatus.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="79.01961">
-              <caret line="29" column="75" selection-start-line="29" selection-start-column="70" selection-end-line="29" selection-end-column="75" />
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <marker date="1477582922000" expanded="true" signature="6514:7087" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
-                <marker date="1477582922000" expanded="true" signature="6549:7086" placeholder="[...]" />
-                <marker date="1477582922000" expanded="true" signature="6550:7085" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
+                <marker date="1477653304000" expanded="true" signature="7142:7715" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
+                <marker date="1477653304000" expanded="true" signature="7177:7714" placeholder="[...]" />
+                <marker date="1477653304000" expanded="true" signature="7178:7713" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/common/services.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="115" column="42" selection-start-line="115" selection-start-column="42" selection-end-line="115" selection-end-column="42" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -131,16 +145,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="54" column="6" selection-start-line="54" selection-start-column="6" selection-end-line="55" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="iz-dirs.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/common/directives/iz-dirs.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-39.444443">
-              <caret line="71" column="72" selection-start-line="71" selection-start-column="72" selection-end-line="71" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -214,11 +218,11 @@
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/modules/quote/css/quoteStatus.css" />
         <option value="$PROJECT_DIR$/modules/setup/views/setup.html" />
-        <option value="$PROJECT_DIR$/modules/common/directives/iz-dirs.js" />
         <option value="$PROJECT_DIR$/modules/quote/css/quote.css" />
         <option value="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" />
-        <option value="$PROJECT_DIR$/modules/quote/controller.js" />
         <option value="$PROJECT_DIR$/api/v1/index.php" />
+        <option value="$PROJECT_DIR$/modules/quote/controller.js" />
+        <option value="$PROJECT_DIR$/modules/common/directives/iz-dirs.js" />
       </list>
     </option>
   </component>
@@ -299,6 +303,60 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themeforest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themeforest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="no-bower-grunt-angular" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themeforest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="no-bower-grunt-angular" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -503,32 +561,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="directives" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1145,7 +1177,7 @@
       <workItem from="1477426706773" duration="2721000" />
       <workItem from="1477466765072" duration="2477000" />
       <workItem from="1477481497038" duration="7391000" />
-      <workItem from="1477501120915" duration="21541000" />
+      <workItem from="1477501120915" duration="30823000" />
     </task>
     <task id="LOCAL-00001" summary="Completed work on the RFQ">
       <created>1475831179986</created>
@@ -1175,11 +1207,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="617493000" />
+    <option name="totallyTimeSpent" value="626775000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2074" height="1338" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1550,22 +1582,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/app.config.router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5890411">
-          <caret line="94" column="46" selection-start-line="94" selection-start-column="38" selection-end-line="94" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/common/services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/common/directives/navigation.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1590,14 +1606,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/common/directives/iz-dirs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-39.444443">
-          <caret line="71" column="72" selection-start-line="71" selection-start-column="72" selection-end-line="71" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/quote/css/quote.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-29.375">
@@ -1606,49 +1614,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
+    <entry file="file://$PROJECT_DIR$/modules/common/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="79.01961">
-          <caret line="29" column="75" selection-start-line="29" selection-start-column="70" selection-end-line="29" selection-end-column="75" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <marker date="1477582922000" expanded="true" signature="6514:7087" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
-            <marker date="1477582922000" expanded="true" signature="6549:7086" placeholder="[...]" />
-            <marker date="1477582922000" expanded="true" signature="6550:7085" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-35.555557">
-          <caret line="305" column="14" selection-start-line="305" selection-start-column="14" selection-end-line="305" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="115" column="42" selection-start-line="115" selection-start-column="42" selection-end-line="115" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/v1/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6983193">
-          <caret line="206" column="44" selection-start-line="206" selection-start-column="29" selection-end-line="206" selection-end-column="44" />
+        <state vertical-scroll-proportion="42.941177">
+          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
           <folding>
-            <marker date="1477584129000" expanded="true" signature="2298:2578" placeholder="SELECT u.use... Users" />
-            <marker date="1477584129000" expanded="true" signature="2858:2932" placeholder="UPDATE Users... " />
-            <marker date="1477584129000" expanded="true" signature="3163:3372" placeholder="SELECT AuthR... User_AuthRole" />
-            <marker date="1477584129000" expanded="true" signature="3475:3608" placeholder="SELECT av.au... AuthView" />
-            <marker date="1477584129000" expanded="true" signature="5106:5129" placeholder="INSERT INTO LoginDetail... " />
-            <marker date="1477584129000" expanded="true" signature="6021:6059" placeholder="SELECT * FRO... Users" />
-            <marker date="1477584129000" expanded="true" signature="6937:7019" placeholder="SELECT docNa... Document" />
-            <marker date="1477584129000" expanded="true" signature="9673:9805" placeholder="SELECT doc_i... Document" />
-            <marker date="1477584129000" expanded="true" signature="10093:10143" placeholder="SELECT COUNT... ${$q_str}" />
-            <marker date="1477584129000" expanded="true" signature="12061:12073" placeholder="INSERT INTO $... " />
-            <marker date="1477584129000" expanded="true" signature="13629:13657" placeholder="UPDATE ${{$d... " />
-            <marker date="1477584129000" expanded="true" signature="14553:14565" placeholder="INSERT INTO $... " />
-            <marker date="1477584129000" expanded="true" signature="14617:14694" placeholder="INSERT INTO logs... " />
-            <marker date="1477584129000" expanded="true" signature="17078:17304" placeholder="INSERT INTO Document... " />
-            <marker date="1477584129000" expanded="true" signature="19116:19151" placeholder="DELETE FROM " />
-            <marker date="1477584129000" expanded="true" signature="20570:20617" placeholder="UPDATE Users... " />
+            <marker date="1477653697000" expanded="true" signature="2298:2578" placeholder="SELECT u.use... Users" />
+            <marker date="1477653697000" expanded="true" signature="2858:2932" placeholder="UPDATE Users... " />
+            <marker date="1477653697000" expanded="true" signature="3163:3372" placeholder="SELECT AuthR... User_AuthRole" />
+            <marker date="1477653697000" expanded="true" signature="3475:3608" placeholder="SELECT av.au... AuthView" />
+            <marker date="1477653697000" expanded="true" signature="5106:5129" placeholder="INSERT INTO LoginDetail... " />
+            <marker date="1477653697000" expanded="true" signature="6021:6059" placeholder="SELECT * FRO... Users" />
+            <marker date="1477653697000" expanded="true" signature="6937:7019" placeholder="SELECT docNa... Document" />
+            <marker date="1477653697000" expanded="true" signature="9675:9807" placeholder="SELECT doc_i... Document" />
+            <marker date="1477653697000" expanded="true" signature="10095:10145" placeholder="SELECT COUNT... ${$q_str}" />
+            <marker date="1477653697000" expanded="true" signature="12063:12075" placeholder="INSERT INTO $... " />
+            <marker date="1477653697000" expanded="true" signature="13631:13659" placeholder="UPDATE ${{$d... " />
+            <marker date="1477653697000" expanded="true" signature="14555:14567" placeholder="INSERT INTO $... " />
+            <marker date="1477653697000" expanded="true" signature="14619:14696" placeholder="INSERT INTO logs... " />
+            <marker date="1477653697000" expanded="true" signature="17080:17306" placeholder="INSERT INTO Document... " />
+            <marker date="1477653697000" expanded="true" signature="19118:19153" placeholder="DELETE FROM " />
+            <marker date="1477653697000" expanded="true" signature="20572:20619" placeholder="UPDATE Users... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/common/directives/iz-dirs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-42.74074">
+          <caret line="78" column="24" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/app.config.router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="94" column="46" selection-start-line="94" selection-start-column="38" selection-end-line="94" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <marker date="1477653304000" expanded="true" signature="7142:7715" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
+            <marker date="1477653304000" expanded="true" signature="7177:7714" placeholder="[...]" />
+            <marker date="1477653304000" expanded="true" signature="7178:7713" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27100495">
+          <caret line="267" column="53" selection-start-line="267" selection-start-column="52" selection-end-line="267" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
