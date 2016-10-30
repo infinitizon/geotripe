@@ -114,6 +114,9 @@ angular
                     , templateUrl: 'modules/setup/views/templates/party.html'
                     , controller: 'PartyController'
                     , controllerAs: 'PartyCtrl'
+                    , data: {
+                        title: 'Clients',
+                    }
                 })
                 .state('app.setup.users', {
                     url: '/users'

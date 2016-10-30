@@ -1,11 +1,17 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <div class="pull-right"><button type="button" class="btn btn-default" ng-click="PartyCtrl.editUser()">+ Add new</button></div>
-        <h3>Clients!</h3>
-    </div>
-    <div class="panel-body">
-        <div class="row alert" ng-class="{'alert-success': (PartyCtrl.result=='Success'), 'alert-danger': (PartyCtrl.result=='Failure')}" ng-if="PartyCtrl.result">{{PartyCtrl.message}}</div>
-        <div class="full" ng-if="!PartyCtrl.edit">
+<style>
+    .tab-content{
+        background: #FFF;
+        padding:10px;
+    }
+    .nav-tabs > li.active > a {
+        background: #FFF;
+    }
+</style>
+    <div class="pull-right"><button type="button" class="btn btn-default" ng-click="PartyCtrl.editParty()">+ Add new</button></div>
+    <h3>Clients!</h3>
+    <div class="row alert" ng-class="{'alert-success': (PartyCtrl.result=='Success'), 'alert-danger': (PartyCtrl.result=='Failure')}" ng-if="PartyCtrl.result">{{PartyCtrl.message}}</div>
+    <div class="full" ng-if="!PartyCtrl.edit">
+        <div class="panel-body">
             <dir-pagination-controls
                     max-size="8"
                     direction-links="true"
@@ -35,7 +41,9 @@
                 </tbody>
             </table>
         </div>
-        <div class="drillDown" ng-if="PartyCtrl.edit">
+    </div>
+
+    <div class="drillDown" ng-if="PartyCtrl.edit">
             <form name="PartyDetail" class="tab-form" role="form">
                 <uib-tabset active="activeForm">
                     <uib-tab index="0" heading="General">
@@ -124,5 +132,3 @@
                 </div>
             </form>
         </div>
-    </div>
-

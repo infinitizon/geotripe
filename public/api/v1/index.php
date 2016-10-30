@@ -262,7 +262,7 @@ if($env['PATH_INFO']==="/inboundService") {
                     $q_str = $fxns->_subStrAtDel($q_str, ' ,');
                     $q_str .= " WHERE $priKy={$data->factObjects[0]->id}";
                 }
-                echo $q_str;
+//                echo $q_str;
                 $r_str = $dbo->prepare($q_str);
                 $r_str->execute();
                 $response = array("response" => "Success", "message" => "Record Updated Successfully", "token" => $data->token);
