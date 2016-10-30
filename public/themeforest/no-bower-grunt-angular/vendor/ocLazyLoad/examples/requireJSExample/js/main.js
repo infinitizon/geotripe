@@ -1,11 +1,11 @@
-requirejs.config({
+require.config({
   baseUrl: 'js/',
   paths: {
     'jquery': 'jquery',
     'angular': 'angular.min',
     'test': 'testmodule',
     'ngGrid': 'ng-grid-2.0.11.debug',
-    'ocLazyLoad': '../../../src/ocLazyLoad'
+    'ocLazyLoad': '../../../dist/ocLazyLoad.require'
   },
   shim: {
     'angular': ['jquery'],
@@ -17,6 +17,6 @@ requirejs.config({
 });
 
 // Start the main app logic.
-requirejs(['test'], function() {
+require(['test'], function() {
   angular.bootstrap(document.body, ['test']);
 });
