@@ -3,8 +3,16 @@
  */
 angular
     .module('Geotripe')
-    .run(['$rootScope', '$location', '$cookieStore', '$localStorage',
-        function ($rootScope, $location, $cookieStore, $localStorage) {
+    .run(['$state', '$stateParams', '$rootScope', '$location', '$cookieStore', '$localStorage',
+        function ($state, $stateParams, $rootScope, $location, $cookieStore, $localStorage) {
+            $rootScope.$state = $state;
+            $rootScope.$stateParams = $stateParams;
+
+            $rootScope.$on('$stateChangeSuccess', function () {
+                window.scrollTo(0, 0);
+            });
+            FastClick.attach(document.body);
+
             // keep user logged in after page refresh
             $rootScope.globals = $localStorage.globals || {};
 
@@ -81,6 +89,9 @@ angular
                             });
                         }]
                     }
+                    , data: {
+                        title: 'Quotes',
+                    }
                 })
                 .state('app.quotes.clients', {
                     url: '/'
@@ -94,9 +105,44 @@ angular
                     , controller: 'QuoteByStatusController'
                     , controllerAs : 'quotCtrl'
                 })
-                .state('app.precurement', {
-                    url: '/precurement'
-                    , templateUrl: 'modules/home/views/home.html'
+
+                .state('app.procurement', {
+                    url: '/procurement'
+                    , template: '<div ui-view></div>'
+                    , abstract: true
+                    , resolve     : {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(['modules/procurement/controllers/procurement.js']);
+                        }]
+                    }
+                })
+                .state('app.procurement.list', {
+                    url: '/'
+                    , templateUrl: 'modules/procurement/views/list.html'
+                    , controller: 'ProcurementList'
+                    , controllerAs : 'ProcLst'
+                    , resolve     : {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(['modules/procurement/controllers/list.js']);
+                        }]
+                    }
+                    , data: {
+                        title: 'Procurement - List'
+                    }
+                })
+                .state('app.procurement.edit', {
+                    url: '/edit/:rfq_id'
+                    , templateUrl: 'modules/procurement/views/edit.html'
+                    , controller: 'ProcurementEdit'
+                    , controllerAs : 'ProcEdt'
+                    , resolve : {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(['modules/procurement/controllers/edit.js']);
+                        }]
+                    }
+                    , data: {
+                        title: 'Procurement - Edit'
+                    }
                 })
 
                 .state('app.setup', {
@@ -115,13 +161,16 @@ angular
                     , controller: 'PartyController'
                     , controllerAs: 'PartyCtrl'
                     , data: {
-                        title: 'Clients',
+                        title: 'Setup - Clients'
                     }
                 })
                 .state('app.setup.users', {
                     url: '/users'
-                    , templateUrl: 'modules/setup/views/templates/party.html'
-                    , controller: 'PartyController'
-                    , controllerAs: 'PartyCtrl'
+                    , templateUrl: 'modules/setup/views/templates/user.html'
+                    , controller: 'UserController'
+                    , controllerAs: 'UsrCtrl'
+                    , data: {
+                        title: 'Setup - Users'
+                    }
                 })
         }])

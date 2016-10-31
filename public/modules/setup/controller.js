@@ -39,8 +39,8 @@ angular.module('Setup',['angularUtils.directives.dirPagination','ui.select'])
 
         }])
 
-    .controller('PartyController', ['$localStorage', 'DataService','CommonServices',
-        function ($localStorage, DataService,CommonServices) {
+    .controller('PartyController', ['$localStorage', '$state', 'DataService','CommonServices',
+        function ($localStorage, $state, DataService,CommonServices) {
             var vm = this;
 
             vm.edit=false;

@@ -13460,3 +13460,26 @@ td.align-middle {
 .location-selector [data-position=bottomRight] div {
   cursor: se-resize;
 }
+
+.templates{
+  display: none;
+}
+.filter {
+  margin-bottom: 0.5em;
+}
+.filter-type,.template.qualifier{
+  display: inline-block;
+  /* IE 6-7 Hack */
+  *display: inline;
+  zoom: 1;
+}
+#results{
+  margin: 1em auto;
+  border-collapse: collapse;
+}
+#results th, #results td {
+  padding: 0.2em 0.5em;
+}
+#results tr:nth-child(odd){
+  background-color: #71A9D6;
+}
