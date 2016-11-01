@@ -40,6 +40,7 @@ if(!$data){
 //    exit;
     $data = json_decode($input);
 }
+//var_dump($data);
 include_once "core/init.inc.php";
 $fxns = new Functions($dbo);
 
@@ -245,6 +246,8 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                                 $priKy = $fields['Field'];
                             }
                         }
+//                        echo $key;
+//                        var_dump($data->factObjects[0]->QuoteDetail[$key]);
                         if(isset($data->factObjects[0]->QuoteDetail[$key]->id)){
                             $q_QuoteDetailFields = "SELECT * FROM QuoteDetail WHERE quoteDetail_Id={$data->factObjects[0]->QuoteDetail[$key]->id}";
                             $r_QuoteDetailFields = $dbo->prepare($q_QuoteDetailFields);

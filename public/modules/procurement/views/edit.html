@@ -4,6 +4,14 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
+                        <label for="po_no">Purchase Order Number <span ng-show="!ProcEdt.quote.po_no" class="text-danger">*</span></label>
+                        <input type="text" id="po_no" data-ng-model="ProcEdt.quote.po_no" placeholder="Enter PO number" class="form-control" required="required" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
                         <label for="PartyId">Client <span data-ng-show="!ProcEdt.quote.party_party_id" class="text-danger">*</span></label>
                         <select id="PartyId" class="form-control"
                                 data-ng-click="ProcEdt.getLOVs('Party','parties', {'response':'party_id&name', 'and':[{
@@ -34,7 +42,7 @@
                             <input type="text" id="publishDate" class="form-control"
                                    uib-datepicker-popup="dd-MMM-yyyy" ng-model="ProcEdt.quote.publishdate" is-open="ProcEdt.publishdate"
                                    ng-focus="ProcEdt.publishdate=true" placeholder="Publish Date (dd-MMM-YYYY) e.g 08-Aug-2016"
-                                   ng-required="true" close-text="&times;" />
+                                   ng-required="true" close-text="&times;" data-ng-disabled="true" />
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-default" data-ng-click="ProcEdt.publishdate = !ProcEdt.publishdate"><i class="glyphicon glyphicon-calendar"></i></button>
                                     </span>
@@ -48,7 +56,7 @@
                             <input type="text" id="dueDate" class="form-control" ng-model="ProcEdt.quote.duedate"
                                    uib-datepicker-popup="dd-MMM-yyyy" is-open="ProcEdt.dueDate" datepicker-options="{minDate: ProcEdt.quote.publishdate}"
                                    data-ng-focus="ProcEdt.dueDate=true" placeholder="Due Date (dd-MMM-YYYY) e.g 08-Aug-2016"
-                                   ng-required="true" close-text="&times;" />
+                                   ng-required="true" close-text="&times;" data-ng-disabled="true" />
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-default" ng-click="ProcEdt.dueDate = !ProcEdt.dueDate"><i class="glyphicon glyphicon-calendar"></i></button>
                                     </span>
@@ -64,7 +72,7 @@
                                 class="form-control"
                                 data-ng-click="ProcEdt.getLOVs('Currency','currencies', {'response':'currency_Id&code'})"
                                 data-ng-options="currencies.currency_Id as currencies.code for currencies in ProcEdt.container['currencies']"
-                                data-ng-model="ProcEdt.quote.quote_currency_id">
+                                data-ng-model="ProcEdt.quote.quote_currency_id" data-ng-disabled="true">
                             <option value="">{{ProcEdt.quote.quote_currency_id || "--Select Currency --"}}</option>
                         </select>
                     </div>
@@ -76,7 +84,7 @@
                                 class="form-control"
                                 data-ng-click="ProcEdt.getUsers(20161307)"
                                 data-ng-options="user.user_id as user.name for user in ProcEdt.container['users']"
-                                data-ng-model="ProcEdt.quote.users_user_id">
+                                data-ng-model="ProcEdt.quote.users_user_id" data-ng-disabled="true">
                             <option value="">{{ProcEdt.quote.users_user_id || "--Select the in-house person to assign to--"}}</option>
                         </select>
                     </div>
@@ -86,6 +94,11 @@
             <div class="row">
                 <div class="col-sm-10 col-sm-offset-1" style="overflow-x: auto;">
                     <fieldset style="margin-top:25px;">
+                        <legend>
+                            <i class="fa fa-scissors text-primary" aria-hidden="true" title="Split PO numbers" style="cursor: pointer;"
+                               ng-click="quotCtrl.open({'modalSize':'lg', 'url':'quoteItems', 'data':{'edit':(quotCtrl.quote.quote_id)?true:false}})">
+                            </i>
+                        </legend>
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>

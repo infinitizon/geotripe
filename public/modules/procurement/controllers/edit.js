@@ -2,8 +2,8 @@
  * Created by ahassan on 10/31/16.
  */
 angular.module('Procurement')
-    .controller('ProcurementEdit', ['$scope', '$localStorage','DataService','CommonServices','$stateParams',
-        function ($scope, $localStorage, DataService, CommonServices, $stateParams) {
+    .controller('ProcurementEdit', ['$scope', '$localStorage', '$state', 'DataService','CommonServices','$stateParams',
+        function ($scope, $localStorage, $state, DataService, CommonServices, $stateParams) {
             var vm = this;
 
             vm.lineItems = []
@@ -136,4 +136,86 @@ angular.module('Procurement')
                     vm.originalLineItems = angular.copy(vm.lineItems);;
                 }
             })
+            vm.postData = function(){
+                vm.isDisabled = true; //Disable submit button
+                vm.dataLoading = true; //Disable submit button
+                //FILL FormData WITH FILE DETAILS.
+                var data = new FormData();
+                data.append("factName", "Quote");
+                data.append("token", $localStorage.globals.currentUser.userDetails.token);
+                data.append("transactionMetaData[currentLocale]", "NG");
+                data.append("transactionMetaData[queryStore]", "MySql");
+                if(vm.quote.quote_id){ // We are editing
+                    vm.changedObjs = CommonServices.GetFormChanges(vm.originalQuoteData,vm.quote);
+                    if(+vm.originalQuoteData.publishdate == +vm.quote.publishdate){
+                        delete vm.changedObjs["publishdate"];
+                    }
+                    if(+vm.originalQuoteData.duedate == +vm.quote.duedate){
+                        delete vm.changedObjs["duedate"];
+                    }
+                    data.append("transactionEventType", "UPDATE");
+                    data.append("putType", "many");
+                    data.append("putOrder", "Quote-Quote_quote_Id,QuoteDetail-QuoteDetail_QuoteDetail_Id,QuoteDetail_Manufacturer");
+                    vm.changedObjs['id'] = vm.quote.quote_id;
+                    vm.changedObjs['po_no'] = vm.quote.po_no;
+
+                    if( !angular.equals({}, vm.changedObjs) ){
+                        data.append("factObjects[quote]", [JSON.stringify(vm.changedObjs)]);
+                    }
+                }
+                var numChecked = 0;
+                vm.lineItems4Db = angular.copy(vm.lineItems);
+                vm.originalLineItems4Db = vm.originalLineItems;
+                angular.forEach(vm.lineItems  , function(QuoteDetail, key) {
+                    if(QuoteDetail.checked==true){
+                        var QuoteDetail = {partno_modelno:vm.lineItems[key].partno_modelno,description: vm.lineItems[key].matDesc, quantity: vm.lineItems[key].qty};
+                        QuoteDetail.quote_is_po = 1;
+                        QuoteDetail.oem_description = vm.lineItems[key].oem_description;
+                        QuoteDetail.unitofmeasure = (vm.lineItems[key].unitofmeasure)?vm.lineItems[key].unitofmeasure.unitofmeasure_id:null;
+                        QuoteDetail.unitprice = vm.lineItems[key].unitprice;
+
+                        QuoteDetail.unitofmeasure = (vm.lineItems[key].unitofmeasure)?vm.lineItems[key].unitofmeasure.unitofmeasure_id:null;
+                        angular.forEach(vm.lineItems[key].manus  , function(QuoteManufacturer, key2) {
+                            vm.lineItems4Db[key].manus[key2] = {party_party_id:QuoteManufacturer.party_id};
+                            //console.log(vm.lineItems4Db[key].manus[key2]);
+                        });
+
+                        QuoteDetail.id =  vm.lineItems[key].id; //If we are editing then, we need to pass along the QuoteDetail id.
+                        angular.forEach(vm.originalLineItems[key].manus  , function(QuoteManufacturer, key2) {
+                            vm.originalLineItems4Db[key].manus[key2] = {party_party_id:QuoteManufacturer.party_id};
+                        });
+                        data.append("factObjects[QuoteDetail_ManufacturerOld]["+key+"]", [JSON.stringify(vm.originalLineItems4Db[key].manus)]);
+                        data.append("factObjects[QuoteDetail]["+key+"]", [JSON.stringify(QuoteDetail)]);
+                        data.append("factObjects[QuoteDetail_Manufacturer]["+key+"]", [JSON.stringify(vm.lineItems4Db[key].manus)]);
+
+                        QuoteDetail.checked = true;
+                        numChecked++;
+                    }
+                })
+                if(numChecked > 0){
+                    //Post the data
+                    DataService.post("quote", data, {
+                        transformRequest: angular.identity,
+                        headers: {'Content-Type': undefined, 'Process-Data': false}
+                    }).then( function (response) {
+                        if(response.data.response == 'Failure'){
+                            vm.error=response.data.message;
+                            vm.isDisabled = false;
+                            vm.dataLoading = false;
+                        }else{
+                            vm.error=response.data.message;
+                            vm.isDisabled = false;
+                            vm.dataLoading = false;
+                            vm.lineItems = [];
+                            vm.quoteFiles = null;
+                            $state.go('app.procurement.list');
+                        }
+                        //vm.container[selectScope] = response.data.data;
+                    });
+                }else{
+                    vm.isDisabled = false; //Disable submit button
+                    vm.dataLoading = false; //Disable submit button
+                    alert('You need to check the line items for the PO')
+                }
+            }
         }])
