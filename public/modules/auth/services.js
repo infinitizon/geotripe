@@ -6,7 +6,7 @@
 angular.module('Auth')
     .factory('AuthenticationService',
             ['Base64', '$http', '$localStorage', '$rootScope', '$state', 'DataService',
-        function (Base64, $http, $localStorage, $rootScope, $state, DataService) {
+                function (Base64, $http, $localStorage, $rootScope, $state, DataService) {
             var service = {};
 
             service.Login = function (username, password, callback) {

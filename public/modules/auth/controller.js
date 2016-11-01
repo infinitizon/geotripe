@@ -1,6 +1,6 @@
 angular.module('Auth', [])
-    .controller('LoginController', ['$location', '$rootScope', 'AuthenticationService', '$localStorage'
-        , function ($location, $rootScope, AuthenticationService, $localStorage) {
+    .controller('LoginController', ['$location', '$scope', 'AuthenticationService', '$localStorage'
+        , function ($location, $scope, AuthenticationService, $localStorage) {
             var vm = this;
             // reset login status
             AuthenticationService.ClearCredentials(function(response){
@@ -16,6 +16,14 @@ angular.module('Auth', [])
                 AuthenticationService.Login(vm.username, vm.password, function(response) {
                     if(response.data.token) {
                         AuthenticationService.SetCredentials(response.data);
+                        $scope.user = {
+                            fname: $localStorage.globals.currentUser.userDetails.authDetails.firstname,
+                            mname: $localStorage.globals.currentUser.userDetails.authDetails.middlename,
+                            lname: $localStorage.globals.currentUser.userDetails.authDetails.lastname,
+                            email: $localStorage.globals.currentUser.userDetails.authDetails.email,
+                            avatar: 'images/avatar.jpg',
+                        };
+
                         $location.path('/home');
                     } else {
                         vm.error = response.data.message;
