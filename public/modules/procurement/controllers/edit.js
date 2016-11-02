@@ -166,11 +166,14 @@ angular.module('Procurement')
                     if(numChecked == 0){
                         alert('You need to first check the line items for the PO')
                         vm.split_po = false;
+                    }else{
+                        vm.quote.po_is_split=1;
                     }
                 }else{
                     angular.forEach(vm.lineItems  , function(QuoteDetail, key) {
                         QuoteDetail.po_no = null;vm.splits=0;
                     });
+                    vm.quote.po_is_split=0;
                 }
             }
             vm.postData = function(){
@@ -195,6 +198,7 @@ angular.module('Procurement')
                     data.append("putOrder", "Quote-Quote_quote_Id,QuoteDetail-QuoteDetail_QuoteDetail_Id,QuoteDetail_Manufacturer");
                     vm.changedObjs['id'] = vm.quote.quote_id;
                     vm.changedObjs['po_no'] = vm.quote.po_no;
+                    vm.changedObjs['po_is_split'] = vm.quote.po_is_split;
 
                     if( !angular.equals({}, vm.changedObjs) ){
                         data.append("factObjects[quote]", [JSON.stringify(vm.changedObjs)]);
