@@ -2,8 +2,8 @@
  * Created by ahassan on 10/31/16.
  */
 angular.module('Procurement')
-    .controller('ProcurementList', ['$scope', '$localStorage','DataService','CommonServices','$stateParams',
-        function ($scope, $localStorage, DataService, CommonServices, $stateParams) {
+    .controller('ProcurementList', ['$scope', '$localStorage','DataService','CommonServices','$location'
+        , function ($scope, $localStorage, DataService, CommonServices, $location) {
             var vm = this;
 
             /*
@@ -60,4 +60,5 @@ angular.module('Procurement')
                 }
                 vm.getData(vm.pageno, vm.filterOpts);
             }
+            console.log()
         }])

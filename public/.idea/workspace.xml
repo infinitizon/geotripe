@@ -6,7 +6,12 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Geoscape.mwb.bak" afterPath="$PROJECT_DIR$/../Geoscape.mwb.bak" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/auth/controller.js" afterPath="$PROJECT_DIR$/modules/auth/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/auth/services.js" afterPath="$PROJECT_DIR$/modules/auth/services.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/common/services.js" afterPath="$PROJECT_DIR$/modules/common/services.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/procurement/controllers/edit.js" afterPath="$PROJECT_DIR$/modules/procurement/controllers/edit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/procurement/controllers/list.js" afterPath="$PROJECT_DIR$/modules/procurement/controllers/list.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/procurement/views/edit.html" afterPath="$PROJECT_DIR$/modules/procurement/views/edit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/controller.js" afterPath="$PROJECT_DIR$/modules/quote/controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" afterPath="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" />
     </list>
     <ignored path="public.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,8 +50,8 @@
       <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="133.37038">
-              <caret line="313" column="0" selection-start-line="313" selection-start-column="0" selection-end-line="317" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="99" column="76" selection-start-line="99" selection-start-column="76" selection-end-line="99" selection-end-column="76" />
               <folding />
             </state>
           </provider>
@@ -56,28 +61,8 @@
         <entry file="file://$PROJECT_DIR$/scripts/app.config.router.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="121" column="50" selection-start-line="121" selection-start-column="35" selection-end-line="121" selection-end-column="50" />
+              <caret line="41" column="53" selection-start-line="41" selection-start-column="53" selection-end-line="41" selection-end-column="53" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/procurement/views/edit.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.375">
-              <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#fieldset#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#legend#0;n#fieldset#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#fieldset#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#5;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#5;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <marker date="1478006668000" expanded="true" signature="976:1589" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
-                <marker date="1478006668000" expanded="true" signature="1011:1588" placeholder="[...]" />
-                <marker date="1478006668000" expanded="true" signature="1012:1587" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -85,21 +70,40 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-36.083332">
-              <caret line="91" column="73" selection-start-line="91" selection-start-column="73" selection-end-line="91" selection-end-column="73" />
+            <state vertical-scroll-proportion="-1.25">
+              <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
               <folding>
-                <marker date="1478018405000" expanded="true" signature="1677:1840" placeholder="..." />
-                <marker date="1478018405000" expanded="true" signature="2206:2745" placeholder="{...}" />
+                <marker date="1478078806000" expanded="true" signature="1677:1840" placeholder="..." />
+                <marker date="1478078806000" expanded="true" signature="2206:2745" placeholder="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="edit.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/procurement/views/edit.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-18.416666">
+              <caret line="100" column="127" selection-start-line="100" selection-start-column="119" selection-end-line="100" selection-end-column="127" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#fieldset#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#fieldset#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#5;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#5;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <marker date="1478111711000" expanded="true" signature="976:1589" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
+                <marker date="1478111711000" expanded="true" signature="1011:1588" placeholder="[...]" />
+                <marker date="1478111711000" expanded="true" signature="1012:1587" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/procurement/controllers/edit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="48" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
+            <state vertical-scroll-proportion="-0.13655287">
+              <caret line="161" column="45" selection-start-line="161" selection-start-column="40" selection-end-line="161" selection-end-column="45" />
               <folding>
                 <element signature="e#0#42#0" expanded="false" />
               </folding>
@@ -107,28 +111,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quote.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/v1/quote.php">
+      <file leaf-file-name="1.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/excel/pureJs/1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-156.25">
-              <caret line="250" column="36" selection-start-line="250" selection-start-column="36" selection-end-line="250" selection-end-column="36" />
-              <folding>
-                <marker date="1478011285000" expanded="true" signature="2266:2304" placeholder="SELECT * FRO... Users" />
-                <marker date="1478011285000" expanded="true" signature="4443:4539" placeholder="SELECT doc_i... Document" />
-                <marker date="1478011285000" expanded="true" signature="4755:4805" placeholder="SELECT COUNT... ${$q_str}" />
-                <marker date="1478011285000" expanded="true" signature="5688:5705" placeholder="INSERT INTO Quote... " />
-                <marker date="1478011285000" expanded="true" signature="7650:7734" placeholder="INSERT INTO Document... " />
-                <marker date="1478011285000" expanded="true" signature="8438:8461" placeholder="INSERT INTO QuoteDetail... " />
-                <marker date="1478011285000" expanded="true" signature="9543:9579" placeholder="INSERT INTO QuoteDetail_Manufacturer... " />
-                <marker date="1478011285000" expanded="true" signature="11584:11600" placeholder="UPDATE Quote... " />
-                <marker date="1478011285000" expanded="true" signature="13239:13323" placeholder="INSERT INTO Document... " />
-                <marker date="1478011285000" expanded="true" signature="14597:14644" placeholder="SELECT * FRO... QuoteDetail" />
-                <marker date="1478011285000" expanded="true" signature="15045:15067" placeholder="UPDATE Quote... " />
-                <marker date="1478011285000" expanded="true" signature="16310:16333" placeholder="INSERT INTO QuoteDetail... " />
-                <marker date="1478011285000" expanded="true" signature="17338:17410" placeholder="delete from " />
-                <marker date="1478011285000" expanded="true" signature="18025:18061" placeholder="INSERT INTO QuoteDetail_Manufacturer... " />
-                <marker date="1478011285000" expanded="true" signature="20601:20630" placeholder="DELETE FROM " />
-              </folding>
+            <state vertical-scroll-proportion="-10.291667">
+              <caret line="63" column="43" selection-start-line="62" selection-start-column="12" selection-end-line="63" selection-end-column="43" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -137,41 +125,30 @@
         <entry file="file://$PROJECT_DIR$/modules/auth/controller.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-0.5555556">
-              <caret line="1" column="58" selection-start-line="1" selection-start-column="58" selection-end-line="1" selection-end-column="58" />
+              <caret line="1" column="61" selection-start-line="1" selection-start-column="61" selection-end-line="1" selection-end-column="61" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="services.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/modules/auth/services.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.16236469">
-              <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/app.main.js">
+      <file leaf-file-name="list.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/procurement/controllers/list.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="44" column="59" selection-start-line="44" selection-start-column="59" selection-end-line="51" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/procurement/views/list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="62" column="33" selection-start-line="62" selection-start-column="33" selection-end-line="63" selection-end-column="154" />
+              <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="e#0#42#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/common/services.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="80" column="47" selection-start-line="80" selection-start-column="47" selection-end-line="80" selection-end-column="47" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -198,7 +175,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/themeforest/angular/app/scripts/config.router.js" />
         <option value="$PROJECT_DIR$/themeforest/angular/app/scripts/directives/c3.js" />
         <option value="$PROJECT_DIR$/modules/common/filters.js" />
         <option value="$PROJECT_DIR$/modules/common/directives/anchor-scroll.js" />
@@ -236,19 +212,20 @@
         <option value="$PROJECT_DIR$/modules/procurement/controllers/procurement.js" />
         <option value="$PROJECT_DIR$/modules/quote/css/quote.css" />
         <option value="$PROJECT_DIR$/css/app.css" />
-        <option value="$PROJECT_DIR$/modules/procurement/controllers/list.js" />
-        <option value="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" />
         <option value="$PROJECT_DIR$/modules/procurement/views/list.html" />
-        <option value="$PROJECT_DIR$/scripts/app.config.router.js" />
         <option value="$PROJECT_DIR$/modules/common/views/sidebar-panel.html" />
-        <option value="$PROJECT_DIR$/modules/quote/controller.js" />
         <option value="$PROJECT_DIR$/modules/common/directives/iz-dirs.js" />
-        <option value="$PROJECT_DIR$/modules/procurement/views/edit.html" />
-        <option value="$PROJECT_DIR$/modules/procurement/controllers/edit.js" />
         <option value="$PROJECT_DIR$/api/v1/quote.php" />
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/modules/auth/services.js" />
         <option value="$PROJECT_DIR$/modules/auth/controller.js" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/scripts/app.config.router.js" />
+        <option value="$PROJECT_DIR$/modules/procurement/controllers/list.js" />
+        <option value="$PROJECT_DIR$/modules/common/services.js" />
+        <option value="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" />
+        <option value="$PROJECT_DIR$/modules/quote/controller.js" />
+        <option value="$PROJECT_DIR$/modules/procurement/views/edit.html" />
+        <option value="$PROJECT_DIR$/modules/procurement/controllers/edit.js" />
       </list>
     </option>
   </component>
@@ -274,7 +251,7 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="63" />
+    <option name="y" value="65" />
     <option name="width" value="2236" />
     <option name="height" value="1298" />
   </component>
@@ -332,6 +309,60 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="themeforest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="excel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pureJs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="excel" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -558,6 +589,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1165,7 +1214,7 @@
       <workItem from="1477741998563" duration="3298000" />
       <workItem from="1477855668020" duration="5080000" />
       <workItem from="1477901976525" duration="12393000" />
-      <workItem from="1477990794411" duration="9673000" />
+      <workItem from="1477990794411" duration="16152000" />
     </task>
     <task id="LOCAL-00001" summary="Completed work on the RFQ">
       <created>1475831179986</created>
@@ -1209,14 +1258,20 @@
       <option name="project" value="LOCAL" />
       <updated>1478018440639</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Reworked the UI to meet new standards">
+      <created>1478023999712</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1478023999712</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="657219000" />
+    <option name="totallyTimeSpent" value="663698000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="63" width="2236" height="1298" extended-state="0" />
+    <frame x="0" y="65" width="2236" height="1298" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1271,13 +1326,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/themeforest/no-bower-grunt-angular/views/table-basic.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75630254">
-          <caret line="91" column="87" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/common/directives/rickshaw.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.0306205">
@@ -1397,14 +1445,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.45283">
           <caret line="66" column="12" selection-start-line="66" selection-start-column="6" selection-end-line="66" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/common/services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.027552674">
-          <caret line="115" column="42" selection-start-line="115" selection-start-column="42" selection-end-line="115" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1545,8 +1585,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="62" column="33" selection-start-line="62" selection-start-column="33" selection-end-line="63" selection-end-column="154" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1559,58 +1599,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="133.37038">
-          <caret line="313" column="0" selection-start-line="313" selection-start-column="0" selection-end-line="317" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/common/filters.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/procurement/controllers/edit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="48" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#42#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/procurement/views/edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.375">
-          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#fieldset#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#legend#0;n#fieldset#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#fieldset#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#5;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#5;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <marker date="1478006668000" expanded="true" signature="976:1589" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
-            <marker date="1478006668000" expanded="true" signature="1011:1588" placeholder="[...]" />
-            <marker date="1478006668000" expanded="true" signature="1012:1587" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-36.083332">
-          <caret line="91" column="73" selection-start-line="91" selection-start-column="73" selection-end-line="91" selection-end-column="73" />
-          <folding>
-            <marker date="1478018405000" expanded="true" signature="1677:1840" placeholder="..." />
-            <marker date="1478018405000" expanded="true" signature="2206:2745" placeholder="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1620,36 +1613,6 @@
           <caret line="3" column="72" selection-start-line="3" selection-start-column="72" selection-end-line="3" selection-end-column="72" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/app.config.router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="121" column="50" selection-start-line="121" selection-start-column="35" selection-end-line="121" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/procurement/controllers/list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26228142">
-          <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#42#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25658453">
-          <caret line="243" column="50" selection-start-line="243" selection-start-column="50" selection-end-line="243" selection-end-column="50" />
-          <folding>
-            <marker date="1477914645000" expanded="true" signature="6432:7005" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
-            <marker date="1477914645000" expanded="true" signature="6467:7004" placeholder="[...]" />
-            <marker date="1477914645000" expanded="true" signature="6468:7003" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
           </folding>
         </state>
       </provider>
@@ -1686,19 +1649,111 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/auth/controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5555556">
-          <caret line="1" column="58" selection-start-line="1" selection-start-column="58" selection-end-line="1" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/auth/services.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16236469">
           <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/auth/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.5555556">
+          <caret line="1" column="61" selection-start-line="1" selection-start-column="61" selection-end-line="1" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.25">
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+          <folding>
+            <marker date="1478078806000" expanded="true" signature="1677:1840" placeholder="..." />
+            <marker date="1478078806000" expanded="true" signature="2206:2745" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/procurement/controllers/list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#42#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/common/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="80" column="47" selection-start-line="80" selection-start-column="47" selection-end-line="80" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/app.config.router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="53" selection-start-line="41" selection-start-column="53" selection-end-line="41" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="99" column="76" selection-start-line="99" selection-start-column="76" selection-end-line="99" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/excel/pureJs/1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.291667">
+          <caret line="63" column="43" selection-start-line="62" selection-start-column="12" selection-end-line="63" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.35826087">
+          <caret line="196" column="97" selection-start-line="196" selection-start-column="97" selection-end-line="196" selection-end-column="97" />
+          <folding>
+            <marker date="1478108929000" expanded="true" signature="6432:7005" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
+            <marker date="1478108929000" expanded="true" signature="6467:7004" placeholder="[...]" />
+            <marker date="1478108929000" expanded="true" signature="6468:7003" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/procurement/views/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.416666">
+          <caret line="100" column="127" selection-start-line="100" selection-start-column="119" selection-end-line="100" selection-end-column="127" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#fieldset#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#fieldset#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#5;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#5;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <marker date="1478111711000" expanded="true" signature="976:1589" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
+            <marker date="1478111711000" expanded="true" signature="1011:1588" placeholder="[...]" />
+            <marker date="1478111711000" expanded="true" signature="1012:1587" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/procurement/controllers/edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.13655287">
+          <caret line="161" column="45" selection-start-line="161" selection-start-column="40" selection-end-line="161" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#42#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

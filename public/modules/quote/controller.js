@@ -88,10 +88,6 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 }
             }
             vm.lineItems = []
-            vm.checkTheBox = function(e){
-                console.log(e);
-                console.log(e.target);
-            }
             vm.export = function (quoteId) {
                 var toExport = [];
                 angular.forEach(vm.lineItems , function(lineItem, key) {

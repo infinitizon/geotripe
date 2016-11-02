@@ -1,43 +1,50 @@
 angular.module('Common')
     .value('RemoteServiceBase','api/v1/')
     .factory("DataService", ['$http','$state','RemoteServiceBase',
-               function ($http,$state,RemoteServiceBase) { // This service connects to our REST API
-                   var service = {};
-                   service.get = function (q) {
-                       return $http.get(RemoteServiceBase + q).then(function (results) {
-                           if(results.data.message == -110011){
-                               $state.go('login');
-                           }
-                           return results;
-                       });
-                   };
-                   service.post = function (q, object, config) {
-                       return $http.post(RemoteServiceBase + q, object, config).then(function (results) {
-                           if(results.data.message == -110011){
-                               $state.go('login');
-                           }
-                           return results;
-                       });
-                   };
-                   service.put = function (q, object) {
-                       return $http.put(RemoteServiceBase + q, object).then(function (results) {
-                           if(results.data.message == -110011){
-                               $state.go('login');
-                           }
-                           return results;
-                       });
-                   };
-                   service.delete = function (q) {
-                       return $http.delete(RemoteServiceBase + q).then(function (results) {
-                           if(results.data.message == -110011){
-                               $state.go('login');
-                           }
-                           return results;
-                       });
-                   };
+        function ($http,$state,RemoteServiceBase) { // This service connects to our REST API
+            var service = {};
+            service.get = function (q) {
+                return $http.get(RemoteServiceBase + q).then(function (results) {
+                    if(results.data.message == -110011){
+                        $state.go('login');
+                    }
+                    return results;
+                });
+            };
+            service.post = function (q, object, config) {
+                return $http.post(RemoteServiceBase + q, object, config).then(function (results) {
+                    if(results.data.message == -110011){
+                        $state.go('login');
+                    }
+                    return results;
+                });
+            };
+            service.put = function (q, object) {
+                return $http.put(RemoteServiceBase + q, object).then(function (results) {
+                    if(results.data.message == -110011){
+                        $state.go('login');
+                    }
+                    return results;
+                });
+            };
+            service.delete = function (q) {
+                return $http.delete(RemoteServiceBase + q).then(function (results) {
+                    if(results.data.message == -110011){
+                        $state.go('login');
+                    }
+                    return results;
+                });
+            };
 
-                   return service;
-               }])
+            return service;
+        }])
+    .factory("rptService", ['$http','$state','RemoteServiceBase',
+        function ($http,$state,RemoteServiceBase) { // This service connects to our REST API
+            var service = {};
+
+            service.ge
+            return service;
+        }])
     .factory('ImportExportToExcel',
         function($log, $rootScope) {
             return {
@@ -58,8 +65,8 @@ angular.module('Common')
                 }
             }
         })
-    .factory('CommonServices', ['DataService' ,
-        function(DataService){
+    .factory('CommonServices', ['$location', 'DataService'
+        , function($location, DataService){
             var Service = {};
             var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
 
@@ -71,6 +78,9 @@ angular.module('Common')
                 }
                 return diff;
             };
+            Service.genRpt = function(options){
+                return $location.protocol()+'://'+$location.host()+($location.port() ==80?'':':'+$location.port());
+            }
             Service.getLOVs = function(data){
                 return DataService.post('inboundService', data).then(function(results) {
                     return results ;

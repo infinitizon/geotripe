@@ -136,6 +136,43 @@ angular.module('Procurement')
                     vm.originalLineItems = angular.copy(vm.lineItems);;
                 }
             })
+            function colName(n) {
+                var ordA = 'A'.charCodeAt(0);
+                var ordZ = 'Z'.charCodeAt(0);
+                var len = ordZ - ordA + 1;
+                var s = "";
+                while(n >= 0) {
+                    s = String.fromCharCode(n % len + ordA) + s;
+                    n = Math.floor(n / len) - 1;
+                }
+                return s;
+            }
+            vm.splitpo_no = function(){
+                if(vm.split_po == true){
+                    if(!vm.quote.po_no){
+                        alert('You must enter a PO number first');
+                        vm.split_po = false;
+                        return;
+                    }
+                    vm.splits=0;
+                    var numChecked = 0;
+                    angular.forEach(vm.lineItems  , function(QuoteDetail, key) {
+                        QuoteDetail.po_no = null;
+                        if(QuoteDetail.checked==true){
+                            QuoteDetail.po_no = vm.quote.po_no +'-'+ colName(vm.splits);
+                            numChecked++;vm.splits++;
+                        }
+                    });
+                    if(numChecked == 0){
+                        alert('You need to first check the line items for the PO')
+                        vm.split_po = false;
+                    }
+                }else{
+                    angular.forEach(vm.lineItems  , function(QuoteDetail, key) {
+                        QuoteDetail.po_no = null;vm.splits=0;
+                    });
+                }
+            }
             vm.postData = function(){
                 vm.isDisabled = true; //Disable submit button
                 vm.dataLoading = true; //Disable submit button
