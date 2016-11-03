@@ -1,11 +1,11 @@
 angular.module('Auth', [])
-    .controller('LoginController', ['$scope', '$localStorage', '$location', 'AuthenticationService'
-        , function ($scope, $localStorage, $location, AuthenticationService) {
+    .controller('LoginController', ['$scope', '$localStorage', '$state', 'AuthenticationService'
+        , function ($scope, $localStorage, $state, AuthenticationService) {
             var vm = this;
             // reset login status
             AuthenticationService.ClearCredentials(function(response){
                 if(response.data.response==="Failure"){
-                    $location.path('/home');
+                    $state.go('app.home');
                 }
             });
 
@@ -17,14 +17,14 @@ angular.module('Auth', [])
                     if(response.data.token) {
                         AuthenticationService.SetCredentials(response.data);
                         $scope.user = {
-                            fname: $localStorage.globals.currentUser.userDetails.authDetails.firstname,
+                            fname :$localStorage.globals.currentUser.userDetails.authDetails.firstname,
                             mname: $localStorage.globals.currentUser.userDetails.authDetails.middlename,
                             lname: $localStorage.globals.currentUser.userDetails.authDetails.lastname,
                             email: $localStorage.globals.currentUser.userDetails.authDetails.email,
-                            avatar: 'images/avatar.jpg',
+                            avatar: 'images/avatar.jpg'
                         };
-
-                        $location.path('/home');
+                        $scope.app.pages = $localStorage.pages;
+                        $state.go('app.home');
                     } else {
                         vm.error = response.data.message;
                         vm.dataLoading = false;

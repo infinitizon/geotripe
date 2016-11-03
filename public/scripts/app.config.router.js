@@ -18,13 +18,18 @@ angular
 
             $rootScope.$on('$locationChangeStart', function (event, next, current) {
                 // redirect to login page if not logged in
-                if ($location.path() !== '/login' && $localStorage.globals.currentUser.userDetails.token == null) {
-                    $location.path('/login');
+                if ($location.path() !== '/login' && !angular.isDefined($localStorage.globals)) {
+                    $state.go('login');
+                }
+                if(angular.isDefined($localStorage.globals)){
+                    if($localStorage.globals.currentUser.userDetails.token == null){
+                        $state.go('login');
+                    }
                 }
             });
 
             $rootScope.show = function(roles, authId){
-                angular.forEach($rootScope.globals.currentUser.userDetails.authRoles  , function(authRole, key) {
+                angular.forEach($rootScope.globals.currentUser.userDetails.authRoles  , function(authRole) {
                     if (roles.indexOf(authRole.Name) >= 0){
                         $rootScope.container[authId] = true;
                     } else {
@@ -60,9 +65,10 @@ angular
                                 {
                                     files: [
                                         'modules/auth/css/login.css'
+                                        , 'modules/auth/controller.js'
                                     ]
                                 }]).then(function () {
-                                return $ocLazyLoad.load(['modules/auth/controller.js', 'modules/auth/services.js']);
+                                return $ocLazyLoad.load(['modules/auth/services.js']);
                             });
                         }]
                     }
@@ -75,7 +81,31 @@ angular
                     url: '/home'
                     , templateUrl: 'modules/home/views/home.html'
                 })
-                .state('app.quotes', {
+                .state('app.profile', {
+                    url: '/profile'
+                    , templateUrl: 'modules/home/views/profile.html'
+                    , controller: 'ProfileController'
+                    , resolve: {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                {
+                                    insertBefore: '#load_styles_before',
+                                    files: [
+                                        'vendor/angular-xeditable/css/xeditable.min.css'
+                                    ]
+                                },
+                                {
+                                    name: 'xeditable',
+                                    files: [
+                                        'vendor/angular-xeditable/js/xeditable.min.js'
+                                    ]
+                                }]).then(function () {
+                                return $ocLazyLoad.load(['modules/home/controller.js']);
+                            });
+                        }]
+                    }
+                })
+                .state('app.procurement', {
                     template: '<div ui-view></div>',
                     abstract: true,
                     url: '/quotes'
@@ -90,58 +120,90 @@ angular
                         }]
                     }
                     , data: {
-                        title: 'Quotes',
+                        title: 'Quotes'
                     }
                 })
-                .state('app.quotes.clients', {
+                .state('app.procurement.clients', {
                     url: '/'
                     , templateUrl: 'modules/quote/views/quotes.html'
                     , controller: 'QuoteController'
                     , controllerAs : 'quotCtrl'
                 })
-                .state('app.quotes.status', {
+                .state('app.procurement.status', {
                     url:'/status/:client/:clientStatus'
                     , templateUrl: 'modules/quote/views/quoteByStatus.html'
                     , controller: 'QuoteByStatusController'
                     , controllerAs : 'quotCtrl'
                 })
 
-                .state('app.procurement', {
-                    url: '/procurement'
+                .state('app.logistics', {
+                    url: '/logistics'
                     , template: '<div ui-view></div>'
                     , abstract: true
-                    , resolve     : {
-                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            return $ocLazyLoad.load(['modules/procurement/controllers/procurement.js']);
-                        }]
-                    }
                 })
-                .state('app.procurement.list', {
+                .state('app.logistics.list', {
                     url: '/'
-                    , templateUrl: 'modules/procurement/views/list.html'
-                    , controller: 'ProcurementList'
-                    , controllerAs : 'ProcLst'
+                    , templateUrl: 'modules/logistics/views/list.html'
+                    , controller: 'LogisticsList'
+                    , controllerAs : 'lgstLst'
                     , resolve     : {
                         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            return $ocLazyLoad.load(['modules/procurement/controllers/list.js']);
+                            return $ocLazyLoad.load([
+                                {
+                                    files: ['modules/logistics/controllers/logistics.js']
+                                }]).then(function () {
+                                return $ocLazyLoad.load(['modules/logistics/controllers/list.js']);
+                            });
                         }]
                     }
                     , data: {
-                        title: 'Procurement - List'
+                        title: 'Logistics - List'
                     }
                 })
-                .state('app.procurement.edit', {
+                .state('app.logistics.edit', {
                     url: '/edit/:rfq_id'
-                    , templateUrl: 'modules/procurement/views/edit.html'
-                    , controller: 'ProcurementEdit'
-                    , controllerAs : 'ProcEdt'
+                    , templateUrl: 'modules/logistics/views/edit.html'
+                    , controller: 'LogisticsEdit'
+                    , controllerAs : 'lgstEdt'
+                    , resolve: {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                {
+                                    insertBefore: '#load_styles_before',
+                                    files: [
+                                        'vendor/angular-xeditable/css/xeditable.min.css'
+                                    ]
+                                },
+                                {
+                                    name: 'xeditable',
+                                    files: [
+                                        'vendor/angular-xeditable/js/xeditable.min.js','modules/logistics/controllers/logistics.js'
+                                    ]
+                                }]).then(function () {
+                                return $ocLazyLoad.load(['modules/logistics/controllers/edit.js']);
+                            });
+                        }]
+                    }
+                    , data: {
+                        title: 'Logistics - Edit'
+                    }
+                }).state('app.logistics.view', {
+                    url: '/view'
+                    , templateUrl: 'modules/logistics/views/view.html'
+                    , controller: 'LogisticsView'
+                    , controllerAs : 'lgstVw'
                     , resolve : {
                         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            return $ocLazyLoad.load(['modules/procurement/controllers/edit.js']);
+                            return $ocLazyLoad.load([
+                                {
+                                    files: ['modules/logistics/controllers/logistics.js']
+                                }]).then(function () {
+                                return $ocLazyLoad.load(['modules/logistics/controllers/view.js']);
+                            });
                         }]
                     }
                     , data: {
-                        title: 'Procurement - Edit'
+                        title: 'Logistics - Edit'
                     }
                 })
 
@@ -173,4 +235,4 @@ angular
                         title: 'Setup - Users'
                     }
                 })
-        }])
+        }]);

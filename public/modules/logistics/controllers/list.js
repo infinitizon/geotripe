@@ -1,9 +1,9 @@
 /**
  * Created by ahassan on 10/31/16.
  */
-angular.module('Procurement')
-    .controller('ProcurementList', ['$scope', '$localStorage','DataService','CommonServices','$location'
-        , function ($scope, $localStorage, DataService, CommonServices, $location) {
+angular.module('Logistics')
+    .controller('LogisticsList', ['$scope', '$localStorage', '$stateParams', 'DataService','CommonServices'
+        , function ($scope, $localStorage, $stateParams, DataService, CommonServices) {
             var vm = this;
 
             /*
@@ -22,19 +22,25 @@ angular.module('Procurement')
                 /** We could exclude weekends in datediff using the following
                  * SELECT (5 * (DATEDIFF('2016-08-31', '2016-08-01') DIV 7) + MID('0123444401233334012222340111123400012345001234550', 7 * WEEKDAY('2016-08-01') + WEEKDAY('2016-08-31') + 2, 1))
                  */
-                data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&p.name&CONCAT(LEFT(q.subject , 30),IF(LENGTH(q.subject)>30, "…", "")) subject&CONCAT(u.lastname,", ",u.middlename," ",u.firstname)enteredBy&qs.name status&COUNT(qd.Quote_quote_Id) totalQuotes&DATEDIFF(q.duedate,NOW())remDays&q.entrydate'
+                data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&p.name&CONCAT(LEFT(q.subject , 30),IF(LENGTH(q.subject)>30, "…", "")) subject&CONCAT(u.lastname,", ",u.middlename," ",u.firstname)enteredBy&qs.name status&COUNT(qd.Quote_quote_Id) totalQuotes&DATEDIFF(q.duedate,NOW())remDays&q.entrydate';
                 data.transactionMetaData.pageno = pageno-1;
                 data.transactionMetaData.itemsPerPage = vm.itemsPerPage;
+                data.transactionMetaData.queryMetaData.queryClause.andExpression = [{
+                    "propertyName": "q.po_no",
+                    "propertyValue": 'NULL',
+                    "propertyDataType": "VARCHAR",
+                    "operatorType": "IS"
+                }];
                 if(angular.isDefined(filters)){
                     if(angular.isDefined(filters.andExpre)){
-                        angular.forEach(filters.andExpre, function(andExpr, key){
+                        angular.forEach(filters.andExpre, function(andExpr){
                             data.transactionMetaData.queryMetaData.queryClause.andExpression.push(andExpr)
                         })
                     }
                 }
                 data.transactionMetaData.queryMetaData.joinClause = {
                     'joinType':['JOIN','JOIN','JOIN','LEFT JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_enteredBy_id=u.user_id','q.quote_Id=qd.Quote_quote_Id']
-                }
+                };
                 data.transactionMetaData.groupingProperties = 'q.quote_Id';
                 DataService.post('inboundService', data).then(function (response) {
                     vm.quotes = response.data.data;
@@ -43,13 +49,13 @@ angular.module('Procurement')
                         vm.quotesLoading = "No quotes found!";
                     }
                 })
-            }
+            };
             vm.getData(vm.pageno);
 
             //Apply filters was clicked
-            $scope.filters={}, vm.filterOpts={};
+            $scope.filters={}; vm.filterOpts={};
             vm.applyFilters = function(){
-                vm.filterOpts.andExpre = []
+                vm.filterOpts.andExpre = [];
                 if(angular.isDefined($scope.filters.rfqno)){
                     vm.filterOpts.andExpre.push({
                         "propertyName": "q.rfq_no",
@@ -60,5 +66,4 @@ angular.module('Procurement')
                 }
                 vm.getData(vm.pageno, vm.filterOpts);
             }
-            console.log()
         }])

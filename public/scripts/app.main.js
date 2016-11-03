@@ -42,13 +42,13 @@ angular
                 $scope.app.pages = $localStorage.pages;
             }
 
-            if (angular.isDefined($localStorage.globals)) {
+            if (angular.isDefined($localStorage.globals) && $localStorage.globals != null) {
                 $scope.user = {
                     fname: $localStorage.globals.currentUser.userDetails.authDetails.firstname,
                     mname: $localStorage.globals.currentUser.userDetails.authDetails.middlename,
                     lname: $localStorage.globals.currentUser.userDetails.authDetails.lastname,
                     email: $localStorage.globals.currentUser.userDetails.authDetails.email,
-                    avatar: 'images/avatar.jpg',
+                    avatar: 'images/avatar.jpg'
                 };
             }
             $scope.$watch('app.layout', function () {
@@ -62,7 +62,7 @@ angular
             // With this part, I'm able to hide and show pages based on the ROLE assigned to a user
             $scope.app.container = [];
             $scope.app.show = function(roles, authId){
-                angular.forEach($localStorage.globals.currentUser.userDetails.authRoles  , function(authRole, key) {
+                angular.forEach($localStorage.globals.currentUser.userDetails.authRoles  , function(authRole) {
                     if (roles.indexOf(authRole.Name) >= 0){
                         $scope.app.container[authId] = true;
                     } else {

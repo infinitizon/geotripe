@@ -34,7 +34,8 @@ angular.module('Auth')
                     }
                     DataService.post('logout', data).then(function (response) {
                         if(response.data.response=='Success' && angular.isDefined($localStorage.globals)){
-                            $localStorage.globals.currentUser.userDetails.token=null;
+                            $localStorage.globals=null;
+                            console.log($localStorage.globals)
                         }
                         callback(response);
                     });
