@@ -11,29 +11,34 @@ angular
             $rootScope.$on('$stateChangeSuccess', function () {
                 window.scrollTo(0, 0);
             });
+
             FastClick.attach(document.body);
 
             // keep user logged in after page refresh
             $rootScope.globals = $localStorage.globals || {};
 
             $rootScope.$on('$locationChangeStart', function (event, next, current) {
+                if(!angular.isDefined($localStorage.globals) || $localStorage.globals == null){
+                    $location.path('/login');
+                }
                 // redirect to login page if not logged in
                 if ($location.path() !== '/login' && !angular.isDefined($localStorage.globals)) {
-                    $state.go('login');
+                    $location.path('/login');
                 }
-                if(angular.isDefined($localStorage.globals)){
+                if(angular.isDefined($localStorage.globals) && $localStorage.globals != null){
                     if($localStorage.globals.currentUser.userDetails.token == null){
-                        $state.go('login');
+                        $location.path('/login');
                     }
                 }
             });
 
+            // With this part, I'm able to hide and show pages based on the ROLE assigned to a user
+            $rootScope.container = []
             $rootScope.show = function(roles, authId){
-                angular.forEach($rootScope.globals.currentUser.userDetails.authRoles  , function(authRole) {
+                $rootScope.container[authId] = false;
+                angular.forEach($localStorage.globals.currentUser.userDetails.authRoles  , function(authRole) {
                     if (roles.indexOf(authRole.Name) >= 0){
                         $rootScope.container[authId] = true;
-                    } else {
-                        $rootScope.container[authId] = false;
                     }
                 });
             }

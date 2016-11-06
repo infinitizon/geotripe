@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.0.v201405191524 Build &lt;4.4.0.v20140606-1451></property>
+    <property name="units">in</property>
+    <property name="theme">defaultTheme</property>
+    <parameters>
+        <scalar-parameter name="currentLocale" id="3248">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="MySQL_DS" id="2978">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://192.168.2.14:3306/August31</property>
+            <property name="odaUser">root</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">YWNvcm4=</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <themes>
+        <theme name="defaultTheme" id="4"/>
+    </themes>
+    <page-setup>
+        <simple-master-page name="NewSimpleMasterPage" id="3">
+            <property name="type">a4</property>
+            <property name="orientation">landscape</property>
+            <page-header>
+                <grid name="NewGrid2" id="2823">
+                    <property name="fontFamily">"Corbel"</property>
+                    <property name="height">1.5972222222222223in</property>
+                    <property name="width">11.027777777777779in</property>
+                    <column id="2824">
+                        <property name="width">2.8194444444444446in</property>
+                    </column>
+                    <column id="2905">
+                        <property name="width">8.208333333333334in</property>
+                    </column>
+                    <row id="2825">
+                        <cell id="2826">
+                            <image name="Company Logo1" id="2984">
+                                <property name="height">15mm</property>
+                                <property name="width">68mm</property>
+                                <property name="source">file</property>
+                                <expression name="uri" type="constant">../library/images/CHDS.png</expression>
+                            </image>
+                        </cell>
+                        <cell id="2903">
+                            <property name="colSpan">1</property>
+                            <property name="rowSpan">2</property>
+                            <property name="paddingTop">0pt</property>
+                            <property name="paddingLeft">0pt</property>
+                            <property name="paddingBottom">0pt</property>
+                            <property name="paddingRight">0pt</property>
+                            <property name="textAlign">right</property>
+                            <grid name="NewGrid1" id="3196">
+                                <column id="3197">
+                                    <property name="width">4.652777777777778in</property>
+                                </column>
+                                <column id="3198">
+                                    <property name="width">3.4722222222222223in</property>
+                                </column>
+                                <row id="3244">
+                                    <cell id="3245"/>
+                                    <cell id="3246">
+                                        <label name="Report Title1" id="3247">
+                                            <property name="fontFamily">"Corbel"</property>
+                                            <property name="fontSize">18pt</property>
+                                            <property name="fontWeight">bold</property>
+                                            <property name="paddingTop">0pt</property>
+                                            <property name="paddingLeft">0pt</property>
+                                            <property name="paddingBottom">0pt</property>
+                                            <property name="paddingRight">0pt</property>
+                                            <property name="textAlign">left</property>
+                                            <method name="onRender"><![CDATA[this.text = reportContext.getPersistentGlobalVariable("rptTitle").toUpperCase();]]></method>
+                                        </label>
+                                    </cell>
+                                </row>
+                                <row id="3199">
+                                    <cell id="3200"/>
+                                    <cell id="3201">
+                                        <text name="NewText4" id="3202">
+                                            <property name="fontSize">8pt</property>
+                                            <property name="textAlign">left</property>
+                                            <property name="contentType">html</property>
+                                        </text>
+                                    </cell>
+                                </row>
+                            </grid>
+                        </cell>
+                    </row>
+                    <row id="2922">
+                        <cell id="2923">
+                            <text name="NewText5" id="2925">
+                                <property name="fontSize">5pt</property>
+                                <property name="color">gray</property>
+                                <property name="textAlign">center</property>
+                                <list-property name="visibility">
+                                    <structure>
+                                        <property name="format">all</property>
+                                        <expression name="valueExpr" type="javascript">params['currentLocale'] != "NG"</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<br>MEMBER OF THE NIGERIAN STOCK EXCHANGE]]></text-property>
+                            </text>
+                            <text name="NewText51" id="2979">
+                                <property name="fontSize">5pt</property>
+                                <property name="color">gray</property>
+                                <property name="textAlign">center</property>
+                                <list-property name="visibility">
+                                    <structure>
+                                        <property name="format">all</property>
+                                        <expression name="valueExpr" type="javascript">params['currentLocale'] != "GH"</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<br>MEMBER OF THE GHANA STOCK EXCHANGE]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="2893">
+                        <property name="height">0.3333333333333333in</property>
+                        <cell id="2894">
+                            <property name="colSpan">2</property>
+                            <property name="rowSpan">1</property>
+                            <text name="NewText11" id="2895">
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<br><br>]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                </grid>
+            </page-header>
+            <page-footer>
+                <grid name="NewGrid" id="2827">
+                    <property name="fontFamily">"Corbel"</property>
+                    <property name="fontSize">6.5px</property>
+                    <property name="textAlign">center</property>
+                    <column id="2828"/>
+                    <row id="2890">
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" type="javascript">params["currentLocale"] != "NG"</expression>
+                            </structure>
+                        </list-property>
+                        <cell id="2891">
+                            <text name="NewText" id="2892">
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[&amp;nbsp;]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="2829">
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" type="javascript">params["currentLocale"] != "NG"</expression>
+                            </structure>
+                        </list-property>
+                        <cell id="2830">
+                            <text name="NewText1" id="2833">
+                                <property name="color">#818181</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<div style="line-height:11px; text-transform:uppercase;">2ND FLOOR, 45 SAKA TINUBU STREET, VICTORIA ISLAND, LAGOS<br>
+TEL: +234 1 461 0691/2 | +234 1 279 9563/4<br>
+WWW.CHAPELHILLDENHAM.COM | info@CHAPELHILLDENHAM.COM</div>]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="2831">
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" type="javascript">params['currentLocale'] != "GH"</expression>
+                            </structure>
+                        </list-property>
+                        <cell id="2832">
+                            <text name="NewText2" id="2834">
+                                <property name="color">#818181</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<div style="line-height:11px; text-transform:uppercase;">
+Directors:  Olawale Edun | Mobolaji Balogun | Nii Nartey | Nathan Mintah | Theresa Jane Abena Appiah<br>
+Suite 2, The Labone Office Park, N. Sithole Street, Labone, PMB CT 384, Cantonments, Accra, Ghana<br>
+Email: ghanaoffice@chapelhilldenham.com | Web: www.chapelhilldenham.com | Tel: +233 302 766 865 / Fax: +233 302 771 346<br>
+RC Number CA-73,268
+</div>]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="3010">
+                        <property name="textAlign">right</property>
+                        <cell id="3011">
+                            <text name="NewText61" id="3243">
+                                <property name="color">#818181</property>
+                                <property name="display">inline</property>
+                                <property name="contentType">plain</property>
+                                <text-property name="content"><![CDATA[Page ]]></text-property>
+                            </text>
+                            <auto-text name="NewAutoText" id="3227">
+                                <property name="color">#818181</property>
+                                <property name="whiteSpace">nowrap</property>
+                                <property name="display">inline</property>
+                                <property name="type">page-number</property>
+                            </auto-text>
+                            <text name="NewText6" id="3229">
+                                <property name="color">#818181</property>
+                                <property name="display">inline</property>
+                                <property name="contentType">plain</property>
+                                <text-property name="content"><![CDATA[ of ]]></text-property>
+                            </text>
+                            <auto-text name="NewAutoText1" id="3231">
+                                <property name="color">#818181</property>
+                                <property name="textAlign">left</property>
+                                <property name="display">inline</property>
+                                <property name="type">total-page</property>
+                            </auto-text>
+                        </cell>
+                    </row>
+                </grid>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+</library>

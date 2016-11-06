@@ -1,0 +1,1637 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.0.v201405191524 Build &lt;4.4.0.v20140606-1451></property>
+    <property name="units">in</property>
+    <method name="initialize"><![CDATA[reportContext.setPersistentGlobalVariable("rptTitle", "Sec Disclosure Report");]]></method>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">fixed layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">72</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">../library/reports.rptlibrary</property>
+            <property name="namespace">reports</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="tradeDate" id="2983">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="quantity" id="3142">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="javascript">parseInt(params["quantity"]);</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="currentLocale" id="3249" extends="reports.currentLocale">
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="MySQL_DS" id="3248"
+ extends="reports.MySQL_DS"/>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="secDisclosure" id="3773">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">CONTRACTNOTE_ID</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id</text-property>
+                    <text-property name="heading">id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">MARKETCENTERORDERID_</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ticketNo</text-property>
+                    <text-property name="heading">ticketNo</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TRADEDATE_</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">dateOfTxn</text-property>
+                    <text-property name="heading">dateOfTxn</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ACCOUNTNAME_</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">nameOfClient</text-property>
+                    <text-property name="heading">nameOfClient</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">MANAGER_ID</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">MANAGER_ID</text-property>
+                    <text-property name="heading">MANAGER_ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PARTYROLE_ID</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">PARTYROLE_ID</text-property>
+                    <text-property name="heading">PARTYROLE_ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PARTYROLE_ID_7</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">PARTYROLE_ID</text-property>
+                    <text-property name="heading">PARTYROLE_ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TYPE_</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TYPE_</text-property>
+                    <text-property name="heading">TYPE_</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">address</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">address</text-property>
+                    <text-property name="heading">address</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PRIMARYEMAILADDRESS_</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">email</text-property>
+                    <text-property name="heading">email</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PRIMARYEMAILADDRESS__11</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">PRIMARYEMAILADDRESS_</text-property>
+                    <text-property name="heading">PRIMARYEMAILADDRESS_</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">EMAILADDRESS_</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">EMAILADDRESS_</text-property>
+                    <text-property name="heading">EMAILADDRESS_</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PRIMARYPHONENO_</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">phone1</text-property>
+                    <text-property name="heading">phone1</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">WORKPHONENUMBER_</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">phone2</text-property>
+                    <text-property name="heading">phone2</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SIDE_</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">txnType</text-property>
+                    <text-property name="heading">txnType</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SECURITY_</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">security</text-property>
+                    <text-property name="heading">security</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">QUANTITY_</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">volOfShares</text-property>
+                    <text-property name="heading">volOfShares</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PRICE_</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">PRICE_</text-property>
+                    <text-property name="heading">PRICE_</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CONSIDERATION_</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">totVal</text-property>
+                    <text-property name="heading">totVal</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">tradeDate</property>
+                    <property name="paramName">tradeDate</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">locale</property>
+                    <property name="paramName">currentLocale</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">quantity</property>
+                    <property name="paramName">quantity</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">CONTRACTNOTE_ID</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">MARKETCENTERORDERID_</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">TRADEDATE_</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">ACCOUNTNAME_</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">MANAGER_ID</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">PARTYROLE_ID</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">PARTYROLE_ID_7</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">TYPE_</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">address</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">PRIMARYEMAILADDRESS_</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">PRIMARYEMAILADDRESS__11</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">EMAILADDRESS_</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">PRIMARYPHONENO_</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">WORKPHONENUMBER_</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">SIDE_</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">SECURITY_</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">QUANTITY_</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">PRICE_</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">19</property>
+                        <property name="name">CONSIDERATION_</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[vars["incRowCnt"]=0;//reportContext.setPersistentGlobalVariable("incRowCnt1", 0);]]></method>
+            <method name="onFetch"><![CDATA[vars["incRowCnt"]++;]]></method>
+            <property name="dataSource">MySQL_DS</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">CONTRACTNOTE_ID</property>
+                    <property name="nativeName">CONTRACTNOTE_ID</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">MARKETCENTERORDERID_</property>
+                    <property name="nativeName">MARKETCENTERORDERID_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">TRADEDATE_</property>
+                    <property name="nativeName">TRADEDATE_</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">ACCOUNTNAME_</property>
+                    <property name="nativeName">ACCOUNTNAME_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">MANAGER_ID</property>
+                    <property name="nativeName">MANAGER_ID</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">PARTYROLE_ID</property>
+                    <property name="nativeName">PARTYROLE_ID</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">PARTYROLE_ID_7</property>
+                    <property name="nativeName">PARTYROLE_ID</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">TYPE_</property>
+                    <property name="nativeName">TYPE_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">address</property>
+                    <property name="nativeName">address</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">PRIMARYEMAILADDRESS_</property>
+                    <property name="nativeName">PRIMARYEMAILADDRESS_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">PRIMARYEMAILADDRESS__11</property>
+                    <property name="nativeName">PRIMARYEMAILADDRESS_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">EMAILADDRESS_</property>
+                    <property name="nativeName">EMAILADDRESS_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">PRIMARYPHONENO_</property>
+                    <property name="nativeName">PRIMARYPHONENO_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">WORKPHONENUMBER_</property>
+                    <property name="nativeName">WORKPHONENUMBER_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">SIDE_</property>
+                    <property name="nativeName">SIDE_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">SECURITY_</property>
+                    <property name="nativeName">SECURITY_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">QUANTITY_</property>
+                    <property name="nativeName">QUANTITY_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">18</property>
+                    <property name="name">PRICE_</property>
+                    <property name="nativeName">PRICE_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">19</property>
+                    <property name="name">CONSIDERATION_</property>
+                    <property name="nativeName">CONSIDERATION_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT cn.CONTRACTNOTE_ID 'id', cn.MARKETCENTERORDERID_ 'ticketNo', cn.TRADEDATE_ 'dateOfTxn'
+	, cn.ACCOUNTNAME_ 'nameOfClient', cn.MANAGER_ID, pr.PARTYROLE_ID, pr2.PARTYROLE_ID, cn.TYPE_
+	, CASE cn.TYPE_
+			WHEN 'Regular' THEN CONCAT_WS(', ', p.ADDRESSLINE1_, p.ADDRESSLINE2_, p.ADDRESSCITY_, p.PRIMARYEMAILADDRESS_, p.PRIMARYPHONENO_)
+			ELSE CONCAT_WS(', ', cn.ACCOUNTADDRESS_, cn.ADDRESSLINE2_, cn.ACCOUNTCITY_, cn.ACCOUNTSTATE_, cn.ACCOUNTCOUNTRY_) 
+	END 'address'
+	, p.PRIMARYEMAILADDRESS_ 'email', p2.PRIMARYEMAILADDRESS_, cn.EMAILADDRESS_
+	, p.PRIMARYPHONENO_ 'phone1', p.WORKPHONENUMBER_ 'phone2'
+	, cn.SIDE_ 'txnType', cn.SECURITY_ 'security', cn.QUANTITY_ 'volOfShares'
+	, cn.PRICE_, cn.CONSIDERATION_ 'totVal'
+from CONTRACTNOTE_ cn
+INNER JOIN 
+	(
+		SELECT c.TRADEDATE_, c.ACCOUNTNAME_, c.CUSTOMERID_, c.SECURITYDEPOSITORYACCOUNT_, c.SIDE_, c.SECURITY_
+		FROM CONTRACTNOTE_ c
+		WHERE c.TRADEDATE_ = ? AND c.STATUS_ID <> 6
+			AND (c.ISBOOKEDWH_=0 OR c.ISBOOKEDWH_ IS NULL) AND c.LOCALE_ = ?
+		GROUP BY c.TRADEDATE_, c.SECURITYDEPOSITORYACCOUNT_, c.SIDE_, c.SECURITY_ 
+		HAVING SUM(c.QUANTITY_) > ?
+	) t
+	ON cn.TRADEDATE_=t.TRADEDATE_ AND cn.SECURITYDEPOSITORYACCOUNT_=t.SECURITYDEPOSITORYACCOUNT_ AND cn.SIDE_=t.SIDE_ AND cn.SECURITY_=t.SECURITY_
+LEFT JOIN PARTYROLE_ pr
+	ON cn.CUSTOMERID_=pr.PARTYROLE_ID
+LEFT JOIN PARTY_ p
+	ON p.PARTY_ID = pr.PARTY_ROLES_ID
+LEFT JOIN PARTYROLE_ pr2
+	ON cn.CUSTODIAN_ID=pr2.PARTYROLE_ID
+LEFT JOIN PARTY_ p2
+	ON p2.PARTY_ID = pr2.PARTY_ROLES_ID
+WHERE (cn.ISBOOKEDWH_=0 OR cn.ISBOOKEDWH_ IS NULL) AND cn.STATUS_ID<>6]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>CONTRACTNOTE_ID</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>MARKETCENTERORDERID_</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ticketNo</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ticketNo</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TRADEDATE_</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>dateOfTxn</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>dateOfTxn</design:label>
+            <design:formattingHints>
+              <design:displaySize>19</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ACCOUNTNAME_</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>nameOfClient</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>nameOfClient</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>MANAGER_ID</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>MANAGER_ID</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>MANAGER_ID</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PARTYROLE_ID</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PARTYROLE_ID</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PARTYROLE_ID</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PARTYROLE_ID</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PARTYROLE_ID</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PARTYROLE_ID</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TYPE_</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TYPE_</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TYPE_</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>address</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>1279</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>address</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>address</design:label>
+            <design:formattingHints>
+              <design:displaySize>1279</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PRIMARYEMAILADDRESS_</design:name>
+              <design:position>10</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>email</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>email</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PRIMARYEMAILADDRESS_</design:name>
+              <design:position>11</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PRIMARYEMAILADDRESS_</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PRIMARYEMAILADDRESS_</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>EMAILADDRESS_</design:name>
+              <design:position>12</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>EMAILADDRESS_</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>EMAILADDRESS_</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PRIMARYPHONENO_</design:name>
+              <design:position>13</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>phone1</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>phone1</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>WORKPHONENUMBER_</design:name>
+              <design:position>14</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>phone2</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>phone2</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SIDE_</design:name>
+              <design:position>15</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>txnType</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>txnType</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SECURITY_</design:name>
+              <design:position>16</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>security</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>security</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>QUANTITY_</design:name>
+              <design:position>17</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>volOfShares</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>volOfShares</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PRICE_</design:name>
+              <design:position>18</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>8</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PRICE_</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PRICE_</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>CONSIDERATION_</design:name>
+              <design:position>19</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>totVal</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>totVal</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="alternatingRows" id="3839">
+            <property name="backgroundColor">#EEECED</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="NewSimpleMasterPage" id="9" extends="reports.NewSimpleMasterPage">
+            <overridden-values>
+                <ref-entry baseId="2823" name="NewGrid2" id="2823"/>
+                <ref-entry baseId="2824" id="2824"/>
+                <ref-entry baseId="2905" id="2905"/>
+                <ref-entry baseId="2825" id="2825"/>
+                <ref-entry baseId="2826" id="2826"/>
+                <ref-entry baseId="2984" name="Company Logo1" id="2984"/>
+                <ref-entry baseId="2903" id="2903"/>
+                <ref-entry baseId="3196" name="NewGrid1" id="3196"/>
+                <ref-entry baseId="3197" id="3197"/>
+                <ref-entry baseId="3198" id="3198"/>
+                <ref-entry baseId="3244" id="3244"/>
+                <ref-entry baseId="3245" id="3245"/>
+                <ref-entry baseId="3246" id="3246"/>
+                <ref-entry baseId="3247" name="Report Title1" id="3247"/>
+                <ref-entry baseId="3199" id="3199"/>
+                <ref-entry baseId="3200" id="3200"/>
+                <ref-entry baseId="3201" id="3201"/>
+                <ref-entry baseId="3202" name="NewText4" id="3202"/>
+                <ref-entry baseId="2922" id="2922"/>
+                <ref-entry baseId="2923" id="2923"/>
+                <ref-entry baseId="2925" name="NewText5" id="2925"/>
+                <ref-entry baseId="2979" name="NewText51" id="2979"/>
+                <ref-entry baseId="2893" id="2893"/>
+                <ref-entry baseId="2894" id="2894"/>
+                <ref-entry baseId="2895" name="NewText11" id="2895"/>
+                <ref-entry baseId="2827" name="NewGrid" id="2827"/>
+                <ref-entry baseId="2828" id="2828"/>
+                <ref-entry baseId="2890" id="2890"/>
+                <ref-entry baseId="2891" id="2891"/>
+                <ref-entry baseId="2892" name="NewText" id="2892"/>
+                <ref-entry baseId="2829" id="2829"/>
+                <ref-entry baseId="2830" id="2830"/>
+                <ref-entry baseId="2833" name="NewText1" id="2833"/>
+                <ref-entry baseId="2831" id="2831"/>
+                <ref-entry baseId="2832" id="2832"/>
+                <ref-entry baseId="2834" name="NewText2" id="2834"/>
+                <ref-entry baseId="3010" id="3010"/>
+                <ref-entry baseId="3011" id="3011"/>
+                <ref-entry baseId="3243" name="NewText61" id="3243"/>
+                <ref-entry baseId="3227" name="NewAutoText" id="3227"/>
+                <ref-entry baseId="3229" name="NewText6" id="3229"/>
+                <ref-entry baseId="3231" name="NewAutoText1" id="3231"/>
+            </overridden-values>
+            <property name="headerHeight">1.2in</property>
+            <property name="footerHeight">0.8in</property>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <list id="3250">
+            <property name="fontFamily">"Corbel"</property>
+            <property name="fontSize">9pt</property>
+            <property name="dataSet">secDisclosure</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">CONTRACTNOTE_ID</property>
+                    <text-property name="displayName">id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["CONTRACTNOTE_ID"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">MARKETCENTERORDERID_</property>
+                    <text-property name="displayName">ticketNo</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["MARKETCENTERORDERID_"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TRADEDATE_</property>
+                    <text-property name="displayName">dateOfTxn</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TRADEDATE_"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">ACCOUNTNAME_</property>
+                    <text-property name="displayName">nameOfClient</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ACCOUNTNAME_"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">MANAGER_ID</property>
+                    <text-property name="displayName">MANAGER_ID</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["MANAGER_ID"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">PARTYROLE_ID</property>
+                    <text-property name="displayName">PARTYROLE_ID</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["PARTYROLE_ID"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">PARTYROLE_ID_7</property>
+                    <text-property name="displayName">PARTYROLE_ID</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["PARTYROLE_ID_7"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">TYPE_</property>
+                    <text-property name="displayName">TYPE_</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TYPE_"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">address</property>
+                    <text-property name="displayName">address</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["address"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">PRIMARYEMAILADDRESS_</property>
+                    <text-property name="displayName">email</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["PRIMARYEMAILADDRESS_"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">PRIMARYEMAILADDRESS__11</property>
+                    <text-property name="displayName">PRIMARYEMAILADDRESS_</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["PRIMARYEMAILADDRESS__11"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">EMAILADDRESS_</property>
+                    <text-property name="displayName">EMAILADDRESS_</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["EMAILADDRESS_"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">PRIMARYPHONENO_</property>
+                    <text-property name="displayName">phone1</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["PRIMARYPHONENO_"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">WORKPHONENUMBER_</property>
+                    <text-property name="displayName">phone2</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["WORKPHONENUMBER_"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">SIDE_</property>
+                    <text-property name="displayName">txnType</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["SIDE_"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">SECURITY_</property>
+                    <text-property name="displayName">security</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["SECURITY_"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">QUANTITY_</property>
+                    <text-property name="displayName">volOfShares</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["QUANTITY_"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">PRICE_</property>
+                    <text-property name="displayName">PRICE_</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["PRICE_"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">CONSIDERATION_</property>
+                    <text-property name="displayName">totVal</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["CONSIDERATION_"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <header>
+                <grid id="2844">
+                    <property name="fontFamily">"Calibri"</property>
+                    <property name="fontSize">8pt</property>
+                    <property name="height">3.0694444444444446in</property>
+                    <property name="width">10.972222222222221in</property>
+                    <column id="2845">
+                        <property name="width">3.763888888888889in</property>
+                    </column>
+                    <column id="2846">
+                        <property name="width">7.208333333333333in</property>
+                    </column>
+                    <row id="2847">
+                        <property name="fontFamily">"Corbel"</property>
+                        <property name="fontSize">9pt</property>
+                        <property name="height">1.8611111111111112in</property>
+                        <cell id="2848">
+                            <property name="fontSize">8pt</property>
+                            <text id="3204">
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<div style="line-height:11px; text-transform:uppercase;">
+<VALUE-OF format="MMMM dd, yyyy">vars["v_tradeDate"]</VALUE-OF><br><br>
+The Director-General,<br>
+Securities &amp; Exchange Commission,<br>
+Plot 272/273, Samuel Ademulegun Adesujo Street,<br>
+Central Business District,<br>
+Abuja, Federal Capital Territory<br><br>
+<U></I><B>Attention: Mr. Moses Isiaku</B></I></U><br><br>
+Dear Sir,
+</div>]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="2849"/>
+                    </row>
+                    <row id="3101">
+                        <property name="fontFamily">"Corbel"</property>
+                        <property name="fontSize">9pt</property>
+                        <property name="height">0.3611111111111111in</property>
+                        <cell id="3102">
+                            <property name="colSpan">2</property>
+                            <property name="rowSpan">1</property>
+                            <text id="3206">
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<div style="text-transform:uppercase;"><center><U><B>Re: Disclosure of Single Deals - Chapel Hill Denham Securities Limited</B></U></center><br></div]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="3105">
+                        <property name="fontFamily">"Corbel"</property>
+                        <property name="fontSize">9pt</property>
+                        <property name="height">0.75in</property>
+                        <cell id="3106">
+                            <property name="colSpan">2</property>
+                            <property name="rowSpan">1</property>
+                            <text id="3207">
+                                <list-property name="boundDataColumns">
+                                    <structure>
+                                        <property name="name">naira</property>
+                                        <expression name="expression" type="javascript">"\u20A6"</expression>
+                                        <property name="dataType">string</property>
+                                        <property name="allowExport">true</property>
+                                    </structure>
+                                </list-property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[In compliance with The Securities and Exchange Commission ("Commission") reporting format and the provisions of Rule 56 (1) &amp; (2) (c) of the Commission’s Rules and Regulations (as amended) stipulating that Brokers/Dealers shall "disclose to the Commission any dealings in a security valued at a minimum of <VALUE-OF format="@@@,@@@">params["quantity"]</VALUE-OF> units executed in a single deal or in multiple deals on the same day".<br><br>
+Please find below the Report for Chapel Hill Denham Securities Limited for trade transactions executed on <VALUE-OF format="MMMM dd, yyyy">vars["v_tradeDate"]</VALUE-OF>:]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                </grid>
+                <grid id="3767">
+                    <column id="3768"/>
+                    <row id="3769">
+                        <cell id="3770">
+                            <table id="3774">
+                                <property name="width">10.819444444444445in</property>
+                                <property name="dataSet">secDisclosure</property>
+                                <list-property name="boundDataColumns">
+                                    <structure>
+                                        <property name="name">CONTRACTNOTE_ID</property>
+                                        <text-property name="displayName">id</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["CONTRACTNOTE_ID"]</expression>
+                                        <property name="dataType">decimal</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">MARKETCENTERORDERID_</property>
+                                        <text-property name="displayName">ticketNo</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["MARKETCENTERORDERID_"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">TRADEDATE_</property>
+                                        <text-property name="displayName">dateOfTxn</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["TRADEDATE_"]</expression>
+                                        <property name="dataType">date-time</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">ACCOUNTNAME_</property>
+                                        <text-property name="displayName">nameOfClient</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["ACCOUNTNAME_"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">MANAGER_ID</property>
+                                        <text-property name="displayName">MANAGER_ID</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["MANAGER_ID"]</expression>
+                                        <property name="dataType">decimal</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">PARTYROLE_ID</property>
+                                        <text-property name="displayName">PARTYROLE_ID</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["PARTYROLE_ID"]</expression>
+                                        <property name="dataType">decimal</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">PARTYROLE_ID_7</property>
+                                        <text-property name="displayName">PARTYROLE_ID</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["PARTYROLE_ID_7"]</expression>
+                                        <property name="dataType">decimal</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">TYPE_</property>
+                                        <text-property name="displayName">TYPE_</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["TYPE_"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">address</property>
+                                        <text-property name="displayName">address</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["address"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">PRIMARYEMAILADDRESS_</property>
+                                        <text-property name="displayName">email</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["PRIMARYEMAILADDRESS_"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">PRIMARYEMAILADDRESS__11</property>
+                                        <text-property name="displayName">PRIMARYEMAILADDRESS_</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["PRIMARYEMAILADDRESS__11"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">EMAILADDRESS_</property>
+                                        <text-property name="displayName">EMAILADDRESS_</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["EMAILADDRESS_"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">PRIMARYPHONENO_</property>
+                                        <text-property name="displayName">phone1</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["PRIMARYPHONENO_"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">WORKPHONENUMBER_</property>
+                                        <text-property name="displayName">phone2</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["WORKPHONENUMBER_"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">SIDE_</property>
+                                        <text-property name="displayName">txnType</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["SIDE_"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">SECURITY_</property>
+                                        <text-property name="displayName">security</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["SECURITY_"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">QUANTITY_</property>
+                                        <text-property name="displayName">volOfShares</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["QUANTITY_"]</expression>
+                                        <property name="dataType">decimal</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">PRICE_</property>
+                                        <text-property name="displayName">PRICE_</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["PRICE_"]</expression>
+                                        <property name="dataType">decimal</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">CONSIDERATION_</property>
+                                        <text-property name="displayName">totVal</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["CONSIDERATION_"]</expression>
+                                        <property name="dataType">decimal</property>
+                                    </structure>
+                                </list-property>
+                                <column id="3808">
+                                    <property name="width">0.4861111111111111in</property>
+                                </column>
+                                <column id="3809">
+                                    <property name="width">1.3055555555555556in</property>
+                                </column>
+                                <column id="3810">
+                                    <property name="width">1.9166666666666667in</property>
+                                </column>
+                                <column id="3811">
+                                    <property name="width">2.236111111111111in</property>
+                                </column>
+                                <column id="3812">
+                                    <property name="width">0.9027777777777778in</property>
+                                </column>
+                                <column id="3813">
+                                    <property name="textAlign">center</property>
+                                    <property name="width">0.4722222222222222in</property>
+                                </column>
+                                <column id="3814">
+                                    <property name="width">1.2361111111111112in</property>
+                                </column>
+                                <column id="3815">
+                                    <property name="textAlign">right</property>
+                                    <property name="width">0.7083333333333334in</property>
+                                </column>
+                                <column id="3816">
+                                    <property name="textAlign">right</property>
+                                    <property name="width">0.7222222222222222in</property>
+                                </column>
+                                <column id="3817">
+                                    <property name="textAlign">right</property>
+                                    <property name="width">0.8333333333333334in</property>
+                                </column>
+                                <header>
+                                    <row id="3775">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="borderBottomColor">#63666A</property>
+                                        <property name="borderBottomStyle">solid</property>
+                                        <property name="borderBottomWidth">thin</property>
+                                        <property name="borderTopColor">#63666A</property>
+                                        <property name="borderTopStyle">solid</property>
+                                        <property name="borderTopWidth">thin</property>
+                                        <property name="textAlign">left</property>
+                                        <cell id="3776">
+                                            <label id="3818">
+                                                <text-property name="text">DATE</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="3777">
+                                            <label id="3837">
+                                                <text-property name="text">NAME OF BROKING/DEALING FIRM</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="3778">
+                                            <label id="3820">
+                                                <text-property name="text">NAME OF CLIENT</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="3779">
+                                            <label id="3822">
+                                                <text-property name="text">ADDRESS</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="3780">
+                                            <label id="3824">
+                                                <text-property name="text">SECURITY</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="3781">
+                                            <label id="3826">
+                                                <text-property name="text">TXN. TYPE</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="3782">
+                                            <label id="3828">
+                                                <text-property name="text">TICKET NO.</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="3783">
+                                            <label id="3831">
+                                                <text-property name="text">VOL. OF SHARES</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="3784">
+                                            <label id="3833">
+                                                <text-property name="text">PRICE PER SHARE</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="3785">
+                                            <label id="3835">
+                                                <text-property name="text">TOTAL VAL.</text-property>
+                                            </label>
+                                        </cell>
+                                    </row>
+                                </header>
+                                <detail>
+                                    <row id="3786">
+                                        <property name="fontSize">8pt</property>
+                                        <list-property name="highlightRules">
+                                            <structure>
+                                                <property name="operator">eq</property>
+                                                <expression name="testExpr" type="javascript">row[0] % 2</expression>
+                                                <simple-property-list name="value1">
+                                                    <value type="javascript">0</value>
+                                                </simple-property-list>
+                                                <property name="style">alternatingRows</property>
+                                            </structure>
+                                        </list-property>
+                                        <cell id="3787">
+                                            <data id="3819">
+                                                <structure name="dateTimeFormat">
+                                                    <property name="category">Short Date</property>
+                                                    <property name="pattern">Short Date</property>
+                                                    <property name="locale">sq</property>
+                                                </structure>
+                                                <property name="resultSetColumn">TRADEDATE_</property>
+                                            </data>
+                                        </cell>
+                                        <cell id="3788">
+                                            <label id="3838">
+                                                <text-property name="text">Chapel Hill Denham Securities</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="3789">
+                                            <data id="3821">
+                                                <property name="resultSetColumn">ACCOUNTNAME_</property>
+                                            </data>
+                                        </cell>
+                                        <cell id="3790">
+                                            <data id="3823">
+                                                <property name="resultSetColumn">address</property>
+                                            </data>
+                                        </cell>
+                                        <cell id="3791">
+                                            <data id="3825">
+                                                <property name="resultSetColumn">SECURITY_</property>
+                                            </data>
+                                        </cell>
+                                        <cell id="3792">
+                                            <data id="3827">
+                                                <property name="resultSetColumn">SIDE_</property>
+                                            </data>
+                                        </cell>
+                                        <cell id="3793">
+                                            <data id="3829">
+                                                <property name="resultSetColumn">MARKETCENTERORDERID_</property>
+                                            </data>
+                                        </cell>
+                                        <cell id="3794">
+                                            <data id="3832">
+                                                <structure name="numberFormat">
+                                                    <property name="category">Fixed</property>
+                                                    <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                                                </structure>
+                                                <property name="resultSetColumn">QUANTITY_</property>
+                                            </data>
+                                        </cell>
+                                        <cell id="3795">
+                                            <data id="3834">
+                                                <structure name="numberFormat">
+                                                    <property name="category">Fixed</property>
+                                                    <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                                </structure>
+                                                <property name="resultSetColumn">PRICE_</property>
+                                            </data>
+                                        </cell>
+                                        <cell id="3796">
+                                            <data id="3836">
+                                                <structure name="numberFormat">
+                                                    <property name="category">Fixed</property>
+                                                    <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                                </structure>
+                                                <property name="resultSetColumn">CONSIDERATION_</property>
+                                            </data>
+                                        </cell>
+                                    </row>
+                                </detail>
+                                <footer>
+                                    <row id="3797">
+                                        <cell id="3798"/>
+                                        <cell id="3799"/>
+                                        <cell id="3800"/>
+                                        <cell id="3801"/>
+                                        <cell id="3802"/>
+                                        <cell id="3803"/>
+                                        <cell id="3804"/>
+                                        <cell id="3805"/>
+                                        <cell id="3806"/>
+                                        <cell id="3807"/>
+                                    </row>
+                                </footer>
+                            </table>
+                        </cell>
+                    </row>
+                    <row id="3771">
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" type="javascript">vars["incRowCnt"]>0</expression>
+                            </structure>
+                        </list-property>
+                        <cell id="3772">
+                            <text id="3766">
+                                <property name="fontSize">10pt</property>
+                                <property name="fontStyle">italic</property>
+                                <property name="paddingBottom">15pt</property>
+                                <property name="textAlign">center</property>
+                                <property name="contentType">auto</property>
+                                <text-property name="content"><![CDATA[**NO DATA RETURNED FOR SPECIFIED CRITERIA**]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                </grid>
+            </header>
+            <footer>
+                <grid id="3143">
+                    <column id="3144"/>
+                    <row id="3145">
+                        <cell id="3146">
+                            <text id="3151">
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<div style="line-height:15px;">We trust this is in line with the SEC reporting requirements.<br><br>Yours faithfully,<br>For: Chapel Hill Denham Securities Ltd.</div>]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="3147">
+                        <cell id="3148">
+                            <grid id="3840">
+                                <property name="textAlign">center</property>
+                                <column id="3841"/>
+                                <column id="3842"/>
+                                <column id="3843"/>
+                                <row id="3844">
+                                    <cell id="3845">
+                                        <property name="borderBottomStyle">dotted</property>
+                                        <property name="borderBottomWidth">thin</property>
+                                        <image id="3846">
+                                            <property name="height">40px</property>
+                                            <property name="width">70px</property>
+                                            <property name="source">file</property>
+                                            <expression name="uri" type="constant">../library/images/ewere.png</expression>
+                                        </image>
+                                    </cell>
+                                    <cell id="3847"/>
+                                    <cell id="3848">
+                                        <property name="borderBottomStyle">dotted</property>
+                                        <property name="borderBottomWidth">thin</property>
+                                        <image id="3849">
+                                            <property name="height">40px</property>
+                                            <property name="width">70px</property>
+                                            <property name="source">file</property>
+                                            <expression name="uri" type="constant">../library/images/tayo.png</expression>
+                                        </image>
+                                    </cell>
+                                </row>
+                                <row id="3850">
+                                    <cell id="3851">
+                                        <label id="3852">
+                                            <property name="fontWeight">bold</property>
+                                            <text-property name="text">Ewere  Mgbeke</text-property>
+                                        </label>
+                                    </cell>
+                                    <cell id="3853"/>
+                                    <cell id="3854">
+                                        <label id="3855">
+                                            <property name="fontWeight">bold</property>
+                                            <text-property name="text">Tayo Ilori</text-property>
+                                        </label>
+                                    </cell>
+                                </row>
+                                <row id="3856">
+                                    <cell id="3857">
+                                        <label id="3858">
+                                            <text-property name="text">Compliance</text-property>
+                                        </label>
+                                    </cell>
+                                    <cell id="3859"/>
+                                    <cell id="3860">
+                                        <label id="3861">
+                                            <text-property name="text">Operations</text-property>
+                                        </label>
+                                    </cell>
+                                </row>
+                            </grid>
+                        </cell>
+                    </row>
+                    <row id="3149">
+                        <cell id="3150"/>
+                    </row>
+                </grid>
+            </footer>
+        </list>
+    </body>
+    <property name="pageVariables">
+        <variable-element name="incRowCnt">
+            <property name="type">report</property>
+        </variable-element>
+        <variable-element name="v_tradeDate">
+            <expression name="value" type="javascript">new Date((params["tradeDate"].value).replace(/-/g,"/"))</expression>
+            <property name="type">report</property>
+        </variable-element>
+    </property>
+</report>

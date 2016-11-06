@@ -1,0 +1,1240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.2.v201410272105 Build &lt;4.4.2.v20150217-1805></property>
+    <property name="units">in</property>
+    <method name="initialize"><![CDATA[reportContext.setPersistentGlobalVariable("rptTitle", "CLIENT STATEMENT");]]></method>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">72</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">library/reportsPortrait.rptlibrary</property>
+            <property name="namespace">reportsPortrait</property>
+        </structure>
+    </list-property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="MySQL_DS" id="3250"
+ extends="reportsPortrait.MySQL_DS">
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://127.0.0.1/geotripe</property>
+            <property name="odaUser">root</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ps_set" id="3251">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">User_Id</property>
+                    <text-property name="displayName">User_Id</text-property>
+                    <text-property name="heading">User_Id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Firstname</property>
+                    <text-property name="displayName">Firstname</text-property>
+                    <text-property name="heading">Firstname</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">MiddleName</property>
+                    <text-property name="displayName">MiddleName</text-property>
+                    <text-property name="heading">MiddleName</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">LastName</property>
+                    <text-property name="displayName">LastName</text-property>
+                    <text-property name="heading">LastName</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">WorkPhoneNumber</property>
+                    <text-property name="displayName">WorkPhoneNumber</text-property>
+                    <text-property name="heading">WorkPhoneNumber</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ContactPhoneNumber</property>
+                    <text-property name="displayName">ContactPhoneNumber</text-property>
+                    <text-property name="heading">ContactPhoneNumber</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">User_Party_Id</property>
+                    <text-property name="displayName">User_Party_Id</text-property>
+                    <text-property name="heading">User_Party_Id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">IsAuthorizedPerson</property>
+                    <text-property name="displayName">IsAuthorizedPerson</text-property>
+                    <text-property name="heading">IsAuthorizedPerson</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Username</property>
+                    <text-property name="displayName">Username</text-property>
+                    <text-property name="heading">Username</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Email</property>
+                    <text-property name="displayName">Email</text-property>
+                    <text-property name="heading">Email</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Password</property>
+                    <text-property name="displayName">Password</text-property>
+                    <text-property name="heading">Password</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">token</property>
+                    <text-property name="displayName">token</text-property>
+                    <text-property name="heading">token</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Enabled</property>
+                    <text-property name="displayName">Enabled</text-property>
+                    <text-property name="heading">Enabled</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AccountLocked</property>
+                    <text-property name="displayName">AccountLocked</text-property>
+                    <text-property name="heading">AccountLocked</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AccountExpirationTime</property>
+                    <text-property name="displayName">AccountExpirationTime</text-property>
+                    <text-property name="heading">AccountExpirationTime</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CredentialsExpirationTime</property>
+                    <text-property name="displayName">CredentialsExpirationTime</text-property>
+                    <text-property name="heading">CredentialsExpirationTime</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">DateCreated</property>
+                    <text-property name="displayName">DateCreated</text-property>
+                    <text-property name="heading">DateCreated</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">DateModified</property>
+                    <text-property name="displayName">DateModified</text-property>
+                    <text-property name="heading">DateModified</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">User_Id</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Firstname</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">MiddleName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">LastName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">WorkPhoneNumber</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">ContactPhoneNumber</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">User_Party_Id</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">IsAuthorizedPerson</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">Username</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">Email</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">Password</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">token</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">Enabled</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">AccountLocked</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">AccountExpirationTime</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">CredentialsExpirationTime</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">DateCreated</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">DateModified</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">MySQL_DS</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">User_Id</property>
+                    <property name="nativeName">User_Id</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Firstname</property>
+                    <property name="nativeName">Firstname</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">MiddleName</property>
+                    <property name="nativeName">MiddleName</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">LastName</property>
+                    <property name="nativeName">LastName</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">WorkPhoneNumber</property>
+                    <property name="nativeName">WorkPhoneNumber</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">ContactPhoneNumber</property>
+                    <property name="nativeName">ContactPhoneNumber</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">User_Party_Id</property>
+                    <property name="nativeName">User_Party_Id</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">IsAuthorizedPerson</property>
+                    <property name="nativeName">IsAuthorizedPerson</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-7</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">Username</property>
+                    <property name="nativeName">Username</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">Email</property>
+                    <property name="nativeName">Email</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">Password</property>
+                    <property name="nativeName">Password</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">token</property>
+                    <property name="nativeName">token</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">Enabled</property>
+                    <property name="nativeName">Enabled</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-7</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">AccountLocked</property>
+                    <property name="nativeName">AccountLocked</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-7</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">AccountExpirationTime</property>
+                    <property name="nativeName">AccountExpirationTime</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">CredentialsExpirationTime</property>
+                    <property name="nativeName">CredentialsExpirationTime</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">DateCreated</property>
+                    <property name="nativeName">DateCreated</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+                <structure>
+                    <property name="position">18</property>
+                    <property name="name">DateModified</property>
+                    <property name="nativeName">DateModified</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select *
+from users]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>User_Id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>User_Id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>User_Id</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Firstname</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Firstname</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Firstname</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>MiddleName</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>MiddleName</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>MiddleName</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>LastName</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>LastName</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>LastName</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>WorkPhoneNumber</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>WorkPhoneNumber</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>WorkPhoneNumber</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ContactPhoneNumber</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ContactPhoneNumber</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ContactPhoneNumber</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>User_Party_Id</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>User_Party_Id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>User_Party_Id</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>IsAuthorizedPerson</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-7</design:nativeDataTypeCode>
+            <design:precision>1</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>IsAuthorizedPerson</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>IsAuthorizedPerson</design:label>
+            <design:formattingHints>
+              <design:displaySize>1</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Username</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Username</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Username</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Email</design:name>
+              <design:position>10</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Email</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Email</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Password</design:name>
+              <design:position>11</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Password</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Password</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>token</design:name>
+              <design:position>12</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>token</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>token</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Enabled</design:name>
+              <design:position>13</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-7</design:nativeDataTypeCode>
+            <design:precision>1</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Enabled</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Enabled</design:label>
+            <design:formattingHints>
+              <design:displaySize>1</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>AccountLocked</design:name>
+              <design:position>14</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-7</design:nativeDataTypeCode>
+            <design:precision>1</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>AccountLocked</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>AccountLocked</design:label>
+            <design:formattingHints>
+              <design:displaySize>1</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>AccountExpirationTime</design:name>
+              <design:position>15</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>AccountExpirationTime</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>AccountExpirationTime</design:label>
+            <design:formattingHints>
+              <design:displaySize>19</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>CredentialsExpirationTime</design:name>
+              <design:position>16</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>CredentialsExpirationTime</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>CredentialsExpirationTime</design:label>
+            <design:formattingHints>
+              <design:displaySize>19</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>DateCreated</design:name>
+              <design:position>17</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>DateCreated</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>DateCreated</design:label>
+            <design:formattingHints>
+              <design:displaySize>19</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>DateModified</design:name>
+              <design:position>18</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>DateModified</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>DateModified</design:label>
+            <design:formattingHints>
+              <design:displaySize>19</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab-cell" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="NewSimpleMasterPage" id="3249" extends="reportsPortrait.NewSimpleMasterPage">
+            <overridden-values>
+                <ref-entry baseId="2823" name="NewGrid2" id="2823"/>
+                <ref-entry baseId="2824" id="2824"/>
+                <ref-entry baseId="2905" id="2905"/>
+                <ref-entry baseId="2825" id="2825"/>
+                <ref-entry baseId="2826" id="2826"/>
+                <ref-entry baseId="1136" name="Company Logo1" id="1136">
+                    <property name="source">embed</property>
+                    <expression name="uri" type="constant">report/library/images/geoscape-logo.png</expression>
+                    <property name="imageName">geoscape-logo.png</property>
+                    <property name="height">0.25418060200668896in</property>
+                    <property name="width">0.7023411371237458in</property>
+                </ref-entry>
+                <ref-entry baseId="2903" id="2903"/>
+                <ref-entry baseId="3196" name="NewGrid1" id="3196"/>
+                <ref-entry baseId="3197" id="3197"/>
+                <ref-entry baseId="3198" id="3198"/>
+                <ref-entry baseId="3244" id="3244"/>
+                <ref-entry baseId="3245" id="3245"/>
+                <ref-entry baseId="3246" id="3246"/>
+                <ref-entry baseId="2981" name="Report Title" id="2981"/>
+                <ref-entry baseId="3199" id="3199"/>
+                <ref-entry baseId="3200" id="3200"/>
+                <ref-entry baseId="3201" id="3201"/>
+                <ref-entry baseId="3202" name="NewText4" id="3202"/>
+                <ref-entry baseId="2922" id="2922"/>
+                <ref-entry baseId="2923" id="2923"/>
+                <ref-entry baseId="2925" name="NewText5" id="2925"/>
+                <ref-entry baseId="2979" name="NewText51" id="2979"/>
+                <ref-entry baseId="2893" id="2893"/>
+                <ref-entry baseId="2894" id="2894"/>
+                <ref-entry baseId="2895" name="NewText11" id="2895"/>
+                <ref-entry baseId="2827" name="NewGrid" id="2827"/>
+                <ref-entry baseId="2828" id="2828"/>
+                <ref-entry baseId="2982" id="2982"/>
+                <ref-entry baseId="2983" id="2983"/>
+                <ref-entry baseId="3174" name="NewLabel" id="3174"/>
+                <ref-entry baseId="2890" id="2890"/>
+                <ref-entry baseId="2891" id="2891"/>
+                <ref-entry baseId="2892" name="NewText" id="2892"/>
+                <ref-entry baseId="2829" id="2829"/>
+                <ref-entry baseId="2830" id="2830"/>
+                <ref-entry baseId="2833" name="NewText1" id="2833"/>
+                <ref-entry baseId="2831" id="2831"/>
+                <ref-entry baseId="2832" id="2832"/>
+                <ref-entry baseId="2834" name="NewText2" id="2834"/>
+                <ref-entry baseId="3203" id="3203"/>
+                <ref-entry baseId="3204" id="3204"/>
+                <ref-entry baseId="3243" name="NewText61" id="3243"/>
+                <ref-entry baseId="3227" name="NewAutoText" id="3227"/>
+                <ref-entry baseId="3229" name="NewText6" id="3229"/>
+                <ref-entry baseId="3231" name="NewAutoText1" id="3231"/>
+            </overridden-values>
+            <property name="headerHeight">1.2in</property>
+            <property name="footerHeight">1in</property>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <list id="3252">
+            <property name="dataSet">ps_set</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">User_Id</property>
+                    <text-property name="displayName">User_Id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["User_Id"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Firstname</property>
+                    <text-property name="displayName">Firstname</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Firstname"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">MiddleName</property>
+                    <text-property name="displayName">MiddleName</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["MiddleName"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">LastName</property>
+                    <text-property name="displayName">LastName</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["LastName"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">WorkPhoneNumber</property>
+                    <text-property name="displayName">WorkPhoneNumber</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["WorkPhoneNumber"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">ContactPhoneNumber</property>
+                    <text-property name="displayName">ContactPhoneNumber</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ContactPhoneNumber"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">User_Party_Id</property>
+                    <text-property name="displayName">User_Party_Id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["User_Party_Id"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">IsAuthorizedPerson</property>
+                    <text-property name="displayName">IsAuthorizedPerson</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["IsAuthorizedPerson"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">Username</property>
+                    <text-property name="displayName">Username</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Username"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Email</property>
+                    <text-property name="displayName">Email</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Email"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Password</property>
+                    <text-property name="displayName">Password</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Password"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">token</property>
+                    <text-property name="displayName">token</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["token"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Enabled</property>
+                    <text-property name="displayName">Enabled</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Enabled"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">AccountLocked</property>
+                    <text-property name="displayName">AccountLocked</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["AccountLocked"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">AccountExpirationTime</property>
+                    <text-property name="displayName">AccountExpirationTime</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["AccountExpirationTime"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">CredentialsExpirationTime</property>
+                    <text-property name="displayName">CredentialsExpirationTime</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["CredentialsExpirationTime"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">DateCreated</property>
+                    <text-property name="displayName">DateCreated</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["DateCreated"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">DateModified</property>
+                    <text-property name="displayName">DateModified</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["DateModified"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+            </list-property>
+            <header>
+                <table id="3253">
+                    <property name="dataSet">ps_set</property>
+                    <list-property name="boundDataColumns">
+                        <structure>
+                            <property name="name">User_Id</property>
+                            <text-property name="displayName">User_Id</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["User_Id"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">Firstname</property>
+                            <text-property name="displayName">Firstname</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["Firstname"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">MiddleName</property>
+                            <text-property name="displayName">MiddleName</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["MiddleName"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">LastName</property>
+                            <text-property name="displayName">LastName</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["LastName"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">WorkPhoneNumber</property>
+                            <text-property name="displayName">WorkPhoneNumber</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["WorkPhoneNumber"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">ContactPhoneNumber</property>
+                            <text-property name="displayName">ContactPhoneNumber</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["ContactPhoneNumber"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">User_Party_Id</property>
+                            <text-property name="displayName">User_Party_Id</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["User_Party_Id"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">IsAuthorizedPerson</property>
+                            <text-property name="displayName">IsAuthorizedPerson</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["IsAuthorizedPerson"]</expression>
+                            <property name="dataType">integer</property>
+                        </structure>
+                        <structure>
+                            <property name="name">Username</property>
+                            <text-property name="displayName">Username</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["Username"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">Email</property>
+                            <text-property name="displayName">Email</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["Email"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">Password</property>
+                            <text-property name="displayName">Password</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["Password"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">token</property>
+                            <text-property name="displayName">token</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["token"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">Enabled</property>
+                            <text-property name="displayName">Enabled</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["Enabled"]</expression>
+                            <property name="dataType">integer</property>
+                        </structure>
+                        <structure>
+                            <property name="name">AccountLocked</property>
+                            <text-property name="displayName">AccountLocked</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["AccountLocked"]</expression>
+                            <property name="dataType">integer</property>
+                        </structure>
+                        <structure>
+                            <property name="name">AccountExpirationTime</property>
+                            <text-property name="displayName">AccountExpirationTime</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["AccountExpirationTime"]</expression>
+                            <property name="dataType">date-time</property>
+                        </structure>
+                        <structure>
+                            <property name="name">CredentialsExpirationTime</property>
+                            <text-property name="displayName">CredentialsExpirationTime</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["CredentialsExpirationTime"]</expression>
+                            <property name="dataType">date-time</property>
+                        </structure>
+                        <structure>
+                            <property name="name">DateCreated</property>
+                            <text-property name="displayName">DateCreated</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["DateCreated"]</expression>
+                            <property name="dataType">date-time</property>
+                        </structure>
+                        <structure>
+                            <property name="name">DateModified</property>
+                            <text-property name="displayName">DateModified</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["DateModified"]</expression>
+                            <property name="dataType">date-time</property>
+                        </structure>
+                    </list-property>
+                    <column id="3266"/>
+                    <column id="3267"/>
+                    <column id="3268"/>
+                    <header>
+                        <row id="3254">
+                            <cell id="3255">
+                                <label id="3269">
+                                    <text-property name="text">Firstname</text-property>
+                                </label>
+                            </cell>
+                            <cell id="3256">
+                                <label id="3271">
+                                    <text-property name="text">MiddleName</text-property>
+                                </label>
+                            </cell>
+                            <cell id="3257">
+                                <label id="3273">
+                                    <text-property name="text">LastName</text-property>
+                                </label>
+                            </cell>
+                        </row>
+                    </header>
+                    <detail>
+                        <row id="3258">
+                            <cell id="3259">
+                                <data id="3270">
+                                    <property name="resultSetColumn">Firstname</property>
+                                </data>
+                            </cell>
+                            <cell id="3260">
+                                <data id="3272">
+                                    <property name="resultSetColumn">MiddleName</property>
+                                </data>
+                            </cell>
+                            <cell id="3261">
+                                <data id="3274">
+                                    <property name="resultSetColumn">LastName</property>
+                                </data>
+                            </cell>
+                        </row>
+                    </detail>
+                    <footer>
+                        <row id="3262">
+                            <cell id="3263"/>
+                            <cell id="3264"/>
+                            <cell id="3265"/>
+                        </row>
+                    </footer>
+                </table>
+            </header>
+        </list>
+    </body>
+    <list-property name="images">
+        <structure>
+            <property name="name">geoscape-logo.png</property>
+            <property name="type">image/png</property>
+            <property name="data">
+                iVBORw0KGgoAAAANSUhEUgAAANIAAABMCAYAAAAY9elxAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAu
+                IwAALiMBeKU/dgAAABZ0RVh0Q3JlYXRpb24gVGltZQAxMi8wOS8xNVGRfJMAAAAcdEVYdFNvZnR3YXJl
+                AEFkb2JlIEZpcmV3b3JrcyBDUzbovLKMAAAdOElEQVR4nO2deZwdZZnvv89Zekt39j0Q9oQQwiqKEFBE
+                EVAcRXREvI4Leh2dEVRwYJhxrguMzAwizowjjhdUBlnEO4gKIwqyg7IIJGBICESSEJIQQmfr7Zx67h+/
+                tzjV1XU6p0Mn3fKp3+dTn6TPqap3e/bned9j7s5IY9PSW1nz1E8mdneuOMKiyhutUD7Y3WdgmBWbNmCF
+                p3HutUL5rnGzDn1h94UXjHync+RIwEaakRb/6JRyqWX8wu7OVZ+KKlsO9ahvjButRqHsgEfVihk9hULT
+                Fiu3Pl5umXi5u92x4PT/7hnRjufIkcCIMtKSa04f1929+pPVas+ZXu2dgwOFIuDggIHjmIMBkUdYofRU
+                qXncz9qmHnjZnJMuWzVinc+RI4ERY6QVvz5nWufKB8/u63n5s463YSXMilihgDgoAjOwAriDV4miCI8q
+                FIolSqXWK8vt0y+Y//4b1ozIAHLkSKAwEo2ufewHhc1rF3+4Ut32uSiqtFmxiUKpBbOCGMirSCtFEFX0
+                txmFUjOFYjMe9VLp2XRGpXfLGctvPa88EmPIkSOJEWGkTasfnNnXs+mEqNLTXCg2Y1YCrwBR/YfcIerF
+                CgWs2OSOl73afVrPpmf322Udz5GjDkaEkSrdmw90j3bDDSuUghZqxMQ0IMK86FZstqhv6x7dnc/utrP7
+                myPH9lAaiUYrXS+PM7c2K8TND8FP8wgKBQoUqFb7yk61fad0MkeOIWBENFKxqe1Z92ijRxXEREPohhVx
+                IosqPRSKLb1NbVNe3Fn9zJGjUYwII7XNPOwJK5YeASeq9mJY410pFPCoau6Varll3P3jZx319E7tbI4c
+                DWBEGGnPo8/d2tI+/dpiuXUZUR9R1IMbCnVnwnQVCnilB69UKBRbnm9um3jFnm/56gu7sOs5cmRiRBgJ
+                YN57r7i92DrhK1ZqWe1eBa/gURV3V9zBa/EH96quah9EFaxQeL7Q1HFZefqC2xg01Jcjx67BiDGSFcdV
+                ps97/7VNbVM/XyyNeUhJ2JA/okpU7cGrvRCFiJ5H4FYplFseLLWOO7dpyqH/tvdR53ePVP9z5EhixGvt
+                wFh87XsO6tu27s89qrzFsdlQ6QAvG+CR9VmhtM2ssIpi+TflMdOuPvB91z3GkEJ9OXLsXIwCRhL+8KNT
+                26qF6j7Vnm17Wam8e7l1/BRzp7fr5Q14tLa5ffqyqkdPH3DqVZtHuq85cqQxahgpiRV3f725uWV8E5U+
+                69q6tq/cNK5392PPrY50v3LkqIdRyUg5cvypYcSCDdvD8/dfOnb13RdNBooj3ZccObaHUaWRllz3gQmV
+                ns3zoqhrQWS2r2HNWLS6UCwvKbd0PL7/e294dqT7mCNHFkYNIy26+uRpUc+WT0RR3wcjr+zt7iXArGB9
+                5mwulltvtXL7NyftddrDs476WJ47yjGqMCpMuxW/+ftx1b7usyu9m86tVrvmOVETHhXxqOBRtbla7Zvc
+                2935gUr3y1/sXH1rvm0ix6jDqGCkrWsff3O1uu10dx9rFDAKZoWC9h5ZkUKhCXcvRNWet/dtW/O+l1fe
+                YSPd5xw5khgVjFStbFmAV2ZaoQgWxxasdplhhSKGdxBFR5RaJrSOYHdz5BiAUcFIVmxeXrRyp8clQpYR
+                qIuquBV7rNy6rH3Kwb27vJM5cgyCUcFIbRP2uYVi0zV4VK1Wq3ikg06iSP/3qA/csGLpzmLb1CuBykj3
+                OUeOJEZN1O7x/zphal9X55dwOxmrzja8KNMOHF9nFB8rlNq/dshHb7trhLuaI8cAjBpGAuip0Lz8pg+d
+                0Ld51YmlYmG/QqmlWOntXkWp/HCpfepP5r3rqtUj3cccObIwqhgpxvpfvLsczTxubGnM5HL3Hx/aNOtt
+                l3aRV3vnGMUYlYyUI8efGkbkFKF6MLMSMB4oA1XkJPUCne6eVzPkGLUYVYwE7A98CpiDGKkELAa+a2ZL
+                PFefOUYpRhsjzQBOBvZKfLY7cDPwFLmflGOUYlTkkRIoAulzGF4EtpIfcpJjFGPUMJKZAewNjEl8XAFW
+                A2tzqy7HaMaoYSRgCnAcMDPxWTdipJdHpEc5cjSI0cRIc4FDkN8Wq59twJLwb44coxajgpHMrB34CP2D
+                DAArgHuBrl3cpRw5hoQRZ6TgG30QeA+18xn0+y3wK2B57h/lGO0Y0fC3mRWB9wPnARNTX98LXOvu+Wmq
+                OUY9RoSRghaaCfwZ8EVgz/BV+AlmNgDfA/4wAt3LkWPI2OWMZGZNKKjwSeBUYELya+QPfQu4zrXTL0eO
+                UY9dxkhm1gxMRr7QR4CDUE1dEpuAfwe+4+49u6pvOXK8WuxURjKzMkqwzgUWAscDb0SFqWmsAP4FuMrd
+                N+3MfuXIMdwYVkYKvk8bMAnYAzgMOBw4EBWktmU81g3cAvy7u982nP3JkWNXYYcZycxakbYZj0y2KcB0
+                VLk9G5X7HEA284B8od8DPwcud/eXwnvHoULVaUAH8pv6gM3AOuBpd+/b0X4PMp4y0IrMzR5g63BXm4c2
+                CkDvzqpkDya0AdXhmCcz2xutRwfQFD6OqK3Hkp2xHqHtmWhNiigQ1YXKxYa1vTBneyEFMBGNs4IKATYD
+                K9x90F+GrLuxLyz6LKAdMVwT0IIYYzoi9ImIgWajKNwMss22JLYgBrob+Im7PxLam4/8pgOQ9pqNAhEF
+                RNgvAavCs48AS939ue20NSjMbF9EJFOA3RCxNKMJfBGVJ60DVrn7Dm1zD8QwD83PJMSoW4A14d2r3f2P
+                r2IMs9C8T0HrNR4RXYTmbF08Fnd/vsF3FoBDgdchU3xftNbN4ZYI2Aj8Ea3Fg8D97r61zvtKaA4OQnTU
+                g5j9CWBRMqhkZruH9vZHLkEHtfziFuBpVO2yJjy7w8XMoa3DqFlMsxBttyDhvSmMcxlwH/AksDiLkQcw
+                kplNB/ZDE3kYYpgWxFDjwsBaEHOVwyC3p9mqwHo08begiNyS0N5E4BTgTBTNawrvy0oWR2GAa4G7gJ8A
+                t7l7w7+ZFATEHOD1wDvCOCcmxhEng/tQ1fl6RCw/Ax5w9zUNtgNwNPC/gJNCG1EYlyOJ9wLwANom8ri7
+                Lx3COPYJfX8rItA9kYUQH54ZM1MPmveHgDuAR9x9+SDvnQZ8APgQMB+tdb0DOaPQzkrgP4EfuvuqjHd2
+                AJ8GzkI01B2euwz4R3evmNkM4EhEC29GdBfTgYX7Ha1LJ2KoG4Gb3H1IP8gd+nMw8L/Rtp2x4at6dBwh
+                4fp4aPMWd1/c7w79ZqsuRFzXo4nZFDrtQ7zixdsY3nMP8A1UvbAXUEq0d0Rob/MOtOOIyL8JzEqOo96F
+                JM55wKNIWg+lrZeAHwNvB8Zsp512RDjLEcMM9t4+VJT7W+CvkIYc7N1twDuB34Tnehvsf7wmtwHvQ1os
+                /e6JwCWBaIa6FpuBa4D9Mvo8Frgw45mzwvfzkFBc28B8Ja9uZNm8Byg2SAN7A19Dwa0doblupIHfkWwz
+                fjnAiYjjsh7uDYu2OlydSMtk3RtL2n8CjkXM05EaTAnthF2ynU5XqEm9elcV+VnztzOBr0PacEud8W1F
+                ieC1YazdddpbCfwbsEeddorAXyKizWpnGyLqrHdvBD5ajyiQ+fmPYQ2ynu8K4+hicAbbCPwdwSIJ7zbg
+                3fQXMNuQsFqOdiovCWvbVee9EZLY+6X63QH8Lf0F5hbgE8gKuT3jXX2h/a3h38HGsybMy5Tt0MBRSJBs
+                HeRdFbJpO02Hq5BGK7r7K6psQZjYBQzEXUgSLw8DqqLgwkKUUE0XmhaQibHU3QecQRfs708AX6emUpOI
+                UEXDQ2hRxyBfaSrym6bRP4BRQNKhZGbnufujGW0eC1yMTAfCRMTmyqPAL5AdvDGMcQySXG8I45yVeN1u
+                wGeAyaG9Fanm5iPTKO0r/h64AS36dLSoxyBTB7SAvwJ+R8YmxuDPXYiqQZpTX68FbkVm4mZEuFORpD86
+                1X+QIIuJOkYB+Vl9yGy6Fc3Nc2he4rxeOzIpTw3vbqI2n4bWYpGZXezuW8IzscCrJv7uBj6MNPchiX50
+                hTm4GwmtnjDeWaG9o1AAIonpqEJmkpmd7+4bUt9jZgcBFwFvSnycpIPnkVXwbJifSeGagayE8fQ3cWch
+                ntlqZtcTJuJcBnLpJuDLwD5AIYO7xyNH9PtkS9h7gEMznnsj9TXfg8iOPiJ0dDJinGlhUJ9B9n49afIL
+                4MBUewuQf5O+92ngAkQU4zL6WUZMsxD4VwaauRHwz+m5QQT2dOK+CnATgejCPa3IpzkF+G6Yq4uBfepI
+                0imhrfQYtgE/QH7S9LgviCk6QhsLkTn7YGJd/waYnGrDkMN9KiLWqYNIdkNBob/JWI8orMPclEY6P7Qd
+                M1UXAyX/jcinnE8Qson2OkL/Phjuy7JUeoFzSGjahDl8ccYaOmKgryChFkfuJqPg0ATk7vy/Os860tRn
+                ggj2htSg1iO/pqPeZCY6ORP4IQNt217gggzf4fKMex2p97eRzbRtwFtCOxvqDMiRFH1D4rkxob20mXY/
+                cAbQ0qBdPQ5JvLS59gIyh5L3foT+ptczwImDvHsW0nyDEe57Q1tJE6MX+Yd1n0s834Qk8YXI7JzUyLhT
+                jENynOHzUnjf+sR4Kyh4cmDivrRpF2un+JktSGjPabA/+wB/T7af+xBwcOr+dyCLI33vclSqlunzomje
+                uUgz13Nlngz3cAAK7SWl3FXA9CFM9JFIHScbqwA/Si4a4voVKYJwZModm7FQc5EdeiVS871kS6L7gP+D
+                pG9H4vnTkSmVvPcetBO31Oj4EsT4GRRKTr7vl8m5QtJpbeL7ZcDRQ2kr1e7UMI9pIfU9YMIOjGG74w6E
+                fxTwccR8lyCNeAnwJRTROzzcW0BaYF1i3X8K7J963wXUGCm5hlvDd21DHEsz8FlqgjUpYL4evy/c958M
+                1CidwNlAOfXeNmQ+fwOZ41sDXWf5SD9EgY59QDH7XyVuWAecPcRBtQP/QX8TL57QPcM9Y5BDGDNb/O9m
+                ZCcnHd99gI8hx7AzYxLi5x5EavnAMGHJPk1DwYXkM0tR1M2GMr4UIV5C/4DFeuAvgNZwzynUTjxyZML8
+                GGmE1h1o8wMM1EaLCYQ8nBfSvKcB30GSthNp855w9Ya/Xw5zfxG1HNZ/J9b9JgZnpOR1NSkzcwj9bUVB
+                rShcMU09DOwd7jme/q5EHFX+IdCeeNdMlKb4D2TuZQU3qkgwXoMinxMIFlQpEMIiJM1bkG8w3cya3L3R
+                n0+ZQbDRE59FSFpsDH+PQ05lfE9sLtyDErNuZnNQdO3j4d8O+jt4cZJxMXAnWrynPHvP0l4oX5TEr4B7
+                PczcUOHuvcGxPAzlOkBC5K3IrOxCc/lIou0WJOEOBW4ws0fQQr2ECHUjsG2QLh2IbPb4hh6UD1q2I2Oo
+                h5A/+gKa+3ZqVQxQM8XiPNg4tD4L0DhvpsbkUAs81IOH71cAN7j7izvSZ3fvCutxAsoLxe3PQP7tM4jm
+                ZqTGshK42t23hHEfg9boZAaOHTTnK5BLcAOygDZ5IpFcQg7gfcjW3ws5ecejjXU/a3BMb0WmWfKHjaoo
+                XNoZ/m5l4JaJCvCwu681s5OQdpmL1Gv6R5K6kRN/HZIIq3zwCvH0iUQvIcn0ajcKPobGdUzoYxNaqLiS
+                fSUKxy9Ei0n4bm/gr6k52s8ghnsIRbmWeC3KBYApqzuZWkKyEPr/BFq3YUHY6n8e8neSEUFHTL8UCdxt
+                aG32RFbDJOBdyH8tMPQj0xah8b8aLEfzcTA15o3XBGoFBDH6UIDkj2Y2D9HciWiN0tHQKtK+d6BdCb8F
+                uj2jmqIUNMHdSMLtGTpzMHC+mW1CYcgoLTHDIheAP0c5oQmJgThy0O5IPNfMwLBlJzDXzP4VmT7z6a/V
+                Yp/taWSm/RRY5hnhzQyMpX+megMykV7V+Xju3m1mK9CCFEN/W+O23L1qZjcjJv5LFGlqQnMTh+07UPJz
+                LkquvgQ8YGaXA48m5qxATTrGc9sDrNxBpToAYX/Yh1A0LElIfUiDfw9ZALGpE0fQjkX+wbFo7ZOmU1I7
+                ZTYb/h2OE6K2IT84+d4yNaEdV9+Q6F878HlUwfMGBtJlBYX970JC8SEkuOvuj4sJbR3iuDmImcoo7Hcp
+                Cv3daWbPUwtfTkHM9jakvWYnBhEhgv0W/aVNnFxNoi08P4b+6jS2Y+9Hoc6HUV5qKCZAlmkxPNQ3EP3K
+                mdx9o5l9H2nAw1E4/yBq9XwltLgTwjUbCZG5wFfN7I5gfsaXJf4dtnGEMqY9UV5vauKrLuC/gG94KOXK
+                ePYZ4NcoYnUGtVKi2JcYTGAN51jiOUoj68foHNHZXGSWtqa+qyAT7sdIiCwFXsjSQGnEUtTN7BdoQb+G
+                bOC4cHEetfBr7GRPQky3W+p9m5D0+r/I70l2IK5bS6I1NZgqckjjqvDbPSPB2iBeQFI0xixkjpRSnw8J
+                ZjYeaZnYlIuoVXq8guBfPoA0zYzQdmy7H4gE1RxqAqSEookF4AUz+4O7R2YWRwljwmsB9jUz21FfL4Ex
+                SJDtm/gsAv4H+AcfpK7Q3bcBS83sIhTYORkJh8SP/24Xc9CcvBp/bywhakZtnnpQVA20Nl2IzgzN87jE
+                /XFA6CmUgvkf4D53H9LJVa+YPsEkuQolWj9FrWiwhf6Z58HwGMod3Z3x3SYkod/CQP+nD6n5x5Apebu7
+                /77RQYRqiTL9tyc8hcy52FZuQ37Ndcju31GcgMyBeAxdSHjUPXsvEOQrRGlmk5Cm+gvk5CZ9uWOQv/o8
+                IoKn0NzFlRLxOK5PvnMHMRYFDZIadR3w68GYKAl3f9bMfoaCL3FwKA5a1UPMZIcCx5vZslchE16P5hIk
+                BIrIVI53BjyJ5jLpesT3rkfz+5tw/bZO4CoTwSyuAFHaJOlE5twPqK9y66lSkNZZFfyn/g+pQvseRNxp
+                vIhMwc+5+yVDZKLJiLjfS+0QFZBEisOeMY4E3hkYb8gIDHAa/aOBnUiSdWY+lAF33+Dut6Js/53UfsKG
+                0N/DqZ2q9CByymOUECMfvAP9bw9bGmIUEGMmP4tzdUNBL7USIkNM1MhetwlIkOw+xPbUkNkUZFbODh/F
+                67qEmvXzO+Rjp9GHwvRnAV929zsbZSIzK4WSo/egtSpkDbaCHMB4g9smavsy4rIOQzb1NCQp4wEcjcpp
+                vm1mt2SYHg+HQU5Nfd4FPOHuzzYyCOQsTkME/Sa0GE0oKfssgLtvMrPrwvdxrdkMlOBdZmZ3u3vDP+ps
+                ZnHw4ET6a9RFaC9Ob+r+iWhzXV0Gc/fnzOxe5LC3h4/jbQMxY8Wh/oWJz6YDZ5rZUnd/poG+NyNz9CQU
+                rboxmC49iOCSZulUYJ6ZFQdzrlPvPpz+5lIccKiHpKn6JuCTZvYNd984yDPpdtsRE52Y/BgJ858T0i7u
+                vs7MfouEbbJGs4poZVEjJnLYyBrv/J6PopWHIGZ8PJ3gAtnv30b2/b+ghOBxKHcyHy1IXAz5MaS94qx2
+                fD0BHJ+RQAOdY5cutelFkuM8NLEzkZkwBi3QZKRtjkKVA99G2m01/RNnVwDNifaakIZNJ9cWIwd7fANJ
+                PxDTXoS0TvI9axFxJu9tRWbOlWi/zZsQkwxIAodxXk//zHkXqgubkrhvHkpOJ9uOE95HIhMtXckd+wKH
+                ogjVvcj/fAEFCCaEe07LGNdqFMUbtAoiPP8JpP2T/boVOChxXzohW6V/mdgWRGv7JtevTptNKE1zEdkl
+                QjeSKptCgvTnqfuqSFNdhphxL6QUxlCLqs5ANH8KKkm6CVXhJOl3MTAvi2j2QH7MfBoo2wiNfxrlT5Id
+                vR3Yt87kf5XsbQq9SGP9NAzwn1A08WpUivMkA0t0ktfjwOtS7c1AJU/p+r71qHTkFMSkHTHhhMWahCTO
+                h1HkMv38VlIFkmHyP0dte0gUJvpbqAbvuDCveyIGu47aloSYkTYgH6mYGsdRKI+RLlV5MszRR1FN2TuR
+                73U2qjN8hIEVBV0omACKwKaZ1BFznBW+T69hEQnUz6M8TvxMRI2RFgzCSHGAJhnA6kX5mvORkJ5CTZh2
+                hL+PDHN+B9nVLo8BR9ah0zfTv+IkeT0T5uByJMQuRYLwpjDnK6m/rWYjcO5wlZaAsuLJBYtIFa0m7p8U
+                OjvYvpBGrjRR3Qccl9HeHiiJm/XcMygzfwmS1J8Oi34FkuJZjLsNScT2VDv7UquyTl/rkBl4OxIK9Rb1
+                l8DMOvP2erQBLquA8kUU/VqONOX25vY71KrFT6RWhpS8NiNm/wyyJE5FGuwLKDyc3JcUVz9UUM5vMEaK
+                +3shKmZNznEXYv6rUL3bxWFtrkLR3HqbDh8mwwpKzd/pyFp6NTSXvpYDXxoWRkqYH49QI9IqKqfP3L2K
+                TIvz6b/lYEevpcC1yBzJ3NyFkm9XUn9nbG9Y6I0MToRLkZrP2noxHhVS3kv9zXvbW5R3ANub528i+36o
+                79+AcnNfRpoxqU3PIXvTo4c5eRYx/zMM1HBb6a+xHyBRC0g2I21DbkMJpVyy6vDi2r7t7QL+KbCwQYH/
+                fhSh25Hd38nrJRRh/gJw6HAy0mzEOPGERsjseOcgz5SQGXMzA/2swa4+JEF/j9Txu5EdPGgxKjLzzgkL
+                vXYI7Tkyda5BPlF5kDYMhZT/OfSvkS3t8YlKZzQ41x2BIK5GFSTPk216xGdlLEaa7FxkIjZlvHMsIvZ6
+                mrJev69GpmVyX9IiEiYW9YtWvxi+bw99u38IdNCD/JVLqbOPa5D5OwKZ21lbKwa7Xg7P/BLtxTqC4NMN
+                57l2LYhQk0Wp8SapTLiiZjea2e9QlcRJKOs8AdnGcbK2j9o26jXIfHoULdgz3uCBku6+xswuQ4z7BhTJ
+                OQQtZBsqkSlQ2xLehRb/cST17vTtVFe4VuohM/sDqg44OrQzN4wpWa7SjTLpdyJ7/LEGx7EZuN7Mfo0E
+                2AFIU+2Gom5NyAd5DhHbotDOBq9zlJUrynkJ0qanIR9ueuhzmVrVQk+Yk9VhTq6gVlLzRmq1gIMeXxXQ
+                HqKDW8zsm6i2cyHyW+NzEJuRwI3Cu7eFtu9FydNHXMnhhuHuD5rZUygA8WfI95oQ2msL441prgfN5ZPI
+                dViEmGmtJyK1r5wiZGb7oSjPgOLJRmBm5wD/QC2MS2jwLHe/pcF3TEEO+zRqR3wVkWmxBkne9cBLjTLP
+                IG0ZcmBnIuKbgZi+FWmR+CiujcB6b6y+L6udYnj/VGqLVUILFdf/rfNX+asbZtYW+t6ChEF85sEWH+KR
+                VWY2lhqDzqGW4qggTf5UuFbG/Q7h6A5qBL/FQ/g8nNrzWRSVTdLHhcBX+hGkcnzT0HrE273bEUG/SO14
+                sRe9zvFfQxzreEQHU0Kbs8N4NxF+djVcLyK6y0yZlMLLDkNVsHOA68zsu+6+cgidOQ2dgJOcpIhadXND
+                cPf11LLNycMO+3yYD9QPmmNduOK6sybEuL3D1V54T7/Khp2BIJWH5ZcNg5BaDCwO+ZNYI0VAj2dsrwnC
+                d6gCeACDB6ZPV4IMRzlUJtz9ZWomW1ytUEY013ApWcnMzkTRmLcjqfNJYH8zewCZMnUZIRxO+C5UUrRH
+                6utt6My5dH1dw/BdeJB+WKcdrsF7rcKVuN1Zv5jYSD0eO4uJ6rTVyw7QQQlpoROoHVw4FZU+HAOcEBhq
+                GZIQG5AUiY8mPjLcl1Xi8X1kQ+fI4dSCUIN99ieLEko2FlEoMv5F8SKyU+MNe5tRUmo9YqRZKKmYrtMC
+                hXBvAi5193U7t/s5/kRgDCxUhhH+xcjhRAmV5ixG4dePo/zClPB9ATmvLeGzKPF5Er3IMXsYhYh/ORyO
+                YI7XDOLjwZJV7oaCIyP+O8bDgVJw7raY2TUoUfUupIXmoyhTMzVnM95OXKGWKFuLggo3owTVkKNEOV7z
+                6KN2EH0RBSXKKEzecOHwaEbWIfoFFILeD5WkLEA+UTO1bPNLKMP9RLieYyf8DEqO1wZCqmECoqs4UVxA
+                Pnfna4Fs/j/KlZ59qedopQAAAABJRU5ErkJggg==
+</property>
+        </structure>
+    </list-property>
+</report>

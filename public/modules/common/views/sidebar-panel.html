@@ -20,8 +20,8 @@
 
 <nav role="navigation">
   <ul class="nav">
-    <li ng-if="menu.viewpath != 'javascript:;'" ng-repeat="menu in app.pages" ng-include="'menuTree'" ui-sref-active="active" side-navigation=""></li>
-    <li ng-if="menu.viewpath == 'javascript:;'" ng-repeat="menu in app.pages" ng-include="'menuTree'" class="menu-accordion" data-ng-class="{open: $state.includes({{ '\'' + menu.parentViewPath + '\''}})}" side-navigation=""></li>
+    <li ng-repeat="menu in app.pages" ng-init="$root.show(menu.roles, menu.authview_id)" ng-if="menu.viewpath != 'javascript:;'" ng-hide="!$root.container[menu.authview_id]" ng-include="'menuTree'" ui-sref-active="active" side-navigation=""></li>
+    <li ng-repeat="menu in app.pages" ng-init="$root.show(menu.roles, menu.authview_id)" ng-if="menu.viewpath == 'javascript:;'" ng-hide="!$root.container[menu.authview_id]" ng-include="'menuTree'" class="menu-accordion" data-ng-class="{open: $state.includes({{ '\'' + menu.parentViewPath + '\''}})}" side-navigation=""></li>
   </ul>
 </nav>
 
@@ -31,8 +31,8 @@
     <span>{{ menu.name }}</span>
   </a>
   <ul ng-if="menu.child" class="sub-menu">
-    <li ng-if="menu.viewpath != 'javascript:;'" ng-repeat="menu in menu.child" ng-include="'menuTree'" ui-sref-active="active" side-navigation=""></li>
-    <li ng-if="menu.viewpath == 'javascript:;'" ng-repeat="menu in menu.child" ng-include="'menuTree'" class="menu-accordion" data-ng-class="{open: $state.includes({{ '\'' + menu.parentViewPath + '\''}})}" side-navigation=""></li>
+    <li ng-repeat="menu in menu.child" ng-init="$root.show(menu.roles, menu.authview_id)" ng-if="menu.viewpath != 'javascript:;'" ng-hide="!$root.container[menu.authview_id]" ng-include="'menuTree'" ui-sref-active="active" side-navigation=""></li>
+    <li ng-repeat="menu in menu.child" ng-init="$root.show(menu.roles, menu.authview_id)" ng-if="menu.viewpath == 'javascript:;'" ng-hide="!$root.container[menu.authview_id]" ng-include="'menuTree'" class="menu-accordion" data-ng-class="{open: $state.includes({{ '\'' + menu.parentViewPath + '\''}})}" side-navigation=""></li>
   </ul>
 </script>
 <!-- /main navigation -->

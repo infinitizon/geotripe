@@ -48,7 +48,7 @@ angular
                     mname: $localStorage.globals.currentUser.userDetails.authDetails.middlename,
                     lname: $localStorage.globals.currentUser.userDetails.authDetails.lastname,
                     email: $localStorage.globals.currentUser.userDetails.authDetails.email,
-                    avatar: 'images/avatar.jpg'
+                    avatar: 'uploads/user/avatar.jpg'
                 };
             }
             $scope.$watch('app.layout', function () {
@@ -58,17 +58,5 @@ angular
             $scope.getRandomArbitrary = function () {
                 return Math.round(Math.random() * 100);
             };
-
-            // With this part, I'm able to hide and show pages based on the ROLE assigned to a user
-            $scope.app.container = [];
-            $scope.app.show = function(roles, authId){
-                angular.forEach($localStorage.globals.currentUser.userDetails.authRoles  , function(authRole) {
-                    if (roles.indexOf(authRole.Name) >= 0){
-                        $scope.app.container[authId] = true;
-                    } else {
-                        $scope.app.container[authId] = false;
-                    }
-                });
-            }
         }
 ]);

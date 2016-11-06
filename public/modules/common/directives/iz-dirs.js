@@ -11,13 +11,14 @@ angular.module('Common')
     .directive('searchFilters', function ($compile, $parse) {
         return {
             restrict: 'A'
+            , replace:true
             , link: function (scope, element, attrs) {
 
-                var $filters = element.find('#filters');
+                var $filters = null;
+                $filters = element.find('#filters');
                 var templatesAvailable = element.find('.template', '.templates').not('.filter-chooser').length;
 
                 element.find('#filter-add').on('click', function (e) {
-
                     // Check if the button was pressed before selecting a filter
                     if ($filters.find('.template:last .filter-type').val() === '') {
                         return;
@@ -44,6 +45,9 @@ angular.module('Common')
                         .removeClass('filter-chooser')
                         .addClass('filter');
 
+                    if($filterChooser.length>1){
+                        $filterChooser = $($filterChooser[0]);
+                    }
                     // Remove filters already in use
                     $filterChooser
                         .find('option[data-template-type]')
@@ -51,7 +55,6 @@ angular.module('Common')
                             return filterInUse.indexOf(angular.element(this).data('template-type')) >= 0;
                         })
                         .remove();
-
                     $filterChooser.appendTo($filters)
                 }).click();
                 element.find('#filters').on('change', '.filter-type', function() {
@@ -60,7 +63,7 @@ angular.module('Common')
                     var filterType = $this.find(':selected').data('template-type');
 
                     angular.element('.qualifier', $filter).remove();
-                    var temp = $compile($('div.template.' + filterType).clone().addClass('qualifier'))(scope)
+                    var temp = $compile(angular.element('div.template.' + filterType).clone().addClass('qualifier'))(scope)
                     temp.appendTo($filter);
 
                     $this.find('option[value=""]').remove();
@@ -69,7 +72,7 @@ angular.module('Common')
                     $(this).closest('.filter').remove();
                     var qualifierList = $(this).closest('.filter').find('.qualifier').children('[data-ng-model]').map(function(){ return $(this).attr('data-ng-model') })
                     angular.forEach(qualifierList, function(qualifier, key){
-                        eval('scope.'+qualifier+'=null')
+                        eval('scope.'+qualifier+'=null');
                     })
                 });
             }

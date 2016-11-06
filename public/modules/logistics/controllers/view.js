@@ -73,7 +73,21 @@ angular.module('Logistics')
                 }
                 vm.getData(vm.pageno, vm.filterOpts);
             }
-            vm.genPo = function(){
+            vm.genPo = function(quote_id){
+                var data=angular.copy(CommonServices.postData);
+                data.factName = 'Quote q, QuoteDetail qd';
+                data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&q.po_no&q.po_is_split'
+                data.transactionMetaData.queryMetaData.joinClause = {
+                    'joinType':['JOIN'],'joinKeys':['q.quote_Id=qd.Quote_quote_Id']
+                }
+                data.transactionMetaData.queryMetaData.queryClause.andExpression = [{
+                    "propertyName": "q.quote_Id",
+                    "propertyValue": quote_id,
+                    "propertyDataType": "VARCHAR",
+                    "operatorType": "="
+                }];
+                DataService.post('inboundService', data).then(function (response) {
 
+                })
             }
         }])

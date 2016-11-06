@@ -1,0 +1,3184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.0.v201405191524 Build &lt;4.4.0.v20140606-1451></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">72</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">../library/reports.rptlibrary</property>
+            <property name="namespace">reports</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="contractNoteId" id="3136">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">%</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="type" id="3041">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">%</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="accountName" id="2768">
+            <text-property name="helpText">Enter Fund Manager</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">%</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="side" id="2799">
+            <text-property name="helpText">Order Side</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">%</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="statusid" id="2800">
+            <text-property name="helpText">Status</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">1,2,3,4,5,6</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="orderAggregation" id="2801">
+            <text-property name="helpText">Break</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">0</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="fromDate" id="2812">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="javascript">var pTradeDate=params["tradeDate"].split(":");
+var dDate = pTradeDate[0].split("/");
+dDate[2]+'-'+dDate[0]+'-'+dDate[1]</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="toDate" id="2814">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="javascript">var pTradeDate2=params["tradeDate"].split(":");
+var aDate = pTradeDate2[1].split("/");
+aDate[2]+'-'+aDate[0]+'-'+aDate[1];</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="currentLocale" id="2813">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="excludeAlertFee" id="3140">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="custodianId" id="3258">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">%</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="managerId" id="3259">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">%</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="accountId" id="3267">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">%</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="fundAliasId" id="3268">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">%</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="MySQL_DS" id="2940"
+ extends="reports.MySQL_DS"/>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="MySQL_ContractNoteSet" id="2760">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">CONTRACTNOTE_ID</property>
+                    <property name="alias">id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">ID</text-property>
+                    <text-property name="heading">ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ACCOUNTNAME_</property>
+                    <property name="alias">accountName</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Account Name</text-property>
+                    <text-property name="heading">Account Name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ACCOUNTNUMBER_</property>
+                    <property name="alias">accountNumber</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Account Number</text-property>
+                    <text-property name="heading">Account Number</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ACCOUNTADDRESS_</property>
+                    <property name="alias">accountAddress</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Address 1</text-property>
+                    <text-property name="heading">Address 1</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ADDRESSLINE2_</property>
+                    <property name="alias">addressLine2</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Address 2</text-property>
+                    <text-property name="heading">Address 2</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">MARKETCENTERORDERID_</property>
+                    <property name="alias">marketCenterOrderId</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Market Id</text-property>
+                    <text-property name="heading">Market Id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SECURITY_</property>
+                    <property name="alias">security</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Security</text-property>
+                    <text-property name="heading">Security</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PRICE_</property>
+                    <property name="alias">price</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Price</text-property>
+                    <text-property name="heading">Price</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SIDE_</property>
+                    <property name="alias">side</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Side</text-property>
+                    <text-property name="heading">Side</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">QUANTITY_</property>
+                    <property name="alias">quantity</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Quantity</text-property>
+                    <text-property name="heading">Quantity</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CONSIDERATION_</property>
+                    <property name="alias">consideration</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Consideration</text-property>
+                    <text-property name="heading">Consideration</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SECFEE_</property>
+                    <property name="alias">secFee</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">SEC Fee</text-property>
+                    <text-property name="heading">SEC Fee</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">NSEFEE_</property>
+                    <property name="alias">nseFee</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Total CSCS VAT</text-property>
+                    <text-property name="heading">NSE Fee</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CSCSFEE_</property>
+                    <property name="alias">cscsFee</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">CSCS Fee</text-property>
+                    <text-property name="heading">CSCS Fee</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CONTRACTSTAMP_</property>
+                    <property name="alias">contractStamp</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Contract Stamp</text-property>
+                    <text-property name="heading">Contract Stamp</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TRANSACTIONDESCRIPTION_</property>
+                    <property name="alias">transactionDescription</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Description</text-property>
+                    <text-property name="heading">Description</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">BROKERAGECOMISSION_</property>
+                    <property name="alias">brokerageComission</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Brokerage Comm</text-property>
+                    <text-property name="heading">Brokerage Comm</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TRADEDATE_</property>
+                    <property name="alias">tradeDate</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Trade Date</text-property>
+                    <text-property name="heading">Trade Date</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SETTLEMENTDATE_</property>
+                    <property name="alias">settlementDate</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Settlement Date</text-property>
+                    <text-property name="heading">Settlement Date</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TOTALFEEAMOUNT_</property>
+                    <property name="alias">totalFeeAmount</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Total CSCS</text-property>
+                    <text-property name="heading">Total Fee</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">VATONCOMISSION_</property>
+                    <property name="alias">vatOnComission</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">VAT on Comm.</text-property>
+                    <text-property name="heading">VAT on Comm.</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">NSEFEEVATCHARGE_</property>
+                    <property name="alias">nseFeeVATCharge</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">NSE VAT</text-property>
+                    <text-property name="heading">NSE VAT</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">VATONCSCSFEE_</property>
+                    <property name="alias">vatOnCSCSFee</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">CSCS VAT</text-property>
+                    <text-property name="heading">CSCS VAT</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ROLE_</property>
+                    <property name="alias">role</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">role</text-property>
+                    <text-property name="heading">role</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">OPENINGBALANCEPURCHASE_</property>
+                    <property name="alias">openingBalanceForPurchase</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Purchase Open Balance</text-property>
+                    <text-property name="heading">Purchase Open Balance</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CLOSINGBALANCEPURCHASE_</property>
+                    <property name="alias">closingBalanceForPurchase</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Purchase Close Balance</text-property>
+                    <text-property name="heading">Purchase Close Balance</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">OPENINGBALANCESALE_</property>
+                    <property name="alias">openingBalanceForSale</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Sale Open Balance</text-property>
+                    <text-property name="heading">Sale Open Balance</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CLOSINGBALANCESALE_</property>
+                    <property name="alias">closingBalanceForSale</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Sale Close Balance</text-property>
+                    <text-property name="heading">Sale Close Balance</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ACCOUNTCOUNTRY_</property>
+                    <property name="alias">accountCountry</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Country</text-property>
+                    <text-property name="heading">Country</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ACCOUNTCITY_</property>
+                    <property name="alias">accountCity</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Account City</text-property>
+                    <text-property name="heading">Account City</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ACCOUNTSTATE_</property>
+                    <property name="alias">accountState</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">State</text-property>
+                    <text-property name="heading">State</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CSCSALERTFEE_</property>
+                    <property name="alias">cscsAlertFee</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">CSCS Alert Fee</text-property>
+                    <text-property name="heading">CSCS Alert Fee</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">VATALERTFEE_</property>
+                    <property name="alias">vatAlertFee</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">VAT CSCS Alert Fee</text-property>
+                    <text-property name="heading">VAT CSCS Alert Fee</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ORDERID_</property>
+                    <property name="alias">orderNumber</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Order No.</text-property>
+                    <text-property name="heading">Order No.</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">type</property>
+                    <property name="paramName">type</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="javascript">params['type']</expression>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">accountName</property>
+                    <property name="paramName">accountName</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">orderSide</property>
+                    <property name="paramName">side</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">statusid</property>
+                    <property name="paramName">statusid</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">4</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">fromTradeDate</property>
+                    <property name="paramName">fromDate</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">5</property>
+                    <expression name="defaultValue" type="javascript">var pTradeDate=params["tradeDate"].split(":");
+var dDate = pTradeDate[0].split("/");
+dDate[2]+'-'+dDate[0]+'-'+dDate[1]</expression>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">toTradeDate</property>
+                    <property name="paramName">toDate</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">6</property>
+                    <expression name="defaultValue" type="javascript">var pTradeDate2=params["tradeDate"].split(":");
+var aDate = pTradeDate2[1].split("/");
+aDate[2]+'-'+aDate[0]+'-'+aDate[1];</expression>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">contractNoteId</property>
+                    <property name="paramName">contractNoteId</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">7</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">custodianId</property>
+                    <property name="paramName">custodianId</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">8</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">managerId</property>
+                    <property name="paramName">managerId</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">9</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">accountId</property>
+                    <property name="paramName">accountId</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">10</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">fundAliasId</property>
+                    <property name="paramName">fundAliasId</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">11</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">accountName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">accountNumber</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">accountAddress</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">addressLine2</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">marketCenterOrderId</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">security</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">price</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">side</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">quantity</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">consideration</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">secFee</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">nseFee</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">cscsFee</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">contractStamp</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">transactionDescription</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">brokerageComission</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">tradeDate</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">19</property>
+                        <property name="name">settlementDate</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">20</property>
+                        <property name="name">totalFeeAmount</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">21</property>
+                        <property name="name">vatOnComission</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">22</property>
+                        <property name="name">nseFeeVATCharge</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">23</property>
+                        <property name="name">vatOnCSCSFee</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">24</property>
+                        <property name="name">role</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">25</property>
+                        <property name="name">openingBalanceForPurchase</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">26</property>
+                        <property name="name">closingBalanceForPurchase</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">27</property>
+                        <property name="name">openingBalanceForSale</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">28</property>
+                        <property name="name">closingBalanceForSale</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">29</property>
+                        <property name="name">accountCountry</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">30</property>
+                        <property name="name">accountCity</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">31</property>
+                        <property name="name">accountState</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">32</property>
+                        <property name="name">cscsAlertFee</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">33</property>
+                        <property name="name">vatAlertFee</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">34</property>
+                        <property name="name">TOTALFEEAMOUNT__34</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">35</property>
+                        <property name="name">NSEFEE__35</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">36</property>
+                        <property name="name">orderNumber</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="onFetch"><![CDATA[var side;
+if(row["side"]=='Sell'){
+	side = 'Sale';
+}else{
+	side = 'Purchase';
+}
+reportContext.setPersistentGlobalVariable("rptTitle", side+" Contract Note");
+//vars["v_getTitle"] = side+" Contract note";]]></method>
+            <property name="dataSource">MySQL_DS</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">CONTRACTNOTE_ID</property>
+                    <property name="nativeName">CONTRACTNOTE_ID</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">ACCOUNTNAME_</property>
+                    <property name="nativeName">ACCOUNTNAME_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">ACCOUNTNUMBER_</property>
+                    <property name="nativeName">ACCOUNTNUMBER_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">ACCOUNTADDRESS_</property>
+                    <property name="nativeName">ACCOUNTADDRESS_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">ADDRESSLINE2_</property>
+                    <property name="nativeName">ADDRESSLINE2_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">MARKETCENTERORDERID_</property>
+                    <property name="nativeName">MARKETCENTERORDERID_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">SECURITY_</property>
+                    <property name="nativeName">SECURITY_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">PRICE_</property>
+                    <property name="nativeName">PRICE_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">SIDE_</property>
+                    <property name="nativeName">SIDE_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">QUANTITY_</property>
+                    <property name="nativeName">QUANTITY_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">CONSIDERATION_</property>
+                    <property name="nativeName">CONSIDERATION_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">SECFEE_</property>
+                    <property name="nativeName">SECFEE_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">NSEFEE_</property>
+                    <property name="nativeName">NSEFEE_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">CSCSFEE_</property>
+                    <property name="nativeName">CSCSFEE_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">CONTRACTSTAMP_</property>
+                    <property name="nativeName">CONTRACTSTAMP_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">TRANSACTIONDESCRIPTION_</property>
+                    <property name="nativeName">TRANSACTIONDESCRIPTION_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">BROKERAGECOMISSION_</property>
+                    <property name="nativeName">BROKERAGECOMISSION_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">18</property>
+                    <property name="name">TRADEDATE_</property>
+                    <property name="nativeName">TRADEDATE_</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+                <structure>
+                    <property name="position">19</property>
+                    <property name="name">SETTLEMENTDATE_</property>
+                    <property name="nativeName">SETTLEMENTDATE_</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+                <structure>
+                    <property name="position">20</property>
+                    <property name="name">TOTALFEEAMOUNT_</property>
+                    <property name="nativeName">TOTALFEEAMOUNT_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">21</property>
+                    <property name="name">VATONCOMISSION_</property>
+                    <property name="nativeName">VATONCOMISSION_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">22</property>
+                    <property name="name">NSEFEEVATCHARGE_</property>
+                    <property name="nativeName">NSEFEEVATCHARGE_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">23</property>
+                    <property name="name">VATONCSCSFEE_</property>
+                    <property name="nativeName">VATONCSCSFEE_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">24</property>
+                    <property name="name">ROLE_</property>
+                    <property name="nativeName">ROLE_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">25</property>
+                    <property name="name">OPENINGBALANCEPURCHASE_</property>
+                    <property name="nativeName">OPENINGBALANCEPURCHASE_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">26</property>
+                    <property name="name">CLOSINGBALANCEPURCHASE_</property>
+                    <property name="nativeName">CLOSINGBALANCEPURCHASE_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">27</property>
+                    <property name="name">OPENINGBALANCESALE_</property>
+                    <property name="nativeName">OPENINGBALANCESALE_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">28</property>
+                    <property name="name">CLOSINGBALANCESALE_</property>
+                    <property name="nativeName">CLOSINGBALANCESALE_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">29</property>
+                    <property name="name">ACCOUNTCOUNTRY_</property>
+                    <property name="nativeName">ACCOUNTCOUNTRY_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">30</property>
+                    <property name="name">ACCOUNTCITY_</property>
+                    <property name="nativeName">ACCOUNTCITY_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">31</property>
+                    <property name="name">ACCOUNTSTATE_</property>
+                    <property name="nativeName">ACCOUNTSTATE_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">32</property>
+                    <property name="name">CSCSALERTFEE_</property>
+                    <property name="nativeName">CSCSALERTFEE_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">33</property>
+                    <property name="name">VATALERTFEE_</property>
+                    <property name="nativeName">VATALERTFEE_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">34</property>
+                    <property name="name">TOTALFEEAMOUNT__34</property>
+                    <property name="nativeName">TOTALFEEAMOUNT_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">35</property>
+                    <property name="name">NSEFEE__35</property>
+                    <property name="nativeName">NSEFEE_</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">36</property>
+                    <property name="name">ORDERID_</property>
+                    <property name="nativeName">ORDERID_</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT c.CONTRACTNOTE_ID as ID, c.ACCOUNTNAME_ as 'Account Name', c.ACCOUNTNUMBER_ as 'Account Number', c.ACCOUNTADDRESS_ as 'Address 1'
+	, c.ADDRESSLINE2_ as 'Address 2', c.MARKETCENTERORDERID_ as 'Market Id', c.SECURITY_ as 'Security', c.PRICE_ as Price, c.SIDE_ as Side, c.QUANTITY_ as Quantity
+	, c.CONSIDERATION_ as Consideration, c.SECFEE_ as 'SEC Fee', c.NSEFEE_ as 'NSE Fee', c.CSCSFEE_ as 'CSCS Fee', c.CONTRACTSTAMP_ as 'Contract Stamp'
+	, c.TRANSACTIONDESCRIPTION_ as 'Description', c.BROKERAGECOMISSION_ as 'Brokerage Comm', c.TRADEDATE_ as 'Trade Date'
+	, c.SETTLEMENTDATE_ as 'Settlement Date', c.TOTALFEEAMOUNT_ as 'Total Fee', c.VATONCOMISSION_ as 'VAT on Comm.', c.NSEFEEVATCHARGE_ as 'NSE VAT'
+	, c.VATONCSCSFEE_ as 'CSCS VAT', c.ROLE_ as 'role', c.OPENINGBALANCEPURCHASE_ as 'Purchase Open Balance'
+	, c.CLOSINGBALANCEPURCHASE_ as 'Purchase Close Balance', c.OPENINGBALANCESALE_ as 'Sale Open Balance', c.CLOSINGBALANCESALE_ as 'Sale Close Balance'
+	, c.ACCOUNTCOUNTRY_ as 'Country', c.ACCOUNTCITY_ as 'Account City', c.ACCOUNTSTATE_ as 'State'
+	, c.CSCSALERTFEE_ as 'CSCS Alert Fee', c.VATALERTFEE_ as 'VAT CSCS Alert Fee', c.TOTALFEEAMOUNT_ as 'Total CSCS', c.NSEFEE_ as 'Total CSCS VAT'
+	, c.ORDERID_ as 'Order No.'
+FROM CONTRACTNOTE_ c
+WHERE IFNULL(c.TYPE_,1) LIKE ? AND IFNULL(c.ACCOUNTNAME_,1) LIKE CONCAT('%',?,'%') 
+	AND IFNULL(c.SIDE_,1) LIKE ? AND FIND_IN_SET(c.STATUS_ID,?) 
+	AND c.TRADEDATE_ BETWEEN ? AND ? AND IFNULL(c.CONTRACTNOTE_ID,1) LIKE ?
+	AND IFNULL(c.CUSTODIAN_ID,1) LIKE ? AND IFNULL(c.MANAGER_ID,1) LIKE ?
+	AND IFNULL(c.ACCOUNT_ID,1) LIKE ? AND IFNULL(c.FUNDALIAS_ID,1) LIKE ?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>4</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>5</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>6</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>7</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>8</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>9</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>10</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>11</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>CONTRACTNOTE_ID</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ID</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ID</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ACCOUNTNAME_</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Account Name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Account Name</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ACCOUNTNUMBER_</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Account Number</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Account Number</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ACCOUNTADDRESS_</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Address 1</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Address 1</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ADDRESSLINE2_</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Addess 2</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Addess 2</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>MARKETCENTERORDERID_</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Market Id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Market Id</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SECURITY_</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Security</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Security</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PRICE_</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>8</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Price</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Price</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SIDE_</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Side</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Side</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>QUANTITY_</design:name>
+              <design:position>10</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Quantity</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Quantity</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>CONSIDERATION_</design:name>
+              <design:position>11</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Consideration</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Consideration</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SECFEE_</design:name>
+              <design:position>12</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>SEC Fee</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>SEC Fee</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>NSEFEE_</design:name>
+              <design:position>13</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>NSE Fee</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>NSE Fee</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>CSCSFEE_</design:name>
+              <design:position>14</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>CSCS Fee</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>CSCS Fee</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>CONTRACTSTAMP_</design:name>
+              <design:position>15</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Contract Stamp</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Contract Stamp</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TRANSACTIONDESCRIPTION_</design:name>
+              <design:position>16</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Description</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Description</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>BROKERAGECOMISSION_</design:name>
+              <design:position>17</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Brokerage Comm</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Brokerage Comm</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TRADEDATE_</design:name>
+              <design:position>18</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Trade Date</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Trade Date</design:label>
+            <design:formattingHints>
+              <design:displaySize>19</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SETTLEMENTDATE_</design:name>
+              <design:position>19</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Settlement Date</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Settlement Date</design:label>
+            <design:formattingHints>
+              <design:displaySize>19</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TOTALFEEAMOUNT_</design:name>
+              <design:position>20</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Total Fee</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Total Fee</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>VATONCOMISSION_</design:name>
+              <design:position>21</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>VAT on Comm.</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>VAT on Comm.</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>NSEFEEVATCHARGE_</design:name>
+              <design:position>22</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>NSE VAT</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>NSE VAT</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>VATONCSCSFEE_</design:name>
+              <design:position>23</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>CSCS VAT</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>CSCS VAT</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ACCOUNTCOUNTRY_</design:name>
+              <design:position>24</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Country</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Country</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ACCOUNTCITY_</design:name>
+              <design:position>25</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Account City</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Account City</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ACCOUNTSTATE_</design:name>
+              <design:position>26</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>State</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>State</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>CSCSALERTFEE_</design:name>
+              <design:position>27</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>CSCS Alert Fee</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>CSCS Alert Fee</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>VATALERTFEE_</design:name>
+              <design:position>28</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>VAT CSCS Alert Fee</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>VAT CSCS Alert Fee</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TOTALFEEAMOUNT_</design:name>
+              <design:position>29</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Total CSCS</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Total CSCS</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>NSEFEE_</design:name>
+              <design:position>30</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Total CSCS VAT</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Total CSCS VAT</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="alternatingRows" id="3244">
+            <property name="backgroundColor">#EEECED</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="NewSimpleMasterPage" id="2941" extends="reports.NewSimpleMasterPage">
+            <property name="type">a4</property>
+            <property name="orientation">landscape</property>
+            <overridden-values>
+                <ref-entry baseId="2823" name="NewGrid2" id="2823">
+                    <property name="dataSet">MySQL_ContractNoteSet</property>
+                </ref-entry>
+                <ref-entry baseId="2824" id="2824"/>
+                <ref-entry baseId="2905" id="2905"/>
+                <ref-entry baseId="2825" id="2825"/>
+                <ref-entry baseId="2826" id="2826"/>
+                <ref-entry baseId="2984" name="Company Logo1" id="3260"/>
+                <ref-entry baseId="2903" id="2903"/>
+                <ref-entry baseId="3196" name="NewGrid1" id="3196"/>
+                <ref-entry baseId="3197" id="3197">
+                    <property name="width">4.791666666666667in</property>
+                </ref-entry>
+                <ref-entry baseId="3198" id="3198">
+                    <property name="width">3.3333333333333335in</property>
+                </ref-entry>
+                <ref-entry baseId="3244" id="3261"/>
+                <ref-entry baseId="3245" id="3262"/>
+                <ref-entry baseId="3246" id="3263"/>
+                <ref-entry baseId="3247" name="Report Title1" id="3247">
+                    <method name="onRender"><![CDATA[this.text = reportContext.getPersistentGlobalVariable("rptTitle").toUpperCase();
+//this.text = vars["v_getTitle"].toUpperCase();]]></method>
+                </ref-entry>
+                <ref-entry baseId="3199" id="3199"/>
+                <ref-entry baseId="3200" id="3200"/>
+                <ref-entry baseId="3201" id="3201"/>
+                <ref-entry baseId="3202" name="NewText4" id="3202">
+                    <property name="content">&amp;nbsp;</property>
+                    <property name="contentType">html</property>
+                </ref-entry>
+                <ref-entry baseId="2922" id="2922"/>
+                <ref-entry baseId="2923" id="2923"/>
+                <ref-entry baseId="2925" name="NewText5" id="2925"/>
+                <ref-entry baseId="2979" name="NewText51" id="3264"/>
+                <ref-entry baseId="2893" id="2893"/>
+                <ref-entry baseId="2894" id="2894"/>
+                <ref-entry baseId="2895" name="NewText11" id="2895"/>
+                <ref-entry baseId="2827" name="NewGrid" id="2827"/>
+                <ref-entry baseId="2828" id="2828"/>
+                <ref-entry baseId="2890" id="2890"/>
+                <ref-entry baseId="2891" id="2891"/>
+                <ref-entry baseId="2892" name="NewText" id="2892"/>
+                <ref-entry baseId="2829" id="2829"/>
+                <ref-entry baseId="2830" id="2830"/>
+                <ref-entry baseId="2833" name="NewText1" id="2833"/>
+                <ref-entry baseId="2831" id="2831"/>
+                <ref-entry baseId="2832" id="2832"/>
+                <ref-entry baseId="2834" name="NewText2" id="2834"/>
+                <ref-entry baseId="3010" id="3265"/>
+                <ref-entry baseId="3011" id="3266"/>
+                <ref-entry baseId="3243" name="NewText61" id="3243"/>
+                <ref-entry baseId="3227" name="NewAutoText" id="3227"/>
+                <ref-entry baseId="3229" name="NewText6" id="3229"/>
+                <ref-entry baseId="3231" name="NewAutoText1" id="3231"/>
+            </overridden-values>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <list id="2835">
+            <property name="fontFamily">"Corbel"</property>
+            <property name="dataSet">MySQL_ContractNoteSet</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">accountName</property>
+                    <text-property name="displayName">Account Name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["accountName"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">accountAddress</property>
+                    <text-property name="displayName">Address 1</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["accountAddress"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">addressLine2</property>
+                    <text-property name="displayName">Address 2</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["addressLine2"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">accountCity</property>
+                    <text-property name="displayName">Account City</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["accountCity"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">accountCountry</property>
+                    <text-property name="displayName">Country</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["accountCountry"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">orderNumber</property>
+                    <text-property name="displayName">Order No.</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["orderNumber"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">tradeDate</property>
+                    <text-property name="displayName">Trade Date</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["tradeDate"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">settlementDate</property>
+                    <text-property name="displayName">Settlement Date</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["settlementDate"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">accountState</property>
+                    <text-property name="displayName">State</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["accountState"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">openBalance</property>
+                    <property name="dataType">decimal</property>
+                    <property name="aggregateFunction">FIRST</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">if(params['side']=='Buy'){
+	dataSetRow["openingBalanceForPurchase"]
+}else	{
+	dataSetRow["openingBalanceForSale"]
+}</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">closingBal</property>
+                    <expression name="expression" type="javascript">if(params['side']=='Buy'){
+	Total.max(dataSetRow["openingBalanceForPurchase"]) - Total.sum(dataSetRow["totalFeeAmount"])
+}else	{
+	Total.max(dataSetRow["openingBalanceForSale"]) + Total.sum(dataSetRow["totalFeeAmount"])
+}</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Purchase Open Balance</property>
+                    <text-property name="displayName">Purchase Open Balance</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["openingBalanceForSale"]</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Purchase Close Balance</property>
+                    <text-property name="displayName">Purchase Close Balance</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["closingBalanceForPurchase"]</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Sale Open Balance</property>
+                    <text-property name="displayName">Sale Open Balance</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["openingBalanceForSale"]</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Sale Close Balance</property>
+                    <text-property name="displayName">Sale Close Balance</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["closingBalanceForSale"]</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Total Fee</property>
+                    <text-property name="displayName">Total Fee</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["totalFeeAmount"]</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">role</property>
+                    <text-property name="displayName">role</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["role"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <header>
+                <grid id="2844">
+                    <property name="fontFamily">"Corbel"</property>
+                    <property name="fontSize">8pt</property>
+                    <property name="width">100%</property>
+                    <column id="2845">
+                        <property name="width">7.680555555555555in</property>
+                    </column>
+                    <column id="2846">
+                        <property name="width">5.166666666666667in</property>
+                    </column>
+                    <row id="2847">
+                        <property name="fontFamily">"Corbel"</property>
+                        <property name="fontSize">9pt</property>
+                        <cell id="2848">
+                            <property name="fontSize">8pt</property>
+                            <text id="3066">
+                                <property name="fontFamily">"Corbel"</property>
+                                <property name="display">block</property>
+                                <list-property name="visibility">
+                                    <structure>
+                                        <property name="format">all</property>
+                                        <expression name="valueExpr" type="javascript">params['currentLocale'] != "GH"</expression>
+                                    </structure>
+                                </list-property>
+                                <structure name="toc"/>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<div style="line-height:11px;">
+Acting As <value-of>row["role"]</value-of> 
+<br>By The Order Of:<br>
+<value-of format="HTML">row["accountName"]</value-of>
+<value-of format="HTML">if(row["accountAddress"]=="" || row["accountAddress"]==null){"";}else{"<br>"+row["accountAddress"];}</value-of>
+<value-of format="HTML">if(row["addressLine2"]=="" || row["addressLine2"]==null){"";}else{"<br>"+row["addressLine2"];}</value-of>
+<value-of format="HTML">if(row["accountCity"]=="" || row["accountCity"]==null){"";}else{"<br>"+row["accountCity"];}</value-of>
+<value-of format="HTML">if(row["accountState"]=="" || row["accountState"]==null){"";}else{", "+row["accountState"];}</value-of>
+<value-of format="HTML">if(row["accountCountry"]=="" || row["accountCountry"]==null){"";}else{"<br>"+row["accountCountry"];}</value-of><br>
+</div>]]></text-property>
+                            </text>
+                            <text id="2867">
+                                <property name="fontFamily">"Corbel"</property>
+                                <property name="display">block</property>
+                                <list-property name="visibility">
+                                    <structure>
+                                        <property name="format">all</property>
+                                        <expression name="valueExpr" type="javascript">params['currentLocale'] != "NG"</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<div style="line-height:11px;">By The Order Of:<br>
+<value-of format="HTML">row["accountName"]</value-of>
+<value-of format="HTML">if(row["accountAddress"]=="" || row["accountAddress"]==null){"";}else{"<br>"+row["accountAddress"];}</value-of>
+<value-of format="HTML">if(row["addressLine2"]=="" || row["addressLine2"]==null){"";}else{"<br>"+row["addressLine2"];}</value-of>
+<value-of format="HTML">if(row["accountCity"]=="" || row["accountCity"]==null){"";}else{"<br>"+row["accountCity"];}</value-of>
+<value-of format="HTML">if(row["accountState"]=="" || row["accountState"]==null){"";}else{", "+row["accountState"];}</value-of>
+<value-of format="HTML">if(row["accountCountry"]=="" || row["accountCountry"]==null){"";}else{"<br>"+row["accountCountry"];}</value-of><br>
+</div>]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="2849">
+                            <grid id="2868">
+                                <property name="fontFamily">"Corbel"</property>
+                                <property name="fontSize">8pt</property>
+                                <property name="textAlign">left</property>
+                                <property name="height">2.236111111111111in</property>
+                                <property name="width">3.1805555555555554in</property>
+                                <column id="2869">
+                                    <property name="width">2.9027777777777777in</property>
+                                </column>
+                                <column id="2870">
+                                    <property name="width">0.2777777777777778in</property>
+                                </column>
+                                <row id="2874">
+                                    <cell id="2875">
+                                        <property name="colSpan">2</property>
+                                        <property name="rowSpan">1</property>
+                                        <text id="2887">
+                                            <property name="textAlign">left</property>
+                                            <property name="display">inline</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[TRADE DATE:&amp;nbsp;&amp;nbsp;]]></text-property>
+                                        </text>
+                                        <data id="2897">
+                                            <structure name="dateTimeFormat">
+                                                <property name="category">Medium Date</property>
+                                                <property name="pattern">Medium Date</property>
+                                            </structure>
+                                            <property name="display">inline</property>
+                                            <property name="resultSetColumn">tradeDate</property>
+                                        </data>
+                                    </cell>
+                                </row>
+                                <row id="2877">
+                                    <cell id="2878">
+                                        <property name="colSpan">2</property>
+                                        <property name="rowSpan">1</property>
+                                        <text id="2888">
+                                            <property name="display">inline</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[SETTLEMENT DATE:&amp;nbsp;&amp;nbsp;]]></text-property>
+                                        </text>
+                                        <data id="2898">
+                                            <structure name="dateTimeFormat">
+                                                <property name="category">Medium Date</property>
+                                                <property name="pattern">Medium Date</property>
+                                            </structure>
+                                            <property name="display">inline</property>
+                                            <property name="resultSetColumn">settlementDate</property>
+                                        </data>
+                                    </cell>
+                                </row>
+                                <row id="2880">
+                                    <cell id="2881">
+                                        <property name="colSpan">2</property>
+                                        <property name="rowSpan">1</property>
+                                        <text id="2889">
+                                            <property name="display">inline</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[CURRENCY:&amp;nbsp;&amp;nbsp;<value-of format="HTML">if(params["currentLocale"]=="NG"){"NGN";}else{"GHC";}</value-of> <br><br>]]></text-property>
+                                        </text>
+                                    </cell>
+                                </row>
+                                <row id="3088">
+                                    <list-property name="visibility">
+                                        <structure>
+                                            <property name="format">all</property>
+                                            <expression name="valueExpr" type="javascript">params['currentLocale'] != "GH"</expression>
+                                        </structure>
+                                    </list-property>
+                                    <cell id="3089">
+                                        <property name="colSpan">2</property>
+                                        <property name="rowSpan">1</property>
+                                    </cell>
+                                </row>
+                                <row id="3091">
+                                    <list-property name="visibility">
+                                        <structure>
+                                            <property name="format">all</property>
+                                            <expression name="valueExpr" type="javascript">params['currentLocale'] != "GH"</expression>
+                                        </structure>
+                                    </list-property>
+                                    <cell id="3092">
+                                        <property name="colSpan">2</property>
+                                        <property name="rowSpan">1</property>
+                                        <text id="3245">
+                                            <property name="display">inline</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[BALANCE BEFORE TRANSACTION:&amp;nbsp;&amp;nbsp;]]></text-property>
+                                        </text>
+                                        <data id="3100">
+                                            <structure name="numberFormat">
+                                                <property name="category">Currency</property>
+                                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                            </structure>
+                                            <property name="display">inline</property>
+                                            <property name="resultSetColumn">openBalance</property>
+                                        </data>
+                                    </cell>
+                                </row>
+                                <row id="3094">
+                                    <list-property name="visibility">
+                                        <structure>
+                                            <property name="format">all</property>
+                                            <expression name="valueExpr" type="javascript">params['currentLocale'] != "GH"</expression>
+                                        </structure>
+                                    </list-property>
+                                    <cell id="3095">
+                                        <property name="colSpan">2</property>
+                                        <property name="rowSpan">1</property>
+                                        <text id="3246">
+                                            <property name="display">inline</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[BALANCE AFTER TRANSACTION:&amp;nbsp;&amp;nbsp;]]></text-property>
+                                        </text>
+                                        <data id="3038">
+                                            <structure name="numberFormat">
+                                                <property name="category">Currency</property>
+                                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                            </structure>
+                                            <property name="display">inline</property>
+                                            <property name="resultSetColumn">closingBal</property>
+                                        </data>
+                                    </cell>
+                                </row>
+                            </grid>
+                        </cell>
+                    </row>
+                    <row id="2854">
+                        <property name="fontFamily">"Corbel"</property>
+                        <property name="fontSize">9pt</property>
+                        <cell id="2855">
+                            <property name="colSpan">2</property>
+                            <property name="rowSpan">1</property>
+                            <text id="2862">
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[&amp;nbsp;]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                </grid>
+                <table name="AllContractNote1" id="2943">
+                    <property name="fontFamily">"Corbel"</property>
+                    <property name="fontSize">9pt</property>
+                    <property name="verticalAlign">middle</property>
+                    <property name="width">100%</property>
+                    <property name="dataSet">MySQL_ContractNoteSet</property>
+                    <list-property name="boundDataColumns">
+                        <structure>
+                            <property name="name">id</property>
+                            <text-property name="displayName">ID</text-property>
+                            <expression name="expression">dataSetRow["id"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">accountName</property>
+                            <text-property name="displayName">Account Name</text-property>
+                            <expression name="expression">dataSetRow["accountName"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">accountNumber</property>
+                            <text-property name="displayName">Account Number</text-property>
+                            <expression name="expression">dataSetRow["accountNumber"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">accountAddress</property>
+                            <text-property name="displayName">Address 1</text-property>
+                            <expression name="expression">dataSetRow["accountAddress"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">addressLine2</property>
+                            <text-property name="displayName">Address 2</text-property>
+                            <expression name="expression">dataSetRow["addressLine2"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">marketCenterOrderId</property>
+                            <text-property name="displayName">Market Id</text-property>
+                            <expression name="expression">dataSetRow["marketCenterOrderId"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">security</property>
+                            <text-property name="displayName">Security</text-property>
+                            <expression name="expression">dataSetRow["security"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">price</property>
+                            <text-property name="displayName">Price</text-property>
+                            <expression name="expression">dataSetRow["price"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">side</property>
+                            <text-property name="displayName">Side</text-property>
+                            <expression name="expression">dataSetRow["side"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">quantity</property>
+                            <text-property name="displayName">Quantity</text-property>
+                            <expression name="expression">dataSetRow["quantity"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">consideration</property>
+                            <text-property name="displayName">Consideration</text-property>
+                            <expression name="expression">dataSetRow["consideration"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">secFee</property>
+                            <text-property name="displayName">SEC Fee</text-property>
+                            <expression name="expression">dataSetRow["secFee"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">nseFee</property>
+                            <text-property name="displayName">NSE fee</text-property>
+                            <expression name="expression">dataSetRow["nseFee"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">cscsFee</property>
+                            <text-property name="displayName">CSCS Fee</text-property>
+                            <expression name="expression" type="javascript">if(params["excludeAlertFee"]=='true' &amp;&amp; dataSetRow["side"]=='Buy'){
+	0;
+}else if (params["excludeAlertFee"]=='true' &amp;&amp; dataSetRow["side"]=='Sell'){
+	dataSetRow["cscsFee"] ;
+}else{
+	dataSetRow["cscsFee"] + dataSetRow["cscsAlertFee"] +dataSetRow["vatOnCSCSFee"] + dataSetRow["vatAlertFee"];
+}</expression>
+                            <property name="dataType">decimal</property>
+                            <property name="allowExport">true</property>
+                        </structure>
+                        <structure>
+                            <property name="name">contractStamp</property>
+                            <text-property name="displayName">Contract Stamp</text-property>
+                            <expression name="expression">dataSetRow["contractStamp"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">transactionDescription</property>
+                            <text-property name="displayName">Description</text-property>
+                            <expression name="expression">dataSetRow["transactionDescription"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">brokerageComission</property>
+                            <text-property name="displayName">Brokerage Comm.</text-property>
+                            <expression name="expression">dataSetRow["brokerageComission"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">tradeDate</property>
+                            <text-property name="displayName">Trade Date</text-property>
+                            <expression name="expression">dataSetRow["tradeDate"]</expression>
+                            <property name="dataType">date</property>
+                        </structure>
+                        <structure>
+                            <property name="name">settlementDate</property>
+                            <text-property name="displayName">Settlement Date</text-property>
+                            <expression name="expression">dataSetRow["settlementDate"]</expression>
+                            <property name="dataType">date</property>
+                        </structure>
+                        <structure>
+                            <property name="name">totalFeeAmount</property>
+                            <text-property name="displayName">Total Fee</text-property>
+                            <expression name="expression" type="javascript">if(params["excludeAlertFee"]=='true' &amp;&amp; dataSetRow["side"]=='Buy'){
+	dataSetRow["totalFeeAmount"] - (dataSetRow["vatAlertFee"]+row["cscsAlertFee"]);
+}else if (params["excludeAlertFee"]=='true' &amp;&amp; dataSetRow["side"]=='Sell'){
+	dataSetRow["totalFeeAmount"] + dataSetRow["vatAlertFee"] + row["cscsAlertFee"];
+}else{
+	dataSetRow["totalFeeAmount"];
+}</expression>
+                            <property name="dataType">decimal</property>
+                            <property name="allowExport">true</property>
+                        </structure>
+                        <structure>
+                            <property name="name">vatOnComission</property>
+                            <text-property name="displayName">VAT on Comm.</text-property>
+                            <expression name="expression">dataSetRow["vatOnComission"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">nseFeeVATCharge</property>
+                            <text-property name="displayName">NSE VAT</text-property>
+                            <expression name="expression">dataSetRow["nseFeeVATCharge"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">vatOnCSCSFee</property>
+                            <text-property name="displayName">CSCS VAT</text-property>
+                            <expression name="expression">dataSetRow["vatOnCSCSFee"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">role</property>
+                            <text-property name="displayName">Role</text-property>
+                            <expression name="expression">dataSetRow["role"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">openingBalanceForPurchase</property>
+                            <text-property name="displayName">Open Balance</text-property>
+                            <expression name="expression" type="javascript">if(params['side']=='Buy'){
+	dataSetRow["openingBalanceForPurchase"];
+}else	{
+	dataSetRow["openingBalanceForSale"];
+}</expression>
+                            <property name="dataType">decimal</property>
+                            <property name="allowExport">true</property>
+                        </structure>
+                        <structure>
+                            <property name="name">closingBalanceForPurchase</property>
+                            <text-property name="displayName">Purchase Close Balance</text-property>
+                            <expression name="expression" type="javascript">if(params['side']=='Buy'){
+	dataSetRow["closingBalanceForPurchase"];
+}else	{
+	//dataSetRow["closingBalanceForSale"];
+	//Total.max(row["openingBalanceSale"]) + Total.sum(row["totalFeeAmount"])
+	Total.max(row["openingBalanceForSale"]) + Total.sum(row["totalFeeAmount"])
+}</expression>
+                            <property name="dataType">decimal</property>
+                            <property name="allowExport">true</property>
+                        </structure>
+                        <structure>
+                            <property name="name">openingBalanceForSale</property>
+                            <text-property name="displayName">Sale Open Balance</text-property>
+                            <expression name="expression">dataSetRow["openingBalanceForSale"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">closingBalanceForSale</property>
+                            <text-property name="displayName">Sale Close Balance</text-property>
+                            <expression name="expression">dataSetRow["closingBalanceForSale"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">accountCountry</property>
+                            <text-property name="displayName">Country</text-property>
+                            <expression name="expression">dataSetRow["accountCountry"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">subNetAmount</property>
+                            <text-property name="displayName">SubNet</text-property>
+                            <property name="dataType">decimal</property>
+                            <property name="aggregateFunction">SUM</property>
+                            <list-property name="arguments">
+                                <structure>
+                                    <property name="name">Expression</property>
+                                    <expression name="value">row["totalFeeAmount"]</expression>
+                                </structure>
+                            </list-property>
+                        </structure>
+                        <structure>
+                            <property name="name">subT</property>
+                            <text-property name="displayName">Sub Title</text-property>
+                            <expression name="expression">"Total "+row["side"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">totalSell</property>
+                            <property name="dataType">decimal</property>
+                            <property name="aggregateFunction">SUM</property>
+                            <list-property name="arguments">
+                                <structure>
+                                    <property name="name">Expression</property>
+                                    <expression name="value">row["totalFeeAmount"]</expression>
+                                </structure>
+                            </list-property>
+                            <expression name="filterExpr">BirtComp.equalTo(row["side"],"Sell")</expression>
+                        </structure>
+                        <structure>
+                            <property name="name">totalBuy</property>
+                            <property name="dataType">decimal</property>
+                            <property name="aggregateFunction">SUM</property>
+                            <list-property name="arguments">
+                                <structure>
+                                    <property name="name">Expression</property>
+                                    <expression name="value">row["totalFeeAmount"]</expression>
+                                </structure>
+                            </list-property>
+                            <expression name="filterExpr">BirtComp.equalTo(row["side"],"Buy")</expression>
+                        </structure>
+                        <structure>
+                            <property name="name">netTotal</property>
+                            <text-property name="displayName">net</text-property>
+                            <expression name="expression">row["totalSell"] - row["totalBuy"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">orderNumber</property>
+                            <text-property name="displayName">Order No.</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["orderNumber"]</expression>
+                            <property name="dataType">string</property>
+                            <property name="allowExport">true</property>
+                        </structure>
+                        <structure>
+                            <property name="name">sumConsideration</property>
+                            <property name="dataType">float</property>
+                            <property name="aggregateFunction">SUM</property>
+                            <list-property name="arguments">
+                                <structure>
+                                    <property name="name">Expression</property>
+                                    <expression name="value" type="javascript">row["consideration"]</expression>
+                                </structure>
+                            </list-property>
+                            <property name="allowExport">true</property>
+                        </structure>
+                        <structure>
+                            <property name="name">sumCommission</property>
+                            <property name="dataType">float</property>
+                            <property name="aggregateFunction">SUM</property>
+                            <list-property name="arguments">
+                                <structure>
+                                    <property name="name">Expression</property>
+                                    <expression name="value" type="javascript">row["brokerageComission"]</expression>
+                                </structure>
+                            </list-property>
+                            <property name="allowExport">true</property>
+                        </structure>
+                        <structure>
+                            <property name="name">sumContractStamp</property>
+                            <property name="dataType">float</property>
+                            <property name="aggregateFunction">SUM</property>
+                            <list-property name="arguments">
+                                <structure>
+                                    <property name="name">Expression</property>
+                                    <expression name="value" type="javascript">row["contractStamp"]</expression>
+                                </structure>
+                            </list-property>
+                            <property name="allowExport">true</property>
+                        </structure>
+                        <structure>
+                            <property name="name">sumSecFee</property>
+                            <property name="dataType">float</property>
+                            <property name="aggregateFunction">SUM</property>
+                            <list-property name="arguments">
+                                <structure>
+                                    <property name="name">Expression</property>
+                                    <expression name="value" type="javascript">row["secFee"]</expression>
+                                </structure>
+                            </list-property>
+                            <property name="allowExport">true</property>
+                        </structure>
+                        <structure>
+                            <property name="name">sumNseFee</property>
+                            <property name="dataType">float</property>
+                            <property name="aggregateFunction">SUM</property>
+                            <list-property name="arguments">
+                                <structure>
+                                    <property name="name">Expression</property>
+                                    <expression name="value" type="javascript">row["nseFee"]</expression>
+                                </structure>
+                            </list-property>
+                            <property name="allowExport">true</property>
+                        </structure>
+                        <structure>
+                            <property name="name">sumCscsFee</property>
+                            <property name="dataType">float</property>
+                            <property name="aggregateFunction">SUM</property>
+                            <list-property name="arguments">
+                                <structure>
+                                    <property name="name">Expression</property>
+                                    <expression name="value" type="javascript">row["cscsFee"]</expression>
+                                </structure>
+                            </list-property>
+                            <property name="allowExport">true</property>
+                        </structure>
+                        <structure>
+                            <property name="name">closeBalX</property>
+                            <text-property name="displayName">Purchase Close Balance</text-property>
+                            <expression name="expression" type="javascript">if(params['side']=='Buy'){
+	//dataSetRow["closingBalanceForPurchase"];
+	//Total.max(row["openingBalancePurchase"]) - Total.sum(row["totalFeeAmount"])
+}else	{
+	//dataSetRow["closingBalanceForSale"];
+	//Total.max(row["openingBalanceSale"]) + Total.sum(row["totalFeeAmount"])
+	Total.max(row["openingBalanceForSale"]) + Total.sum(row["totalFeeAmount"])
+}</expression>
+                            <property name="dataType">decimal</property>
+                            <property name="allowExport">true</property>
+                        </structure>
+                        <structure>
+                            <property name="name">closingBal</property>
+                            <text-property name="displayName">Purchase Close Balance</text-property>
+                            <expression name="expression" type="javascript">if(params['side']=='Buy'){
+	//dataSetRow["closingBalanceForPurchase"];
+	//Total.max(row["openingBalancePurchase"]) - Total.sum(row["totalFeeAmount"])
+	Total.max(row["openingBalanceForPurchase"]) - Total.sum(row["totalFeeAmount"])
+}else	{
+	//dataSetRow["closingBalanceForSale"];
+	//Total.max(row["openingBalanceSale"]) + Total.sum(row["totalFeeAmount"])
+	Total.max(row["openingBalanceForSale"]) + Total.sum(row["totalFeeAmount"])
+}</expression>
+                            <property name="dataType">decimal</property>
+                            <property name="allowExport">true</property>
+                        </structure>
+                        <structure>
+                            <property name="name">vatAlertFee</property>
+                            <text-property name="displayName">VAT CSCS Alert Fee</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["vatAlertFee"]</expression>
+                            <property name="dataType">decimal</property>
+                            <property name="allowExport">true</property>
+                        </structure>
+                        <structure>
+                            <property name="name">cscsAlertFee</property>
+                            <expression name="expression" type="javascript">dataSetRow["cscsAlertFee"]</expression>
+                            <property name="dataType">decimal</property>
+                            <property name="allowExport">true</property>
+                        </structure>
+                    </list-property>
+                    <column id="3010">
+                        <property name="textAlign">left</property>
+                        <property name="width">0.8in</property>
+                    </column>
+                    <column id="3011">
+                        <property name="textAlign">left</property>
+                        <property name="width">0.9861111111111112in</property>
+                    </column>
+                    <column id="3012">
+                        <property name="fontSize">9px</property>
+                        <property name="textAlign">right</property>
+                        <property name="width">0.8in</property>
+                    </column>
+                    <column id="3013">
+                        <property name="fontSize">9px</property>
+                        <property name="textAlign">right</property>
+                        <property name="width">0.7in</property>
+                    </column>
+                    <column id="3014">
+                        <property name="fontSize">9px</property>
+                        <property name="textAlign">right</property>
+                        <property name="width">1in</property>
+                    </column>
+                    <column id="3015">
+                        <property name="fontSize">9px</property>
+                        <property name="textAlign">right</property>
+                        <property name="width">0.8in</property>
+                    </column>
+                    <column id="3016">
+                        <property name="fontSize">9px</property>
+                        <property name="textAlign">right</property>
+                        <property name="width">1in</property>
+                    </column>
+                    <column id="3017">
+                        <property name="fontSize">9px</property>
+                        <property name="textAlign">right</property>
+                        <property name="width">0.5in</property>
+                    </column>
+                    <column id="3018">
+                        <property name="fontSize">9px</property>
+                        <property name="textAlign">right</property>
+                        <property name="width">0.5in</property>
+                    </column>
+                    <column id="3019">
+                        <property name="fontSize">9px</property>
+                        <property name="textAlign">right</property>
+                        <property name="width">0.5in</property>
+                    </column>
+                    <column id="3020">
+                        <property name="fontSize">9px</property>
+                        <property name="textAlign">right</property>
+                        <property name="width">1in</property>
+                    </column>
+                    <header>
+                        <row id="2944">
+                            <property name="fontSize">9px</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="borderBottomColor">#63666A</property>
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">1px</property>
+                            <property name="borderLeftStyle">none</property>
+                            <property name="borderRightStyle">none</property>
+                            <property name="borderTopColor">#63666A</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">1px</property>
+                            <cell id="2945">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <label id="2946">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <text-property name="text">ORDER NO.</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2947">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <label id="2948">
+                                    <text-property name="text">SECURITY</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2949">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <label id="2950">
+                                    <text-property name="text">UNIT PRICE</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2951">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <label id="2952">
+                                    <text-property name="text">QUANTITY</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2953">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <label id="2954">
+                                    <text-property name="text">CONSIDERATION</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2955">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <label id="2956">
+                                    <text-property name="text">COMMISSION</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2957">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <text-data id="3101">
+                                    <property name="display">inline</property>
+                                    <expression name="valueExpr">(params['currentLocale'] == "GH") ? 'MARKET LEVY' : 'CONTRACT STAMP'</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                            </cell>
+                            <cell id="2959">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <text-data id="3083">
+                                    <property name="display">inline</property>
+                                    <expression name="valueExpr">(params['currentLocale'] == "GH") ? 'SEC LEVY' : 'SEC FEE'</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                            </cell>
+                            <cell id="2961">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <text-data id="3084">
+                                    <expression name="valueExpr">(params['currentLocale'] == "GH") ? 'GSE LEVY' : 'NSE FEE'</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                            </cell>
+                            <cell id="2963">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <text-data id="3085">
+                                    <expression name="valueExpr">(params['currentLocale'] == "GH") ? 'GSD LEVY' : 'CSCS FEE'</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                            </cell>
+                            <cell id="2965">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <label id="2966">
+                                    <text-property name="text">NET AMOUNT</text-property>
+                                </label>
+                            </cell>
+                        </row>
+                    </header>
+                    <detail>
+                        <row id="2967">
+                            <property name="fontSize">9px</property>
+                            <list-property name="highlightRules">
+                                <structure>
+                                    <property name="operator">eq</property>
+                                    <expression name="testExpr" type="javascript">row[0] % 2</expression>
+                                    <simple-property-list name="value1">
+                                        <value type="javascript">0</value>
+                                    </simple-property-list>
+                                    <property name="style">alternatingRows</property>
+                                </structure>
+                            </list-property>
+                            <cell id="2968">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <data id="2969">
+                                    <property name="resultSetColumn">orderNumber</property>
+                                </data>
+                            </cell>
+                            <cell id="2970">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <data id="2971">
+                                    <property name="resultSetColumn">security</property>
+                                </data>
+                            </cell>
+                            <cell id="2972">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <data id="2973">
+                                    <structure name="numberFormat">
+                                        <property name="category">Currency</property>
+                                        <property name="pattern">#,##0.0000{RoundingMode=HALF_UP}</property>
+                                    </structure>
+                                    <property name="resultSetColumn">price</property>
+                                </data>
+                            </cell>
+                            <cell id="2974">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <data id="2975">
+                                    <structure name="numberFormat">
+                                        <property name="category">Fixed</property>
+                                        <property name="pattern">#,##0</property>
+                                    </structure>
+                                    <property name="resultSetColumn">quantity</property>
+                                </data>
+                            </cell>
+                            <cell id="2976">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <data id="2977">
+                                    <structure name="numberFormat">
+                                        <property name="category">Currency</property>
+                                        <property name="pattern">#,##0.00</property>
+                                    </structure>
+                                    <property name="display">inline</property>
+                                    <property name="resultSetColumn">consideration</property>
+                                </data>
+                            </cell>
+                            <cell id="2978">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <data id="2979">
+                                    <structure name="numberFormat">
+                                        <property name="category">Currency</property>
+                                        <property name="pattern">#,##0.00</property>
+                                    </structure>
+                                    <property name="display">inline</property>
+                                    <property name="resultSetColumn">brokerageComission</property>
+                                </data>
+                            </cell>
+                            <cell id="2980">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <data id="2981">
+                                    <structure name="numberFormat">
+                                        <property name="category">Currency</property>
+                                        <property name="pattern">#,##0.00</property>
+                                    </structure>
+                                    <property name="display">inline</property>
+                                    <property name="resultSetColumn">contractStamp</property>
+                                </data>
+                            </cell>
+                            <cell id="2982">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <data id="2983">
+                                    <structure name="numberFormat">
+                                        <property name="category">Currency</property>
+                                        <property name="pattern">#,##0.00</property>
+                                    </structure>
+                                    <property name="display">inline</property>
+                                    <property name="resultSetColumn">secFee</property>
+                                </data>
+                            </cell>
+                            <cell id="2984">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <data id="2985">
+                                    <structure name="numberFormat">
+                                        <property name="category">Currency</property>
+                                        <property name="pattern">#,##0.00</property>
+                                    </structure>
+                                    <property name="display">inline</property>
+                                    <property name="resultSetColumn">nseFee</property>
+                                </data>
+                            </cell>
+                            <cell id="2986">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <data id="2987">
+                                    <structure name="numberFormat">
+                                        <property name="category">Currency</property>
+                                        <property name="pattern">#,##0.00</property>
+                                    </structure>
+                                    <property name="display">inline</property>
+                                    <property name="resultSetColumn">cscsFee</property>
+                                </data>
+                            </cell>
+                            <cell id="2988">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <data id="2989">
+                                    <structure name="numberFormat">
+                                        <property name="category">Currency</property>
+                                        <property name="pattern">#,##0.00</property>
+                                    </structure>
+                                    <property name="display">inline</property>
+                                    <property name="resultSetColumn">totalFeeAmount</property>
+                                </data>
+                            </cell>
+                        </row>
+                    </detail>
+                    <footer>
+                        <row id="2990">
+                            <property name="fontSize">9px</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="borderBottomColor">#63666A</property>
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">1px</property>
+                            <property name="borderTopColor">#63666A</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">1px</property>
+                            <cell id="2991">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <label id="2992">
+                                    <text-property name="text">TOTAL</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2993">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                            </cell>
+                            <cell id="2994">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                            </cell>
+                            <cell id="2995">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                            </cell>
+                            <cell id="2996">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <data id="2997">
+                                    <structure name="numberFormat">
+                                        <property name="category">Currency</property>
+                                        <property name="pattern">#,##0.00{RoundingMode=UNNECESSARY}</property>
+                                    </structure>
+                                    <property name="display">inline</property>
+                                    <property name="resultSetColumn">sumConsideration</property>
+                                </data>
+                            </cell>
+                            <cell id="2998">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <data id="2999">
+                                    <structure name="numberFormat">
+                                        <property name="category">Currency</property>
+                                        <property name="pattern">#,##0.00{RoundingMode=UNNECESSARY}</property>
+                                    </structure>
+                                    <property name="display">inline</property>
+                                    <property name="resultSetColumn">sumCommission</property>
+                                </data>
+                            </cell>
+                            <cell id="3000">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <data id="3001">
+                                    <structure name="numberFormat">
+                                        <property name="category">Currency</property>
+                                        <property name="pattern">#,##0.00{RoundingMode=UNNECESSARY}</property>
+                                    </structure>
+                                    <property name="display">inline</property>
+                                    <property name="resultSetColumn">sumContractStamp</property>
+                                </data>
+                            </cell>
+                            <cell id="3002">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <data id="3003">
+                                    <structure name="numberFormat">
+                                        <property name="category">Currency</property>
+                                        <property name="pattern">#,##0.00{RoundingMode=UNNECESSARY}</property>
+                                    </structure>
+                                    <property name="display">inline</property>
+                                    <property name="resultSetColumn">sumSecFee</property>
+                                </data>
+                            </cell>
+                            <cell id="3004">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <data id="3005">
+                                    <structure name="numberFormat">
+                                        <property name="category">Currency</property>
+                                        <property name="pattern">#,##0.00{RoundingMode=UNNECESSARY}</property>
+                                    </structure>
+                                    <property name="display">inline</property>
+                                    <property name="resultSetColumn">sumNseFee</property>
+                                </data>
+                            </cell>
+                            <cell id="3006">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <data id="3007">
+                                    <structure name="numberFormat">
+                                        <property name="category">Currency</property>
+                                        <property name="pattern">#,##0.00{RoundingMode=UNNECESSARY}</property>
+                                    </structure>
+                                    <property name="display">inline</property>
+                                    <property name="resultSetColumn">sumCscsFee</property>
+                                </data>
+                            </cell>
+                            <cell id="3008">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <data id="3009">
+                                    <structure name="numberFormat">
+                                        <property name="category">Currency</property>
+                                        <property name="pattern">#,##0.00{RoundingMode=UNNECESSARY}</property>
+                                    </structure>
+                                    <property name="display">inline</property>
+                                    <property name="resultSetColumn">subNetAmount</property>
+                                </data>
+                            </cell>
+                        </row>
+                    </footer>
+                </table>
+            </header>
+            <footer>
+                <grid id="2836">
+                    <property name="fontFamily">"Corbel"</property>
+                    <property name="fontSize">7px</property>
+                    <property name="textAlign">center</property>
+                    <column id="2837"/>
+                    <row id="2928">
+                        <cell id="2929">
+                            <text id="2930">
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<br>]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="2838">
+                        <cell id="2839">
+                            <text id="2840">
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<div style="line-height:15px; text-transform:uppercase;">IF YOU HAVE ANY QUESTIONS CONCERNING THIS CONTRACT NOTE, KINDLY CONTACT THE OPERATIONS DEPARTMENT AT THE NUMBER(S) BELOW OR 
+<value-of format="HTML">if(params['currentLocale'] == "GH"){"<a href='mailto:ghanaoffice@chapelhilldenham.com'>ghanaoffice@chapelhilldenham.com</a>";}else{"<a href='mailto:operations@chapelhilldenham.com'>operations@chapelhilldenham.com</a>";}</value-of><br>
+THANK YOU FOR YOUR BUSINESS</div>]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                </grid>
+            </footer>
+        </list>
+    </body>
+    <property name="pageVariables">
+        <variable-element name="v_getTitle">
+            <property name="type">report</property>
+        </variable-element>
+    </property>
+</report>
