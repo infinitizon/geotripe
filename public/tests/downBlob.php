@@ -10,10 +10,10 @@ $fRes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 //var_dump($fRes);
 
-header("Cache-Control: public");
-header("Content-Description: File Transfer");
-header("Content-length: ".$fRes[0]['docSize']);
-header("Content-type: ".$fRes[0]['docMimeType']);
-//header("Content-Transfer-Encoding: Binary");
-header("Content-Disposition: attachment; filename=\"".$fRes[0]['docName']."\"");
-echo $fRes[0]['docBlob'];
+//header("Cache-Control: public");
+//header("Content-Description: File Transfer");
+//header("Content-length: ".$fRes[0]['docSize']);
+//header("Content-type: ".$fRes[0]['docMimeType']);
+////header("Content-Transfer-Encoding: Binary");
+//header("Content-Disposition: attachment; filename=\"".$fRes[0]['docName']."\"");
+//echo $fRes[0]['docBlob'];

@@ -10,6 +10,7 @@
     <meta id="load_styles_before">
 
     <link href="vendor/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="vendor/bootstrap/3.3.6/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
     <link rel="stylesheet" href="vendor/perfect-scrollbar/css/perfect-scrollbar.css">
 

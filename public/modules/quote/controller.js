@@ -522,7 +522,6 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 //  Lets deal with the files first
                 if(vm.uploads){
                     angular.forEach(vm.uploads, function(lineItem, key) {
-                        console.log(lineItem.documentType.documentType_id)
                         data.append("factObjects[fileType]["+key+"]", lineItem.documentType.documentType_id);
                         var file = lineItem.myFile;
                         data.append("file["+key+"]", file);
