@@ -7,21 +7,19 @@ angular
         function ($state, $stateParams, $rootScope, $location, $cookieStore, $localStorage) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
-
             $rootScope.$on('$stateChangeSuccess', function () {
                 window.scrollTo(0, 0);
             });
-
             FastClick.attach(document.body);
 
             // keep user logged in after page refresh
             $rootScope.globals = $localStorage.globals || {};
 
             $rootScope.$on('$locationChangeStart', function (event, next, current) {
+                // redirect to login page if not logged in
                 if(!angular.isDefined($localStorage.globals) || $localStorage.globals == null){
                     $location.path('/login');
                 }
-                // redirect to login page if not logged in
                 if ($location.path() !== '/login' && !angular.isDefined($localStorage.globals)) {
                     $location.path('/login');
                 }

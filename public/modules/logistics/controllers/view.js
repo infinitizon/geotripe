@@ -76,7 +76,7 @@ angular.module('Logistics')
             vm.genPo = function(quote_id){
                 var data=angular.copy(CommonServices.postData);
                 data.factName = 'Quote q, QuoteDetail qd';
-                data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&q.po_no&q.po_is_split'
+                data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&q.po_no&q.po_is_split,qd.split_po_no'
                 data.transactionMetaData.queryMetaData.joinClause = {
                     'joinType':['JOIN'],'joinKeys':['q.quote_Id=qd.Quote_quote_Id']
                 }
@@ -85,9 +85,15 @@ angular.module('Logistics')
                     "propertyValue": quote_id,
                     "propertyDataType": "VARCHAR",
                     "operatorType": "="
-                }];
+                },
+                    {"propertyName": "qd.quote_is_po",
+                        "propertyValue": 1,
+                        "propertyDataType": "INT",
+                        "operatorType": "="}];
                 DataService.post('inboundService', data).then(function (response) {
-
+                    angular.forEach(response.data.data  , function(po, key) {
+                        console.log(po)
+                    });
                 })
             }
         }])

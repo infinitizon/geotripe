@@ -222,7 +222,7 @@ angular.module('Logistics')
                         data.append("factObjects[quote]", [JSON.stringify(vm.changedObjs)]);
                     }
                 }
-                var numChecked, noPoNo = 0;
+                var numChecked=0, noPoNo = 0;
                 vm.lineItems4Db = angular.copy(vm.lineItems);
                 vm.originalLineItems4Db = vm.originalLineItems;
                 var realKey = 0;
