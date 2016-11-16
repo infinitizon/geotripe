@@ -655,15 +655,15 @@ WHERE qd.quote_is_po=1;
                     </column>
                     <column id="33">
                         <property name="textAlign">left</property>
-                        <property name="width">2.3194444444444446in</property>
+                        <property name="width">2.5416666666666665in</property>
                     </column>
                     <column id="34">
                         <property name="textAlign">right</property>
-                        <property name="width">0.8472222222222222in</property>
+                        <property name="width">0.6944444444444444in</property>
                     </column>
                     <column id="35">
                         <property name="textAlign">right</property>
-                        <property name="width">0.9444444444444444in</property>
+                        <property name="width">0.875in</property>
                     </column>
                     <column id="36">
                         <property name="textAlign">right</property>
@@ -742,11 +742,19 @@ WHERE qd.quote_is_po=1;
                             </cell>
                             <cell id="23">
                                 <data id="48">
+                                    <structure name="numberFormat">
+                                        <property name="category">Fixed</property>
+                                        <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                    </structure>
                                     <property name="resultSetColumn">unitprice</property>
                                 </data>
                             </cell>
                             <cell id="24">
                                 <data id="50">
+                                    <structure name="numberFormat">
+                                        <property name="category">Fixed</property>
+                                        <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                    </structure>
                                     <property name="resultSetColumn">extAmt</property>
                                 </data>
                             </cell>
@@ -759,8 +767,9 @@ WHERE qd.quote_is_po=1;
                             <cell id="26"/>
                             <cell id="27"/>
                             <cell id="28"/>
-                            <cell id="29"/>
-                            <cell id="30">
+                            <cell id="29">
+                                <property name="colSpan">2</property>
+                                <property name="rowSpan">1</property>
                                 <text id="60">
                                     <property name="contentType">html</property>
                                     <text-property name="content"><![CDATA[SUB TOTAL]]></text-property>
@@ -774,8 +783,9 @@ WHERE qd.quote_is_po=1;
                             <cell id="54"/>
                             <cell id="55"/>
                             <cell id="56"/>
-                            <cell id="57"/>
-                            <cell id="58">
+                            <cell id="57">
+                                <property name="colSpan">2</property>
+                                <property name="rowSpan">1</property>
                                 <text id="61">
                                     <property name="contentType">html</property>
                                     <text-property name="content"><![CDATA[0% DISCOUNT]]></text-property>
@@ -789,8 +799,9 @@ WHERE qd.quote_is_po=1;
                             <cell id="71"/>
                             <cell id="72"/>
                             <cell id="73"/>
-                            <cell id="74"/>
-                            <cell id="75">
+                            <cell id="74">
+                                <property name="colSpan">2</property>
+                                <property name="rowSpan">1</property>
                                 <text id="77">
                                     <property name="contentType">html</property>
                                     <text-property name="content"><![CDATA[TOTAL VALUE]]></text-property>
@@ -804,8 +815,9 @@ WHERE qd.quote_is_po=1;
                             <cell id="64"/>
                             <cell id="65"/>
                             <cell id="66"/>
-                            <cell id="67"/>
-                            <cell id="68">
+                            <cell id="67">
+                                <property name="colSpan">2</property>
+                                <property name="rowSpan">1</property>
                                 <text id="78">
                                     <property name="contentType">html</property>
                                     <text-property name="content"><![CDATA[CURRENCY]]></text-property>
@@ -819,8 +831,9 @@ WHERE qd.quote_is_po=1;
                             <cell id="80"/>
                             <cell id="81"/>
                             <cell id="82"/>
-                            <cell id="83"/>
-                            <cell id="84">
+                            <cell id="83">
+                                <property name="colSpan">2</property>
+                                <property name="rowSpan">1</property>
                                 <text id="93">
                                     <property name="contentType">html</property>
                                     <text-property name="content"><![CDATA[PAYMENT TERMS]]></text-property>
