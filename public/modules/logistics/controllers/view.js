@@ -91,9 +91,17 @@ angular.module('Logistics')
                         "propertyDataType": "INT",
                         "operatorType": "="}];
                 DataService.post('inboundService', data).then(function (response) {
+                    var inMem = []
                     angular.forEach(response.data.data  , function(po, key) {
-                        console.log(po)
+                        if(po.po_is_split == 1){
+                            if(inMem.indexOf(po.split_po_no) == -1) {
+                                inMem.push(po.split_po_no)
+                            }
+                        }else{
+                            if(inMem.indexOf(po.po_no) == -1)   inMem.push(po.po_no)
+                        }
                     });
+
                 })
             }
         }])

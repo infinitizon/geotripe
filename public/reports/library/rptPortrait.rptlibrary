@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <library xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.4.2.v201410272105 Build &lt;4.4.2.v20150217-1805></property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.0.v201405191524 Build &lt;4.4.0.v20140606-1451></property>
     <list-property name="propertyBindings">
         <structure>
             <property name="name">odaDriverClass</property>
@@ -65,7 +65,15 @@
         </oda-data-source>
     </data-sources>
     <themes>
-        <theme name="defaultTheme" id="4"/>
+        <theme name="defaultTheme" id="4">
+            <styles>
+                <style name="alternatingRows" id="3250">
+                    <property name="backgroundColor">#EEECED</property>
+                    <property name="paddingTop">1.1pt</property>
+                    <property name="paddingBottom">1.1pt</property>
+                </style>
+            </styles>
+        </theme>
     </themes>
     <page-setup>
         <simple-master-page name="NewSimpleMasterPage" id="3">
@@ -91,9 +99,10 @@
                                         <property name="type">string</property>
                                     </structure>
                                 </list-property>
-                                <property name="width">150px</property>
+                                <property name="height">76px</property>
+                                <property name="width">210px</property>
                                 <property name="source">file</property>
-                                <expression name="uri" type="javascript">../library/images/geoscape-logo.png</expression>
+                                <expression name="uri" type="javascript">'../library/images/geoscape-logo.png'</expression>
                             </image>
                         </cell>
                         <cell id="2903">
