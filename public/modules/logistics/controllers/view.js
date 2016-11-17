@@ -102,6 +102,10 @@ angular.module('Logistics')
                         }
                     });
                     console.log(inMem)
+                    /*
+                    * We can directly output like so
+                    * http://localhost:8080/birt/output?__report=report/base/po.rptdesign&&__dpi=96&__format=pdf&__pageoverflow=0&__overwrite=false
+                     */
                     if(inMem.length == 1){
                         window.open("http://127.0.0.1:8080/birt-viewer/frameset?__report=report/base/po.rptdesign&po_id="+inMem[0]);
                     }else if(inMem.length > 1){
