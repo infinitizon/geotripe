@@ -92,7 +92,7 @@ angular.module('Logistics')
                         "operatorType": "="}];
                 DataService.post('inboundService', data).then(function (response) {
                     var inMem = []
-                    angular.forEach(response.data.data  , function(po, key) {
+                    angular.forEach(response.data.data  , function(po) {
                         if(po.po_is_split == 1){
                             if(inMem.indexOf(po.split_po_no) == -1) {
                                 inMem.push(po.split_po_no)
@@ -101,7 +101,14 @@ angular.module('Logistics')
                             if(inMem.indexOf(po.po_no) == -1)   inMem.push(po.po_no)
                         }
                     });
-
+                    console.log(inMem)
+                    if(inMem.length == 1){
+                        window.open("http://127.0.0.1:8080/birt-viewer/frameset?__report=report/base/po.rptdesign&po_id="+inMem[0]);
+                    }else if(inMem.length > 1){
+                        angular.forEach(inMem  , function(split_po) {
+                            window.open("http://127.0.0.1:8080/birt-viewer/frameset?__report=report/base/po.rptdesign&split_po_no="+split_po);
+                        });
+                    }
                 })
             }
         }])

@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8d05ef40-3f7a-41b2-81e7-eb6b1d801a63" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/logistics/controllers/view.js" afterPath="$PROJECT_DIR$/modules/logistics/controllers/view.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/base/CustomerStatement.rptdesign" afterPath="$PROJECT_DIR$/reports/base/CustomerStatement.rptdesign" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/base/po.rptdesign" afterPath="$PROJECT_DIR$/reports/base/po.rptdesign" />
     </list>
     <ignored path="public.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,8 +64,8 @@
       <file leaf-file-name="view.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/logistics/controllers/view.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.732899">
-              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.8778502">
+              <caret line="108" column="140" selection-start-line="108" selection-start-column="140" selection-end-line="108" selection-end-column="140" />
               <folding />
             </state>
           </provider>
@@ -939,7 +942,7 @@
       <workItem from="1478983867956" duration="1186000" />
       <workItem from="1479035605544" duration="3055000" />
       <workItem from="1479239516645" duration="5297000" />
-      <workItem from="1479292276521" duration="7325000" />
+      <workItem from="1479292276521" duration="9451000" />
     </task>
     <task id="LOCAL-00001" summary="Completed work on the RFQ">
       <created>1475831179986</created>
@@ -1013,11 +1016,17 @@
       <option name="project" value="LOCAL" />
       <updated>1479313483218</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Working on a PO report">
+      <created>1479313490535</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1479313490535</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="733218000" />
+    <option name="totallyTimeSpent" value="735344000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2115" height="1325" extended-state="0" />
@@ -1396,14 +1405,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/app.config.router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="238" column="21" selection-start-line="238" selection-start-column="21" selection-end-line="238" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/logistics/controllers/edit.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1428,10 +1429,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/app.config.router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="238" column="21" selection-start-line="238" selection-start-column="21" selection-end-line="238" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/logistics/controllers/view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.732899">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.8778502">
+          <caret line="108" column="140" selection-start-line="108" selection-start-column="140" selection-end-line="108" selection-end-column="140" />
           <folding />
         </state>
       </provider>

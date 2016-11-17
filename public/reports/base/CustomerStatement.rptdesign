@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.4.2.v201410272105 Build &lt;4.4.2.v20150217-1805></property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.0.v201405191524 Build &lt;4.4.0.v20140606-1451></property>
     <list-property name="propertyBindings">
         <structure>
             <property name="name">queryText</property>
@@ -4056,7 +4056,12 @@ AND pd.EFFECTIVEDATE_ BETWEEN ? AND ?]]></xml-property>
                 <ref-entry baseId="2905" id="2905"/>
                 <ref-entry baseId="2825" id="2825"/>
                 <ref-entry baseId="2826" id="2826"/>
-                <ref-entry baseId="1136" name="Company Logo1" id="1136"/>
+                <ref-entry baseId="1136" name="Company Logo1" id="1136">
+                    <property name="source">file</property>
+                    <expression name="uri" type="constant">..library/images/geoscape-logo.png</expression>
+                    <property name="height">1.0555555555555556in</property>
+                    <property name="width">2.9166666666666665in</property>
+                </ref-entry>
                 <ref-entry baseId="2903" id="2903"/>
                 <ref-entry baseId="3196" name="NewGrid1" id="3196">
                     <property name="width">4.736111111111111in</property>
