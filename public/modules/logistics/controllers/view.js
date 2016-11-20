@@ -81,15 +81,17 @@ angular.module('Logistics')
                     'joinType':['JOIN'],'joinKeys':['q.quote_Id=qd.Quote_quote_Id']
                 }
                 data.transactionMetaData.queryMetaData.queryClause.andExpression = [{
-                    "propertyName": "q.quote_Id",
-                    "propertyValue": quote_id,
-                    "propertyDataType": "VARCHAR",
-                    "operatorType": "="
-                },
+                        "propertyName": "q.quote_Id",
+                        "propertyValue": quote_id,
+                        "propertyDataType": "VARCHAR",
+                        "operatorType": "="
+                    },
                     {"propertyName": "qd.quote_is_po",
                         "propertyValue": 1,
                         "propertyDataType": "INT",
-                        "operatorType": "="}];
+                        "operatorType": "="
+                    }
+                ];
                 DataService.post('inboundService', data).then(function (response) {
                     var inMem = []
                     angular.forEach(response.data.data  , function(po) {
@@ -101,7 +103,6 @@ angular.module('Logistics')
                             if(inMem.indexOf(po.po_no) == -1)   inMem.push(po.po_no)
                         }
                     });
-                    console.log(inMem)
                     /*
                     * We can directly output like so
                     * http://localhost:8080/birt/output?__report=report/base/po.rptdesign&&__dpi=96&__format=pdf&__pageoverflow=0&__overwrite=false
