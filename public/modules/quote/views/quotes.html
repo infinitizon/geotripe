@@ -1,16 +1,30 @@
 <div class="row wrapper">
     <div>
-        <ul class="list-unstyled list-inline quoteDash">
-            <li data-ng-repeat="lineItem in quotCtrl.quoteDash" class="col-sm-3 card">
-                <h2 class="text-center" ui-sref="app.procurement.status({client:lineItem.party_id})"><span>{{lineItem.Name}}</span></h2>
-                <div>
+        <!--<ul class="list-unstyled list-inline quoteDash">-->
+            <!--<li data-ng-repeat="lineItem in quotCtrl.quoteDash" class="col-sm-3 card">-->
+                <!--<h2 class="text-center" ui-sref="app.procurement.status({client:lineItem.party_id})"><span>{{lineItem.Name}}</span></h2>-->
+                <!--<div>-->
+                    <!--<a ui-sref="app.procurement.status({client:lineItem.party_id})" class="btn btn-success btn-sm" role="button">Total Quotes: {{lineItem.totalQuotes}}</a>-->
+                    <!--<a ui-sref="app.procurement.status({client:lineItem.party_id, clientStatus:12141325})" class="btn btn-warning btn-sm" role="button">In Progress: {{lineItem["In Progress"]}}</a>-->
+                    <!--<a ui-sref="app.procurement.status({client:lineItem.party_id, clientStatus:12141324})" class="btn btn-info btn-sm" role="button">Submitted: {{lineItem.Submitted}}</a>-->
+                    <!--<a ui-sref="app.procurement.status({client:lineItem.party_id, clientStatus:12141326})" class="btn btn-default btn-sm" role="button">TQ: {{lineItem.TQ}}</a>-->
+                <!--</div>-->
+            <!--</li>-->
+        <!--</ul>-->
+
+        <div data-ng-repeat="lineItem in quotCtrl.quoteDash" class="col-md-3 quoteDash">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h2 class="text-center" ui-sref="app.procurement.status({client:lineItem.party_id})"><span>{{lineItem.Name}}</span></h2>
+                </div>
+                <div class="panel-body">
                     <a ui-sref="app.procurement.status({client:lineItem.party_id})" class="btn btn-success btn-sm" role="button">Total Quotes: {{lineItem.totalQuotes}}</a>
                     <a ui-sref="app.procurement.status({client:lineItem.party_id, clientStatus:12141325})" class="btn btn-warning btn-sm" role="button">In Progress: {{lineItem["In Progress"]}}</a>
                     <a ui-sref="app.procurement.status({client:lineItem.party_id, clientStatus:12141324})" class="btn btn-info btn-sm" role="button">Submitted: {{lineItem.Submitted}}</a>
                     <a ui-sref="app.procurement.status({client:lineItem.party_id, clientStatus:12141326})" class="btn btn-default btn-sm" role="button">TQ: {{lineItem.TQ}}</a>
                 </div>
-            </li>
-        </ul>
+            </div>
+        </div>
         <div data-ng-if="quotCtrl.quoteDash.length<=0">No client has been registered yet!<br>Ask admin to set up clients for you</div>
     </div>
 </div>

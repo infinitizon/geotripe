@@ -2,8 +2,8 @@
  * Created by ahassan on 10/31/16.
  */
 angular.module('Logistics')
-    .controller('LogisticsView', ['$scope', '$localStorage', '$stateParams', 'DataService','CommonServices'
-        , function ($scope, $localStorage, $stateParams, DataService, CommonServices) {
+    .controller('LogisticsView', ['$scope', '$localStorage', '$stateParams', 'DataService','CommonServices', 'WEB_ROOTS'
+        , function ($scope, $localStorage, $stateParams, DataService, CommonServices, WEB_ROOTS) {
             var vm = this;
 
             /*
@@ -81,15 +81,17 @@ angular.module('Logistics')
                     'joinType':['JOIN'],'joinKeys':['q.quote_Id=qd.Quote_quote_Id']
                 }
                 data.transactionMetaData.queryMetaData.queryClause.andExpression = [{
-                    "propertyName": "q.quote_Id",
-                    "propertyValue": quote_id,
-                    "propertyDataType": "VARCHAR",
-                    "operatorType": "="
-                },
+                        "propertyName": "q.quote_Id",
+                        "propertyValue": quote_id,
+                        "propertyDataType": "VARCHAR",
+                        "operatorType": "="
+                    },
                     {"propertyName": "qd.quote_is_po",
                         "propertyValue": 1,
                         "propertyDataType": "INT",
-                        "operatorType": "="}];
+                        "operatorType": "="
+                    }
+                ];
                 DataService.post('inboundService', data).then(function (response) {
                     var inMem = []
                     angular.forEach(response.data.data  , function(po) {
@@ -101,17 +103,16 @@ angular.module('Logistics')
                             if(inMem.indexOf(po.po_no) == -1)   inMem.push(po.po_no)
                         }
                     });
-                    console.log(inMem)
                     /*
                     * We can directly output like so
-                    * http://localhost:8080/birt/output?__report=report/base/po.rptdesign&&__dpi=96&__format=pdf&__pageoverflow=0&__overwrite=false
-                    * format=pdf, xlsx, etc
+                    * WEB_ROOTS.TOMCAT + "/birt/output?__report=report/base/po.rptdesign&&__dpi=96&__format=pdf&__pageoverflow=0&__overwrite=false"
+                    * format=pdf, xlsx, etc something
                      */
                     if(inMem.length == 1){
-                        window.open("http://127.0.0.1:8080/birt-viewer/frameset?__report=report/base/po.rptdesign&po_id="+inMem[0]);
+                        window.open( WEB_ROOTS.TOMCAT+"/birt-viewer/frameset?__report=report/base/po.rptdesign&po_id="+inMem[0]);
                     }else if(inMem.length > 1){
                         angular.forEach(inMem  , function(split_po) {
-                            window.open("http://127.0.0.1:8080/birt-viewer/frameset?__report=report/base/po.rptdesign&split_po_no="+split_po);
+                            window.open(WEB_ROOTS.TOMCAT+"/birt-viewer/frameset?__report=report/base/po.rptdesign&split_po_no="+split_po);
                         });
                     }
                 })
