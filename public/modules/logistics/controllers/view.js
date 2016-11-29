@@ -109,7 +109,7 @@ angular.module('Logistics')
                     * format=pdf, xlsx, etc something
                      */
                     if(inMem.length == 1){
-                        window.open( WEB_ROOTS.TOMCAT+"/birt-viewer/frameset?__report=report/base/po.rptdesign&po_id="+inMem[0]);
+                        window.open( WEB_ROOTS.TOMCAT+"/birt-viewer/frameset?__report=report/base/po.rptdesign&po_id="+inMem[0] );
                     }else if(inMem.length > 1){
                         angular.forEach(inMem  , function(split_po) {
                             window.open(WEB_ROOTS.TOMCAT+"/birt-viewer/frameset?__report=report/base/po.rptdesign&split_po_no="+split_po);
