@@ -15,7 +15,9 @@ GROUP BY q.quote_Id';
 $r_lateQuotes = $dbo->prepare($q_lateQuotes);
 $r_lateQuotes->execute();
 while ($lateQuotes = $r_lateQuotes->fetch(PDO::FETCH_ASSOC)) {
-    $q_alertees = "SELECT * FROM USERS WHERE user_id IN
+    $q_alertees = "SELECT u.user_id, u.Firstname, u.MiddleName, u.LastName, u.ContactPhoneNumber, u.WorkPhoneNumber, u.Email
+                    FROM Users u
+                    WHERE u.enabled=1 AND u.accountlocked<>1 AND u.user_id IN
                     (
                     SELECT user_id from Users WHERE user_id={$lateQuotes['quote_enteredBy_id']}
                     UNION ALL
@@ -26,14 +28,46 @@ while ($lateQuotes = $r_lateQuotes->fetch(PDO::FETCH_ASSOC)) {
                     )";
     $r_alertees = $dbo->prepare($q_alertees);
     $r_alertees->execute();
-    $alertees = $r_alertees->fetchAll(PDO::FETCH_ASSOC);
-    echo count($alertees);
-    echo "<pre>";
-        print_r($alertees);
-        echo "</pre>";
-//    while ($alertees = $r_alertees->fetch(PDO::FETCH_ASSOC)) {
-//        echo "<pre>";
-//        print_r($alertees);
-//        echo "</pre>";
-//    }
+//    $alertees = $r_alertees->fetchAll(PDO::FETCH_ASSOC);
+    $timestamp = time();
+    while ($alertees = $r_alertees->fetch(PDO::FETCH_ASSOC)) {
+
+        $mail_body = "Dear {$alertees['Firstname']} {$alertees['MiddleName']} {$alertees['LastName']}<br><br>";
+        "This is to notify you that quote {$lateQuotes['rfq_no']} entered by ";
+        try{
+            $q_sendMail = "INSERT INTO Mail (mail_to,mail_from,mail_subj,status,create_date,timestamp)
+                        VALUES
+                        ('{$alertees['Email']}','no-reply@geotripe.com','Quote {$lateQuotes['rfq_no']} expiration notice'
+                            ,'0', NOW(),$timestamp )";
+            $r_sendMail = $dbo->prepare($q_sendMail);
+            $r_sendMail->execute();
+            $lastId = $dbo->lastInsertId();
+        }catch(Exception $e){
+            $response = array("response"=>"Warning","message"=>$e->getMessage(),"token"=>$data->token);
+        }
+    }
+}
+/**
+ * Send mails
+ * We are going to be sending mails using the phpMailer
+ */
+include_once "phpmailer-master/class.phpmailer.php";
+
+$mail = new PHPMailer();
+
+$mail->IsSMTP();  // telling the class to use SMTP
+$mail->Host     = "smtp.example.com"; // SMTP server
+
+$mail->From     = "from@example.com";
+$mail->AddAddress("myfriend@example.net");
+
+$mail->Subject  = "First PHPMailer Message";
+$mail->Body     = "Hi! \n\n This is my first e-mail sent through PHPMailer.";
+$mail->WordWrap = 50;
+
+if(!$mail->Send()) {
+    echo 'Message was not sent.';
+    echo 'Mailer error: ' . $mail->ErrorInfo;
+} else {
+    echo 'Message has been sent.';
 }
