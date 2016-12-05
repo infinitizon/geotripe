@@ -138,6 +138,16 @@ angular
                     , controller: 'QuoteByStatusController'
                     , controllerAs : 'quotCtrl'
                 })
+                .state('app.procurement.view', {
+                    url: '/'
+                    , templateUrl: 'modules/quote/views/quotes.html'
+                    , controller: 'QuoteController'
+                    , controllerAs : 'quotCtrl'
+                    , data: {
+                        title: 'Quotes',
+                        state:'rfq_view'
+                    }
+                })
 
                 .state('app.logistics', {
                     url: '/logistics'

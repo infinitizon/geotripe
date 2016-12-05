@@ -2,8 +2,8 @@
  * Created by ahassan on 10/31/16.
  */
 angular.module('Logistics')
-    .controller('LogisticsView', ['$scope', '$localStorage', '$stateParams', 'DataService','CommonServices', 'WEB_ROOTS'
-        , function ($scope, $localStorage, $stateParams, DataService, CommonServices, WEB_ROOTS) {
+    .controller('LogisticsView', ['$scope', '$localStorage', '$stateParams', 'DataService','CommonServices', 'WEB_ROOTS', '$window'
+        , function ($scope, $localStorage, $stateParams, DataService, CommonServices, WEB_ROOTS, $window) {
             var vm = this;
 
             /*
@@ -109,10 +109,10 @@ angular.module('Logistics')
                     * format=pdf, xlsx, etc something
                      */
                     if(inMem.length == 1){
-                        window.open( WEB_ROOTS.TOMCAT+"/birt-viewer/frameset?__report=report/base/po.rptdesign&po_id="+inMem[0]);
+                        $window.open(WEB_ROOTS.TOMCAT+"/frameset?__report=report/base/po.rptdesign&po_id="+inMem[0]);
                     }else if(inMem.length > 1){
                         angular.forEach(inMem  , function(split_po) {
-                            window.open(WEB_ROOTS.TOMCAT+"/birt-viewer/frameset?__report=report/base/po.rptdesign&split_po_no="+split_po);
+                            $window.open(WEB_ROOTS.TOMCAT+"/frameset?__report=report/base/po.rptdesign&split_po_no="+split_po, "_blank");
                         });
                     }
                 })
