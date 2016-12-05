@@ -75,8 +75,9 @@
                 <!--<td>{{quote.remDays}}</td>-->
                 <td class="text-center">
                     <div class="row">
-                        <button  type="button" class="btn btn-primary" ng-click="quotCtrl.editQuote(quote.quote_id)"><i class="fa fa-pencil"></i> Edit</button>
-                        <button  type="button" class="btn btn-danger" ng-click="quotCtrl.deleteQuote()"><i class="fa fa-trash"></i> Delete</button>
+                        <button type="button" class="btn btn-primary" data-ng-click="quotCtrl.editQuote(quote.quote_id)"><i class="fa fa-pencil"></i> Edit</button>
+                        <button type="button" class="btn btn-warning" data-ng-if="quote.showPrint" data-ng-click="quotCtrl.printRFQ(quote.quote_id)"><i class="fa fa-print"></i> Print RFQ</button>
+                        <button type="button" class="btn btn-danger" data-ng-click="quotCtrl.deleteQuote()"><i class="fa fa-trash"></i> Delete</button>
                     </div>
                 </td>
             </tr>
@@ -278,6 +279,7 @@
                                     <th>Options</th><th>S/N</th><th>Part No./Model</th>
                                     <th>Material Description</th><th>OEM Description</th><th>Qty</th><th>Manufacturers</th>
                                     <th data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)">UOM</th>
+                                    <th data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)">OEM Unit Price</th>
                                     <th data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)">Unit Price</th>
                                     <th data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)">Extended Price</th>
                                     <!--<th data-ng-if="quotCtrl.quote.quote_id">Cross Rate</th>-->
@@ -325,8 +327,9 @@
                                     <td>{{lineItem.qty}}</td>
                                     <td>{{(lineItem.manus.length >1) ? 'Many' : lineItem.manus[0].name }}</td>
                                     <td data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)">{{lineItem.unitofmeasure.name}}</td> <!-- UOM -->
-                                    <td data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)"><span data-iz-number="lineItem.unitprice" data-iz-options="{dp:2}"></span></td> <!-- Unit Price -->
-                                    <td data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)"><span data-iz-number="lineItem.unitprice*lineItem.qty" data-iz-options="{dp:2}"></span></td> <!-- Extended Price -->
+                                    <td data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)"><span data-iz-number="lineItem.oem_unitprice" data-iz-options="{dp:2}">{{lineItem.oem_unitprice}}</span></td> <!--OEM Unit Price -->
+                                    <td data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)"><span data-iz-number="lineItem.unitprice" data-iz-options="{dp:2}">{{lineItem.unitprice}}</span></td> <!-- Unit Price -->
+                                    <td data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)"><span data-iz-number="lineItem.unitprice*lineItem.qty" data-iz-options="{dp:2}">{{lineItem.unitprice*lineItem.qty}}</span></td> <!-- Extended Price -->
                                     <!--<td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.crossrrate}}</td> &lt;!&ndash; Cross Rate &ndash;&gt;-->
                                     <!--<td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.unit_price_usd}}</td> &lt;!&ndash; Unit Price (USD) &ndash;&gt;-->
                                     <!--<td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.mfr_total}}</td> &lt;!&ndash; MFR Total &ndash;&gt;-->

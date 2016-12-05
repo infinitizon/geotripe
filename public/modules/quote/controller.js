@@ -37,6 +37,8 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
 
             var vm = this;
             vm.uploads = [];
+            vm.container = {};
+
             //console.log(CommonServices.fmtNum(123456789.12345, {dp:0}) );
             vm.addNewFile = function(){
                 vm.uploads.push({
@@ -97,6 +99,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                     if(quoteId) {
                         items['UOM'] = (lineItem.unitofmeasure) ? lineItem.unitofmeasure.name : '';
                         items['Unit Price'] = lineItem.unitprice;
+                        items['OEM Unit Price'] = lineItem.oem_unitprice;
                         items['oem_description'] = lineItem.oem_description;
                         //items['Cross Rate'] = lineItem.crossrrate;
                         //items['Unit Price (USD)'] = lineItem.unit_price_usd;
@@ -149,6 +152,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                     items.qty=lineItem.qty;
                     item.partno_modelno=lineItem.partno_modelno;
                     items.unitprice=lineItem['Unit Price'];
+                    items.oem_unitprice=lineItem['OEM Unit Price'];
                     //items.crossrrate=lineItem['Cross Rate'];
                     //items.unit_price_usd=lineItem['Unit Price (USD)'];
                     //items.mfr_total=lineItem['MFR Total'];
@@ -205,6 +209,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
 
                 modalInstance.result.then(function (selectedItem) {
                     if(selectedItem.index != null){
+                        console.log(selectedItem);
                         vm.lineItems[selectedItem.index] = selectedItem;
                     }else{
                         vm.lineItems.push(selectedItem);
@@ -245,8 +250,10 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 data.factName = 'Quote q, Party p, QuoteStatus qs, Users u, QuoteDetail qd';
                 /** We could exclude weekends in datediff using the following
                  * SELECT (5 * (DATEDIFF('2016-08-31', '2016-08-01') DIV 7) + MID('0123444401233334012222340111123400012345001234550', 7 * WEEKDAY('2016-08-01') + WEEKDAY('2016-08-31') + 2, 1))
+                 *
+                 * Similarly, we can use CONCAT("[",GROUP_CONCAT(CONCAT("{quantity:",qd.quantity,",unitprice:",qd.unitprice,"}")),"]") for showPrint
                  */
-                data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&p.name&CONCAT(LEFT(q.subject , 30),IF(LENGTH(q.subject)>30, "…", "")) subject&CONCAT(u.lastname,", ",u.middlename," ",u.firstname)enteredBy&qs.name status&COUNT(qd.Quote_quote_Id) totalQuotes&DATEDIFF(q.duedate,NOW())remDays&q.entrydate'
+                data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&p.name&CONCAT(LEFT(q.subject , 30),IF(LENGTH(q.subject)>30, "…", "")) subject&CONCAT(u.lastname,", ",u.middlename," ",u.firstname)enteredBy&qs.name status&COUNT(qd.Quote_quote_Id) totalQuotes&CONCAT("quantity:",qd.quantity,"unitprice:",qd.unitprice) showPrint&DATEDIFF(q.duedate,NOW())remDays&q.entrydate'
                 data.transactionMetaData.pageno = pageno-1;
                 data.transactionMetaData.itemsPerPage = vm.itemsPerPage;
                 data.transactionMetaData.queryMetaData.queryClause.andExpression = [
@@ -280,6 +287,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 DataService.post('inboundService', data).then(function (response) {
                     vm.quotes = response.data.data;
                     vm.total_count = response.data.total_count;
+
                     if(vm.total_count <= 0){
                         vm.quotesLoading = "No quotes found!";
                     }
@@ -391,7 +399,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                     /*Now get the quote details*/
                     var data=angular.copy(CommonServices.postData);
                     data.factName = 'QuoteDetail qd, UnitOfMeasure uom, QuoteDetail_Manufacturer qdm';
-                    data.transactionMetaData.responseDataProperties = "qd.quotedetail_id&qd.quote_quote_id&qd.quantity&qd.partno_modelno&qd.description&qd.oem_description&unitprice&group_concat(qdm.Party_Party_Id)Party_Party_Id&concat('{"+'"unitofmeasure_id":"'+"',uom.unitofmeasure_id,'"+'","name":"'+"',uom.name,'"+'"}'+"')unitofmeasure&qd.crossrrate&qd.unit_price_usd&qd.mfr_total&qd.certOfOrigin&qd.weight&qd.g_f&qd.packaging&qd.int_f&qd.ins&qd.cif&qd.custom&qd.surch&qd.ciss&qd.etls&qd.vat&qd.nafdac_soncap&qd.clearing&qd.sub_total&qd.goods_in_transit&qd.lt_onne&qd.bch&qd.f_r&qd.cof&qd.total1&qd.mk_up&qd.nlcf&qd.total3&qd.u_p";
+                    data.transactionMetaData.responseDataProperties = "qd.quotedetail_id&qd.quote_quote_id&qd.quantity&qd.partno_modelno&qd.description&qd.oem_description&unitprice&oem_unitprice&group_concat(qdm.Party_Party_Id)Party_Party_Id&concat('{"+'"unitofmeasure_id":"'+"',uom.unitofmeasure_id,'"+'","name":"'+"',uom.name,'"+'"}'+"')unitofmeasure&qd.crossrrate&qd.unit_price_usd&qd.mfr_total&qd.certOfOrigin&qd.weight&qd.g_f&qd.packaging&qd.int_f&qd.ins&qd.cif&qd.custom&qd.surch&qd.ciss&qd.etls&qd.vat&qd.nafdac_soncap&qd.clearing&qd.sub_total&qd.goods_in_transit&qd.lt_onne&qd.bch&qd.f_r&qd.cof&qd.total1&qd.mk_up&qd.nlcf&qd.total3&qd.u_p";
                     data.transactionMetaData.queryMetaData.joinClause = {
                         'joinType':['LEFT JOIN','JOIN'],'joinKeys':['qd.unitofmeasure=uom.unitofmeasure_id','qd.QuoteDetail_Id=qdm.QuoteDetail_QuoteDetail_Id']
                     }
@@ -406,6 +414,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                     data.transactionMetaData.groupingProperties = 'qd.QuoteDetail_Id';
                     DataService.post('inboundService', data).then(function (response) {
                         if(response.data.data!=null){
+                            console.log(response.data.data)
                             delete response.data.data['files'];
                             angular.forEach(response.data.data , function(lineItem, key) {
                                 var data=angular.copy(CommonServices.postData);
@@ -426,6 +435,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                                         , unitofmeasure:JSON.parse(lineItem.unitofmeasure)
                                     };
                                     items.unitprice = lineItem.unitprice;
+                                    items.oem_unitprice = lineItem.oem_unitprice;
                                     //items.unit_price_usd = lineItem.crossrrate;
                                     //items.crossrrate = lineItem.crossrrate;
                                     //items.mfr_total = lineItem.mfr_total;
@@ -474,8 +484,6 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                     vm.disableClient = true;
                 }
             }
-            vm.container = {};
-
             vm.supervisor = function(quoteId){
                 var i = 0;
                 angular.forEach($localStorage.globals.currentUser.userDetails.authRoles  , function(authRole, key) {
@@ -564,6 +572,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                         QuoteDetail.oem_description = vm.lineItems[key].oem_description;
                         QuoteDetail.unitofmeasure = (vm.lineItems[key].unitofmeasure)?vm.lineItems[key].unitofmeasure.unitofmeasure_id:null;
                         QuoteDetail.unitprice = vm.lineItems[key].unitprice;
+                        QuoteDetail.oem_unitprice = vm.lineItems[key].oem_unitprice;
                         //QuoteDetail.crossrrate = vm.lineItems[key].crossrrate;
                         //QuoteDetail.unit_price_usd = vm.lineItems[key].unit_price_usd;
                         //QuoteDetail.mfr_total = vm.lineItems[key].mfr_total;
@@ -664,6 +673,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 vm.oem_description = vm.data.item.oem_description;
                 vm.qty = vm.data.item.qty;
                 vm.unitprice = vm.data.item.unitprice;
+                vm.oem_unitprice = vm.data.item.oem_unitprice;
                 vm.selectedManufacturers = vm.data.item.manus;
                 if(vm.data.item.unitofmeasure) {
                     vm.getLOVs('UnitOfMeasure', 'unitofmeasures', {
@@ -716,7 +726,8 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                     "qty":vm.qty,
                     "manus":vm.selectedManufacturers,
                     "unitofmeasure":vm.unitofmeasure,
-                    "unitprice":vm.unitprice,
+                    "unitprice":parseFloat(vm.unitprice),
+                    "oem_unitprice":parseFloat(vm.oem_unitprice),
                     "crossrrate":vm.crossrrate,
                     "certOfOrigin":vm.certOfOrigin,
                     "weight":vm.weight,
