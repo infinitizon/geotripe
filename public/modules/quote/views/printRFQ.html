@@ -1,1 +1,33 @@
-print
+<div class="mb15 clearfix">
+    <div class="pull-right text-right">
+        <button type="button" class="btn btn-danger btn-block no-print mb15" onclick="window.print();">
+            <i class="ti-printer mr5"></i>Send to printer
+        </button>
+        <button type="button" class="btn btn-info btn-block no-print">Export</button>
+    </div>
+    <div class="w150">
+        <button type="button" class="btn btn-default btn-block text-left no-print"><< Back</button>
+    </div>
+</div>
+<div class="row mb15">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-3">
+                <img ng-src="/images/logo.png" width="150" height="70">
+                <address class="no-margin" style="font-size: xx-small;">
+                    49B Norman Williams Street<br/>
+                    Off Awolowo Road, Ikoyi<br/>
+                    Lagos<br/><br/>
+                    TEL: +234 1 453 3921, 0704 224 4886<br>www.geoscapeltd.com | admin@geoscapeltd.com
+                </address>
+            </div>
+            <div class="col-xs-6"></div>
+            <div class="col-xs-3">
+                <table border="1">
+                    <tr><td><h3>QUOTATION</h3></tr>
+                    <tr><td class="text-center">{{printCtrl.currentDate | date:'dd-MMM-yyyy'}}</tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
