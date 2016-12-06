@@ -1,0 +1,242 @@
+{
+    "controls": [
+        {
+            "type": "color",
+            "vars": [
+                "*-color",
+                "*-border",
+                "*-bg",
+                "@brand-*",
+                "*-border-right",
+                "*-background",
+                "@sidebar-skin-hover",
+                "@header-skin-hover",
+                "*-text-shadow",
+                "*-box-shadow",
+                "*-gradient-top",
+                "*-gradient-bottom"
+            ]
+        },
+        {
+            "type": "font",
+            "vars": [
+                "*-font-family",
+                "@font-family-*"
+            ],
+            "options": [
+                {"name": "Helvetica Neue", "value": "\"Helvetica Neue\", Helvetica, Arial, \"Roboto\", sans-serif"},
+                {"name": "Arial", "value": "\"Arial\", Helvetica, \"Roboto\", sans-serif"},
+                {"name": "Lucida", "value": "\"Lucida Grande\", \"Lucida Sans Unicode\", Arial, Verdana, sans-serif"},
+                {"name": "Times New Roman", "value": "\"Times New Roman\", Times, serif"},
+                {"name": "Trebuchet", "value": "\"Trebuchet MS\", Verdana, Arial, sans-serif"},
+                {"name": "Verdana", "value": "Verdana, Arial, sans-serif"}
+            ]
+        },
+        {
+            "type": "range",
+            "vars": [
+                "@gutter"
+            ],
+            "unit": "px",
+            "min": 5,
+            "max": 50
+        },
+        {
+            "type": "range",
+            "vars": [
+                "@transition-duration"
+            ],
+            "unit": "ms",
+            "min": 0,
+            "max": 1000
+        },
+        {
+            "type": "range",
+            "vars": [
+                "@sidebar-width"
+            ],
+            "unit": "px",
+            "min": 200,
+            "max": 500
+        },
+        {
+            "type": "range",
+            "vars": [
+                "@sidebar-small-menu-width"
+            ],
+            "unit": "px",
+            "min": 50,
+            "max": 100
+        },
+        {
+            "type": "range",
+            "vars": [
+                "@sidebar-width-sm"
+            ],
+            "unit": "%",
+            "min": 10,
+            "max": 90
+        },
+        {
+            "type": "range",
+            "vars": [
+                "@header-height",
+                "@footer-height"
+            ],
+            "unit": "px",
+            "min": 20,
+            "max": 100
+        },
+        {
+            "type": "range",
+            "vars": [
+                "@font-size-base"
+            ],
+            "unit": "px",
+            "min": 10,
+            "max": 20
+        },
+        {
+            "type": "range",
+            "vars": [
+                "@border-radius-base",
+                "@border-radius-large",
+                "@border-radius-small"
+            ],
+            "unit": "px",
+            "min": 0,
+            "max": 20
+        },
+        {
+            "type": "select",
+            "vars": [
+                "@dropdown-animation",
+                "@dropdown-navbar-animation"
+            ],
+            "options": [
+                {"name": "Fade", "value": "uk-fade"},
+                {"name": "Slide-Up", "value": "uk-slide-bottom-fixed"},
+                {"name": "Slide-Down", "value": "uk-slide-top-fixed"}
+            ]
+        },
+        {
+            "type": "select",
+            "vars": [
+                "*-text-transform"
+            ],
+            "options": [
+                {"name": "None", "value": "none"},
+                {"name": "Lowercase", "value": "lowercase"},
+                {"name": "Uppercase", "value": "uppercase"},
+                {"name": "Capitalize", "value": "capitalize"}
+            ]
+        },
+        {
+            "type": "select",
+            "vars": [
+                "@font-weight-*"
+            ],
+            "options": [
+                {"name": "Normal", "value": "normal"},
+                {"name": "Bold", "value": "bold"},
+                {"name": "100", "value": "100"},
+                {"name": "200", "value": "200"},
+                {"name": "300", "value": "300"},
+                {"name": "400", "value": "400"},
+                {"name": "500", "value": "500"},
+                {"name": "600", "value": "600"},
+                {"name": "700", "value": "700"},
+                {"name": "800", "value": "800"},
+                {"name": "900", "value": "900"}
+            ]
+        }
+    ],
+    "groups": [
+        {
+            "label": "General",
+            "icon": "icon-reload",
+            "vars": [
+                "@body-bg",
+                "@main-panel-bg",
+                "@border-color",
+                "@gutter",
+                "@transition-duration"
+            ]
+        },
+        {
+            "label": "Widths",
+            "icon": "icon-square-check",
+            "vars": [
+                "@sidebar-width",
+                "@sidebar-small-menu-width",
+                "@sidebar-width-sm"
+            ]
+        },
+        {
+            "label": "Heights",
+            "icon": "icon-stack",
+            "vars": [
+                "@header-height",
+                "@footer-height"
+            ]
+        },
+        {
+            "label": "Branding",
+            "icon": "icon-drop",
+            "vars": [
+                "@brand-default",
+                "@brand-primary",
+                "@brand-success",
+                "@brand-warning",
+                "@brand-danger",
+                "@brand-info",
+                "@brand-white",
+                "@brand-dark"
+            ]
+        },
+        {
+            "label": "Typography",
+            "icon": "icon-speech-bubble",
+            "vars": [
+                "@font-size-base",
+                "@font-weight-base",
+                "@font-weight-medium",
+                "@font-weight-bold",
+                "@text-color",
+                "@link-color",
+                "@link-hover-color",
+                "@font-family-base-webfont"
+            ]
+        },
+        {
+            "label": "Radius",
+            "icon": "icon-circle-check",
+            "vars": [
+                "@border-radius-base",
+                "@border-radius-large",
+                "@border-radius-small"
+            ]
+        },
+        {
+            "label": "Sidebar Skin",
+            "icon": "icon-marquee",
+            "vars": [
+                "@sidebar-skin-background",
+                "@sidebar-skin-color",
+                "@sidebar-skin-hover",
+                "@sidebar-skin-brand-background",
+                "@sidebar-skin-brand-color"
+            ]
+        },
+        {
+            "label": "Header Skin",
+            "icon": "icon-marquee-plus",
+            "vars": [
+                "@header-skin-background",
+                "@header-skin-hover-background",
+                "@header-skin-color",
+                "@header-skin-hover"
+            ]
+        }
+    ]
+}
