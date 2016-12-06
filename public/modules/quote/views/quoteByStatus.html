@@ -1,4 +1,5 @@
-<div class="row wrapper">
+<div ui-view>
+    <div class="row wrapper">
     <div ng-show="quotCtrl.error" class="alert alert-{{quotCtrl.errClass}}">{{quotCtrl.error}}</div>
     <div class="full" ng-if="!quotCtrl.edit">
         <div class="row" style="padding:10px;">
@@ -76,7 +77,8 @@
                 <td class="text-center">
                     <div class="row">
                         <button type="button" class="btn btn-primary" data-ng-click="quotCtrl.editQuote(quote.quote_id)"><i class="fa fa-pencil"></i> Edit</button>
-                        <button type="button" class="btn btn-warning" data-ng-if="quote.showPrint" data-ng-click="quotCtrl.printRFQ(quote.quote_id)"><i class="fa fa-print"></i> Print RFQ</button>
+                        <a ui-sref="app.procurement.clients.status.print({print:quote.quote_id})" data-ng-if="quote.showPrint" class="btn btn-warning" role="button"><i class="fa fa-print"></i> Print RFQ</a>
+                        <!--<a class="btn btn-warning"  data-ng-click="quotCtrl.printRFQ(quote.quote_id)"><i class="fa fa-print"></i> Print RFQ</button>-->
                         <button type="button" class="btn btn-danger" data-ng-click="quotCtrl.deleteQuote()"><i class="fa fa-trash"></i> Delete</button>
                     </div>
                 </td>
@@ -372,5 +374,6 @@
                 <img ng-if="quotCtrl.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
             </div>
         </form>
+    </div>
     </div>
 </div>

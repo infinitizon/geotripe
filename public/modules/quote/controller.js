@@ -30,6 +30,10 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
             }
             vm.getQuoteSummary();
         }])
+    .controller('PrintRFQController', ['$scope', '$location', '$localStorage','DataService','CommonServices','$http', '$uibModal',
+        function ($scope, $location, $localStorage, DataService,CommonServices,$http, $uibModal) {
+            var vm = this;
+        }])
     .controller('QuoteByStatusController', ['$http', '$scope', '$location', '$localStorage','DataService','CommonServices','$stateParams', '$uibModal', 'ImportExportToExcel',
         function ($http, $scope, $location, $localStorage, DataService, CommonServices, $stateParams, $uibModal,ImportExportToExcel) {
             $localStorage.pageTitle = "Quotes";

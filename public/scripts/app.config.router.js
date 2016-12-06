@@ -132,11 +132,17 @@ angular
                     , controller: 'QuoteController'
                     , controllerAs : 'quotCtrl'
                 })
-                .state('app.procurement.status', {
-                    url:'/status/:client/:clientStatus'
+                .state('app.procurement.clients.status', {
+                    url:'status/:client/:clientStatus'
                     , templateUrl: 'modules/quote/views/quoteByStatus.html'
                     , controller: 'QuoteByStatusController'
                     , controllerAs : 'quotCtrl'
+                })
+                .state('app.procurement.clients.status.print', {
+                    url:'/print/:print'
+                    , templateUrl: 'modules/quote/views/printRFQ.html'
+                    , controller: 'PrintRFQController'
+                    , controllerAs : 'printCtrl'
                 })
 
                 .state('app.logistics', {
