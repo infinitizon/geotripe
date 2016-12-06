@@ -50,7 +50,7 @@
             </div>
             <div data-ng-if="quotItmCtrl.data.edit">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <div class="form-group">
                             <label>UOM:</label>
                             <!--<input type="text" id="uom" ng-model="quotItmCtrl.unitofmeasure" class="form-control"/>-->
@@ -64,7 +64,13 @@
                             </ui-select>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="oem_unitprice">OEM Unit Price:</label>
+                            <input type="number" id="oem_unitprice" step="0.01" ng-model="quotItmCtrl.oem_unitprice" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
                         <div class="form-group">
                             <label for="unitPrice">Unit Price:</label>
                             <input type="number" id="unitPrice" step="0.01" ng-model="quotItmCtrl.unitprice" class="form-control"/>

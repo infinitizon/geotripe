@@ -119,6 +119,7 @@ angular.module('Common')
             restrict: 'A',
             link: function(scope, element, attrs) {
                 var opt = scope.$eval(attrs.izOptions);
+                console.log(scope.$eval(attrs.izNumber));
                 element.html(CommonServices.fmtNum(scope.$eval(attrs.izNumber), opt));
             }
         };
