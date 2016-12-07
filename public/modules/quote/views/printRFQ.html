@@ -1,3 +1,8 @@
+<style>
+    .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
+        padding: 5px;
+    }
+</style>
 <div class="mb15 clearfix">
     <div class="pull-right text-right">
         <button type="button" class="btn btn-danger btn-block no-print mb15" onclick="window.print();">
@@ -6,7 +11,7 @@
         <button type="button" class="btn btn-info btn-block no-print">Export</button>
     </div>
     <div class="w150">
-        <button type="button" class="btn btn-default btn-block text-left no-print"><< Back</button>
+        <button type="button" class="btn btn-default btn-block text-left no-print" onclick="window.history.go(-1);"><< Back</button>
     </div>
 </div>
 <div class="row mb15">
@@ -23,11 +28,56 @@
             </div>
             <div class="col-xs-6"></div>
             <div class="col-xs-3">
-                <table border="1">
+                <table border="1" class="pull-right">
                     <tr><td><h3>QUOTATION</h3></tr>
                     <tr><td class="text-center">{{printCtrl.currentDate | date:'dd-MMM-yyyy'}}</tr>
                 </table>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="table-responsive text-uppercase">
+    <table class="table table-bordered bl br">
+        <tbody>
+            <tr><td>Ref no</td><td>{{printCtrl.master.rfq_no}}</td></tr>
+            <tr><td>Attention</td><td></td></tr>
+            <tr><td>Company</td><td>{{printCtrl.master.clientname}}</td></tr>
+            <tr>
+                <td>Address</td>
+                <td>
+                    {{printCtrl.master.addressline1}}{{printCtrl.master.addressline2 ? ', '+printCtrl.master.addressline1 : ''}}{{printCtrl.master.addresscity ? ', '+printCtrl.master.addresscity : ''}}{{printCtrl.master.state ? ', '+printCtrl.master.state : ''}}{{printCtrl.master.country ? ', '+printCtrl.master.country : ''}}
+                </td>
+            </tr>
+            <tr><td>Fax</td><td></td></tr>
+            <tr><td>Tel no</td><td></td></tr>
+            <tr><td>Email</td><td>{{printCtrl.master.emailaddress}}</td></tr>
+        </tbody>
+    </table>
+</div>
+<div class="table-responsive text-uppercase">
+    <table class="table table-bordered bl br">
+        <thead>
+        <tr>
+            <th class="text-right">S/N</th><th>Part No/MODEL</th><th>DESCRIPTION</th><th class="text-right">QTY</th><th>UOM</th><th class="text-right">UNIT PRICE</th><th class="text-right">EXTENDED</th>
+        </tr>
+        </thead>
+        <tbody data-ng-init="sn=1;">
+        <tr data-ng-repeat="detail in printCtrl.detail">
+            <td class="text-right">{{sn+$index;}}</td>
+            <td>{{detail.partno_modelno}}</td>
+            <td>{{detail.description}}</td>
+            <td class="text-right">{{detail.quantity}}</td>
+            <td>{{detail.unitofmeasure}}</td>
+            <td class="text-right">{{detail.unitprice}}</td>
+            <td class="text-right">{{detail.unitprice * detail.quantity}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="invoice-totals">
+    <div class="invoice-totals-row">
+        <strong class="invoice-totals-title">Total</strong>
+        <span class="invoice-totals-value">{{printCtrl.master.sum}}</span>
     </div>
 </div>
