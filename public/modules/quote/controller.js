@@ -30,8 +30,8 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
             }
             vm.getQuoteSummary();
         }])
-    .controller('PrintRFQController', ['$scope', '$location', '$localStorage','DataService','CommonServices','$stateParams', '$uibModal',
-        function ($scope, $location, $localStorage, DataService,CommonServices,$stateParams, $uibModal) {
+    .controller('PrintRFQController', ['$scope', 'WEB_ROOTS', '$localStorage','DataService','CommonServices','$stateParams', '$window'
+        , function ($scope, WEB_ROOTS, $localStorage, DataService,CommonServices,$stateParams, $window) {
             var vm = this;
             vm.currentDate = new Date();
             var data=angular.copy(CommonServices.postData);
@@ -62,12 +62,15 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 }
             ];
             data.transactionMetaData.queryMetaData.joinClause = {
-                'joinType':['JOIN'],'joinKeys':['qd.unitofmeasure=uom.unitofmeasure_id']
+                'joinType':['LEFT JOIN'],'joinKeys':['qd.unitofmeasure=uom.unitofmeasure_id']
             }
-            data.transactionMetaData.responseDataProperties = 'qd.partno_modelno&(CASE WHEN qd.oem_description IS NOT NULL THEN qd.oem_description ELSE qd.description END)description&qd.quantity&uom.name unitofmeasure&qd.unitprice';
+            data.transactionMetaData.responseDataProperties = 'qd.quotedetail_id&qd.partno_modelno&(CASE WHEN qd.oem_description IS NOT NULL THEN qd.oem_description ELSE qd.description END)description&qd.quantity&uom.name unitofmeasure&qd.unitprice';
             DataService.post('inboundService', data).then(function (response) {
                 vm.detail=response.data.data
-            })
+            });
+            vm.genRFQ = function () {
+                $window.open(WEB_ROOTS.TOMCAT+"/frameset?__report=report/base/RFQ.rptdesign&quote_id="+$stateParams.print);
+            }
 
         }])
     .controller('QuoteByStatusController', ['$http', '$scope', '$location', '$localStorage','DataService','CommonServices','$stateParams', '$uibModal', 'ImportExportToExcel',

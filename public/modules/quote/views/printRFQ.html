@@ -8,7 +8,7 @@
         <button type="button" class="btn btn-danger btn-block no-print mb15" onclick="window.print();">
             <i class="ti-printer mr5"></i>Send to printer
         </button>
-        <button type="button" class="btn btn-info btn-block no-print">Export</button>
+        <button data-ng-click="printCtrl.genRFQ()" class="btn btn-info btn-block no-print" role="button"><i class="fa fa-paper-plane"></i> Export</button>
     </div>
     <div class="w150">
         <button type="button" class="btn btn-default btn-block text-left no-print" onclick="window.history.go(-1);"><< Back</button>
