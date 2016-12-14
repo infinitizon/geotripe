@@ -195,6 +195,10 @@ angular.module('Logistics')
                 }
             }
             vm.postData = function(){
+                if(!vm.quote.po_no){
+                    alert('PO number cannot be empty');
+                    return false;
+                }
                 vm.isDisabled = true; //Disable submit button
                 vm.dataLoading = true; //Disable submit button
                 //FILL FormData WITH FILE DETAILS.

@@ -754,6 +754,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                     data.factObjects = [{party_partytype_id:201607132,partystatus_partystatus_id:1011,isactive:1,name:vm.newManu}];
                     DataService.post('inboundService', data).then(function (response) {
                         vm.manufacturers.push({party_partytype_id:response.data.data.insertId, name:vm.newManu});
+                        vm.selectedManufacturers.push({party_partytype_id:response.data.data.insertId, name:vm.newManu});
                         vm.insertingManu = false;
                         vm.newManu = '';
                     });
