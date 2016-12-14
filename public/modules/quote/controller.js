@@ -69,7 +69,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 vm.detail=response.data.data
             });
             vm.genRFQ = function () {
-                $window.open(WEB_ROOTS.TOMCAT+"/frameset?__report=report/base/RFQ.rptdesign&quote_id="+$stateParams.print);
+                $window.open(WEB_ROOTS.TOMCAT+"/frameset?__report=report/base/rfq.rptdesign&quote_id="+$stateParams.print);
             }
 
         }])
@@ -252,13 +252,14 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
 
                 modalInstance.result.then(function (selectedItem) {
                     if(selectedItem.index != null){
-                        console.log(selectedItem);
+                        //console.log(selectedItem);
                         vm.lineItems[selectedItem.index] = selectedItem;
                     }else{
                         vm.lineItems.push(selectedItem);
                     }
                 }, function () {
-                    console.log('Modal dismissed at: ' + new Date());
+                    // What should happen when modal is dismissed
+                    console.log('Modal dismissed at: ' + new Date()); 
                 });
             };
 
@@ -457,7 +458,6 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                     data.transactionMetaData.groupingProperties = 'qd.QuoteDetail_Id';
                     DataService.post('inboundService', data).then(function (response) {
                         if(response.data.data!=null){
-                            console.log(response.data.data)
                             delete response.data.data['files'];
                             angular.forEach(response.data.data , function(lineItem, key) {
                                 var data=angular.copy(CommonServices.postData);
@@ -652,10 +652,12 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                     });
                     if(vm.quote.quote_id){
                         QuoteDetail.id =  vm.lineItems[key].id; //If we are editing then, we need to pass along the QuoteDetail id.
-                        angular.forEach(vm.originalLineItems[key].manus  , function(QuoteManufacturer, key2) {
-                            vm.originalLineItems4Db[key].manus[key2] = {party_party_id:QuoteManufacturer.party_id};
-                        });
-                        data.append("factObjects[QuoteDetail_ManufacturerOld]["+key+"]", [JSON.stringify(vm.originalLineItems4Db[key].manus)]);
+                        if(vm.originalLineItems){
+                            angular.forEach(vm.originalLineItems[key].manus  , function(QuoteManufacturer, key2) {
+                                vm.originalLineItems4Db[key].manus[key2] = {party_party_id:QuoteManufacturer.party_id};
+                            });
+                            data.append("factObjects[QuoteDetail_ManufacturerOld]["+key+"]", [JSON.stringify(vm.originalLineItems4Db[key].manus)]);
+                        }
                     }
                     data.append("factObjects[QuoteDetail]["+key+"]", [JSON.stringify(QuoteDetail)]);
                     data.append("factObjects[QuoteDetail_Manufacturer]["+key+"]", [JSON.stringify(vm.lineItems4Db[key].manus)]);

@@ -56,7 +56,7 @@
                             <!--<input type="text" id="uom" ng-model="quotItmCtrl.unitofmeasure" class="form-control"/>-->
 
                             <ui-select ng-model="quotItmCtrl.unitofmeasure" theme="bootstrap" close-on-select="true"
-                                       data-ng-click="quotItmCtrl.getLOVs('unitofmeasure','unitofmeasures', {'response':'unitofmeasure_id&name','placeholder':'UOMPlaceholder'})">
+                                       data-ng-click="quotItmCtrl.getLOVs('UnitOfMeasure','unitofmeasures', {'response':'unitofmeasure_id&name','placeholder':'UOMPlaceholder'})">
                                 <ui-select-match placeholder="{{quotItmCtrl.container['UOMPlaceholder'] || 'Select or search a person in the list...'}}">{{$select.selected.name}}</ui-select-match>
                                 <ui-select-choices repeat="item in quotItmCtrl.container['unitofmeasures'] | filter: $select.search">
                                     <div ng-bind-html="item.name | highlight: $select.search"></div>

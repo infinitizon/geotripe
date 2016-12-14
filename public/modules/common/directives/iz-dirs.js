@@ -117,6 +117,8 @@ angular.module('Common')
     .directive('izNumber', ['$parse','CommonServices', function($parse, CommonServices) {
         return {
             restrict: 'A',
+            //scope: { izNumber: "&" },
+            //replace: true,
             link: function(scope, element, attrs) {
                 var opt = scope.$eval(attrs.izOptions);
                 console.log(scope.$eval(attrs.izNumber));

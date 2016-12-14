@@ -326,12 +326,12 @@
                                     <td>{{lineItem.partno_modelno}}</td> <!-- UOM -->
                                     <td>{{lineItem.matDesc}}</td>
                                     <td>{{lineItem.oem_description}}</td>
-                                    <td>{{lineItem.qty}}</td>
+                                    <td>{{lineItem.qty*1 | number:0}}</td>
                                     <td>{{(lineItem.manus.length >1) ? 'Many' : lineItem.manus[0].name }}</td>
                                     <td data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)">{{lineItem.unitofmeasure.name}}</td> <!-- UOM -->
-                                    <td data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)"><span data-iz-number="lineItem.oem_unitprice" data-iz-options="{dp:2}">{{lineItem.oem_unitprice}}</span></td> <!--OEM Unit Price -->
-                                    <td data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)"><span data-iz-number="lineItem.unitprice" data-iz-options="{dp:2}">{{lineItem.unitprice}}</span></td> <!-- Unit Price -->
-                                    <td data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)"><span data-iz-number="lineItem.unitprice*lineItem.qty" data-iz-options="{dp:2}">{{lineItem.unitprice*lineItem.qty}}</span></td> <!-- Extended Price -->
+                                    <td data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)">{{lineItem.oem_unitprice*1 | number:2}}</td> <!--OEM Unit Price -->
+                                    <td data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)">{{lineItem.unitprice*1 | number:2}}</td> <!-- Unit Price -->
+                                    <td data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)">{{lineItem.unitprice*lineItem.qty | number:2}}</td> <!-- Extended Price -->
                                     <!--<td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.crossrrate}}</td> &lt;!&ndash; Cross Rate &ndash;&gt;-->
                                     <!--<td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.unit_price_usd}}</td> &lt;!&ndash; Unit Price (USD) &ndash;&gt;-->
                                     <!--<td data-ng-if="quotCtrl.quote.quote_id">{{lineItem.mfr_total}}</td> &lt;!&ndash; MFR Total &ndash;&gt;-->
