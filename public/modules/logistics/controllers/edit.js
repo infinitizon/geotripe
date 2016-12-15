@@ -2,13 +2,14 @@
  * Created by ahassan on 10/31/16.
  */
 angular.module('Logistics')
-    .controller('LogisticsEdit', ['$scope', '$localStorage', '$state', 'DataService','CommonServices','$stateParams',
-        function ($scope, $localStorage, $state, DataService, CommonServices, $stateParams) {
+    .controller('LogisticsEdit', ['$scope', '$localStorage', '$state', 'DataService','CommonServices','$stateParams','$filter'
+        , function ($scope, $localStorage, $state, DataService, CommonServices, $stateParams, $filter) {
             var vm = this;
 
             vm.lineItems = []
             vm.container = [];
             vm.disableClient = true;
+            vm.lstOfcharges = [];
             CommonServices.postData.token = $localStorage.globals.currentUser.userDetails.token;
             vm.getLOVs = function(factName, selectScope, options) {
                 if (vm.container[selectScope] == null) {
@@ -154,6 +155,22 @@ angular.module('Logistics')
                 }
                 return s;
             }
+            vm.newPoNo = function(){
+                vm.lstOfcharges.push({'po_no':vm.quote.po_no});
+            }
+            vm.currencies = [];
+            vm.loadCurrency = function() {
+                var data = angular.copy(CommonServices.postData);
+                data.factName = 'Currency';
+                data.transactionMetaData.responseDataProperties = 'currency_Id&code';
+                return vm.currencies.length ? null : DataService.post('inboundService', data).then(function (response) {
+                    vm.currencies = response.data.data;
+                });
+            };
+            vm.showCurrency = function(currency){
+                var selected = $filter('filter')(vm.currencies, {value: currency});
+                return (selected.length) ? selected[0].text : 'Not set';
+            }
             vm.splitpo_no = function(){
                 if(vm.split_po == true){
                     if(!vm.quote.po_no){
@@ -163,10 +180,12 @@ angular.module('Logistics')
                     }
                     vm.splits=0;
                     var numChecked = 0;
+                    vm.lstOfcharges = [];
                     angular.forEach(vm.lineItems  , function(QuoteDetail, key) {
                         QuoteDetail.po_no = null;
                         if(QuoteDetail.checked==true){
                             QuoteDetail.po_no = vm.quote.po_no +'-'+ colName(vm.splits);
+                            vm.lstOfcharges.push({'po_no':QuoteDetail.po_no});
                             numChecked++;vm.splits++;
                         }
                     });
@@ -183,14 +202,36 @@ angular.module('Logistics')
                     vm.quote.po_is_split=0;
                 }
             }
-            vm.checkName2 = function(data){
+            function unique(list) {
+                var result = [];
+                $.each(list, function(i, e) {
+                    if ($.inArray(e, result) == -1) result.push(e);
+                });
+                return result;
+            }
+            vm.checkName2 = function(oldData, data){
                 if(data == null){
                     alert('Split PO number cannot be empty');return;
                 }
                 if(data.substring(0,vm.quote.po_no.length) !== vm.quote.po_no){
-                    alert('The number '+vm.quote.po_no.length+' must match the PO number entered above');
+                    alert('The first '+vm.quote.po_no.length+' numbers must match the PO number entered above');
                     return false;
                 }else{
+                    vm.lstOfcharges=[];
+                    vm.newPoNo = [];
+                    angular.forEach(vm.lineItems  , function(QuoteDetail) {
+                        if(QuoteDetail.checked==true){
+                            vm.newPoNo.push(QuoteDetail.po_no);
+                        }
+                    });
+                    var index = vm.newPoNo.indexOf(oldData);
+                    if (index !== -1) {
+                        vm.newPoNo[index] = data;
+                    }
+                    vm.newPoNo = unique(vm.newPoNo);
+                    angular.forEach(vm.newPoNo  , function(po) {
+                        vm.lstOfcharges.push({'po_no':po});
+                    });
                     return true;
                 }
             }
@@ -260,8 +301,10 @@ angular.module('Logistics')
                         numChecked++;
                         realKey++
                     }
-                })
-
+                });
+                if(vm.lstOfcharges.length > 0){
+                    data.append("factObjects[PODetails]", [JSON.stringify(vm.lstOfcharges)]);
+                }
                 if(noPoNo > 0){
                     vm.isDisabled = false; //Disable submit button
                     vm.dataLoading = false; //Disable submit button

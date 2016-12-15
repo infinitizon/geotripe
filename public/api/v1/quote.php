@@ -41,6 +41,7 @@ if(!$data){
     $data = json_decode($input);
 }
 //var_dump($data);
+//    exit;
 include_once "core/init.inc.php";
 $fxns = new Functions($dbo);
 
@@ -141,6 +142,21 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                             $r_query = $dbo->prepare($query);
                             $r_query->execute();
                         }
+                    }
+                }
+            var_dump($data->factObjects[0]->PODetails);
+                if(isset($data->factObjects[0]->PODetails) ){
+                    foreach ($data->factObjects[0]->PODetails as $key => $val) {
+                        $q_str = "INSERT INTO PODetails ";
+                        $ins_fields = " (";
+                        $ins_values = " VALUES (";
+                        foreach($val as $col => $value){
+                            $ins_fields .= $col . " ,";
+                            $ins_values .= "'" . $value . "' ,";
+                        }
+                        $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
+                        $q_str_PODetails = $q_str .$ins_fields . ") " . $ins_values . ")";
+                        echo $q_str_PODetails;exit;
                     }
                 }
                 if(isset($data->factObjects[0]->QuoteDetail) ){
