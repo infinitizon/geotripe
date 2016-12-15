@@ -144,21 +144,37 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         }
                     }
                 }
-            var_dump($data->factObjects[0]->PODetails);
-                if(isset($data->factObjects[0]->PODetails) ){
-                    foreach ($data->factObjects[0]->PODetails as $key => $val) {
-                        $q_str = "INSERT INTO PODetails ";
-                        $ins_fields = " (";
-                        $ins_values = " VALUES (";
-                        foreach($val as $col => $value){
-                            $ins_fields .= $col . " ,";
-                            $ins_values .= "'" . $value . "' ,";
-                        }
-                        $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
-                        $q_str_PODetails = $q_str .$ins_fields . ") " . $ins_values . ")";
-                        echo $q_str_PODetails;exit;
+
+            if(isset($data->factObjects[0]->PODetails) ){
+                $q_fields = $dbo->query("DESCRIBE PODetails");
+                $r_fields = $q_fields->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($r_fields as $fields) {
+                    if ($fields['Key'] == 'PRI') {
+                        $priKy = $fields['Field'];
                     }
                 }
+                foreach ($data->factObjects[0]->PODetails as $key => $val) {
+                    $q_str_PODetails = "INSERT INTO PODetails ";
+                    $ins_fields = " (Quote_quote_Id, ";
+                    $ins_values = " VALUES ($lastQuoteId, ";
+                    $onUpdt = "";
+                    foreach ($r_fields as $fields) {
+                        $fieldNm = strtolower($fields['Field']);
+                        if( isset($val->$fieldNm)){
+                            @$ins_fields .= " {$fields['Field']} ,";
+                            $onUpdt .=$fields['Field']."=VALUES({$fields['Field']}),";
+                            $ins_values .= $fxns->_formatFieldValue($val->$fieldNm, array('type'=>$fields['Type'])).",";
+                        }
+                    }
+                    $ins_values = rtrim($ins_values,',');
+                    $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
+                    $onUpdt = rtrim($onUpdt,',');
+                    $q_str_PODetails = $q_str_PODetails .$ins_fields . ") " . $ins_values . ")";
+                    $q_str_PODetails .= " ON DUPLICATE KEY UPDATE Quote_quote_Id=VALUES(Quote_quote_Id),".$onUpdt;
+                    $q_str_PODetails = $dbo->prepare($q_str_PODetails);
+                    $q_str_PODetails->execute();
+                }
+            }
                 if(isset($data->factObjects[0]->QuoteDetail) ){
                     foreach ($data->factObjects[0]->QuoteDetail as $key => $val) {
                         $q_str = "INSERT INTO QuoteDetail ";
@@ -252,6 +268,38 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         $r_query = $dbo->prepare($query);
                         $r_query->execute();
                     }
+                }
+                if(isset($data->factObjects[0]->PODetails) ){
+                    $q_fields = $dbo->query("DESCRIBE PODetails");
+                    $r_fields = $q_fields->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($r_fields as $fields) {
+                        if ($fields['Key'] == 'PRI') {
+                            $priKy = $fields['Field'];
+                        }
+                    }
+                    foreach ($data->factObjects[0]->PODetails as $key => $val) {
+                        $q_str_PODetails = "INSERT INTO PODetails ";
+                        $ins_fields = " (Quote_quote_Id, ";
+                        $ins_values = " VALUES ({$data->factObjects[0]->quote->id}, ";
+                        $onUpdt = "";
+                        foreach ($r_fields as $fields) {
+                            $fieldNm = strtolower($fields['Field']);
+                            if( isset($val->$fieldNm)){
+                                @$ins_fields .= " {$fields['Field']} ,";
+                                $onUpdt .=$fields['Field']."=VALUES({$fields['Field']}),";
+                                $ins_values .= $fxns->_formatFieldValue($val->$fieldNm, array('type'=>$fields['Type'])).",";
+                            }
+                        }
+                        $ins_values = rtrim($ins_values,',');
+                        $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
+                        $onUpdt = rtrim($onUpdt,',');
+                        $q_str_PODetails = $q_str_PODetails .$ins_fields . ") " . $ins_values . ")";
+                        $q_str_PODetails .= " ON DUPLICATE KEY UPDATE Quote_quote_Id=VALUES(Quote_quote_Id),".$onUpdt;
+//                        echo $q_str_PODetails;
+                        $q_str_PODetails = $dbo->prepare($q_str_PODetails);
+                        $q_str_PODetails->execute();
+                    }
+//                    throw new Exception('Error from PODetails');
                 }
                 if(isset($data->factObjects[0]->QuoteDetail) ){
                     foreach ($data->factObjects[0]->QuoteDetail as $key => $val) {

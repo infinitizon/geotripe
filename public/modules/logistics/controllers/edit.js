@@ -143,6 +143,21 @@ angular.module('Logistics')
                 }else{
                     vm.originalLineItems = angular.copy(vm.lineItems);;
                 }
+            });
+            // Now get the PO details
+            var data=angular.copy(CommonServices.postData);
+            data.factName = 'PODetails pod';
+            data.transactionMetaData.responseDataProperties = "pod.po_no&pod.currency&pod.wire_transfer_fee&pod.cost_of_certs&pod.ground_freight&pod.int_freight&pod.packaging_cost&pod.harzardous_cost&pod.other_cost";
+            data.transactionMetaData.queryMetaData.queryClause.andExpression = [
+                {
+                    "propertyName": "pod.Quote_quote_Id",
+                    "propertyValue": $stateParams.rfq_id,
+                    "propertyDataType": "BIGINT",
+                    "operatorType": "="
+                }
+            ];
+            DataService.post('inboundService', data).then(function (response) {
+                vm.lstOfcharges = response.data.data;
             })
             function colName(n) {
                 var ordA = 'A'.charCodeAt(0);
@@ -202,13 +217,6 @@ angular.module('Logistics')
                     vm.quote.po_is_split=0;
                 }
             }
-            function unique(list) {
-                var result = [];
-                $.each(list, function(i, e) {
-                    if ($.inArray(e, result) == -1) result.push(e);
-                });
-                return result;
-            }
             vm.checkName2 = function(oldData, data){
                 if(data == null){
                     alert('Split PO number cannot be empty');return;
@@ -219,16 +227,19 @@ angular.module('Logistics')
                 }else{
                     vm.lstOfcharges=[];
                     vm.newPoNo = [];
+
                     angular.forEach(vm.lineItems  , function(QuoteDetail) {
                         if(QuoteDetail.checked==true){
                             vm.newPoNo.push(QuoteDetail.po_no);
+                            var index = vm.newPoNo.indexOf(oldData);
+                            if (index !== -1) {
+                                vm.newPoNo[index] = data;
+                            }
                         }
                     });
-                    var index = vm.newPoNo.indexOf(oldData);
-                    if (index !== -1) {
-                        vm.newPoNo[index] = data;
-                    }
-                    vm.newPoNo = unique(vm.newPoNo);
+                    vm.newPoNo = vm.newPoNo.filter(function (el, i, arr) {
+                        return arr.indexOf(el) === i;
+                    });
                     angular.forEach(vm.newPoNo  , function(po) {
                         vm.lstOfcharges.push({'po_no':po});
                     });
@@ -303,7 +314,11 @@ angular.module('Logistics')
                     }
                 });
                 if(vm.lstOfcharges.length > 0){
-                    data.append("factObjects[PODetails]", [JSON.stringify(vm.lstOfcharges)]);
+                    var lstOfcharges =  vm.lstOfcharges;
+                    angular.forEach(lstOfcharges  , function(loc) {
+                        delete loc.$$hashKey;
+                    });
+                    data.append("factObjects[PODetails]", [JSON.stringify(lstOfcharges)]);
                 }
                 if(noPoNo > 0){
                     vm.isDisabled = false; //Disable submit button
