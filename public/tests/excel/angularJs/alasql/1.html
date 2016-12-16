@@ -6,11 +6,11 @@
 </head>
 <body ng-controller="TestController as tc">
 <div class="container_body store-record">
-    <button class="btn btn-primary" ng-click="tc.export()">导出</button>
+    <button class="btn btn-primary" ng-click="tc.export()">Export</button>
     <p>Select CSV file to read:</p>
     <input class="btn btn-primary" type="file" import-from-excel=""/>
 </div>
-<script src="/scripts/angular/1.5.7/angular.js"></script>
+<script src="/vendor/angular/1.5.7/angular.js"></script>
 <script src="/scripts/excel2json/alasql.min.js"></script>
 <script src="/scripts/excel2json/xlsx.core.min.js"></script>
 <script>
@@ -27,8 +27,8 @@
                         $scope.$on('import-excel-data', function (e, v) {
                             console.log('excel-data:', v)
                         });
-                    }).directive('importFromExcel',
-            function(ImportExportToExcel) {
+                    })
+            .directive('importFromExcel', function(ImportExportToExcel) {
                 var directive = {
                     restrict: 'A',
                     link: function (scope, element) {
@@ -39,8 +39,7 @@
                     }
                 };
                 return directive;
-            }).factory('ImportExportToExcel',
-            function($log, $rootScope) {
+            }).factory('ImportExportToExcel', function($log, $rootScope) {
                 return {
                     importFromExcel: function (event) {
                         if (event.target.files.length == 0) {

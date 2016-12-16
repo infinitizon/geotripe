@@ -137,6 +137,11 @@ angular
                     , templateUrl: 'modules/quote/views/quoteByStatus.html'
                     , controller: 'QuoteByStatusController'
                     , controllerAs : 'quotCtrl'
+                    , resolve     : {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(['scripts/excel2json/alasql.min.js','scripts/excel2json/xlsx.core.min.js']);
+                        }]
+                    }
                 })
                 .state('app.procurement.clients.status.print', {
                     url:'/print/:print'

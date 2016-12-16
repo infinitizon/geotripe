@@ -137,13 +137,13 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 var toExport = [];
                 angular.forEach(vm.lineItems , function(lineItem, key) {
                     var items = {
-                        id:lineItem.id,partno_modelno:lineItem.partno_modelno,'MaterialDesciption':lineItem.matDesc,qty:lineItem.qty
+                        id:lineItem.id, partno_modelno:(lineItem.partno_modelno||''), 'MaterialDesciption':(lineItem.matDesc||''), qty:(lineItem.qty||''), Manufacturer:(lineItem.manus?lineItem.manus[0].name:'')
                     };
                     if(quoteId) {
+                        items['OEMDesciption'] = (lineItem.oem_description||'');
                         items['UOM'] = (lineItem.unitofmeasure) ? lineItem.unitofmeasure.name : '';
-                        items['Unit Price'] = lineItem.unitprice;
-                        items['OEM Unit Price'] = lineItem.oem_unitprice;
-                        items['oem_description'] = lineItem.oem_description;
+                        items['OEM Unit Price'] = (lineItem.oem_unitprice||'');
+                        items['Unit Price'] = (lineItem.unitprice||'');
                         //items['Cross Rate'] = lineItem.crossrrate;
                         //items['Unit Price (USD)'] = lineItem.unit_price_usd;
                         //items['MFR Total'] = lineItem.mfr_total;
@@ -179,6 +179,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 ImportExportToExcel.exportToExcel('RFQ_from_ERP', toExport);
             };
             $scope.$on('import-excel-data', function (e, values) {
+                console.log(values);
                 var originalLineItems=angular.copy(vm.lineItems);
                 vm.lineItems = [];
                 angular.forEach(values, function(lineItem, key) {
@@ -191,9 +192,9 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                         }
                     });
                     items.matDesc=lineItem['MaterialDesciption'];
-                    items.oem_description=lineItem['oem_description'];
+                    items.oem_description=lineItem['OEMDesciption'];
                     items.qty=lineItem.qty;
-                    item.partno_modelno=lineItem.partno_modelno;
+                    items.partno_modelno=lineItem.partno_modelno;
                     items.unitprice=lineItem['Unit Price'];
                     items.oem_unitprice=lineItem['OEM Unit Price'];
                     //items.crossrrate=lineItem['Cross Rate'];

@@ -53,6 +53,7 @@ angular.module('Common')
         function($log, $rootScope) {
             return {
                 importFromExcel: function (event) {
+                    console.log(event.target.files.length)
                     if (event.target.files.length == 0) {
                         return false;
                     }
