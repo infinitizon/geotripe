@@ -137,4 +137,4 @@ angular.module('Common')
                         });
                     }
                 };
-        }]);;
+        }]);

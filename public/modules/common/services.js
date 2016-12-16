@@ -53,11 +53,10 @@ angular.module('Common')
         function($log, $rootScope) {
             return {
                 importFromExcel: function (event) {
-                    console.log(event.target.files.length)
                     if (event.target.files.length == 0) {
                         return false;
                     }
-                    alasql('SELECT * FROM FILE(?,{headers:true})', [event], function (data) {
+                    alasql('SELECT * FROM FILE(?,{headers:true})', [event.originalEvent], function (data) {
                         $rootScope.$broadcast('import-excel-data', data);
                     });
                 },
