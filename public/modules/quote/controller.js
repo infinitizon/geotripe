@@ -81,6 +81,8 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
             var vm = this;
             vm.uploads = [];
             vm.container = {};
+            var date = new Date();
+            vm.publishDateMin = date.setDate((new Date()).getDate() - 14);
 
             //console.log(CommonServices.fmtNum(123456789.12345, {dp:0}) );
             vm.addNewFile = function(){
@@ -440,7 +442,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                     /*Now get the quote details*/
                     var data=angular.copy(CommonServices.postData);
                     data.factName = 'QuoteDetail qd, UnitOfMeasure uom, QuoteDetail_Manufacturer qdm';
-                    data.transactionMetaData.responseDataProperties = "qd.quotedetail_id&qd.quote_quote_id&qd.quantity&qd.partno_modelno&qd.description&qd.oem_description&unitprice&oem_unitprice&group_concat(qdm.Party_Party_Id)Party_Party_Id&concat('{"+'"unitofmeasure_id":"'+"',uom.unitofmeasure_id,'"+'","name":"'+"',uom.name,'"+'"}'+"')unitofmeasure&qd.crossrrate&qd.unit_price_usd&qd.mfr_total&qd.certOfOrigin&qd.weight&qd.g_f&qd.packaging&qd.int_f&qd.ins&qd.cif&qd.custom&qd.surch&qd.ciss&qd.etls&qd.vat&qd.nafdac_soncap&qd.clearing&qd.sub_total&qd.goods_in_transit&qd.lt_onne&qd.bch&qd.f_r&qd.cof&qd.total1&qd.mk_up&qd.nlcf&qd.total3&qd.u_p";
+                    data.transactionMetaData.responseDataProperties = "qd.quotedetail_id&qd.quote_quote_id&qd.quantity&qd.partno_modelno&qd.description&qd.oem_description&detail_notes&unitprice&oem_unitprice&group_concat(qdm.Party_Party_Id)Party_Party_Id&concat('{"+'"unitofmeasure_id":"'+"',uom.unitofmeasure_id,'"+'","name":"'+"',uom.name,'"+'"}'+"')unitofmeasure&qd.crossrrate&qd.unit_price_usd&qd.mfr_total&qd.certOfOrigin&qd.weight&qd.g_f&qd.packaging&qd.int_f&qd.ins&qd.cif&qd.custom&qd.surch&qd.ciss&qd.etls&qd.vat&qd.nafdac_soncap&qd.clearing&qd.sub_total&qd.goods_in_transit&qd.lt_onne&qd.bch&qd.f_r&qd.cof&qd.total1&qd.mk_up&qd.nlcf&qd.total3&qd.u_p&submitted&tq";
                     data.transactionMetaData.queryMetaData.joinClause = {
                         'joinType':['LEFT JOIN','JOIN'],'joinKeys':['qd.unitofmeasure=uom.unitofmeasure_id','qd.QuoteDetail_Id=qdm.QuoteDetail_QuoteDetail_Id']
                     }
@@ -471,8 +473,9 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                                 DataService.post('inboundService', data).then(function (response) {
                                     var items = {
                                         id:lineItem.quotedetail_id, partno_modelno:lineItem.partno_modelno, matDesc:lineItem.description
-                                        , oem_description:lineItem.oem_description, qty:lineItem.quantity, manus:JSON.parse(response.data.data[0].manus)
-                                        , unitofmeasure:JSON.parse(lineItem.unitofmeasure)
+                                        , oem_description:lineItem.oem_description, detail_notes:lineItem.detail_notes, qty:lineItem.quantity
+                                        , manus:JSON.parse(response.data.data[0].manus), unitofmeasure:JSON.parse(lineItem.unitofmeasure)
+                                        , submitted:(lineItem.submitted==1?true:false), tq:(lineItem.tq==1?true:false)
                                     };
                                     items.unitprice = lineItem.unitprice;
                                     items.oem_unitprice = lineItem.oem_unitprice;
@@ -484,7 +487,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                         if(vm.lineItems.length <= 0){
                             vm.lineItemsLoading = "Click the + icon to add new items";
                         }else{
-                            vm.originalLineItems = angular.copy(vm.lineItems);;
+                            vm.originalLineItems = angular.copy(vm.lineItems);
                         }
                     })
                 }else{
@@ -578,7 +581,11 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 vm.lineItems4Db = angular.copy(vm.lineItems);
                 vm.originalLineItems4Db = vm.originalLineItems;
                 angular.forEach(vm.lineItems  , function(QuoteDetail, key) {
-                    var QuoteDetail = {partno_modelno:vm.lineItems[key].partno_modelno,description: vm.lineItems[key].matDesc, quantity: vm.lineItems[key].qty};
+                    var QuoteDetail = {
+                        partno_modelno:vm.lineItems[key].partno_modelno, description:vm.lineItems[key].matDesc
+                        , detail_notes:vm.lineItems[key].detail_notes, quantity:vm.lineItems[key].qty
+                        , submitted:vm.lineItems[key].submitted, tq:vm.lineItems[key].tq
+                    };
                     if(vm.quote.quote_id){
                         QuoteDetail.oem_description = vm.lineItems[key].oem_description;
                         QuoteDetail.unitofmeasure = (vm.lineItems[key].unitofmeasure)?vm.lineItems[key].unitofmeasure.unitofmeasure_id:null;
@@ -629,6 +636,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
             var vm = this;
             vm.insertingManu = false;
             vm.showNewManu = true;
+            vm.showNewUOM = true;
             vm.container = [];
 
             vm.getLOVs = function(factName, selectScope, options) {
@@ -655,6 +663,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 vm.partno_modelno = vm.data.item.partno_modelno;
                 vm.matdesc = vm.data.item.matDesc;
                 vm.oem_description = vm.data.item.oem_description;
+                vm.detail_notes = vm.data.item.detail_notes;
                 vm.qty = vm.data.item.qty;
                 vm.unitprice = vm.data.item.unitprice;
                 vm.oem_unitprice = vm.data.item.oem_unitprice;
@@ -701,6 +710,28 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                     vm.errorMsg = true;
                 }
             }
+            vm.addNewUOM = function(){
+                if(vm.newUOM){
+                    vm.errorMsg = false;
+                    vm.insertingUOM = true;
+                    var data=angular.copy(CommonServices.postData);
+                    data.factName = 'UnitOfMeasure';
+                    data.transactionEventType = "PUT"
+                    data.factObjects = [{name:vm.newUOM}];
+                    DataService.post('inboundService', data).then(function (response) {
+                        vm.container['unitofmeasures'].push({unitofmeasure_id:response.data.data.insertId, name:vm.newUOM});
+                        vm.unitofmeasure={unitofmeasure_id:response.data.data.insertId, name:vm.newUOM};
+                        vm.insertingUOM = false;
+                        vm.newUOM = '';
+                        vm.showNewUOM = true;
+                    });
+                }else{
+                    vm.errorMsg = true;
+                }
+            }
+            vm.cancel = function(){
+                $uibModalInstance.close();
+            }
             vm.addLineItems = function () {
                 vm.lineItemsAdded={
                     "index":vm.indexSelected,
@@ -708,6 +739,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                     "partno_modelno":vm.partno_modelno,
                     "matDesc":vm.matdesc,
                     "oem_description":vm.oem_description,
+                    "detail_notes":vm.detail_notes,
                     "qty":vm.qty,
                     "manus":vm.selectedManufacturers,
                     "unitofmeasure":vm.unitofmeasure,

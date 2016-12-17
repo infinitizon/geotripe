@@ -30,31 +30,47 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                <!--https://github.com/angular-ui/ui-select-->
-                <label>Manufacturer: (Cannot find Manufacturer? <button class="btn btn-primary btn-xs" ng-click="quotItmCtrl.showNewManu = !quotItmCtrl.showNewManu">{{(quotItmCtrl.showNewManu==true?'Add new':'Close')}}</button> )</label>
-                <div ng-hide="quotItmCtrl.showNewManu">
-                    <input type="text" placeholder="Enter manufacturer name" ng-model="quotItmCtrl.newManu" style="width:50%;"/>
-                    <i class="fa fa-check fa-2x text-success cursor-pointer" data-ng-click="quotItmCtrl.addNewManu()" ng-if="!quotItmCtrl.insertingManu" ></i>
-                    <img ng-if="quotItmCtrl.insertingManu" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
-                    <span ng-if="quotItmCtrl.insertingManu">Adding! Please wait...</span>
-                    <span ng-if="quotItmCtrl.errorMsg" class="text-info">Please enter a valid manufacturer name</span>
-                    <i class="fa fa-times fa-2x text-danger cursor-pointer" data-ng-click="quotItmCtrl.showNewManu = !quotItmCtrl.showNewManu"></i>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <!--https://github.com/angular-ui/ui-select-->
+                        <label>Manufacturer: (Cannot find Manufacturer? <button class="btn btn-primary btn-xs" ng-click="quotItmCtrl.showNewManu = !quotItmCtrl.showNewManu">{{(quotItmCtrl.showNewManu==true?'Add new':'Close')}}</button> )</label>
+                        <div ng-hide="quotItmCtrl.showNewManu">
+                            <input type="text" placeholder="Enter manufacturer name" ng-model="quotItmCtrl.newManu" style="width:50%;"/>
+                            <i class="fa fa-check fa-2x text-success cursor-pointer" data-ng-click="quotItmCtrl.addNewManu()" ng-if="!quotItmCtrl.insertingManu" ></i>
+                            <img ng-if="quotItmCtrl.insertingManu" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+                            <span ng-if="quotItmCtrl.insertingManu">Adding! Please wait...</span>
+                            <span ng-if="quotItmCtrl.errorMsg" class="text-info">Please enter a valid manufacturer name</span>
+                            <i class="fa fa-times fa-2x text-danger cursor-pointer" data-ng-click="quotItmCtrl.showNewManu = !quotItmCtrl.showNewManu"></i>
+                        </div>
+                        <ui-select multiple ng-model="quotItmCtrl.selectedManufacturers" theme="bootstrap" ng-disabled="quotItmCtrl.disabled" sortable="true" close-on-select="true">
+                            <ui-select-match placeholder="Start typing a name to search for manufacturer...">{{$item.name}}</ui-select-match>
+                            <ui-select-choices repeat="manufacturer in quotItmCtrl.manufacturers | propsFilter: {name: $select.search}">
+                                <div ng-bind-html="manufacturer.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
                 </div>
-                <ui-select multiple ng-model="quotItmCtrl.selectedManufacturers" theme="bootstrap" ng-disabled="quotItmCtrl.disabled" sortable="true" close-on-select="true">
-                    <ui-select-match placeholder="Start typing a name to search for manufacturer...">{{$item.name}}</ui-select-match>
-                    <ui-select-choices repeat="manufacturer in quotItmCtrl.manufacturers | propsFilter: {name: $select.search}">
-                        <div ng-bind-html="manufacturer.name | highlight: $select.search"></div>
-                    </ui-select-choices>
-                </ui-select>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="detail_notes">Notes:</label>
+                        <textarea id="detail_notes" class="form-control" ng-model="quotItmCtrl.detail_notes"></textarea>
+                    </div>
+                </div>
             </div>
             <div data-ng-if="quotItmCtrl.data.edit">
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label>UOM:</label>
-                            <!--<input type="text" id="uom" ng-model="quotItmCtrl.unitofmeasure" class="form-control"/>-->
-
+                            <label>UOM:: (Cannot find UOM? <button class="btn btn-primary btn-xs" ng-click="quotItmCtrl.showNewUOM = !quotItmCtrl.showNewUOM">{{(quotItmCtrl.showNewUOM==true?'Add new':'Close')}}</button> )</label>
+                            <div ng-hide="quotItmCtrl.showNewUOM">
+                                <input type="text" placeholder="Enter UOM" ng-model="quotItmCtrl.newUOM" style="width:50%;"/>
+                                <i class="fa fa-check fa-2x text-success cursor-pointer" data-ng-click="quotItmCtrl.addNewUOM()" ng-if="!quotItmCtrl.insertingUOM" ></i>
+                                <img ng-if="quotItmCtrl.insertingUOM" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+                                <span ng-if="quotItmCtrl.insertingUOM">Adding! Please wait...</span>
+                                <span ng-if="quotItmCtrl.errorMsg" class="text-info">Please enter a valid UOM</span>
+                                <i class="fa fa-times fa-2x text-danger cursor-pointer" data-ng-click="quotItmCtrl.showNewManu = !quotItmCtrl.showNewManu"></i>
+                            </div>
                             <ui-select ng-model="quotItmCtrl.unitofmeasure" theme="bootstrap" close-on-select="true"
                                        data-ng-click="quotItmCtrl.getLOVs('UnitOfMeasure','unitofmeasures', {'response':'unitofmeasure_id&name','placeholder':'UOMPlaceholder'})">
                                 <ui-select-match placeholder="{{quotItmCtrl.container['UOMPlaceholder'] || 'Select or search a person in the list...'}}">{{$select.selected.name}}</ui-select-match>
@@ -156,6 +172,6 @@
     </div>
     <div class="modal-footer">
         <!--<button class="btn btn-primary" type="button" ng-click="PartyCtrl.ok()">OK</button>-->
-        <button class="btn btn-warning" type="button" ng-click="PartyCtrl.cancel()">Close window</button>
+        <button class="btn btn-warning" type="button" ng-click="quotItmCtrl.cancel()">Close window</button>
     </div>
 </div>
