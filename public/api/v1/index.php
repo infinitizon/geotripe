@@ -167,7 +167,7 @@ if($env['PATH_INFO']==="/inboundService") {
 //                            echo $field->propertyName;
                             $q_str .= "(".$field->propertyValue . ") AND ";
                         }elseif($field->operatorType=="LIKE"){
-                            $q_str .= "'%".$field->propertyValue . "%' AND ";
+                            $q_str .= ($field->propertyValue ? "'%".$field->propertyValue . "%' AND " : "'' AND ");
                         }else{
                             $q_str .= $field->propertyValue . " AND ";
                         }

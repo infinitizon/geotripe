@@ -152,22 +152,77 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
             $scope.$on('import-excel-data', function (e, values) {
                 var originalLineItems=angular.copy(vm.lineItems);
                 vm.lineItems = [];
-                angular.forEach(values, function(lineItem, key) {
-                    var items = {};
-                    items.id=lineItem.id;
-                    angular.forEach(originalLineItems, function(old, key) {
-                        if(old.id == lineItem.id){
-                            items.manus = old.manus;
-                            items.unitofmeasure = old.unitofmeasure;
-                        }
+                var data=angular.copy(CommonServices.postData);
+                data.factName = 'Party p';
+                data.transactionMetaData.responseDataProperties = 'p.party_id&p.party_partytype_id&p.name';
+                data.transactionMetaData.queryMetaData.queryClause.andExpression = [
+                    {
+                        "propertyName": "p.party_partytype_id",
+                        "propertyValue": 201607132,
+                        "propertyDataType": "VARCHAR",
+                        "operatorType": "LIKE"
+                    }
+                ];
+                DataService.post('inboundService', data).then(function (response) {
+                    var manus = response.data.data;
+
+                    var data=angular.copy(CommonServices.postData);
+                    data.factName = 'UnitOfMeasure uom';
+                    data.transactionMetaData.responseDataProperties = 'uom.unitofmeasure_id&uom.name';
+                    DataService.post('inboundService', data).then(function (response) {
+                        var uoms = response.data.data;
+
+                        angular.forEach(values, function(xlLine) {
+                            var items = {};
+                            items.id=xlLine.id;
+
+                            var manuFound = false;
+                            for(var i = 0; i < manus.length; i++) {
+                                if (manus[i].name == xlLine['Manufacturer']) {
+                                    items.manus = [{'party_id':manus[i].party_id, 'name':manus[i].name }];
+                                    manuFound = true;
+                                    break;
+                                }
+                            };
+                            if(!manuFound && xlLine['Manufacturer'] != ''){
+                                var data=angular.copy(CommonServices.postData);
+                                data.factName = 'Party';
+                                data.transactionEventType = "PUT"
+                                data.factObjects = [{party_partytype_id:201607132,partystatus_partystatus_id:1011,isactive:1,name:xlLine['Manufacturer']}];
+                                DataService.post('inboundService', data).then(function (response) {
+                                    items.manus = [{'party_id':response.data.data.insertId, 'name':xlLine['Manufacturer'] }];
+                                });
+                            }
+
+                            var uomFound = false;
+                            for(var i = 0; i < uoms.length; i++) {
+                                console.log(uoms[i].name +"<=>" + xlLine['UOM'])
+                                if (uoms[i].name == xlLine['UOM']) {
+                                    items.unitofmeasure= {'unitofmeasure_id':uoms[i].unitofmeasure_id, 'name':uoms[i].name };
+                                    uomFound = true;
+                                    break;
+                                }
+                            };
+                            if(!uomFound && xlLine['UOM'] != ''){
+                                var data=angular.copy(CommonServices.postData);
+                                data.factName = 'UnitOfMeasure';
+                                data.transactionEventType = "PUT"
+                                data.factObjects = [{name:xlLine['UOM']}];
+                                DataService.post('inboundService', data).then(function (response) {
+                                    items.manus = [{'unitofmeasure_id':response.data.data.insertId, 'name':xlLine['UOM'] }];
+                                });
+                            }
+                            items.matDesc=xlLine['MaterialDesciption'];
+                            items.oem_description=xlLine['OEMDesciption'];
+                            items.qty=xlLine.qty;
+                            items.partno_modelno=xlLine.partno_modelno;
+                            items.unitprice=xlLine['Unit Price'];
+                            items.oem_unitprice=xlLine['OEM Unit Price'];
+
+                            console.log(items)
+                            vm.lineItems.push(items);
+                        });
                     });
-                    items.matDesc=lineItem['MaterialDesciption'];
-                    items.oem_description=lineItem['OEMDesciption'];
-                    items.qty=lineItem.qty;
-                    items.partno_modelno=lineItem.partno_modelno;
-                    items.unitprice=lineItem['Unit Price'];
-                    items.oem_unitprice=lineItem['OEM Unit Price'];
-                    vm.lineItems.push(items);
                 });
                 $scope.$apply()
             });
@@ -421,35 +476,6 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                                     };
                                     items.unitprice = lineItem.unitprice;
                                     items.oem_unitprice = lineItem.oem_unitprice;
-                                    //items.unit_price_usd = lineItem.crossrrate;
-                                    //items.crossrrate = lineItem.crossrrate;
-                                    //items.mfr_total = lineItem.mfr_total;
-                                    //items.certOfOrigin = lineItem.certOfOrigin;
-                                    //items.weight = lineItem.weight;
-                                    //items.g_f = lineItem.g_f;
-                                    //items.packaging = lineItem.packaging;
-                                    //items.int_f = lineItem.int_f;
-                                    //items.ins = lineItem.ins;
-                                    //items.cif = lineItem.cif;
-                                    //items.custom = lineItem.custom;
-                                    //items.surch = lineItem.surch;
-                                    //items.ciss = lineItem.ciss;
-                                    //items.etls = lineItem.etls;
-                                    //items.vat = lineItem.vat;
-                                    //items.nafdac_soncap = lineItem.nafdac_soncap;
-                                    //items.clearing = lineItem.clearing;
-                                    //items.sub_total = lineItem.sub_total;
-                                    //items.goods_in_transit = lineItem.goods_in_transit;
-                                    //items.lt_onne = lineItem.lt_onne;
-                                    //items.bch = lineItem.bch;
-                                    //items.f_r = lineItem.f_r;
-                                    //items.cof = lineItem.cof;
-                                    //items.total1 = lineItem.total1;
-                                    //items.mk_up = lineItem.mk_up;
-                                    //items.total2 = lineItem.total2;
-                                    //items.nlcf = lineItem.nlcf;
-                                    //items.total3 = lineItem.total3;
-                                    //items.u_p = lineItem.u_p;
                                     vm.lineItems.push(items);
                                     vm.originalLineItems = angular.copy(vm.lineItems);
                                 })
@@ -558,35 +584,6 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                         QuoteDetail.unitofmeasure = (vm.lineItems[key].unitofmeasure)?vm.lineItems[key].unitofmeasure.unitofmeasure_id:null;
                         QuoteDetail.unitprice = vm.lineItems[key].unitprice;
                         QuoteDetail.oem_unitprice = vm.lineItems[key].oem_unitprice;
-                        //QuoteDetail.crossrrate = vm.lineItems[key].crossrrate;
-                        //QuoteDetail.unit_price_usd = vm.lineItems[key].unit_price_usd;
-                        //QuoteDetail.mfr_total = vm.lineItems[key].mfr_total;
-                        //QuoteDetail.certOfOrigin = vm.lineItems[key].certOfOrigin;
-                        //QuoteDetail.weight = vm.lineItems[key].weight;
-                        //QuoteDetail.g_f = vm.lineItems[key].g_f;
-                        //QuoteDetail.packaging = vm.lineItems[key].packaging;
-                        //QuoteDetail.int_f = vm.lineItems[key].int_f;
-                        //QuoteDetail.ins = vm.lineItems[key].ins;
-                        //QuoteDetail.cif = vm.lineItems[key].cif;
-                        //QuoteDetail.custom = vm.lineItems[key].custom;
-                        //QuoteDetail.surch = vm.lineItems[key].surch;
-                        //QuoteDetail.ciss = vm.lineItems[key].ciss;
-                        //QuoteDetail.etls = vm.lineItems[key].etls;
-                        //QuoteDetail.vat = vm.lineItems[key].vat;
-                        //QuoteDetail.nafdac_soncap = vm.lineItems[key].nafdac_soncap;
-                        //QuoteDetail.clearing = vm.lineItems[key].clearing;
-                        //QuoteDetail.sub_total = vm.lineItems[key].sub_total;
-                        //QuoteDetail.goods_in_transit = vm.lineItems[key].goods_in_transit;
-                        //QuoteDetail.lt_onne = vm.lineItems[key].lt_onne;
-                        //QuoteDetail.bch = vm.lineItems[key].bch;
-                        //QuoteDetail.f_r = vm.lineItems[key].f_r;
-                        //QuoteDetail.cof = vm.lineItems[key].cof;
-                        //QuoteDetail.total1 = vm.lineItems[key].total1;
-                        //QuoteDetail.mk_up = vm.lineItems[key].mk_up;
-                        //QuoteDetail.total2 = vm.lineItems[key].total2;
-                        //QuoteDetail.nlcf = vm.lineItems[key].nlcf;
-                        //QuoteDetail.total3 = vm.lineItems[key].total3;
-                        //QuoteDetail.u_p = vm.lineItems[key].u_p;
                     }
                     angular.forEach(vm.lineItems[key].manus  , function(QuoteManufacturer, key2) {
                         vm.lineItems4Db[key].manus[key2] = {party_party_id:QuoteManufacturer.party_id};
