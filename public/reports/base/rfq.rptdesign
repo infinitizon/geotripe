@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.2.v201410272105 Build &lt;4.4.2.v20150217-1805></property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="bidiLayoutOrientation">ltr</property>
@@ -27,8 +27,28 @@
         </scalar-parameter>
     </parameters>
     <data-sources>
-        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="MySql_DS" id="7"
- extends="rptPortrait.MySql_DS"/>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="MySQL_DS" id="4315">
+            <text-property name="displayName"></text-property>
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://127.0.0.1/geotripe</property>
+            <property name="odaUser">root</property>
+        </oda-data-source>
     </data-sources>
     <data-sets>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="quote_ds" id="3252">
@@ -182,7 +202,7 @@
                     </structure>
                 </list-property>
             </structure>
-            <property name="dataSource">MySql_DS</property>
+            <property name="dataSource">MySQL_DS</property>
             <list-property name="resultSet">
                 <structure>
                     <property name="position">1</property>
@@ -642,7 +662,7 @@ WHERE q.quote_id=?]]></xml-property>
                     </structure>
                 </list-property>
             </structure>
-            <property name="dataSource">MySql_DS</property>
+            <property name="dataSource">MySQL_DS</property>
             <list-property name="resultSet">
                 <structure>
                     <property name="position">1</property>
@@ -881,19 +901,19 @@ WHERE qd.quote_quote_id=?]]></xml-property>
             <property name="borderTopStyle">solid</property>
             <property name="borderTopWidth">1pt</property>
         </style>
+        <style name="alternatingRows" id="4312">
+            <property name="backgroundColor">#EEECED</property>
+        </style>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
-            <page-footer>
-                <text id="3">
-                    <property name="contentType">html</property>
-                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
-                </text>
-            </page-footer>
+            <property name="type">a4</property>
         </simple-master-page>
     </page-setup>
     <body>
         <list name="NewList" id="3254">
+            <property name="fontFamily">"Arial"</property>
+            <property name="fontSize">8pt</property>
             <property name="dataSet">quote_ds</property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -1061,8 +1081,9 @@ TEL: +234 1 453 3921<br>WWW.GEOSCAPELTD.COM | ADMIN@GEOSCAPELTD.COM</div>]]></te
                                         <property name="colSpan">2</property>
                                         <property name="rowSpan">1</property>
                                         <text id="128">
-                                            <property name="backgroundColor">gray</property>
-                                            <property name="textAlign">center</property>
+                                            <property name="fontSize">18pt</property>
+                                            <property name="fontWeight">bold</property>
+                                            <property name="textAlign">right</property>
                                             <property name="contentType">html</property>
                                             <text-property name="content"><![CDATA[QUOTATION]]></text-property>
                                         </text>
@@ -1217,6 +1238,214 @@ TEL: +234 1 453 3921<br>WWW.GEOSCAPELTD.COM | ADMIN@GEOSCAPELTD.COM</div>]]></te
                         <cell id="4244">
                             <property name="colSpan">2</property>
                             <property name="rowSpan">1</property>
+                            <table id="4268">
+                                <property name="width">100%</property>
+                                <property name="dataSet">quoteDetail</property>
+                                <list-property name="boundDataColumns">
+                                    <structure>
+                                        <property name="name">quotedetail_id</property>
+                                        <text-property name="displayName">quotedetail_id</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["quotedetail_id"]</expression>
+                                        <property name="dataType">decimal</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">partno_modelno</property>
+                                        <text-property name="displayName">partno_modelno</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["partno_modelno"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">description</property>
+                                        <text-property name="displayName">description</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["description"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">quantity</property>
+                                        <text-property name="displayName">quantity</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["quantity"]</expression>
+                                        <property name="dataType">integer</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">unitofmeasure</property>
+                                        <text-property name="displayName">unitofmeasure</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["unitofmeasure"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">unitprice</property>
+                                        <text-property name="displayName">unitprice</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["unitprice"]</expression>
+                                        <property name="dataType">decimal</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">Extended</property>
+                                        <text-property name="displayName">Extended</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["unitprice"]*dataSetRow["quantity"]</expression>
+                                        <property name="dataType">decimal</property>
+                                        <property name="allowExport">true</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">sumExtended</property>
+                                        <text-property name="displayName">sumExtended</text-property>
+                                        <property name="dataType">float</property>
+                                        <property name="aggregateFunction">SUM</property>
+                                        <list-property name="arguments">
+                                            <structure>
+                                                <property name="name">Expression</property>
+                                                <expression name="value" type="javascript">row["Extended"]</expression>
+                                            </structure>
+                                        </list-property>
+                                        <property name="allowExport">true</property>
+                                    </structure>
+                                </list-property>
+                                <column id="4293">
+                                    <property name="textAlign">left</property>
+                                    <property name="width">1.2916666666666667in</property>
+                                </column>
+                                <column id="4294">
+                                    <property name="textAlign">left</property>
+                                    <property name="width">2.0208333333333335in</property>
+                                </column>
+                                <column id="4295">
+                                    <property name="textAlign">right</property>
+                                    <property name="width">0.5625in</property>
+                                </column>
+                                <column id="4296">
+                                    <property name="textAlign">left</property>
+                                    <property name="width">1.2916666666666667in</property>
+                                </column>
+                                <column id="4297">
+                                    <property name="textAlign">right</property>
+                                    <property name="width">1.28125in</property>
+                                </column>
+                                <column id="4298">
+                                    <property name="textAlign">right</property>
+                                    <property name="width">1.28125in</property>
+                                </column>
+                                <header>
+                                    <row id="4269">
+                                        <property name="borderBottomColor">#63666A</property>
+                                        <property name="borderBottomStyle">solid</property>
+                                        <property name="borderBottomWidth">thin</property>
+                                        <property name="borderTopColor">#63666A</property>
+                                        <property name="borderTopStyle">solid</property>
+                                        <property name="borderTopWidth">thin</property>
+                                        <cell id="4270">
+                                            <label id="4300">
+                                                <text-property name="text">PART NO/MODEL</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="4271">
+                                            <label id="4302">
+                                                <text-property name="text">DESCRIPTION</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="4272">
+                                            <label id="4304">
+                                                <text-property name="text">QTY</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="4273">
+                                            <label id="4306">
+                                                <property name="marginLeft">6pt</property>
+                                                <text-property name="text">UOM</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="4274">
+                                            <label id="4308">
+                                                <text-property name="text">UNIT PRICE</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="4275">
+                                            <label id="4311">
+                                                <text-property name="text">EXTENDED</text-property>
+                                            </label>
+                                        </cell>
+                                    </row>
+                                </header>
+                                <detail>
+                                    <row id="4277">
+                                        <list-property name="highlightRules">
+                                            <structure>
+                                                <property name="operator">eq</property>
+                                                <expression name="testExpr" type="javascript">row[0] % 2</expression>
+                                                <simple-property-list name="value1">
+                                                    <value type="javascript">0</value>
+                                                </simple-property-list>
+                                                <property name="style">alternatingRows</property>
+                                            </structure>
+                                        </list-property>
+                                        <cell id="4278">
+                                            <data id="4301">
+                                                <property name="resultSetColumn">partno_modelno</property>
+                                            </data>
+                                        </cell>
+                                        <cell id="4279">
+                                            <data id="4303">
+                                                <property name="resultSetColumn">description</property>
+                                            </data>
+                                        </cell>
+                                        <cell id="4280">
+                                            <data id="4305">
+                                                <structure name="numberFormat">
+                                                    <property name="category">Fixed</property>
+                                                    <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                                                </structure>
+                                                <property name="resultSetColumn">quantity</property>
+                                            </data>
+                                        </cell>
+                                        <cell id="4281">
+                                            <data id="4307">
+                                                <property name="marginLeft">6pt</property>
+                                                <property name="resultSetColumn">unitofmeasure</property>
+                                            </data>
+                                        </cell>
+                                        <cell id="4282">
+                                            <data id="4309">
+                                                <structure name="numberFormat">
+                                                    <property name="category">Currency</property>
+                                                    <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                                </structure>
+                                                <property name="resultSetColumn">unitprice</property>
+                                            </data>
+                                        </cell>
+                                        <cell id="4283">
+                                            <data id="4310">
+                                                <structure name="numberFormat">
+                                                    <property name="category">Currency</property>
+                                                    <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                                </structure>
+                                                <property name="resultSetColumn">Extended</property>
+                                            </data>
+                                        </cell>
+                                    </row>
+                                </detail>
+                                <footer>
+                                    <row id="4285">
+                                        <cell id="4286"/>
+                                        <cell id="4287"/>
+                                        <cell id="4288"/>
+                                        <cell id="4289"/>
+                                        <cell id="4290">
+                                            <label id="4314">
+                                                <property name="fontWeight">bold</property>
+                                                <text-property name="text">TOTAL</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="4291">
+                                            <property name="fontWeight">bold</property>
+                                            <data id="4313">
+                                                <structure name="numberFormat">
+                                                    <property name="category">Currency</property>
+                                                    <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                                </structure>
+                                                <property name="resultSetColumn">sumExtended</property>
+                                            </data>
+                                        </cell>
+                                    </row>
+                                </footer>
+                            </table>
                         </cell>
                     </row>
                 </grid>

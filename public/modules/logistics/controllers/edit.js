@@ -157,7 +157,7 @@ angular.module('Logistics')
                 }
             ];
             DataService.post('inboundService', data).then(function (response) {
-                vm.lstOfcharges = response.data.data;
+                vm.lstOfcharges = response.data.data || [];
             })
             function colName(n) {
                 var ordA = 'A'.charCodeAt(0);
@@ -172,6 +172,7 @@ angular.module('Logistics')
             }
             vm.newPoNo = function(){
                 vm.lstOfcharges.push({'po_no':vm.quote.po_no});
+
             }
             vm.currencies = [];
             vm.loadCurrency = function() {

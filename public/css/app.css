@@ -13483,3 +13483,4 @@ td.align-middle {
 #results tr:nth-child(odd){
   background-color: #71A9D6;
 }
+.cursor-pointer{cursor:pointer;}
