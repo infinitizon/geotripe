@@ -278,7 +278,10 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Options</th><th>S/N</th><th>Submit</th><th>TQ</th><th>Part No./Model</th>
+                                    <th>Options</th><th>S/N</th>
+                                    <th data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)">Submit</th>
+                                    <th data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)">TQ</th>
+                                    <th>Part No./Model</th>
                                     <th>Material Description</th><th>OEM Description</th><th>Qty</th><th>Manufacturers</th>
                                     <th data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)">UOM</th>
                                     <th data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)">OEM Unit Price</th>
@@ -323,8 +326,8 @@
                                         <i class="fa fa-minus-circle fa-2x text-danger" style="cursor: pointer;" ng-click="quotCtrl.deleteLineItem($index,lineItem.id)" aria-hidden="true"></i>
                                     </td>
                                     <td>{{$index+1}}</td>
-                                    <td><label class="switch switch-sm"><input type="checkbox" data-ng-model="lineItem.submitted"><span><i class="handle"></i></span></label></td>
-                                    <td><label class="switch switch-sm"><input type="checkbox" data-ng-model="lineItem.tq"><span><i class="handle"></i></span></label></td>
+                                    <td data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)"><label class="switch switch-sm"><input type="checkbox" data-ng-model="lineItem.submitted"><span><i class="handle"></i></span></label></td>
+                                    <td data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)"><label class="switch switch-sm"><input type="checkbox" data-ng-model="lineItem.tq"><span><i class="handle"></i></span></label></td>
                                     <td>{{lineItem.partno_modelno}}</td> <!-- UOM -->
                                     <td>{{lineItem.matDesc}}</td>
                                     <td>{{lineItem.oem_description}}</td>

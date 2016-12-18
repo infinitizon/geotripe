@@ -15,7 +15,7 @@ $C['DB_USER'] = 'root';	 //root  -  cummins_geotripe
 /*
 * The database password
 */
-$C['DB_PASS'] =  ''; // rootn31
+$C['DB_PASS'] =  'root'; // rootn31
 /*
 * The name of the database to work with
 */
