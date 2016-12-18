@@ -103,7 +103,7 @@ angular.module('Logistics')
                     "operatorType": "="
                 }
             ];
-            data.transactionMetaData.groupingProperties = 'qd.QuoteDetail_Id';
+            data.transactionMetaData.groupingProperties.by = 'qd.QuoteDetail_Id';
             DataService.post('inboundService', data).then(function (response) {
                 if(response.data.data!=null){
                     delete response.data.data['files'];

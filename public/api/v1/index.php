@@ -177,8 +177,8 @@ if($env['PATH_INFO']==="/inboundService") {
                     $files_id = $fxns->_subStrAtDel($files_id, ' ,');
 //                    $q_getFiles_str = "SELECT doc_id,doc_quote_id,docName,docPath,docMimeType,docCreateDate,documentType_id FROM Document WHERE doc_quote_Id IN ($files_id)";
                 }
-                if (!empty($data->transactionMetaData->groupingProperties)) {
-                    $q_str .= " GROUP BY ".$data->transactionMetaData->groupingProperties;
+                if (!empty($data->transactionMetaData->groupingProperties->by)) {
+                    $q_str .= " GROUP BY ".$data->transactionMetaData->groupingProperties->by;
                 }
 
 //                echo $q_str;

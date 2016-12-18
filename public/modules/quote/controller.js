@@ -19,7 +19,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                         "operatorType": "="
                     }
                 ];
-                data.transactionMetaData.groupingProperties = 'p.Party_Id';
+                data.transactionMetaData.groupingProperties.by = 'p.Party_Id';
                 DataService.post('quote', data).then(function (response) {
                     vm.quoteDash = response.data.data;
                     vm.total_count = response.data.total_count;
@@ -326,7 +326,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 data.transactionMetaData.queryMetaData.joinClause = {
                     'joinType':['JOIN','JOIN','JOIN','LEFT JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_enteredBy_id=u.user_id','q.quote_Id=qd.Quote_quote_Id']
                 }
-                data.transactionMetaData.groupingProperties = 'q.quote_Id';
+                data.transactionMetaData.groupingProperties.by = 'q.quote_Id';
                 DataService.post('inboundService', data).then(function (response) {
                     vm.quotes = response.data.data;
                     vm.total_count = response.data.total_count;
@@ -454,7 +454,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                             "operatorType": "="
                         }
                     ];
-                    data.transactionMetaData.groupingProperties = 'qd.QuoteDetail_Id';
+                    data.transactionMetaData.groupingProperties.by = 'qd.QuoteDetail_Id';
                     DataService.post('inboundService', data).then(function (response) {
                         if(response.data.data!=null){
                             delete response.data.data['files'];

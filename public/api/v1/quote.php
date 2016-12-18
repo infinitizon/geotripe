@@ -81,8 +81,8 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
             $files_id = $fxns->_subStrAtDel($files_id, ' ,');
             $q_getFiles_str = "SELECT doc_id,doc_quote_id,docName,docCreateDate FROM Document WHERE doc_quote_Id IN ($files_id)";
         }
-        if (!empty($data->transactionMetaData->groupingProperties)) {
-            $q_str .= " GROUP BY ".$data->transactionMetaData->groupingProperties;
+        if (!empty($data->transactionMetaData->groupingProperties->by)) {
+            $q_str .= " GROUP BY ".$data->transactionMetaData->groupingProperties->by;
         }
         $q_str_tot_count = $dbo->query("SELECT COUNT(*) as `count` FROM (" . $q_str . ") t");
         $r_str_tot_count = $q_str_tot_count->fetch(PDO::FETCH_ASSOC);
