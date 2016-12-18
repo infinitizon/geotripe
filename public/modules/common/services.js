@@ -113,6 +113,24 @@ angular.module('Common')
                 j = (j = i.length) > 3 ? j % 3 : 0;
                 return ((opts.curr)? opts.curr + " " :'') + s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(num - i).toFixed(c).slice(2) : "");
             };
+            /**
+             * Query to check
+             * SELECT q.quote_id,q.rfq_no,p.name,CONCAT(LEFT(q.subject , 30),IF(LENGTH(q.subject)>30, "…", "")) subject
+             ,CONCAT(u.lastname,", ",u.middlename," ",u.firstname)enteredBy
+             , (CASE WHEN SUM(qd.tq)>0 AND SUM(qd.submitted) >0 AND (SUM(qd.tq)+ SUM(qd.submitted))<COUNT(qd.Quote_quote_Id) THEN 'Partially Submitted'
+             WHEN SUM(qd.tq)>0 THEN 'TQ on line Item'
+             ELSE qs.name END) status
+             ,COUNT(qd.Quote_quote_Id) totalQuotes, CONCAT("quantity:",qd.quantity,"unitprice:",qd.unitprice) showPrint
+             ,DATEDIFF(q.duedate,NOW())remDays,q.entrydate, SUM(qd.submitted), SUM(qd.tq)
+             FROM Quote q
+             JOIN  Party p ON q.Party_Party_Id=p.Party_Id
+             JOIN  QuoteStatus qs ON q.Quote_Status_Id=qs.QuoteStatus_Id
+             JOIN  Users u ON q.quote_enteredBy_id=u.user_id
+             LEFT JOIN QuoteDetail qd ON q.quote_Id=qd.Quote_quote_Id
+             WHERE q.Party_Party_Id = 20161317
+             GROUP BY q.quote_Id having SUM(qd.tq)>0 AND SUM(qd.submitted) >0
+             */
+
             Service.postData = {
                 "transactionEventType"   : "Query",
                 "factName": "Party",
