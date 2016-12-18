@@ -130,7 +130,10 @@ angular.module('Common')
                             "orExpression":[]
                         }
                     },
-                    "groupingProperties"     : "",
+                    "groupingProperties" : {
+                        "by":"",
+                        "having":""
+                    }
                 }
             };
             Service.base64Encode = function(input){

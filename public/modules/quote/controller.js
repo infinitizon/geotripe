@@ -263,7 +263,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
             };
 
             vm.getDueDateDisplay = function(numDays, status){
-                if(status == "In Progress"){
+                if(status == "In Progress"|| status == "Partially Submitted"){
                     if(numDays < 0){
                         return 'Expired';
                     }else if(numDays == 0){
@@ -271,7 +271,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                     }else{
                         return numDays;
                     }
-                }else if(status == "TQ"){
+                }else if(status == "TQ" || status == "TQ on line Item"){
                     return 'Pending TQ clearance';
                 }else if(status == "Submitted"){
                     return 'Done';
@@ -296,7 +296,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                  *
                  * Similarly, we can use CONCAT("[",GROUP_CONCAT(CONCAT("{quantity:",qd.quantity,",unitprice:",qd.unitprice,"}")),"]") for showPrint
                  */
-                data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&p.name&CONCAT(LEFT(q.subject , 30),IF(LENGTH(q.subject)>30, "…", "")) subject&CONCAT(u.lastname,", ",u.middlename," ",u.firstname)enteredBy&qs.name status&COUNT(qd.Quote_quote_Id) totalQuotes&CONCAT("quantity:",qd.quantity,"unitprice:",qd.unitprice) showPrint&DATEDIFF(q.duedate,NOW())remDays&q.entrydate'
+                data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&p.name&CONCAT(LEFT(q.subject , 30),IF(LENGTH(q.subject)>30, "…", "")) subject&CONCAT(u.lastname,", ",u.middlename," ",u.firstname)enteredBy&(CASE WHEN SUM(qd.tq)>0 AND SUM(qd.submitted) >0 AND (SUM(qd.tq)+ SUM(qd.submitted))<COUNT(qd.Quote_quote_Id) THEN "Partially Submitted" WHEN SUM(qd.tq)>0 THEN "TQ on line Item" ELSE qs.name END) status&COUNT(qd.Quote_quote_Id) totalQuotes&CONCAT("quantity:",qd.quantity,"unitprice:",qd.unitprice) showPrint&DATEDIFF(q.duedate,NOW())remDays&q.entrydate&SUM(qd.submitted)submitted&SUM(qd.tq)tq'
                 data.transactionMetaData.pageno = pageno-1;
                 data.transactionMetaData.itemsPerPage = vm.itemsPerPage;
                 data.transactionMetaData.queryMetaData.queryClause.andExpression = [
