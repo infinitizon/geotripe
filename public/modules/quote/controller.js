@@ -84,6 +84,19 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
             var date = new Date();
             vm.publishDateMin = date.setDate((new Date()).getDate() - 14);
 
+            vm.checkSubmitted = function(event) {
+                if(vm.lineItems.length > 0 && event.target.checked){
+                    angular.forEach(vm.lineItems, function (lineItem) {
+                        lineItem.submitted=true;
+                    })
+                }
+            }
+            vm.checkOneSubmitted = function(event){
+                if(!event.target.checked){
+                    vm.submittedChecked = false;
+                }
+            }
+
             //console.log(CommonServices.fmtNum(123456789.12345, {dp:0}) );
             vm.addNewFile = function(){
                 vm.uploads.push({
@@ -296,7 +309,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                  *
                  * Similarly, we can use CONCAT("[",GROUP_CONCAT(CONCAT("{quantity:",qd.quantity,",unitprice:",qd.unitprice,"}")),"]") for showPrint
                  */
-                data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&p.name&CONCAT(LEFT(q.subject , 30),IF(LENGTH(q.subject)>30, "…", "")) subject&CONCAT(u.lastname,", ",u.middlename," ",u.firstname)enteredBy&(CASE WHEN SUM(qd.tq)>0 AND SUM(qd.submitted) >0 AND (SUM(qd.tq)+ SUM(qd.submitted))<COUNT(qd.Quote_quote_Id) THEN "Partially Submitted" WHEN SUM(qd.tq)>0 THEN "TQ on line Item" ELSE qs.name END) status&COUNT(qd.Quote_quote_Id) totalQuotes&CONCAT("quantity:",qd.quantity,"unitprice:",qd.unitprice) showPrint&DATEDIFF(q.duedate,NOW())remDays&q.entrydate&SUM(qd.submitted)submitted&SUM(qd.tq)tq'
+                data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&p.name&CONCAT(LEFT(q.subject , 30),IF(LENGTH(q.subject)>30, "…", "")) subject&CONCAT(u.lastname,", ",u.middlename," ",u.firstname)enteredBy&(CASE WHEN SUM(qd.tq)>0 AND SUM(qd.submitted) >0 AND (SUM(qd.tq)+ SUM(qd.submitted))<COUNT(qd.Quote_quote_Id) THEN "Partially Submitted" WHEN SUM(qd.tq)>0 THEN "TQ on line Item(s)" ELSE qs.name END) status&COUNT(qd.Quote_quote_Id) totalQuotes&CONCAT("quantity:",qd.quantity,"unitprice:",qd.unitprice) showPrint&DATEDIFF(q.duedate,NOW())remDays&q.entrydate&SUM(qd.submitted)submitted&SUM(qd.tq)tq'
                 data.transactionMetaData.pageno = pageno-1;
                 data.transactionMetaData.itemsPerPage = vm.itemsPerPage;
                 data.transactionMetaData.queryMetaData.queryClause.andExpression = [
@@ -317,8 +330,13 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                     data.transactionMetaData.queryMetaData.queryClause.andExpression.push(clientStatus);
                 }
                 if(angular.isDefined(filters)){
+                    if(angular.isDefined(filters.having)){
+                        angular.forEach(filters.having, function(havingExpr){
+                            data.transactionMetaData.groupingProperties.having.push(havingExpr)
+                        })
+                    }
                     if(angular.isDefined(filters.andExpre)){
-                        angular.forEach(filters.andExpre, function(andExpr, key){
+                        angular.forEach(filters.andExpre, function(andExpr){
                             data.transactionMetaData.queryMetaData.queryClause.andExpression.push(andExpr)
                         })
                     }
@@ -339,7 +357,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
             vm.getData(vm.pageno);
             $scope.filters={}, vm.filterOpts={};
             vm.applyFilters = function(){
-                vm.filterOpts.andExpre = []
+                vm.filterOpts.andExpre =[],vm.filterOpts.having = [];
                 if(angular.isDefined($scope.filters.rfqno)){
                     vm.filterOpts.andExpre.push({
                             "propertyName": "q.rfq_no",
@@ -349,12 +367,21 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                         })
                 }
                 if(angular.isDefined($scope.filters.status)){
-                    vm.filterOpts.andExpre.push({
-                        "propertyName": "q.quote_status_id",
-                        "propertyValue": $scope.filters.status,
-                        "propertyDataType": "BIGINT",
-                        "operatorType": "LIKE"
-                    })
+                    if($scope.filters.status == 1 || $scope.filters.status == 2){
+                        vm.filterOpts.having.push({
+                            "clause": ($scope.filters.status==1?"SUM(qd.submitted)":"SUM(qd.tq)"),
+                            "propertyValue": 0,
+                            "propertyDataType": "BIGINT",
+                            "operatorType": ">"
+                        });
+                    }else{
+                        vm.filterOpts.andExpre.push({
+                            "propertyName": "q.quote_status_id",
+                            "propertyValue": $scope.filters.status,
+                            "propertyDataType": "BIGINT",
+                            "operatorType": "LIKE"
+                        });
+                    }
                 }
                 vm.getData(vm.pageno, vm.filterOpts);
             }
@@ -519,6 +546,10 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                     DataService.post('inboundService', data).then( function (response) {
                         vm.container[selectScope] = response.data.data;
                         if(options.placeholder) vm.container[options.placeholder] = null;
+                        if(selectScope == 'quoteStatuses'){
+                            vm.container[selectScope].push({'quotestatus_id':1,'name':'Partially Submitted'});
+                            vm.container[selectScope].push({'quotestatus_id':2,'name':'TQ on line Item(s)'});
+                        }
                     });
                 }
             }

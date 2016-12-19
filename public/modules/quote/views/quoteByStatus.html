@@ -70,7 +70,7 @@
                 <td>{{quote.totalQuotes}}</td>
                 <td>{{quote.enteredBy}}</td>
                 <td>
-                    <span ng-class="{'label label-danger blink_me':((quote.remDays==1||quote.remDays==0) &&quote.status=='In Progress'),'text-danger':(dueDisp=='Pending TQ clearance'),'text-success':(quote.remDays>1 || quote.status=='Submitted')}">{{dueDisp}}</span>
+                    <span ng-class="{'label label-danger blink_me':((quote.remDays==1||quote.remDays==0) && quote.status=='In Progress'),'text-danger':(dueDisp=='Pending TQ clearance'),'text-success':(quote.remDays>1 || quote.status=='Submitted')}">{{dueDisp}}</span>
                 </td>
                 <td class="text-center">
                     <div class="row">
@@ -195,7 +195,7 @@
                     <div class="col-sm-3">
                         <span class="text-right" style="display: inline-block">Turn on if RFQ is submitted</span>
                         <label class="switch switch-sm pull-right">
-                            <input type="checkbox" data-ng-disabled="quotCtrl.submittedDisabled" data-ng-model="quotCtrl.submittedChecked">
+                            <input type="checkbox" data-ng-disabled="quotCtrl.submittedDisabled" data-ng-model="quotCtrl.submittedChecked" data-ng-click="quotCtrl.checkSubmitted($event)">
                             <span><i class="handle"></i></span>
                         </label>
                     </div>
@@ -324,7 +324,7 @@
                                         <i class="fa fa-minus-circle fa-2x text-danger" style="cursor: pointer;" ng-click="quotCtrl.deleteLineItem($index,lineItem.id)" aria-hidden="true"></i>
                                     </td>
                                     <td>{{$index+1}}</td>
-                                    <td data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)"><label class="switch switch-sm"><input type="checkbox" data-ng-model="lineItem.submitted"><span><i class="handle"></i></span></label></td>
+                                    <td data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)"><label class="switch switch-sm"><input type="checkbox" data-ng-model="lineItem.submitted" data-ng-click="quotCtrl.checkTheBox($event)"><span><i class="handle"></i></span></label></td>
                                     <td data-ng-if="quotCtrl.supervisor(quotCtrl.quote.quote_id)"><label class="switch switch-sm"><input type="checkbox" data-ng-model="lineItem.tq"><span><i class="handle"></i></span></label></td>
                                     <td>{{lineItem.partno_modelno}}</td> <!-- UOM -->
                                     <td>{{lineItem.matDesc}}</td>

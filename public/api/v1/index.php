@@ -179,6 +179,13 @@ if($env['PATH_INFO']==="/inboundService") {
                 }
                 if (!empty($data->transactionMetaData->groupingProperties->by)) {
                     $q_str .= " GROUP BY ".$data->transactionMetaData->groupingProperties->by;
+                    if (!empty($data->transactionMetaData->groupingProperties->having)) {
+                        $q_str .= " HAVING ";
+                        foreach ($data->transactionMetaData->groupingProperties->having as $field) {
+                            $q_str .= $field->clause . " " . $field->operatorType . " ".$field->propertyValue. " AND ";
+                        }
+                        $q_str = $fxns->_subStrAtDel($q_str, ' AND ');
+                    }
                 }
 
 //                echo $q_str;

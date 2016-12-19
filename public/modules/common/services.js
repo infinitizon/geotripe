@@ -150,7 +150,7 @@ angular.module('Common')
                     },
                     "groupingProperties" : {
                         "by":"",
-                        "having":""
+                        "having":[]
                     }
                 }
             };
