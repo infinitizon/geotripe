@@ -1,13 +1,21 @@
 <div class="panel">
     <div class="panel-body">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="po_no">Purchase Order Number <span ng-show="!lgstEdt.quote.po_no" class="text-danger">*</span></label>
-                        <input type="text" id="po_no" data-ng-model="lgstEdt.quote.po_no" data-ng-blur="lgstEdt.newPoNo()" placeholder="Enter PO number" class="form-control" required="required" />
-                    </div>
+        <div class="row" data-ng-if="!lgstEdt.allowEdit">
+            <div class="col-sm-12">
+                <div class="form-group text-center">
+                    <button type="button" class="btn btn-primary" data-ng-click="lgstEdt.allowEdit = !lgstEdt.allowEdit"><i class="fa fa-pencil"></i> Edit</button>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="po_no">Purchase Order Number <span ng-show="!lgstEdt.quote.po_no" class="text-danger">*</span></label>
+                    <input type="text" id="po_no" placeholder="Enter PO number" class="form-control" required="required"
+                           data-ng-model="lgstEdt.quote.po_no" data-ng-blur="lgstEdt.newPoNo()" data-ng-disabled="!lgstEdt.allowEdit"/>
+                </div>
+            </div>
+        </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
@@ -204,8 +212,8 @@
                     </fieldset>
                 </div>
             </div>
-            <div class="form-actions text-center">
-                <a ui-sref="app.procurement.list" style="width:10%;" class="btn btn-default" role="button"><i class="fa fa-arrow-left"></i> Cancel</a>
+            <div class="form-actions text-center" data-ng-if="lgstEdt.allowEdit">
+                <a ui-sref="app.logistics.list" style="width:10%;" class="btn btn-default" role="button"><i class="fa fa-arrow-left"></i> Cancel</a>
                 <button ng-click="lgstEdt.postData()"  data-ng-disabled="form.$invalid || lgstEdt.dataLoading || lgstEdt.isDisabled" style="width:10%;" class="btn btn-primary">Create PO</button>
                 <i ng-if="lgstEdt.dataLoading" class="fa fa-spinner fa-spin fa-2x"></i>
             </div>

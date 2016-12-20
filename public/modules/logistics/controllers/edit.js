@@ -2,14 +2,19 @@
  * Created by ahassan on 10/31/16.
  */
 angular.module('Logistics')
-    .controller('LogisticsEdit', ['$scope', '$localStorage', '$state', 'DataService','CommonServices','$stateParams','$filter'
-        , function ($scope, $localStorage, $state, DataService, CommonServices, $stateParams, $filter) {
+    .controller('LogisticsEdit', ['$scope', '$rootScope', '$localStorage', '$state', 'DataService','CommonServices','$stateParams','$filter'
+        , function ($scope, $rootScope, $localStorage, $state, DataService, CommonServices, $stateParams, $filter) {
             var vm = this;
 
             vm.lineItems = []
             vm.container = [];
             vm.disableClient = true;
             vm.lstOfcharges = [];
+            vm.allowEdit=false;
+
+            $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
+               console.log(from)
+            });
             CommonServices.postData.token = $localStorage.globals.currentUser.userDetails.token;
             vm.getLOVs = function(factName, selectScope, options) {
                 if (vm.container[selectScope] == null) {
@@ -27,7 +32,6 @@ angular.module('Logistics')
                 }
             }
         //    Get the quote
-
             vm.supervisor = function(quoteId){
                 var i = 0;
                 angular.forEach($localStorage.globals.currentUser.userDetails.authRoles  , function(authRole, key) {
