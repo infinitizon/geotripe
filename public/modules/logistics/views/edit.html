@@ -118,9 +118,9 @@
                                 <th>S/N</th><th>Part No./Model</th>
                                 <th data-ng-if="lgstEdt.splits > 0">New PO numbers</th>
                                 <th>Material Description</th><th>OEM Description</th><th>Qty</th><th>Manufacturers</th>
-                                <th data-ng-if="lgstEdt.supervisor(lgstEdt.quote.quote_id)">UOM</th>
-                                <th data-ng-if="lgstEdt.supervisor(lgstEdt.quote.quote_id)">Unit Price</th>
-                                <th data-ng-if="lgstEdt.supervisor(lgstEdt.quote.quote_id)">Extended Price</th>
+                                <th>UOM</th>
+                                <th>Unit Price</th>
+                                <th>Extended Price</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -138,9 +138,9 @@
                                     <td>{{lineItem.oem_description}}</td>
                                     <td>{{lineItem.qty}}</td>
                                     <td>{{(lineItem.manus.length >1) ? 'Many' : lineItem.manus[0].name }}</td>
-                                    <td data-ng-if="lgstEdt.supervisor(lgstEdt.quote.quote_id)">{{lineItem.unitofmeasure.name}}</td> <!-- UOM -->
-                                    <td data-ng-if="lgstEdt.supervisor(lgstEdt.quote.quote_id)"><span data-iz-number="lineItem.unitprice" data-iz-options="{dp:2}"></span></td> <!-- Unit Price -->
-                                    <td data-ng-if="lgstEdt.supervisor(lgstEdt.quote.quote_id)"><span data-iz-number="lineItem.unitprice*lineItem.qty" data-iz-options="{dp:2}"></span></td> <!-- Extended Price -->
+                                    <td>{{lineItem.unitofmeasure.name}}</td> <!-- UOM -->
+                                    <td><span data-iz-number="lineItem.unitprice" data-iz-options="{dp:2}"></span></td> <!-- Unit Price -->
+                                    <td><span data-iz-number="lineItem.unitprice*lineItem.qty" data-iz-options="{dp:2}"></span></td> <!-- Extended Price -->
                                 </tr>
                             </tbody>
                         </table>

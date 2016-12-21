@@ -83,6 +83,37 @@ angular
                 .state('app.home', {
                     url: '/home'
                     , templateUrl: 'modules/home/views/home.html'
+                    , controller: 'HomeController'
+                    , controllerAs: 'HomeCtrl'
+                    , resolve: {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                {
+                                    serie: true,
+                                    files: [
+                                        'vendor/flot/jquery.flot.js',
+                                        'vendor/flot/jquery.flot.resize.js',
+                                        'vendor/flot/jquery.flot.categories.js',
+                                        'vendor/flot/jquery.flot.stack.js',
+                                        'vendor/flot/jquery.flot.time.js',
+                                        'vendor/flot/jquery.flot.pie.js',
+                                        'vendor/flot-spline/js/jquery.flot.spline.js',
+                                        'vendor/flot.orderbars/js/jquery.flot.orderBars.js'
+                                    ]
+                                },
+                                {
+                                    name: 'angular-flot',
+                                    files: [
+                                        'vendor/angular-flot/angular-flot.js'
+                                    ]
+                                }]).then(function () {
+                                return $ocLazyLoad.load('modules/home/controller.js');
+                            });
+                        }]
+                    }
+                    , data: {
+                        title: 'Flot Charts',
+                    }
                 })
                 .state('app.profile', {
                     url: '/profile'

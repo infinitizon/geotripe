@@ -1,9 +1,32 @@
 angular.module('Home',[])
-    .controller('HomeController', ['$scope', '$location', '$rootScope', '$state',
-        function ($scope, $location, $rootScope, $state) {
+    .controller('HomeController', ['$scope', '$localStorage', '$rootScope', 'CommonServices','DataService'
+        , function ($scope, $localStorage, $rootScope, CommonServices, DataService) {
             var vm = this;
             // reset login status
-            vm.pages = $rootScope.globals.currentUser.userDetails.authViews;
+            //vm.pages = $rootScope.globals.currentUser.userDetails.authViews;
+            CommonServices.postData.token = $localStorage.globals.currentUser.userDetails.token;
+            var data=angular.copy(CommonServices.postData);
+            data.transactionEventType = 'QuoteStat';
+            DataService.post('dashboard', data).then(function (response) {
+                vm.QuotesDataset = response.data.data
+                vm.QuotesOptions = {
+                    series: {
+                        pie: {
+                            show: true,
+                            innerRadius: 0.5,
+                            stroke: {
+                                width: 0
+                            },
+                            label: {
+                                show: true,
+                            }
+                        }
+                    },
+                    legend: {
+                        show: true
+                    },
+                };
+            })
         }])
     .controller('ProfileController', ['$scope', '$location', '$rootScope', 'CommonServices'
         , function ($scope, $location, $rootScope, CommonServices) {

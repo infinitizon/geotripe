@@ -153,7 +153,7 @@ function FlotCtrl($scope, $interval, COLORS) {
           width: 0
         },
         label: {
-          show: false,
+          show: true,
         }
       }
     },

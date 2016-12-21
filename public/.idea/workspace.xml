@@ -2,13 +2,138 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7ccbba7-fa03-4761-8a7a-bc057f5ccaef" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/background.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/image/hs-2004-27-a-large-web.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/navigate/arrow-down.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/navigate/arrow-left.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/navigate/arrow-right.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/navigate/arrow-up.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/v1/dashboard.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-flot/.bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-flot/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-flot/AUTHORS" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-flot/CHANGELOG.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-flot/CONTRIBUTING.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-flot/LICENSE.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-flot/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-flot/angular-flot.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-flot/bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-flot/example/app.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-flot/example/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-flot/logo.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/angular-flot/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot-spline/.bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot-spline/bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot-spline/js/jquery.flot.spline.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot-spline/js/jquery.flot.spline.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot.orderbars/.bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot.orderbars/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot.orderbars/examples/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot.orderbars/examples/js/flot/flot.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot.orderbars/examples/js/flot/stack.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot.orderbars/examples/js/main.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot.orderbars/examples/js/vendor/jquery-1.9.1.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot.orderbars/js/jquery.flot.orderBars.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/.bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/API.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/CONTRIBUTING.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/FAQ.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/LICENSE.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/Makefile" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/NEWS.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/PLUGINS.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/component.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/ajax/data-eu-gdp-growth-1.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/ajax/data-eu-gdp-growth-2.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/ajax/data-eu-gdp-growth-3.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/ajax/data-eu-gdp-growth-4.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/ajax/data-eu-gdp-growth-5.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/ajax/data-eu-gdp-growth.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/ajax/data-japan-gdp-growth.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/ajax/data-usa-gdp-growth.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/ajax/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/annotating/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-interacting/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-multiple/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/date.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/tz/africa" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/tz/antarctica" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/tz/asia" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/tz/australasia" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/tz/backward" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/tz/etcetera" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/tz/europe" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/tz/factory" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/tz/iso3166.tab" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/tz/leapseconds" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/tz/northamerica" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/tz/pacificnew" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/tz/solar87" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/tz/solar88" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/tz/solar89" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/tz/southamerica" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/tz/systemv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/tz/yearistype.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time-zones/tz/zone.tab" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/axes-time/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/basic-options/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/basic-usage/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/canvas/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/categories/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/examples.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/image/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/interacting/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/navigate/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/percentiles/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/realtime/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/resize/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/selection/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/series-errorbars/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/series-pie/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/series-toggle/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/series-types/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/shared/jquery-ui/jquery-ui.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/stacking/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/symbols/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/threshold/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/tracking/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/visitors/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/examples/zooming/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/excanvas.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/excanvas.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/flot.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/jquery.colorhelpers.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/jquery.flot.canvas.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/jquery.flot.categories.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/jquery.flot.crosshair.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/jquery.flot.errorbars.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/jquery.flot.fillbetween.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/jquery.flot.image.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/jquery.flot.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/jquery.flot.navigate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/jquery.flot.pie.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/jquery.flot.resize.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/jquery.flot.selection.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/jquery.flot.stack.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/jquery.flot.symbol.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/jquery.flot.threshold.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/jquery.flot.time.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/jquery.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/flot/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/v1/.htaccess" afterPath="$PROJECT_DIR$/api/v1/.htaccess" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/home/controller.js" afterPath="$PROJECT_DIR$/modules/home/controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/home/views/home.html" afterPath="$PROJECT_DIR$/modules/home/views/home.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/logistics/controllers/edit.js" afterPath="$PROJECT_DIR$/modules/logistics/controllers/edit.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/logistics/views/edit.html" afterPath="$PROJECT_DIR$/modules/logistics/views/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/logistics/views/list.html" afterPath="$PROJECT_DIR$/modules/logistics/views/list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/logistics/views/view.html" afterPath="$PROJECT_DIR$/modules/logistics/views/view.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/base/RFQ.rptdesign" afterPath="$PROJECT_DIR$/reports/base/RFQ.rptdesign" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../sys/config/db-cred.inc.php" afterPath="$PROJECT_DIR$/../sys/config/db-cred.inc.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/app.config.router.js" afterPath="$PROJECT_DIR$/scripts/app.config.router.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themeforest/angular/app/scripts/controllers/flot.js" afterPath="$PROJECT_DIR$/themeforest/angular/app/scripts/controllers/flot.js" />
     </list>
     <ignored path="public.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,108 +150,55 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="DatabaseView">
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="MySQL - geotripe@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="public" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="quoteItems.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/quote/views/templates/quoteItems.html">
+      <file leaf-file-name="charts-flot.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/themeforest/no-bower-grunt-angular/views/charts-flot.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.226415">
+              <caret line="33" column="12" selection-start-line="26" selection-start-column="6" selection-end-line="33" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="flot.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/themeforest/angular/app/scripts/controllers/flot.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.4285715">
+              <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="162" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/14559179-e102-438c-af62-2ee20b0f613c/console.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-0.0">
-              <caret line="39" column="83" selection-start-line="39" selection-start-column="69" selection-end-line="39" selection-end-column="83" />
+              <caret line="0" column="15" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="quoteByStatus.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.65384614">
-              <caret line="326" column="128" selection-start-line="326" selection-start-column="128" selection-end-line="326" selection-end-column="128" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/modules/logistics/views/edit.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6672598">
-              <caret line="215" column="41" selection-start-line="215" selection-start-column="41" selection-end-line="215" selection-end-column="41" />
-              <folding>
-                <marker date="1482276032066" expanded="true" signature="1370:1983" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
-                <marker date="1482276032066" expanded="true" signature="1405:1982" placeholder="[...]" />
-                <marker date="1482276032066" expanded="true" signature="1406:1981" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/logistics/views/list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.230769">
-              <caret line="63" column="97" selection-start-line="63" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/logistics/controllers/edit.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/v1/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="202" column="41" selection-start-line="202" selection-start-column="41" selection-end-line="202" selection-end-column="41" />
-              <folding>
-                <marker date="1482274194984" expanded="true" signature="573:2028" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="596:1962" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="789:861" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="902:976" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="1019:1481" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="1532:1933" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="2264:5906" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="2274:5745" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="2829:5443" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="3162:3393" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="3624:4125" placeholder="//..." />
-                <marker date="1482274194984" expanded="true" signature="4333:4492" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="4783:4987" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="5471:5618" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="5625:5739" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="5766:5871" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="5952:21025" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="5962:20837" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="6247:6300" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="6306:20831" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="6386:6781" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="6626:6767" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="6677:6749" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="6785:6834" placeholder=" A Query is a select ..." />
-                <marker date="1482274194984" expanded="true" signature="6897:7819" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="7836:7885" placeholder=" A Query is a select ..." />
-                <marker date="1482274194984" expanded="true" signature="7945:12371" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="8174:8502" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="8287:8484" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="8691:9864" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="8860:9533" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="9007:9165" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="9203:9344" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="9350:9446" placeholder="..." />
-                <marker date="1482274194984" expanded="true" signature="10518:10535" placeholder="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -134,21 +206,29 @@
       <file leaf-file-name="app.config.router.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/app.config.router.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="157" column="37" selection-start-line="157" selection-start-column="28" selection-end-line="157" selection-end-column="37" />
+            <state vertical-scroll-proportion="-6.7586207">
+              <caret line="86" column="45" selection-start-line="86" selection-start-column="37" selection-end-line="86" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/common/views/header.html">
+      <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/home/controller.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
-              <folding>
-                <element signature="n#style#0;n#p#0;n#li#0;n#ul#0;n#!!top" expanded="true" />
-              </folding>
+              <caret line="11" column="32" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/modules/home/views/home.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.20135364">
+              <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -172,18 +252,24 @@
         <option value="$PROJECT_DIR$/tests/excel/angularJs/alasql/1.html" />
         <option value="$PROJECT_DIR$/scripts/excel2json/xlsx.core.min.js" />
         <option value="$PROJECT_DIR$/modules/common/directives/iz-dirs.js" />
-        <option value="$PROJECT_DIR$/scripts/app.config.router.js" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/modules/common/services.js" />
-        <option value="$PROJECT_DIR$/api/v1/index.php" />
         <option value="$PROJECT_DIR$/modules/quote/views/templates/quoteItems.html" />
         <option value="$PROJECT_DIR$/modules/quote/controller.js" />
         <option value="$PROJECT_DIR$/modules/quote/views/quoteByStatus.html" />
         <option value="$PROJECT_DIR$/css/app.css" />
         <option value="$PROJECT_DIR$/modules/logistics/views/list.html" />
         <option value="$PROJECT_DIR$/modules/logistics/views/view.html" />
-        <option value="$PROJECT_DIR$/modules/logistics/controllers/edit.js" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/14559179-e102-438c-af62-2ee20b0f613c/console.sql" />
         <option value="$PROJECT_DIR$/modules/logistics/views/edit.html" />
+        <option value="$PROJECT_DIR$/modules/logistics/controllers/edit.js" />
+        <option value="$PROJECT_DIR$/themeforest/angular/app/scripts/controllers/flot.js" />
+        <option value="$PROJECT_DIR$/api/v1/index.php" />
+        <option value="$PROJECT_DIR$/api/v1/.htaccess" />
+        <option value="$PROJECT_DIR$/scripts/app.config.router.js" />
+        <option value="$PROJECT_DIR$/modules/home/controller.js" />
+        <option value="$PROJECT_DIR$/api/v1/dashboard.php" />
+        <option value="$PROJECT_DIR$/modules/home/views/home.html" />
       </list>
     </option>
   </component>
@@ -228,6 +314,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -256,100 +343,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="themeforest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="excel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="excel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angularJs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="excel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angularJs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alasql" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="modules" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -368,47 +361,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="logistics" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="logistics" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
+              <option name="myItemId" value="home" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -447,7 +400,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -457,6 +409,11 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\geotripe\public\vendor" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -902,7 +859,8 @@
       <workItem from="1481961207134" duration="3682000" />
       <workItem from="1481976316388" duration="2625000" />
       <workItem from="1481991697300" duration="2837000" />
-      <workItem from="1482274142134" duration="1873000" />
+      <workItem from="1482274142134" duration="1972000" />
+      <workItem from="1482351006146" duration="8481000" />
     </task>
     <task id="LOCAL-00001" summary="PO wtout PO no cant save; Add new manufacturer name to list automatically">
       <created>1481753924119</created>
@@ -920,37 +878,38 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79166000" />
+    <option name="totallyTimeSpent" value="87746000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19399707" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.193265" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18374817" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -975,104 +934,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/api/v1/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="183" column="22" selection-start-line="183" selection-start-column="22" selection-end-line="183" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="115" selection-start-line="5" selection-start-column="106" selection-end-line="5" selection-end-column="115" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/app.config.router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="396" column="29" selection-start-line="396" selection-start-column="29" selection-end-line="396" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/logistics/views/edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/views/printRFQ.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="154" selection-start-line="10" selection-start-column="154" selection-end-line="10" selection-end-column="154" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="328" column="56" selection-start-line="328" selection-start-column="56" selection-end-line="328" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/views/templates/quoteItems.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="96" column="70" selection-start-line="96" selection-start-column="70" selection-end-line="96" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/common/directives/iz-dirs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="115" column="6" selection-start-line="115" selection-start-column="6" selection-end-line="115" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/views/quotes.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/views/printRFQ.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="154" selection-start-line="10" selection-start-column="154" selection-end-line="10" selection-end-column="154" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/views/quoteByStatus.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/common/directives/iz-dirs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="115" column="6" selection-start-line="115" selection-start-column="6" selection-end-line="115" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/quote/views/quotes.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1143,20 +1004,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/logistics/controllers/list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="34" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/logistics/controllers/view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.36628848">
-          <caret line="5" column="95" selection-start-line="5" selection-start-column="86" selection-end-line="5" selection-end-column="95" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/app.skins.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1220,13 +1067,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/v1/quote.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.26909518">
-          <caret line="366" column="17" selection-start-line="366" selection-start-column="17" selection-end-line="366" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/setup/views/templates/party.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="53.916668">
@@ -1255,64 +1095,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/v1/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="202" column="41" selection-start-line="202" selection-start-column="41" selection-end-line="202" selection-end-column="41" />
-          <folding>
-            <marker date="1482274194984" expanded="true" signature="573:2028" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="596:1962" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="789:861" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="902:976" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="1019:1481" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="1532:1933" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="2264:5906" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="2274:5745" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="2829:5443" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="3162:3393" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="3624:4125" placeholder="//..." />
-            <marker date="1482274194984" expanded="true" signature="4333:4492" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="4783:4987" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="5471:5618" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="5625:5739" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="5766:5871" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="5952:21025" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="5962:20837" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="6247:6300" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="6306:20831" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="6386:6781" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="6626:6767" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="6677:6749" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="6785:6834" placeholder=" A Query is a select ..." />
-            <marker date="1482274194984" expanded="true" signature="6897:7819" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="7836:7885" placeholder=" A Query is a select ..." />
-            <marker date="1482274194984" expanded="true" signature="7945:12371" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="8174:8502" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="8287:8484" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="8691:9864" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="8860:9533" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="9007:9165" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="9203:9344" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="9350:9446" placeholder="..." />
-            <marker date="1482274194984" expanded="true" signature="10518:10535" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/common/views/header.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
           <folding>
-            <element signature="n#style#0;n#p#0;n#li#0;n#ul#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#li#0;n#ul#0;n#!!top" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.027552674">
-          <caret line="510" column="30" selection-start-line="510" selection-start-column="30" selection-end-line="510" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -1328,14 +1117,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6988156">
           <caret line="64" column="20" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/quote/views/templates/quoteItems.html">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/14559179-e102-438c-af62-2ee20b0f613c/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="83" selection-start-line="39" selection-start-column="69" selection-end-line="39" selection-end-column="83" />
+          <caret line="0" column="15" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
           <folding />
         </state>
       </provider>
@@ -1348,6 +1136,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/modules/quote/views/templates/quoteItems.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="22" selection-start-line="0" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3dd046be/14559179-e102-438c-af62-2ee20b0f613c/geotripe.quotedetail">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3dd046be/14559179-e102-438c-af62-2ee20b0f613c/geotripe.quotedetail_manufacturer">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/logistics/views/list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.230769">
@@ -1356,31 +1178,205 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/logistics/controllers/edit.js">
+    <entry file="file://$PROJECT_DIR$/modules/logistics/controllers/logistics.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/app.config.router.js">
+    <entry file="file://$PROJECT_DIR$/modules/logistics/controllers/view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="157" column="37" selection-start-line="157" selection-start-column="28" selection-end-line="157" selection-end-column="37" />
+        <state vertical-scroll-proportion="-2.306321">
+          <caret line="5" column="95" selection-start-line="5" selection-start-column="86" selection-end-line="5" selection-end-column="95" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/logistics/views/edit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6672598">
-          <caret line="215" column="41" selection-start-line="215" selection-start-column="41" selection-end-line="215" selection-end-column="41" />
+        <state vertical-scroll-proportion="-3.4">
+          <caret line="130" column="69" selection-start-line="130" selection-start-column="68" selection-end-line="130" selection-end-column="69" />
           <folding>
-            <marker date="1482276032066" expanded="true" signature="1370:1983" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
-            <marker date="1482276032066" expanded="true" signature="1405:1982" placeholder="[...]" />
-            <marker date="1482276032066" expanded="true" signature="1406:1981" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#fieldset#0;n#div#0;n#div#5;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <marker date="1482353988574" expanded="true" signature="1370:1983" placeholder="{&quot;response&quot;: 'party_id&amp;name'...}" />
+            <marker date="1482353988574" expanded="true" signature="1405:1982" placeholder="[...]" />
+            <marker date="1482353988574" expanded="true" signature="1406:1981" placeholder="{&quot;propertyName&quot;: 'party_partytype_id'...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/logistics/controllers/list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="68" column="11" selection-start-line="68" selection-start-column="11" selection-end-line="68" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/logistics/controllers/edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.103449">
+          <caret line="178" column="13" selection-start-line="178" selection-start-column="13" selection-end-line="178" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/flot/API.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/angular-flot/AUTHORS">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/no-bower-grunt-angular/scripts/config.router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9554367">
+          <caret line="572" column="11" selection-start-line="544" selection-start-column="10" selection-end-line="572" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/v1/user.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1478118937866" expanded="true" signature="2406:2444" placeholder="SELECT * FRO..Users..." />
+            <marker date="1478118937866" expanded="true" signature="3119:3136" placeholder="INSERT INTO Users..." />
+            <marker date="1478118937866" expanded="true" signature="4148:4173" placeholder="INSERT INTO User_AuthRole..." />
+            <marker date="1478118937866" expanded="true" signature="5559:5575" placeholder="UPDATE Users..." />
+            <marker date="1478118937866" expanded="true" signature="6429:6454" placeholder="INSERT INTO User_AuthRole..." />
+            <marker date="1478118937866" expanded="true" signature="7087:7162" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/v1/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33274022">
+          <caret line="57" column="32" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="32" />
+          <folding>
+            <marker date="1482356428145" expanded="true" signature="2298:2578" placeholder="SELECT u.use..Users..." />
+            <marker date="1482356428145" expanded="true" signature="2858:2932" placeholder="UPDATE Users..." />
+            <marker date="1482356428145" expanded="true" signature="3163:3372" placeholder="SELECT AuthR..User_AuthRole..." />
+            <marker date="1482356428145" expanded="true" signature="3475:3608" placeholder="SELECT av.au..AuthView..." />
+            <marker date="1482356428145" expanded="true" signature="5106:5129" placeholder="INSERT INTO LoginDetail..." />
+            <marker date="1482356428145" expanded="true" signature="6021:6059" placeholder="SELECT * FRO..Users..." />
+            <marker date="1482356428145" expanded="true" signature="6937:7019" placeholder="SELECT docNa..Document..." />
+            <marker date="1482356428145" expanded="true" signature="10518:10535" placeholder="..." />
+            <marker date="1482356428145" expanded="true" signature="10617:10667" placeholder="SELECT COUNT..${$q_str}..." />
+            <marker date="1482356428145" expanded="true" signature="12585:12597" placeholder="INSERT INTO ${{$data-&gt;factName}..." />
+            <marker date="1482356428145" expanded="true" signature="14153:14181" placeholder="UPDATE ${{$d..." />
+            <marker date="1482356428145" expanded="true" signature="15079:15091" placeholder="INSERT INTO ${{$data-&gt;factName}..." />
+            <marker date="1482356428145" expanded="true" signature="15143:15220" placeholder="INSERT INTO logs..." />
+            <marker date="1482356428145" expanded="true" signature="17604:17830" placeholder="INSERT INTO Document..." />
+            <marker date="1482356428145" expanded="true" signature="19642:19677" placeholder="DELETE FROM ..." />
+            <marker date="1482356428145" expanded="true" signature="21096:21143" placeholder="UPDATE Users..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/v1/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08265802">
+          <caret line="3" column="25" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/quote/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.1034484">
+          <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="8" selection-end-column="96" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/v1/quote.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.74111676">
+          <caret line="429" column="5" selection-start-line="429" selection-start-column="5" selection-end-line="432" selection-end-column="0" />
+          <folding>
+            <marker date="1482274194999" expanded="true" signature="2278:2316" placeholder="SELECT * FRO..Users..." />
+            <marker date="1482274194999" expanded="true" signature="4455:4551" placeholder="SELECT doc_i..Document..." />
+            <marker date="1482274194999" expanded="true" signature="4775:4825" placeholder="SELECT COUNT..${$q_str}..." />
+            <marker date="1482274194999" expanded="true" signature="5708:5725" placeholder="INSERT INTO Quote..." />
+            <marker date="1482274194999" expanded="true" signature="7670:7754" placeholder="INSERT INTO Document..." />
+            <marker date="1482274194999" expanded="true" signature="8774:8795" placeholder="INSERT INTO PODetails..." />
+            <marker date="1482274194999" expanded="true" signature="10173:10196" placeholder="INSERT INTO QuoteDetail..." />
+            <marker date="1482274194999" expanded="true" signature="11278:11314" placeholder="INSERT INTO QuoteDetail_Manufacturer..." />
+            <marker date="1482274194999" expanded="true" signature="13319:13335" placeholder="UPDATE Quote..." />
+            <marker date="1482274194999" expanded="true" signature="14974:15058" placeholder="INSERT INTO Document..." />
+            <marker date="1482274194999" expanded="true" signature="16094:16115" placeholder="INSERT INTO PODetails..." />
+            <marker date="1482274194999" expanded="true" signature="18304:18351" placeholder="SELECT * FRO..QuoteDetail..." />
+            <marker date="1482274194999" expanded="true" signature="18752:18774" placeholder="UPDATE Quote..." />
+            <marker date="1482274194999" expanded="true" signature="20017:20040" placeholder="INSERT INTO QuoteDetail..." />
+            <marker date="1482274194999" expanded="true" signature="21045:21117" placeholder="delete from ..." />
+            <marker date="1482274194999" expanded="true" signature="21732:21768" placeholder="INSERT INTO QuoteDetail_Manufacturer..." />
+            <marker date="1482274194999" expanded="true" signature="24308:24337" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/angular/app/scripts/controllers/flot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.4285715">
+          <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="162" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themeforest/no-bower-grunt-angular/views/charts-flot.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.226415">
+          <caret line="33" column="12" selection-start-line="26" selection-start-column="6" selection-end-line="33" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/home/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="32" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/v1/dashboard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.065989845">
+          <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
+          <folding>
+            <marker date="1482359833491" expanded="true" signature="676:714" placeholder="SELECT * FRO..Users..." />
+            <marker date="1482359833491" expanded="true" signature="1997:2047" placeholder="SELECT COUNT..${$q_str}..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/app.config.router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.7586207">
+          <caret line="86" column="45" selection-start-line="86" selection-start-column="37" selection-end-line="86" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/home/views/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20135364">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>

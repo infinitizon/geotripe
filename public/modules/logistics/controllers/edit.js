@@ -31,11 +31,10 @@ angular.module('Logistics')
                     });
                 }
             }
-        //    Get the quote
             vm.supervisor = function(quoteId){
                 var i = 0;
                 angular.forEach($localStorage.globals.currentUser.userDetails.authRoles  , function(authRole, key) {
-                    if (quoteId && "RFQ_SUPERVISOR,RFQ_ADMIN,SUPPORT_ADMIN".indexOf(authRole.Name) >= 0){
+                    if (quoteId && "PO_SUPERVISOR,PO_ADMIN,SUPPORT_ADMIN".indexOf(authRole.Name) >= 0){
                         i++;
                     }
                 });

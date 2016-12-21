@@ -1,8 +1,8 @@
-<div ui-view="home_pg">
-    <div class="row wrapper">
-        <div class="card bg-hot col-sm-3 text-center" style="color:#FFF;">
-            <i class="fa fa-weixin fa-3x" aria-hidden="true"></i><br>
-            Open Quotes
-        </div>
+<div class="panel">
+    <div class="panel-heading border">
+        Pie Chart
+    </div>
+    <div class="panel-body">
+        <flot dataset="HomeCtrl.QuotesDataset" options="HomeCtrl.QuotesOptions" class="chart-sm" height="150"></flot>
     </div>
 </div>
