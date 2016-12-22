@@ -1,8 +1,15 @@
-<div class="panel">
-    <div class="panel-heading border">
-        Pie Chart
-    </div>
-    <div class="panel-body">
-        <flot dataset="HomeCtrl.QuotesDataset" options="HomeCtrl.QuotesOptions" class="chart-sm" height="150"></flot>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="panel">
+            <div class="panel-heading border">
+                Distribution of quotes
+            </div>
+            <div class="panel-body">
+                <ul>
+                    <li data-ng-repeat="dataSet in HomeCtrl.QuotesDataset">{{dataSet.label +": "+ dataSet.data}}</li>
+                </ul>
+                <flot dataset="HomeCtrl.QuotesDataset" options="HomeCtrl.QuotesOptions" class="chart-sm" height="300"></flot>
+            </div>
+        </div>
     </div>
 </div>

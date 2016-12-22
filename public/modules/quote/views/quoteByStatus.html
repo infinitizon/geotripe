@@ -231,18 +231,21 @@
                     <fieldset style="margin-top:25px;">
                         <legend>Attach files <button class="btn btn-danger" ng-click="quotCtrl.addNewFile()">Attach new file</button></legend>
                         <div class="row" ng-repeat="upload in quotCtrl.uploads">
-                            <div class="col-sm-6">
+                            <div class="col-sm-5">
                                 <div class="form-group">
-                                    <ui-select ng-model="upload.documentType" theme="bootstrap" close-on-select="true"
-                                               data-ng-click="quotCtrl.getLOVs('DocumentTypes','documentTypes', {'response':'documentType_id&documentType','placeholder':'filePlaceholder'})">
-                                        <ui-select-match placeholder="{{quotItmCtrl.container['filePlaceholder'] || 'Select File type...'}}">{{$select.selected.documentType}}</ui-select-match>
-                                        <ui-select-choices repeat="item in quotCtrl.container['documentTypes'] | filter: $select.search">
-                                            <div ng-bind-html="item.documentType | highlight: $select.search"></div>
-                                        </ui-select-choices>
-                                    </ui-select>
+                                    <div class="input-group">
+                                        <span class="input-group-btn"><button class="btn btn-default" type="button" data-ng-click="quotCtrl.uploads.splice($index, 1);"><i class="fa fa-trash-o "></i></button></span>
+                                        <ui-select ng-model="upload.documentType" theme="bootstrap" close-on-select="true"
+                                                   data-ng-click="quotCtrl.getLOVs('DocumentTypes','documentTypes', {'response':'documentType_id&documentType','placeholder':'filePlaceholder'})">
+                                            <ui-select-match placeholder="{{'Select File type...'}}">{{$select.selected.documentType}}</ui-select-match>
+                                            <ui-select-choices repeat="item in quotCtrl.container['documentTypes'] | filter: $select.search">
+                                                <div ng-bind-html="item.documentType | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-7">
                                 <div class="form-group">
                                     <input type="file" file-model="upload.myFile"/>
                                 </div>

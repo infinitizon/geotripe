@@ -22,7 +22,7 @@ if (count($user) != 1) {
     throw new Exception("-110011");
 }
 if ($data->transactionEventType == "QuoteStat") {
-    $q_str = "SELECT status, count(status) count ";
+    $q_str = "SELECT status label, count(status) data ";
     $q_str .= "FROM( ";
     $q_str .= "SELECT q.quote_id,q.rfq_no,p.name,CONCAT(u.lastname,', ',u.middlename,' ',u.firstname)enteredBy ";
     $q_str .= ",(CASE WHEN SUM(qd.tq)>0 AND SUM(qd.submitted) >0 AND (SUM(qd.tq)+ SUM(qd.submitted))<COUNT(qd.Quote_quote_Id) THEN 'Partially Submitted' ";

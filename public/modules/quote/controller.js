@@ -97,7 +97,6 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 }
             }
 
-            //console.log(CommonServices.fmtNum(123456789.12345, {dp:0}) );
             vm.addNewFile = function(){
                 vm.uploads.push({
                     'documentType': {},
@@ -178,6 +177,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                         "operatorType": "LIKE"
                     }
                 ];
+                var error={qty:0,uprice:0,ouprice:0};
                 DataService.post('inboundService', data).then(function (response) {
                     var manus = response.data.data;
 
@@ -211,7 +211,6 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
 
                             var uomFound = false;
                             for(var i = 0; i < uoms.length; i++) {
-                                console.log(uoms[i].name +"<=>" + xlLine['UOM'])
                                 if (uoms[i].name == xlLine['UOM']) {
                                     items.unitofmeasure= {'unitofmeasure_id':uoms[i].unitofmeasure_id, 'name':uoms[i].name };
                                     uomFound = true;
@@ -229,14 +228,20 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                             }
                             items.matDesc=xlLine['MaterialDesciption'];
                             items.oem_description=xlLine['OEMDesciption'];
-                            items.qty=xlLine.qty;
+                            (!xlLine.qty || xlLine.qty==0) ? error.qty++ : items.qty=xlLine.qty; ////
                             items.partno_modelno=xlLine.partno_modelno;
-                            items.unitprice=xlLine['Unit Price'];
-                            items.oem_unitprice=xlLine['OEM Unit Price'];
+                            (!xlLine['Unit Price'] || xlLine['Unit Price']==0) ? error.uprice++ : items.unitprice=xlLine['Unit Price'];
+                            (!xlLine['OEM Unit Price'] || xlLine['OEM Unit Price']==0) ? error.ouprice++ : items.oem_unitprice=xlLine['OEM Unit Price'];
 
-                            console.log(items)
                             vm.lineItems.push(items);
                         });
+                        if(error.qty>0){
+                            alert("Error: Some line item 'quantities' are zero (0). Quantity cannot be 0"); vm.lineItems =[]; return;
+                        }else if(error.uprice > 0){
+                            alert("Error: Some line item 'unit price' are zero (0). Unit Price cannot be 0"); vm.lineItems =[]; return;
+                        }else if(error.ouprice > 0){
+                            alert("Error: Some line item 'OEM Unit Price' are zero (0). OEM Unit Price cannot be 0"); vm.lineItems =[]; return;
+                        }
                     });
                 });
                 $scope.$apply()
@@ -574,11 +579,20 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 data.append("transactionMetaData[queryStore]", "MySql");
                 //  Lets deal with the files first
                 if(vm.uploads){
+                    var fileTypeErr = 0, fileErr=0;
                     angular.forEach(vm.uploads, function(lineItem, key) {
+                        if(!lineItem.documentType.documentType_id) fileTypeErr++;
+                        if(!lineItem.myFile) fileErr++
                         data.append("factObjects[fileType]["+key+"]", lineItem.documentType.documentType_id);
                         var file = lineItem.myFile;
                         data.append("file["+key+"]", file);
                     });
+                    if(fileTypeErr){
+                        alert('You chose to upload a new file but did not specify file type'); vm.dataLoading=false;vm.isDisabled=false; return;
+                    }
+                    if(fileErr){
+                        alert('You chose to upload a new file but did not upload any'); vm.dataLoading=false;vm.isDisabled=false; return;
+                    }
                 }
                 //I'm editing a quote here
                 if(vm.quote.quote_id){
@@ -614,14 +628,14 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 angular.forEach(vm.lineItems  , function(QuoteDetail, key) {
                     var QuoteDetail = {
                         partno_modelno:vm.lineItems[key].partno_modelno, description:vm.lineItems[key].matDesc
-                        , detail_notes:vm.lineItems[key].detail_notes, quantity:vm.lineItems[key].qty
+                        , detail_notes:vm.lineItems[key].detail_notes, quantity:(vm.lineItems[key].qty?vm.lineItems[key].qty:null)
                         , submitted:vm.lineItems[key].submitted, tq:vm.lineItems[key].tq
                     };
                     if(vm.quote.quote_id){
                         QuoteDetail.oem_description = vm.lineItems[key].oem_description;
-                        QuoteDetail.unitofmeasure = (vm.lineItems[key].unitofmeasure)?vm.lineItems[key].unitofmeasure.unitofmeasure_id:null;
-                        QuoteDetail.unitprice = vm.lineItems[key].unitprice;
-                        QuoteDetail.oem_unitprice = vm.lineItems[key].oem_unitprice;
+                        vm.lineItems[key].unitofmeasure?QuoteDetail.unitofmeasure =vm.lineItems[key].unitofmeasure.unitofmeasure_id:null;
+                        QuoteDetail.unitprice = vm.lineItems[key].unitprice?vm.lineItems[key].unitprice:null;
+                        QuoteDetail.oem_unitprice = vm.lineItems[key].oem_unitprice?vm.lineItems[key].oem_unitprice:null;
                     }
                     angular.forEach(vm.lineItems[key].manus  , function(QuoteManufacturer, key2) {
                         vm.lineItems4Db[key].manus[key2] = {party_party_id:QuoteManufacturer.party_id};

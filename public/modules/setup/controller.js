@@ -169,6 +169,8 @@ angular.module('Setup',['angularUtils.directives.dirPagination','ui.select'])
         function ($scope, $localStorage, DataService,CommonServices) {
             var vm = this;
 
+            vm.container = {};
+
             vm.edit=false;
 
             vm.users = []; //declare an empty array
@@ -199,6 +201,27 @@ angular.module('Setup',['angularUtils.directives.dirPagination','ui.select'])
                 vm.edit=false;
                 vm.getData(vm.pageno);
             };
+
+            vm.getLOVs = function(factName, selectScope, options) {
+                if (vm.container[selectScope] == null) {
+                    if(options.placeholder)
+                        vm.container[selectScope] = [options.placeholder];
+                    else
+                        vm.container[selectScope] = [{'id':1,'name':'Loading please wait...'}];
+
+                    var data = angular.copy(CommonServices.postData);
+                    data.factName = factName;
+                    data.transactionMetaData.responseDataProperties = options.response;
+                    if(options.and){
+                        data.transactionMetaData.queryMetaData.queryClause.andExpression.queryPropertyValues = options.and;
+                    }
+                    DataService.post('inboundService', data).then( function (response) {
+                        vm.container[selectScope] = response.data.data;
+                        if(options.placeholder) vm.container[options.placeholder] = null;
+                    });
+                }
+            }
+
             vm.editUser = function (userId) {
                 vm.result = null;
                 vm.edit=true;
@@ -231,8 +254,8 @@ angular.module('Setup',['angularUtils.directives.dirPagination','ui.select'])
                 /* This part helps get the user details */
                 var data=angular.copy(CommonServices.postData);
                 if(userId) {
-                    data.factName = 'Users';
-                    data.transactionMetaData.responseDataProperties = 'user_id&firstname&middlename&lastname&workphonenumber&contactphonenumber&user_party_id&isauthorizedperson&username&email&password&token&enabled&accountlocked&accountexpirationtime&credentialsexpirationtime&datecreated&datemodified';
+                    data.factName = 'Users u,Party p';
+                    data.transactionMetaData.responseDataProperties = "u.user_id&u.firstname&u.middlename&u.lastname&u.workphonenumber&u.contactphonenumber&CONCAT('{\"party_id\":',u.user_party_id,',\"name\":\"',p.name,'\"}')user_party&u.isauthorizedperson&u.username&u.email&u.password&u.token&u.enabled&u.accountlocked&u.accountexpirationtime&u.credentialsexpirationtime&u.datecreated&u.datemodified";
                     data.transactionMetaData.queryMetaData.queryClause.andExpression = [
                         {
                             "propertyName": "user_id",
@@ -241,8 +264,12 @@ angular.module('Setup',['angularUtils.directives.dirPagination','ui.select'])
                             "operatorType": "="
                         }
                     ];
+                    data.transactionMetaData.queryMetaData.joinClause = {
+                        'joinType':['JOIN'],'joinKeys':['u.user_party_id=p.Party_Id']
+                    }
                     DataService.post('inboundService', data).then(function (response) {
                         vm.user = response.data.data[0];
+                        vm.user.user_party = JSON.parse(vm.user.user_party);
                         vm.originalUserData = angular.copy(vm.user);
                         vm.total_count = response.data.total_count;
                     })
@@ -253,12 +280,6 @@ angular.module('Setup',['angularUtils.directives.dirPagination','ui.select'])
                 }
 
             };
-            data=angular.copy(CommonServices.postData);
-            data.factName = 'Party';
-            data.transactionMetaData.responseDataProperties = "party_id&name";
-            CommonServices.getLOVs(data).then(function(response){
-                vm.parties = response.data.data;
-            });
             vm.newPwd = function(){
                 if(vm.user == null){
                     vm.result = 'Failure';
@@ -316,6 +337,8 @@ angular.module('Setup',['angularUtils.directives.dirPagination','ui.select'])
                 data.append("transactionMetaData[currentLocale]", "NG");
                 data.append("transactionMetaData[queryStore]", "MySql");
                 vm.changedUsrObjs = CommonServices.GetFormChanges(vm.originalUserData, vm.user);
+                delete vm.changedUsrObjs.user_party;
+                if(vm.originalUserData.user_party.party_id != vm.user.user_party.party_id) vm.changedUsrObjs.user_party_id = vm.user.user_party.party_id;
                 data.append("factObjects[rolesChecked]", [JSON.stringify(vm.userRolesCheckedArray)]);
                 if(vm.user.user_id ) { //We are in the edit mode and trying to update stuff
                     vm.changedUsrObjs['id'] = vm.user.user_id;
