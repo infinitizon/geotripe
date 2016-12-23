@@ -1,0 +1,37 @@
+<div ui-view>
+    <div class="panel mb25">
+        <div class="panel-heading">
+            <div class="pull-right"><button type="button" class="btn btn-default" ng-click="PartyCtrl.editParty({})">+ Add new</button></div>
+        </div>
+        <div class="panel-body">
+            <dir-pagination-controls
+                    max-size="8"
+                    direction-links="true"
+                    boundary-links="true"
+                    on-page-change="PartyCtrl.getData(newPageNumber)" >
+            </dir-pagination-controls>
+            <table class="table table-responsive">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-show="PartyCtrl.parties.data <= 0"><td colspan="6" style="text-align:center;">Loading new data!!</td></tr>
+                <tr dir-paginate="party in PartyCtrl.parties.data|itemsPerPage:PartyCtrl.itemsPerPage" total-items="PartyCtrl.total_count" class="cursor-pointer" tooltip-placement="top" uib-tooltip="Click on row to view" data-ng-click="PartyCtrl.editParty(party)">
+                    <td>{{party.name}}</td>
+                    <td>{{party.addressline1}}{{party.addressline2 ? ", "+party.addressline2:''}}{{party.addresscity ? ", "+party.addresscity:''}}</td>
+                    <td class="text-center">
+                        <div class="row">
+                            <button  type="button" class="btn btn-primary" ng-click="PartyCtrl.editParty(party.party_id)"><i class="fa fa-pencil"></i> Edit</button>
+                            <button  type="button" class="btn btn-danger" ng-click="PartyCtrl.deleteParty()"><i class="fa fa-trash"></i> Delete</button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

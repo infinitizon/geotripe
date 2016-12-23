@@ -283,7 +283,6 @@ if($env['PATH_INFO']==="/inboundService") {
                 $q_str = "INSERT INTO {$data->factName} ";
                 $q_str_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) ";
 
-                $multipleFields = "";
                 $ins_fields = " (";
                 $ins_values = " VALUES (";
                 if(!is_array($data->factObjects[0])){
@@ -329,35 +328,52 @@ if($env['PATH_INFO']==="/inboundService") {
                                       ({$lastId},'{$name}','{$mime}','{$path}',{$size},NOW())";
                             $r_query = $dbo->prepare($query);
                             $r_query->execute();
+                            //Document Logs
+                            $q_str_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) ";
+                            $log_txt = "{$user[0]['User_Id']},'Document',:tblColKey, 'inserted new lines for: ";
+                            $log_txt = "docName=>{$name}, docPath=>{$path}";
+                            $q_str_logs .= " VALUES (" . $log_txt . "', NOW() )";
+                            $r_logStr = $dbo->prepare($q_str_logs);
+                            $r_logStr->execute(array(':tblColKey'=>$lastId));
+
                         }
                     }
                 }else{
-                    foreach ($r_fields as $fields) {
-                        $fieldNm = strtolower($fields['Field']);
-                        if( isset($data->factObjects[0][0]->$fieldNm)){
-                            @$ins_fields .= " {$fields['Field']} ,";
-                        }
-                    }
-                    $ins_values = " VALUES ";
-                    foreach($data->factObjects[0] as $values){
-                        $ins_values .= "(";
+                    $dbo->beginTransaction();
+                        $ins_fields = " (";
                         foreach ($r_fields as $fields) {
                             $fieldNm = strtolower($fields['Field']);
-                            if ($values->$fieldNm) {
-                                @$ins_values .= $fxns->_formatFieldValue($values->$fieldNm, array('type'=>$fields['Type'])).",";
+                            if( isset($data->factObjects[0][0]->$fieldNm)){
+                                @$ins_fields .= " {$fields['Field']} ,";
+                                @$log_fields .= " {$fields['Field']} :";
                             }
                         }
-                        $ins_values = rtrim($ins_values,',');
-                        $ins_values .= "),";
-                    }
-                    $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
-                    $ins_values = rtrim($ins_values,',');
-                    $q_str .= $ins_fields . ") " . $ins_values;
+                        $ins_values = " VALUES ";
+                        foreach($data->factObjects[0] as $values){
+                            $ins_values .= "(";
+                            foreach ($r_fields as $fields) {
+                                $fieldNm = strtolower($fields['Field']);
+                                if ($values->$fieldNm) {
+                                    @$ins_values .= $fxns->_formatFieldValue($values->$fieldNm, array('type'=>$fields['Type'])).",";
+                                    @$log_values .= $fxns->_formatFieldValue($values->$fieldNm, array('type'=>$fields['Type'])).",";
+                                }
+                            }
+                            $ins_values = rtrim($ins_values,',');
 
-                    $r_str = $dbo->prepare($q_str);
-                    $r_str->execute();
-                    $lastId = $dbo->lastInsertId();
+                            $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
+                            $log_fields = $fxns->_subStrAtDel($log_fields, ' :');
+                            $q_str .= $ins_fields . ") " . $ins_values .= ")";
 
+                            $r_str = $dbo->prepare($q_str);
+                            $r_str->execute();
+                            $lastId = $dbo->lastInsertId();
+
+                            $q_str_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) VALUES ";
+                            $q_str_logs .= "( {$user[0]['User_Id']}, '{$data->factName}', :tblColKey, 'inserted new lines for: ".$ins_fields."<=>".$ins_values."', NOW() )";
+                            $r_logStr = $dbo->prepare($q_str_logs);
+                            $r_logStr->execute(array(':tblColKey'=>$lastId));
+                        }
+                    $db->commit();
                 }
                 $data=array('token'=> $data->token,'insertId'=>$lastId);
                 $response = array("response" => "Success", "message" => "Record Saved Successfully", "data"=>$data);

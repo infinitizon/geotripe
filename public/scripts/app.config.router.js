@@ -252,26 +252,41 @@ angular
                     template: '<div ui-view></div>'
                     , abstract: true
                     , url: '/setup'
-                    , resolve     : {
-                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            return $ocLazyLoad.load(['modules/setup/controller.js', 'modules/setup/services.js']);
-                        }]
-                    }
                 })
                 .state('app.setup.clients', {
                     url: '/clients'
-                    , templateUrl: 'modules/setup/views/templates/party.html'
+                    , templateUrl: 'modules/setup/views/clients.list.html'
                     , controller: 'PartyController'
                     , controllerAs: 'PartyCtrl'
+                    , resolve : {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                {
+                                    files: ['modules/setup/controllers/setup.js', 'modules/setup/services.js']
+                                }]).then(function () {
+                                return $ocLazyLoad.load(['modules/setup/controllers/clients.list.js']);
+                            });
+                        }]
+                    }
                     , data: {
                         title: 'Setup - Clients'
                     }
                 })
                 .state('app.setup.users', {
                     url: '/users'
-                    , templateUrl: 'modules/setup/views/templates/user.html'
+                    , templateUrl: 'modules/setup/views/users.list.html'
                     , controller: 'UserController'
                     , controllerAs: 'UsrCtrl'
+                    , resolve : {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                {
+                                    files: ['modules/setup/controllers/setup.js', 'modules/setup/services.js']
+                                }]).then(function () {
+                                return $ocLazyLoad.load(['modules/setup/controllers/users.list.js']);
+                            });
+                        }]
+                    }
                     , data: {
                         title: 'Setup - Users'
                     }

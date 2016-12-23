@@ -1,3 +1,6 @@
+/**
+ * Created by ahassan on 12/23/16.
+ */
 angular.module('Setup',['angularUtils.directives.dirPagination','ui.select'])
     .controller('SetupController', ['$location', '$localStorage', '$uibModal',
         function ($location, $localStorage, $uibModal) {
@@ -292,6 +295,7 @@ angular.module('Setup',['angularUtils.directives.dirPagination','ui.select'])
                 }
             }
             vm.saveUser = function(){
+                console.log(vm.user)
                 if(vm.user==null){
                     vm.result = 'Failure';
                     vm.message = "User data is empty, Fill in the required fields first";
@@ -348,7 +352,7 @@ angular.module('Setup',['angularUtils.directives.dirPagination','ui.select'])
 
                     DataService.post('users', data, {
                         transformRequest: angular.identity,
-                            headers: {'Content-Type': undefined, 'Process-Data': false}
+                        headers: {'Content-Type': undefined, 'Process-Data': false}
                     }).then(function (response) {
                         if(response.data.response == "Failure") {
                             vm.result = response.data.response;

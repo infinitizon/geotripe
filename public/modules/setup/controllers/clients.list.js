@@ -1,0 +1,81 @@
+/**
+ * Created by ahassan on 12/23/16.
+ */
+angular.module('Setup')
+    .controller('PartyController', ['$localStorage', '$state', 'DataService','CommonServices','$uibModal'
+        , function ($localStorage, $state, DataService,CommonServices,$uibModal) {
+            var vm = this;
+
+            vm.edit=false;
+            vm.container = [];
+
+            vm.getLOVs = function(factName, selectScope, options) {
+                if (vm.container[selectScope] == null) {
+                    var data = angular.copy(CommonServices.postData);
+                    data.factName = factName;
+                    data.transactionMetaData.responseDataProperties = options.response;
+                    data.transactionMetaData.pageno = null;
+                    data.transactionMetaData.itemsPerPage = null;
+                    if(options.and){
+                        data.transactionMetaData.queryMetaData.queryClause.andExpression = options.and;
+                    }
+                    DataService.post('inboundService', data).then( function (response) {
+                        vm.container[selectScope] = response.data.data;
+                    });
+                }
+            }
+
+            vm.users = []; //declare an empty array
+            vm.pageno = 1; // initialize page no to 1
+            vm.total_count = 0;
+            vm.itemsPerPage = 15; //this could be a dynamic value from a drop down
+            CommonServices.postData.token = $localStorage.globals.currentUser.userDetails.token;
+            vm.getData = function(pageno) {
+                data=angular.copy(CommonServices.postData);
+
+                data.factName = 'Party p, PartyType pt, Country c, State s';
+                data.transactionMetaData.responseDataProperties = 'p.party_id&p.party_partytype_id&pt.name partytypename&p.addressline1&p.addressline2&p.addresscity&p.emailaddress&p.name&p.party_country_id&c.name countryName&p.party_state_id&s.Name stateName&p.contactpersontitle&p.contactlastname&p.contactfirstname&p.contactmiddlename&p.contactphonenumber';
+                data.transactionMetaData.queryMetaData.joinClause = {
+                    'joinType':['JOIN','LEFT JOIN','LEFT JOIN'],'joinKeys':['p.Party_PartyType_Id=pt.PartyType_Id','p.Party_Country_Id=c.Country_Id','p.Party_State_Id=s.State_id']
+                };
+                data.transactionMetaData.pageno = pageno-1;
+                data.transactionMetaData.itemsPerPage = vm.itemsPerPage;
+                data.transactionMetaData.queryMetaData.queryClause.andExpression = [];
+
+                DataService.post('inboundService', data).then(function (response) {
+                    vm.parties = response.data;
+                    vm.total_count = response.data.total_count;
+                })
+            }
+            vm.getData(vm.pageno);
+            vm.goBack = function () {
+                vm.edit=false;
+                vm.getData(vm.pageno);
+            };
+            vm.editParty = function(client){
+                //$state.go('app.patient.medication.detail', {id: med.id});
+                var modalInstance = $uibModal.open({
+                    templateUrl: 'modules/setup/views/clients.detail.html'
+                    , controller: 'ClientDetailController'
+                    , controllerAs: 'cltDtCtrl'
+                    , resolve     : {
+                        client: function () {
+                            return client;
+                        },
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(['modules/setup/controllers/clients.detail.js']);
+                        }]
+                    }
+                    , backdrop  : 'static'
+                    , keyboard  : false
+                    , size: 'lg'
+                });
+
+                modalInstance.result.then(function (selectedItem) {
+                    $scope.selected = selectedItem;
+                }, function () {
+                    $log.info('Modal dismissed at: ' + new Date());
+                });
+            }
+
+        }])
