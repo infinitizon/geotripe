@@ -112,7 +112,7 @@ angular
                         }]
                     }
                     , data: {
-                        title: 'Flot Charts',
+                        title: 'Dashboard',
                     }
                 })
                 .state('app.profile', {
@@ -124,15 +124,11 @@ angular
                             return $ocLazyLoad.load([
                                 {
                                     insertBefore: '#load_styles_before',
-                                    files: [
-                                        'vendor/angular-xeditable/css/xeditable.min.css'
-                                    ]
+                                    files: ['vendor/angular-xeditable/css/xeditable.min.css']
                                 },
                                 {
                                     name: 'xeditable',
-                                    files: [
-                                        'vendor/angular-xeditable/js/xeditable.min.js'
-                                    ]
+                                    files: ['vendor/angular-xeditable/js/xeditable.min.js']
                                 }]).then(function () {
                                 return $ocLazyLoad.load(['modules/home/controller.js']);
                             });

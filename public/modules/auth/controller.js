@@ -14,6 +14,8 @@ angular.module('Auth', [])
             vm.login = function () {
                 vm.dataLoading = true;
                 AuthenticationService.Login(vm.username, vm.password, function(response) {
+                    console.log($localStorage);
+                    console.log('Some');
                     if(response.data.token) {
                         AuthenticationService.SetCredentials(response.data);
                         $scope.user = {
@@ -24,6 +26,7 @@ angular.module('Auth', [])
                             avatar: 'images/avatar.jpg'
                         };
                         $scope.app.pages = $localStorage.pages;
+                        console.log($scope.user);
                         $state.go('app.home');
                     } else {
                         vm.error = response.data.message;
