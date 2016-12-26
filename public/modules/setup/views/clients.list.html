@@ -14,14 +14,16 @@
                 <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Type</th>
                     <th>Address</th>
                     <th class="text-center">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-show="PartyCtrl.parties.data <= 0"><td colspan="6" style="text-align:center;">Loading new data!!</td></tr>
-                <tr dir-paginate="party in PartyCtrl.parties.data|itemsPerPage:PartyCtrl.itemsPerPage" total-items="PartyCtrl.total_count" class="cursor-pointer" tooltip-placement="top" uib-tooltip="Click on row to view" data-ng-click="PartyCtrl.editParty(party)">
+                <tr ng-show="PartyCtrl.parties <= 0"><td colspan="6" style="text-align:center;">Loading new data!!</td></tr>
+                <tr dir-paginate="party in PartyCtrl.parties|itemsPerPage:PartyCtrl.itemsPerPage" total-items="PartyCtrl.total_count" class="cursor-pointer" tooltip-placement="top" uib-tooltip="Click on row to view" data-ng-click="PartyCtrl.editParty(party)">
                     <td>{{party.name}}</td>
+                    <td>{{party.type.name}}</td>
                     <td>{{party.addressline1}}{{party.addressline2 ? ", "+party.addressline2:''}}{{party.addresscity ? ", "+party.addresscity:''}}</td>
                     <td class="text-center">
                         <div class="row">

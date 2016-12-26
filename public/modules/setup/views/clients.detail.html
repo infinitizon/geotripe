@@ -1,74 +1,77 @@
 <style>
-    .tab-content{
-        background: #FFF;
-        padding:10px;
-    }
-    li.uib-tab.active > a {
-        background: #FFF;
-    }
-    .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
-        background-color: #FFF;
-    }
+    .tab-content{  background: #FFF;  padding:10px;  }
+    li.uib-tab.active > a {  background: #FFF;  }
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{  background-color: #FFF;  }
 </style>
 <div class="modal-header" style="background: rgba(240,240,240,1);">
     <h3 class="modal-title">
+        <i class="fa fa-close pull-right cursor-pointer text-danger" data-ng-click="cltDtCtrl.close(cltDtCtrl.originalClient)"></i>
         <div class="form-group text-center">
-            <button type="button" class="btn btn-primary" data-ng-click="MedCtrl.allowEdit = !MedCtrl.allowEdit"><i class="fa fa-pencil"></i> Edit</button>
+            <button type="button" class="btn btn-primary" data-ng-click="cltDtCtrl.allowEdit = !cltDtCtrl.allowEdit"><i class="fa fa-pencil"></i> Edit</button>
         </div>
     </h3>
     <div class="modal-body">
+        <div data-ng-if="cltDtCtrl.result" data-ng-class="{'text-success':cltDtCtrl.result=='Success','text-danger':cltDtCtrl.result!='Success'}">{{cltDtCtrl.message}}</div>
         <form name="PartyDetail" class="tab-form" role="form">
             <uib-tabset active="activeForm">
                 <uib-tab index="0" heading="General">
                     <ng-form name="GeneralTab">
                         <div class="form-group">
-                            <label for="partyType">Type:</label>
-                            <select id="partyType" class="form-control"
-                                    data-ng-click="PartyCtrl.getLOVs('PartyType','partytypes', {'response':'partytype_id&name'})"
-                                    data-ng-options="partytype.partytype_id as partytype.name for partytype in PartyCtrl.container['partytypes']"
-                                    data-ng-model="PartyCtrl.party.party_partytype_id">
-                                <option value="">{{PartyCtrl.party.partytypename || "-- Select Party --"}}</option>
-                            </select>
+                            <label>Type:</label>
+                            <ui-select data-ng-model="cltDtCtrl.party.type" theme="bootstrap" close-on-select="true"
+                                       data-ng-click="cltDtCtrl.getLOVs('PartyType','partytypes', {'response':'partytype_id&name'})"
+                                        data-ng-disabled="cltDtCtrl.allowEdit">
+                                <ui-select-match placeholder="Select Party...">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="item in cltDtCtrl.container['partytypes'] | filter: $select.search">
+                                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
                         </div>
                         <div class="form-group">
                             <label for="partyName">Client Name:</label>
-                            <input type="text" class="form-control" id="partyName" ng-model="PartyCtrl.party.name">
+                            <input type="text" class="form-control" id="partyName" ng-model="cltDtCtrl.party.name" data-ng-disabled="cltDtCtrl.allowEdit">
                         </div>
                         <div class="form-group">
                             <label for="addressline1">Address Line 1:</label>
-                            <input type="text" class="form-control" id="addressline1" ng-model="PartyCtrl.party.addressline1">
+                            <input type="text" class="form-control" id="addressline1" ng-model="cltDtCtrl.party.addressline1" data-ng-disabled="cltDtCtrl.allowEdit">
                         </div>
                         <div class="form-group">
                             <label for="addressline2">Address Line 2:</label>
-                            <input type="text" class="form-control" id="addressline2" ng-model="PartyCtrl.party.addressline2">
+                            <input type="text" class="form-control" id="addressline2" ng-model="cltDtCtrl.party.addressline2" data-ng-disabled="cltDtCtrl.allowEdit">
                         </div>
                         <div class="form-group">
                             <label for="addressCity">Address City:</label>
-                            <input type="text" class="form-control" id="addressCity" ng-model="PartyCtrl.party.addresscity">
+                            <input type="text" class="form-control" id="addressCity" ng-model="cltDtCtrl.party.addresscity" data-ng-disabled="cltDtCtrl.allowEdit">
                         </div>
                         <div class="form-group">
                             <label for="emailAddress">Email Address:</label>
-                            <input type="text" class="form-control" id="emailAddress" ng-model="PartyCtrl.party.emailaddress">
+                            <input type="text" class="form-control" id="emailAddress" ng-model="cltDtCtrl.party.emailaddress" data-ng-disabled="cltDtCtrl.allowEdit">
                         </div>
                         <div class="form-group">
-                            <label for="country">Country:</label>
-                            <select id="country"
-                                    class="form-control"
-                                    data-ng-click="PartyCtrl.getLOVs('Country','countries', {'response':'country_id&name'})"
-                                    data-ng-change="PartyCtrl.getCountryStates(PartyCtrl.party.party_country_id)"
-                                    data-ng-options="country.country_id as country.name for country in PartyCtrl.container['countries']"
-                                    data-ng-model="PartyCtrl.party.party_country_id">
-                                <option value="">{{PartyCtrl.party.countryName || "-- Select Country --"}}</option>
-                            </select>
+                            <label>Country:</label>
+                            <ui-select data-ng-model="cltDtCtrl.party.country" theme="bootstrap" close-on-select="true" data-ng-disabled="cltDtCtrl.allowEdit"
+                                       data-ng-click="cltDtCtrl.getLOVs('Country','countries', {'response':'country_id&name',pageno:null,placeholder:{'country_id':1,'name':'Loading please wait...'} })"
+                                       data-on-select="cltDtCtrl.getLOVs('State','states', {'response':'state_id&name',placeholder:{'country_id':1,'name':'Loading please wait...'},and:[{
+                            'propertyName': 'state_country_id',
+                            'propertyValue': $item.country_id || '%',
+                            'propertyDataType': 'BIGINT',
+                            'operatorType': 'LIKE'
+                            }]
+                            })">
+                                <ui-select-match placeholder="Select Country...">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="item in cltDtCtrl.container['countries'] | filter: $select.search">
+                                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
                         </div>
                         <div class="form-group">
-                            <label for="states">State:</label>
-                            <select id="states"
-                                    class="form-control"
-                                    ng-options="state.state_id as state.name for state in PartyCtrl.states"
-                                    ng-model="PartyCtrl.party.state_id">
-                                <option value="">--Select State --</option>
-                            </select>
+                            <label>State:</label>
+                            <ui-select data-ng-model="cltDtCtrl.party.state" theme="bootstrap" close-on-select="true" data-ng-disabled="cltDtCtrl.allowEdit">
+                                <ui-select-match placeholder="Select State...">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="item in cltDtCtrl.container['states'] | filter: $select.search">
+                                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
                         </div>
                     </ng-form>
                 </uib-tab>
@@ -76,33 +79,31 @@
                     <ng-form name="ContactPersonTab">
                         <div class="form-group">
                             <label for="ContactPersonTitle">Title:</label>
-                            <input type="text" class="form-control" id="ContactPersonTitle" ng-model="PartyCtrl.party.contactpersontitle">
+                            <input type="text" class="form-control" id="ContactPersonTitle" ng-model="cltDtCtrl.party.contactpersontitle" data-ng-disabled="cltDtCtrl.allowEdit">
                         </div>
                         <div class="form-group">
                             <label for="ContactLastname">Last Name:</label>
-                            <input type="text" class="form-control" id="ContactLastname" ng-model="PartyCtrl.party.contactlastname">
+                            <input type="text" class="form-control" id="ContactLastname" ng-model="cltDtCtrl.party.contactlastname" data-ng-disabled="cltDtCtrl.allowEdit">
                         </div>
                         <div class="form-group">
                             <label for="ContactFirstname">First Name:</label>
-                            <input type="text" class="form-control" id="ContactFirstname" ng-model="PartyCtrl.party.contactfirstname">
+                            <input type="text" class="form-control" id="ContactFirstname" ng-model="cltDtCtrl.party.contactfirstname" data-ng-disabled="cltDtCtrl.allowEdit">
                         </div>
                         <div class="form-group">
                             <label for="ContactMiddlename">Middle Name:</label>
-                            <input type="text" class="form-control" id="ContactMiddlename" ng-model="PartyCtrl.party.contactmiddlename">
+                            <input type="text" class="form-control" id="ContactMiddlename" ng-model="cltDtCtrl.party.contactmiddlename" data-ng-disabled="cltDtCtrl.allowEdit">
                         </div>
                         <div class="form-group">
                             <label for="contactPhoneNumber">Phone Number:</label>
-                            <input type="text" class="form-control" id="contactPhoneNumber" ng-model="PartyCtrl.party.contactphonenumber">
+                            <input type="text" class="form-control" id="contactPhoneNumber" ng-model="cltDtCtrl.party.contactphonenumber" data-ng-disabled="cltDtCtrl.allowEdit">
+                        </div>
+                        <div class="form-group col-sm-offset-4">
+                            <button type="submit" class="btn btn-primary" ng-click="cltDtCtrl.saveParty()" data-ng-disabled="cltDtCtrl.allowEdit">{{cltDtCtrl.party.party_id ? 'Update' : 'Submit'}}</button>
+                            <img ng-if="patDetCtrl.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
                         </div>
                     </ng-form>
                 </uib-tab>
             </uib-tabset>
-
-            <div class="form-group col-sm-offset-4">
-                <button type="button" class="btn btn-default" ng-click="PartyCtrl.goBack()"><i class="fa fa-arrow-left"></i> Cancel</button>
-                <button type="submit" class="btn btn-primary" ng-click="PartyCtrl.saveParty()">{{PartyCtrl.party.party_id ? 'Update' : 'Submit'}}</button>
-                <img ng-if="patDetCtrl.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
-            </div>
         </form>
     </div>
 </div>

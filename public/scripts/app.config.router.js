@@ -3,15 +3,15 @@
  */
 angular
     .module('Geotripe')
-    .run(['$state', '$stateParams', '$rootScope', '$location', '$cookieStore', '$localStorage',
-        function ($state, $stateParams, $rootScope, $location, $cookieStore, $localStorage) {
+    .run(['$state', '$stateParams', '$rootScope', '$location', '$cookieStore', '$localStorage','$uibModalStack'
+        , function ($state, $stateParams, $rootScope, $location, $cookieStore, $localStorage, $uibModalStack) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
             $rootScope.$on('$stateChangeSuccess', function () {
                 window.scrollTo(0, 0);
             });
             FastClick.attach(document.body);
-
+            $uibModalStack.dismissAll();
             // keep user logged in after page refresh
             $rootScope.globals = $localStorage.globals || {};
 

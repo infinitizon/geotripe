@@ -3,8 +3,8 @@
  */
 
 angular.module('Setup')
-    .controller('UserController', ['$scope','$localStorage','DataService','CommonServices', '$uibModal'
-        , function ($scope, $localStorage, DataService,CommonServices) {
+    .controller('UserController', ['$scope', '$state', '$localStorage', 'DataService', 'CommonServices', '$uibModal'
+        , function ($scope, $state, $localStorage, DataService, CommonServices, $uibModal) {
             var vm = this;
             vm.container = {};
             CommonServices.postData.token = $localStorage.globals.currentUser.userDetails.token;
@@ -73,8 +73,9 @@ angular.module('Setup')
                     , keyboard  : false
                     , size: 'lg'
                 });
-
+                //We just closed the modal
                 modalInstance.result.then(function (selectedItem) {
+                    vm.getData(vm.pageno);
                     $scope.selected = selectedItem;
                 }, function () {
                     $log.info('Modal dismissed at: ' + new Date());

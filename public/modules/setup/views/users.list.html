@@ -1,7 +1,7 @@
 <div ui-view>
     <div class="panel mb25">
         <div class="panel-heading">
-            <div class="pull-right"><button type="button" class="btn btn-default" ng-click="PartyCtrl.editParty({})">+ Add new</button></div>
+            <div class="pull-right"><button type="button" class="btn btn-default" ng-click="UsrCtrl.editUser({})">+ Add new</button></div>
         </div>
         <div class="panel-body">
             <dir-pagination-controls
@@ -10,7 +10,7 @@
                     boundary-links="true"
                     on-page-change="UsrCtrl.getData(newPageNumber)" >
             </dir-pagination-controls>
-            <table class="table table-responsive">
+            <table class="table table-responsive table-striped">
                 <thead>
                 <tr>
                     <th>Name</th>
@@ -21,11 +21,11 @@
                 </thead>
                 <tbody>
                 <tr ng-show="UsrCtrl.users.data <= 0"><td colspan="6" style="text-align:center;">Loading new data!!</td></tr>
-                <tr dir-paginate="user in UsrCtrl.users.data|itemsPerPage:UsrCtrl.itemsPerPage" total-items="UsrCtrl.total_count" class="cursor-pointer" tooltip-placement="top" uib-tooltip="Click on row to view" data-ng-click="PartyCtrl.editUser(party)">
+                <tr dir-paginate="user in UsrCtrl.users.data|itemsPerPage:UsrCtrl.itemsPerPage" total-items="UsrCtrl.total_count" class="cursor-pointer" tooltip-placement="top" uib-tooltip="Click on row to view" data-ng-click="UsrCtrl.editUser(user)">
                     <td>{{user.firstname}} {{user.middlename}} {{user.lastname}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.name}}</td>
-                    <td class="text-center">
+                    <td class="text-center" data-ng-click="$event.stopPropagation();">
                         <div class="row">
                             <button  type="button" class="btn btn-primary" ng-click="UsrCtrl.editUser(user.user_id)"><i class="fa fa-pencil"></i> Edit</button>
                             <button  type="button" class="btn btn-danger" ng-click="UsrCtrl.deleteUser()"><i class="fa fa-trash"></i> Delete</button>

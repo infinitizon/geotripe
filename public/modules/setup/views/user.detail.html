@@ -1,0 +1,81 @@
+<style>
+    .tab-content{  background: #FFF;  padding:10px;  }
+    li.uib-tab.active > a {  background: #FFF;  }
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{  background-color: #FFF;  }
+</style>
+<div class="modal-header" style="background: rgba(240,240,240,1);">
+    <h3 class="modal-title">
+        <i class="fa fa-close pull-right cursor-pointer text-danger" data-ng-click="usrDtCtrl.close()"></i>
+        <div class="form-group text-center">
+            <button type="button" class="btn btn-primary" data-ng-click="usrDtCtrl.allowEdit = !usrDtCtrl.allowEdit"><i class="fa fa-pencil"></i> Edit</button>
+        </div>
+    </h3>
+    <div class="modal-body">
+        <div data-ng-if="cltDtCtrl.result" data-ng-class="{'text-success':cltDtCtrl.result=='Success','text-danger':cltDtCtrl.result!='Success'}">{{cltDtCtrl.message}}</div>
+        <form name="PartyDetail" class="tab-form" role="form">
+            <uib-tabset active="usrDtCtrl.activeUsrTab">
+                <uib-tab index="0" heading="General">
+                    <ng-form name="GeneralTab">
+                        <div class="form-group">
+                            <label for="firstName">First Name:</label>
+                            <input type="text" class="form-control" id="firstName" data-ng-model="usrDtCtrl.user.firstname" data-ng-disabled="usrDtCtrl.allowEdit" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="middleName">Middle Name:</label>
+                            <input type="text" class="form-control" id="middleName" data-ng-model="usrDtCtrl.user.middlename" data-ng-disabled="usrDtCtrl.allowEdit">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name:</label>
+                            <input type="text" class="form-control" id="lastName" data-ng-model="usrDtCtrl.user.lastname" data-ng-disabled="usrDtCtrl.allowEdit" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="workPhoneNumber">Work Phone Number:</label>
+                            <input type="text" class="form-control" id="workPhoneNumber" data-ng-model="usrDtCtrl.user.workphonenumber" data-ng-disabled="usrDtCtrl.allowEdit">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactPhoneNumber">Contact Phone Number:</label>
+                            <input type="text" class="form-control" id="contactPhoneNumber" data-ng-model="usrDtCtrl.user.contactphonenumber" data-ng-disabled="usrDtCtrl.allowEdit">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="text" class="form-control" id="email" data-ng-model="usrDtCtrl.user.email" data-ng-disabled="usrDtCtrl.allowEdit">
+                        </div>
+                        <div class="form-group">
+                            <label>Select party user belongs:</label>
+                            <ui-select ng-model="usrDtCtrl.user.user_party" theme="bootstrap" close-on-select="true" data-ng-disabled="usrDtCtrl.allowEdit"
+                                       data-ng-click="usrDtCtrl.getLOVs('Party','parties', {'response':'party_id&name',placeholder:{'party_id':1,'name':'Loading please wait...'}})">
+                                <ui-select-match placeholder="Select user company...">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="item in usrDtCtrl.container['parties'] | filter: $select.search">
+                                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" id="password" ng-model="usrDtCtrl.user.password" readonly="readonly" data-ng-disabled="usrDtCtrl.allowEdit">
+                            <span class="fa fa-refresh" style="cursor:pointer;" ng-click="usrDtCtrl.newPwd()"> generate new password &nbsp;&nbsp;&nbsp;<span class="text-danger"> {{usrDtCtrl.newPwdVal}}</span></span>
+                        </div>
+                        <div class="checkbox">
+                            <label class="checkbox-inline"><input type="checkbox" id="enabled" data-ng-model="usrDtCtrl.user.enabled" ng-true-value="'1'" ng-false-value="'0'" data-ng-disabled="usrDtCtrl.allowEdit" > Account Enabled:</label>
+                            <label class="checkbox-inline"><input type="checkbox" id="accountlocked" data-ng-model="usrDtCtrl.user.accountlocked" ng-true-value="'1'" ng-false-value="'0'" data-ng-disabled="usrDtCtrl.allowEdit" > Lock/Unlock:</label>
+                        </div>
+                    </ng-form>
+                </uib-tab>
+                <uib-tab index="1" heading="User Roles">
+                    <ng-form name="PagesTab">
+                        <div class="form-group" ng-repeat="userRole in usrDtCtrl.userRoles">
+                            <label><input type="checkbox" data-ng-model="userRole.ius_yn" ng-true-value="'true'" ng-false-value="'false'" value="{{userRole.authroles_id}}" data-ng-disabled="usrDtCtrl.allowEdit"> {{userRole.name}}</label>
+                            <small>({{userRole.description}})</small>
+                        </div>
+                        <div class="form-group col-sm-offset-4">
+                            <button type="submit" class="btn btn-primary" data-ng-click="usrDtCtrl.saveUser()" data-ng-disabled="usrDtCtrl.allowEdit">{{usrDtCtrl.user.user_id ? 'Update' : 'Submit'}}</button>
+                            <img ng-if="usrDtCtrl.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+                        </div>
+                    </ng-form>
+                </uib-tab>
+            </uib-tabset>
+
+        </form>
+    </div>
+</div>
