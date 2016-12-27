@@ -258,20 +258,34 @@ if($env['PATH_INFO']==="/inboundService") {
                     $onUpdt = rtrim($onUpdt,',');
                     $q_str .= $ins_fields . ") " . $ins_values;
                     $q_str .= " ON DUPLICATE KEY UPDATE ".$onUpdt;
+                    
+                    $r_str = $dbo->prepare($q_str);
+                    $r_str->execute();
                 }else {
-                    $q_str = "UPDATE {$data->factName} SET ";
-                    foreach ($r_fields as $fields) {
-                        $fieldNm = strtolower($fields['Field']);
-                        if (@$data->factObjects[0]->$fieldNm) {
-                            $q_str .= "{$fields['Field']} = '{$data->factObjects[0]->$fieldNm}' ,";
+                    $dbo->beginTransaction();
+                        $q_str = "UPDATE {$data->factName} SET ";
+                        $q_str_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) VALUES ( ";
+                        $log_txt = "{$user[0]['User_Id']},'{$data->factName}',{$data->factObjects[0]->id}, 'updated row, set: ";
+                        foreach ($r_fields as $fields) {
+                            $fieldNm = strtolower($fields['Field']);
+                            if (@$data->factObjects[0]->$fieldNm) {
+                                $q_str .= "{$fields['Field']} = '{$data->factObjects[0]->$fieldNm}' ,";
+                                $log_txt .= "{$fields['Field']}<=>{$data->factObjects[0]->$fieldNm} ,";
+                            }
                         }
-                    }
-                    $q_str = $fxns->_subStrAtDel($q_str, ' ,');
-                    $q_str .= " WHERE $priKy={$data->factObjects[0]->id}";
+                        $q_str = $fxns->_subStrAtDel($q_str, ' ,');
+                        $q_str_logs = $fxns->_subStrAtDel($q_str, ' ,');
+                        $q_str_logs .= $log_txt . "', NOW()";
+                        $q_str .= " WHERE $priKy={$data->factObjects[0]->id}";
+                        $r_str = $dbo->prepare($q_str);
+                        $r_str->execute();
+
+                        $r_str_logs = $dbo->prepare($q_str_logs);
+                        $r_str_logs->execute();
+
+                    $dbo->commit();
                 }
 //                echo $q_str;
-                $r_str = $dbo->prepare($q_str);
-                $r_str->execute();
                 $response = array("response" => "Success", "message" => "Record Updated Successfully", "token" => $data->token);
 
             }

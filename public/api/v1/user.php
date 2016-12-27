@@ -120,25 +120,37 @@ if (@$data->transactionEventType == "UPDATE") {
                 }
                 $q_str_users = "UPDATE Users SET ";
                 $inserts = "";
+                $q_str_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) VALUES ( ";
+                $log_txt = "{$user[0]['User_Id']},'{$data->factName}',{$data->factObjects[0]->users->id}, 'updated row, set: ";
                 foreach ($r_fields as $fields) {
                     $fieldNm = strtolower($fields['Field']);
                     if (@$data->factObjects[0]->users->$fieldNm) {
                         $inserts .= "{$fields['Field']} = " . $fxns->_formatFieldValue($data->factObjects[0]->users->$fieldNm, array('type' => $fields['Type'])) . ",";
+                        $log_txt .= "{$fields['Field']}<=>" . $data->factObjects[0]->users->$fieldNm . ",";
                     }
                 }
                 $inserts = rtrim($inserts, ',');
                 $q_str_users .= $inserts . " WHERE $priKy={$data->factObjects[0]->users->id}";
-//                echo $q_str_users; exit;
+                $q_str_logs .= $log_txt . "', NOW())";
+//                echo $q_str_logs; exit;
                 if ($inserts != "") {
                     $r_str = $dbo->prepare($q_str_users);
                     $r_str->execute();
+
+                    $r_str_logs = $dbo->prepare($q_str_logs);
+                    $r_str_logs->execute();
                 }
             }
+            $q_roles_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) VALUES ( ";
+            $log_txt = "{$user[0]['User_Id']},'{$data->factName}',{$data->factObjects[0]->users->id}, ";
+        $logs = '';
             if($data->factObjects[0]->rolesChecked) {
+                $logs .= "'Added/updated following user roles for user {$data->factObjects[0]->users->id}: ";
                 $q_str = "INSERT INTO User_AuthRole ";
                 $ins_values = " VALUES ";
                 foreach ($data->factObjects[0]->rolesChecked as $checked) {
                     $ins_values .= "({$data->factObjects[0]->users->id}, $checked) ,";
+                    $logs .= $checked.",";
                 }
                 $ins_values = $fxns->_subStrAtDel($ins_values, ' ,');
                 $q_str .= $ins_values." ON DUPLICATE KEY UPDATE Users_User_Id=VALUES(Users_User_Id),AuthRoles_AuthRoles_Id=VALUES(AuthRoles_AuthRoles_Id)";
@@ -147,6 +159,7 @@ if (@$data->transactionEventType == "UPDATE") {
                 $r_str->execute();
             }
             if($data->factObjects[0]->rolesUnChecked) {
+                $logs
                 $q_str = "DELETE FROM User_AuthRole WHERE (Users_User_Id,AuthRoles_AuthRoles_Id) IN (";
                 $ins_values = "";
                 foreach ($data->factObjects[0]->rolesUnChecked as $checked) {
