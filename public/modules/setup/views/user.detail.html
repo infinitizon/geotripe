@@ -11,7 +11,7 @@
         </div>
     </h3>
     <div class="modal-body">
-        <div data-ng-if="cltDtCtrl.result" data-ng-class="{'text-success':cltDtCtrl.result=='Success','text-danger':cltDtCtrl.result!='Success'}">{{cltDtCtrl.message}}</div>
+        <div data-ng-if="usrDtCtrl.result!='' && usrDtCtrl.result!='undefined'" data-ng-class="{'text-success':usrDtCtrl.result=='Success','text-danger':usrDtCtrl.result!='Success'}">{{usrDtCtrl.message}}</div>
         <form name="PartyDetail" class="tab-form" role="form">
             <uib-tabset active="usrDtCtrl.activeUsrTab">
                 <uib-tab index="0" heading="General">

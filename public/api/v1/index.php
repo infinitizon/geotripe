@@ -64,13 +64,7 @@ if($env['PATH_INFO']==="/login"){
                         WHERE ua.Users_User_Id=".$user[0]['user_id']);
             //Get all pages for the app
             $r_getPages = $dbo->query("SELECT av.authview_id, av.name, av.parent_id, av.viewpath, av.parentViewPath, av.description, av.css_class, av.roles FROM AuthView av");
-            //Get the pages the user can view
-//            $r_getViews = $dbo->query("SELECT av.authview_id, av.name, av.parent_id, av.viewpath, av.description, av.css_class
-//                          FROM User_AuthView ua
-//                        JOIN AuthView av
-//                          ON ua.authview_authview_id=av.authview_id
-//                        WHERE ua.ius_yn=1 AND ua.User_User_Id=".$user[0]['user_id']);
-//            // Create a multidimensional array to conatin a list of items and parents
+//            // Create a multidimensional array to contain a list of items and parents
 
             $menu = array('items' => array(), 'parents' => array());
 //            // Builds the array lists with data from the menu table
@@ -230,37 +224,49 @@ if($env['PATH_INFO']==="/inboundService") {
              */
             if ($data->transactionEventType == "Update") {
                 if(is_array($data->factObjects[0])){
-                    $q_str = "INSERT INTO {$data->factName} ";
-                    $ins_fields = " (";
-                    $ins_values = " VALUES (";
-                    $onUpdt = "";
-                    foreach ($r_fields as $fields) {
-                        $fieldNm = strtolower($fields['Field']);
-                        if( isset($data->factObjects[0][0]->$fieldNm)){
-                            @$ins_fields .= " {$fields['Field']} ,";
-                            $onUpdt .=$fields['Field']."=VALUES({$fields['Field']}),";
-                        }
-                    }
-                    $ins_values = " VALUES ";
-                    foreach($data->factObjects[0] as $values){
-                        $ins_values .= "(";
+                    $dbo->beginTransaction();
+                        $q_str = "INSERT INTO {$data->factName} ";
+                        $q_str_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) VALUES ( ";
+                        $q_str_logs .= "{$user[0]['User_Id']},'{$data->factName}',{$data->factObjects[0]->id}, '";
+                        $ins_fields = " (";
+                        $ins_values = " VALUES (";
+                        $onUpdt = "";
                         foreach ($r_fields as $fields) {
                             $fieldNm = strtolower($fields['Field']);
-                            if (isset($values->$fieldNm)) {
-                                @$ins_values .= $fxns->_formatFieldValue($values->$fieldNm, array('type'=>$fields['Type'])).",";
+                            if( isset($data->factObjects[0][0]->$fieldNm)){
+                                @$ins_fields .= " {$fields['Field']} ,";
+                                $onUpdt .=$fields['Field']."=VALUES({$fields['Field']}),";
+                                @$logs_fields .= $fields['Field'].",";
                             }
                         }
+                        $ins_values = " VALUES ";
+                        foreach($data->factObjects[0] as $values){
+                            $ins_values .= "(";
+                            foreach ($r_fields as $fields) {
+                                $fieldNm = strtolower($fields['Field']);
+                                if (isset($values->$fieldNm)) {
+                                    @$ins_values .= $fxns->_formatFieldValue($values->$fieldNm, array('type'=>$fields['Type'])).",";
+                                    @$logs_values .= $values->$fieldNm.",";
+                                }
+                            }
+                            $ins_values = rtrim($ins_values,',');
+                            $ins_values .= "),";
+                        }
+                        if($logs_fields!=''){
+                            $q_str_logs .="Modified the following fields with values ".$logs_fields."<=>".$logs_values." respectively', NOW())";
+                            $r_logStr = $dbo->prepare($q_str_logs);
+                            $r_logStr->execute(array(':tblColKey'=>$lastId));
+
+                        }
+                        $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
                         $ins_values = rtrim($ins_values,',');
-                        $ins_values .= "),";
-                    }
-                    $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
-                    $ins_values = rtrim($ins_values,',');
-                    $onUpdt = rtrim($onUpdt,',');
-                    $q_str .= $ins_fields . ") " . $ins_values;
-                    $q_str .= " ON DUPLICATE KEY UPDATE ".$onUpdt;
-                    
-                    $r_str = $dbo->prepare($q_str);
-                    $r_str->execute();
+                        $onUpdt = rtrim($onUpdt,',');
+                        $q_str .= $ins_fields . ") " . $ins_values;
+                        $q_str .= " ON DUPLICATE KEY UPDATE ".$onUpdt;
+
+                        $r_str = $dbo->prepare($q_str);
+                        $r_str->execute();
+                    $dbo->commit();
                 }else {
                     $dbo->beginTransaction();
                         $q_str = "UPDATE {$data->factName} SET ";

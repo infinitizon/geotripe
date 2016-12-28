@@ -157,6 +157,7 @@ angular.module('Setup')
                         if(response.data.response == "Failure") {
                             vm.result = response.data.response;
                             vm.message += "Error updating user... " + response.data.message;
+                            vm.user = angular.copy(vm.newUser);
                         }else{
                             vm.result = response.data.response;
                             vm.message = response.data.message;
@@ -185,11 +186,9 @@ angular.module('Setup')
                             headers: {'Content-Type': undefined, 'Process-Data': false}
                         }).then(function (response) {
                             vm.dataLoading = false;
-
-                            vm.user.user_id = response.data.data.insertId;
                             if(response.data.response == "Failure") {
                                 vm.result = response.data.response;
-                                vm.message += "Error saving user... " + response.data.message;
+                                vm.message = "Error saving user... " + response.data.message;
                                 vm.user = angular.copy(vm.newUser);
                             }else{
                                 vm.result = response.data.response;
