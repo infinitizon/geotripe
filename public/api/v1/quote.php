@@ -106,12 +106,18 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                     $q_str = "INSERT INTO Quote ";
                     $ins_fields = " (";
                     $ins_values = " VALUES (";
+
+                    $q_str_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) VALUES ";
+                    $q_str_logs .= "( {$user[0]['User_Id']}, 'Quote', :tblColKey, 'New Quote inserted ";
+                    $log_txt = "";
+
                     foreach($r_fields as $fields) {
                         $fieldNm = strtolower($fields['Field']);
                         if (strtolower(@$data->factObjects[0]->quote->$fieldNm)) {
                             @$ins_fields .= " {$fields['Field']} ,";
                             $formatedVal = $fxns->_formatFieldValue($data->factObjects[0]->quote->$fieldNm, array('type'=>$fields['Type']))." ,";
                             @$ins_values .= $formatedVal;
+                            $log_txt .= "{$fields['Field']}=$data->factObjects[0]->quote->$fieldNm,";
                         }
                     }
                     $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
@@ -122,6 +128,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                     $r_str->execute();
                     $lastQuoteId = $dbo->lastInsertId();
                     if($_FILES){
+                        $log_txt .=" Also inserted documents in the Document table with IDs ";
                         for($i=0; $i<count($_FILES['file']['name']); $i++ ){
 
                             $name = $_FILES['file']['name'][$i];
@@ -141,41 +148,49 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                             $query .= isset($data->factObjects[0]->fileType[$i])?",{$data->factObjects[0]->fileType[$i]})":")";
                             $r_query = $dbo->prepare($query);
                             $r_query->execute();
+                            @$lastDocId .= $dbo->lastInsertId().",";
                         }
+                        $log_txt.=$lastDocId;
+                    }
+                    $q_str_logs .= $log_txt ."', NOW()";
+                    $r_str_logs = $dbo->prepare($q_str_logs);
+                    $r_str_logs->execute(array(':tblColKey'=>$lastQuoteId));
+                }
+
+                if(isset($data->factObjects[0]->PODetails) ){
+                    $q_fields = $dbo->query("DESCRIBE PODetails");
+                    $r_fields = $q_fields->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($r_fields as $fields) {
+                        if ($fields['Key'] == 'PRI') {
+                            $priKy = $fields['Field'];
+                        }
+                    }
+                    foreach ($data->factObjects[0]->PODetails as $key => $val) {
+                        $q_str_PODetails = "INSERT INTO PODetails ";
+                        $ins_fields = " (Quote_quote_Id, ";
+                        $ins_values = " VALUES ($lastQuoteId, ";
+                        $onUpdt = "";
+                        foreach ($r_fields as $fields) {
+                            $fieldNm = strtolower($fields['Field']);
+                            if( isset($val->$fieldNm)){
+                                @$ins_fields .= " {$fields['Field']} ,";
+                                $onUpdt .=$fields['Field']."=VALUES({$fields['Field']}),";
+                                $ins_values .= $fxns->_formatFieldValue($val->$fieldNm, array('type'=>$fields['Type'])).",";
+                            }
+                        }
+                        $ins_values = rtrim($ins_values,',');
+                        $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
+                        $onUpdt = rtrim($onUpdt,',');
+                        $q_str_PODetails = $q_str_PODetails .$ins_fields . ") " . $ins_values . ")";
+                        $q_str_PODetails .= " ON DUPLICATE KEY UPDATE Quote_quote_Id=VALUES(Quote_quote_Id),".$onUpdt;
+                        $q_str_PODetails = $dbo->prepare($q_str_PODetails);
+                        $q_str_PODetails->execute();
                     }
                 }
 
-            if(isset($data->factObjects[0]->PODetails) ){
-                $q_fields = $dbo->query("DESCRIBE PODetails");
-                $r_fields = $q_fields->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($r_fields as $fields) {
-                    if ($fields['Key'] == 'PRI') {
-                        $priKy = $fields['Field'];
-                    }
-                }
-                foreach ($data->factObjects[0]->PODetails as $key => $val) {
-                    $q_str_PODetails = "INSERT INTO PODetails ";
-                    $ins_fields = " (Quote_quote_Id, ";
-                    $ins_values = " VALUES ($lastQuoteId, ";
-                    $onUpdt = "";
-                    foreach ($r_fields as $fields) {
-                        $fieldNm = strtolower($fields['Field']);
-                        if( isset($val->$fieldNm)){
-                            @$ins_fields .= " {$fields['Field']} ,";
-                            $onUpdt .=$fields['Field']."=VALUES({$fields['Field']}),";
-                            $ins_values .= $fxns->_formatFieldValue($val->$fieldNm, array('type'=>$fields['Type'])).",";
-                        }
-                    }
-                    $ins_values = rtrim($ins_values,',');
-                    $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
-                    $onUpdt = rtrim($onUpdt,',');
-                    $q_str_PODetails = $q_str_PODetails .$ins_fields . ") " . $ins_values . ")";
-                    $q_str_PODetails .= " ON DUPLICATE KEY UPDATE Quote_quote_Id=VALUES(Quote_quote_Id),".$onUpdt;
-                    $q_str_PODetails = $dbo->prepare($q_str_PODetails);
-                    $q_str_PODetails->execute();
-                }
-            }
                 if(isset($data->factObjects[0]->QuoteDetail) ){
+                    $q_str_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) VALUES ";
+                    $q_str_logs .= "( {$user[0]['User_Id']}, 'QuoteDetail', :tblColKey, 'Line items for the Quote {$lastQuoteId}: ";
                     foreach ($data->factObjects[0]->QuoteDetail as $key => $val) {
                         $q_str = "INSERT INTO QuoteDetail ";
                         $ins_fields = " (Quote_quote_Id, ";
@@ -183,6 +198,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         foreach($val as $col => $value){
                             $ins_fields .= $col . " ,";
                             $ins_values .= "'" . $value . "' ,";
+                            $q_str_logs .= $col."<=>".$value;
                         }
                         $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
                         $ins_values = rtrim($ins_values,' ,');
@@ -191,6 +207,11 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         $r_str = $dbo->prepare($q_str_quoteDetail);
                         $r_str->execute();
                         $lastQuoteDetailId = $dbo->lastInsertId();
+                        /**Running logs for Quotedetail*/
+                        $q_str_logs .= $log_txt ."', NOW()";
+                        $r_str_logs = $dbo->prepare($q_str_logs);
+                        $r_str_logs->execute(array(':tblColKey'=>$lastQuoteDetailId));
+
 //								var_dump($data->factObjects[0]->QuoteDetail_Manufacturer);
                         if(isset($data->factObjects[0]->QuoteDetail_Manufacturer[$key])){
                             foreach($data->factObjects[0]->QuoteDetail_Manufacturer[$key] as $subVals){
@@ -234,10 +255,14 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                 }
                 $q_str_quotes = "UPDATE Quote SET ";
                 $inserts = "";
+                $q_str_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) VALUES ";
+                $q_str_logs .= "( {$user[0]['User_Id']}, 'Quote', {$data->factObjects[0]->quote->id}, 'Updated Quote {$data->factObjects[0]->quote->id}: ";
+                $log_txt = '';
                 foreach ($r_fields as $fields) {
                     $fieldNm = strtolower($fields['Field']);
                     if (@$data->factObjects[0]->quote->$fieldNm) {
                         $inserts .= "{$fields['Field']} = ".$fxns->_formatFieldValue($data->factObjects[0]->quote->$fieldNm, array('type'=>$fields['Type'])).",";
+                        $log_txt .= "{$fields['Field']}={$data->factObjects[0]->quote->$fieldNm},";
                     }
                 }
                 $inserts = rtrim($inserts,',');
@@ -248,6 +273,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                     $r_str->execute();
                 }
                 if($_FILES){
+                    $log_txt .=" Also inserted documents in the Document table with IDs ";
                     for($i=0; $i<count($_FILES['file']['name']); $i++ ){
 
                         $name = $_FILES['file']['name'][$i];
@@ -267,7 +293,9 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         $query .= isset($data->factObjects[0]->fileType[$i])?",{$data->factObjects[0]->fileType[$i]})":")";
                         $r_query = $dbo->prepare($query);
                         $r_query->execute();
+                        @$lastDocId .= $dbo->lastInsertId().",";
                     }
+                    $log_txt.=$lastDocId;
                 }
                 if(isset($data->factObjects[0]->PODetails) ){
                     $q_fields = $dbo->query("DESCRIBE PODetails");
@@ -277,17 +305,20 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                             $priKy = $fields['Field'];
                         }
                     }
+                    $log_txt .= " Also inserted new PODetails ";
                     foreach ($data->factObjects[0]->PODetails as $key => $val) {
                         $q_str_PODetails = "INSERT INTO PODetails ";
                         $ins_fields = " (Quote_quote_Id, ";
                         $ins_values = " VALUES ({$data->factObjects[0]->quote->id}, ";
                         $onUpdt = "";
+                        @$log .= "{$data->factObjects[0]->quote->id}: ";
                         foreach ($r_fields as $fields) {
                             $fieldNm = strtolower($fields['Field']);
                             if( isset($val->$fieldNm)){
                                 @$ins_fields .= " {$fields['Field']} ,";
                                 $onUpdt .=$fields['Field']."=VALUES({$fields['Field']}),";
                                 $ins_values .= $fxns->_formatFieldValue($val->$fieldNm, array('type'=>$fields['Type'])).",";
+                                $log .= "{$fields['Field']}<=>{$val->$fieldNm},";
                             }
                         }
                         $ins_values = rtrim($ins_values,',');
@@ -299,7 +330,11 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         $q_str_PODetails = $dbo->prepare($q_str_PODetails);
                         $q_str_PODetails->execute();
                     }
-//                    throw new Exception('Error from PODetails');
+                    $log_txt .= $log;
+                    $q_str_logs .= $log_txt ."', NOW()";
+                    $r_str_logs = $dbo->prepare($q_str_logs);
+                    $r_str_logs->execute();
+//                    throw new Exception($q_str_logs.$log_txt);
                 }
                 if(isset($data->factObjects[0]->QuoteDetail) ){
                     foreach ($data->factObjects[0]->QuoteDetail as $key => $val) {
