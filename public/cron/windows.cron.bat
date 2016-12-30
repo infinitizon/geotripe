@@ -1,1 +1,1 @@
-C:\xampp\php\php.exe C:\xampp\htdocs\geotripe\public\cron\late_rfq.php
+C:\xampp\php\php.exe C:\xampp\htdocs\geotripe\public\cron\gen_late_rfq_mail.php

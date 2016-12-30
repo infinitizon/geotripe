@@ -9,7 +9,7 @@ include_once 'config/db-cred.inc.php';
 foreach ( $C as $name => $val ){
 	define($name, $val);
 }
-define('WEB_ROOT', "http".(!empty($_SERVER['HTTPS'])?"s":"")."://".$_SERVER['HTTP_HOST']);
+$mail_config = array('rfq'=>'Geoscape ERP');
 /**
 * Define a generic salt
 */

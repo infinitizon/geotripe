@@ -48,7 +48,7 @@ angular.module('Logistics')
                 data.transactionMetaData.queryMetaData.joinClause = {
                     'joinType':['JOIN','JOIN','JOIN','LEFT JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_enteredBy_id=u.user_id','q.quote_Id=qd.Quote_quote_Id']
                 }
-                data.transactionMetaData.groupingProperties = 'q.quote_Id';
+                data.transactionMetaData.groupingProperties.by = 'q.quote_Id';
                 DataService.post('inboundService', data).then(function (response) {
                     vm.quotes = response.data.data;
                     vm.total_count = response.data.total_count;
