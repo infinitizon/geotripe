@@ -163,7 +163,7 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="charge in lgstEdt.lstOfcharges">
-                                    <td><i class="fa fa-trash text-danger"></i></td>
+                                    <td><i class="fa fa-trash text-danger" data-ng-click="lgstEdt.deleteCharge($index)"></i></td>
                                     <td>{{ charge.po_no }}</td>
                                     <td>
                                         <a href="#" editable-select="charge.currency" onshow="lgstEdt.loadCurrency()" e-ng-options="g.currency_Id as g.code for g in lgstEdt.currencies">

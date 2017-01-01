@@ -175,7 +175,6 @@ angular.module('Logistics')
             }
             vm.newPoNo = function(){
                 vm.lstOfcharges.push({'po_no':vm.quote.po_no});
-
             }
             vm.currencies = [];
             vm.loadCurrency = function() {
@@ -215,10 +214,21 @@ angular.module('Logistics')
                         vm.quote.po_is_split=1;
                     }
                 }else{
+                    vm.lstOfcharges = [];
+                    vm.lstOfcharges.push({'po_no':vm.quote.po_no});
                     angular.forEach(vm.lineItems  , function(QuoteDetail, key) {
                         QuoteDetail.po_no = null;vm.splits=0;
                     });
                     vm.quote.po_is_split=0;
+                }
+            }
+            vm.deleteCharge = function (index) {
+                if(confirm("Are you sure you want to delete this line item")){
+                    if(vm.lstOfcharges.length ==1){
+                        alert("There has to be at least one line for the PO charges")
+                    }else{
+                        vm.lstOfcharges.splice( index, 1 );
+                    }
                 }
             }
             vm.checkName2 = function(oldData, data){
@@ -254,6 +264,10 @@ angular.module('Logistics')
                 if(!vm.quote.po_no){
                     alert('PO number cannot be empty');
                     return false;
+                }
+                if(vm.lstOfcharges.length ==1 && vm.lstOfcharges[0].po_no != vm.quote.po_no){
+                    alert("Since there is only one relevant charges, the relevant charges PO number must match the Purchase Order Number");
+                    return;
                 }
                 vm.isDisabled = true; //Disable submit button
                 vm.dataLoading = true; //Disable submit button
