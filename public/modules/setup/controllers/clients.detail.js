@@ -2,8 +2,8 @@
  * Created by ahassan on 12/23/16.
  */
 angular.module('Setup')
-    .controller('ClientDetailController', ['$localStorage', '$state', '$uibModalInstance', 'DataService', 'CommonServices', 'client'
-        , function ($localStorage, $state, $uibModalInstance, DataService, CommonServices, client) {
+    .controller('ClientDetailController', ['$localStorage', '$state', '$modalInstance', 'DataService', 'CommonServices', 'client'
+        , function ($localStorage, $state, $modalInstance, DataService, CommonServices, client) {
             var vm = this;
             vm.container = {};
 
@@ -11,7 +11,7 @@ angular.module('Setup')
                 client.type = takeAlong.type;
                 client.country = takeAlong.country;
                 client.state = takeAlong.state;
-                $uibModalInstance.close(takeAlong);
+                $modalInstance.close(takeAlong);
             }
             vm.getLOVs = function(factName, selectScope, options) {
                 if (vm.container[selectScope] == null) {

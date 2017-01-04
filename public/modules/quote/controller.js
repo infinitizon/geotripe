@@ -1,6 +1,6 @@
 angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
-    .controller('QuoteController', ['$scope', '$location', '$localStorage','DataService','CommonServices','$http', '$uibModal',
-        function ($scope, $location, $localStorage, DataService,CommonServices,$http, $uibModal) {
+    .controller('QuoteController', ['$scope', '$location', '$localStorage','DataService', 'CommonServices', '$http',
+        function ($scope, $location, $localStorage, DataService, CommonServices, $http) {
             var vm = this;
             vm.lineItems = [];
             /*
@@ -73,8 +73,8 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
             }
 
         }])
-    .controller('QuoteByStatusController', ['$http', '$scope', '$location', '$localStorage','DataService','CommonServices','$stateParams', '$uibModal', 'ImportExportToExcel',
-        function ($http, $scope, $location, $localStorage, DataService, CommonServices, $stateParams, $uibModal,ImportExportToExcel) {
+    .controller('QuoteByStatusController', ['$http', '$scope', '$location', '$localStorage','DataService','CommonServices','$stateParams', '$modal', 'ImportExportToExcel',
+        function ($http, $scope, $location, $localStorage, DataService, CommonServices, $stateParams, $modal,ImportExportToExcel) {
             $localStorage.pageTitle = "Quotes";
             $localStorage.pageHeader = "Quotes";
 
@@ -254,7 +254,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                         options.controllerAs = 'quotItmCtrl';
                         break;
                 }
-                var modalInstance = $uibModal.open({
+                var modalInstance = $modal.open({
                     animation: true,
                     templateUrl: 'modules/quote/views/templates/'+options.url+'.html',
                     controller: options.controller,
@@ -674,8 +674,8 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 });
             }
         }])
-    .controller('quoteItemsController', ['$scope','$uibModalInstance', 'data', 'DataService', 'CommonServices',
-        function ($scope, $uibModalInstance,data,DataService,CommonServices)  {
+    .controller('quoteItemsController', ['$scope','$modalInstance', 'data', 'DataService', 'CommonServices',
+        function ($scope, $modalInstance,data,DataService,CommonServices)  {
             var vm = this;
             vm.insertingManu = false;
             vm.showNewManu = true;
@@ -773,7 +773,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 }
             }
             vm.cancel = function(){
-                $uibModalInstance.close();
+                $modalInstance.close();
             }
             vm.addLineItems = function () {
                 vm.lineItemsAdded={
@@ -799,7 +799,7 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                     "f_r":vm.f_r,
                     "nlcf":vm.nlcf
                 }
-                $uibModalInstance.close(vm.lineItemsAdded);
+                $modalInstance.close(vm.lineItemsAdded);
             }
         }])
     .filter('propsFilter', function() {

@@ -4,8 +4,8 @@
 
 
 angular.module('Setup')
-    .controller('UserDetailController', ['$localStorage', '$state', '$uibModalInstance', 'DataService','CommonServices','client'
-        , function ($localStorage, $state, $uibModalInstance, DataService,CommonServices,client) {
+    .controller('UserDetailController', ['$localStorage', '$state', '$modalInstance', 'DataService','CommonServices','client'
+        , function ($localStorage, $state, $modalInstance, DataService,CommonServices,client) {
             var vm = this;
             vm.container={};
 
@@ -38,7 +38,7 @@ angular.module('Setup')
                 }
             };
             vm.close = function(){
-                $uibModalInstance.close();
+                $modalInstance.close();
             }
             vm.newPwd = function(){
                 if(vm.user == null){
@@ -161,7 +161,7 @@ angular.module('Setup')
                         }else{
                             vm.result = response.data.response;
                             vm.message = response.data.message;
-                            $uibModalInstance.close();
+                            $modalInstance.close();
                         }
                     })
                 }else if(vm.user.user_id == null){ //A new insert
@@ -193,7 +193,7 @@ angular.module('Setup')
                             }else{
                                 vm.result = response.data.response;
                                 vm.message = response.data.message;
-                                $uibModalInstance.close();
+                                $modalInstance.close();
                             }
                         })
                     }

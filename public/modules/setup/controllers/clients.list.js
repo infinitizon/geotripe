@@ -2,8 +2,8 @@
  * Created by ahassan on 12/23/16.
  */
 angular.module('Setup')
-    .controller('PartyController', ['$localStorage', '$state', 'DataService','CommonServices','$uibModal'
-        , function ($localStorage, $state, DataService,CommonServices,$uibModal) {
+    .controller('PartyController', ['$localStorage', '$state', 'DataService','CommonServices','$modal'
+        , function ($localStorage, $state, DataService,CommonServices,$modal) {
             var vm = this;
 
             vm.edit=false;
@@ -66,7 +66,7 @@ angular.module('Setup')
                 (!angular.equals({}, client))? client.type=JSON.stringify(client.type) : '';
                 (!angular.equals({}, client))? client.country=JSON.stringify(client.country) : '';
                 (!angular.equals({}, client))? client.state=JSON.stringify(client.state) : '';
-                var modalInstance = $uibModal.open({
+                var modalInstance = $modal.open({
                     templateUrl: 'modules/setup/views/clients.detail.html'
                     , controller: 'ClientDetailController'
                     , controllerAs: 'cltDtCtrl'

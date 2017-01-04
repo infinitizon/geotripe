@@ -58,6 +58,10 @@ angular.module('Common')
                     $filterChooser.appendTo($filters)
                 }).click();
                 element.find('#filters').on('change', '.filter-type', function() {
+                    var qualifierList = $(this).closest('.filter').find('.qualifier').children('[data-ng-model]').map(function(){ return $(this).attr('data-ng-model') })
+                    angular.forEach(qualifierList, function(qualifier){
+                        eval('scope.'+qualifier+'=null');
+                    })
                     var $this = angular.element(this)
                     var $filter = $this.closest('.filter');
                     var filterType = $this.find(':selected').data('template-type');
@@ -71,7 +75,7 @@ angular.module('Common')
                 }).on('click', '.filter-remover', function() {
                     $(this).closest('.filter').remove();
                     var qualifierList = $(this).closest('.filter').find('.qualifier').children('[data-ng-model]').map(function(){ return $(this).attr('data-ng-model') })
-                    angular.forEach(qualifierList, function(qualifier, key){
+                    angular.forEach(qualifierList, function(qualifier){
                         eval('scope.'+qualifier+'=null');
                     })
                 });
@@ -137,4 +141,4 @@ angular.module('Common')
                         });
                     }
                 };
-        }]);
+            }]);
