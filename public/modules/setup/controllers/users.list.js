@@ -3,8 +3,8 @@
  */
 
 angular.module('Setup')
-    .controller('UserController', ['$scope', '$state', '$localStorage', 'DataService', 'CommonServices', '$uibModal'
-        , function ($scope, $state, $localStorage, DataService, CommonServices, $uibModal) {
+    .controller('UserController', ['$scope', '$state', '$localStorage', 'DataService', 'CommonServices', '$modal'
+        , function ($scope, $state, $localStorage, DataService, CommonServices, $modal) {
             var vm = this;
             vm.container = {};
             CommonServices.postData.token = $localStorage.globals.currentUser.userDetails.token;
@@ -57,7 +57,7 @@ angular.module('Setup')
             };
             vm.editUser = function(client){
                 //$state.go('app.patient.medication.detail', {id: med.id});
-                var modalInstance = $uibModal.open({
+                var modalInstance = $modal.open({
                     templateUrl: 'modules/setup/views/user.detail.html'
                     , controller: 'UserDetailController'
                     , controllerAs: 'usrDtCtrl'

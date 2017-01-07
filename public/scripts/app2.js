@@ -83,13 +83,13 @@ angular.module('School', ['ui.router', 'ngCookies', 'ngSanitize', 'ui.bootstrap'
                      }
                 })
     }])
-    .run(['$rootScope', '$location', '$cookieStore', '$uibModalStack', 'editableOptions'
-        , function ($rootScope, $location, $cookieStore,$uibModalStack, editableOptions) {
+    .run(['$rootScope', '$location', '$cookieStore', '$modalStack', 'editableOptions'
+        , function ($rootScope, $location, $cookieStore,$modalStack, editableOptions) {
             editableOptions.theme = 'bs3';
              // keep user logged in after page refresh
              $rootScope.globals = $cookieStore.get('globals') || {};
              $rootScope.$on('$locationChangeStart', function (event, next, current) {
-                 $uibModalStack.dismissAll();
+                 $modalStack.dismissAll();
                 // redirect to login page if not logged in
                 if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
                     $location.path('/login');

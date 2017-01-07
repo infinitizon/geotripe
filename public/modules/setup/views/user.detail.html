@@ -13,8 +13,8 @@
     <div class="modal-body">
         <div data-ng-if="usrDtCtrl.result!='' && usrDtCtrl.result!='undefined'" data-ng-class="{'text-success':usrDtCtrl.result=='Success','text-danger':usrDtCtrl.result!='Success'}">{{usrDtCtrl.message}}</div>
         <form name="PartyDetail" class="tab-form" role="form">
-            <uib-tabset active="usrDtCtrl.activeUsrTab">
-                <uib-tab index="0" heading="General">
+            <tabset active="usrDtCtrl.activeUsrTab">
+                <tab index="0" heading="General">
                     <ng-form name="GeneralTab">
                         <div class="form-group">
                             <label for="firstName">First Name:</label>
@@ -61,8 +61,8 @@
                             <label class="checkbox-inline"><input type="checkbox" id="accountlocked" data-ng-model="usrDtCtrl.user.accountlocked" ng-true-value="'1'" ng-false-value="'0'" data-ng-disabled="usrDtCtrl.allowEdit" > Lock/Unlock:</label>
                         </div>
                     </ng-form>
-                </uib-tab>
-                <uib-tab index="1" heading="User Roles">
+                </tab>
+                <tab index="1" heading="User Roles">
                     <ng-form name="PagesTab">
                         <div class="form-group" ng-repeat="userRole in usrDtCtrl.userRoles">
                             <label><input type="checkbox" data-ng-model="userRole.ius_yn" ng-true-value="'true'" ng-false-value="'false'" value="{{userRole.authroles_id}}" data-ng-disabled="usrDtCtrl.allowEdit"> {{userRole.name}}</label>
@@ -73,8 +73,8 @@
                             <img ng-if="usrDtCtrl.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
                         </div>
                     </ng-form>
-                </uib-tab>
-            </uib-tabset>
+                </tab>
+            </tabset>
 
         </form>
     </div>

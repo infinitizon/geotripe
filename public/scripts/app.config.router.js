@@ -3,15 +3,15 @@
  */
 angular
     .module('Geotripe')
-    .run(['$state', '$stateParams', '$rootScope', '$location', '$cookieStore', '$localStorage','$uibModalStack'
-        , function ($state, $stateParams, $rootScope, $location, $cookieStore, $localStorage, $uibModalStack) {
+    .run(['$state', '$stateParams', '$rootScope', '$location', '$cookieStore', '$localStorage'
+        , function ($state, $stateParams, $rootScope, $location, $cookieStore, $localStorage) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
             $rootScope.$on('$stateChangeSuccess', function () {
                 window.scrollTo(0, 0);
             });
             FastClick.attach(document.body);
-            $uibModalStack.dismissAll();
+            //$uibModalStack.dismissAll();
             // keep user logged in after page refresh
             $rootScope.globals = $localStorage.globals || {};
 
@@ -89,6 +89,13 @@ angular
                         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load([
                                 {
+                                    insertBefore: '#load_styles_before',
+                                    files: [
+                                        'vendor/checkbo/src/0.1.4/css/checkBo.min.css',
+                                        'vendor/chosen_v1.4.0/chosen.min.css'
+                                    ]
+                                },
+                                {
                                     serie: true,
                                     files: [
                                         'vendor/flot/jquery.flot.js',
@@ -105,6 +112,11 @@ angular
                                     name: 'angular-flot',
                                     files: [
                                         'vendor/angular-flot/angular-flot.js'
+                                    ]
+                                },{
+                                    files: [
+                                        'vendor/checkbo/src/0.1.4/js/checkBo.min.js',
+                                        'vendor/chosen_v1.4.0/chosen.jquery.min.js'
                                     ]
                                 }]).then(function () {
                                 return $ocLazyLoad.load('modules/home/controller.js');

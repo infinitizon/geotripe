@@ -46,8 +46,8 @@
                     <div class="form-group">
                         <label for="publishDate">Publish Date <span ng-show="!lgstEdt.quote.publishdate" class="text-danger">*</span></label>
                         <p class="input-group">
-                            <input type="text" id="publishDate" class="form-control"
-                                   uib-datepicker-popup="dd-MMM-yyyy" ng-model="lgstEdt.quote.publishdate" is-open="lgstEdt.publishdate"
+                            <input type="date" id="publishDate" class="form-control"
+                                   datepicker-popup="dd-MMM-yyyy" ng-model="lgstEdt.quote.publishdate" is-open="lgstEdt.publishdate"
                                    ng-focus="lgstEdt.publishdate=true" placeholder="Publish Date (dd-MMM-YYYY) e.g 08-Aug-2016"
                                    ng-required="true" close-text="&times;" data-ng-disabled="true" />
                                     <span class="input-group-btn">
@@ -60,8 +60,8 @@
                     <div class="form-group">
                         <label for="dueDate">Due Date <span ng-show="!lgstEdt.quote.duedate" class="text-danger">*</span></label>
                         <p class="input-group">
-                            <input type="text" id="dueDate" class="form-control" ng-model="lgstEdt.quote.duedate"
-                                   uib-datepicker-popup="dd-MMM-yyyy" is-open="lgstEdt.dueDate" datepicker-options="{minDate: lgstEdt.quote.publishdate}"
+                            <input type="date" id="dueDate" class="form-control" ng-model="lgstEdt.quote.duedate"
+                                   datepicker-popup="dd-MMM-yyyy" is-open="lgstEdt.dueDate" datepicker-options="{minDate: lgstEdt.quote.publishdate}"
                                    data-ng-focus="lgstEdt.dueDate=true" placeholder="Due Date (dd-MMM-YYYY) e.g 08-Aug-2016"
                                    ng-required="true" close-text="&times;" data-ng-disabled="true" />
                                     <span class="input-group-btn">

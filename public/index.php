@@ -83,7 +83,8 @@
 <script src="scripts/extensions/lib.js"></script>
 <script src="vendor/fastclick/lib/fastclick.js"></script>
 <script src="vendor/ui-select/js/select.min.js" type="text/javascript"></script>
-<script src="vendor/ui-bootstrap-tpls/2.2.0.min.js" type="text/javascript"></script>
+<!--<script src="vendor/ui-bootstrap-tpls/2.2.0.min.js" type="text/javascript"></script>-->
+<script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="scripts/extensions/dirPagination.js" type="text/javascript"></script>
 
 <script src="scripts/app.js" type="text/javascript"></script>
