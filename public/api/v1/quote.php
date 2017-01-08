@@ -84,6 +84,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
         if (!empty($data->transactionMetaData->groupingProperties->by)) {
             $q_str .= " GROUP BY ".$data->transactionMetaData->groupingProperties->by;
         }
+//        echo $q_str;
         $q_str_tot_count = $dbo->query("SELECT COUNT(*) as `count` FROM (" . $q_str . ") t");
         $r_str_tot_count = $q_str_tot_count->fetch(PDO::FETCH_ASSOC);
 
@@ -117,7 +118,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                             @$ins_fields .= " {$fields['Field']} ,";
                             $formatedVal = $fxns->_formatFieldValue($data->factObjects[0]->quote->$fieldNm, array('type'=>$fields['Type']))." ,";
                             @$ins_values .= $formatedVal;
-                            $log_txt .= "{$fields['Field']}=$data->factObjects[0]->quote->$fieldNm,";
+                            $log_txt .= "{$fields['Field']}={$data->factObjects[0]->quote->$fieldNm},";
                         }
                     }
                     $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
@@ -146,13 +147,15 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                             $query .= isset($data->factObjects[0]->fileType[$i])?",documentType_id)":")";
                             $query .= " VALUES ({$lastQuoteId},'{$name}','{$mime}','{$path}',{$size},NOW()";
                             $query .= isset($data->factObjects[0]->fileType[$i])?",{$data->factObjects[0]->fileType[$i]})":")";
+//echo $query;
                             $r_query = $dbo->prepare($query);
                             $r_query->execute();
                             @$lastDocId .= $dbo->lastInsertId().",";
                         }
                         $log_txt.=$lastDocId;
                     }
-                    $q_str_logs .= $log_txt ."', NOW()";
+                    $q_str_logs .= $log_txt ."', NOW())";
+//echo $q_str_logs;
                     $r_str_logs = $dbo->prepare($q_str_logs);
                     $r_str_logs->execute(array(':tblColKey'=>$lastQuoteId));
                 }
@@ -189,16 +192,17 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                 }
 
                 if(isset($data->factObjects[0]->QuoteDetail) ){
-                    $q_str_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) VALUES ";
-                    $q_str_logs .= "( {$user[0]['User_Id']}, 'QuoteDetail', :tblColKey, 'Line items for the Quote {$lastQuoteId}: ";
                     foreach ($data->factObjects[0]->QuoteDetail as $key => $val) {
+                        $q_str_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) VALUES ";
+                        $q_str_logs .= "( {$user[0]['User_Id']}, 'QuoteDetail', :tblColKey, 'Line items for the Quote {$lastQuoteId}: ";
+
                         $q_str = "INSERT INTO QuoteDetail ";
                         $ins_fields = " (Quote_quote_Id, ";
                         $ins_values = " VALUES ($lastQuoteId, ";
                         foreach($val as $col => $value){
                             $ins_fields .= $col . " ,";
                             $ins_values .= "'" . $value . "' ,";
-                            $q_str_logs .= $col."<=>".$value;
+                            $q_str_logs .= $col."<=>".$value . ", ";;
                         }
                         $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
                         $ins_values = rtrim($ins_values,' ,');
@@ -208,7 +212,8 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         $r_str->execute();
                         $lastQuoteDetailId = $dbo->lastInsertId();
                         /**Running logs for Quotedetail*/
-                        $q_str_logs .= $log_txt ."', NOW()";
+                        $q_str_logs .= $log_txt ."', NOW())";
+//echo $q_str_logs."\n";
                         $r_str_logs = $dbo->prepare($q_str_logs);
                         $r_str_logs->execute(array(':tblColKey'=>$lastQuoteDetailId));
 

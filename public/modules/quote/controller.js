@@ -164,86 +164,103 @@ angular.module('RFQ', ['angularUtils.directives.dirPagination','ui.select'])
                 ImportExportToExcel.exportToExcel('RFQ_from_ERP', toExport);
             };
             $scope.$on('import-excel-data', function (e, values) {
-                var originalLineItems=angular.copy(vm.lineItems);
-                vm.lineItems = [];
-                var data=angular.copy(CommonServices.postData);
-                data.factName = 'Party p';
-                data.transactionMetaData.responseDataProperties = 'p.party_id&p.party_partytype_id&p.name';
-                data.transactionMetaData.queryMetaData.queryClause.andExpression = [
-                    {
-                        "propertyName": "p.party_partytype_id",
-                        "propertyValue": 201607132,
-                        "propertyDataType": "VARCHAR",
-                        "operatorType": "LIKE"
-                    }
-                ];
-                var error={qty:0,uprice:0,ouprice:0};
-                DataService.post('inboundService', data).then(function (response) {
-                    var manus = response.data.data;
 
+                var ids = 0;
+                angular.forEach(values, function(xlLine) {
+                    if(xlLine.id) ids++;
+                })
+                var doimport=function(){
+                    var originalLineItems=angular.copy(vm.lineItems);
+                    vm.lineItems = [];
+                    vm.lineItemsLoading = 'Attempting to import the line items';
                     var data=angular.copy(CommonServices.postData);
-                    data.factName = 'UnitOfMeasure uom';
-                    data.transactionMetaData.responseDataProperties = 'uom.unitofmeasure_id&uom.name';
-                    DataService.post('inboundService', data).then(function (response) {
-                        var uoms = response.data.data;
-
-                        angular.forEach(values, function(xlLine) {
-                            var items = {};
-                            items.id=xlLine.id;
-
-                            var manuFound = false;
-                            for(var i = 0; i < manus.length; i++) {
-                                if (manus[i].name == xlLine['Manufacturer']) {
-                                    items.manus = [{'party_id':manus[i].party_id, 'name':manus[i].name }];
-                                    manuFound = true;
-                                    break;
-                                }
-                            };
-                            if(!manuFound && xlLine['Manufacturer'] != ''){
-                                var data=angular.copy(CommonServices.postData);
-                                data.factName = 'Party';
-                                data.transactionEventType = "PUT"
-                                data.factObjects = [{party_partytype_id:201607132,partystatus_partystatus_id:1011,isactive:1,name:xlLine['Manufacturer']}];
-                                DataService.post('inboundService', data).then(function (response) {
-                                    items.manus = [{'party_id':response.data.data.insertId, 'name':xlLine['Manufacturer'] }];
-                                });
-                            }
-
-                            var uomFound = false;
-                            for(var i = 0; i < uoms.length; i++) {
-                                if (uoms[i].name == xlLine['UOM']) {
-                                    items.unitofmeasure= {'unitofmeasure_id':uoms[i].unitofmeasure_id, 'name':uoms[i].name };
-                                    uomFound = true;
-                                    break;
-                                }
-                            };
-                            if(!uomFound && xlLine['UOM'] != ''){
-                                var data=angular.copy(CommonServices.postData);
-                                data.factName = 'UnitOfMeasure';
-                                data.transactionEventType = "PUT"
-                                data.factObjects = [{name:xlLine['UOM']}];
-                                DataService.post('inboundService', data).then(function (response) {
-                                    items.manus = [{'unitofmeasure_id':response.data.data.insertId, 'name':xlLine['UOM'] }];
-                                });
-                            }
-                            items.matDesc=xlLine['MaterialDesciption'];
-                            items.oem_description=xlLine['OEMDesciption'];
-                            (!xlLine.qty || xlLine.qty==0) ? error.qty++ : items.qty=xlLine.qty; ////
-                            items.partno_modelno=xlLine.partno_modelno;
-                            (!xlLine['Unit Price'] || xlLine['Unit Price']==0) ? error.uprice++ : items.unitprice=xlLine['Unit Price'];
-                            (!xlLine['OEM Unit Price'] || xlLine['OEM Unit Price']==0) ? error.ouprice++ : items.oem_unitprice=xlLine['OEM Unit Price'];
-
-                            vm.lineItems.push(items);
-                        });
-                        if(error.qty>0){
-                            alert("Error: Some line item 'quantities' are zero (0). Quantity cannot be 0"); vm.lineItems =[]; return;
-                        }else if(error.uprice > 0){
-                            alert("Error: Some line item 'unit price' are zero (0). Unit Price cannot be 0"); vm.lineItems =[]; return;
-                        }else if(error.ouprice > 0){
-                            alert("Error: Some line item 'OEM Unit Price' are zero (0). OEM Unit Price cannot be 0"); vm.lineItems =[]; return;
+                    data.factName = 'Party p';
+                    data.transactionMetaData.responseDataProperties = 'p.party_id&p.party_partytype_id&p.name';
+                    data.transactionMetaData.queryMetaData.queryClause.andExpression = [
+                        {
+                            "propertyName": "p.party_partytype_id",
+                            "propertyValue": 201607132,
+                            "propertyDataType": "VARCHAR",
+                            "operatorType": "LIKE"
                         }
+                    ];
+                    var error={qty:0,uprice:0,ouprice:0};
+                    DataService.post('inboundService', data).then(function (response) {
+                        var manus = response.data.data;
+
+                        var data=angular.copy(CommonServices.postData);
+                        data.factName = 'UnitOfMeasure uom';
+                        data.transactionMetaData.responseDataProperties = 'uom.unitofmeasure_id&uom.name';
+                        DataService.post('inboundService', data).then(function (response) {
+                            var uoms = response.data.data;
+
+                            angular.forEach(values, function(xlLine) {
+                                var items = {};
+                                items.id=xlLine.id;
+
+                                var manuFound = false;
+                                for(var i = 0; i < manus.length; i++) {
+                                    if (manus[i].name == xlLine['Manufacturer']) {
+                                        items.manus = [{'party_id':manus[i].party_id, 'name':manus[i].name }];
+                                        manuFound = true;
+                                        break;
+                                    }
+                                };
+                                if(!manuFound && xlLine['Manufacturer'] != ''){
+                                    var data=angular.copy(CommonServices.postData);
+                                    data.factName = 'Party';
+                                    data.transactionEventType = "PUT"
+                                    data.factObjects = [{party_partytype_id:201607132,partystatus_partystatus_id:1011,isactive:1,name:xlLine['Manufacturer']}];
+                                    DataService.post('inboundService', data).then(function (response) {
+                                        items.manus = [{'party_id':response.data.data.insertId, 'name':xlLine['Manufacturer'] }];
+                                    });
+                                }
+
+                                var uomFound = false;
+                                for(var i = 0; i < uoms.length; i++) {
+                                    if (uoms[i].name == xlLine['UOM']) {
+                                        items.unitofmeasure= {'unitofmeasure_id':uoms[i].unitofmeasure_id, 'name':uoms[i].name };
+                                        uomFound = true;
+                                        break;
+                                    }
+                                };
+                                if(!uomFound && xlLine['UOM'] != ''){
+                                    var data=angular.copy(CommonServices.postData);
+                                    data.factName = 'UnitOfMeasure';
+                                    data.transactionEventType = "PUT"
+                                    data.factObjects = [{name:xlLine['UOM']}];
+                                    DataService.post('inboundService', data).then(function (response) {
+                                        items.manus = [{'unitofmeasure_id':response.data.data.insertId, 'name':xlLine['UOM'] }];
+                                    });
+                                }
+                                items.matDesc=xlLine['MaterialDesciption'];
+                                items.oem_description=xlLine['OEMDesciption'];
+                                (!xlLine.qty || xlLine.qty==0) ? error.qty++ : items.qty=xlLine.qty; ////
+                                items.partno_modelno=xlLine.partno_modelno;
+                                if(vm.quote.quote_id){
+                                    (!xlLine['Unit Price'] || xlLine['Unit Price']==0) ? error.uprice++ : items.unitprice=xlLine['Unit Price'];
+                                    (!xlLine['OEM Unit Price'] || xlLine['OEM Unit Price']==0) ? error.ouprice++ : items.oem_unitprice=xlLine['OEM Unit Price'];
+                                }
+
+                                vm.lineItems.push(items);
+                            });
+                            if(error.qty>0){
+                                alert("Error: Some line item 'quantities' are zero (0). Quantity cannot be 0"); vm.lineItems =[]; return;
+                            }else if(error.uprice > 0){
+                                alert("Error: Some line item 'unit price' are zero (0). Unit Price cannot be 0"); vm.lineItems =[]; return;
+                            }else if(error.ouprice > 0){
+                                alert("Error: Some line item 'OEM Unit Price' are zero (0). OEM Unit Price cannot be 0"); vm.lineItems =[]; return;
+                            }
+                        });
                     });
-                });
+                }
+                if(ids>0) {
+                    if(confirm('Some line items have ids already attached, This would override existing line items.\n Continue?')) {
+                        doimport();
+                    }
+                }else{
+                    doimport();
+                }
                 $scope.$apply()
             });
 
