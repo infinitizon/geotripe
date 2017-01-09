@@ -65,11 +65,10 @@ angular.module('Logistics')
                 vm.quote = response.data.data[0];
 
                 vm.originalQuoteData = angular.copy(vm.quote);
-                vm.originalQuoteData.publishdate = new Date(vm.originalQuoteData.publishdate);
-                vm.originalQuoteData.duedate = new Date(vm.originalQuoteData.duedate);
-                vm.quote.publishdate = new Date(vm.quote.publishdate);
-                vm.quote.duedate = new Date(vm.quote.duedate);
-
+                vm.originalQuoteData.publishdate = $filter('date')(new Date(vm.originalQuoteData.publishdate), 'mediumDate');
+                vm.originalQuoteData.duedate = $filter('date')(new Date(vm.originalQuoteData.duedate), 'mediumDate');
+                vm.quote.publishdate = $filter('date')(new Date(vm.quote.publishdate), 'mediumDate');
+                vm.quote.duedate = $filter('date')(new Date(vm.quote.duedate), 'mediumDate');
                 vm.tqChecked = (vm.quote.quote_status_id==12141326)?true:false;
                 vm.submittedChecked = (vm.quote.quote_status_id==12141324)?true:false;
                 vm.submittedDisabled = vm.submittedChecked;
