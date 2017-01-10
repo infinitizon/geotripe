@@ -141,4 +141,56 @@ angular.module('Common')
                         });
                     }
                 };
-            }]);
+            }])
+    .directive('focusMe', ['$timeout', '$parse', function ($timeout, $parse) {
+        return {
+            //scope: true,   // optionally create a child scope
+            link: function (scope, element, attrs) {
+                var model = $parse(attrs.focusMe);
+                scope.$watch(model, function (value) {
+                    if (value === true) {
+                        $timeout(function () {
+                            element[0].focus();
+                        });
+                    }
+                });
+                // Set attribute value to 'false' on blur event:
+                element.bind('blur', function () {
+                    scope.$apply(model.assign(scope, false));
+                });
+            }
+        };
+    }])
+    .directive('uiSelectRequired', function() {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function (scope, elm, attrs, ctrl) {
+                ctrl.$validators.uiSelectRequired = function (modelValue) {
+                    if (attrs.uiSelectRequired) {
+                        var isRequired = scope.$eval(attrs.uiSelectRequired)
+                        if (isRequired == false)
+                            return true;
+                    }
+
+                    var model=[], determineVal;;
+                    if (angular.isArray(modelValue)) {
+                        model = modelValue;
+                    }else if(angular.isDefined(modelValue)){
+                        model.push(modelValue)
+                    }
+
+                    if (angular.isArray(model)) {
+                        determineVal = model;
+                    } else if (angular.isArray(viewValue)) {
+                        determineVal = viewValue;
+                    } else if (angular.isArray(model)) {
+                        determineVal = model;
+                    } else {
+                        return false;
+                    }
+                    return determineVal.length > 0;
+                }
+            }
+        }
+    });
