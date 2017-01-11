@@ -2,7 +2,7 @@
     <div class="panel-heading">
         <a ng-click="" class="btn btn-primary pull-right">Submit</a>
         <h2 style="height:60px; line-height:60px;">
-            <span style="vertical-align:middle;">{{ $root.globals.currentUser.userDetails.authDetails.firstname || 'empty' }}</span>
+            <span style="vertical-align:middle;">{{ profCtrl.profile.firstname || 'No name' }}</span>
             <small><span style="vertical-align:middle;">&mdash; Profile</span></small>
         </h2>
 
@@ -14,7 +14,7 @@
             </div>
             <div class="col-sm-9 text-left">
                 <a href="#" editable-text="$root.globals.currentUser.userDetails.authDetails.firstname" e-placeholder="Enter your first name">
-                    {{ $root.globals.currentUser.userDetails.authDetails.firstname || 'Click to enter your first name' }}
+                    {{ profCtrl.profile.firstname || 'Click to enter your first name' }}
                 </a>
             </div>
         </div>
@@ -24,7 +24,7 @@
             </div>
             <div class="col-sm-9 text-left">
                 <a href="#" editable-text="$root.globals.currentUser.userDetails.authDetails.middlename" e-placeholder="Enter your middle name">
-                    {{ $root.globals.currentUser.userDetails.authDetails.middlename || 'Click to enter your middle name' }}
+                    {{ profCtrl.profile.middlename || 'Click to enter your middle name' }}
                 </a>
             </div>
         </div>
@@ -34,7 +34,7 @@
             </div>
             <div class="col-sm-9 text-left">
                 <a href="#" editable-text="$root.globals.currentUser.userDetails.authDetails.lastname" e-placeholder="Enter your last name">
-                    {{ $root.globals.currentUser.userDetails.authDetails.lastname || 'Click to enter your last name' }}
+                    {{ profCtrl.profile.lastname || 'Click to enter your last name' }}
                 </a>
             </div>
         </div>
@@ -44,7 +44,7 @@
             </div>
             <div class="col-sm-9 text-left">
                 <a href="#" editable-text="$root.globals.currentUser.userDetails.authDetails.username" e-placeholder="Enter your user name">
-                    {{ $root.globals.currentUser.userDetails.authDetails.username || 'Click to enter user name' }}
+                    {{ profCtrl.profile.username || 'Click to enter user name' }}
                 </a>
             </div>
         </div>
@@ -54,7 +54,7 @@
             </div>
             <div class="col-sm-9 text-left">
                 <a href="#" editable-email="$root.globals.currentUser.userDetails.authDetails.email" e-placeholder="E.g: name@company.com">
-                    {{ $root.globals.currentUser.userDetails.authDetails.email || 'Click to enter your email' }}
+                    {{ profCtrl.profile.email || 'Click to enter your email' }}
                 </a>
             </div>
         </div>
@@ -64,7 +64,7 @@
             </div>
             <div class="col-sm-9 text-left">
                 <a href="#" editable-tel="$root.globals.currentUser.userDetails.authDetails.contactphonenumber" e-pattern="\d{11}" e-title="xxxxxxxxxxx" e-placeholder="E.g: 07066477223">
-                    {{ $root.globals.currentUser.userDetails.authDetails.contactphonenumber || 'Click to enter contact phone number' }}
+                    {{ profCtrl.profile.contactphonenumber || 'Click to enter contact phone number' }}
                 </a>
             </div>
         </div>
@@ -74,7 +74,7 @@
             </div>
             <div class="col-sm-9 text-left">
                 <a href="#" editable-tel="$root.globals.currentUser.userDetails.authDetails.workphonenumber" e-pattern="\d{11}" e-title="xxxxxxxxxxx" e-placeholder="E.g: 07066477223">
-                    {{ $root.globals.currentUser.userDetails.authDetails.workphonenumber || 'Click to enter work phone number' }}
+                    {{ profCtrl.profile.workphonenumber || 'Click to enter work phone number' }}
                 </a>
             </div>
         </div>
@@ -84,7 +84,7 @@
             </div>
             <div class="col-sm-9 text-left">
                 <a href="#" editable-tel="$root.globals.currentUser.userDetails.authDetails.workphonenumber" e-pattern="\d{11}" e-title="xxxxxxxxxxx" e-placeholder="E.g: 07066477223">
-                    {{ $root.globals.currentUser.userDetails.authDetails.workphonenumber || 'Click to enter work phone number' }}
+                    {{ profCtrl.profile.workphonenumber || 'Click to enter work phone number' }}
                 </a>
             </div>
         </div>

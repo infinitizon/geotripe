@@ -83,9 +83,9 @@ angular.module('Setup')
                 modalInstance.result.then(function (res) {
                     vm.getData(vm.pageno);
                     //$state.reload();
-                    $log.info('Modal dismissed at: ' + new Date());
+                    console.log('Modal dismissed at: ' + new Date());
                 }, function () {
-                    $log.info('Modal dismissed at: ' + new Date());
+                    console.log('Modal dismissed at: ' + new Date());
                 });
             }
 

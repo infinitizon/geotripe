@@ -14,8 +14,8 @@ angular.module('Auth', [])
             vm.login = function () {
                 vm.dataLoading = true;
                 AuthenticationService.Login(vm.username, vm.password, function(response) {
+                    console.log('Currently in auth/controller.js');
                     console.log($localStorage);
-                    console.log('Some');
                     if(response.data.token) {
                         AuthenticationService.SetCredentials(response.data);
                         $scope.user = {

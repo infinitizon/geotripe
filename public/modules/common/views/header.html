@@ -108,12 +108,12 @@
     </ul>
   </li>
 
-  <li class="dropdown" uib-dropdown>
-    <a href="javascript:;" class="dropdown-toggle" uib-dropdown-toggle>
+  <li class="dropdown" dropdown>
+    <a href="javascript:;" class="dropdown-toggle" dropdown-toggle>
       <img data-ng-src="{{user.avatar}}" class="header-avatar img-circle ml10" alt="user" title="user">
       <span class="pull-left">{{user.fname}} {{user.lname}}</span>
     </a>
-    <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+    <ul class="dropdown-menu">
       <li>
         <div class="navbar-login">
           <div class="row">
@@ -128,7 +128,7 @@
               </p>
               <p class="text-left small">{{user.email}}</p>
               <p class="text-left">
-                <a class="btn btn-primary btn-block btn-sm" href="#">Profile</a>
+                <a class="btn btn-primary btn-block btn-sm" ui-sref="app.profile">Profile</a>
               </p>
             </div>
           </div>
