@@ -131,6 +131,7 @@ angular
                     url: '/profile'
                     , templateUrl: 'modules/home/views/profile.html'
                     , controller: 'ProfileController'
+                    , controllerAs : 'profCtrl'
                     , resolve: {
                         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load([
