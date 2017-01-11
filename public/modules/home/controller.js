@@ -2,6 +2,8 @@ angular.module('Home',[])
     .controller('HomeController', ['$scope', '$localStorage', '$rootScope', 'CommonServices','DataService'
         , function ($scope, $localStorage, $rootScope, CommonServices, DataService) {
             var vm = this;
+            console.log("Now in home/controller.js");
+
             // reset login status
             //vm.pages = $rootScope.globals.currentUser.userDetails.authViews;
             CommonServices.postData.token = $localStorage.globals.currentUser.userDetails.token;
@@ -25,12 +27,28 @@ angular.module('Home',[])
                     legend: {
                         show: true
                     },
+                    grid: {
+                        hoverable: true,
+                        clickable: true
+                    }
                 };
             })
 
-            console.log($scope.user);
+            vm.flotClick=function(event, pos, item){
+                console.log(event)
+                console.log(pos)
+                console.log(item)
+            }
 
+            console.log($scope.user);
+            console.log($localStorage.globals.currentUser.userDetails.authDetails.firstname);
+            $scope.fname = $localStorage.globals.currentUser.userDetails.authDetails.firstname;
+            $scope.mname = $localStorage.globals.currentUser.userDetails.authDetails.middlename;
+            $scope.lname = $localStorage.globals.currentUser.userDetails.authDetails.lastname;
+            $scope.email = $localStorage.globals.currentUser.userDetails.authDetails.email;
+            $scope.avatar = 'uploads/user/avatar.jpg';
             if (!angular.isDefined($scope.user) ) {
+                $scope.user={};
                 $scope.user = {
                     fname: $localStorage.globals.currentUser.userDetails.authDetails.firstname,
                     mname: $localStorage.globals.currentUser.userDetails.authDetails.middlename,

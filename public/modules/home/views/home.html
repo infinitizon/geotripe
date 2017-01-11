@@ -1,28 +1,13 @@
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-12">
         <div class="panel">
             <div class="panel-heading border">Distribution of quotes</div>
             <div class="panel-body">
                 <ul>
                     <li data-ng-repeat="dataSet in HomeCtrl.QuotesDataset">{{dataSet.label +": "+ dataSet.data}}</li>
                 </ul>
-                <flot dataset="HomeCtrl.QuotesDataset" options="HomeCtrl.QuotesOptions" class="chart-sm" height="300"></flot>
+                <flot dataset="HomeCtrl.QuotesDataset" options="HomeCtrl.QuotesOptions" on-plot-click="HomeCtrl.flotClick(event, pos, item)" class="chart-sm" height="300"></flot>
             </div>
         </div>
     </div>
-    <!--<div class="col-sm-6">-->
-        <!--<div class="panel">-->
-            <!--<div class="panel-heading border">Module tester</div>-->
-            <!--<div class="panel-body">-->
-
-                <!--<p class="input-group ui-datepicker">-->
-                    <!--<input type="text" class="form-control input-sm" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2018-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />-->
-                    <!--<span class="input-group-btn">-->
-                        <!--<button type="button" class="btn btn-default btn-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>-->
-                    <!--</span>-->
-                <!--</p>-->
-
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
 </div>

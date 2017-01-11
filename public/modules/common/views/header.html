@@ -124,7 +124,7 @@
             </div>
             <div class="col-lg-8">
               <p class="text-left">
-                <strong>{{user.fname}} {{user.lname}}</strong>
+                <strong>{{fname || user.fname}} {{lname || user.lname}}</strong>
               </p>
               <p class="text-left small">{{user.email}}</p>
               <p class="text-left">
