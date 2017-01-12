@@ -87,9 +87,57 @@ angular.module('Home',[])
             //$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
             //$scope.format = $scope.formats[0];
         }])
-    .controller('ProfileController', ['$scope', '$location', '$localStorage', 'CommonServices'
-        , function ($scope, $location, $localStorage, CommonServices) {
+    .controller('ProfileController', ['$scope', '$location', '$localStorage', 'DataService', 'CommonServices'
+        , function ($scope, $location, $localStorage, DataService, CommonServices) {
             var vm = this;
 
             vm.profile = angular.copy($localStorage.globals.currentUser.userDetails.authDetails);
+            console.log(vm.profile);
+            vm.update = function(){
+                var changes = {};
+                var data = new FormData();
+                data.append("factName", "Users");
+                data.append("token", $localStorage.globals.currentUser.userDetails.token);
+                data.append("transactionMetaData[currentLocale]", "NG");
+                data.append("transactionMetaData[queryStore]", "MySql");
+                data.append("transactionEventType", "Update");
+
+                vm.profile.firstname != $localStorage.globals.currentUser.userDetails.authDetails.firstname ?changes['firstname']=vm.profile.firstname:'';
+                vm.profile.middlename != $localStorage.globals.currentUser.userDetails.authDetails.middlename ?changes['middlename']=vm.profile.middlename:'';
+                vm.profile.lastname != $localStorage.globals.currentUser.userDetails.authDetails.lastname ?changes['lastname']=vm.profile.lastname:'';
+                vm.profile.username != $localStorage.globals.currentUser.userDetails.authDetails.username ?changes['username']=vm.profile.username:'';
+                vm.profile.email != $localStorage.globals.currentUser.userDetails.authDetails.email ?changes['email']=vm.profile.email:'';
+                vm.profile.workphonenumber != $localStorage.globals.currentUser.userDetails.authDetails.workphonenumber ?changes['workphonenumber']=vm.profile.workphonenumber:'';
+                vm.profile.contactphonenumber != $localStorage.globals.currentUser.userDetails.authDetails.contactphonenumber ?changes['contactphonenumber']=vm.profile.contactphonenumber:'';
+                vm.profile.contactphonenumber != $localStorage.globals.currentUser.userDetails.authDetails.contactphonenumber ?changes['contactphonenumber']=vm.profile.contactphonenumber:'';
+                if( !angular.equals({}, changes) ){
+                    changes['id'] = vm.profile.user_id;
+                    data.append("factObjects", [JSON.stringify(changes)]);
+                    if(vm.profile.pix){
+                        var file = vm.profile.pix;
+                        data.append("file[]", file);
+                    }
+
+                    DataService.post("inboundService", data, {
+                        transformRequest: angular.identity,
+                        headers: {'Content-Type': undefined, 'Process-Data': false}
+                    }).then( function (response) {
+                        if(response.data.response == 'Failure'){
+                            vm.error=response.data.message;
+                            vm.isDisabled = false;
+                            vm.dataLoading = false;
+                        }else{
+                            vm.error=response.data.message;
+                            vm.isDisabled = false;
+                            vm.dataLoading = false;
+                            vm.lineItems = [];
+                            vm.quoteFiles = null;
+                        }
+                        //vm.container[selectScope] = response.data.data;
+                    });
+                }else{
+                    console.log('No changes');
+                }
+            }
+
         }])

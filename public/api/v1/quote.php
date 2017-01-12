@@ -145,7 +145,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
 //                            $blob = $dbo->quote(file_get_contents($_FILES['file']['tmp_name'][$i]));
                             $query = "INSERT INTO Document (doc_quote_id,docName,docMimeType,docPath,docSize,docCreateDate";
                             $query .= isset($data->factObjects[0]->fileType[$i])?",documentType_id)":")";
-                            $query .= " VALUES ({$lastQuoteId},'{$name}','{$mime}','{$path}',{$size},NOW()";
+                            $query .= " VALUES ({$lastQuoteId},'{$name}','{$mime}','{$webPath}',{$size},NOW()";
                             $query .= isset($data->factObjects[0]->fileType[$i])?",{$data->factObjects[0]->fileType[$i]})":")";
 //echo $query;
                             $r_query = $dbo->prepare($query);

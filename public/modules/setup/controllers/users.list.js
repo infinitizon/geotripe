@@ -39,7 +39,19 @@ angular.module('Setup')
                 data.transactionMetaData.responseDataProperties = 'u.user_id&u.firstname&u.middlename&u.lastname&u.workphonenumber&u.contactphonenumber&p.name&u.isauthorizedperson&u.username&u.email&u.enabled'
                 data.transactionMetaData.pageno = pageno-1;
                 data.transactionMetaData.itemsPerPage = vm.itemsPerPage;
-                data.transactionMetaData.queryMetaData.queryClause.andExpression = [];
+                data.transactionMetaData.queryMetaData.queryClause.andExpression = [
+                    {
+                        "propertyName": "u.enabled",
+                        "propertyValue": 1,
+                        "propertyDataType": "TINYINT",
+                        "operatorType": "="
+                    },{
+                        "propertyName": "ifnull(u.accountlocked,0)",
+                        "propertyValue": 1,
+                        "propertyDataType": "TINYINT",
+                        "operatorType": "<>"
+                    },
+                ];
                 data.transactionMetaData.queryMetaData.joinClause = {
                     'joinType':['LEFT JOIN'],'joinKeys':['u.user_party_id=p.party_id']
                 }

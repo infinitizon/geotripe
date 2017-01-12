@@ -48,7 +48,7 @@ $fxns = new Functions($dbo);
 $token = isset($data->token)? $data->token : $token; //Get or Generate token
 if($env['PATH_INFO']==="/login"){
     try {
-        $stmtChkUsr = "SELECT u.user_id, u.firstname, u.middlename, u.lastname, u.username, u.email, u.workphonenumber, u.contactphonenumber
+        $stmtChkUsr = "SELECT u.user_id, u.firstname, u.middlename, u.lastname, u.username, u.email, u.workphonenumber, u.contactphonenumber, u.password, u.pix
                     FROM Users u
                     WHERE (u.username=:email OR u.email=:email) AND u.password = :password AND u.enabled=1 and u.accountlocked<>1 ";
         $stmtChkUsr = $dbo->prepare($stmtChkUsr);
@@ -223,6 +223,7 @@ if($env['PATH_INFO']==="/inboundService") {
              * An Update is an Update
              */
             if ($data->transactionEventType == "Update") {
+//                echo "Got here";
                 if(is_array($data->factObjects[0])){
                     $dbo->beginTransaction();
                         $q_str = "INSERT INTO {$data->factName} ";
@@ -254,6 +255,7 @@ if($env['PATH_INFO']==="/inboundService") {
                         }
                         if($logs_fields!=''){
                             $q_str_logs .="Modified the following fields with values ".$logs_fields."<=>".$logs_values." respectively', NOW())";
+//echo $q_str_logs;
                             $r_logStr = $dbo->prepare($q_str_logs);
                             $r_logStr->execute(array(':tblColKey'=>$lastId));
 
@@ -263,7 +265,7 @@ if($env['PATH_INFO']==="/inboundService") {
                         $onUpdt = rtrim($onUpdt,',');
                         $q_str .= $ins_fields . ") " . $ins_values;
                         $q_str .= " ON DUPLICATE KEY UPDATE ".$onUpdt;
-
+//echo $q_str;
                         $r_str = $dbo->prepare($q_str);
                         $r_str->execute();
                     $dbo->commit();
@@ -280,15 +282,45 @@ if($env['PATH_INFO']==="/inboundService") {
                             }
                         }
                         $q_str = $fxns->_subStrAtDel($q_str, ' ,');
-                        $q_str_logs = $fxns->_subStrAtDel($q_str, ' ,');
-                        $q_str_logs .= $log_txt . "', NOW()";
+                        $q_str_logs .= $log_txt . "', NOW())";
                         $q_str .= " WHERE $priKy={$data->factObjects[0]->id}";
+//echo $q_str;
+//echo $q_str_logs;
                         $r_str = $dbo->prepare($q_str);
                         $r_str->execute();
 
                         $r_str_logs = $dbo->prepare($q_str_logs);
                         $r_str_logs->execute();
+                    if($_FILES){
+                        for($i=0; $i<count($_FILES['file']['name']); $i++ ){
+                            $name = $_FILES['file']['name'][$i];
+                            $mime = $_FILES['file']['type'][$i];
+                            $temp = $_FILES['file']['tmp_name'][$i];
+                            $size = intval($_FILES['file']['size'][$i]);
 
+                            $newfilename = md5(time()).".".pathinfo($name, PATHINFO_EXTENSION);
+                            $path = $_SERVER['DOCUMENT_ROOT'].'/uploads/' . $newfilename;
+                            $webPath = WEB_ROOT.'/uploads/' . $newfilename;
+                            move_uploaded_file($temp, $path);
+
+
+//                              $blob = $dbo->quote(file_get_contents($_FILES['file']['tmp_name'][$i]));
+                            $query = "INSERT INTO Document (doc_quote_id,docName,docMimeType,docPath,docSize,docCreateDate)
+                                            VALUES
+                                          ({$data->factObjects[0]->id},'{$name}','{$mime}','{$webPath}',{$size},NOW())";
+                            $r_query = $dbo->prepare($query);
+                            $r_query->execute();
+                            //Document Logs
+                            $q_str_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) ";
+                            $log_txt = "{$user[0]['User_Id']},'Document',:tblColKey, 'inserted new lines for: ";
+                            $log_txt .= "docName=>{$name}, docPath=>{$path}";
+                            $q_str_logs .= " VALUES (" . $log_txt . "', NOW() )";
+//                            echo $q_str_logs;
+                            $r_logStr = $dbo->prepare($q_str_logs);
+                            $r_logStr->execute(array(':tblColKey'=>$data->factObjects[0]->id));
+
+                        }
+                    }
                     $dbo->commit();
                 }
 //                echo $q_str;
@@ -306,58 +338,60 @@ if($env['PATH_INFO']==="/inboundService") {
                 $ins_fields = " (";
                 $ins_values = " VALUES (";
                 if(!is_array($data->factObjects[0])){
-                    $log_txt = "{$user[0]['User_Id']},'{$data->factName}',:tblColKey, 'inserted new lines for: ";
-                    foreach ($r_fields as $fields) {
-                        $fieldNm = strtolower($fields['Field']);
-                        if (strtolower(@$data->factObjects[0]->$fieldNm)) {
-                            @$ins_fields .= " {$fields['Field']} ,";
-                            $formatedVal = $fxns->_formatFieldValue($data->factObjects[0]->$fieldNm, array('type'=>$fields['Type'])).",";
-                            @$ins_values .= $formatedVal;
-                            @$log_txt .= "{$fields['Field']}=>".htmlspecialchars($data->factObjects[0]->$fieldNm,ENT_QUOTES ).", ";
+                    $dbo->beginTransaction();
+                        $log_txt = "{$user[0]['User_Id']},'{$data->factName}',:tblColKey, 'inserted new lines for: ";
+                        foreach ($r_fields as $fields) {
+                            $fieldNm = strtolower($fields['Field']);
+                            if (strtolower(@$data->factObjects[0]->$fieldNm)) {
+                                @$ins_fields .= " {$fields['Field']} ,";
+                                $formatedVal = $fxns->_formatFieldValue($data->factObjects[0]->$fieldNm, array('type'=>$fields['Type'])).",";
+                                @$ins_values .= $formatedVal;
+                                @$log_txt .= "{$fields['Field']}=>".htmlspecialchars($data->factObjects[0]->$fieldNm,ENT_QUOTES ).", ";
+                            }
                         }
-                    }
 
-                    $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
-                    $ins_values = rtrim($ins_values,',');
-                    $log_txt = rtrim($log_txt,', ');
-                    $q_str .= $ins_fields . ") " . $ins_values . ")";
-                    $q_str_logs .= " VALUES (" . $log_txt . "', NOW() )";
+                        $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
+                        $ins_values = rtrim($ins_values,',');
+                        $log_txt = rtrim($log_txt,', ');
+                        $q_str .= $ins_fields . ") " . $ins_values . ")";
+                        $q_str_logs .= " VALUES (" . $log_txt . "', NOW() )";
+//echo $q_str;
+                        $r_str = $dbo->prepare($q_str);
+                        $r_str->execute();
+                        $lastId = $dbo->lastInsertId();
 
-                    $r_str = $dbo->prepare($q_str);
-                    $r_str->execute();
-                    $lastId = $dbo->lastInsertId();
+                        $r_logStr = $dbo->prepare($q_str_logs);
+                        $r_logStr->execute(array(':tblColKey'=>$lastId));
+                        if($_FILES){
+                            for($i=0; $i<count($_FILES['file']['name']); $i++ ){
+                                $name = $_FILES['file']['name'][$i];
+                                $mime = $_FILES['file']['type'][$i];
+                                $temp = $_FILES['file']['tmp_name'][$i];
+                                $size = intval($_FILES['file']['size'][$i]);
 
-                    $r_logStr = $dbo->prepare($q_str_logs);
-                    $r_logStr->execute(array(':tblColKey'=>$lastId));
-                    if($_FILES){
-                        for($i=0; $i<count($_FILES['file']['name']); $i++ ){
-                            $name = $_FILES['file']['name'][$i];
-                            $mime = $_FILES['file']['type'][$i];
-                            $temp = $_FILES['file']['tmp_name'][$i];
-                            $size = intval($_FILES['file']['size'][$i]);
-
-                            $newfilename = md5(time()).".".pathinfo($name, PATHINFO_EXTENSION);
-                            $path = $_SERVER['DOCUMENT_ROOT'].'/uploads/' . $newfilename;
-                            $webPath = WEB_ROOT.'/uploads/' . $newfilename;
-                            move_uploaded_file($temp, $path);
+                                $newfilename = md5(time()).".".pathinfo($name, PATHINFO_EXTENSION);
+                                $path = $_SERVER['DOCUMENT_ROOT'].'/uploads/' . $newfilename;
+                                $webPath = WEB_ROOT.'/uploads/' . $newfilename;
+                                move_uploaded_file($temp, $path);
 
 
-//                            $blob = $dbo->quote(file_get_contents($_FILES['file']['tmp_name'][$i]));
-                            $query = "INSERT INTO Document (doc_quote_id,docName,docMimeType,docPath,docSize,docCreateDate)
-                                        VALUES
-                                      ({$lastId},'{$name}','{$mime}','{$path}',{$size},NOW())";
-                            $r_query = $dbo->prepare($query);
-                            $r_query->execute();
-                            //Document Logs
-                            $q_str_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) ";
-                            $log_txt = "{$user[0]['User_Id']},'Document',:tblColKey, 'inserted new lines for: ";
-                            $log_txt = "docName=>{$name}, docPath=>{$path}";
-                            $q_str_logs .= " VALUES (" . $log_txt . "', NOW() )";
-                            $r_logStr = $dbo->prepare($q_str_logs);
-                            $r_logStr->execute(array(':tblColKey'=>$lastId));
+//                              $blob = $dbo->quote(file_get_contents($_FILES['file']['tmp_name'][$i]));
+                                $query = "INSERT INTO Document (doc_quote_id,docName,docMimeType,docPath,docSize,docCreateDate)
+                                            VALUES
+                                          ({$lastId},'{$name}','{$mime}','{$webPath}',{$size},NOW())";
+                                $r_query = $dbo->prepare($query);
+                                $r_query->execute();
+                                //Document Logs
+                                $q_str_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) ";
+                                $log_txt = "{$user[0]['User_Id']},'Document',:tblColKey, 'inserted new lines for: ";
+                                $log_txt .= "docName=>{$name}, docPath=>{$path}";
+                                $q_str_logs .= " VALUES (" . $log_txt . "', NOW() )";
+                                $r_logStr = $dbo->prepare($q_str_logs);
+                                $r_logStr->execute(array(':tblColKey'=>$lastId));
 
+                            }
                         }
-                    }
+                    $db->commit();
                 }else{
                     $dbo->beginTransaction();
                         $ins_fields = " (";

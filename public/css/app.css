@@ -13464,9 +13464,7 @@ td.align-middle {
 .templates{
   display: none;
 }
-.filter {
-  margin-bottom: 0.5em;
-}
+.filter {  margin-bottom: 0.5em;  }
 .filter-type,.template.qualifier{
   display: inline-block;
   /* IE 6-7 Hack */
@@ -13477,10 +13475,7 @@ td.align-middle {
   margin: 1em auto;
   border-collapse: collapse;
 }
-#results th, #results td {
-  padding: 0.2em 0.5em;
-}
-#results tr:nth-child(odd){
-  background-color: #71A9D6;
-}
+#results th, #results td {  padding: 0.2em 0.5em;  }
+#results tr:nth-child(odd){  background-color: #71A9D6;  }
 .cursor-pointer{cursor:pointer;}
+.row.top-buffer{  margin-top:20px;  }
