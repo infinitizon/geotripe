@@ -5,7 +5,6 @@
             <span style="vertical-align:middle;">{{ profCtrl.profile.firstname || 'No name' }}</span>
             <small><span style="vertical-align:middle;">&mdash; Profile</span></small>
         </h2>
-
     </div>
     <div class="panel-body">
         <div class="row top-buffer">
@@ -65,11 +64,26 @@
             </div>
         </div>
         <div class="row top-buffer">
-            <div class="col-sm-3 text-right">Password:</div>
+            <div class="col-sm-3 text-right">Password:<br><small>To change your password, enter you old password, then your preferred password twice</small></div>
             <div class="col-sm-9 text-left">
-                <a href="#" editable-password="profCtrl.profile.password" e-pattern="\d{11}" e-title="xxxxxxxxxxx" e-placeholder="E.g: 07066477223">
-                    {{ profCtrl.profile.password || 'Click to enter work phone number' }}
-                </a>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="oldPwd">Old Password</label>
+                        <input type="text" id="oldPwd" data-ng-model="profCtrl.oldPwd" placeholder="-- Enter old password --" class="form-control" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="newPwd">Preferred Password!</label>
+                        <input type="text" id="newPwd" data-ng-model="profCtrl.newPwd" placeholder="-- Enter preferred password --" class="form-control" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="newPwdAgain">Preferred Password Again!</label>
+                        <input type="text" id="newPwdAgain" data-ng-model="profCtrl.newPwdAgain" placeholder="-- Enter preferred password again --" class="form-control" />
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row top-buffer">
@@ -79,11 +93,7 @@
             </div>
         </div>
     </div>
-
 </div>
-<!--<ui-select ng-model="proCtrl.unitofmeasure" theme="bootstrap" close-on-select="true">-->
-    <!--<ui-select-match placeholder="{{proCtrl.container['UOMPlaceholder'] || 'Select or search a person in the list...'}}">{{$select.selected.name}}</ui-select-match>-->
-    <!--<ui-select-choices repeat="item in proCtrl.container['unitofmeasures'] | filter: $select.search">-->
-        <!--<div ng-bind-html="item.name | highlight: $select.search"></div>-->
-    <!--</ui-select-choices>-->
-<!--</ui-select>-->
+<div class="overlay" data-ng-if="profCtrl.showLoading">
+    <div class="centered loader"></div>
+</div>

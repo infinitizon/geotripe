@@ -40,64 +40,20 @@ angular.module('Home',[])
                 console.log(item)
             }
 
-            console.log($scope.user);
-            console.log($localStorage.globals.currentUser.userDetails.authDetails.firstname);
-            $scope.fname = $localStorage.globals.currentUser.userDetails.authDetails.firstname;
-            $scope.mname = $localStorage.globals.currentUser.userDetails.authDetails.middlename;
-            $scope.lname = $localStorage.globals.currentUser.userDetails.authDetails.lastname;
-            $scope.email = $localStorage.globals.currentUser.userDetails.authDetails.email;
-            $scope.avatar = 'uploads/user/avatar.jpg';
-            if (!angular.isDefined($scope.user) ) {
-                $scope.user={};
-                $scope.user = {
-                    fname: $localStorage.globals.currentUser.userDetails.authDetails.firstname,
-                    mname: $localStorage.globals.currentUser.userDetails.authDetails.middlename,
-                    lname: $localStorage.globals.currentUser.userDetails.authDetails.lastname,
-                    email: $localStorage.globals.currentUser.userDetails.authDetails.email,
-                    avatar: 'uploads/user/avatar.jpg'
-                };
-            }
-
-            console.log($scope.user);
-            //$scope.today = function () {
-            //    $scope.dt = new Date();
-            //};
-            //$scope.today();
-            //$scope.clear = function () {
-            //    $scope.dt = null;
-            //};
-            //// Disable weekend selection
-            //$scope.disabled = function (date, mode) {
-            //    return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
-            //};
-            //$scope.toggleMin = function () {
-            //    $scope.minDate = $scope.minDate ? null : new Date();
-            //};
-            //$scope.toggleMin();
-            //$scope.open = function ($event) {
-            //    $event.preventDefault();
-            //    $event.stopPropagation();
-            //
-            //    $scope.opened = true;
-            //};
-            //$scope.dateOptions = {
-            //    formatYear: 'yy',
-            //    startingDay: 1
-            //};
-            //$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-            //$scope.format = $scope.formats[0];
         }])
     .controller('ProfileController', ['$scope', '$location', '$localStorage', 'DataService', 'CommonServices'
         , function ($scope, $location, $localStorage, DataService, CommonServices) {
             var vm = this;
 
+            vm.showLoading = false; //hides the loading image on an overlay
+            CommonServices.postData.token = $localStorage.globals.currentUser.userDetails.token;
             vm.profile = angular.copy($localStorage.globals.currentUser.userDetails.authDetails);
-            console.log(vm.profile);
+
             vm.update = function(){
                 var changes = {};
                 var data = new FormData();
                 data.append("factName", "Users");
-                data.append("token", $localStorage.globals.currentUser.userDetails.token);
+                data.append("token", CommonServices.postData.token);
                 data.append("transactionMetaData[currentLocale]", "NG");
                 data.append("transactionMetaData[queryStore]", "MySql");
                 data.append("transactionEventType", "Update");
@@ -109,34 +65,77 @@ angular.module('Home',[])
                 vm.profile.email != $localStorage.globals.currentUser.userDetails.authDetails.email ?changes['email']=vm.profile.email:'';
                 vm.profile.workphonenumber != $localStorage.globals.currentUser.userDetails.authDetails.workphonenumber ?changes['workphonenumber']=vm.profile.workphonenumber:'';
                 vm.profile.contactphonenumber != $localStorage.globals.currentUser.userDetails.authDetails.contactphonenumber ?changes['contactphonenumber']=vm.profile.contactphonenumber:'';
-                vm.profile.contactphonenumber != $localStorage.globals.currentUser.userDetails.authDetails.contactphonenumber ?changes['contactphonenumber']=vm.profile.contactphonenumber:'';
-                if( !angular.equals({}, changes) ){
-                    changes['id'] = vm.profile.user_id;
-                    data.append("factObjects", [JSON.stringify(changes)]);
-                    if(vm.profile.pix){
-                        var file = vm.profile.pix;
-                        data.append("file[]", file);
-                    }
 
-                    DataService.post("inboundService", data, {
-                        transformRequest: angular.identity,
-                        headers: {'Content-Type': undefined, 'Process-Data': false}
-                    }).then( function (response) {
-                        if(response.data.response == 'Failure'){
-                            vm.error=response.data.message;
-                            vm.isDisabled = false;
-                            vm.dataLoading = false;
+                if(vm.profile.pix){
+                    var file = vm.profile.pix;
+                    data.append("file[]", file);
+                }
+
+
+                var performUpdt = function(){
+                    if( !angular.equals({}, changes) ){
+                        changes['id'] = vm.profile.user_id;
+                        data.append("factObjects", [JSON.stringify(changes)]);
+                        DataService.post("inboundService", data, {
+                            transformRequest: angular.identity,
+                            headers: {'Content-Type': undefined, 'Process-Data': false}
+                        }).then( function (response) {
+                            vm.showLoading = false; //hides the loading image on an overlay
+                            if(response.data.response == 'Failure'){
+                                vm.error=response.data.message;
+                                vm.isDisabled = false;
+                                vm.dataLoading = false;
+                            }else{
+                                vm.error=response.data.message;
+                                vm.isDisabled = false;
+                                vm.dataLoading = false;
+                                vm.lineItems = [];
+                                vm.quoteFiles = null;
+                            }
+                            //vm.container[selectScope] = response.data.data;
+                        });
+                    }else{
+                        vm.showLoading = false; //hides the loading image on an overlay
+                        console.log('No changes');
+                    }
+                }
+                if(vm.oldPwd || vm.newPwd || vm.newPwdAgain){
+                    if(!vm.oldPwd || vm.oldPwd==''){
+                        alert('You need to verify your old password');return;
+                    }
+                    if(!vm.newPwd || vm.newPwd==''){
+                        alert('You need to enter a preferred password');return;
+                    }
+                    if(!vm.newPwdAgain || vm.newPwdAgain==''){
+                        alert('You need to verify your preferred password');return;
+                    }
+                    if(vm.newPwd != vm.newPwdAgain){
+                        alert('The entered preferred passwords does not match');return;
+                    }
+                    var pwdData=angular.copy(CommonServices.postData);
+                    pwdData.factName = 'Users u';
+                    pwdData.transactionMetaData.responseDataProperties = 'u.password';
+                    pwdData.transactionMetaData.queryMetaData.queryClause.andExpression = [{
+                        "propertyName": "u.user_id",
+                        "propertyValue": vm.profile.user_id,
+                        "propertyDataType": "BIGINT",
+                        "operatorType": "="
+                    }];
+                    vm.showLoading = true; //Shows a loading image on an overlay
+                    DataService.post('inboundService', pwdData).then(function (response) {
+                        if(CommonServices.md5Hash(vm.oldPwd) == response.data.data[0].password){
+                            changes['id'] = vm.profile.user_id;
+                            changes['password'] = CommonServices.md5Hash(vm.newPwd)
+
+                            performUpdt(changes)
                         }else{
-                            vm.error=response.data.message;
-                            vm.isDisabled = false;
-                            vm.dataLoading = false;
-                            vm.lineItems = [];
-                            vm.quoteFiles = null;
+                            alert('The old password you entered is incorrect')
+                            vm.showLoading = false; //hides the loading image on an overlay
                         }
-                        //vm.container[selectScope] = response.data.data;
-                    });
+                    })
                 }else{
-                    console.log('No changes');
+                    vm.showLoading = true; //Shows a loading image on an overlay
+                    performUpdt(changes);
                 }
             }
 

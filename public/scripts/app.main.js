@@ -30,7 +30,13 @@ angular
                 isMessageOpen: false,
                 isConfigOpen: false
             };
-
+            $scope.user = {
+                fname:null,
+                mname:null,
+                lname:null,
+                email:null,
+                avatar:null
+            }
 
             if (angular.isDefined($localStorage.layout)) {
                 $scope.app.layout = $localStorage.layout;
@@ -43,14 +49,13 @@ angular
             }
 
             if (angular.isDefined($localStorage.globals) && $localStorage.globals != null) {
-                $scope.user = {
-                    fname: $localStorage.globals.currentUser.userDetails.authDetails.firstname,
-                    mname: $localStorage.globals.currentUser.userDetails.authDetails.middlename,
-                    lname: $localStorage.globals.currentUser.userDetails.authDetails.lastname,
-                    email: $localStorage.globals.currentUser.userDetails.authDetails.email,
-                    avatar: 'uploads/user/avatar.jpg'
-                };
+                $scope.user.fname = $localStorage.globals.currentUser.userDetails.authDetails.firstname;
+                $scope.user.mname = $localStorage.globals.currentUser.userDetails.authDetails.middlename;
+                $scope.user.lname = $localStorage.globals.currentUser.userDetails.authDetails.lastname;
+                $scope.user.email = $localStorage.globals.currentUser.userDetails.authDetails.email;
+                $scope.user.avatar = 'uploads/user/avatar.jpg';
             }
+
             $scope.$watch('app.layout', function () {
                 $localStorage.layout = $scope.app.layout;
             }, true);
