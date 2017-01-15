@@ -2,8 +2,8 @@
  * Created by ahassan on 10/31/16.
  */
 angular.module('Logistics')
-    .controller('LogisticsEdit', ['$scope', '$rootScope', '$localStorage', '$state', 'DataService','CommonServices','$stateParams','$filter'
-        , function ($scope, $rootScope, $localStorage, $state, DataService, CommonServices, $stateParams, $filter) {
+    .controller('LogisticsEdit', ['$scope', '$rootScope', '$localStorage', '$state', '$modal', 'DataService','CommonServices','$stateParams','$filter'
+        , function ($scope, $rootScope, $localStorage, $state, $modal, DataService, CommonServices, $stateParams, $filter) {
             var vm = this;
 
             vm.lineItems = []
@@ -148,8 +148,12 @@ angular.module('Logistics')
             });
             // Now get the PO details
             var data=angular.copy(CommonServices.postData);
-            data.factName = 'PODetails pod';
-            data.transactionMetaData.responseDataProperties = "pod.po_no&pod.currency&pod.wire_transfer_fee&pod.cost_of_certs&pod.ground_freight&pod.int_freight&pod.packaging_cost&pod.harzardous_cost&pod.other_cost";
+            data.factName = 'PODetails pod,Currency c';
+            data.transactionMetaData.responseDataProperties = "pod.po_no&concat('{"+'"currency":"'+"',IFNULL(pod.currency,''),'"+'","code":"'+"',IFNULL(c.code,''),'"+'"}'+"')currency&pod.wire_transfer_fee&pod.cost_of_certs&pod.ground_freight&pod.int_freight&pod.packaging_cost&pod.harzardous_cost&pod.other_cost&pod.discount&pod.remarks";
+            //data.transactionMetaData.responseDataProperties = "pod.po_no&pod.currency&pod.wire_transfer_fee&pod.cost_of_certs&pod.ground_freight&pod.int_freight&pod.packaging_cost&pod.harzardous_cost&pod.other_cost";
+            data.transactionMetaData.queryMetaData.joinClause = {
+                'joinType':['LEFT JOIN'],'joinKeys':['pod.currency=c.currency_id']
+            }
             data.transactionMetaData.queryMetaData.queryClause.andExpression = [
                 {
                     "propertyName": "pod.Quote_quote_Id",
@@ -160,6 +164,21 @@ angular.module('Logistics')
             ];
             DataService.post('inboundService', data).then(function (response) {
                 vm.lstOfcharges = response.data.data || [];
+                if(vm.lstOfcharges <= 0){
+                    vm.chargesLoading = "No charge entered yet!";
+                }else{
+                    angular.forEach(vm.lstOfcharges, function(charge){
+                        charge.currency = JSON.parse(charge.currency);
+                        charge.wire_transfer_fee = charge.wire_transfer_fee?parseFloat(charge.wire_transfer_fee):'';
+                        charge.cost_of_certs = charge.cost_of_certs ? parseFloat(charge.cost_of_certs):'';
+                        charge.ground_freight = charge.ground_freight ? parseFloat(charge.ground_freight) : "";
+                        charge.int_freight = charge.int_freight ? parseFloat(charge.int_freight) : '';
+                        charge.packaging_cost = charge.packaging_cost ? parseFloat(charge.packaging_cost) : '';
+                        charge.harzardous_cost = charge.harzardous_cost ? parseFloat(charge.harzardous_cost) : '';
+                        charge.discount = charge.discount ? parseFloat(charge.discount) : '';
+                        charge.other_cost = charge.other_cost ? parseFloat(charge.other_cost) : '';
+                    })
+                }
             })
             function colName(n) {
                 var ordA = 'A'.charCodeAt(0);
@@ -176,6 +195,9 @@ angular.module('Logistics')
                 vm.lstOfcharges.push({'po_no':vm.quote.po_no});
             }
             vm.currencies = [];
+            vm.getCurrency= function (data) {
+                console.log(data)
+            }
             vm.loadCurrency = function() {
                 var data = angular.copy(CommonServices.postData);
                 data.factName = 'Currency';
@@ -369,4 +391,31 @@ angular.module('Logistics')
                     alert('You need to check the line items for the PO')
                 }
             }
-        }])
+            vm.editCharge=function(charge){
+                var modalInstance = $modal.open({
+                    animation: true,
+                    templateUrl: 'modules/logistics/views/templates/charge.edit.html',
+                    controller: 'chargeEditController',
+                    controllerAs: 'ceCtrl',
+                    resolve:{
+                        charge  : function(){
+                            return charge || {};
+                        },
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return  $ocLazyLoad.load(['modules/logistics/controllers/templates/charge.edit.js']);
+                        }]
+                    }
+                });
+                modalInstance.result.then(function (selectedItem) {
+                    if(selectedItem.index != null){
+                        vm.lineItems[selectedItem.index] = selectedItem;
+                    }else{
+                        vm.lineItems.push(selectedItem);
+                    }
+                }, function () {
+                    // What should happen when modal is dismissed
+                    console.log('Modal dismissed at: ' + new Date());
+                });
+            }
+        }
+    ])

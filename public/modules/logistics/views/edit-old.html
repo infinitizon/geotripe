@@ -162,21 +162,53 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-if="lgstEdt.lstOfcharges.length <= 0"><td colspan="11" style="text-align:center;">{{ lgstLst.chargesLoading || 'Loading new data!!' }}</td></tr>
                                 <tr ng-repeat="charge in lgstEdt.lstOfcharges">
                                     <td>
                                         <i class="fa fa-pencil inline cursor-pointer text-primary" data-ng-click="lgstEdt.editCharge(charge)"></i>
                                         <i class="fa fa-trash inline cursor-pointer text-danger" data-ng-click="lgstEdt.deleteCharge($index)"></i>
                                     </td>
-                                    <td>{{ charge.po_no }}</td>
-                                    <td>{{ charge.currency.code }} </td>
-                                    <td>{{ charge.wire_transfer_fee  }}</td>
-                                    <td>{{ charge.cost_of_certs }}</td>
-                                    <td>{{ charge.ground_freight }}</td>
-                                    <td>{{ charge.int_freight }}</td>
-                                    <td>{{ charge.packaging_cost }}</td>
-                                    <td>{{ charge.harzardous_cost }}</td>
-                                    <td>{{ charge.other_cost }}</td>
+                                    <td>{{ charge.po_no }}{{currency | json}}</td>
+                                    <td>
+                                        <a href="#" editable-select="charge.currency.code" e-name="poCurrency" onshow="lgstEdt.loadCurrency()"
+                                           e-ng-options="g.code for g in lgstEdt.currencies">
+                                            {{ charge.currency || 'not set' }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#" editable-number="charge.wire_transfer_fee" e-step="any" e-placeholder="Enter a new PO no">
+                                            {{ charge.wire_transfer_fee || 'Change No.' }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#" editable-number="charge.cost_of_certs" e-step="any" e-placeholder="Enter a new PO no">
+                                            {{ charge.cost_of_certs || 'Change No.' }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#" editable-number="charge.ground_freight" e-step="any" e-placeholder="Enter a new PO no">
+                                            {{ charge.ground_freight || 'Change No.' }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#" editable-number="charge.int_freight" e-step="any" e-placeholder="Enter a new PO no">
+                                            {{ charge.int_freight || 'Change No.' }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#" editable-number="charge.packaging_cost" e-step="any" e-placeholder="Enter a new PO no">
+                                            {{ charge.packaging_cost || 'Change No.' }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#" editable-number="charge.harzardous_cost" e-step="any" e-placeholder="Enter a new PO no">
+                                            {{ charge.harzardous_cost || 'Change No.' }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#" editable-number="charge.other_cost" e-step="any" e-placeholder="Enter a new PO no">
+                                            {{ charge.other_cost || 'Change No.' }}
+                                        </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
