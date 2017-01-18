@@ -37,23 +37,21 @@ angular
                 email:null,
                 avatar:null
             }
-
-            if (angular.isDefined($localStorage.layout)) {
-                $scope.app.layout = $localStorage.layout;
-            } else {
-                $localStorage.layout = $scope.app.layout;
-            }
-
-            if (angular.isDefined($localStorage.pages)) {
-                $scope.app.pages = $localStorage.pages;
-            }
-
             if (angular.isDefined($localStorage.globals) && $localStorage.globals != null) {
                 $scope.user.fname = $localStorage.globals.currentUser.userDetails.authDetails.firstname;
                 $scope.user.mname = $localStorage.globals.currentUser.userDetails.authDetails.middlename;
                 $scope.user.lname = $localStorage.globals.currentUser.userDetails.authDetails.lastname;
                 $scope.user.email = $localStorage.globals.currentUser.userDetails.authDetails.email;
                 $scope.user.avatar = 'uploads/user/avatar.jpg';
+            }
+
+            if (angular.isDefined($localStorage.layout)) {
+                $scope.app.layout = $localStorage.layout;
+            } else {
+                $localStorage.layout = $scope.app.layout;
+            }
+            if (angular.isDefined($localStorage.pages)) {
+                $scope.app.pages = $localStorage.pages;
             }
 
             $scope.$watch('app.layout', function () {
