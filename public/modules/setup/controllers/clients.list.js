@@ -62,10 +62,6 @@ angular.module('Setup')
                 vm.getData(vm.pageno);
             };
             vm.editParty = function(client){
-
-                (!angular.equals({}, client))? client.type=JSON.stringify(client.type) : '';
-                (!angular.equals({}, client))? client.country=JSON.stringify(client.country) : '';
-                (!angular.equals({}, client))? client.state=JSON.stringify(client.state) : '';
                 var modalInstance = $modal.open({
                     templateUrl: 'modules/setup/views/clients.detail.html'
                     , controller: 'ClientDetailController'

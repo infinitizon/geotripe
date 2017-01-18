@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="Geotripe">
 <head>
-    <title>{{$root.pageTitle}}</title>
+    <title>{{$state.current.data.title}} :: Geoscape ERP</title>
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">

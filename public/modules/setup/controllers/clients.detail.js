@@ -55,22 +55,46 @@ angular.module('Setup')
                     vm.party.state = JSON.parse(client.state);
                 }
             }
-            vm.party = angular.copy(client);
-            if(!angular.equals({}, client)){
-                vm.allowEdit=true;
-                vm.party.type = JSON.parse(client.type);
-                if(client.country){
-                    vm.party.country = JSON.parse(client.country);
-                    vm.getCountryStates(vm.party.country.country_id);
-                }
+
+            if( angular.equals({}, client) ){
+                vm.allowEdit = true;
+                client = {
+                    "name": null,
+                    "addressline1": null,
+                    "addressline2": null,
+                    "addresscity": null,
+                    "emailaddress": null,
+                    "type": {"partytype_id": null},
+                    "country": {"country_id": null},
+                    "state": {"state_id": null},
+                    "contactpersontitle": null,
+                    "contactlastname": null,
+                    "contactfirstname": null,
+                    "contactmiddlename": null,
+                    "contactphonenumber": null
+                };
             }else{
-                vm.allowEdit=false;
+                vm.nvrEdit = true;
+console.log(client);
+                if(angular.isDefined(client.state) && client.state == null) client.state = {};
+                if(angular.isDefined(client.country) && client.country != null){
+                    vm.getCountryStates(client.country.country_id);
+                }else{
+                    client.country= {};
+                }
+                vm.party = angular.copy(client);
             }
+
+
             vm.originalClient = angular.copy(vm.party);
             vm.saveParty = function(){
+
+                console.log(client);
+                console.log(vm.party);
                 vm.dataLoading = true;
                 var data=angular.copy(CommonServices.postData);
                 var newPartyData = angular.copy(vm.party);
+
                 (client.type.partytype_id != vm.party.type.partytype_id)? vm.party.party_partytype_id = vm.party.type.partytype_id : '';
                 (client.country.country_id != vm.party.country.country_id) ? vm.party.party_country_id = vm.party.country.country_id : '';
                 (client.state.state_id != vm.party.state.state_id) ? vm.party.party_state_id = vm.party.state.state_id : '';
