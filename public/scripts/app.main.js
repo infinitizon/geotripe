@@ -24,7 +24,7 @@ angular
                     isOffscreenOpen: false,
                     isConversationOpen: false,
                     isQuickLaunch: false,
-                    sidebarTheme: '',
+                    sidebarTheme: 'sidebar-skin-geoscape',
                     headerTheme: ''
                 },
                 isMessageOpen: false,
