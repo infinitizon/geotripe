@@ -179,6 +179,7 @@ angular.module('Logistics')
                         charge.other_cost = charge.other_cost ? parseFloat(charge.other_cost) : '';
                     })
                 }
+                console.log(vm.chargesLoading)
             })
             function colName(n) {
                 var ordA = 'A'.charCodeAt(0);
@@ -391,7 +392,7 @@ angular.module('Logistics')
                     alert('You need to check the line items for the PO')
                 }
             }
-            vm.editCharge=function(charge){
+            vm.editCharge=function(index,charge){
                 var modalInstance = $modal.open({
                     animation: true,
                     templateUrl: 'modules/logistics/views/templates/charge.edit.html',
@@ -399,18 +400,19 @@ angular.module('Logistics')
                     controllerAs: 'ceCtrl',
                     resolve:{
                         charge  : function(){
-                            return charge || {};
+                            return {index:index,charge:charge} || {};
                         },
                         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return  $ocLazyLoad.load(['modules/logistics/controllers/templates/charge.edit.js']);
                         }]
                     }
                 });
-                modalInstance.result.then(function (selectedItem) {
-                    if(selectedItem.index != null){
-                        vm.lineItems[selectedItem.index] = selectedItem;
+                modalInstance.result.then(function (rslt) {
+                    console.log(rslt)
+                    if(rslt.index != null){
+                        vm.lstOfcharges[rslt.index] = rslt.charge;
                     }else{
-                        vm.lineItems.push(selectedItem);
+                        vm.lstOfcharges.push(rslt.charge);
                     }
                 }, function () {
                     // What should happen when modal is dismissed

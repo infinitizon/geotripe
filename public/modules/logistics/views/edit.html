@@ -162,10 +162,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-if="lgstEdt.lstOfcharges.length <= 0"><td colspan="11" style="text-align:center;">{{ lgstLst.chargesLoading || 'Loading new data!!' }}</td></tr>
+                                <tr ng-if="lgstEdt.lstOfcharges.length <= 0"><td colspan="11" style="text-align:center;">{{lgstEdt.chargesLoading || 'Loading new data!!' }}</td></tr>
                                 <tr ng-repeat="charge in lgstEdt.lstOfcharges">
                                     <td>
-                                        <i class="fa fa-pencil inline cursor-pointer text-primary" data-ng-click="lgstEdt.editCharge(charge)"></i>
+                                        <i class="fa fa-pencil inline cursor-pointer text-primary" data-ng-click="lgstEdt.editCharge($index,charge)"></i>
                                         <i class="fa fa-trash inline cursor-pointer text-danger" data-ng-click="lgstEdt.deleteCharge($index)"></i>
                                     </td>
                                     <td>{{ charge.po_no }}</td>

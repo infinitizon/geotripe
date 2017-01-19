@@ -66,14 +66,14 @@ angular
                         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load([
                                 {
-                                    files: [
-                                        'modules/auth/css/login.css'
-                                        , 'modules/auth/controller.js'
-                                    ]
+                                    files: ['modules/auth/css/login.css', 'modules/auth/controller.js']
                                 }]).then(function () {
                                 return $ocLazyLoad.load(['modules/auth/services.js']);
                             });
                         }]
+                    }
+                    , data: {
+                        title: 'Login',
                     }
                 })
                 .state('app', {

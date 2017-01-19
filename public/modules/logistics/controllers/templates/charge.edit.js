@@ -2,8 +2,8 @@
  * Created by ahassan on 10/31/16.
  */
 angular.module('Logistics')
-    .controller('chargeEditController', ['$modalInstance', '$localStorage', 'charge', 'DataService','CommonServices', '$filter'
-        , function ($modalInstance, $localStorage, charge, DataService, CommonServices, $filter) {
+    .controller('chargeEditController', ['$modalInstance', '$localStorage', 'charge', 'DataService','CommonServices', '$modalInstance'
+        , function ($modalInstance, $localStorage, charge, DataService, CommonServices, $modalInstance) {
             var vm = this;
 
             vm.container={};
@@ -23,9 +23,10 @@ angular.module('Logistics')
                     });
                 }
             }
-            vm.charge = angular.copy(charge);
+            vm.charge = angular.copy(charge.charge);
+            vm.index = angular.copy(charge.index);
             vm.updtCharges = function(){
-                var changes=[]
+                $modalInstance.close({index:vm.index,charge:vm.charge})
             }
         }
     ])
