@@ -29,12 +29,12 @@ angular.module('Setup')
                 }
             };
 
-            vm.users = []; //declare an empty array
             vm.pageno = 1; // initialize page no to 1
             vm.total_count = 0;
             vm.itemsPerPage = 15; //this could be a dynamic value from a drop down
             CommonServices.postData.token = $localStorage.globals.currentUser.userDetails.token;
             vm.getData = function(pageno) {
+                vm.parties = []; //declare an empty array
                 data=angular.copy(CommonServices.postData);
 
                 data.factName = 'Party p, PartyType pt, Country c, State s';
@@ -54,6 +54,10 @@ angular.module('Setup')
                         party.state = JSON.parse(party.state);
                     })
                     vm.total_count = response.data.total_count;
+                    if(vm.total_count <= 0){
+                        vm.dataLoading = "No data found!";
+                    }
+
                 })
             }
             vm.getData(vm.pageno);
@@ -77,6 +81,7 @@ angular.module('Setup')
                     , backdrop  : 'static', keyboard  : false, size: 'lg'
                 });
                 modalInstance.result.then(function (res) {
+                    vm.dataLoading = 'Refreshing data...';
                     vm.getData(vm.pageno);
                     //$state.reload();
                     console.log('Modal dismissed at: ' + new Date());

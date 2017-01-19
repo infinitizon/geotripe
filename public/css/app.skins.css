@@ -134,18 +134,18 @@
   }
 }
 .sidebar-skin-geoscape .sidebar-panel {
-  background-color: #53586f;
+  background: rgba(191, 145, 0, 1);
 }
 .sidebar-skin-geoscape .sidebar-panel > .brand {
-  background-color: #CC9A34;
+  background: rgba(191, 145, 0, 1);
 }
 .sidebar-skin-geoscape .sidebar-panel > .brand a {
-  color: #a1a3bd;
+  color: rgba(0, 0, 0, 1);
 }
 .sidebar-skin-geoscape .sidebar-panel > .brand a:active,
 .sidebar-skin-geoscape .sidebar-panel > .brand a:focus,
 .sidebar-skin-geoscape .sidebar-panel > .brand a:hover {
-  color: #b0b2c8;
+  color: rgba(0, 0, 0, 1);
 }
 .sidebar-skin-geoscape .sidebar-panel > .brand .hamburger-icon span {
   background-color: #a1a3bd;
@@ -154,17 +154,17 @@
   background-color: white;
 }
 .sidebar-skin-geoscape .sidebar-panel > nav > ul > li > ul {
-  background-color: #4c5166;
+  background: rgba(191, 145, 0, 1);
 }
 .sidebar-skin-geoscape .sidebar-panel > nav > ul > li > a:hover,
 .sidebar-skin-geoscape .sidebar-panel > nav > ul > li.open > a,
 .sidebar-skin-geoscape .sidebar-panel > nav > ul > li.open > a:hover,
 .sidebar-skin-geoscape .sidebar-panel > nav > ul > li.open > a:focus {
-  background-color: #484c60;
+  background: rgba(191, 145, 0, 0.5);
 }
 .sidebar-skin-geoscape .sidebar-panel > nav li.open > a,
 .sidebar-skin-geoscape .sidebar-panel > nav li.active > a {
-  color: white;
+  color: #4f5369;
 }
 .sidebar-skin-geoscape .sidebar-panel > nav .open > a,
 .sidebar-skin-geoscape .sidebar-panel > nav .open > a:hover,
@@ -172,7 +172,7 @@
   background-color: transparent;
 }
 .sidebar-skin-geoscape .sidebar-panel > nav a {
-  color: #a1a3bd;
+  color: rgba(0, 0, 0, 1);
 }
 .sidebar-skin-geoscape .sidebar-panel > nav a:active,
 .sidebar-skin-geoscape .sidebar-panel > nav a:focus,

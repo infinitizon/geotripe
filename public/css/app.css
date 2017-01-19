@@ -13479,13 +13479,22 @@ td.align-middle {
 #results tr:nth-child(odd){  background-color: #71A9D6;  }
 .cursor-pointer{cursor:pointer;}
 .row.top-buffer{  margin-top:20px;  }
-.loader {
-  border-radius: 50%;
-  border: 3px solid #f3f3f3;
-  border-top: 3px solid #3498db;
-  width: 20px;  height: 20px;
-  -webkit-animation: spin 1s linear infinite;
-  animation: spin 1s linear infinite;
+
+.overlay{
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 999999;
+  position: fixed;  bottom: 0;  right: 0;  left: 0;  top: 0;
+}
+.centered {
+  width: 50px; height: 50px;
+  position: absolute;  top: 42%;  left: 50%;
+  z-index: 100;
+}
+
+.loader { /* Helps to show a circular loading image */
+  border: 3px solid #f3f3f3; border-radius: 50%; border-top: 3px solid #3498db;
+  width: 30px;  height: 30px; display: inline-block;
+  animation: spin 1s linear infinite; -webkit-animation: spin 1s linear infinite;
 }
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
@@ -13494,14 +13503,16 @@ td.align-middle {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}/* End: Helps to show a circular loading image*/
+.ellipsis:after { /* Helps to show ... loading */
+  display: inline-block;overflow: hidden;
+  vertical-align: bottom; width: 0px;
+  animation: dotdot steps(4,end) 900ms infinite; -webkit-animation: dotdot steps(4,end) 900ms infinite;
+  content: "\2026"; /* ascii code for the ellipsis character */
 }
-.overlay{
-  background-color: rgba(0, 0, 0, 0.75);
-  z-index: 999999;
-  position: fixed;  bottom: 0;  right: 0;  left: 0;  top: 0;
+@keyframes dotdot {
+  to { width: 20px; }
 }
-.centered {
-  width: 50px;  height: 50px;
-  position: absolute;  top: 50%;  left: 50%;
-  z-index: 100;
-}
+@-webkit-keyframes dotdot {
+  to { width: 20px; }
+}/* End: Helps to show ... loading */

@@ -20,7 +20,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-show="PartyCtrl.parties <= 0"><td colspan="6" style="text-align:center;">Loading new data!!</td></tr>
+                <tr ng-show="PartyCtrl.parties <= 0"><td colspan="4" style="text-align:center; font-size: large; font-weight: bold;">{{PartyCtrl.dataLoading || 'Loading new data...'}}</td></tr>
                 <tr dir-paginate="party in PartyCtrl.parties|itemsPerPage:PartyCtrl.itemsPerPage" total-items="PartyCtrl.total_count" class="cursor-pointer" tooltip-placement="top" uib-tooltip="Click on row to view" data-ng-click="PartyCtrl.editParty(party)">
                     <td>{{party.name}}</td>
                     <td>{{party.type.name}}</td>

@@ -10,7 +10,7 @@ angular.module('Logistics')
             vm.container = [];
             vm.disableClient = true;
             vm.lstOfcharges = [];
-            vm.allowEdit=false;
+            vm.allowEdit=false, vm.showOverlay=false;
 
             $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
                console.log(from)
@@ -149,7 +149,7 @@ angular.module('Logistics')
             // Now get the PO details
             var data=angular.copy(CommonServices.postData);
             data.factName = 'PODetails pod,Currency c';
-            data.transactionMetaData.responseDataProperties = "pod.po_no&concat('{"+'"currency":"'+"',IFNULL(pod.currency,''),'"+'","code":"'+"',IFNULL(c.code,''),'"+'"}'+"')currency&pod.wire_transfer_fee&pod.cost_of_certs&pod.ground_freight&pod.int_freight&pod.packaging_cost&pod.harzardous_cost&pod.other_cost&pod.discount&pod.remarks";
+            data.transactionMetaData.responseDataProperties = "pod.po_details_id&pod.quote_quote_id&pod.po_no&concat('{"+'"currency":"'+"',IFNULL(pod.currency,''),'"+'","code":"'+"',IFNULL(c.code,''),'"+'"}'+"')currency&pod.wire_transfer_fee&pod.cost_of_certs&pod.ground_freight&pod.int_freight&pod.packaging_cost&pod.harzardous_cost&pod.other_cost&pod.discount&pod.remarks";
             //data.transactionMetaData.responseDataProperties = "pod.po_no&pod.currency&pod.wire_transfer_fee&pod.cost_of_certs&pod.ground_freight&pod.int_freight&pod.packaging_cost&pod.harzardous_cost&pod.other_cost";
             data.transactionMetaData.queryMetaData.joinClause = {
                 'joinType':['LEFT JOIN'],'joinKeys':['pod.currency=c.currency_id']
@@ -244,12 +244,40 @@ angular.module('Logistics')
                     vm.quote.po_is_split=0;
                 }
             }
-            vm.deleteCharge = function (index) {
-                if(confirm("Are you sure you want to delete this line item")){
+            vm.deleteCharge = function (index, charge) {
+                if(confirm("Are you sure you want to delete this line item?")){
                     if(vm.lstOfcharges.length ==1){
                         alert("There has to be at least one line for the PO charges")
                     }else{
-                        vm.lstOfcharges.splice( index, 1 );
+                        vm.showOverlay = !vm.showOverlay;
+                        var data=angular.copy(CommonServices.postData);
+                        data.transactionEventType = "DELETE";
+                        data.factName = 'PODetails';
+                        data.transactionMetaData.queryMetaData.queryClause.andExpression = [{
+                            "propertyName": "po_details_id",
+                            "propertyValue": charge.po_details_id,
+                            "propertyDataType": "LONG",
+                            "operatorType": "="
+                        }];
+                        DataService.post('inboundService', data).then(function (response) {
+                            vm.showOverlay = !vm.showOverlay;
+                                angular.forEach(vm.lineItems  , function(QuoteDetail,key) {
+                                    if(QuoteDetail.po_no==charge.po_no){
+                                        var data=angular.copy(CommonServices.postData);
+                                        data.transactionEventType = "Update";
+                                        data.factName = 'QuoteDetail';
+                                        data.factObjects=[{"id":QuoteDetail.id,"split_po_no":null,"quote_is_po":0}];
+                                        vm.showOverlay = !vm.showOverlay;
+                                        DataService.post('inboundService', data).then(function (response) {
+                                            vm.showOverlay = !vm.showOverlay;
+                                            vm.lstOfcharges.splice( index, 1 );
+                                            QuoteDetail.checked=false;
+                                            QuoteDetail.po_no = null;
+                                        });
+                                    }
+                                })
+                            //}
+                        })
                     }
                 }
             }

@@ -156,9 +156,9 @@ angular
                         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load([
                                 {
-                                    files: ['modules/quote/css/quote.css']
+                                    files: ['modules/quote/css/quote.css','modules/quote/controllers/procurement.js']
                                 }]).then(function () {
-                                return $ocLazyLoad.load(['modules/quote/controller.js', 'modules/quote/services.js']);
+                                return $ocLazyLoad.load(['modules/quote/services.js']);
                             });
                         }]
                     }
@@ -168,18 +168,23 @@ angular
                 })
                 .state('app.procurement.clients', {
                     url: '/'
-                    , templateUrl: 'modules/quote/views/quotes.html'
+                    , templateUrl: 'modules/quote/views/quotes.list.html'
                     , controller: 'QuoteController'
                     , controllerAs : 'quotCtrl'
+                    , resolve     : {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(['modules/quote/controllers/quotes.list.js']);
+                        }]
+                    }
                 })
                 .state('app.procurement.clients.status', {
                     url:'status/:client/:clientStatus'
-                    , templateUrl: 'modules/quote/views/quoteByStatus.html'
+                    , templateUrl: 'modules/quote/views/quote-by-status.html'
                     , controller: 'QuoteByStatusController'
                     , controllerAs : 'quotCtrl'
                     , resolve     : {
                         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            return $ocLazyLoad.load(['scripts/excel2json/alasql.min.js','scripts/excel2json/xlsx.core.min.js']);
+                            return $ocLazyLoad.load(['modules/quote/controllers/controller.js']);
                         }]
                     }
                 })
@@ -188,6 +193,11 @@ angular
                     , templateUrl: 'modules/quote/views/printRFQ.html'
                     , controller: 'PrintRFQController'
                     , controllerAs : 'printCtrl'
+                    , resolve     : {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(['modules/quote/controllers/print.js']);
+                        }]
+                    }
                 })
 
                 .state('app.logistics', {

@@ -271,12 +271,12 @@ if($env['PATH_INFO']==="/inboundService") {
                     $dbo->commit();
                 }else {
                     $dbo->beginTransaction();
-                        $q_str = "UPDATE {$data->factName} SET ";
+                        $q_str = "UPDATE {$data->factName} SET ";$updts='';
                         $q_str_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) VALUES ( ";
                         $log_txt = "{$user[0]['User_Id']},'{$data->factName}',{$data->factObjects[0]->id}, 'updated row, set: ";
                         foreach ($r_fields as $fields) {
                             $fieldNm = strtolower($fields['Field']);
-                            if (@$data->factObjects[0]->$fieldNm) {
+                            if (array_key_exists($fieldNm, @$data->factObjects[0])) {
                                 $q_str .= "{$fields['Field']} = '{$data->factObjects[0]->$fieldNm}' ,";
                                 $log_txt .= "{$fields['Field']}<=>{$data->factObjects[0]->$fieldNm} ,";
                             }
@@ -391,7 +391,7 @@ if($env['PATH_INFO']==="/inboundService") {
 
                             }
                         }
-                    $db->commit();
+                    $dbo->commit();
                 }else{
                     $dbo->beginTransaction();
                         $ins_fields = " (";
@@ -427,29 +427,37 @@ if($env['PATH_INFO']==="/inboundService") {
                             $r_logStr = $dbo->prepare($q_str_logs);
                             $r_logStr->execute(array(':tblColKey'=>$lastId));
                         }
-                    $db->commit();
+                    $dbo->commit();
                 }
                 $data=array('token'=> $data->token,'insertId'=>$lastId);
                 $response = array("response" => "Success", "message" => "Record Saved Successfully", "data"=>$data);
             }
             if (@$data->transactionEventType == "DELETE") {
                 try{
-                    $q_del = "DELETE FROM {$data->factName} WHERE ";
-                    foreach ($data->transactionMetaData->queryMetaData->queryClause->andExpression as $field) {
-                        $q_del .= $field->propertyName . " " . $field->operatorType . " ";
-                        if($field->operatorType=="IN"){
-                            $q_del .= "(".$field->propertyValue . ") AND";
-                        }elseif($field->operatorType=="LIKE"){
-                            $q_del .= "'%".$field->propertyValue . "%' AND";
-                        }else{
-                            $q_del .= $field->propertyValue . " AND";
+                    $dbo->beginTransaction();
+                        $q_del = "DELETE FROM {$data->factName} WHERE ";
+                        foreach ($data->transactionMetaData->queryMetaData->queryClause->andExpression as $field) {
+                            $q_del .= $field->propertyName . " " . $field->operatorType . " ";
+                            if($field->operatorType=="IN"){
+                                $q_del .= "(".$field->propertyValue . ") AND";
+                            }elseif($field->operatorType=="LIKE"){
+                                $q_del .= "'%".$field->propertyValue . "%' AND";
+                            }else{
+                                $q_del .= $field->propertyValue . " AND";
+                            }
                         }
-                    }
-                    $q_del = $fxns->_subStrAtDel($q_del, ' AND');
-                    $r_str = $dbo->prepare($q_del);
-                    $r_str->execute();
-                    $data=array('token'=> $data->token);
-                    $response = array("response" => "Success", "message" => "Record Deleted Successfully", "data"=>$data);
+                        $q_del = $fxns->_subStrAtDel($q_del, ' AND');
+                        $r_str = $dbo->prepare($q_del);
+                        $r_str->execute();
+
+                        $q_str_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) VALUES ";
+                        $q_str_logs .= "( {$user[0]['User_Id']}, '{$data->factName}', '', '{$q_del}', NOW() )";
+                        $r_logStr = $dbo->prepare($q_str_logs);
+                        $r_logStr->execute();
+
+                        $data=array('token'=> $data->token);
+                        $response = array("response" => "Success", "message" => "Record Deleted Successfully", "data"=>$data);
+                    $dbo->commit();
                 }catch(Exception $e){
                     $response = array("response"=>"Warning","message"=>$e->getMessage(),"token"=>$data->token);
                 }
