@@ -110,7 +110,7 @@ angular.module('RFQ')
                             "operatorType": "LIKE"
                         }
                     ];
-                    var error={qty:0,uprice:0,ouprice:0};
+                    var error={qty:0,uprice:0,ouprice:0,mEmail:0,mAddr:0,mCtry:0};
                     DataService.post('inboundService', data).then(function (response) {
                         var manus = response.data.data;
 
@@ -120,6 +120,7 @@ angular.module('RFQ')
                         DataService.post('inboundService', data).then(function (response) {
                             var uoms = response.data.data;
 
+                            var tempLineItem = [];
                             angular.forEach(values, function(xlLine) {
                                 var items = {};
                                 items.id=xlLine.id;
@@ -133,13 +134,26 @@ angular.module('RFQ')
                                     }
                                 };
                                 if(!manuFound && xlLine['Manufacturer'] != ''){
-                                    var data=angular.copy(CommonServices.postData);
-                                    data.factName = 'Party';
-                                    data.transactionEventType = "PUT"
-                                    data.factObjects = [{party_partytype_id:201607132,partystatus_partystatus_id:1011,isactive:1,name:xlLine['Manufacturer']}];
-                                    DataService.post('inboundService', data).then(function (response) {
-                                        items.manus = [{'party_id':response.data.data.insertId, 'name':xlLine['Manufacturer'] }];
-                                    });
+                                    console.log(xlLine['ManufacturerEmail'])
+                                    if(xlLine['ManufacturerEmail']=='' || !(xlLine['ManufacturerEmail'])){
+                                        alert(xlLine['Manufacturer']+"'s email does not exist. You need to enter the column for 'ManufacturerEmail' for the new manufacturer "+xlLine['Manufacturer']);
+                                        error.mEmail++;
+                                    }else if(xlLine['ManufacturerAddress']=='' || !(xlLine['ManufacturerAddress'])){
+                                        alert(xlLine['Manufacturer']+"'s Address does not exist. You need to enter the column for 'ManufacturerAddress' for the new manufacturer "+ xlLine['Manufacturer']);
+                                        error.mAddr++;
+                                    }else{
+                                        var data=angular.copy(CommonServices.postData);
+                                        data.factName = 'Party';
+                                        data.transactionEventType = "PUT"
+                                        data.factObjects = [
+                                            {
+                                                party_partytype_id:201607132, partystatus_partystatus_id:1011, isactive:1
+                                                , name:xlLine['Manufacturer'], emailaddress:xlLine['ManufacturerEmail'], addressline1:xlLine['ManufacturerAddress']
+                                            }];
+                                        DataService.post('inboundService', data).then(function (response) {
+                                            items.manus = [{'party_id':response.data.data.insertId, 'name':xlLine['Manufacturer'] }];
+                                        });
+                                    }
                                 }
 
                                 var uomFound = false;
@@ -168,7 +182,7 @@ angular.module('RFQ')
                                     (!xlLine['OEM Unit Price'] || xlLine['OEM Unit Price']==0) ? error.ouprice++ : items.oem_unitprice=xlLine['OEM Unit Price'];
                                 }
 
-                                vm.lineItems.push(items);
+                                tempLineItem.push(items);
                             });
                             if(error.qty>0){
                                 alert("Error: Some line item 'quantities' are zero (0). Quantity cannot be 0"); vm.lineItems =[]; return;
@@ -176,6 +190,10 @@ angular.module('RFQ')
                                 alert("Error: Some line item 'unit price' are zero (0). Unit Price cannot be 0"); vm.lineItems =[]; return;
                             }else if(error.ouprice > 0){
                                 alert("Error: Some line item 'OEM Unit Price' are zero (0). OEM Unit Price cannot be 0"); vm.lineItems =[]; return;
+                            }else if(error.mEmail > 0 || error.mAddr > 0){
+
+                            }else{
+                                vm.lineItems=tempLineItem;
                             }
                         });
                     });
@@ -208,11 +226,13 @@ angular.module('RFQ')
                 });
 
                 modalInstance.result.then(function (selectedItem) {
-                    if(selectedItem.index != null){
-                        //console.log(selectedItem);
-                        vm.lineItems[selectedItem.index] = selectedItem;
-                    }else{
-                        vm.lineItems.push(selectedItem);
+                    if( !angular.equals({}, selectedItem) ) {
+                        if (selectedItem.index != null) {
+                            //console.log(selectedItem);
+                            vm.lineItems[selectedItem.index] = selectedItem;
+                        } else {
+                            vm.lineItems.push(selectedItem);
+                        }
                     }
                 }, function () {
                     // What should happen when modal is dismissed

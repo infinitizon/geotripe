@@ -2,13 +2,15 @@
  * Created by ahassan on 10/31/16.
  */
 angular.module('Logistics')
-    .controller('LogisticsView', ['$scope', '$localStorage', '$stateParams', 'DataService','CommonServices', 'WEB_ROOTS', '$window'
-        , function ($scope, $localStorage, $stateParams, DataService, CommonServices, WEB_ROOTS, $window) {
+    .controller('LogisticsView', ['$scope', '$rootScope', '$localStorage', '$state', '$stateParams', 'DataService','CommonServices', 'WEB_ROOTS', '$window'
+        , function ($scope, $rootScope, $localStorage, $state, $stateParams, DataService, CommonServices, WEB_ROOTS, $window) {
             var vm = this;
 
             /*
              * This part gets all the quotes available in a tabular format
              */
+            //$scope.app.lgstcView = $state.current.name;
+            $localStorage.lgstcView = $state.current.name;
             vm.edit = false;
             vm.quotes = []; //declare an empty array so as to show the "loading data" notice!
             vm.pageno = 1; // initialize page no to 1

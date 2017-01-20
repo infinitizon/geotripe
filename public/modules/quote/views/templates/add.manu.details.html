@@ -1,40 +1,40 @@
 <div class="modal-header">
     <h3 class="modal-title">
-        <i class="fa fa-close pull-right cursor-pointer text-danger" data-ng-click="cltDtCtrl.close(cltDtCtrl.originalClient)"></i>
+        <i class="fa fa-close pull-right cursor-pointer text-danger" data-ng-click="amdCtrl.close({})"></i>
         <div class="form-group text-center">
-            <button type="button" class="btn btn-primary" data-ng-click="cltDtCtrl.allowEdit = !cltDtCtrl.allowEdit"><i class="fa fa-pencil"></i> Edit</button>
+            <button type="button" class="btn btn-primary" data-ng-click="amdCtrl.allowEdit = !amdCtrl.allowEdit"><i class="fa fa-pencil"></i> Edit</button>
         </div>
     </h3>
     <div class="modal-body">
         <form name="PartyDetail" class="tab-form" role="form">
             <div class="form-group">
-                <label for="partyName">Client Name:</label>
-                <input type="text" class="form-control" id="partyName" data-ng-model="cltDtCtrl.party.name"
-                       data-ng-disabled="cltDtCtrl.allowEdit" data-ng-required="true">
+                <label for="partyName">Client Name: <span ng-show="!amdCtrl.party.name" class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="partyName" data-ng-model="amdCtrl.party.name"
+                       data-ng-disabled="amdCtrl.allowEdit" data-ng-required="true">
             </div>
             <div class="form-group">
-                <label for="addressline1">Address Line 1:</label>
-                <input type="text" class="form-control" id="addressline1" data-ng-model="cltDtCtrl.party.addressline1"
-                       data-ng-disabled="cltDtCtrl.allowEdit" data-ng-required="true">
+                <label for="addressline1">Address Line 1: <span ng-show="!amdCtrl.party.addressline1" class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="addressline1" data-ng-model="amdCtrl.party.addressline1"
+                       data-ng-disabled="amdCtrl.allowEdit" data-ng-required="true">
             </div>
             <div class="form-group">
                 <label for="addressline2">Address Line 2:</label>
-                <input type="text" class="form-control" id="addressline2" data-ng-model="cltDtCtrl.party.addressline2" data-ng-disabled="cltDtCtrl.allowEdit">
+                <input type="text" class="form-control" id="addressline2" data-ng-model="amdCtrl.party.addressline2" data-ng-disabled="amdCtrl.allowEdit">
             </div>
             <div class="form-group">
                 <label for="addressCity">Address City:</label>
-                <input type="text" class="form-control" id="addressCity" data-ng-model="cltDtCtrl.party.addresscity" data-ng-disabled="cltDtCtrl.allowEdit">
+                <input type="text" class="form-control" id="addressCity" data-ng-model="amdCtrl.party.addresscity" data-ng-disabled="amdCtrl.allowEdit">
             </div>
             <div class="form-group">
-                <label for="emailAddress">Email Address:</label>
-                <input type="text" class="form-control" id="emailAddress" data-ng-model="cltDtCtrl.party.emailaddress"
-                       data-ng-disabled="cltDtCtrl.allowEdit" data-ng-required="true">
+                <label for="emailAddress">Email Address: <span ng-show="!amdCtrl.party.emailaddress" class="text-danger">*</span></label>
+                <input type="email" class="form-control" id="emailAddress" data-ng-model="amdCtrl.party.emailaddress"
+                       data-ng-disabled="amdCtrl.allowEdit" data-ng-required="true">
             </div>
             <div class="form-group">
-                <label>Country:</label>
-                <ui-select data-ng-model="cltDtCtrl.party.country" theme="bootstrap" close-on-select="true" data-ng-disabled="cltDtCtrl.allowEdit"
-                           data-ng-click="cltDtCtrl.getLOVs('Country','countries', {'response':'country_id&name',pageno:null,placeholder:{'country_id':1,'name':'Loading please wait...'} })"
-                           data-on-select="cltDtCtrl.getLOVs('State','states', {'response':'state_id&name',placeholder:{'country_id':1,'name':'Loading please wait...'},and:[{
+                <label>Country: <span ng-show="!amdCtrl.party.country" class="text-danger">*</span></label>
+                <ui-select data-ng-model="amdCtrl.party.country" theme="bootstrap" close-on-select="true" data-ng-disabled="amdCtrl.allowEdit" ui-select-required=""
+                           data-ng-click="amdCtrl.getLOVs('Country','countries', {'response':'country_id&name',pageno:null,placeholder:{'country_id':1,'name':'Loading please wait...'} })"
+                           data-on-select="amdCtrl.getLOVs('State','states', {'response':'state_id&name',placeholder:{'country_id':1,'name':'Loading please wait...'},and:[{
                                         'propertyName': 'state_country_id',
                                         'propertyValue': $item.country_id || '%',
                                         'propertyDataType': 'BIGINT',
@@ -42,22 +42,22 @@
                                         }]
                                         })">
                     <ui-select-match placeholder="Select Country...">{{$select.selected.name}}</ui-select-match>
-                    <ui-select-choices repeat="item in cltDtCtrl.container['countries'] | filter: $select.search">
+                    <ui-select-choices repeat="item in amdCtrl.container['countries'] | filter: $select.search">
                         <div ng-bind-html="item.name | highlight: $select.search"></div>
                     </ui-select-choices>
                 </ui-select>
             </div>
             <div class="form-group">
                 <label>State:</label>
-                <ui-select data-ng-model="cltDtCtrl.party.state" theme="bootstrap" close-on-select="true" data-ng-disabled="cltDtCtrl.allowEdit">
+                <ui-select data-ng-model="amdCtrl.party.state" theme="bootstrap" close-on-select="true" data-ng-disabled="amdCtrl.allowEdit">
                     <ui-select-match placeholder="Select State...">{{$select.selected.name}}</ui-select-match>
-                    <ui-select-choices repeat="item in cltDtCtrl.container['states'] | filter: $select.search">
+                    <ui-select-choices repeat="item in amdCtrl.container['states'] | filter: $select.search">
                         <div ng-bind-html="item.name | highlight: $select.search"></div>
                     </ui-select-choices>
                 </ui-select>
             </div>
             <div class="form-group col-sm-offset-4">
-                <button type="submit" class="btn btn-primary" data-ng-disabled="PartyDetail.$invalid" data-ng-click="quotItmCtrl.addLineItems()">Save</button>
+                <button type="submit" class="btn btn-primary" data-ng-disabled="PartyDetail.$invalid" data-ng-click="amdCtrl.savemanu()">Save</button>
             </div>
         </form>
     </div>

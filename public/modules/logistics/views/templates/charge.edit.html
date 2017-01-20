@@ -1,105 +1,115 @@
 <div class="modal-header">
     <h3 class="modal-title">Edit the PO detail {{ceCtrl.charge.charge.po_no}}</h3>
     <div class="modal-body">
-        {{ceCtrl.charge.charge}}
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label>Currency</label>
-                    <ui-select data-ng-model="ceCtrl.charge.currency" theme="bootstrap" close-on-select="true"
-                               data-ng-click="ceCtrl.getLOVs('Currency','currencies', {'response':'currency_id&code','placeholder':'UOMPlaceholder'})">
-                        <ui-select-match placeholder="{{ceCtrl.container['UOMPlaceholder'] || 'Choose currency...'}}">{{$select.selected.code}}</ui-select-match>
-                        <ui-select-choices repeat="item in ceCtrl.container['currencies'] | filter: $select.search">
-                            <div ng-bind-html="item.code | highlight: $select.search"></div>
-                        </ui-select-choices>
-                    </ui-select>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
+        <form name="chargeFrm" class="tab-form" role="form">
+            <div class="row">
+                <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="wire_transfer_fee">Wire Transfer Fee:</label>
-                        <input type="number" id="wire_transfer_fee" step="0.01" data-ng-model="ceCtrl.charge.wire_transfer_fee" class="form-control"/>
+                        <label>Currency</label>
+                        <ui-select data-ng-model="ceCtrl.charge.currency" theme="bootstrap" close-on-select="true"
+                                   data-ng-click="ceCtrl.getLOVs('Currency','currencies', {'response':'currency_id&code','placeholder':'UOMPlaceholder'})">
+                            <ui-select-match placeholder="{{ceCtrl.container['UOMPlaceholder'] || 'Choose currency...'}}">{{$select.selected.code}}</ui-select-match>
+                            <ui-select-choices repeat="item in ceCtrl.container['currencies'] | filter: $select.search">
+                                <div ng-bind-html="item.code | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="cost_of_certs">Cost Of Certs:</label>
-                        <input type="number" id="cost_of_certs" step="0.01" data-ng-model="ceCtrl.charge.cost_of_certs" class="form-control"/>
+                        <div class="form-group">
+                            <label for="wire_transfer_fee">Wire Transfer Fee:</label>
+                            <input type="number" id="wire_transfer_fee" step="0.01" data-ng-model="ceCtrl.charge.wire_transfer_fee" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="cost_of_certs">Cost Of Certs:</label>
+                            <input type="number" id="cost_of_certs" step="0.01" data-ng-model="ceCtrl.charge.cost_of_certs" class="form-control"/>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="ground_freight">Ground Freight:</label>
-                        <input type="number" id="ground_freight" step="0.01" data-ng-model="ceCtrl.charge.ground_freight" class="form-control"/>
+                        <div class="form-group">
+                            <label for="ground_freight">Ground Freight:</label>
+                            <input type="number" id="ground_freight" step="0.01" data-ng-model="ceCtrl.charge.ground_freight" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="int_freight">Int Freight:</label>
+                            <input type="number" id="int_freight" step="0.01" data-ng-model="ceCtrl.charge.int_freight" class="form-control"/>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="int_freight">Int Freight:</label>
-                        <input type="number" id="int_freight" step="0.01" data-ng-model="ceCtrl.charge.int_freight" class="form-control"/>
+                        <div class="form-group">
+                            <label for="packaging_cost">Packaging Cost:</label>
+                            <input type="number" id="packaging_cost" step="0.01" data-ng-model="ceCtrl.charge.packaging_cost" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="harzardous_cost">Harzardous Cost:</label>
+                            <input type="number" id="harzardous_cost" step="0.01" data-ng-model="ceCtrl.charge.harzardous_cost" class="form-control"/>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="packaging_cost">Packaging Cost:</label>
-                        <input type="number" id="packaging_cost" step="0.01" data-ng-model="ceCtrl.charge.packaging_cost" class="form-control"/>
+                        <div class="form-group">
+                            <label for="other_cost">Other Costs:</label>
+                            <input type="number" id="other_cost" step="0.01" data-ng-model="ceCtrl.charge.other_cost" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="discount">Discount value:</label>
+                            <input type="number" id="discount" step="0.01" data-ng-model="ceCtrl.charge.discount" class="form-control"/>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="harzardous_cost">Harzardous Cost:</label>
-                        <input type="number" id="harzardous_cost" step="0.01" data-ng-model="ceCtrl.charge.harzardous_cost" class="form-control"/>
+                        <div class="form-group">
+                            <label for="remarks">Remarks:</label>
+                            <textarea id="remarks" data-ng-model="ceCtrl.charge.remarks" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Installment?</label>
+                        <label class="switch switch-sm pull-right">
+                            <input type="checkbox" data-ng-model="ceCtrl.charge.installments">
+                            <span><i class="handle"></i></span>
+                        </label>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <div class="form-group">
-                        <label for="other_cost">Other Costs:</label>
-                        <input type="number" id="other_cost" step="0.01" data-ng-model="ceCtrl.charge.other_cost" class="form-control" />
-                    </div>
-                </div>
+            <div class="form-group col-sm-offset-4">
+                <button type="submit" class="btn btn-primary" data-ng-disabled="chargeFrm.$invalid" ng-click="ceCtrl.updtCharges()">Update</button>
             </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <div class="form-group">
-                        <label for="discount">Discount value:</label>
-                        <input type="number" id="discount" step="0.01" data-ng-model="ceCtrl.charge.discount" class="form-control"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <div class="form-group">
-                        <label for="remarks">Remarks:</label>
-                        <textarea id="remarks" data-ng-model="ceCtrl.charge.remarks" class="form-control"></textarea>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="form-group col-sm-offset-4">
-            <button type="submit" class="btn btn-primary" ng-click="ceCtrl.updtCharges()">Update</button>
-        </div>
+        </form>
     </div>
 </div>

@@ -6,15 +6,13 @@ angular.module('Logistics')
         , function ($scope, $rootScope, $localStorage, $state, $modal, DataService, CommonServices, $stateParams, $filter) {
             var vm = this;
 
+            vm.lgstcView=$localStorage.lgstcView;
             vm.lineItems = []
             vm.container = [];
             vm.disableClient = true;
             vm.lstOfcharges = [];
             vm.allowEdit=false, vm.showOverlay=false;
 
-            $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
-               console.log(from)
-            });
             CommonServices.postData.token = $localStorage.globals.currentUser.userDetails.token;
             vm.getLOVs = function(factName, selectScope, options) {
                 if (vm.container[selectScope] == null) {
@@ -385,6 +383,7 @@ angular.module('Logistics')
                     var lstOfcharges =  vm.lstOfcharges;
                     angular.forEach(lstOfcharges  , function(loc) {
                         delete loc.$$hashKey;
+                        loc.currency = loc.currency.currency_id;
                     });
                     data.append("factObjects[PODetails]", [JSON.stringify(lstOfcharges)]);
                 }

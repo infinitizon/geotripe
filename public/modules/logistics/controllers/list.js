@@ -2,10 +2,12 @@
  * Created by ahassan on 10/31/16.
  */
 angular.module('Logistics')
-    .controller('LogisticsList', ['$scope', '$localStorage', '$stateParams', 'DataService','CommonServices'
-        , function ($scope, $localStorage, $stateParams, DataService, CommonServices) {
+    .controller('LogisticsList', ['$scope', '$localStorage', '$rootScope', '$state', '$stateParams', 'DataService','CommonServices'
+        , function ($scope, $localStorage, $rootScope, $state, $stateParams, DataService, CommonServices) {
             var vm = this;
 
+            //$scope.app.lgstcView = $state.current.name;
+            $localStorage.lgstcView = $state.current.name;
             /*
              * This part gets all the quotes available in a tabular format
              */
