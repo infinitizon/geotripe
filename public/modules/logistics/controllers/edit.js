@@ -147,7 +147,7 @@ angular.module('Logistics')
             // Now get the PO details
             var data=angular.copy(CommonServices.postData);
             data.factName = 'PODetails pod,Currency c';
-            data.transactionMetaData.responseDataProperties = "pod.po_details_id&pod.quote_quote_id&pod.po_no&concat('{"+'"currency":"'+"',IFNULL(pod.currency,''),'"+'","code":"'+"',IFNULL(c.code,''),'"+'"}'+"')currency&pod.wire_transfer_fee&pod.cost_of_certs&pod.ground_freight&pod.int_freight&pod.packaging_cost&pod.harzardous_cost&pod.other_cost&pod.discount&pod.remarks";
+            data.transactionMetaData.responseDataProperties = "pod.po_details_id&pod.quote_quote_id&pod.po_no&concat('{"+'"currency":"'+"',IFNULL(pod.currency,''),'"+'","code":"'+"',IFNULL(c.code,''),'"+'"}'+"')currency&pod.wire_transfer_fee&pod.cost_of_certs&pod.ground_freight&pod.int_freight&pod.packaging_cost&pod.harzardous_cost&pod.other_cost&pod.discount&pod.noofinstallments&pod.installments&pod.remarks";
             //data.transactionMetaData.responseDataProperties = "pod.po_no&pod.currency&pod.wire_transfer_fee&pod.cost_of_certs&pod.ground_freight&pod.int_freight&pod.packaging_cost&pod.harzardous_cost&pod.other_cost";
             data.transactionMetaData.queryMetaData.joinClause = {
                 'joinType':['LEFT JOIN'],'joinKeys':['pod.currency=c.currency_id']
@@ -380,7 +380,7 @@ angular.module('Logistics')
                     }
                 });
                 if(vm.lstOfcharges.length > 0){
-                    var lstOfcharges =  vm.lstOfcharges;
+                    var lstOfcharges = angular.copy(vm.lstOfcharges);
                     angular.forEach(lstOfcharges  , function(loc) {
                         delete loc.$$hashKey;
                         loc.currency = loc.currency.currency_id;

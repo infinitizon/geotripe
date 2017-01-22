@@ -1,0 +1,22 @@
+<div class="panel">
+    <div class="panel-body">
+        <!-- http://stackoverflow.com/questions/33099329/angularjs-filter-already-selected-option-from-dynamic-field -- http://plnkr.co/edit/S9yZpjhY55lXsuifnUAc?p=preview -->
+        <!-- http://stackoverflow.com/questions/27537584/disabled-selected-item-in-angular-for-other-select-option-fields-of-the-same-ite -->
+        <form>
+            <div>
+                <div data-ng-repeat="choice in choices">
+                    <select data-ng-model="choice.option" data-ng-options="item as item.Value for item in choice.options"
+                            data-ng-change="optionSelected(choice)">
+                    </select>
+                    <button data-ng-click="removeChoice($index)">Remove</button>
+                </div>
+                <div>
+                    <button data-ng-show="choices.length <= 4" class="btn btn-link remove-btn" data-ng-click="addNewChoice($index, choice.option.Key)">
+                        Add field
+                    </button>
+                    <p>SelectedOptions: {{selectedOptions}}</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

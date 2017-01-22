@@ -272,7 +272,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                 }
                 $inserts = rtrim($inserts,',');
                 $q_str_quotes .= $inserts." WHERE $priKy={$data->factObjects[0]->quote->id}";
-//                echo $q_str_quotes;
+//echo $q_str_quotes;
                 if($inserts != ""){
                     $r_str = $dbo->prepare($q_str_quotes);
                     $r_str->execute();
@@ -332,7 +332,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                             }
                             $inserts = $fxns->_subStrAtDel($inserts, ' ,');
                             $q_str_quoteDetail .= $inserts." WHERE QuoteDetail_Id={$data->factObjects[0]->QuoteDetail[$key]->id}";
-//                            echo $q_str_quoteDetail;
+//echo $q_str_quoteDetail;
                             if($inserts != ""){
                                 $r_str = $dbo->prepare($q_str_quoteDetail);
                                 $r_str->execute();
@@ -392,6 +392,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                                 $onUpdt = rtrim($onUpdt,',');
                                 $q_str_quoteDetail_Manufacturer .= $ins_fields . ") " . $ins_values;
                                 $q_str_quoteDetail_Manufacturer .= " ON DUPLICATE KEY UPDATE ".$onUpdt;
+//echo $q_str_quoteDetail_Manufacturer;
                                 //Let's update the manufacturer table
                                 $r_str_quoteDetail_Manufacturer = $dbo->prepare($q_str_quoteDetail_Manufacturer);
                                 $r_str_quoteDetail_Manufacturer->execute();
@@ -418,7 +419,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         @$log = "{$data->factObjects[0]->quote->id}: ";
                         foreach ($r_fields as $fields) {
                             $fieldNm = strtolower($fields['Field']);
-                            if( isset($val->$fieldNm)){
+                            if( isset($val->$fieldNm) && $fieldNm != strtolower('Quote_quote_Id')){
                                 @$ins_fields .= " {$fields['Field']} ,";
                                 $onUpdt .=$fields['Field']."=VALUES({$fields['Field']}),";
                                 $ins_values .= $fxns->_formatFieldValue($val->$fieldNm, array('type'=>$fields['Type'])).",";
@@ -430,7 +431,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         $onUpdt = rtrim($onUpdt,',');
                         $q_str_PODetails = $q_str_PODetails .$ins_fields . ") " . $ins_values . ")";
                         $q_str_PODetails .= " ON DUPLICATE KEY UPDATE Quote_quote_Id=VALUES(Quote_quote_Id),".$onUpdt;
-//                        echo $q_str_PODetails;
+//echo $q_str_PODetails;
                         $q_str_PODetails = $dbo->prepare($q_str_PODetails);
                         $q_str_PODetails->execute();
                     }

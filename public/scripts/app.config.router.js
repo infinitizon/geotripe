@@ -270,7 +270,30 @@ angular
                         title: 'Logistics - Edit'
                     }
                 })
-
+                .state('app.reports', {
+                    url: '/reports'
+                    , template: '<div ui-view></div>'
+                    , abstract: true
+                })
+                .state('app.reports.rfq', {
+                    url: '/rfq'
+                    , templateUrl: 'modules/reports/views/rfq.html'
+                    , controller: 'rfqReportsController'
+                    , controllerAs : 'rfqCtrl'
+                    , resolve     : {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                {
+                                    files: ['modules/reports/controllers/reports.js']
+                                }]).then(function () {
+                                return $ocLazyLoad.load(['modules/reports/controllers/rfq.js']);
+                            });
+                        }]
+                    }
+                    , data: {
+                        title: 'RFQ report'
+                    }
+                })
                 .state('app.setup', {
                     template: '<div ui-view></div>'
                     , abstract: true
