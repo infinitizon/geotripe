@@ -2,21 +2,79 @@
     <div class="panel-body">
         <!-- http://stackoverflow.com/questions/33099329/angularjs-filter-already-selected-option-from-dynamic-field -- http://plnkr.co/edit/S9yZpjhY55lXsuifnUAc?p=preview -->
         <!-- http://stackoverflow.com/questions/27537584/disabled-selected-item-in-angular-for-other-select-option-fields-of-the-same-ite -->
-        <form>
-            <div>
-                <div data-ng-repeat="choice in choices">
-                    <select data-ng-model="choice.option" data-ng-options="item as item.Value for item in choice.options"
-                            data-ng-change="optionSelected(choice)">
-                    </select>
-                    <button data-ng-click="removeChoice($index)">Remove</button>
+        <form name="rfqReport">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="rfq_no">RFQ Number</label>
+                        <input type="text" id="rfq_no" placeholder="Enter RFQ No. or leave empty" class="form-control" data-ng-model="rfqCtrl.rfq_no" />
+                    </div>
                 </div>
-                <div>
-                    <button data-ng-show="choices.length <= 4" class="btn btn-link remove-btn" data-ng-click="addNewChoice($index, choice.option.Key)">
-                        Add field
-                    </button>
-                    <p>SelectedOptions: {{selectedOptions}}</p>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label>Choose Client</label>
+                            <ui-select ng-model="rfqCtrl.client" theme="bootstrap" close-on-select="true"
+                                       data-ng-click="rfqCtrl.getLOVs('Party','parties', {'response':'party_id&name', 'and':[{
+                                                                                    'propertyName': 'party_partytype_id', 'propertyValue': 201607131,
+                                                                                    'propertyDataType': 'BIGINT', 'operatorType': '='
+                                                                                }]})">
+                                <ui-select-match placeholder="{{'Select client...'}}">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="item in rfqCtrl.container['parties'] | filter: $select.search">
+                                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="enteredFrom">Entered between period from</label>
+                        <p class="input-group">
+                            <input type="text" id="enteredFrom" class="form-control" ng-model="rfqCtrl.enteredFrom" datepicker-popup="mediumDate" is-open="rfqCtrl.enteredFromOpen"
+                                   data-ng-focus="rfqCtrl.enteredFromOpen=true" placeholder="Period from Start (MMM dd, YYYY) e.g Aug 08, 2016" close-text="&times;" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" data-ng-click="rfqCtrl.enteredFrom = !rfqCtrl.enteredFrom"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="enteredTo">Entered between period to</label>
+                        <p class="input-group">
+                            <input type="text" id="enteredTo" class="form-control" ng-model="rfqCtrl.enteredTo"
+                                   datepicker-popup="mediumDate" is-open="rfqCtrl.enteredToOpen" min-date="rfqCtrl.enteredFrom"
+                                   data-ng-focus="rfqCtrl.enteredToOpen=true" placeholder="Period from to (MMM dd, YYYY) e.g Aug 08, 2016" close-text="&times;" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="rfqCtrl.enteredTo = !rfqCtrl.enteredTo"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>By Quote Status</label>
+                        <ui-select ng-model="rfqCtrl.status" theme="bootstrap" close-on-select="true"
+                                   data-ng-click="rfqCtrl.getLOVs('QuoteStatus','quoteStatuses', {'response':'quotestatus_id&name','placeholder':{'quotestatus_id':1,'name':'Loading...'}})">
+                            <ui-select-match placeholder="{{'Select quote status...'}}">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="item in rfqCtrl.container['quoteStatuses'] | filter: $select.search">
+                                <div ng-bind-html="item.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+
         </form>
+        <div class="row">
+            <div class="col-sm-12 form-actions text-center">
+                <button ng-click="rfqCtrl.printRFQ()"  data-ng-disabled="rfqReport.$invalid" style="width:10%;" class="btn btn-primary">Print RFQ</button>
+            </div>
+        </div>
     </div>
 </div>

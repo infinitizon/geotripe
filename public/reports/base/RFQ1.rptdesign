@@ -911,12 +911,6 @@ WHERE qd.quote_quote_id=?]]></xml-property>
         <simple-master-page name="MasterPage2" id="4316"/>
     </page-setup>
     <body>
-        <image id="4317">
-            <property name="height">11.69in</property>
-            <property name="width">100%</property>
-            <property name="source">file</property>
-            <expression name="uri" type="constant">library/images/bg.png</expression>
-        </image>
         <list name="NewList" id="3254">
             <property name="fontFamily">"Arial"</property>
             <property name="fontSize">8pt</property>

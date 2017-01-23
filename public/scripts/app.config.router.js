@@ -173,7 +173,12 @@ angular
                     , controllerAs : 'quotCtrl'
                     , resolve     : {
                         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            return $ocLazyLoad.load(['modules/quote/controllers/quotes.list.js']);
+                            return $ocLazyLoad.load([
+                                {
+                                    files: ['modules/quote/controllers/procurement.js','modules/quote/services.js']
+                                }]).then(function () {
+                                return $ocLazyLoad.load(['modules/quote/controllers/quotes.list.js']);
+                            });
                         }]
                     }
                 })
@@ -184,7 +189,12 @@ angular
                     , controllerAs : 'quotCtrl'
                     , resolve     : {
                         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            return $ocLazyLoad.load(['modules/quote/controllers/controller.js']);
+                            return $ocLazyLoad.load([
+                                {
+                                    files: ['modules/quote/controllers/procurement.js','modules/quote/services.js']
+                                }]).then(function () {
+                                return $ocLazyLoad.load(['modules/quote/controllers/controller.js']);
+                            });
                         }]
                     }
                 })
@@ -195,7 +205,12 @@ angular
                     , controllerAs : 'printCtrl'
                     , resolve     : {
                         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            return $ocLazyLoad.load(['modules/quote/controllers/print.js']);
+                            return $ocLazyLoad.load([
+                                {
+                                    files: ['modules/quote/controllers/procurement.js','modules/quote/services.js']
+                                }]).then(function () {
+                                return $ocLazyLoad.load(['modules/quote/controllers/print.js']);
+                            });
                         }]
                     }
                 })
