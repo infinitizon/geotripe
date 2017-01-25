@@ -32,6 +32,7 @@ angular.module('Reports')
 
             vm.printRFQ =function(){
                 var changes = {};
+                console.log(vm.quote);
             }
         }
     ]);

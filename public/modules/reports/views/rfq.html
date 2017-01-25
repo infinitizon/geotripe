@@ -7,14 +7,14 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="rfq_no">RFQ Number</label>
-                        <input type="text" id="rfq_no" placeholder="Enter RFQ No. or leave empty" class="form-control" data-ng-model="rfqCtrl.rfq_no" />
+                        <input type="text" id="rfq_no" placeholder="Enter RFQ No. or leave empty" class="form-control" data-ng-model="rfqCtrl.quote.rfq_no" />
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
                         <div class="form-group">
                             <label>Choose Client</label>
-                            <ui-select ng-model="rfqCtrl.client" theme="bootstrap" close-on-select="true"
+                            <ui-select ng-model="rfqCtrl.quote.client" theme="bootstrap" close-on-select="true"
                                        data-ng-click="rfqCtrl.getLOVs('Party','parties', {'response':'party_id&name', 'and':[{
                                                                                     'propertyName': 'party_partytype_id', 'propertyValue': 201607131,
                                                                                     'propertyDataType': 'BIGINT', 'operatorType': '='
@@ -33,7 +33,7 @@
                     <div class="form-group">
                         <label for="enteredFrom">Entered between period from</label>
                         <p class="input-group">
-                            <input type="text" id="enteredFrom" class="form-control" ng-model="rfqCtrl.enteredFrom" datepicker-popup="mediumDate" is-open="rfqCtrl.enteredFromOpen"
+                            <input type="text" id="enteredFrom" class="form-control" ng-model="rfqCtrl.quote.enteredFrom" datepicker-popup="mediumDate" is-open="rfqCtrl.enteredFromOpen"
                                    data-ng-focus="rfqCtrl.enteredFromOpen=true" placeholder="Period from Start (MMM dd, YYYY) e.g Aug 08, 2016" close-text="&times;" />
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" data-ng-click="rfqCtrl.enteredFrom = !rfqCtrl.enteredFrom"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -45,7 +45,7 @@
                     <div class="form-group">
                         <label for="enteredTo">Entered between period to</label>
                         <p class="input-group">
-                            <input type="text" id="enteredTo" class="form-control" ng-model="rfqCtrl.enteredTo"
+                            <input type="text" id="enteredTo" class="form-control" ng-model="rfqCtrl.quote.enteredTo"
                                    datepicker-popup="mediumDate" is-open="rfqCtrl.enteredToOpen" min-date="rfqCtrl.enteredFrom"
                                    data-ng-focus="rfqCtrl.enteredToOpen=true" placeholder="Period from to (MMM dd, YYYY) e.g Aug 08, 2016" close-text="&times;" />
                             <span class="input-group-btn">
@@ -59,13 +59,30 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label>By Quote Status</label>
-                        <ui-select ng-model="rfqCtrl.status" theme="bootstrap" close-on-select="true"
+                        <ui-select ng-model="rfqCtrl.quote.status" theme="bootstrap" close-on-select="true"
                                    data-ng-click="rfqCtrl.getLOVs('QuoteStatus','quoteStatuses', {'response':'quotestatus_id&name','placeholder':{'quotestatus_id':1,'name':'Loading...'}})">
                             <ui-select-match placeholder="{{'Select quote status...'}}">{{$select.selected.name}}</ui-select-match>
                             <ui-select-choices repeat="item in rfqCtrl.container['quoteStatuses'] | filter: $select.search">
                                 <div ng-bind-html="item.name | highlight: $select.search"></div>
                             </ui-select-choices>
                         </ui-select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label>By manufacturer</label>
+                            <ui-select ng-model="rfqCtrl.quote.manufacturer" theme="bootstrap" close-on-select="true"
+                                       data-ng-click="rfqCtrl.getLOVs('Party','manufacturers', {'response':'party_id&name', 'and':[{
+                                                                                    'propertyName': 'party_partytype_id', 'propertyValue': 201607132,
+                                                                                    'propertyDataType': 'BIGINT', 'operatorType': '='
+                                                                                }]})">
+                                <ui-select-match placeholder="{{'Select manufacturer...'}}">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="item in rfqCtrl.container['manufacturers'] | filter: $select.search">
+                                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
                     </div>
                 </div>
             </div>
