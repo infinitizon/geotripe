@@ -41,7 +41,7 @@ angular.module('RFQ')
                 vm.detail=response.data.data
             });
             vm.genRFQ = function () {
-                $window.open(WEB_ROOTS.TOMCAT+"/frameset?__report=report/base/rfq.rptdesign&quote_id="+$stateParams.print);
+                $window.open(WEB_ROOTS.TOMCAT+"/frameset?__report=report/base/quote.rptdesign&quote_id="+$stateParams.print);
             }
 
         }])

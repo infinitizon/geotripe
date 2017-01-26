@@ -95,7 +95,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="rfq_no">Request No <span ng-show="!quotCtrl.quote.rfq_no" class="text-danger">*</span></label>
-                        <input type="text" id="rfq_no" data-ng-model="quotCtrl.quote.rfq_no" placeholder="Subject or Request number of quote" class="form-control" data-ng-disabled="false" ng-required="true" />
+                        <input type="text" id="rfq_no" data-ng-model="quotCtrl.quote.rfq_no" placeholder="Subject or Request number of quote" class="form-control" data-ng-disabled="false" data-ng-required="true" />
                     </div>
                 </div>
             </div>
@@ -132,7 +132,7 @@
                             <input type="text" id="publishDate" class="form-control" ng-model="quotCtrl.quote.publishdate"
                                    datepicker-popup="mediumDate" is-open="quotCtrl.publishdate" datepicker-options="{minDate: quotCtrl.publishDateMin}"
                                    data-ng-focus="quotCtrl.publishdate=true" placeholder="Publish Date (MMM dd, YYYY) e.g Aug 08, 2016"
-                                   ng-required="true" close-text="&times;" />
+                                   data-ng-required="true" close-text="&times;" />
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" data-ng-click="quotCtrl.publishdate = !quotCtrl.publishdate"><i class="glyphicon glyphicon-calendar"></i></button>
                             </span>
@@ -146,7 +146,7 @@
                             <input type="text" id="dueDate" class="form-control" ng-model="quotCtrl.quote.duedate"
                                    datepicker-popup="mediumDate" is-open="quotCtrl.dueDate" min-date="quotCtrl.quote.publishdate"
                                    data-ng-focus="quotCtrl.dueDate=true" placeholder="Due Date (MMM dd, YYYY) e.g Aug 08, 2016"
-                                   ng-required="true" close-text="&times;" />
+                                   data-ng-required="true" close-text="&times;" />
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-click="quotCtrl.dueDate = !quotCtrl.dueDate"><i class="glyphicon glyphicon-calendar"></i></button>
                             </span>
