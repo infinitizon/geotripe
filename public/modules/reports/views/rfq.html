@@ -18,7 +18,7 @@
                                        data-ng-click="rfqCtrl.getLOVs('Party','parties', {'response':'party_id&name', 'and':[{
                                                                                     'propertyName': 'party_partytype_id', 'propertyValue': 201607131,
                                                                                     'propertyDataType': 'BIGINT', 'operatorType': '='
-                                                                                }],loaded:{party_id:'',name:'Select client...'}})">
+                                                                                }],loaded:{party_id:'',name:'-- Select All --'}})">
                                 <ui-select-match placeholder="{{'Select client...'}}">{{$select.selected.name}}</ui-select-match>
                                 <ui-select-choices repeat="item in rfqCtrl.container['parties'] | filter: $select.search">
                                     <div ng-bind-html="item.name | highlight: $select.search"></div>
@@ -60,7 +60,7 @@
                     <div class="form-group">
                         <label>By Quote Status</label>
                         <ui-select ng-model="rfqCtrl.quote.status" theme="bootstrap" close-on-select="true"
-                                   data-ng-click="rfqCtrl.getLOVs('QuoteStatus','quoteStatuses', {'response':'quotestatus_id&name','placeholder':{'quotestatus_id':1,'name':'Loading...'},loaded:{quotestatus_id:'',name:'Select status...'}})">
+                                   data-ng-click="rfqCtrl.getLOVs('QuoteStatus','quoteStatuses', {'response':'quotestatus_id&name','placeholder':{'quotestatus_id':1,'name':'Loading...'},loaded:{quotestatus_id:'',name:'-- Select All --'}})">
                             <ui-select-match placeholder="{{'Select quote status...'}}">{{$select.selected.name}}</ui-select-match>
                             <ui-select-choices repeat="item in rfqCtrl.container['quoteStatuses'] | filter: $select.search">
                                 <div ng-bind-html="item.name | highlight: $select.search"></div>
@@ -76,7 +76,7 @@
                                        data-ng-click="rfqCtrl.getLOVs('Party','manufacturers', {'response':'party_id&name', 'and':[{
                                                                                     'propertyName': 'party_partytype_id', 'propertyValue': 201607132,
                                                                                     'propertyDataType': 'BIGINT', 'operatorType': '='
-                                                                                }],loaded:{party_id:'',name:'Select manufacturer...'}})">
+                                                                                }],loaded:{party_id:'',name:'-- Select All --'}})">
                                 <ui-select-match placeholder="{{'Select manufacturer...'}}">{{$select.selected.name}}</ui-select-match>
                                 <ui-select-choices repeat="item in rfqCtrl.container['manufacturers'] | filter: $select.search">
                                     <div ng-bind-html="item.name | highlight: $select.search"></div>

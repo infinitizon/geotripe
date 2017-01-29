@@ -11,6 +11,7 @@ angular.module('RFQ')
              */
             CommonServices.postData.token = $localStorage.globals.currentUser.userDetails.token;
             vm.getQuoteSummary = function(pageno) {
+                vm.showOverlay = true;
                 vm.quotes = []; // Initially make list empty so as to show the "loading data" notice!
                 var data=angular.copy(CommonServices.postData);
                 data.transactionEventType = "QuoteDash";
@@ -24,6 +25,7 @@ angular.module('RFQ')
                 ];
                 data.transactionMetaData.groupingProperties.by = 'p.Party_Id';
                 DataService.post('quote', data).then(function (response) {
+                    vm.showOverlay = false;
                     vm.quoteDash = response.data.data;
                     vm.total_count = response.data.total_count;
                     if(vm.total_count <= 0){

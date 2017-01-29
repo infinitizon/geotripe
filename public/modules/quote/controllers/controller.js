@@ -1,14 +1,19 @@
 angular.module('RFQ')
     .controller('QuoteByStatusController', ['$http', '$scope', '$location', '$localStorage', '$filter', 'DataService','CommonServices','$stateParams', '$modal', 'ImportExportToExcel',
         function ($http, $scope, $location, $localStorage, $filter, DataService, CommonServices, $stateParams, $modal,ImportExportToExcel) {
-            $localStorage.pageTitle = "Quotes";
-            $localStorage.pageHeader = "Quotes";
-
             var vm = this;
-            vm.uploads = [];
-            vm.container = {};
-            var date = new Date();
-            vm.publishDateMin = date.setDate((new Date()).getDate() - 14);
+
+            vm.reset=function(){
+                vm.uploads = [];
+                vm.container = {};
+                if(vm.quote){
+                    if(!vm.quote.quote_id){
+                        var date = new Date();
+                        vm.publishDateMin = date.setDate((new Date()).getDate() - 14);
+                    }
+                }
+            }
+            vm.reset();
 
             vm.checkSubmitted = function(event) {
                 if(vm.lineItems.length > 0 && event.target.checked){
@@ -387,7 +392,7 @@ angular.module('RFQ')
                     vm.disableClient = false;
                     var data=angular.copy(CommonServices.postData);
                     data.factName = 'Quote q, Party p, QuoteStatus qs, Currency c, Users u, Users uu';
-                    data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&q.eventowner&p.name party_party_id&q.quote_status_id&qs.name quotestatus&c.code quote_currency_id&q.entrydate&q.publishdate&q.duedate&q.approvedate&u.firstname&q.description&q.quote_approvedby_id&q.specificationandrequirement&concat(IFNULL(uu.firstname,""), ", ",IFNULL(uu.middlename,"")," ",IFNULL(uu.lastname,""))users_user_id';
+                    data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&q.eventowner&p.name party_party_id&q.quote_status_id&qs.name quotestatus&c.code quote_currency_id&q.entrydate&q.publishdate&q.duedate&q.approvedate&u.firstname&q.description&q.quote_approvedby_id&q.specificationandrequirement&concat(IFNULL(uu.firstname,""), ", ",IFNULL(uu.middlename,"")," ",IFNULL(uu.lastname,""))users_user_id&validity&deliveryperiod&warranty&shipping&deliverylocation';
                     data.transactionMetaData.queryMetaData.joinClause = {
                         'joinType':['JOIN','JOIN','JOIN','JOIN','LEFT JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_currency_id=c.currency_id','q.quote_enteredBy_id=u.user_id','q.users_user_id=uu.user_id']
                     }
@@ -401,6 +406,7 @@ angular.module('RFQ')
                     ];
                     DataService.post('inboundService', data).then(function (response) {
                         vm.quote = response.data.data[0];
+                        vm.publishDateMin = new Date(vm.quote.publishdate);
 
                         vm.originalQuoteData = angular.copy(vm.quote);
                         vm.originalQuoteData.publishdate = $filter('date')(new Date(vm.originalQuoteData.publishdate), 'mediumDate');
@@ -486,6 +492,7 @@ angular.module('RFQ')
                     vm.lineItems = [];
                     vm.quoteFiles = null;
                     vm.disableClient = true;
+                    vm.reset();
                 }
             }
             vm.supervisor = function(quoteId){
@@ -554,6 +561,7 @@ angular.module('RFQ')
                 }
                 //I'm editing a quote here
                 if(vm.quote.quote_id){
+
                     vm.changedObjs = CommonServices.GetFormChanges(vm.originalQuoteData,vm.quote);
                     (vm.submittedChecked==true && vm.originalQuoteData.quote_status_id != 12141324) ? vm.changedObjs["quote_status_id"] = 12141324 : ''; // If we checked the button to submit
                     (vm.tqChecked==true && vm.originalQuoteData.quote_status_id != 12141326) ? vm.changedObjs["quote_status_id"] = 12141326 : ''; // If we checked the button to submit

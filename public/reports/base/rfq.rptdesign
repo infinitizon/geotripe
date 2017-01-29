@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.4.0.v201405191524 Build &lt;4.4.0.v20140606-1451></property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.2.v201410272105 Build &lt;4.4.2.v20150217-1805></property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="layoutPreference">auto layout</property>
@@ -446,8 +446,7 @@ aDate[2]+'-'+aDate[0]+'-'+aDate[1];</value>
 	this.queryText = this.queryText.replace("AND 1=1","AND t.EntryDate BETWEEN '" + params["fromDate"].value + "' AND '" + params["toDate"].value +"'");
 }
 ]]></method>
-            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("rptTitle", "RFQ");
-//vars["v_getTitle"] = side+" Contract note";]]></method>
+            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("rptTitle", "RFQ");]]></method>
             <property name="dataSource">MySQL_DS</property>
             <list-property name="resultSet">
                 <structure>
@@ -1135,7 +1134,7 @@ WHERE IFNULL(t.rfq_no,1) LIKE ?
         </style>
     </styles>
     <page-setup>
-        <simple-master-page name="NewSimpleMasterPage" id="3272" extends="rptLandscape.NewSimpleMasterPage">
+        <simple-master-page name="rptlibraryMaster" id="3272" extends="rptLandscape.rptlibraryMaster">
             <overridden-values>
                 <ref-entry baseId="2823" name="NewGrid2" id="2823"/>
                 <ref-entry baseId="2824" id="2824"/>
@@ -1147,37 +1146,15 @@ WHERE IFNULL(t.rfq_no,1) LIKE ?
                 <ref-entry baseId="3196" name="NewGrid1" id="3196"/>
                 <ref-entry baseId="3197" id="3197"/>
                 <ref-entry baseId="3198" id="3198"/>
-                <ref-entry baseId="3244" id="50160"/>
+                <ref-entry baseId="3244" id="50161"/>
                 <ref-entry baseId="3245" id="3245"/>
                 <ref-entry baseId="3246" id="3246"/>
                 <ref-entry baseId="3247" name="Report Title1" id="3247"/>
                 <ref-entry baseId="3199" id="3199"/>
                 <ref-entry baseId="3200" id="3200"/>
                 <ref-entry baseId="3201" id="3201"/>
-                <ref-entry baseId="3202" name="NewText4" id="3202">
-                    <property name="content">&lt;div style="text-transform:uppercase;">
-	&lt;b>FOR THE PERIOD:&lt;/b> &lt;value-of format="Medium Date">vars["v_periodStartDate"]&lt;/value-of> - &lt;value-of format="Medium Date">vars["v_periodEndDate"]&lt;/value-of>&lt;br>
-&lt;/div></property>
-                    <property name="contentType">html</property>
-                    <list-property name="visibility">
-                        <structure>
-                            <property name="format">all</property>
-                            <expression name="valueExpr" type="javascript">!params["fromDate"].value &amp;&amp; !params["toDate"].value</expression>
-                        </structure>
-                    </list-property>
-                </ref-entry>
-                <ref-entry baseId="3250" name="NewText41" id="3250">
-                    <property name="content">&lt;div style="text-transform:uppercase;">
-	&lt;b>FOR THE PERIOD:&lt;/b> All time
-&lt;/div></property>
-                    <property name="contentType">html</property>
-                    <list-property name="visibility">
-                        <structure>
-                            <property name="format">all</property>
-                            <expression name="valueExpr" type="javascript">params["fromDate"].value != null &amp;&amp; params["toDate"].value != null</expression>
-                        </structure>
-                    </list-property>
-                </ref-entry>
+                <ref-entry baseId="3202" name="NewText4" id="3202"/>
+                <ref-entry baseId="3250" name="NewText41" id="3250"/>
                 <ref-entry baseId="2893" id="2893"/>
                 <ref-entry baseId="2894" id="2894"/>
                 <ref-entry baseId="2895" name="NewText11" id="2895"/>
@@ -1188,13 +1165,22 @@ WHERE IFNULL(t.rfq_no,1) LIKE ?
                 <ref-entry baseId="2892" name="NewText" id="2892"/>
                 <ref-entry baseId="2829" id="2829"/>
                 <ref-entry baseId="2830" id="2830"/>
+                <ref-entry baseId="3252" name="NewGrid3" id="3252"/>
+                <ref-entry baseId="3253" id="3253"/>
+                <ref-entry baseId="3254" id="3254"/>
+                <ref-entry baseId="3255" id="3255"/>
+                <ref-entry baseId="3256" id="3256"/>
+                <ref-entry baseId="3257" id="3257"/>
+                <ref-entry baseId="3258" id="3258"/>
                 <ref-entry baseId="2833" name="NewText1" id="2833"/>
-                <ref-entry baseId="3010" id="3010"/>
-                <ref-entry baseId="3011" id="3011"/>
+                <ref-entry baseId="3259" id="3259"/>
                 <ref-entry baseId="3243" name="NewText61" id="3243"/>
                 <ref-entry baseId="3227" name="NewAutoText" id="3227"/>
                 <ref-entry baseId="3229" name="NewText6" id="3229"/>
                 <ref-entry baseId="3231" name="NewAutoText1" id="3231"/>
+                <ref-entry baseId="3010" id="3010"/>
+                <ref-entry baseId="3011" id="3011"/>
+                <ref-entry baseId="3251" name="NewLabel" id="3251"/>
             </overridden-values>
         </simple-master-page>
     </page-setup>
@@ -1350,6 +1336,8 @@ WHERE IFNULL(t.rfq_no,1) LIKE ?
             </list-property>
             <header>
                 <table id="3331">
+                    <property name="marginLeft">0.25in</property>
+                    <property name="marginRight">0.25in</property>
                     <property name="dataSet">RFQs</property>
                     <list-property name="boundDataColumns">
                         <structure>
@@ -1701,6 +1689,8 @@ WHERE IFNULL(t.rfq_no,1) LIKE ?
                 <grid id="2836">
                     <property name="fontFamily">"Corbel"</property>
                     <property name="fontSize">7px</property>
+                    <property name="marginLeft">0.25in</property>
+                    <property name="marginRight">0.25in</property>
                     <property name="textAlign">center</property>
                     <column id="2837"/>
                     <row id="2928">
