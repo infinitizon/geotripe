@@ -74,10 +74,12 @@
                 </td>
                 <td class="text-center">
                     <div class="row">
-                        <button type="button" class="btn btn-primary" data-ng-click="quotCtrl.editQuote(quote.quote_id)"><i class="fa fa-pencil"></i> Edit</button>
-                        <a ui-sref="app.procurement.clients.status.print({print:quote.quote_id})" data-ng-if="quote.showPrint" class="btn btn-warning" role="button"><i class="fa fa-print"></i> Print RFQ</a>
-                        <!--<a class="btn btn-warning"  data-ng-click="quotCtrl.printRFQ(quote.quote_id)"><i class="fa fa-print"></i> Print RFQ</button>-->
-                        <button type="button" class="btn btn-danger" data-ng-click="quotCtrl.deleteQuote()"><i class="fa fa-trash"></i> Delete</button>
+                        <i class="fa fa-pencil-square-o text-primary cursor-pointer" data-ng-click="quotCtrl.editQuote(quote.quote_id)" tooltip="Edit" tooltip-placement="top"></i>
+                        <a ui-sref="app.procurement.clients.status.print({print:quote.quote_id})" data-ng-if="quote.showPrint" tooltip="Print" tooltip-placement="top"><i class="fa fa-print"></i></a>
+                        <i class="fa fa-trash text-danger cursor-pointer" data-ng-click="quotCtrl.deleteQuote()" tooltip="Delete" tooltip-placement="top"></i>
+                        <!--<button type="button" class="btn btn-primary" data-ng-click="quotCtrl.editQuote(quote.quote_id)"><i class="fa fa-pencil"></i> Edit</button>-->
+                        <!--<a ui-sref="app.procurement.clients.status.print({print:quote.quote_id})" data-ng-if="quote.showPrint" class="btn btn-warning" role="button"><i class="fa fa-print"></i> Print RFQ</a>-->
+                        <!--<button type="button" class="btn btn-danger" data-ng-click="quotCtrl.deleteQuote()"><i class="fa fa-trash"></i> Delete</button>-->
                     </div>
                 </td>
             </tr>

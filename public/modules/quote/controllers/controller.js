@@ -327,28 +327,32 @@ angular.module('RFQ')
             vm.applyFilters = function(){
                 vm.filterOpts.andExpre =[],vm.filterOpts.having = [];
                 if(angular.isDefined($scope.filters.rfqno)){
-                    vm.filterOpts.andExpre.push({
+                    if($scope.filters.rfqno != null) {
+                        vm.filterOpts.andExpre.push({
                             "propertyName": "q.rfq_no",
                             "propertyValue": $scope.filters.rfqno,
                             "propertyDataType": "VARCHAR",
                             "operatorType": "LIKE"
                         })
+                    }
                 }
                 if(angular.isDefined($scope.filters.status)){
-                    if($scope.filters.status == 1 || $scope.filters.status == 2){
-                        vm.filterOpts.having.push({
-                            "clause": ($scope.filters.status==1?"SUM(qd.submitted)":"SUM(qd.tq)"),
-                            "propertyValue": 0,
-                            "propertyDataType": "BIGINT",
-                            "operatorType": ">"
-                        });
-                    }else{
-                        vm.filterOpts.andExpre.push({
-                            "propertyName": "q.quote_status_id",
-                            "propertyValue": $scope.filters.status,
-                            "propertyDataType": "BIGINT",
-                            "operatorType": "LIKE"
-                        });
+                    if($scope.filters.status != null) {
+                        if ($scope.filters.status == 1 || $scope.filters.status == 2) {
+                            vm.filterOpts.having.push({
+                                "clause": ($scope.filters.status == 1 ? "SUM(qd.submitted)" : "SUM(qd.tq)"),
+                                "propertyValue": 0,
+                                "propertyDataType": "BIGINT",
+                                "operatorType": ">"
+                            });
+                        } else {
+                            vm.filterOpts.andExpre.push({
+                                "propertyName": "q.quote_status_id",
+                                "propertyValue": $scope.filters.status,
+                                "propertyDataType": "BIGINT",
+                                "operatorType": "LIKE"
+                            });
+                        }
                     }
                 }
                 vm.getData(vm.pageno, vm.filterOpts);

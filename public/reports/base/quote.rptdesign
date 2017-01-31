@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.4.2.v201410272105 Build &lt;4.4.2.v20150217-1805></property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.0.v201405191524 Build &lt;4.4.0.v20140606-1451></property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="layoutPreference">auto layout</property>
@@ -1640,7 +1640,7 @@ www.geoscapeltd.com | admin@geoscapeltd.com</div>]]></text-property>
             <row id="4331">
                 <cell id="4332">
                     <list name="NewList" id="3254">
-                        <property name="fontFamily">"Arial"</property>
+                        <property name="fontFamily">"Calibri"</property>
                         <property name="fontSize">8pt</property>
                         <property name="dataSet">quote</property>
                         <list-property name="boundDataColumns">
