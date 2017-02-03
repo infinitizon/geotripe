@@ -26,6 +26,16 @@ angular.module('RFQ')
             }//6234299983
         }
 
+        vm.allowUpdate = function(){
+            var i = 0;
+            angular.forEach($localStorage.globals.currentUser.userDetails.authRoles  , function(authRole, key) {
+                if (quoteId && "RFQ_SUPERVISOR,RFQ_ADMIN,SUPPORT_ADMIN".indexOf(authRole.Name) >= 0){
+                    i++;
+                }
+            });
+            return (i>0)?true:false;
+        }
+
         vm.data = data;
         vm.indexSelected = null;
         if(vm.data.item){

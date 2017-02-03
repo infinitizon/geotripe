@@ -49,7 +49,7 @@
                 boundary-links="true"
                 on-page-change="quotCtrl.getData(newPageNumber)" >
         </dir-pagination-controls>
-        <table class="table table-responsive table-striped table-hover">
+        <table class="table table-responsive table-hover">
             <thead>
             <tr>
                 <th>Client</th>
@@ -63,23 +63,22 @@
             </thead>
             <tbody>
             <tr ng-if="quotCtrl.quotes.length <= 0"><td colspan="7" style="text-align:center;">{{ quotCtrl.quotesLoading || 'Loading new data!!' }}</td></tr>
-            <tr ng-init="dueDisp = quotCtrl.getDueDateDisplay(quote.remDays,quote.status)" dir-paginate="quote in quotCtrl.quotes|itemsPerPage:quotCtrl.itemsPerPage" total-items="quotCtrl.total_count">
+            <tr ng-init="dueDisp = quotCtrl.getDueDateDisplay(quote.remDays,quote.status)" dir-paginate="quote in quotCtrl.quotes|itemsPerPage:quotCtrl.itemsPerPage" total-items="quotCtrl.total_count"
+                data-ng-class="{'bg-success': quote.status=='Submitted','bg-warning': (quote.status=='TQ' || quote.status=='TQ on line Item(s)'),'bg-danger blink_me': ((quote.remDays==1||quote.remDays==0) && quote.status=='In Progress')}">
                 <td>{{quote.name}}</td>
                 <td>{{quote.rfq_no}}</td>
                 <td>{{quote.status}}</td>
                 <td>{{quote.totalQuotes}}</td>
                 <td>{{quote.enteredBy}}</td>
-                <td>
-                    <span ng-class="{'label label-danger blink_me':((quote.remDays==1||quote.remDays==0) && quote.status=='In Progress'),'text-danger':(dueDisp=='Pending TQ clearance'),'text-success':(quote.remDays>1 || quote.status=='Submitted')}">{{dueDisp}}</span>
-                </td>
+                <td>{{dueDisp}}</span></td>
+                <!--<td>-->
+                    <!--<span ng-class="{'label label-danger blink_me':((quote.remDays==1||quote.remDays==0) && quote.status=='In Progress'),'text-danger':(dueDisp=='Pending TQ clearance'),'text-success':(quote.remDays>1 || quote.status=='Submitted')}">{{dueDisp}}</span>-->
+                <!--</td>-->
                 <td class="text-center">
                     <div class="row">
-                        <i class="fa fa-pencil-square-o text-primary cursor-pointer" data-ng-click="quotCtrl.editQuote(quote.quote_id)" tooltip="Edit" tooltip-placement="top"></i>
-                        <a ui-sref="app.procurement.clients.status.print({print:quote.quote_id})" data-ng-if="quote.showPrint" tooltip="Print" tooltip-placement="top"><i class="fa fa-print"></i></a>
-                        <i class="fa fa-trash text-danger cursor-pointer" data-ng-click="quotCtrl.deleteQuote()" tooltip="Delete" tooltip-placement="top"></i>
-                        <!--<button type="button" class="btn btn-primary" data-ng-click="quotCtrl.editQuote(quote.quote_id)"><i class="fa fa-pencil"></i> Edit</button>-->
-                        <!--<a ui-sref="app.procurement.clients.status.print({print:quote.quote_id})" data-ng-if="quote.showPrint" class="btn btn-warning" role="button"><i class="fa fa-print"></i> Print RFQ</a>-->
-                        <!--<button type="button" class="btn btn-danger" data-ng-click="quotCtrl.deleteQuote()"><i class="fa fa-trash"></i> Delete</button>-->
+                        <a href="#" class="btn btn-default" role="button" data-ng-click="quotCtrl.editQuote(quote.quote_id);$event.preventDefault(); $event.stopPropagation();" tooltip="Edit" tooltip-placement="top"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                        <a ui-sref="app.procurement.clients.status.print({print:quote.quote_id})" class="btn btn-info" role="button" data-ng-if="quote.showPrint" tooltip="Print" tooltip-placement="top"><i class="fa fa-print"></i> Print</a>
+                        <a href="#" class="btn btn-warning" role="button" data-ng-click="quotCtrl.deleteQuote();$event.preventDefault(); $event.stopPropagation();" tooltip="Delete" tooltip-placement="top"><i class="fa fa-trash"></i> Delete</a>
                     </div>
                 </td>
             </tr>

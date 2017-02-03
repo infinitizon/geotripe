@@ -609,6 +609,54 @@ where IFNULL(pod.po_no,1) LIKE ?
                     <text-property name="heading">oem_description</text-property>
                 </structure>
                 <structure>
+                    <property name="columnName">clientname</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">clientname</text-property>
+                    <text-property name="heading">clientname</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ContactPhoneNumber</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">contactphonenumber</text-property>
+                    <text-property name="heading">contactphonenumber</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">addressline1</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">addressline1</text-property>
+                    <text-property name="heading">addressline1</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">addressline2</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">addressline2</text-property>
+                    <text-property name="heading">addressline2</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">addresscity</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">addresscity</text-property>
+                    <text-property name="heading">addresscity</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">state</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">state</text-property>
+                    <text-property name="heading">state</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">country</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">country</text-property>
+                    <text-property name="heading">country</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">EmailAddress</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">emailaddress</text-property>
+                    <text-property name="heading">emailaddress</text-property>
+                </structure>
+                <structure>
                     <property name="columnName">final_desc</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">final_desc</text-property>
@@ -621,7 +669,7 @@ where IFNULL(pod.po_no,1) LIKE ?
                     <text-property name="heading">quantity</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">Name</property>
+                    <property name="columnName">unitofmeasure</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">unitofmeasure</text-property>
                     <text-property name="heading">unitofmeasure</text-property>
@@ -730,51 +778,91 @@ where IFNULL(pod.po_no,1) LIKE ?
                     </structure>
                     <structure>
                         <property name="position">8</property>
-                        <property name="name">final_desc</property>
+                        <property name="name">clientname</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">9</property>
-                        <property name="name">quantity</property>
-                        <property name="dataType">integer</property>
+                        <property name="name">ContactPhoneNumber</property>
+                        <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">10</property>
-                        <property name="name">Name</property>
+                        <property name="name">addressline1</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">11</property>
-                        <property name="name">unitprice</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">addressline2</property>
+                        <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">12</property>
-                        <property name="name">extAmt</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">addresscity</property>
+                        <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">13</property>
-                        <property name="name">cur_code</property>
+                        <property name="name">state</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">14</property>
-                        <property name="name">cur_desc</property>
+                        <property name="name">country</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">15</property>
-                        <property name="name">decimalHTML</property>
+                        <property name="name">EmailAddress</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">16</property>
-                        <property name="name">hexHTML</property>
+                        <property name="name">final_desc</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">17</property>
+                        <property name="name">quantity</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">unitofmeasure</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">19</property>
+                        <property name="name">unitprice</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">20</property>
+                        <property name="name">extAmt</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">21</property>
+                        <property name="name">cur_code</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">22</property>
+                        <property name="name">cur_desc</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">23</property>
+                        <property name="name">decimalHTML</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">24</property>
+                        <property name="name">hexHTML</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">25</property>
                         <property name="name">unicode</property>
                         <property name="dataType">string</property>
                     </structure>
@@ -847,82 +935,143 @@ reportContext.setPersistentGlobalVariable("currency", "CURRENCY "+row["cur_code"
                 </structure>
                 <structure>
                     <property name="position">8</property>
+                    <property name="name">clientname</property>
+                    <property name="nativeName">clientname</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">ContactPhoneNumber</property>
+                    <property name="nativeName">ContactPhoneNumber</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">addressline1</property>
+                    <property name="nativeName">addressline1</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">addressline2</property>
+                    <property name="nativeName">addressline2</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">addresscity</property>
+                    <property name="nativeName">addresscity</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">state</property>
+                    <property name="nativeName">state</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">country</property>
+                    <property name="nativeName">country</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">EmailAddress</property>
+                    <property name="nativeName">EmailAddress</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
                     <property name="name">final_desc</property>
                     <property name="nativeName">final_desc</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">9</property>
+                    <property name="position">17</property>
                     <property name="name">quantity</property>
                     <property name="nativeName">quantity</property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">10</property>
-                    <property name="name">Name</property>
-                    <property name="nativeName">Name</property>
+                    <property name="position">18</property>
+                    <property name="name">unitofmeasure</property>
+                    <property name="nativeName">unitofmeasure</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">11</property>
+                    <property name="position">19</property>
                     <property name="name">unitprice</property>
                     <property name="nativeName">unitprice</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">12</property>
+                    <property name="position">20</property>
                     <property name="name">extAmt</property>
                     <property name="nativeName">extAmt</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">13</property>
+                    <property name="position">21</property>
                     <property name="name">cur_code</property>
                     <property name="nativeName">cur_code</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">14</property>
+                    <property name="position">22</property>
                     <property name="name">cur_desc</property>
                     <property name="nativeName">cur_desc</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">15</property>
+                    <property name="position">23</property>
                     <property name="name">decimalHTML</property>
                     <property name="nativeName">decimalHTML</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">16</property>
+                    <property name="position">24</property>
                     <property name="name">hexHTML</property>
                     <property name="nativeName">hexHTML</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">17</property>
+                    <property name="position">25</property>
                     <property name="name">unicode</property>
                     <property name="nativeName">unicode</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT q.quote_Id, q.rfq_no, q.po_no, qd.split_po_no, qd.partno_modelno
-	, qd.description, qd.oem_description
+            <xml-property name="queryText"><![CDATA[SELECT q.quote_Id, q.rfq_no, q.po_no, qd.split_po_no, qd.partno_modelno, qd.description, qd.oem_description
+	, ifnull(p.name,'') clientname, p.contactphonenumber, ifnull(p.addressline1,'')addressline1, ifnull(p.addressline2,'')addressline2
+	, ifnull(p.addresscity,'')addresscity, ifnull(s.name,'') state, ifnull(c.name,'') country, p.emailaddress
 	, (CASE WHEN qd.oem_description IS NULL OR qd.oem_description = '' THEN qd.description ELSE qd.oem_description END) 'final_desc' 
-	, qd.quantity, (uom.name) unitofmeasure, qd.unitprice, (qd.quantity*qd.unitprice) extAmt
+	, qd.quantity, ifnull(uom.name,'') unitofmeasure, qd.unitprice, (qd.quantity*qd.unitprice) extAmt
     , ifnull(cur.code,'')cur_code, ifnull(cur.description,'')cur_desc, cur.decimalHTML, cur.hexHTML, cur.unicode
 FROM Quote q
 	JOIN QuoteDetail qd ON q.quote_id=qd.Quote_quote_Id
+	LEFT JOIN QuoteDetail_Manufacturer qdm ON qd.Quote_quote_Id=qdm.QuoteDetail_QuoteDetail_Id
+	LEFT JOIN Party p ON qdm.Party_Party_Id=p.Party_Id 
+    LEFT JOIN State s ON p.party_state_id=s.state_id
+    LEFT JOIN Country c ON p.party_country_id=c.country_id
 	LEFT JOIN unitofmeasure uom ON qd.unitofmeasure = uom.unitofmeasure_id
     LEFT JOIN Currency cur ON q.quote_currency_id=cur.currency_id
 WHERE qd.quote_is_po=1
@@ -1365,6 +1514,54 @@ WHERE qd.quote_is_po=1
                                         <property name="dataType">string</property>
                                     </structure>
                                     <structure>
+                                        <property name="name">clientname</property>
+                                        <text-property name="displayName">clientname</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["clientname"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">ContactPhoneNumber</property>
+                                        <text-property name="displayName">contactphonenumber</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["ContactPhoneNumber"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">addressline1</property>
+                                        <text-property name="displayName">addressline1</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["addressline1"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">addressline2</property>
+                                        <text-property name="displayName">addressline2</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["addressline2"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">addresscity</property>
+                                        <text-property name="displayName">addresscity</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["addresscity"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">state</property>
+                                        <text-property name="displayName">state</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["state"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">country</property>
+                                        <text-property name="displayName">country</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["country"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">EmailAddress</property>
+                                        <text-property name="displayName">emailaddress</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["EmailAddress"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
                                         <property name="name">final_desc</property>
                                         <text-property name="displayName">final_desc</text-property>
                                         <expression name="expression" type="javascript">dataSetRow["final_desc"]</expression>
@@ -1377,9 +1574,9 @@ WHERE qd.quote_is_po=1
                                         <property name="dataType">integer</property>
                                     </structure>
                                     <structure>
-                                        <property name="name">Name</property>
+                                        <property name="name">unitofmeasure</property>
                                         <text-property name="displayName">unitofmeasure</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["Name"]</expression>
+                                        <expression name="expression" type="javascript">dataSetRow["unitofmeasure"]</expression>
                                         <property name="dataType">string</property>
                                     </structure>
                                     <structure>
@@ -1458,11 +1655,11 @@ PHONE: +234 1 453 3921]]></text-property>
 	<value-of format="HTML">if(row["EventOwner"]==""){"";}else{"ATTENTION OF: "+row["EventOwner"]+"<br>";}</value-of>
 	<value-of format="HTML">if(row["clientname"]==""){"";}else{row["clientname"]+"<br>";}</value-of>
 </span>
-<value-of format="HTML">if(row["AddressLine1"]==""){"";}else{row["AddressLine1"]+"<br>";}</value-of>
-<value-of format="HTML">if(row["AddressLine2"]==""){"";}else{row["AddressLine2"]+"<br>";}</value-of>
-<value-of format="HTML">if(row["AddressCity"]==""){"";}else{row["AddressCity"];}</value-of>
-<value-of format="HTML">if(row["state"]==""){"";}else{", "+row["state"]+"<br>";}</value-of>
-<value-of format="HTML">row["country"]</value-of><br>
+<value-of format="HTML">if(row["addressline1"]==""){"";}else{row["addressline1"]+"<br>";}</value-of>
+<value-of format="HTML">if(row["addressline2"]==""){"";}else{row["addressline2"]+"<br>";}</value-of>
+<value-of format="HTML">if(row["addresscity"]==""){"";}else{row["addresscity"]+", ";}</value-of>
+<value-of format="HTML">if(row["state"]==""){"";}else{row["state"]+"<br>";}</value-of>
+<value-of format="HTML">if(row["country"]==""){"";}else{row["country"]+"<br>";}</value-of>
 </div>]]></text-property>
                                         </text>
                                     </cell>
@@ -1810,6 +2007,54 @@ www.geoscapeltd.com | admin@geoscapeltd.com</div>]]></text-property>
                                 <property name="dataType">string</property>
                             </structure>
                             <structure>
+                                <property name="name">clientname</property>
+                                <text-property name="displayName">clientname</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["clientname"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ContactPhoneNumber</property>
+                                <text-property name="displayName">contactphonenumber</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ContactPhoneNumber"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">addressline1</property>
+                                <text-property name="displayName">addressline1</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["addressline1"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">addressline2</property>
+                                <text-property name="displayName">addressline2</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["addressline2"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">addresscity</property>
+                                <text-property name="displayName">addresscity</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["addresscity"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">state</property>
+                                <text-property name="displayName">state</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["state"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">country</property>
+                                <text-property name="displayName">country</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["country"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">EmailAddress</property>
+                                <text-property name="displayName">emailaddress</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["EmailAddress"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
                                 <property name="name">final_desc</property>
                                 <text-property name="displayName">final_desc</text-property>
                                 <expression name="expression" type="javascript">dataSetRow["final_desc"]</expression>
@@ -1822,9 +2067,9 @@ www.geoscapeltd.com | admin@geoscapeltd.com</div>]]></text-property>
                                 <property name="dataType">integer</property>
                             </structure>
                             <structure>
-                                <property name="name">Name</property>
+                                <property name="name">unitofmeasure</property>
                                 <text-property name="displayName">unitofmeasure</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Name"]</expression>
+                                <expression name="expression" type="javascript">dataSetRow["unitofmeasure"]</expression>
                                 <property name="dataType">string</property>
                             </structure>
                             <structure>
@@ -2107,8 +2352,9 @@ www.geoscapeltd.com | admin@geoscapeltd.com</div>]]></text-property>
                                                             <structure>
                                                                 <property name="name">Name</property>
                                                                 <text-property name="displayName">unitofmeasure</text-property>
-                                                                <expression name="expression" type="javascript">dataSetRow["Name"]</expression>
+                                                                <expression name="expression" type="javascript">dataSetRow["unitofmeasure"]</expression>
                                                                 <property name="dataType">string</property>
+                                                                <property name="allowExport">true</property>
                                                             </structure>
                                                             <structure>
                                                                 <property name="name">unitprice</property>

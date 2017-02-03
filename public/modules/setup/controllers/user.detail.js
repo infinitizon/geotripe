@@ -9,6 +9,16 @@ angular.module('Setup')
             var vm = this;
             vm.container={};
 
+            vm.isAdmin = function(){
+                var i = 0;
+                angular.forEach($localStorage.globals.currentUser.userDetails.authRoles  , function(authRole, key) {
+                    if ("SUPPORT_ADMIN".indexOf(authRole.Name) >= 0){
+                        i++;
+                    }
+                });
+                return (i>0)?true:false;
+            }
+
             vm.result = null;
             vm.edit=true;
             vm.dataLoading = false;

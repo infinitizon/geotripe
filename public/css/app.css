@@ -13516,3 +13516,10 @@ td.align-middle {
 @-webkit-keyframes dotdot {
   to { width: 20px; }
 }/* End: Helps to show ... loading */
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+@keyframes blinker {
+  50% { opacity: 0.5; }
+}

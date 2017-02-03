@@ -7,7 +7,7 @@
     <h3 class="modal-title">
         <i class="fa fa-close pull-right cursor-pointer text-danger" data-ng-click="usrDtCtrl.close()"></i>
         <div class="form-group text-center">
-            <button type="button" class="btn btn-primary" data-ng-click="usrDtCtrl.allowEdit = !usrDtCtrl.allowEdit"><i class="fa fa-pencil"></i> Edit</button>
+            <button type="button" class="btn btn-primary" data-ng-if="usrDtCtrl.isAdmin()" data-ng-click="usrDtCtrl.allowEdit = !usrDtCtrl.allowEdit"><i class="fa fa-pencil"></i> Edit</button>
         </div>
     </h3>
     <div class="modal-body">
