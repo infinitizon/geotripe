@@ -13,6 +13,16 @@ angular.module('Logistics')
             vm.lstOfcharges = [];
             vm.allowEdit=false, vm.showOverlay=false;
 
+            vm.permitEdit = function(){
+                var i = 0;
+                angular.forEach($localStorage.globals.currentUser.userDetails.authRoles  , function(authRole, key) {
+                    if ("PO_OFFICER,PO_SUPERVISOR,PO_ADMIN,SUPPORT_ADMIN".indexOf(authRole.Name) >= 0){
+                        i++;
+                    }
+                });
+                return (i>0)?true:false;
+            }
+
             CommonServices.postData.token = $localStorage.globals.currentUser.userDetails.token;
             vm.getLOVs = function(factName, selectScope, options) {
                 if (vm.container[selectScope] == null) {
@@ -430,7 +440,9 @@ angular.module('Logistics')
                             return {index:index,charge:charge} || {};
                         },
                         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            return  $ocLazyLoad.load(['modules/logistics/controllers/templates/charge.edit.js']);
+                            return $ocLazyLoad.load('vendor/jquery.maskedinput/dist/jquery.maskedinput.min.js').then(function () {
+                                return $ocLazyLoad.load(['modules/logistics/controllers/templates/charge.edit.js']);
+                            });
                         }]
                     }
                 });

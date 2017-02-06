@@ -2,8 +2,8 @@
  * Created by ahassan on 10/31/16.
  */
 angular.module('Logistics')
-    .controller('chargeEditController', ['$modalInstance', '$localStorage', 'charge', 'DataService','CommonServices', '$modalInstance'
-        , function ($modalInstance, $localStorage, charge, DataService, CommonServices, $modalInstance) {
+    .controller('chargeEditController', ['$modalInstance', '$localStorage', '$modalInstance', '$log', 'charge', 'DataService','CommonServices'
+        , function ($modalInstance, $localStorage, $modalInstance, $log, charge, DataService, CommonServices) {
             var vm = this;
 
             vm.container={};
@@ -37,7 +37,7 @@ angular.module('Logistics')
             }
 
             vm.createInstalls =function(){
-                if(confirm('Cnanging this value would clear existing installments.\nDo you want to contnue?')){
+                if(confirm('Cnanging this value would clear existing installments.\n\nContnue?')){
                     vm.installs=[]
                     for(var i=0; i<vm.charge.noofinstallments; i++){
                         vm.installs.push({installment:null});
@@ -45,13 +45,21 @@ angular.module('Logistics')
                 }
             }
             vm.updtCharges = function(){
-                var installment=[],installments='';
-                angular.forEach(vm.installs,function(install){
-                    installment.push(install.installment);
-                })
-                installments=installment.join(',');
-                vm.charge.installments=installments;
-                $modalInstance.close({index:vm.index,charge:vm.charge})
+                if(vm.installs.length > 0 && vm.installments){
+                    var installment=[],installments='',total=0;
+                    angular.forEach(vm.installs,function(install){
+                        var digits = +install.installment.replace(/\D/g,'');
+                        total = total + digits;
+                        installment.push(digits);
+                    })
+                }
+                if(total == 100 || !vm.installments){
+                    installments=installment.join(',');
+                    vm.charge.installments=installments;
+                    $modalInstance.close({index:vm.index,charge:vm.charge})
+                }else{
+                    alert("The installments must sum up to 100% - currently "+total);
+                }
             }
         }
     ])

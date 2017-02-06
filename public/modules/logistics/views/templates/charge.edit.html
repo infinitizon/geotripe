@@ -91,11 +91,13 @@
                 </div>
             </div>
             <div class="row" data-ng-if="ceCtrl.charge.noofinstallments > 1 && ceCtrl.installments">
+                Enter installments in percentages (must sum up to 100%)
                 <div class="col-sm-12">
                     <div class="form-group">
                         <div data-ng-repeat="install in ceCtrl.installs track by $index">
-                            <input type="number" step="0.01" placeholder="Installment {{$index+1}}" class="form-control"
-                                   data-ng-model="install.installment" />
+                            <!--<input type="number" step="0.01" placeholder="Installment {{$index+1}}" class="form-control"-->
+                            <input type="text" placeholder="Installment {{$index+1}}" class="form-control"
+                                   data-ng-model="install.installment" ui-jq="mask" ui-options="'99%'"  />
                         </div>
                     </div>
                 </div>

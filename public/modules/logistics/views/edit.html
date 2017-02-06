@@ -3,7 +3,7 @@
         <div class="row" data-ng-if="!lgstEdt.allowEdit">
             <div class="col-sm-12">
                 <div class="form-group text-center">
-                    <button type="button" class="btn btn-primary" data-ng-click="lgstEdt.allowEdit = !lgstEdt.allowEdit"><i class="fa fa-pencil"></i> Edit</button>
+                    <button type="button" class="btn btn-primary" data-ng-if="lgstEdt.permitEdit()" data-ng-click="lgstEdt.allowEdit = !lgstEdt.allowEdit"><i class="fa fa-pencil"></i> Edit</button>
                 </div>
             </div>
         </div>
@@ -149,7 +149,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th data-ng-if="lgstEdt.allowEdit"></th>
+                                    <th></th>
                                     <th>PO Number</th>
                                     <th>Currency</th>
                                     <th>Wire Transfer Fee</th>
@@ -164,7 +164,7 @@
                             <tbody>
                                 <tr ng-if="lgstEdt.lstOfcharges.length <= 0"><td colspan="11" style="text-align:center;font-size:large; font-weight:bold;">{{lgstEdt.chargesLoading || 'Loading new data!!' }}</td></tr>
                                 <tr ng-repeat="charge in lgstEdt.lstOfcharges">
-                                    <td data-ng-if="lgstEdt.allowEdit">
+                                    <td>
                                         <i class="fa fa-pencil inline cursor-pointer text-primary" data-ng-click="lgstEdt.editCharge($index,charge)"></i>
                                         <i class="fa fa-trash inline cursor-pointer text-danger" data-ng-click="lgstEdt.deleteCharge($index,charge)"></i>
                                     </td>
