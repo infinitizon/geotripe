@@ -1,0 +1,24 @@
+<div class="form-top">
+    <div ng-show="npCtrl.msg" class="alert" data-ng-class="{'alert-danger':npCtrl.msg.response=='Failure','alert-success':npCtrl.msg.response=='Success'}">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close" ng-click="npCtrl.closeAlert()">&times;</a>
+        {{npCtrl.msg.message}}
+    </div>
+    <p><h3><i class="fa fa-3x fa-key pull-right"></i>Reset Password</h3>Enter new password:</p>
+</div>
+<form name="form" ng-submit="npCtrl.reset()" role="form">
+    <div class="form-group">
+        <label class="sr-only" for="password">Enter New Password</label>
+        <input type="password" id="password" class="form-control input-lg" placeholder="New Password..." ng-model="npCtrl.password" required />
+        <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="cpassword">Confirm New Password</label>
+        <input type="password" id="cpassword" class="form-control input-lg" placeholder="Confirm New Password..." ng-model="npCtrl.cpassword" required />
+        <span ng-show="form.cpassword.$dirty && form.cpassword.$error.required" class="help-block">Password is required</span>
+    </div>
+    <div class="text-right small"><a ui-sref="login">Back to login?</a></div>
+    <div class="form-actions text-center">
+        <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-success input-lg">Reset Password</button>
+        <span ng-if="npCtrl.dataLoading" class="loader"></span>
+    </div>
+</form>

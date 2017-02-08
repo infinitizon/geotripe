@@ -1,8 +1,10 @@
 angular.module('Common')
     .value('RemoteServiceBase','api/v1/')
     .constant('WEB_ROOTS',{
-        "MAIN": "127.0.0.1",
-        "TOMCAT": "http://127.0.0.1:8080/birt"
+        PROTOCOL:'http'
+        , "MAIN": "127.0.0.1"
+        , "PORT": "8890"
+        , "TOMCAT": "http://127.0.0.1:8080/birt"
     })
     .factory("DataService", ['$http','$state','RemoteServiceBase',
         function ($http,$state,RemoteServiceBase) { // This service connects to our REST API

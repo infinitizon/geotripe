@@ -14,18 +14,29 @@ angular
             //$uibModalStack.dismissAll();
             // keep user logged in after page refresh
             $rootScope.globals = $localStorage.globals || {};
-
-            $rootScope.$on('$locationChangeStart', function (event, next, current) {
+            $rootScope.$on('$locationChangeStart', function (ev, next, current) {
                 // redirect to login page if not logged in
                 if(!angular.isDefined($localStorage.globals) || $localStorage.globals == null){
-                    $location.path('/login');
+                    if($state.current.name == 'login.reset' || $state.current.name == 'login.request-reset' || next.indexOf("reset") !=-1 || next.indexOf("request-reset") !=-1 ){
+                        '';
+                    } else{
+                        $location.path('/login');
+                    }
                 }
                 if ($location.path() !== '/login' && !angular.isDefined($localStorage.globals)) {
-                    $location.path('/login');
+                    if($state.current.name == 'login.reset' || $state.current.name == 'login.request-reset' || next.indexOf("reset") !=-1 || next.indexOf("request-reset") !=-1){
+                        '';
+                    } else{
+                        $location.path('/login');
+                    }
                 }
                 if(angular.isDefined($localStorage.globals) && $localStorage.globals != null){
                     if($localStorage.globals.currentUser.userDetails.token == null){
-                        $location.path('/login');
+                        if($state.current.name == 'login.reset' || $state.current.name == 'login.request-reset' || next.indexOf("reset") !=-1 || next.indexOf("request-reset") !=-1){
+                            '';
+                        } else{
+                            $location.path('/login');
+                        }
                     }
                 }
             });
@@ -54,7 +65,7 @@ angular
                 'self',
                 'http://127.0.0.1:8090**'
             ]);
-            $urlRouterProvider.otherwise('/login');
+            //$urlRouterProvider.otherwise('/login');
 
             $stateProvider
                 .state('login', {
@@ -74,6 +85,53 @@ angular
                     }
                     , data: {
                         title: 'Login',
+                    }
+                })
+                .state('login.request-reset', {
+                    url         :'/request-reset'
+                    , templateUrl : '/modules/auth/views/login.request.reset.html'
+                    , controller  : 'RequestResetController'
+                    , controllerAs: 'rrCtrl'
+                    , resolve     : {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                {
+                                    files: ['modules/auth/css/login.css', 'modules/auth/controller.js']
+                                }]).then(function () {
+                                return $ocLazyLoad.load(['modules/auth/services.js']);
+                            });
+                        }]
+                    }
+                    , data: {
+                        title: 'Forgotten Password',
+                    }
+                })
+                .state('login.reset', {
+                    url         :'/reset/:h/:t'
+                    , templateUrl : '/modules/auth/views/login.reset.html'
+                    , controller  : 'NewPasswordController'
+                    , controllerAs: 'npCtrl'
+                    , resolve     : {
+                        validate :['DataService', '$stateParams', function(DataService, $stateParams) {
+                            return DataService.post('password/check', {h:$stateParams.h,t:$stateParams.t}, {})
+                                .then(function (response) {
+                                    return response.data;
+                                });
+                        }]
+                        , deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                {
+                                    files: [
+                                        'modules/auth/css/login.css'
+                                        , 'modules/auth/controller.js'
+                                    ]
+                                }]).then(function () {
+                                return $ocLazyLoad.load(['modules/auth/services.js']);
+                            });
+                        }]
+                    }
+                    , data: {
+                        title: 'Reset Password'
                     }
                 })
                 .state('app', {
