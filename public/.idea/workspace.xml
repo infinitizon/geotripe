@@ -2,21 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7ccbba7-fa03-4761-8a7a-bc057f5ccaef" name="Default" comment="made small changes a">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/auth/views/login.request.reset.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/auth/views/login.reset.html" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../Screen Shot 2016-07-22 at 5.01.55 PM.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../Screen Shot 2016-07-22 at 5.02.14 PM.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../Screen Shot 2016-07-22 at 5.02.27 PM.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../proposal 2.docx" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/reports/base/RFQ1.rptdesign" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/v1/index.php" afterPath="$PROJECT_DIR$/api/v1/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/auth/controller.js" afterPath="$PROJECT_DIR$/modules/auth/controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/auth/css/login.css" afterPath="$PROJECT_DIR$/modules/auth/css/login.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/auth/views/login.html" afterPath="$PROJECT_DIR$/modules/auth/views/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/common/services.js" afterPath="$PROJECT_DIR$/modules/common/services.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/common/views/header.html" afterPath="$PROJECT_DIR$/modules/common/views/header.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/auth/views/login.request.reset.html" afterPath="$PROJECT_DIR$/modules/auth/views/login.request.reset.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/auth/views/login.reset.html" afterPath="$PROJECT_DIR$/modules/auth/views/login.reset.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/base/RFQ.rptdesign" afterPath="$PROJECT_DIR$/reports/base/RFQ.rptdesign" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/app.config.router.js" afterPath="$PROJECT_DIR$/scripts/app.config.router.js" />
     </list>
     <ignored path="public.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,21 +48,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.config.router.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.config.router.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/app.config.router.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18518518">
+            <state vertical-scroll-proportion="-8.333333">
               <caret line="15" column="61" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.reset.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="login.reset.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/auth/views/login.reset.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.5064936">
-              <caret line="18" column="51" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.0862069">
+              <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.request.reset.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/auth/views/login.request.reset.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.625">
+              <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -75,8 +81,18 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/auth/views/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.75">
-              <caret line="6" column="48" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="48" />
+            <state vertical-scroll-proportion="-5.625">
+              <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/auth/css/login.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-18.75">
+              <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -154,16 +170,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.request.reset.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/auth/views/login.request.reset.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="22" selection-start-line="0" selection-start-column="22" selection-end-line="4" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="send_late_rfq_mail.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cron/send_late_rfq_mail.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -174,16 +180,6 @@
                 <marker date="1483100957000" expanded="true" signature="1242:1262" placeholder="UPDATE Mail " />
                 <marker date="1483100957000" expanded="true" signature="1387:1426" placeholder="UPDATE Mail " />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/common/services.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -209,7 +205,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/modules/common/directives/iz-dirs.js" />
         <option value="$PROJECT_DIR$/modules/setup/controllers/users.list.js" />
         <option value="$PROJECT_DIR$/scripts/app2.js" />
         <option value="$PROJECT_DIR$/modules/setup/views/clients.detail.html" />
@@ -252,14 +247,15 @@
         <option value="$PROJECT_DIR$/modules/logistics/views/templates/charge.edit.html" />
         <option value="$PROJECT_DIR$/modules/logistics/controllers/templates/charge.edit.js" />
         <option value="$PROJECT_DIR$/modules/auth/views/login.request.rest.html" />
-        <option value="$PROJECT_DIR$/modules/auth/views/login.html" />
         <option value="$PROJECT_DIR$/modules/common/services.js" />
-        <option value="$PROJECT_DIR$/modules/auth/views/login.request.reset.html" />
         <option value="$PROJECT_DIR$/scripts/app.config.router.js" />
-        <option value="$PROJECT_DIR$/modules/auth/views/login.reset.html" />
         <option value="$PROJECT_DIR$/modules/auth/controller.js" />
         <option value="$PROJECT_DIR$/api/v1/index.php" />
         <option value="$PROJECT_DIR$/modules/common/views/header.html" />
+        <option value="$PROJECT_DIR$/modules/auth/css/login.css" />
+        <option value="$PROJECT_DIR$/modules/auth/views/login.html" />
+        <option value="$PROJECT_DIR$/modules/auth/views/login.request.reset.html" />
+        <option value="$PROJECT_DIR$/modules/auth/views/login.reset.html" />
       </list>
     </option>
   </component>
@@ -470,6 +466,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="auth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1048,7 +1066,7 @@
       <workItem from="1486150927400" duration="9530000" />
       <workItem from="1486368775027" duration="1072000" />
       <workItem from="1486470916842" duration="2831000" />
-      <workItem from="1486543604924" duration="17139000" />
+      <workItem from="1486543604924" duration="20600000" />
     </task>
     <task id="LOCAL-00001" summary="PO wtout PO no cant save; Add new manufacturer name to list automatically">
       <created>1481753924119</created>
@@ -1096,11 +1114,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="361446000" />
+    <option name="totallyTimeSpent" value="364907000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="90" y="23" width="2166" height="1339" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1161,13 +1179,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/modules/reports/controllers/reports.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="23" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/home/views/profile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-28.916666">
@@ -1486,30 +1497,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/auth/views/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.75">
-          <caret line="6" column="48" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/auth/views/login.request.reset.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="22" selection-start-line="0" selection-start-column="22" selection-end-line="4" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/auth/controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="77" column="34" selection-start-line="77" selection-start-column="34" selection-end-line="77" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/v1/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.125">
@@ -1550,14 +1537,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/auth/views/login.reset.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.5064936">
-          <caret line="18" column="51" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/common/views/header.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-88.75">
@@ -1568,8 +1547,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/app.config.router.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18518518">
+        <state vertical-scroll-proportion="-8.333333">
           <caret line="15" column="61" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/auth/css/login.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.75">
+          <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/auth/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="77" column="34" selection-start-line="77" selection-start-column="34" selection-end-line="77" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/auth/views/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.625">
+          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/auth/views/login.request.reset.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.625">
+          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/auth/views/login.reset.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0862069">
+          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
           <folding />
         </state>
       </provider>

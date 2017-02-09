@@ -5,7 +5,7 @@
     </div>
     <p><h3><i class="fa fa-3x fa-key pull-right"></i>Reset Password</h3>Enter new password:</p>
 </div>
-<form name="form" ng-submit="npCtrl.reset()" role="form">
+<form autocomplete="off" name="form" ng-submit="npCtrl.reset()" role="form">
     <div class="form-group">
         <label class="sr-only" for="password">Enter New Password</label>
         <input type="password" id="password" class="form-control input-lg" placeholder="New Password..." ng-model="npCtrl.password" required />

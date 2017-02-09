@@ -21,7 +21,7 @@
     -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
 .loginForm .form-actions button.btn{
-    width: 30%;
+    min-width: 40%;
 }
 .loginForm input{
     font-size:0.9em; padding:0;
