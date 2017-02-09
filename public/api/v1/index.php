@@ -108,32 +108,41 @@ if($env['PATH_INFO']==="/password/changeRequest"){
         $stmtChkUsr->execute(array(":email" => $data->username));
         $user = $stmtChkUsr->fetchAll(PDO::FETCH_ASSOC);
         if (count($user) == 1) {
-            $time = time();
-            $mail = new PHPMailer();
+//            $dbo->beginTransaction();
+            $q_setRequest = "UPDATE Users SET requestReset=1 WHERE email=:email";
+            $r_setRequest = $dbo->prepare($q_setRequest);
+            if($r_setRequest->execute(array(":email" => $data->username))){
+                $time = time();
+                $mail = new PHPMailer();
 
-            $mail->IsSMTP();                                      // set mailer to use SMTP
-            $mail->Host = "mail.mrfreshservices.com";  // specify main and backup server
-            $mail->SMTPAuth = true;     // turn on SMTP authentication
-            $mail->Username = "mrfreshs";  // SMTP username
-            $mail->Password = "0phFdD14d4"; // SMTP password
+                $mail->IsSMTP();                                      // set mailer to use SMTP
+                $mail->Host = "mail.mrfreshservices.com";  // specify main and backup server
+                $mail->SMTPAuth = true;     // turn on SMTP authentication
+                $mail->Username = "mrfreshs";  // SMTP username
+                $mail->Password = "0phFdD14d4"; // SMTP password
 
-            $mail->From = "noreply@geoscape.com";
-            $mail->FromName = "Geoscape ERP";
-            $mail->AddAddress($user[0]['email']);
+                $mail->From = "noreply@geoscape.com";
+                $mail->FromName = "Geoscape ERP";
+                $mail->AddAddress($user[0]['email']);
 
-            $mail->WordWrap = 50;                                 // set word wrap to 50 characters
-            $mail->IsHTML(true);                                  // set email format to HTML
+                $mail->WordWrap = 50;                                 // set word wrap to 50 characters
+                $mail->IsHTML(true);                                  // set email format to HTML
 
-            $mail->Subject = "Forget Password";;
-            $password = "{$data->preURL}/reset/".md5($user[0]['user_id'].$user[0]['email'].$time)."/$time";
-            $mail->Body    = "Hi {$user[0]['lastname']}, {$user[0]['firstname']} <br/> <br/>You or someone else requested a password reset on the Geoscape ERP."
-                                ."<br><br>Click here to reset your password <a href='$password'>$password</a>.<br>Ignore this message if it wasn't you <br>--<br>Geoscape";
-            $mail->AltBody = "Hi {$user[0]['lastname']}, {$user[0]['firstname']} <br/> <br/>You or someone else requested a password on the Geoscape ERP."
-                ."<br><br>If this was you, Click here to reset your password <a href='$password'>$password</a>.<br/>Ignore this message if it wasn't you <br>--<br>Geoscape";
-            if(!$mail->Send()) {
-                $response = array("response" => "Failure", "message" => "Error sending mail: {$mail->ErrorInfo} \n Please contact admin");
+                $mail->Subject = "Forget Password";;
+                $password = "{$data->preURL}/reset/".md5($user[0]['user_id'].$user[0]['email'].$time)."/$time";
+                $mail->Body    = "Hi {$user[0]['lastname']}, {$user[0]['firstname']} <br/> <br/>You or someone else requested a password reset on the Geoscape ERP."
+                    ."<br><br>Click here to reset your password <a href='$password'>$password</a>.<br>Ignore this message if it wasn't you <br>--<br>Geoscape";
+                $mail->AltBody = "Hi {$user[0]['lastname']}, {$user[0]['firstname']} <br/> <br/>You or someone else requested a password on the Geoscape ERP."
+                    ."<br><br>If this was you, Click here to reset your password <a href='$password'>$password</a>.<br/>Ignore this message if it wasn't you <br>--<br>Geoscape";
+                if(!$mail->Send()) {
+//                    $dbo->rollBack();
+                    $response = array("response" => "Failure", "message" => "Error sending mail: {$mail->ErrorInfo} \n Please contact admin");
+                }else{
+//                    $dbo->commit();
+                    $response = array("response" => "Success", "message" => "Your password reset link send to your e-mail address.");
+                }
             }else{
-                $response = array("response" => "Success", "message" => "Your password reset link send to your e-mail address.");
+                $response = array("response" => "Failure", "message" => "Error experienced on the system database\n Please contact admin");
             }
         }elseif (count($user) > 1) {
             $response = array("response" => "Failure", "message" => "More than one record exists for your login.\nPlease contact admin");
@@ -147,18 +156,27 @@ if($env['PATH_INFO']==="/password/changeRequest"){
 }
 if($env['PATH_INFO']==="/password/check"){
     try {
-        $stmtChkUsr = "SELECT u.user_id, u.firstname, u.middlename, u.lastname, u.username, u.email, u.workphonenumber, u.contactphonenumber, u.password, u.pix
+        $now = time();
+        if(($now - $data->t) > 60*15){
+            $response = array("response" => "Failure", "message" => "Password token is expired");
+        }else{
+            $stmtChkUsr = "SELECT u.user_id, u.firstname, u.middlename, u.lastname, u.username, u.email, u.workphonenumber, u.requestReset, u.contactphonenumber, u.password, u.pix
                     FROM Users u
                     WHERE md5(CONCAT(u.user_id,u.email,{$data->t}))= '{$data->h}'";
-        $stmtChkUsr = $dbo->prepare($stmtChkUsr);
-        $stmtChkUsr->execute();
-        $user = $stmtChkUsr->fetchAll(PDO::FETCH_ASSOC);
-        if (count($user) == 1) {
-            $response = array("response" => "Success", "message" => "Found", "email" => $user[0]['email']);
-        }elseif (count($user) > 1) {
-            $response = array("response" => "Failure", "message" => "More than one record exists for your login.\nPlease contact admin");
-        }else {
-            $response = array("response" => "Failure", "message" => "Username does not exist");
+            $stmtChkUsr = $dbo->prepare($stmtChkUsr);
+            $stmtChkUsr->execute();
+            $user = $stmtChkUsr->fetchAll(PDO::FETCH_ASSOC);
+            if (count($user) == 1) {
+                if($user[0]['requestReset']==1){
+                    $response = array("response" => "Success", "message" => "Found", "email" => $user[0]['email']);
+                }else{
+                    $response = array("response" => "Failure", "message" => "Password token does not exist or is expired");
+                }
+            }elseif (count($user) > 1) {
+                $response = array("response" => "Failure", "message" => "More than one record exists for your login.\nPlease contact admin");
+            }else {
+                $response = array("response" => "Failure", "message" => "Username does not exist");
+            }
         }
     }catch(Exception $e){
         $response = array("response"=>"Failure","message"=>$e->getMessage());
@@ -174,7 +192,7 @@ if($env['PATH_INFO']==="/password/reset"){
         $stmtChkUsr->execute(array(":email" => $data->usr));
         $user = $stmtChkUsr->fetchAll(PDO::FETCH_ASSOC);
         if (count($user) == 1) {
-            $qryGivToken = "UPDATE Users SET password=:password WHERE email=:email";
+            $qryGivToken = "UPDATE Users SET password=:password, requestReset=0 WHERE email=:email";
             $qryGivToken = $dbo->prepare($qryGivToken);
             $qryGivToken->execute(array(":email" => $data->usr, ":password" => md5(base64_decode($data->pwd))));
             $response = array("response" => "Success", "message" => "Password reset successfully");

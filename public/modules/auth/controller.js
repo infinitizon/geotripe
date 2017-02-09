@@ -2,6 +2,7 @@ angular.module('Auth', [])
     .controller('LoginController', ['$scope', '$localStorage', '$state', 'AuthenticationService'
         , function ($scope, $localStorage, $state, AuthenticationService) {
             var vm = this;
+
             // reset login status
             AuthenticationService.ClearCredentials(function(response){
                 if(response.data.response==="Failure"){
@@ -37,14 +38,20 @@ angular.module('Auth', [])
                 vm.error = null;
             };
         }])
-    .controller('RequestResetController', ['$scope', 'DataService', 'WEB_ROOTS'
-        , function ($scope, DataService, WEB_ROOTS) {
+    .controller('RequestResetController', ['$scope', '$stateParams', 'DataService', 'WEB_ROOTS'
+        , function ($scope, $stateParams, DataService, WEB_ROOTS) {
             var vm = this;
+            if($stateParams.ev){
+                console.log($stateParams.ev)
+                vm.msg = {response:'Failure', message:$stateParams.ev};
+            }
             vm.reset = function(){
                 vm.dataLoading = true;
                 var data = {username:vm.username,preURL : WEB_ROOTS.PROTOCOL + "://"+ WEB_ROOTS.MAIN + ":" + WEB_ROOTS.PORT + "/#/login"};
                 //console.log(data); return;
-                DataService.post('password/changeRequest', data, {})
+                DataService.post('password/changeRequest', data, {
+                        headers: {'PHPSESSID': 11234}
+                })
                     .then(function (response) {
                         vm.dataLoading = false;
                         vm.msg = response.data;
@@ -55,9 +62,13 @@ angular.module('Auth', [])
             };
         }
     ])
-    .controller('NewPasswordController', ['$scope', 'Base64', 'DataService', 'validate'
-        , function ($scope, Base64, DataService, validate) {
+    .controller('NewPasswordController', ['$scope', '$state', 'Base64', 'DataService', 'validate'
+        , function ($scope, $state, Base64, DataService, validate) {
             var vm = this;
+
+            if(validate.response == 'Failure'){
+                $state.go('login.request-reset',{ev:validate.message});
+            }
 
             vm.reset = function(){
                 if(!vm.password || vm.password==''){
