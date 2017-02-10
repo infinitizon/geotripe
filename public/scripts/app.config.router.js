@@ -88,7 +88,7 @@ angular
                     }
                 })
                 .state('login.request-reset', {
-                    url         :'/request-reset:ev'
+                    url         :'/request-reset'
                     , templateUrl : '/modules/auth/views/login.request.reset.html'
                     , controller  : 'RequestResetController'
                     , controllerAs: 'rrCtrl'

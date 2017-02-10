@@ -105,6 +105,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         }
                     }
                     $q_str = "INSERT INTO Quote ";
+                    $q_str_cat = "INSERT INTO QuoteCat ";
                     $ins_fields = " (";
                     $ins_values = " VALUES (";
 
@@ -114,7 +115,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
 
                     foreach($r_fields as $fields) {
                         $fieldNm = strtolower($fields['Field']);
-                        if (strtolower(@$data->factObjects[0]->quote->$fieldNm)) {
+                            if (strtolower(@$data->factObjects[0]->quote->$fieldNm)) {
                             @$ins_fields .= " {$fields['Field']} ,";
                             $formatedVal = $fxns->_formatFieldValue($data->factObjects[0]->quote->$fieldNm, array('type'=>$fields['Type']))." ,";
                             @$ins_values .= $formatedVal;
@@ -124,10 +125,14 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                     $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
                     $ins_values = rtrim($ins_values,' ,');
                     $q_str_quote = $q_str .$ins_fields . ") " . $ins_values . ")";
+                    $q_str_quote_cat = $q_str_cat .$ins_fields . ", rolesToApprove) " . $ins_values . ", '{$data->factObjects[0]->quote->rolesToApprove}')";
 //echo $q_str_quote."\n";
+//echo $q_str_quote_cat; exit;
                     $r_str = $dbo->prepare($q_str_quote);
                     $r_str->execute();
                     $lastQuoteId = $dbo->lastInsertId();
+
+
                     if($_FILES){
                         $log_txt .=" Also inserted documents in the Document table with IDs ";
                         for($i=0; $i<count($_FILES['file']['name']); $i++ ){
@@ -197,6 +202,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         $q_str_logs .= "( {$user[0]['User_Id']}, 'QuoteDetail', :tblColKey, 'Line items for the Quote {$lastQuoteId}: ";
 
                         $q_str = "INSERT INTO QuoteDetail ";
+                        $q_str_cat = "INSERT INTO QuoteDetailCat ";
                         $ins_fields = " (Quote_quote_Id, ";
                         $ins_values = " VALUES ($lastQuoteId, ";
                         foreach($val as $col => $value){
@@ -207,10 +213,14 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
                         $ins_values = rtrim($ins_values,' ,');
                         $q_str_quoteDetail = $q_str .$ins_fields . ") " . $ins_values . ")";
+                        $q_str_quoteDetail_cat = $q_str_cat .$ins_fields . ") " . $ins_values . ")";
 //echo $q_str_quoteDetail."\n";
+echo $q_str_quoteDetail_cat; exit;
                         $r_str = $dbo->prepare($q_str_quoteDetail);
                         $r_str->execute();
                         $lastQuoteDetailId = $dbo->lastInsertId();
+                        $r_str_cat = $dbo->prepare($q_str_quoteDetail_cat);
+                        $r_str_cat->execute();
                         /**Running logs for Quotedetail*/
                         $q_str_logs .= $log_txt ."', NOW())";
 //echo $q_str_logs."\n";
@@ -259,24 +269,50 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                     }
                 }
                 $q_str_quotes = "UPDATE Quote SET ";
+                $q_str_quote_cat = "INSERT INTO QuoteCat ";
+                $ins_fields = " (quote_Id,"; $ins_values = " VALUES ({$data->factObjects[0]->quote->id},";
+
                 $inserts = "";
                 $q_str_logs = "INSERT INTO logs (users_user_id,log_table,log_table_key,log_changes,log_date) VALUES ";
                 $q_str_logs .= "( {$user[0]['User_Id']}, 'Quote', {$data->factObjects[0]->quote->id}, 'Updated Quote {$data->factObjects[0]->quote->id}: ";
                 $log_txt = '';
+                $onUpdt = "";
                 foreach ($r_fields as $fields) {
                     $fieldNm = strtolower($fields['Field']);
                     if (@$data->factObjects[0]->quote->$fieldNm) {
                         $inserts .= "{$fields['Field']} = ".$fxns->_formatFieldValue($data->factObjects[0]->quote->$fieldNm, array('type'=>$fields['Type'])).",";
+
+                        @$ins_fields .= " {$fields['Field']} ,";
+                        $formatedVal = $fxns->_formatFieldValue($data->factObjects[0]->quote->$fieldNm, array('type'=>$fields['Type']))." ,";
+                        @$ins_values .= $formatedVal;
+
                         $log_txt .= "{$fields['Field']}<=>{$data->factObjects[0]->quote->$fieldNm},";
+                        $onUpdt .=$fields['Field']."=VALUES({$fields['Field']}),";
                     }
                 }
                 $inserts = rtrim($inserts,',');
                 $q_str_quotes .= $inserts." WHERE $priKy={$data->factObjects[0]->quote->id}";
-//echo $q_str_quotes;
-                if($inserts != ""){
-                    $r_str = $dbo->prepare($q_str_quotes);
-                    $r_str->execute();
+                if(@$data->factObjects[0]->quote->role_to_approve){
+                    $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
+                    $ins_values = rtrim($ins_values,' ,');
+                    $q_str_quote_cat = $q_str_quote_cat .$ins_fields . ",po_is_approved, role_to_approve) " . $ins_values . ",'0', '{$data->factObjects[0]->quote->role_to_approve}')";
+
+//                    $q_str_quotes_cat .= $inserts.",po_is_approved=0,role_to_approve='{$data->factObjects[0]->quote->role_to_approve}' WHERE $priKy={$data->factObjects[0]->quote->id}";
                 }
+
+
+//echo $q_str_quotes;exit;
+
+                    if(@$data->factObjects[0]->quote->role_to_approve ){
+                        $onUpdt = rtrim($onUpdt,',');
+                        $q_str_quote_cat .= " ON DUPLICATE KEY UPDATE ".$onUpdt;
+//echo $q_str_quotes;echo $q_str_quote_cat;exit;
+                        $r_str = $dbo->prepare($q_str_quote_cat);
+                        $r_str->execute();
+                    }elseif($inserts != ""){
+                        $r_str = $dbo->prepare($q_str_quotes);
+                        $r_str->execute();
+                    }
                 if($_FILES){
                     $log_txt .=" Also inserted documents in the Document table with IDs ";
                     for($i=0; $i<count($_FILES['file']['name']); $i++ ){
@@ -320,22 +356,44 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                             $QuoteDetailFields = $r_QuoteDetailFields->fetchAll(PDO::FETCH_ASSOC);
 
                             $q_str_quoteDetail = "UPDATE QuoteDetail SET ";
+                            $q_str_quoteDetail_cat = "INSERT INTO QuoteDetailCat ";
+                            $ins_fields = " (Quote_Quote_Id ,QuoteDetail_Id ,"; $ins_values = " VALUES ({$data->factObjects[0]->quote->id},{$data->factObjects[0]->QuoteDetail[$key]->id},";
                             $inserts = "";
 
                             @$log .= "Updated {$data->factObjects[0]->QuoteDetail[$key]->id}: ";
+                            $onUpdt = "";
                             foreach ($r_fields as $fields) {
                                 $fieldNm = strtolower($fields['Field']);
                                 if (@$data->factObjects[0]->QuoteDetail[$key]->$fieldNm && $QuoteDetailFields[0][$fieldNm] != $data->factObjects[0]->QuoteDetail[$key]->$fieldNm) {
                                     $inserts .= "{$fields['Field']} = ".$fxns->_formatFieldValue($data->factObjects[0]->QuoteDetail[$key]->$fieldNm, array('type'=>$fields['Type']))." ,";
                                     $log .= "{$fields['Field']}<=>{$data->factObjects[0]->QuoteDetail[$key]->$fieldNm},";
+
+                                    $onUpdt .=$fields['Field']."=VALUES({$fields['Field']}),";
+                                    @$ins_fields .= " {$fields['Field']} ,";
+                                    $formatedVal = $fxns->_formatFieldValue($data->factObjects[0]->QuoteDetail[$key]->$fieldNm, array('type'=>$fields['Type']))." ,";
+                                    @$ins_values .= $formatedVal;
                                 }
                             }
                             $inserts = $fxns->_subStrAtDel($inserts, ' ,');
                             $q_str_quoteDetail .= $inserts." WHERE QuoteDetail_Id={$data->factObjects[0]->QuoteDetail[$key]->id}";
-//echo $q_str_quoteDetail;
-                            if($inserts != ""){
+                            if(@$data->factObjects[0]->quote->role_to_approve){
+                                $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
+                                $ins_values = rtrim($ins_values,' ,');
+                                $q_str_quoteDetail_cat = $q_str_quoteDetail_cat .$ins_fields . ",po_is_approved, role_to_approve) " . $ins_values . ",'0', '{$data->factObjects[0]->QuoteDetail[$key]->role_to_approve}')";
+                            }
+//echo $q_str_quoteDetail;echo $q_str_quoteDetail_cat;exit;
+                            if(@$data->factObjects[0]->quote->role_to_approve ){
+                                
+                                $onUpdt = rtrim($onUpdt,',');
+                                $q_str_quoteDetail_cat .= " ON DUPLICATE KEY UPDATE ".$onUpdt;
+throw new Exception($q_str_quoteDetail_cat);
+                                $r_str = $dbo->prepare($q_str_quoteDetail_cat);
+                                $r_str->execute();
+                            }elseif($inserts != "" && !isset($data->factObjects[0]->quote->role_to_approve)){
+//                                echo 'here';
                                 $r_str = $dbo->prepare($q_str_quoteDetail);
                                 $r_str->execute();
+//                                echo 'end';
                             }
                             $lastQuoteDetailId = $data->factObjects[0]->QuoteDetail[$key]->id;
                         }else{
@@ -351,7 +409,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                             $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
                             $ins_values = rtrim($ins_values,' ,');
                             $q_str_quoteDetail = $q_str .$ins_fields . ") " . $ins_values . ")";
-//echo $q_str_quoteDetail."\n";
+//echo $q_str_quoteDetail;exit;
                             $r_str = $dbo->prepare($q_str_quoteDetail);
                             $r_str->execute();
                             $lastQuoteDetailId = $dbo->lastInsertId();
@@ -411,9 +469,12 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         }
                     }
                     $log_txt = "...also inserted new PODetails ";
+//                    var_dump($data->factObjects[0]->PODetails);
                     foreach ($data->factObjects[0]->PODetails as $key => $val) {
                         $q_str_PODetails = "INSERT INTO PODetails ";
+                        $q_str_PODetails_cat = "INSERT INTO PODetailsCat ";
                         $ins_fields = " (Quote_quote_Id, ";
+                        $ins_fields_cat = " (Quote_quote_Id, ";
                         $ins_values = " VALUES ({$data->factObjects[0]->quote->id}, ";
                         $onUpdt = "";
                         @$log = "{$data->factObjects[0]->quote->id}: ";
@@ -430,10 +491,17 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
                         $onUpdt = rtrim($onUpdt,',');
                         $q_str_PODetails = $q_str_PODetails .$ins_fields . ") " . $ins_values . ")";
+                        $q_str_PODetails_cat = $q_str_PODetails_cat .$ins_fields . ",po_is_approved, role_to_approve) " . $ins_values . ",'0', '{$val->role_to_approve}')";
                         $q_str_PODetails .= " ON DUPLICATE KEY UPDATE Quote_quote_Id=VALUES(Quote_quote_Id),".$onUpdt;
-//echo $q_str_PODetails;
-                        $q_str_PODetails = $dbo->prepare($q_str_PODetails);
-                        $q_str_PODetails->execute();
+                        $q_str_PODetails_cat .= " ON DUPLICATE KEY UPDATE Quote_quote_Id=VALUES(Quote_quote_Id),".$onUpdt;
+//echo $q_str_PODetails;echo $q_str_PODetails_cat;exit;
+                        if(@$val->role_to_approve ){
+                            $r_str = $dbo->prepare($q_str_PODetails_cat);
+                            $r_str->execute();
+                        }else{
+                            $q_str_PODetails = $dbo->prepare($q_str_PODetails);
+                            $q_str_PODetails->execute();
+                        }
                     }
                     $log_txt .= $log;
                 }
@@ -447,7 +515,14 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
             $response = array("response" => "Success", "message" => "Record Saved Successfully", "data"=>$data);
         }catch(Exception $e){
             $dbo->rollBack();
-            $response = array("response"=>"Failure","message"=>$e->getMessage(),"token"=>$data->token);
+            switch($e->getCode()){
+                case 23000:
+                    $response = array("response"=>"Failure","message"=>"A pending approval seem to exist for this data","token"=>$data->token);
+                    break;
+                default:
+                    $response = array("response"=>"Failure","message"=>$e->getMessage(),"token"=>$data->token);
+
+            }
         }
 
     }

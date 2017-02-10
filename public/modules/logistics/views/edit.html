@@ -170,19 +170,19 @@
                                     </td>
                                     <td>{{ charge.po_no }}</td>
                                     <td>{{ charge.currency.code }} </td>
-                                    <td>{{ charge.wire_transfer_fee  }}</td>
-                                    <td>{{ charge.cost_of_certs }}</td>
-                                    <td>{{ charge.ground_freight }}</td>
-                                    <td>{{ charge.int_freight }}</td>
-                                    <td>{{ charge.packaging_cost }}</td>
-                                    <td>{{ charge.harzardous_cost }}</td>
-                                    <td>{{ charge.other_cost }}</td>
+                                    <td class="text-right">{{ charge.wire_transfer_fee}}</td>
+                                    <td class="text-right">{{ charge.cost_of_certs}}</td>
+                                    <td class="text-right">{{ charge.ground_freight}}</td>
+                                    <td class="text-right">{{ charge.int_freight}}</td>
+                                    <td class="text-right">{{ charge.packaging_cost}}</td>
+                                    <td class="text-right">{{ charge.harzardous_cost}}</td>
+                                    <td class="text-right">{{ charge.other_cost}}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </fieldset>
                 </div>
-            </div>{{"View :"+lgstEdt.lgstcView}}
+            </div>
             <div class="form-actions text-center" data-ng-if="lgstEdt.allowEdit">
                 <button class="btn btn-default" style="width:10%;" data-ng-click="$state.go(lgstEdt.lgstcView)"><i class="fa fa-arrow-left"></i> Cancel</button>
                 <button ng-click="lgstEdt.postData()"  data-ng-disabled="form.$invalid || lgstEdt.dataLoading || lgstEdt.isDisabled" style="width:10%;" class="btn btn-primary">Create PO</button>

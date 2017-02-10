@@ -353,21 +353,33 @@ blockquote p {
 }
 /* status indicator */
 .status {
-  position: absolute;
-  top: 0;
-  right: 0;
+  position: absolute;  top: 0;  right: 0;
   padding: 2px;
   text-align: center;
   overflow: hidden;
-  width: 10px;
-  height: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  width:15px;  height:15px;
+  -webkit-border-radius:50%;  -moz-border-radius:50%;  border-radius:50%;
   line-height: 0.245;
   border-width: 2px;
   border-style: solid;
 }
+.button {
+  color: white;
+  display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
+  position: relative; /* All 'absolute'ly positioned elements are relative to this one */
+}
+/* Make the badge float in the top right corner of the button */
+.button__badge {
+  background-color: #fa3e3e;
+  border-radius: 3px;
+  color: white;
+
+  padding:0 3px;
+  font-size: 10px;
+
+  position: absolute;  top: -7px;  left: 60%;
+}
+
 .header .status {
   top: 15px;
   right: 13px;
@@ -988,7 +1000,7 @@ blockquote p {
   font-size: 12px;
 }
 .main-panel > .header a > i.fa {
-  font-size: 14px;
+  /** font-size: 14px; Commented out so we can resize icons on header*/
 }
 .main-panel > .header .header-avatar {
   width: 32px;

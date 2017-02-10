@@ -199,6 +199,7 @@ angular.module('RFQ')
 
                             }else{
                                 vm.lineItems=tempLineItem;
+                                vm.originalLineItems = angular.copy(vm.lineItems);
                             }
                         });
                     });
@@ -614,6 +615,7 @@ angular.module('RFQ')
                     if(vm.quote.quote_id){
                         QuoteDetail.id =  vm.lineItems[key].id; //If we are editing then, we need to pass along the QuoteDetail id.
                         if(vm.originalLineItems){
+                            console.log(vm.originalLineItems)
                             angular.forEach(vm.originalLineItems[key].manus  , function(QuoteManufacturer, key2) {
                                 vm.originalLineItems4Db[key].manus[key2] = {party_party_id:QuoteManufacturer.party_id};
                             });

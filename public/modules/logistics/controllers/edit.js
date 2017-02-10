@@ -57,7 +57,7 @@ angular.module('Logistics')
 
             var data=angular.copy(CommonServices.postData);
             data.factName = 'Quote q, Party p, QuoteStatus qs, Currency c, Users u, Users uu';
-            data.transactionMetaData.responseDataProperties = 'q.quote_id&q.po_no&q.rfq_no&q.eventowner&p.name party_party_id&q.quote_status_id&qs.name quotestatus&c.code quote_currency_id&q.entrydate&q.publishdate&q.duedate&q.approvedate&u.firstname&q.description&q.quote_approvedby_id&q.specificationandrequirement&concat(IFNULL(uu.firstname,""), ", ",IFNULL(uu.middlename,"")," ",IFNULL(uu.lastname,""))users_user_id';
+            data.transactionMetaData.responseDataProperties = 'q.quote_id&q.po_no&q.rfq_no&q.eventowner&p.name party_party_id&q.quote_status_id&qs.name quotestatus&c.code quote_currency_id&q.entrydate&q.publishdate&q.duedate&q.approvedate&u.firstname&q.description&q.quote_approvedby_id&q.po_is_approved&q.specificationandrequirement&concat(IFNULL(uu.firstname,""), ", ",IFNULL(uu.middlename,"")," ",IFNULL(uu.lastname,""))users_user_id';
             data.transactionMetaData.queryMetaData.joinClause = {
                 'joinType':['JOIN','JOIN','JOIN','JOIN','LEFT JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_currency_id=c.currency_id','q.quote_enteredBy_id=u.user_id','q.users_user_id=uu.user_id']
             }
@@ -336,6 +336,7 @@ angular.module('Logistics')
                 data.append("transactionMetaData[currentLocale]", "NG");
                 data.append("transactionMetaData[queryStore]", "MySql");
                 if(vm.quote.quote_id){ // We are editing
+                    console.log(vm.quote)
                     vm.changedObjs = CommonServices.GetFormChanges(vm.originalQuoteData,vm.quote);
                     if(+vm.originalQuoteData.publishdate == +vm.quote.publishdate){
                         delete vm.changedObjs["publishdate"];
@@ -349,7 +350,9 @@ angular.module('Logistics')
                     vm.changedObjs['id'] = vm.quote.quote_id;
                     vm.changedObjs['po_no'] = vm.quote.po_no;
                     vm.changedObjs['po_is_split'] = vm.quote.po_is_split;
-
+                    if(!vm.quote.role_to_approve){
+                        vm.changedObjs['role_to_approve'] = '13072021,13072022';
+                    }
                     if( !angular.equals({}, vm.changedObjs) ){
                         data.append("factObjects[quote]", [JSON.stringify(vm.changedObjs)]);
                     }
@@ -369,11 +372,11 @@ angular.module('Logistics')
                         QuoteDetail.unitofmeasure = (vm.lineItems[key].unitofmeasure)?vm.lineItems[key].unitofmeasure.unitofmeasure_id:null;
                         QuoteDetail.unitprice = vm.lineItems[key].unitprice;
                         QuoteDetail.split_po_no = vm.lineItems[key].po_no;
+                        QuoteDetail.role_to_approve = '13072021,13072022';
 
                         QuoteDetail.unitofmeasure = (vm.lineItems[key].unitofmeasure)?vm.lineItems[key].unitofmeasure.unitofmeasure_id:null;
                         angular.forEach(vm.lineItems[key].manus  , function(QuoteManufacturer, key2) {
                             vm.lineItems4Db[key].manus[key2] = {party_party_id:QuoteManufacturer.party_id};
-                            //console.log(vm.lineItems4Db[key].manus[key2]);
                         });
 
                         QuoteDetail.id =  vm.lineItems[key].id; //If we are editing then, we need to pass along the QuoteDetail id.
@@ -391,15 +394,30 @@ angular.module('Logistics')
                 });
                 if(vm.lstOfcharges.length > 0){
                     var lstOfcharges = angular.copy(vm.lstOfcharges);
-                    angular.forEach(lstOfcharges  , function(loc) {
+                    var pos = [],results=[];
+                    angular.forEach(lstOfcharges, function(loc,key) {
                         delete loc.$$hashKey;
-                        loc.currency = loc.currency.currency_id;
+                        loc.currency ? loc.currency = loc.currency.currency_id : '' ;
+                        pos.push(loc.po_no);
+                        lstOfcharges[key]['role_to_approve'] = '13072021,13072022';
                     });
+                    var sorted_arr = pos.slice().sort();
+                    for (var i = 0; i < pos.length - 1; i++) {
+                        if (sorted_arr[i + 1] == sorted_arr[i]) {
+                            results.push(sorted_arr[i]);
+                        }
+                    }
+                    if(results.length > 0){
+                        vm.isDisabled = false; //Disable submit button
+                        vm.dataLoading = false; //Disable loading button
+                        alert('Error: Duplicate PO details found '+results.join(','));
+                        return;
+                    }
                     data.append("factObjects[PODetails]", [JSON.stringify(lstOfcharges)]);
                 }
                 if(noPoNo > 0){
                     vm.isDisabled = false; //Disable submit button
-                    vm.dataLoading = false; //Disable submit button
+                    vm.dataLoading = false; //Disable loading button
                     alert('Error: Some split PO numbers have not been entered');
                     return;
                 }

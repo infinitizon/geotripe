@@ -3,8 +3,8 @@
  */
 angular
     .module('Geotripe')
-    .controller('AppCtrl', ['$scope', '$http', '$localStorage',
-        function ($scope, $http, $localStorage) {
+    .controller('AppCtrl', ['$scope', '$http', '$localStorage', '$timeout'
+        , function ($scope, $http, $localStorage, $timeout) {
 
             $scope.mobileView = 767;
 
@@ -61,5 +61,14 @@ angular
             $scope.getRandomArbitrary = function () {
                 return Math.round(Math.random() * 100);
             };
+            function alerts() {
+                console.log('everysec')
+                $timeout(alerts, 1000);
+            }
+            alerts();
+            //$timeout(function(){
+            //    console.log('everysec')
+            //},1000)
         }
+
 ]);

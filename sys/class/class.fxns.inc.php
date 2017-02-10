@@ -74,6 +74,8 @@ class Functions extends DB_Connect {
         $rtnVal=null;
         if(strtolower(substr($options['type'],0,3))=="bit") {
             $rtnVal = str_replace("'","",$value);
+        }elseif(strtolower(substr($options['type'],0,7))=="decimal") {
+            $rtnVal = (float)$value;
         }elseif(strtolower($options['type'])=="datetime") {
             $timestamp = strtotime($value);
             $timestamp = date("Y-m-d H:i:s", $timestamp);

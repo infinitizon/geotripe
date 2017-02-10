@@ -25,8 +25,8 @@ angular.module('Logistics')
             }
             vm.charge = angular.copy(charge.charge);
             vm.index = angular.copy(charge.index);
+            vm.installs=[]
             if(vm.charge.noofinstallments>1){
-                vm.installs=[]
                 vm.installments=true;
                 var fromInstall = vm.charge.installments.split(',')
                 for(var i=0; i<fromInstall.length; i++){
@@ -45,8 +45,8 @@ angular.module('Logistics')
                 }
             }
             vm.updtCharges = function(){
+                var installment=[],installments='',total=0;
                 if(vm.installs.length > 0 && vm.installments){
-                    var installment=[],installments='',total=0;
                     angular.forEach(vm.installs,function(install){
                         var digits = +install.installment.replace(/\D/g,'');
                         total = total + digits;
