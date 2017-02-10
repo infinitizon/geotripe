@@ -52,7 +52,7 @@
     <a href="javascript:;" class="dropdown-toggle " dropdown-toggle>
       <div class="button" style="color: #CCC;">
         <i class="fa fa-bell-o fa-2x"></i>
-        <span class="button__badge animated bounce">4</span>
+        <span class=" animated bounce" data-ng-class="{'button__badge':notification.cnt_not>0}">{{notification.cnt_not>0?notification.cnt_not:''}}</span>
       </div>
     </a>
     <ul class="dropdown-menu notifications">

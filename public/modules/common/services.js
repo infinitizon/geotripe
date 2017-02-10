@@ -9,8 +9,8 @@ angular.module('Common')
     .factory("DataService", ['$http','$state','RemoteServiceBase',
         function ($http,$state,RemoteServiceBase) { // This service connects to our REST API
             var service = {};
-            service.get = function (q) {
-                return $http.get(RemoteServiceBase + q).then(function (results) {
+            service.get = function (q, config) {
+                return $http.get(RemoteServiceBase + q, config).then(function (results) {
                     if(results.data.message == -110011){
                         $state.go('login');
                     }

@@ -3,5 +3,6 @@ RewriteEngine On
 RewriteRule ^/?quote$ quote.php [NC,L]
 RewriteRule ^/?dashboard$ dashboard.php [NC,L]
 RewriteRule ^/?users$ user.php [NC,L]
+RewriteRule ^/?notification$ notification.php [NC,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ %{ENV:BASE}index.php [QSA,L]

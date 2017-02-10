@@ -383,10 +383,10 @@ echo $q_str_quoteDetail_cat; exit;
                             }
 //echo $q_str_quoteDetail;echo $q_str_quoteDetail_cat;exit;
                             if(@$data->factObjects[0]->quote->role_to_approve ){
-                                
+                                $onUpdt ="po_is_approved=VALUES({$fields['Field']}),".$onUpdt;
                                 $onUpdt = rtrim($onUpdt,',');
                                 $q_str_quoteDetail_cat .= " ON DUPLICATE KEY UPDATE ".$onUpdt;
-throw new Exception($q_str_quoteDetail_cat);
+//throw new Exception($q_str_quoteDetail_cat);
                                 $r_str = $dbo->prepare($q_str_quoteDetail_cat);
                                 $r_str->execute();
                             }elseif($inserts != "" && !isset($data->factObjects[0]->quote->role_to_approve)){
@@ -496,6 +496,7 @@ throw new Exception($q_str_quoteDetail_cat);
                         $q_str_PODetails_cat .= " ON DUPLICATE KEY UPDATE Quote_quote_Id=VALUES(Quote_quote_Id),".$onUpdt;
 //echo $q_str_PODetails;echo $q_str_PODetails_cat;exit;
                         if(@$val->role_to_approve ){
+//throw new Exception($q_str_PODetails_cat);
                             $r_str = $dbo->prepare($q_str_PODetails_cat);
                             $r_str->execute();
                         }else{
@@ -506,7 +507,6 @@ throw new Exception($q_str_quoteDetail_cat);
                     $log_txt .= $log;
                 }
                 $q_str_logs .= $log_txt ."', NOW())";
-//                throw new Exception($q_str_logs);
                 $r_str_logs = $dbo->prepare($q_str_logs);
                 $r_str_logs->execute();
             }

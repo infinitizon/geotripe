@@ -3,8 +3,8 @@
  */
 angular
     .module('Geotripe')
-    .controller('AppCtrl', ['$scope', '$http', '$localStorage', '$timeout'
-        , function ($scope, $http, $localStorage, $timeout) {
+    .controller('AppCtrl', ['$scope', '$http', '$localStorage', '$timeout', 'DataService', 'CommonServices'
+        , function ($scope, $http, $localStorage, $timeout, DataService, CommonServices) {
 
             $scope.mobileView = 767;
 
@@ -61,9 +61,18 @@ angular
             $scope.getRandomArbitrary = function () {
                 return Math.round(Math.random() * 100);
             };
+            var roles = [];
+            angular.forEach($localStorage.globals.currentUser.userDetails.authRoles, function(role){
+                roles.push(role.AuthRoles_Id);
+            })
             function alerts() {
-                console.log('everysec')
-                $timeout(alerts, 1000);
+                DataService.get('notification',{params:{not_cnt:1,roles:roles.join(','),token:$localStorage.globals.currentUser.userDetails.token}})
+                    .then( function (response) {
+                        if(response.data.success==true){
+                            $scope.notification = {cnt_not:response.data.total_count,data:response.data.data};
+                        }
+                });
+                $timeout(alerts, 5000);
             }
             alerts();
             //$timeout(function(){
