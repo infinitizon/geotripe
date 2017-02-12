@@ -1,10 +1,11 @@
 angular.module('Auth', [])
-    .controller('LoginController', ['$scope', '$localStorage', '$state', 'AuthenticationService'
-        , function ($scope, $localStorage, $state, AuthenticationService) {
+    .controller('LoginController', ['$scope', '$localStorage', '$state', '$interval', 'AuthenticationService', 'DataService'
+        , function ($scope, $localStorage, $state, $interval, AuthenticationService, DataService) {
             var vm = this;
 
             // reset login status
             AuthenticationService.ClearCredentials(function(response){
+                $interval.cancel($scope.stop);
                 if(response.data.response==="Failure"){
                     $state.go('app.home');
                 }
@@ -25,6 +26,22 @@ angular.module('Auth', [])
                         $scope.user.avatar = 'uploads/user/avatar.jpg';
 
                         $scope.app.pages = $localStorage.pages;
+
+                        var roles = [];
+                        angular.forEach($localStorage.globals.currentUser.userDetails.authRoles, function(role){
+                            roles.push(role.AuthRoles_Id);
+                        })
+                        $scope.alerts(roles.join(','), response.data.token);
+
+                        //stop = $interval(function() {
+                        //    DataService.get('notification',{params:{not_cnt:1,'roles':roles.join(','),'token':response.data.token}})
+                        //        .then( function (response) {
+                        //            if(response.data.success==true){
+                        //                $scope.notification.cnt_not = response.data.total_count;
+                        //                $scope.notification.data = response.data.data;
+                        //            }
+                        //        });
+                        //}, 1000);
 
                         $state.go('app.home');
                     } else {

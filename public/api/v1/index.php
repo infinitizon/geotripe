@@ -63,22 +63,21 @@ if($env['PATH_INFO']==="/login"){
                           ON ua.AuthRoles_AuthRoles_Id=ar.AuthRoles_Id
                         WHERE ua.Users_User_Id=".$user[0]['user_id']);
             //Get all pages for the app
-            $r_getPages = $dbo->query("SELECT av.authview_id, av.name, av.parent_id, av.viewpath, av.parentViewPath, av.description, av.css_class, av.roles FROM AuthView av");
+            $r_getPages = $dbo->query("SELECT av.authview_id, av.name, av.parent_id, av.viewpath, av.parentViewPath, av.description
+                                    , av.css_class, av.roles FROM AuthView av");
 //            // Create a multidimensional array to contain a list of items and parents
-
-            $menu = array('items' => array(), 'parents' => array());
+//            $menu = array('items' => array(), 'parents' => array());
 //            // Builds the array lists with data from the menu table
-            while ($items = $r_getPages->fetch(PDO::FETCH_ASSOC)) {
-                $menu['items'][$items['authview_id']] = $items;
-                $menu['parents'][$items['parent_id']][] = $items['authview_id'];
-
-            }
+//            while ($items = $r_getPages->fetch(PDO::FETCH_ASSOC)) {
+//                $menu['items'][$items['authview_id']] = $items;
+//                $menu['parents'][$items['parent_id']][] = $items['authview_id'];
+//            }
             $authRoles = $r_getRoles->fetchAll(PDO::FETCH_ASSOC);
-            $appPages = $fxns->_buildMenu(0, $menu, array('method' => "json")); //Same concept was used in getting authViews b4 it was commented
-            $appPages = json_decode($appPages);
+            $appPages = $r_getPages->fetchAll(PDO::FETCH_ASSOC);
+//            $appPages = $fxns->_buildMenu(0, $menu, array('method' => "json")); //Same concept was used in getting authViews b4 it was commented
+//            $appPages = json_decode($appPages);
             $response = array("response" => "Success", "token" => $token
             , "authDetails" => $user[0]
-//            , "authViews" => $authViews);
             , "authRoles" => $authRoles
             , "appPages" => $appPages);
             $usrnm = ($user[0]['username'])? $user[0]['username'] :$user[0]['email'];
@@ -290,7 +289,7 @@ if($env['PATH_INFO']==="/inboundService") {
                     }
                 }
 
-//echo $q_str;
+//echo $q_str;exit;
                 $q_str_tot_count = $dbo->query("SELECT COUNT(*) as `count` FROM (" . $q_str . ") t");
                 $r_str_tot_count = $q_str_tot_count->fetch(PDO::FETCH_ASSOC);
 
@@ -300,7 +299,7 @@ if($env['PATH_INFO']==="/inboundService") {
                     $q_str .= " LIMIT {$start},{$data->transactionMetaData->itemsPerPage}";
                 }
 
-//echo $q_str;
+//echo $q_str;exit;
                 $r_obj = $dbo->prepare($q_str);
                 $r_obj->execute(array());
                 while ($items = $r_obj->fetch(PDO::FETCH_ASSOC)) {

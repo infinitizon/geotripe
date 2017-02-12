@@ -215,7 +215,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         $q_str_quoteDetail = $q_str .$ins_fields . ") " . $ins_values . ")";
                         $q_str_quoteDetail_cat = $q_str_cat .$ins_fields . ") " . $ins_values . ")";
 //echo $q_str_quoteDetail."\n";
-echo $q_str_quoteDetail_cat; exit;
+//echo $q_str_quoteDetail_cat; exit;
                         $r_str = $dbo->prepare($q_str_quoteDetail);
                         $r_str->execute();
                         $lastQuoteDetailId = $dbo->lastInsertId();
@@ -285,7 +285,9 @@ echo $q_str_quoteDetail_cat; exit;
                         @$ins_fields .= " {$fields['Field']} ,";
                         $formatedVal = $fxns->_formatFieldValue($data->factObjects[0]->quote->$fieldNm, array('type'=>$fields['Type']))." ,";
                         @$ins_values .= $formatedVal;
-
+                        if ($fieldNm == 'po_no' && @$data->factObjects[0]->quote->role_to_approve) {
+                            $ins_fields .= "notes ,";$ins_values.="'Approve pending PO update' ,";
+                        }
                         $log_txt .= "{$fields['Field']}<=>{$data->factObjects[0]->quote->$fieldNm},";
                         $onUpdt .=$fields['Field']."=VALUES({$fields['Field']}),";
                     }
@@ -306,9 +308,10 @@ echo $q_str_quoteDetail_cat; exit;
                     if(@$data->factObjects[0]->quote->role_to_approve ){
                         $onUpdt = rtrim($onUpdt,',');
                         $q_str_quote_cat .= " ON DUPLICATE KEY UPDATE ".$onUpdt;
-//echo $q_str_quotes;echo $q_str_quote_cat;exit;
+//echo $q_str_quote_cat;exit;
                         $r_str = $dbo->prepare($q_str_quote_cat);
                         $r_str->execute();
+                        $lastQuoteCatId = $dbo->lastInsertId();
                     }elseif($inserts != ""){
                         $r_str = $dbo->prepare($q_str_quotes);
                         $r_str->execute();
@@ -357,7 +360,8 @@ echo $q_str_quoteDetail_cat; exit;
 
                             $q_str_quoteDetail = "UPDATE QuoteDetail SET ";
                             $q_str_quoteDetail_cat = "INSERT INTO QuoteDetailCat ";
-                            $ins_fields = " (Quote_Quote_Id ,QuoteDetail_Id ,"; $ins_values = " VALUES ({$data->factObjects[0]->quote->id},{$data->factObjects[0]->QuoteDetail[$key]->id},";
+                            $ins_fields = " (Quote_Quote_Id ,QuoteDetail_Id , quotecat_id ,";
+                            $ins_values = " VALUES ({$data->factObjects[0]->quote->id},{$data->factObjects[0]->QuoteDetail[$key]->id},$lastQuoteCatId ,";
                             $inserts = "";
 
                             @$log .= "Updated {$data->factObjects[0]->QuoteDetail[$key]->id}: ";
@@ -369,6 +373,7 @@ echo $q_str_quoteDetail_cat; exit;
                                     $log .= "{$fields['Field']}<=>{$data->factObjects[0]->QuoteDetail[$key]->$fieldNm},";
 
                                     $onUpdt .=$fields['Field']."=VALUES({$fields['Field']}),";
+
                                     @$ins_fields .= " {$fields['Field']} ,";
                                     $formatedVal = $fxns->_formatFieldValue($data->factObjects[0]->QuoteDetail[$key]->$fieldNm, array('type'=>$fields['Type']))." ,";
                                     @$ins_values .= $formatedVal;
@@ -381,12 +386,12 @@ echo $q_str_quoteDetail_cat; exit;
                                 $ins_values = rtrim($ins_values,' ,');
                                 $q_str_quoteDetail_cat = $q_str_quoteDetail_cat .$ins_fields . ",po_is_approved, role_to_approve) " . $ins_values . ",'0', '{$data->factObjects[0]->QuoteDetail[$key]->role_to_approve}')";
                             }
-//echo $q_str_quoteDetail;echo $q_str_quoteDetail_cat;exit;
+//echo $q_str_quoteDetail;
+//echo $q_str_quoteDetail_cat;exit;
                             if(@$data->factObjects[0]->quote->role_to_approve ){
-                                $onUpdt ="po_is_approved=VALUES({$fields['Field']}),".$onUpdt;
+                                $onUpdt ="po_is_approved=VALUES(po_is_approved),".$onUpdt;
                                 $onUpdt = rtrim($onUpdt,',');
                                 $q_str_quoteDetail_cat .= " ON DUPLICATE KEY UPDATE ".$onUpdt;
-//throw new Exception($q_str_quoteDetail_cat);
                                 $r_str = $dbo->prepare($q_str_quoteDetail_cat);
                                 $r_str->execute();
                             }elseif($inserts != "" && !isset($data->factObjects[0]->quote->role_to_approve)){
@@ -474,8 +479,7 @@ echo $q_str_quoteDetail_cat; exit;
                         $q_str_PODetails = "INSERT INTO PODetails ";
                         $q_str_PODetails_cat = "INSERT INTO PODetailsCat ";
                         $ins_fields = " (Quote_quote_Id, ";
-                        $ins_fields_cat = " (Quote_quote_Id, ";
-                        $ins_values = " VALUES ({$data->factObjects[0]->quote->id}, ";
+                        $ins_values = " VALUES ({$data->factObjects[0]->quote->id},";
                         $onUpdt = "";
                         @$log = "{$data->factObjects[0]->quote->id}: ";
                         foreach ($r_fields as $fields) {
@@ -491,10 +495,11 @@ echo $q_str_quoteDetail_cat; exit;
                         $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
                         $onUpdt = rtrim($onUpdt,',');
                         $q_str_PODetails = $q_str_PODetails .$ins_fields . ") " . $ins_values . ")";
-                        $q_str_PODetails_cat = $q_str_PODetails_cat .$ins_fields . ",po_is_approved, role_to_approve) " . $ins_values . ",'0', '{$val->role_to_approve}')";
+                        $q_str_PODetails_cat = $q_str_PODetails_cat .$ins_fields . ", quotecat_id,po_is_approved, role_to_approve) " . $ins_values . ", $lastQuoteCatId,'0', '{$val->role_to_approve}')";
                         $q_str_PODetails .= " ON DUPLICATE KEY UPDATE Quote_quote_Id=VALUES(Quote_quote_Id),".$onUpdt;
                         $q_str_PODetails_cat .= " ON DUPLICATE KEY UPDATE Quote_quote_Id=VALUES(Quote_quote_Id),".$onUpdt;
-//echo $q_str_PODetails;echo $q_str_PODetails_cat;exit;
+//echo $q_str_PODetails;
+//echo $q_str_PODetails_cat;exit;
                         if(@$val->role_to_approve ){
 //throw new Exception($q_str_PODetails_cat);
                             $r_str = $dbo->prepare($q_str_PODetails_cat);

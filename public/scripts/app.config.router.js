@@ -119,8 +119,7 @@ angular
                                 });
                         }]
                         , deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            return $ocLazyLoad.load([
-                                {
+                            return $ocLazyLoad.load([{
                                     files: [
                                         'modules/auth/css/login.css'
                                         , 'modules/auth/controller.js'
@@ -137,6 +136,29 @@ angular
                 .state('app', {
                     abstract: true
                     , templateUrl: 'modules/common/views/layout.html'
+                })
+                .state('app.notification', {
+                    url: '/notification'
+                    , template: '<div ui-view></div>'
+                    , abstract: true
+                })
+                .state('app.notification.po', {
+                    url: '/po:not_id'
+                    , templateUrl: 'modules/notification/views/po.html'
+                    , controller: 'NotificationController'
+                    , controllerAs: 'notCtrl'
+                    , resolve: {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load([{
+                                    files: ['modules/notification/controllers/notification.js']
+                                }]).then(function () {
+                                return $ocLazyLoad.load('modules/notification/controllers/po.js');
+                            });
+                        }]
+                    }
+                    , data: {
+                        title: 'Notification - PO',
+                    }
                 })
                 .state('app.home', {
                     url: '/home'

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="755167076">
+  <component name="DataSourceManagerImpl" format="xml" hash="4223491359">
     <data-source source="LOCAL" name="MySQL - geotripe@localhost" uuid="14559179-e102-438c-af62-2ee20b0f613c">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>

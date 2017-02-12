@@ -6,6 +6,7 @@ angular.module('Logistics')
         , function ($modalInstance, $localStorage, $modalInstance, $log, charge, DataService, CommonServices) {
             var vm = this;
 
+            vm.preventUpdate=false;
             vm.container={};
             CommonServices.postData.token = $localStorage.globals.currentUser.userDetails.token;
             vm.getLOVs = function(factName, selectScope, options) {
@@ -25,6 +26,9 @@ angular.module('Logistics')
             }
             vm.charge = angular.copy(charge.charge);
             vm.index = angular.copy(charge.index);
+            if(angular.isDefined(charge.preventUpdate)){
+                vm.preventUpdate = charge.preventUpdate;
+            }
             vm.installs=[]
             if(vm.charge.noofinstallments>1){
                 vm.installments=true;

@@ -81,6 +81,36 @@ try {
 
         $response = array("success" => true, "token" => $data->token, "total_count" => $q_notification_count['count'], "data" => @$r_response);
     }
+    if (@$data->transactionEventType == "UPDATEPO") {
+        $dbo->beginTransaction();
+            $q_fields = $dbo->query("DESCRIBE Quote");
+            $r_fields = $q_fields->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($r_fields as $fields) {
+                if ($fields['Key'] == 'PRI') {
+                    $priKy = $fields['Field'];
+                }
+            }
+            $inserts = "";$log_txt="";
+            $q_str_quotes = "UPDATE Quote SET ";
+            $q_str_quoteCat = "UPDATE QuoteCat SET ";
+            foreach ($r_fields as $fields) {
+                $fieldNm = strtolower($fields['Field']);
+                if (@$data->factObjects[0]->$fieldNm) {
+                    $inserts .= "{$fields['Field']} = ".$fxns->_formatFieldValue($data->factObjects[0]->$fieldNm, array('type'=>$fields['Type'])).",";
+
+                    $log_txt .= "{$fields['Field']}<=>{$data->factObjects[0]->$fieldNm},";
+                }
+            }
+            $inserts = rtrim($inserts,',');
+            $q_str_quotes .= $inserts." WHERE $priKy={$data->factObjects[0]->id}";
+            $q_str_quoteCat .= $inserts." WHERE $priKy={$data->factObjects[0]->id}"." AND quotecat_id={$data->factObjects[0]->quotecatId}";
+            $r_str = $dbo->prepare($q_str_quotes);
+            $r_str->execute();
+            $r_str = $dbo->prepare($q_str_quoteCat);
+            $r_str->execute();
+        $dbo->commit();
+        $response = array("success" => true,"token"=>$data->token);
+    }
     $response = json_encode($response);
     echo $response;
 }catch(Exception $e){

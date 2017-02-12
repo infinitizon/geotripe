@@ -30,9 +30,9 @@
     <i class="{{menu.css_class}}" data-ng-if="menu.css_class"></i>
     <span>{{ menu.name }}</span>
   </a>
-  <ul ng-if="menu.child" class="sub-menu">
-    <li ng-repeat="menu in menu.child" ng-init="$root.show(menu.roles, menu.authview_id)" ng-if="menu.viewpath != 'javascript:;'" ng-hide="!$root.container[menu.authview_id]" ng-include="'menuTree'" ui-sref-active="active" side-navigation=""></li>
-    <li ng-repeat="menu in menu.child" ng-init="$root.show(menu.roles, menu.authview_id)" ng-if="menu.viewpath == 'javascript:;'" ng-hide="!$root.container[menu.authview_id]" ng-include="'menuTree'" class="menu-accordion" data-ng-class="{open: $state.includes({{ '\'' + menu.parentViewPath + '\''}})}" side-navigation=""></li>
+  <ul ng-if="menu.children.length>0" class="sub-menu">
+    <li ng-repeat="menu in menu.children" ng-init="$root.show(menu.roles, menu.authview_id)" ng-if="menu.viewpath != 'javascript:;'" ng-hide="!$root.container[menu.authview_id]" ng-include="'menuTree'" ui-sref-active="active" side-navigation=""></li>
+    <li ng-repeat="menu in menu.children" ng-init="$root.show(menu.roles, menu.authview_id)" ng-if="menu.viewpath == 'javascript:;'" ng-hide="!$root.container[menu.authview_id]" ng-include="'menuTree'" class="menu-accordion" data-ng-class="{open: $state.includes({{ '\'' + menu.parentViewPath + '\''}})}" side-navigation=""></li>
   </ul>
 </script>
 <!-- /main navigation -->

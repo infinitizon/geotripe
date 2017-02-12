@@ -46,7 +46,6 @@
     </p>
   </li>
 </ul>
-
 <ul class="nav navbar-nav navbar-right hidden-xs">
   <li class="dropdown" dropdown>
     <a href="javascript:;" class="dropdown-toggle " dropdown-toggle>
@@ -57,42 +56,15 @@
     </a>
     <ul class="dropdown-menu notifications">
       <li class="notifications-header">
-        <p class="text-muted small">You have 3 new messages</p>
+        <p class="text-muted small">{{notification.cnt_not>0?"You have "+notification.cnt_not+" new message(s)":'No notifications'}}</p>
       </li>
       <li>
         <ul class="notifications-list">
-          <li>
-            <a href="javascript:;">
-              <span class="pull-left mt2 mr15">
-                <img data-ng-src="images/avatar.jpg" class="avatar avatar-xs img-circle" alt="">
-              </span>
+          <li data-ng-repeat="notes in notification.data">
+            <a ui-sref="app.notification.po({not_id: notes.quotecat_id})">
+              <div class="pull-left mt2 mr15"><i class="fa fa-info-circle"></i></div>
               <div class="overflow-hidden">
-                <span>Sean launched a new application</span>
-                <span class="time">2 seconds ago</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;">
-              <div class="pull-left mt2 mr15">
-                <div class="circle-icon bg-danger">
-                  <i class="fa fa-chain-broken"></i>
-                </div>
-              </div>
-              <div class="overflow-hidden">
-                <span>Removed chrome from app list</span>
-                <span class="time">4 Hours ago</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;">
-              <span class="pull-left mt2 mr15">
-                                <img data-ng-src="images/face3.jpg" class="avatar avatar-xs img-circle" alt="">
-                            </span>
-              <div class="overflow-hidden">
-                <span class="text-muted">Jack Hunt has registered</span>
-                <span class="time">9 hours ago</span>
+                <span>{{notes.notes}} - {{notes.po_no}}</span><!--<span class="time">4 Hours ago</span>-->
               </div>
             </a>
           </li>

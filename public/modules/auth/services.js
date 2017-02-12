@@ -4,9 +4,8 @@
  */
 
 angular.module('Auth')
-    .factory('AuthenticationService',
-            ['Base64', '$http', '$localStorage', '$rootScope', '$state', 'DataService',
-                function (Base64, $http, $localStorage, $rootScope, $state, DataService) {
+    .factory('AuthenticationService', ['Base64', '$http', '$localStorage', '$rootScope', '$state', '$interval', 'CommonServices', 'DataService'
+        ,function (Base64, $http, $localStorage, $rootScope, $state, $interval, CommonServices, DataService) {
             var service = {};
 
             service.Login = function (username, password, callback) {
@@ -24,7 +23,8 @@ angular.module('Auth')
                         "userDetails":details
                     }
                 };
-                $localStorage.pages = $localStorage.globals.currentUser.userDetails.appPages;
+                //$localStorage.pages = $localStorage.globals.currentUser.userDetails.appPages;
+                $localStorage.pages = CommonServices._buildMenu($localStorage.globals.currentUser.userDetails.appPages, {idKey:'authview_id',parentKey:'parent_id'});
             };
 
             service.ClearCredentials = function (callback) {
