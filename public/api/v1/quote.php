@@ -495,13 +495,21 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                         $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
                         $onUpdt = rtrim($onUpdt,',');
                         $q_str_PODetails = $q_str_PODetails .$ins_fields . ") " . $ins_values . ")";
-                        $q_str_PODetails_cat = $q_str_PODetails_cat .$ins_fields . ", quotecat_id,po_is_approved, role_to_approve) " . $ins_values . ", $lastQuoteCatId,'0', '{$val->role_to_approve}')";
                         $q_str_PODetails .= " ON DUPLICATE KEY UPDATE Quote_quote_Id=VALUES(Quote_quote_Id),".$onUpdt;
-                        $q_str_PODetails_cat .= " ON DUPLICATE KEY UPDATE Quote_quote_Id=VALUES(Quote_quote_Id),".$onUpdt;
 //echo $q_str_PODetails;
 //echo $q_str_PODetails_cat;exit;
                         if(@$val->role_to_approve ){
-//throw new Exception($q_str_PODetails_cat);
+                            if(!isset($val->$priKy)) {
+                                $q_str_PODetails = $dbo->prepare($q_str_PODetails);
+                                $q_str_PODetails->execute();
+                                $lastId = $dbo->lastInsertId();
+                                $q_str_PODetails_cat = $q_str_PODetails_cat .$ins_fields . ", quotecat_id,po_is_approved, role_to_approve, $priKy) " . $ins_values . ", $lastQuoteCatId,'0', '{$val->role_to_approve}', $lastId)";
+                                $q_str_PODetails_cat .= " ON DUPLICATE KEY UPDATE Quote_quote_Id=VALUES(Quote_quote_Id),".$onUpdt;
+                            }else{
+                                $q_str_PODetails_cat = $q_str_PODetails_cat .$ins_fields . ", quotecat_id,po_is_approved, role_to_approve) " . $ins_values . ", $lastQuoteCatId,'0', '{$val->role_to_approve}')";
+                                $q_str_PODetails_cat .= " ON DUPLICATE KEY UPDATE Quote_quote_Id=VALUES(Quote_quote_Id),".$onUpdt;
+                            }
+//                            throw new Exception($q_str_PODetails);
                             $r_str = $dbo->prepare($q_str_PODetails_cat);
                             $r_str->execute();
                         }else{
