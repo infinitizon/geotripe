@@ -23,6 +23,18 @@ angular.module('Logistics')
                 data.factName = 'Quote q, QuoteCat qc, Party p, QuoteStatus qs, Users u, QuoteDetail qd';
                 /** We could exclude weekends in datediff using the following
                  * SELECT (5 * (DATEDIFF('2016-08-31', '2016-08-01') DIV 7) + MID('0123444401233334012222340111123400012345001234550', 7 * WEEKDAY('2016-08-01') + WEEKDAY('2016-08-31') + 2, 1))
+                 *
+                 SELECT q.quote_id,q.rfq_no,p.name,CONCAT(LEFT(q.subject , 30),IF(LENGTH(q.subject)>30, "…", "")) subject
+                 ,CONCAT(IFNULL(u.lastname,""),", ",IFNULL(u.middlename,"")," ",IFNULL(u.firstname,""))enteredBy,qs.name status,COUNT(qc.po_is_approved) totalQuotes
+                 ,DATEDIFF(q.duedate,NOW())remDays,q.entrydate,MIN(qc.po_is_approved)
+                 FROM Quote q
+                 LEFT JOIN  QuoteCat qc ON q.quote_id=qc.quote_id
+                 JOIN  Party p ON q.Party_Party_Id=p.Party_Id
+                 JOIN  QuoteStatus qs ON q.Quote_Status_Id=qs.QuoteStatus_Id
+                 JOIN  Users u ON q.quote_enteredBy_id=u.user_id
+                 LEFT JOIN  QuoteDetail qd ON q.quote_Id=qd.Quote_quote_Id
+                 WHERE qc.po_is_approved IS NOT NULL AND mod(qc.po_is_approved, 2) = 1
+                 GROUP BY q.quote_Id
                  */
                 data.transactionMetaData.responseDataProperties = 'q.quote_id&q.rfq_no&p.name&CONCAT(LEFT(q.subject , 30),IF(LENGTH(q.subject)>30, "…", "")) subject&CONCAT(IFNULL(u.lastname,""),", ",IFNULL(u.middlename,"")," ",IFNULL(u.firstname,""))enteredBy&qs.name status&COUNT(qd.Quote_quote_Id) totalQuotes&DATEDIFF(q.duedate,NOW())remDays&q.entrydate&qc.po_is_approved'
                 data.transactionMetaData.pageno = pageno-1;
