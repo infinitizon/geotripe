@@ -142,6 +142,24 @@ angular
                     , template: '<div ui-view></div>'
                     , abstract: true
                 })
+                .state('app.notification.list', {
+                    url: '/notification.list'
+                    , templateUrl: 'modules/notification/views/notification.list.html'
+                    , controller: 'NotificationListController'
+                    , controllerAs: 'nlCtrl'
+                    , resolve: {
+                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load([{
+                                    files: ['modules/notification/controllers/notification.js']
+                                }]).then(function () {
+                                return $ocLazyLoad.load('modules/notification/controllers/notification.list.js');
+                            });
+                        }]
+                    }
+                    , data: {
+                        title: 'Notifications'
+                    }
+                })
                 .state('app.notification.po', {
                     url: '/po:not_id'
                     , templateUrl: 'modules/notification/views/po.html'

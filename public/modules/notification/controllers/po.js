@@ -2,8 +2,8 @@
  * Created by Abimbola on 2/11/2017.
  */
 angular.module('Notification')
-    .controller('NotificationController', ['$scope', '$stateParams', '$localStorage', '$filter', '$modal', 'DataService','CommonServices'
-        , function ($scope, $stateParams, $localStorage, $filter, $modal, DataService, CommonServices){
+    .controller('NotificationController', ['$scope', '$state', '$stateParams', '$localStorage', '$filter', '$modal', 'DataService','CommonServices'
+        , function ($scope, $state, $stateParams, $localStorage, $filter, $modal, DataService, CommonServices){
             var vm = this;
 
             vm.lineItems = []
@@ -204,7 +204,7 @@ angular.module('Notification')
                     data.factObjects = [changes];
                     DataService.post('notification', data).then(function (response) {
                         if(response.data.success==true){
-
+                            $state.go('app.notification.list');
                         }
                     });
                 }

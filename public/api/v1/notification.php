@@ -87,7 +87,7 @@ try {
             $r_fields = $q_fields->fetchAll(PDO::FETCH_ASSOC);
             foreach ($r_fields as $fields) {
                 if ($fields['Key'] == 'PRI') {
-                    $priKy = $fields['Field'];
+                    $QuotepriKy = $fields['Field'];
                 }
             }
             $inserts = "";$log_txt="";
@@ -102,12 +102,83 @@ try {
                 }
             }
             $inserts = rtrim($inserts,',');
-            $q_str_quotes .= $inserts." WHERE $priKy={$data->factObjects[0]->id}";
-            $q_str_quoteCat .= $inserts." WHERE $priKy={$data->factObjects[0]->id}"." AND quotecat_id={$data->factObjects[0]->quotecatId}";
+            $q_str_quotes .= $inserts." WHERE $QuotepriKy={$data->factObjects[0]->id}";
+            $q_str_quoteCat .= $inserts." WHERE $QuotepriKy={$data->factObjects[0]->id}"." AND quotecat_id={$data->factObjects[0]->quotecatId}";
             $r_str = $dbo->prepare($q_str_quotes);
             $r_str->execute();
             $r_str = $dbo->prepare($q_str_quoteCat);
             $r_str->execute();
+            if(isset($data->factObjects[0]->po_is_approved)){
+                if($data->factObjects[0]->po_is_approved == 1) { //PO is approved
+                    /* Update the Quote */
+                    $q_QuoteCatUpdt = $dbo->query("SELECT * FROM QuoteCat WHERE $QuotepriKy={$data->factObjects[0]->id}" . " AND quotecat_id={$data->factObjects[0]->quotecatId}");
+                    $r_QuoteCatUpdt = $q_QuoteCatUpdt->fetch(PDO::FETCH_ASSOC);
+                    $r_QuoteCatUpdt = array_change_key_case($r_QuoteCatUpdt, CASE_LOWER);
+                    $q_updtQuote = "UPDATE Quote SET ";
+                    foreach ($r_fields as $fields) {
+                        $fieldNm = strtolower($fields['Field']);
+                        if ($r_QuoteCatUpdt[$fieldNm] && $fields['Field'] != $QuotepriKy) {
+                            @$updtField .= "$fieldNm='{$r_QuoteCatUpdt[$fieldNm]}',";
+                        }
+                    }
+                    $updtField = rtrim($updtField, ',');
+                    $q_updtQuote .= $updtField . " WHERE $QuotepriKy={$data->factObjects[0]->id}";
+                    $r_str = $dbo->prepare($q_updtQuote);
+                    $r_str->execute();
+
+                    /* Update the QuoteDetail */
+                    $q_fields = $dbo->query("DESCRIBE QuoteDetail");
+                    $r_fields = $q_fields->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($r_fields as $fields) {
+                        if ($fields['Key'] == 'PRI') {
+                            $QuoteCatpriKy = $fields['Field'];
+                        }
+                    }
+                    $q_QuoteDetailCatUpdt = $dbo->query("SELECT * FROM QuoteDetailCat WHERE quote_quote_Id={$data->factObjects[0]->id}" . " AND quotecat_id={$data->factObjects[0]->quotecatId}");
+                    $q_QuoteDetailCatUpdt = $q_QuoteDetailCatUpdt->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($q_QuoteDetailCatUpdt as $QuoteDetailCat){
+                        $QuoteDetailCat = array_change_key_case($QuoteDetailCat, CASE_LOWER);
+                        $q_updtQuoteCat = "UPDATE QuoteDetail SET ";$updtField='';
+                        foreach ($r_fields as $fields) {
+                            $fieldNm = strtolower($fields['Field']);
+//                            echo $fieldNm;
+                            if ($QuoteDetailCat[$fieldNm] && $fields['Field'] != $QuoteCatpriKy) {
+                                $updtField .= "$fieldNm='{$QuoteDetailCat[$fieldNm]}',";
+                            }
+                        }
+                        $updtField = rtrim($updtField, ',');
+                        $q_updtQuoteCat .= $updtField . " WHERE $QuoteCatpriKy={$QuoteDetailCat[strtolower($QuoteCatpriKy)]}";
+                        $r_str = $dbo->prepare($q_updtQuoteCat);
+                        $r_str->execute();
+                    }
+
+                    /* Update the QuoteDetail */
+                    $q_fields = $dbo->query("DESCRIBE PODetails");
+                    $r_fields = $q_fields->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($r_fields as $fields) {
+                        if ($fields['Key'] == 'PRI') {
+                            $PODetailsPriKy = $fields['Field'];
+                        }
+                    }
+                    $q_PODetailsCatUpdt = $dbo->query("SELECT * FROM PODetailsCat WHERE quote_quote_Id={$data->factObjects[0]->id}" . " AND quotecat_id={$data->factObjects[0]->quotecatId}");
+                    $r_PODetailsCatUpdt = $q_PODetailsCatUpdt->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($r_PODetailsCatUpdt as $PODetailsCat){
+                        $PODetailsCat = array_change_key_case($PODetailsCat, CASE_LOWER);
+                        $q_updtPODetailsCat = "UPDATE PODetails SET ";$updtField='';
+                        foreach ($r_fields as $fields) {
+                            $fieldNm = strtolower($fields['Field']);
+//                            echo $fieldNm;
+                            if ($PODetailsCat[$fieldNm] && $fields['Field'] != $PODetailsPriKy) {
+                                $updtField .= "$fieldNm='{$PODetailsCat[$fieldNm]}',";
+                            }
+                        }
+                        $updtField = rtrim($updtField, ',');
+                        $q_updtPODetailsCat .= $updtField . " WHERE $PODetailsPriKy={$PODetailsCat[strtolower($PODetailsPriKy)]}";
+                        $r_str = $dbo->prepare($q_updtPODetailsCat);
+                        $r_str->execute();
+                    }
+                }
+            }
         $dbo->commit();
         $response = array("success" => true,"token"=>$data->token);
     }

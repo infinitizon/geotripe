@@ -312,7 +312,7 @@ if($env['PATH_INFO']==="/inboundService") {
                     $q_response[] = $items;
                 }
                 if(isset($q_getFiles_str)) {
-                    var_dump($q_getFiles_str);
+//                    var_dump($q_getFiles_str);
                     $r_getFiles_str = $dbo->prepare($q_getFiles_str);
                     $r_getFiles_str->execute();
                     $files = $r_getFiles_str->fetchAll(PDO::FETCH_ASSOC);
