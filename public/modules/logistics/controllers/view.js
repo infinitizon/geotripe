@@ -50,7 +50,7 @@ angular.module('Logistics')
                 }
                 data.transactionMetaData.groupingProperties.by = 'q.quote_Id';
                 DataService.post('inboundService', data).then(function (response) {
-                    vm.quotes = response.data.data;
+                    vm.quotes = response.data.data || [];
                     vm.total_count = response.data.total_count;
                     if(vm.total_count <= 0){
                         vm.quotesLoading = "No quotes found!";

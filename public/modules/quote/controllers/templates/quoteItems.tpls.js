@@ -2,8 +2,8 @@
  * Created by Abimbola on 1/19/2017.
  */
 angular.module('RFQ')
-.controller('quoteItemsController', ['$scope', '$modal', '$modalInstance', 'data', 'DataService', 'CommonServices',
-    function ($scope, $modal, $modalInstance,data,DataService,CommonServices)  {
+.controller('quoteItemsController', ['$scope', '$localStorage', '$modal', '$modalInstance', 'data', 'DataService', 'CommonServices',
+    function ($scope, $localStorage, $modal, $modalInstance,data,DataService,CommonServices)  {
         var vm = this;
         vm.insertingManu = false;
         vm.showNewManu = true;
@@ -29,7 +29,7 @@ angular.module('RFQ')
         vm.allowUpdate = function(){
             var i = 0;
             angular.forEach($localStorage.globals.currentUser.userDetails.authRoles  , function(authRole, key) {
-                if (quoteId && "RFQ_SUPERVISOR,RFQ_ADMIN,SUPPORT_ADMIN".indexOf(authRole.Name) >= 0){
+                if ( "RFQ_SUPERVISOR,RFQ_ADMIN,SUPPORT_ADMIN".indexOf(authRole.Name) >= 0){
                     i++;
                 }
             });

@@ -125,7 +125,7 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                     $ins_fields = $fxns->_subStrAtDel($ins_fields, ' ,');
                     $ins_values = rtrim($ins_values,' ,');
                     $q_str_quote = $q_str .$ins_fields . ") " . $ins_values . ")";
-                    $q_str_quote_cat = $q_str_cat .$ins_fields . ", rolesToApprove) " . $ins_values . ", '{$data->factObjects[0]->quote->rolesToApprove}')";
+//                    $q_str_quote_cat = $q_str_cat .$ins_fields . isset($data->factObjects[0]->quote->rolesToApprove)? ", rolesToApprove) ":")" . $ins_values . ", '{$data->factObjects[0]->quote->rolesToApprove}')";
 //echo $q_str_quote."\n";
 //echo $q_str_quote_cat; exit;
                     $r_str = $dbo->prepare($q_str_quote);
@@ -361,7 +361,9 @@ $token = isset($data->token)? $data->token : $token; //Get or Generate token
                             $q_str_quoteDetail = "UPDATE QuoteDetail SET ";
                             $q_str_quoteDetail_cat = "INSERT INTO QuoteDetailCat ";
                             $ins_fields = " (Quote_Quote_Id ,QuoteDetail_Id , quotecat_id ,";
-                            $ins_values = " VALUES ({$data->factObjects[0]->quote->id},{$data->factObjects[0]->QuoteDetail[$key]->id},$lastQuoteCatId ,";
+                            if(@$data->factObjects[0]->quote->role_to_approve ) {
+                                $ins_values = " VALUES ({$data->factObjects[0]->quote->id},{$data->factObjects[0]->QuoteDetail[$key]->id},$lastQuoteCatId ,";
+                            }
                             $inserts = "";
 
                             @$log .= "Updated {$data->factObjects[0]->QuoteDetail[$key]->id}: ";

@@ -41,7 +41,7 @@ angular.module('Logistics')
             }
 
             vm.createInstalls =function(){
-                if(confirm('Cnanging this value would clear existing installments.\n\nContnue?')){
+                if(confirm('Changing this value would clear existing installments.\n\nContnue?')){
                     vm.installs=[]
                     for(var i=0; i<vm.charge.noofinstallments; i++){
                         vm.installs.push({installment:null});

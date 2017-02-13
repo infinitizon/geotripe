@@ -6,7 +6,7 @@ angular.module('Logistics')
         , function ($scope, $rootScope, $localStorage, $state, $modal, DataService, CommonServices, $stateParams, $filter) {
             var vm = this;
 
-            vm.lgstcView=$localStorage.lgstcView;
+            vm.lgstcView=$localStorage.lgstcView; //app.logistics.view && app.logistics.list
             vm.lineItems = []
             vm.container = [];
             vm.disableClient = true;
@@ -56,14 +56,14 @@ angular.module('Logistics')
             };
 
             var data=angular.copy(CommonServices.postData);
-            data.factName = 'Quote q, Party p, QuoteStatus qs, Currency c, Users u, Users uu';
-            data.transactionMetaData.responseDataProperties = 'q.quote_id&q.po_no&q.rfq_no&q.eventowner&p.name party_party_id&q.quote_status_id&qs.name quotestatus&c.code quote_currency_id&q.entrydate&q.publishdate&q.duedate&q.approvedate&u.firstname&q.description&q.quote_approvedby_id&q.po_is_approved&q.specificationandrequirement&concat(IFNULL(uu.firstname,""), ", ",IFNULL(uu.middlename,"")," ",IFNULL(uu.lastname,""))users_user_id';
+            data.factName = 'Quote q, QuoteCat qc, Party p, QuoteStatus qs, Currency c, Users u, Users uu';
+            data.transactionMetaData.responseDataProperties = 'q.quote_id&q.po_no&q.rfq_no&q.eventowner&p.name party_party_id&q.quote_status_id&qs.name quotestatus&c.code quote_currency_id&q.entrydate&q.publishdate&q.duedate&q.approvedate&u.firstname&q.description&q.quote_approvedby_id&qc.po_is_approved&q.specificationandrequirement&concat(IFNULL(uu.firstname,""), ", ",IFNULL(uu.middlename,"")," ",IFNULL(uu.lastname,""))users_user_id';
             data.transactionMetaData.queryMetaData.joinClause = {
-                'joinType':['JOIN','JOIN','JOIN','JOIN','LEFT JOIN'],'joinKeys':['q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_currency_id=c.currency_id','q.quote_enteredBy_id=u.user_id','q.users_user_id=uu.user_id']
+                'joinType':['LEFT JOIN','JOIN','JOIN','JOIN','JOIN','LEFT JOIN'],'joinKeys':['q.quote_id=qc.quote_id','q.Party_Party_Id=p.Party_Id','q.Quote_Status_Id=qs.QuoteStatus_Id','q.quote_currency_id=c.currency_id','q.quote_enteredBy_id=u.user_id','q.users_user_id=uu.user_id']
             }
             data.transactionMetaData.queryMetaData.queryClause.andExpression = [
                 {
-                    "propertyName": "quote_id",
+                    "propertyName": "q.quote_id",
                     "propertyValue": $stateParams.rfq_id,
                     "propertyDataType": "BIGINT",
                     "operatorType": "="
