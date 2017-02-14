@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a7ccbba7-fa03-4761-8a7a-bc057f5ccaef" name="Default" comment="made small changes a">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/logistics/controllers/view.js" afterPath="$PROJECT_DIR$/modules/logistics/controllers/view.js" />
-    </list>
+    <list default="true" id="a7ccbba7-fa03-4761-8a7a-bc057f5ccaef" name="Default" comment="made small changes a" />
     <ignored path="public.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -175,8 +173,8 @@
       <file leaf-file-name="view.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/logistics/controllers/view.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42892158">
-              <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.5882353">
+              <caret line="49" column="23" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -1333,7 +1331,7 @@
       <workItem from="1486930668465" duration="9932000" />
       <workItem from="1486970467731" duration="9925000" />
       <workItem from="1486988636681" duration="5330000" />
-      <workItem from="1487004486808" duration="4305000" />
+      <workItem from="1487004486808" duration="4458000" />
     </task>
     <task id="LOCAL-00001" summary="PO wtout PO no cant save; Add new manufacturer name to list automatically">
       <created>1481753924119</created>
@@ -1387,7 +1385,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="478477000" />
+    <option name="totallyTimeSpent" value="478630000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="150" y="23" width="2139" height="1342" extended-state="0" />
@@ -1914,8 +1912,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/logistics/controllers/view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42892158">
-          <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.5882353">
+          <caret line="49" column="23" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="23" />
           <folding />
         </state>
       </provider>
