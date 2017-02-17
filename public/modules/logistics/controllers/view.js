@@ -43,9 +43,9 @@ angular.module('Logistics')
                     //{
                     //    "propertyName": "q.po_no", "propertyValue": 'NULL', "propertyDataType": "VARCHAR", "operatorType": "IS NOT"
                     //}
-                    //,{
-                    //    "propertyName": "qd.quote_is_po", "propertyValue": '1', "propertyDataType": "VARCHAR", "operatorType": "="
-                    //}
+                    {
+                        "propertyName": "qc.created", "propertyValue": '(SELECT MAX(created) FROM QuoteCat WHERE quote_id=q.quote_id)', "propertyDataType": "VARCHAR", "operatorType": "="
+                    },
                     {
                         "propertyName": "qc.po_is_approved", "propertyValue": 'NULL', "propertyDataType": "VARCHAR", "operatorType": "IS NOT"
                     }

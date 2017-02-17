@@ -17,6 +17,8 @@ angular.module('Notification')
                     .then( function (response) {
                         if(response.data.success==true){
                             vm.notifications = response.data.data;
+                            vm.notifications.created = new Date(vm.notifications.created).toISOString();
+                            console.log(vm.notifications.created)
                             vm.total_count = response.data.total_count;
                             if(vm.total_count <= 0){
                                 vm.dataLoading = "No Notifications yet!";

@@ -69,6 +69,14 @@ angular.module('Logistics')
                     "operatorType": "="
                 }
             ];
+            if(vm.lgstcView =='app.logistics.view'){
+                data.transactionMetaData.queryMetaData.queryClause.andExpression.push({
+                    "propertyName": "qc.created",
+                    "propertyValue": '(SELECT MAX(created) FROM QuoteCat WHERE quote_id=q.quote_id)',
+                    "propertyDataType": "BIGINT",
+                    "operatorType": "="
+                })
+            }
             DataService.post('inboundService', data).then(function (response) {
                 vm.quote = response.data.data[0];
 
@@ -103,7 +111,7 @@ angular.module('Logistics')
             data.factName = 'QuoteDetail qd, UnitOfMeasure uom, QuoteDetail_Manufacturer qdm';
             data.transactionMetaData.responseDataProperties = "qd.quotedetail_id&qd.quote_is_po&qd.split_po_no&qd.quote_quote_id&qd.quantity&qd.partno_modelno&qd.description&qd.oem_description&unitprice&group_concat(qdm.Party_Party_Id)Party_Party_Id&concat('{"+'"unitofmeasure_id":"'+"',uom.unitofmeasure_id,'"+'","name":"'+"',uom.name,'"+'"}'+"')unitofmeasure&qd.crossrrate&qd.unit_price_usd&qd.mfr_total&qd.certOfOrigin&qd.weight&qd.g_f&qd.packaging&qd.int_f&qd.ins&qd.cif&qd.custom&qd.surch&qd.ciss&qd.etls&qd.vat&qd.nafdac_soncap&qd.clearing&qd.sub_total&qd.goods_in_transit&qd.lt_onne&qd.bch&qd.f_r&qd.cof&qd.total1&qd.mk_up&qd.nlcf&qd.total3&qd.u_p";
             data.transactionMetaData.queryMetaData.joinClause = {
-                'joinType':['LEFT JOIN','JOIN'],'joinKeys':['qd.unitofmeasure=uom.unitofmeasure_id','qd.QuoteDetail_Id=qdm.QuoteDetail_QuoteDetail_Id']
+                'joinType':['LEFT JOIN','LEFT JOIN'],'joinKeys':['qd.unitofmeasure=uom.unitofmeasure_id','qd.QuoteDetail_Id=qdm.QuoteDetail_QuoteDetail_Id']
             }
             data.transactionMetaData.queryMetaData.queryClause.andExpression = [
                 {
