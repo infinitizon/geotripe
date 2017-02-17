@@ -1,0 +1,2707 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.2.v201410272105 Build &lt;4.4.2.v20150217-1805></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">72</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">library/rptPortrait.rptlibrary</property>
+            <property name="namespace">rptPortrait</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="po_id" id="1145">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">%</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="split_po_no" id="1146">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">%</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="MySql_Ds" id="4212">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://127.0.0.1/geotripe</property>
+            <property name="odaUser">root</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="po_ds" id="8">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">quote_Id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">quote_Id</text-property>
+                    <text-property name="heading">quote_Id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">rfq_no</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">rfq_no</text-property>
+                    <text-property name="heading">rfq_no</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">po_no</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">po_no</text-property>
+                    <text-property name="heading">po_no</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">split_po_no</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">split_po_no</text-property>
+                    <text-property name="heading">split_po_no</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">partno_modelno</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">partno_modelno</text-property>
+                    <text-property name="heading">partno_modelno</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">description</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">description</text-property>
+                    <text-property name="heading">description</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">oem_description</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">oem_description</text-property>
+                    <text-property name="heading">oem_description</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">final_desc</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">final_desc</text-property>
+                    <text-property name="heading">final_desc</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">quantity</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">quantity</text-property>
+                    <text-property name="heading">quantity</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">unitofmeasure</text-property>
+                    <text-property name="heading">unitofmeasure</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">unitprice</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">unitprice</text-property>
+                    <text-property name="heading">unitprice</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">extAmt</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">extAmt</text-property>
+                    <text-property name="heading">extAmt</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">po_no</property>
+                    <property name="paramName">po_id</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">split_po_no</property>
+                    <property name="paramName">split_po_no</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">quote_Id</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">rfq_no</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">po_no</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">split_po_no</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">partno_modelno</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">description</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">oem_description</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">final_desc</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">quantity</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">unitofmeasure</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">unitprice</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">extAmt</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">MySql_Ds</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">quote_Id</property>
+                    <property name="nativeName">quote_Id</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">rfq_no</property>
+                    <property name="nativeName">rfq_no</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">po_no</property>
+                    <property name="nativeName">po_no</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">split_po_no</property>
+                    <property name="nativeName">split_po_no</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">partno_modelno</property>
+                    <property name="nativeName">partno_modelno</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">description</property>
+                    <property name="nativeName">description</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">oem_description</property>
+                    <property name="nativeName">oem_description</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">final_desc</property>
+                    <property name="nativeName">final_desc</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">quantity</property>
+                    <property name="nativeName">quantity</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">Name</property>
+                    <property name="nativeName">Name</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">unitprice</property>
+                    <property name="nativeName">unitprice</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">extAmt</property>
+                    <property name="nativeName">extAmt</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT q.quote_Id, q.rfq_no, q.po_no, qd.split_po_no, qd.partno_modelno
+	, qd.description, qd.oem_description
+	, (CASE WHEN qd.oem_description IS NULL OR qd.oem_description = '' THEN qd.description ELSE qd.oem_description END) 'final_desc' 
+	, qd.quantity, (uom.name) unitofmeasure, qd.unitprice, (qd.quantity*qd.unitprice) extAmt
+FROM Quote q
+JOIN QuoteDetail qd
+	ON q.quote_id=qd.Quote_quote_Id
+LEFT JOIN unitofmeasure uom
+	ON qd.unitofmeasure = uom.unitofmeasure_id
+WHERE qd.quote_is_po=1
+	AND IFNULL(q.po_no,1) LIKE ?
+	AND IFNULL(qd.split_po_no,1) LIKE ?;
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>quote_Id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>quote_Id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>quote_Id</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>rfq_no</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>rfq_no</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>rfq_no</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>po_no</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>po_no</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>po_no</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>partno_modelno</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>partno_modelno</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>partno_modelno</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>description</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>500</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>description</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>description</design:label>
+            <design:formattingHints>
+              <design:displaySize>500</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>oem_description</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>500</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>oem_description</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>oem_description</design:label>
+            <design:formattingHints>
+              <design:displaySize>500</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>quantity</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>quantity</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>quantity</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>unitofmeasure</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>unitofmeasure</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>unitofmeasure</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>unitprice</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>unitprice</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>unitprice</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>extAmt</design:name>
+              <design:position>10</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>29</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>extAmt</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>extAmt</design:label>
+            <design:formattingHints>
+              <design:displaySize>31</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="po_detail_ds" id="4264">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">po_no</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">po_no</text-property>
+                    <text-property name="heading">po_no</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Quote_quote_Id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Quote_quote_Id</text-property>
+                    <text-property name="heading">Quote_quote_Id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">currency</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">currency</text-property>
+                    <text-property name="heading">currency</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">wire_transfer_fee</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">wire_transfer_fee</text-property>
+                    <text-property name="heading">wire_transfer_fee</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cost_of_certs</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">cost_of_certs</text-property>
+                    <text-property name="heading">cost_of_certs</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ground_freight</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">ground_freight</text-property>
+                    <text-property name="heading">ground_freight</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">int_freight</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">int_freight</text-property>
+                    <text-property name="heading">int_freight</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">packaging_cost</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">packaging_cost</text-property>
+                    <text-property name="heading">packaging_cost</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">harzardous_cost</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">harzardous_cost</text-property>
+                    <text-property name="heading">harzardous_cost</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">other_cost</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">other_cost</text-property>
+                    <text-property name="heading">other_cost</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">po_no</property>
+                    <property name="paramName">po_id</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">split_po_no</property>
+                    <property name="paramName">split_po_no</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">po_no</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Quote_quote_Id</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">currency</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">wire_transfer_fee</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">cost_of_certs</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">ground_freight</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">int_freight</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">packaging_cost</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">harzardous_cost</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">other_cost</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">MySql_Ds</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">po_no</property>
+                    <property name="nativeName">po_no</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Quote_quote_Id</property>
+                    <property name="nativeName">Quote_quote_Id</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">currency</property>
+                    <property name="nativeName">currency</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">wire_transfer_fee</property>
+                    <property name="nativeName">wire_transfer_fee</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">cost_of_certs</property>
+                    <property name="nativeName">cost_of_certs</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">ground_freight</property>
+                    <property name="nativeName">ground_freight</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">int_freight</property>
+                    <property name="nativeName">int_freight</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">packaging_cost</property>
+                    <property name="nativeName">packaging_cost</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">harzardous_cost</property>
+                    <property name="nativeName">harzardous_cost</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">other_cost</property>
+                    <property name="nativeName">other_cost</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select *  
+from PODetails pod
+where IFNULL(pod.po_no,1) LIKE ? 
+	OR IFNULL(pod.po_no,1) LIKE ?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>po_no</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>po_no</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>po_no</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Quote_quote_Id</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Quote_quote_Id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Quote_quote_Id</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>currency</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>currency</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>currency</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>wire_transfer_fee</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>wire_transfer_fee</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>wire_transfer_fee</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cost_of_certs</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cost_of_certs</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cost_of_certs</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ground_freight</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ground_freight</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ground_freight</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>int_freight</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>int_freight</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>int_freight</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>packaging_cost</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>packaging_cost</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>packaging_cost</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>harzardous_cost</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>harzardous_cost</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>harzardous_cost</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>other_cost</design:name>
+              <design:position>10</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>other_cost</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>other_cost</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="alternatingRows" id="52">
+            <property name="backgroundColor">#EEECED</property>
+            <property name="paddingTop">1.1pt</property>
+            <property name="paddingBottom">1.1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2"/>
+    </page-setup>
+    <body>
+        <list id="9">
+            <property name="fontSize">8pt</property>
+            <property name="dataSet">po_ds</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">quote_Id</property>
+                    <text-property name="displayName">quote_Id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["quote_Id"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">rfq_no</property>
+                    <text-property name="displayName">rfq_no</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["rfq_no"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">po_no</property>
+                    <text-property name="displayName">po_no</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["po_no"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">partno_modelno</property>
+                    <text-property name="displayName">partno_modelno</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["partno_modelno"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">description</property>
+                    <text-property name="displayName">description</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["description"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">oem_description</property>
+                    <text-property name="displayName">oem_description</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["oem_description"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">final_desc</property>
+                    <text-property name="displayName">final_desc</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["final_desc"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">quantity</property>
+                    <text-property name="displayName">quantity</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["quantity"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">Name</property>
+                    <text-property name="displayName">unitofmeasure</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">unitprice</property>
+                    <text-property name="displayName">unitprice</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["unitprice"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">extAmt</property>
+                    <text-property name="displayName">extAmt</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["extAmt"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <header>
+                <grid id="95">
+                    <property name="width">100%</property>
+                    <column id="96">
+                        <property name="width">4.277777777777778in</property>
+                    </column>
+                    <column id="97">
+                        <property name="width">3.4583333333333335in</property>
+                    </column>
+                    <row id="98">
+                        <cell id="99">
+                            <grid id="552">
+                                <property name="width">4.180555555555555in</property>
+                                <column id="553">
+                                    <property name="width">2.375in</property>
+                                </column>
+                                <column id="554">
+                                    <property name="width">1.8055555555555556in</property>
+                                </column>
+                                <row id="555">
+                                    <cell id="556">
+                                        <property name="colSpan">1</property>
+                                        <property name="rowSpan">3</property>
+                                        <image name="Company Logo1" id="1136">
+                                            <list-property name="userProperties">
+                                                <structure>
+                                                    <property name="name">BusinessUnit</property>
+                                                    <property name="type">string</property>
+                                                </structure>
+                                            </list-property>
+                                            <property name="height">46px</property>
+                                            <property name="width">140px</property>
+                                            <property name="source">file</property>
+                                            <expression name="uri" type="javascript">'../library/images/geoscape-logo.png'</expression>
+                                        </image>
+                                    </cell>
+                                    <cell id="557"/>
+                                </row>
+                                <row id="558">
+                                    <cell id="560"/>
+                                </row>
+                                <row id="561">
+                                    <cell id="563"/>
+                                </row>
+                                <row id="4259">
+                                    <cell id="4260">
+                                        <text id="4262">
+                                            <property name="textAlign">left</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[&amp;nbsp;]]></text-property>
+                                        </text>
+                                    </cell>
+                                    <cell id="4261"/>
+                                </row>
+                                <row id="1140">
+                                    <property name="backgroundColor">gray</property>
+                                    <cell id="1141">
+                                        <text id="1143">
+                                            <property name="fontSize">6pt</property>
+                                            <property name="textAlign">left</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[&amp;nbsp;]]></text-property>
+                                        </text>
+                                    </cell>
+                                    <cell id="1142"/>
+                                </row>
+                                <row id="1137">
+                                    <cell id="1138">
+                                        <property name="colSpan">2</property>
+                                        <property name="rowSpan">1</property>
+                                        <text id="551">
+                                            <property name="fontSize">6pt</property>
+                                            <property name="textAlign">left</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[<div style="line-height:11px; text-transform:uppercase;">2B MANUWA STREET, OFF KEFFI STREET, S.W. IKOYI, LAGOS, NIGERIA<br>
+TEL: +234 1 453 3921<br>WWW.GEOSCAPELTD.COM | ADMIN@GEOSCAPELTD.COM</div>]]></text-property>
+                                        </text>
+                                    </cell>
+                                </row>
+                            </grid>
+                        </cell>
+                        <cell id="100">
+                            <grid id="107">
+                                <column id="108">
+                                    <property name="textAlign">left</property>
+                                </column>
+                                <column id="109"/>
+                                <row id="110">
+                                    <cell id="111">
+                                        <property name="colSpan">2</property>
+                                        <property name="rowSpan">1</property>
+                                        <text id="128">
+                                            <property name="backgroundColor">gray</property>
+                                            <property name="textAlign">center</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[PURCHASE ORDER]]></text-property>
+                                        </text>
+                                    </cell>
+                                </row>
+                                <row id="113">
+                                    <cell id="114">
+                                        <text id="129">
+                                            <property name="textAlign">left</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[P.O. NUMBER:]]></text-property>
+                                        </text>
+                                    </cell>
+                                    <cell id="115"/>
+                                </row>
+                                <row id="116">
+                                    <cell id="117">
+                                        <text id="130">
+                                            <property name="textAlign">left</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[P.O. DATE:]]></text-property>
+                                        </text>
+                                    </cell>
+                                    <cell id="118"/>
+                                </row>
+                                <row id="119">
+                                    <cell id="120">
+                                        <text id="131">
+                                            <property name="textAlign">left</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[QUOTATION NUMBER:]]></text-property>
+                                        </text>
+                                    </cell>
+                                    <cell id="121"/>
+                                </row>
+                                <row id="122">
+                                    <cell id="123">
+                                        <text id="132">
+                                            <property name="textAlign">left</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[GEOSCAPE REF NO.:]]></text-property>
+                                        </text>
+                                    </cell>
+                                    <cell id="124"/>
+                                </row>
+                                <row id="125">
+                                    <cell id="126">
+                                        <text id="133">
+                                            <property name="textAlign">left</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[PREPARED BY:]]></text-property>
+                                        </text>
+                                    </cell>
+                                    <cell id="127"/>
+                                </row>
+                            </grid>
+                        </cell>
+                    </row>
+                    <row id="101">
+                        <cell id="102">
+                            <text id="4263">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[&amp;nbsp;]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="103"/>
+                    </row>
+                </grid>
+                <grid id="4213">
+                    <property name="width">100%</property>
+                    <column id="4214">
+                        <property name="width">2.2777777777777777in</property>
+                    </column>
+                    <column id="4215">
+                        <property name="width">5.458333333333333in</property>
+                    </column>
+                    <row id="4216">
+                        <cell id="4217">
+                            <text id="4246">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[&amp;nbsp;]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="4218"/>
+                    </row>
+                    <row id="4219">
+                        <property name="backgroundColor">gray</property>
+                        <cell id="4220">
+                            <property name="colSpan">2</property>
+                            <property name="rowSpan">1</property>
+                            <text id="4247">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[SUPPLIER/OEM/DISTRIBUTOR'S INFORMATION]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="4222">
+                        <cell id="4223">
+                            <text id="4248">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[YOUR REF/QUOTE NO.:]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="4224"/>
+                    </row>
+                    <row id="4225">
+                        <cell id="4226">
+                            <text id="4249">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[ATTENTION:]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="4227"/>
+                    </row>
+                    <row id="4228">
+                        <cell id="4229">
+                            <text id="4250">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[COMPANY NAME:]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="4230"/>
+                    </row>
+                    <row id="4231">
+                        <cell id="4232">
+                            <text id="4251">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[COMPANY ADDRESS:]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="4233"/>
+                    </row>
+                    <row id="4234">
+                        <cell id="4235">
+                            <text id="4252">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[PHONE NUMBER:]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="4236"/>
+                    </row>
+                    <row id="4237">
+                        <cell id="4238">
+                            <text id="4253">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[FAX NUMBER:]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="4239"/>
+                    </row>
+                    <row id="4240">
+                        <cell id="4241">
+                            <text id="4254">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[EMAIL ADDRESS:]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="4242"/>
+                    </row>
+                    <row id="4255">
+                        <cell id="4256">
+                            <text id="4258">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[&amp;nbsp;]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="4257"/>
+                    </row>
+                    <row id="4243">
+                        <cell id="4244">
+                            <property name="colSpan">2</property>
+                            <property name="rowSpan">1</property>
+                            <grid id="4265">
+                                <property name="dataSet">po_detail_ds</property>
+                                <list-property name="boundDataColumns">
+                                    <structure>
+                                        <property name="name">po_no</property>
+                                        <text-property name="displayName">po_no</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["po_no"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">Quote_quote_Id</property>
+                                        <text-property name="displayName">Quote_quote_Id</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["Quote_quote_Id"]</expression>
+                                        <property name="dataType">decimal</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">currency</property>
+                                        <text-property name="displayName">currency</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["currency"]</expression>
+                                        <property name="dataType">decimal</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">wire_transfer_fee</property>
+                                        <text-property name="displayName">wire_transfer_fee</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["wire_transfer_fee"]</expression>
+                                        <property name="dataType">decimal</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">cost_of_certs</property>
+                                        <text-property name="displayName">cost_of_certs</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["cost_of_certs"]</expression>
+                                        <property name="dataType">decimal</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">ground_freight</property>
+                                        <text-property name="displayName">ground_freight</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["ground_freight"]</expression>
+                                        <property name="dataType">decimal</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">int_freight</property>
+                                        <text-property name="displayName">int_freight</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["int_freight"]</expression>
+                                        <property name="dataType">decimal</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">packaging_cost</property>
+                                        <text-property name="displayName">packaging_cost</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["packaging_cost"]</expression>
+                                        <property name="dataType">decimal</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">harzardous_cost</property>
+                                        <text-property name="displayName">harzardous_cost</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["harzardous_cost"]</expression>
+                                        <property name="dataType">decimal</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">other_cost</property>
+                                        <text-property name="displayName">other_cost</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["other_cost"]</expression>
+                                        <property name="dataType">decimal</property>
+                                    </structure>
+                                </list-property>
+                                <column id="4266"/>
+                                <row id="4267">
+                                    <cell id="4268">
+                                        <table id="10">
+                                            <property name="width">7.729166666666667in</property>
+                                            <property name="dataSet">po_ds</property>
+                                            <list-property name="boundDataColumns">
+                                                <structure>
+                                                    <property name="name">quote_Id</property>
+                                                    <text-property name="displayName">quote_Id</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["quote_Id"]</expression>
+                                                    <property name="dataType">decimal</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">rfq_no</property>
+                                                    <text-property name="displayName">rfq_no</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["rfq_no"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">po_no</property>
+                                                    <text-property name="displayName">po_no</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["po_no"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">partno_modelno</property>
+                                                    <text-property name="displayName">partno_modelno</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["partno_modelno"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">description</property>
+                                                    <text-property name="displayName">description</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["description"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">oem_description</property>
+                                                    <text-property name="displayName">oem_description</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["oem_description"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">final_desc</property>
+                                                    <text-property name="displayName">final_desc</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["final_desc"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">quantity</property>
+                                                    <text-property name="displayName">quantity</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["quantity"]</expression>
+                                                    <property name="dataType">integer</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">Name</property>
+                                                    <text-property name="displayName">unitofmeasure</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["Name"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">unitprice</property>
+                                                    <text-property name="displayName">unitprice</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["unitprice"]</expression>
+                                                    <property name="dataType">decimal</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">extAmt</property>
+                                                    <text-property name="displayName">extAmt</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["extAmt"]</expression>
+                                                    <property name="dataType">decimal</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">sumExtAmt</property>
+                                                    <text-property name="displayName">sumExtAmt</text-property>
+                                                    <property name="dataType">float</property>
+                                                    <property name="aggregateFunction">SUM</property>
+                                                    <list-property name="arguments">
+                                                        <structure>
+                                                            <property name="name">Expression</property>
+                                                            <expression name="value" type="javascript">row["extAmt"]</expression>
+                                                        </structure>
+                                                    </list-property>
+                                                    <property name="allowExport">true</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">wire_transfer_fee</property>
+                                                    <text-property name="displayName">wire_transfer_fee</text-property>
+                                                    <expression name="expression" type="javascript">row._outer["wire_transfer_fee"]</expression>
+                                                    <property name="dataType">decimal</property>
+                                                    <property name="allowExport">true</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">sumRunningTot</property>
+                                                    <text-property name="displayName">sumRunningTot</text-property>
+                                                    <expression name="expression" type="javascript">row["sumExtAmt"]+row["wire_transfer_fee"]+row["cost_of_certs"]+row["ground_freight"]+row["packaging_cost"]+row["harzardous_cost"]+row["int_freight"]+row["other_cost"]</expression>
+                                                    <property name="dataType">decimal</property>
+                                                    <property name="allowExport">true</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">cost_of_certs</property>
+                                                    <text-property name="displayName">cost_of_certs</text-property>
+                                                    <expression name="expression" type="javascript">row._outer["cost_of_certs"]</expression>
+                                                    <property name="dataType">decimal</property>
+                                                    <property name="allowExport">true</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">ground_freight</property>
+                                                    <text-property name="displayName">ground_freight</text-property>
+                                                    <expression name="expression" type="javascript">row._outer["ground_freight"]</expression>
+                                                    <property name="dataType">decimal</property>
+                                                    <property name="allowExport">true</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">packaging_cost</property>
+                                                    <text-property name="displayName">packaging_cost</text-property>
+                                                    <expression name="expression" type="javascript">row._outer["packaging_cost"]</expression>
+                                                    <property name="dataType">decimal</property>
+                                                    <property name="allowExport">true</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">harzardous_cost</property>
+                                                    <text-property name="displayName">harzardous_cost</text-property>
+                                                    <expression name="expression" type="javascript">row._outer["harzardous_cost"]</expression>
+                                                    <property name="dataType">decimal</property>
+                                                    <property name="allowExport">true</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">int_freight</property>
+                                                    <text-property name="displayName">int_freight</text-property>
+                                                    <expression name="expression" type="javascript">row._outer["int_freight"]</expression>
+                                                    <property name="dataType">decimal</property>
+                                                    <property name="allowExport">true</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">other_cost</property>
+                                                    <text-property name="displayName">other_cost</text-property>
+                                                    <expression name="expression" type="javascript">row._outer["other_cost"]</expression>
+                                                    <property name="dataType">decimal</property>
+                                                    <property name="allowExport">true</property>
+                                                </structure>
+                                            </list-property>
+                                            <column id="32">
+                                                <property name="textAlign">left</property>
+                                                <property name="width">1.2916666666666667in</property>
+                                            </column>
+                                            <column id="33">
+                                                <property name="textAlign">left</property>
+                                                <property name="width">2.5416666666666665in</property>
+                                            </column>
+                                            <column id="34">
+                                                <property name="textAlign">right</property>
+                                                <property name="width">0.6944444444444444in</property>
+                                            </column>
+                                            <column id="35">
+                                                <property name="textAlign">right</property>
+                                                <property name="width">0.875in</property>
+                                            </column>
+                                            <column id="36">
+                                                <property name="textAlign">right</property>
+                                                <property name="width">1.0208333333333333in</property>
+                                            </column>
+                                            <column id="37">
+                                                <property name="textAlign">right</property>
+                                                <property name="width">1.3125in</property>
+                                            </column>
+                                            <header>
+                                                <row id="11">
+                                                    <property name="backgroundColor">gray</property>
+                                                    <cell id="12">
+                                                        <label id="38">
+                                                            <text-property name="text">PART NO.</text-property>
+                                                        </label>
+                                                    </cell>
+                                                    <cell id="13">
+                                                        <label id="40">
+                                                            <text-property name="text">ITEMS DESCRIPTION</text-property>
+                                                        </label>
+                                                    </cell>
+                                                    <cell id="14">
+                                                        <label id="42">
+                                                            <text-property name="text">QTY.</text-property>
+                                                        </label>
+                                                    </cell>
+                                                    <cell id="15">
+                                                        <label id="44">
+                                                            <text-property name="text">U.O.M.</text-property>
+                                                        </label>
+                                                    </cell>
+                                                    <cell id="16">
+                                                        <label id="47">
+                                                            <text-property name="text">UNIT PRICE</text-property>
+                                                        </label>
+                                                    </cell>
+                                                    <cell id="17">
+                                                        <label id="49">
+                                                            <text-property name="text">EXTENDED AMT.</text-property>
+                                                        </label>
+                                                    </cell>
+                                                </row>
+                                            </header>
+                                            <detail>
+                                                <row id="18">
+                                                    <list-property name="highlightRules">
+                                                        <structure>
+                                                            <property name="operator">eq</property>
+                                                            <expression name="testExpr" type="javascript">row[0] % 2</expression>
+                                                            <simple-property-list name="value1">
+                                                                <value type="javascript">0</value>
+                                                            </simple-property-list>
+                                                            <property name="style">alternatingRows</property>
+                                                        </structure>
+                                                    </list-property>
+                                                    <cell id="19">
+                                                        <data id="39">
+                                                            <property name="resultSetColumn">partno_modelno</property>
+                                                        </data>
+                                                    </cell>
+                                                    <cell id="20">
+                                                        <data id="41">
+                                                            <property name="resultSetColumn">final_desc</property>
+                                                        </data>
+                                                    </cell>
+                                                    <cell id="21">
+                                                        <data id="43">
+                                                            <property name="resultSetColumn">quantity</property>
+                                                        </data>
+                                                    </cell>
+                                                    <cell id="22">
+                                                        <data id="51">
+                                                            <property name="resultSetColumn">Name</property>
+                                                        </data>
+                                                    </cell>
+                                                    <cell id="23">
+                                                        <data id="48">
+                                                            <structure name="numberFormat">
+                                                                <property name="category">Fixed</property>
+                                                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                                            </structure>
+                                                            <property name="resultSetColumn">unitprice</property>
+                                                        </data>
+                                                    </cell>
+                                                    <cell id="24">
+                                                        <data id="50">
+                                                            <property name="marginRight">5pt</property>
+                                                            <structure name="numberFormat">
+                                                                <property name="category">Currency</property>
+                                                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                                            </structure>
+                                                            <property name="resultSetColumn">extAmt</property>
+                                                        </data>
+                                                    </cell>
+                                                </row>
+                                            </detail>
+                                            <footer>
+                                                <row id="4286">
+                                                    <property name="fontSize">7pt</property>
+                                                    <property name="fontWeight">normal</property>
+                                                    <property name="borderBottomStyle">none</property>
+                                                    <property name="borderLeftStyle">none</property>
+                                                    <property name="borderRightStyle">none</property>
+                                                    <property name="borderTopColor">#63666A</property>
+                                                    <property name="borderTopStyle">solid</property>
+                                                    <property name="borderTopWidth">thin</property>
+                                                    <cell id="4287"/>
+                                                    <cell id="4288">
+                                                        <label id="4284">
+                                                            <text-property name="text">Wire Transfer Fee</text-property>
+                                                        </label>
+                                                    </cell>
+                                                    <cell id="4289"/>
+                                                    <cell id="4290">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                    </cell>
+                                                    <cell id="4291">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                    </cell>
+                                                    <cell id="4292">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                        <data id="4285">
+                                                            <property name="marginRight">5pt</property>
+                                                            <structure name="numberFormat">
+                                                                <property name="category">Currency</property>
+                                                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                                            </structure>
+                                                            <property name="resultSetColumn">wire_transfer_fee</property>
+                                                        </data>
+                                                    </cell>
+                                                </row>
+                                                <row id="4294">
+                                                    <property name="fontSize">7pt</property>
+                                                    <property name="fontWeight">normal</property>
+                                                    <property name="borderBottomStyle">none</property>
+                                                    <property name="borderLeftStyle">none</property>
+                                                    <property name="borderRightStyle">none</property>
+                                                    <property name="borderTopColor">#63666A</property>
+                                                    <property name="borderTopStyle">solid</property>
+                                                    <property name="borderTopWidth">thin</property>
+                                                    <cell id="4295"/>
+                                                    <cell id="4296">
+                                                        <label id="4301">
+                                                            <text-property name="text">Cost Of Certificates</text-property>
+                                                        </label>
+                                                    </cell>
+                                                    <cell id="4297"/>
+                                                    <cell id="4298">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                    </cell>
+                                                    <cell id="4299">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                    </cell>
+                                                    <cell id="4300">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                        <data id="4342">
+                                                            <property name="marginRight">5pt</property>
+                                                            <structure name="numberFormat">
+                                                                <property name="category">Currency</property>
+                                                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                                            </structure>
+                                                            <property name="resultSetColumn">cost_of_certs</property>
+                                                        </data>
+                                                    </cell>
+                                                </row>
+                                                <row id="4302">
+                                                    <property name="fontSize">7pt</property>
+                                                    <property name="fontWeight">normal</property>
+                                                    <property name="borderBottomStyle">none</property>
+                                                    <property name="borderLeftStyle">none</property>
+                                                    <property name="borderRightStyle">none</property>
+                                                    <property name="borderTopColor">#63666A</property>
+                                                    <property name="borderTopStyle">solid</property>
+                                                    <property name="borderTopWidth">thin</property>
+                                                    <cell id="4303"/>
+                                                    <cell id="4304">
+                                                        <label id="4309">
+                                                            <text-property name="text">Ground Freight</text-property>
+                                                        </label>
+                                                    </cell>
+                                                    <cell id="4305"/>
+                                                    <cell id="4306">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                    </cell>
+                                                    <cell id="4307">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                    </cell>
+                                                    <cell id="4308">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                        <data id="4343">
+                                                            <property name="marginRight">5pt</property>
+                                                            <structure name="numberFormat">
+                                                                <property name="category">Currency</property>
+                                                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                                            </structure>
+                                                            <property name="resultSetColumn">ground_freight</property>
+                                                        </data>
+                                                    </cell>
+                                                </row>
+                                                <row id="4310">
+                                                    <property name="fontSize">7pt</property>
+                                                    <property name="fontWeight">normal</property>
+                                                    <property name="borderBottomStyle">none</property>
+                                                    <property name="borderLeftStyle">none</property>
+                                                    <property name="borderRightStyle">none</property>
+                                                    <property name="borderTopColor">#63666A</property>
+                                                    <property name="borderTopStyle">solid</property>
+                                                    <property name="borderTopWidth">thin</property>
+                                                    <cell id="4311"/>
+                                                    <cell id="4312">
+                                                        <label id="4317">
+                                                            <text-property name="text">Packaging Cost</text-property>
+                                                        </label>
+                                                    </cell>
+                                                    <cell id="4313"/>
+                                                    <cell id="4314">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                    </cell>
+                                                    <cell id="4315">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                    </cell>
+                                                    <cell id="4316">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                        <data id="4344">
+                                                            <property name="marginRight">5pt</property>
+                                                            <structure name="numberFormat">
+                                                                <property name="category">Currency</property>
+                                                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                                            </structure>
+                                                            <property name="resultSetColumn">packaging_cost</property>
+                                                        </data>
+                                                    </cell>
+                                                </row>
+                                                <row id="4318">
+                                                    <property name="fontSize">7pt</property>
+                                                    <property name="fontWeight">normal</property>
+                                                    <property name="borderBottomStyle">none</property>
+                                                    <property name="borderLeftStyle">none</property>
+                                                    <property name="borderRightStyle">none</property>
+                                                    <property name="borderTopColor">#63666A</property>
+                                                    <property name="borderTopStyle">solid</property>
+                                                    <property name="borderTopWidth">thin</property>
+                                                    <cell id="4319"/>
+                                                    <cell id="4320">
+                                                        <label id="4325">
+                                                            <text-property name="text">Harzardous Cost</text-property>
+                                                        </label>
+                                                    </cell>
+                                                    <cell id="4321"/>
+                                                    <cell id="4322">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                    </cell>
+                                                    <cell id="4323">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                    </cell>
+                                                    <cell id="4324">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                        <data id="4345">
+                                                            <property name="marginRight">5pt</property>
+                                                            <structure name="numberFormat">
+                                                                <property name="category">Currency</property>
+                                                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                                            </structure>
+                                                            <property name="resultSetColumn">harzardous_cost</property>
+                                                        </data>
+                                                    </cell>
+                                                </row>
+                                                <row id="4326">
+                                                    <property name="fontSize">7pt</property>
+                                                    <property name="fontWeight">normal</property>
+                                                    <property name="borderBottomStyle">none</property>
+                                                    <property name="borderLeftStyle">none</property>
+                                                    <property name="borderRightStyle">none</property>
+                                                    <property name="borderTopColor">#63666A</property>
+                                                    <property name="borderTopStyle">solid</property>
+                                                    <property name="borderTopWidth">thin</property>
+                                                    <cell id="4327"/>
+                                                    <cell id="4328">
+                                                        <label id="4333">
+                                                            <text-property name="text">International Freight</text-property>
+                                                        </label>
+                                                    </cell>
+                                                    <cell id="4329"/>
+                                                    <cell id="4330">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                    </cell>
+                                                    <cell id="4331">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                    </cell>
+                                                    <cell id="4332">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                        <data id="4346">
+                                                            <property name="marginRight">5pt</property>
+                                                            <structure name="numberFormat">
+                                                                <property name="category">Currency</property>
+                                                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                                            </structure>
+                                                            <property name="resultSetColumn">int_freight</property>
+                                                        </data>
+                                                    </cell>
+                                                </row>
+                                                <row id="4334">
+                                                    <property name="fontSize">7pt</property>
+                                                    <property name="fontWeight">normal</property>
+                                                    <property name="borderBottomStyle">none</property>
+                                                    <property name="borderLeftStyle">none</property>
+                                                    <property name="borderRightStyle">none</property>
+                                                    <property name="borderTopColor">#63666A</property>
+                                                    <property name="borderTopStyle">solid</property>
+                                                    <property name="borderTopWidth">thin</property>
+                                                    <cell id="4335"/>
+                                                    <cell id="4336">
+                                                        <label id="4341">
+                                                            <text-property name="text">Other Cost</text-property>
+                                                        </label>
+                                                    </cell>
+                                                    <cell id="4337"/>
+                                                    <cell id="4338">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                    </cell>
+                                                    <cell id="4339">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                    </cell>
+                                                    <cell id="4340">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                        <data id="4347">
+                                                            <property name="marginRight">5pt</property>
+                                                            <structure name="numberFormat">
+                                                                <property name="category">Currency</property>
+                                                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                                            </structure>
+                                                            <property name="resultSetColumn">other_cost</property>
+                                                        </data>
+                                                    </cell>
+                                                </row>
+                                                <row id="25">
+                                                    <property name="fontSize">7pt</property>
+                                                    <property name="fontWeight">normal</property>
+                                                    <property name="borderTopColor">#63666A</property>
+                                                    <property name="borderTopStyle">solid</property>
+                                                    <property name="borderTopWidth">thin</property>
+                                                    <cell id="26"/>
+                                                    <cell id="27"/>
+                                                    <cell id="28"/>
+                                                    <cell id="29">
+                                                        <property name="colSpan">2</property>
+                                                        <property name="rowSpan">1</property>
+                                                        <property name="borderBottomColor">#63666A</property>
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">thin</property>
+                                                        <property name="borderLeftColor">#63666A</property>
+                                                        <property name="borderLeftStyle">solid</property>
+                                                        <property name="borderLeftWidth">thin</property>
+                                                        <text id="60">
+                                                            <property name="contentType">html</property>
+                                                            <text-property name="content"><![CDATA[SUB TOTAL]]></text-property>
+                                                        </text>
+                                                    </cell>
+                                                    <cell id="31">
+                                                        <property name="borderBottomColor">#63666A</property>
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">thin</property>
+                                                        <property name="borderRightColor">#63666A</property>
+                                                        <property name="borderRightStyle">solid</property>
+                                                        <property name="borderRightWidth">thin</property>
+                                                        <data id="4293">
+                                                            <property name="fontSize">9pt</property>
+                                                            <property name="fontWeight">bold</property>
+                                                            <property name="marginRight">5pt</property>
+                                                            <structure name="numberFormat">
+                                                                <property name="category">Currency</property>
+                                                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                                            </structure>
+                                                            <property name="resultSetColumn">sumRunningTot</property>
+                                                        </data>
+                                                    </cell>
+                                                </row>
+                                                <row id="53">
+                                                    <property name="fontSize">7pt</property>
+                                                    <property name="fontWeight">normal</property>
+                                                    <cell id="54"/>
+                                                    <cell id="55"/>
+                                                    <cell id="56"/>
+                                                    <cell id="57">
+                                                        <property name="colSpan">2</property>
+                                                        <property name="rowSpan">1</property>
+                                                        <property name="borderBottomColor">#63666A</property>
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">thin</property>
+                                                        <property name="borderLeftColor">#63666A</property>
+                                                        <property name="borderLeftStyle">solid</property>
+                                                        <property name="borderLeftWidth">thin</property>
+                                                        <text id="61">
+                                                            <property name="contentType">html</property>
+                                                            <text-property name="content"><![CDATA[0% DISCOUNT]]></text-property>
+                                                        </text>
+                                                    </cell>
+                                                    <cell id="59">
+                                                        <property name="borderBottomColor">#63666A</property>
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">thin</property>
+                                                        <property name="borderRightColor">#63666A</property>
+                                                        <property name="borderRightStyle">solid</property>
+                                                        <property name="borderRightWidth">thin</property>
+                                                    </cell>
+                                                </row>
+                                                <row id="70">
+                                                    <property name="fontSize">7pt</property>
+                                                    <property name="fontWeight">normal</property>
+                                                    <cell id="71"/>
+                                                    <cell id="72"/>
+                                                    <cell id="73"/>
+                                                    <cell id="74">
+                                                        <property name="colSpan">2</property>
+                                                        <property name="rowSpan">1</property>
+                                                        <property name="borderBottomColor">#63666A</property>
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">thin</property>
+                                                        <property name="borderLeftColor">#63666A</property>
+                                                        <property name="borderLeftStyle">solid</property>
+                                                        <property name="borderLeftWidth">thin</property>
+                                                        <text id="77">
+                                                            <property name="contentType">html</property>
+                                                            <text-property name="content"><![CDATA[TOTAL VALUE]]></text-property>
+                                                        </text>
+                                                    </cell>
+                                                    <cell id="76">
+                                                        <property name="borderBottomColor">#63666A</property>
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">thin</property>
+                                                        <property name="borderRightColor">#63666A</property>
+                                                        <property name="borderRightStyle">solid</property>
+                                                        <property name="borderRightWidth">thin</property>
+                                                    </cell>
+                                                </row>
+                                                <row id="63">
+                                                    <property name="fontSize">7pt</property>
+                                                    <property name="fontWeight">normal</property>
+                                                    <cell id="64"/>
+                                                    <cell id="65"/>
+                                                    <cell id="66"/>
+                                                    <cell id="67">
+                                                        <property name="colSpan">2</property>
+                                                        <property name="rowSpan">1</property>
+                                                        <property name="borderBottomColor">#63666A</property>
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">thin</property>
+                                                        <property name="borderLeftColor">#63666A</property>
+                                                        <property name="borderLeftStyle">solid</property>
+                                                        <property name="borderLeftWidth">thin</property>
+                                                        <text id="78">
+                                                            <property name="contentType">html</property>
+                                                            <text-property name="content"><![CDATA[CURRENCY]]></text-property>
+                                                        </text>
+                                                    </cell>
+                                                    <cell id="69">
+                                                        <property name="borderBottomColor">#63666A</property>
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">thin</property>
+                                                        <property name="borderRightColor">#63666A</property>
+                                                        <property name="borderRightStyle">solid</property>
+                                                        <property name="borderRightWidth">thin</property>
+                                                    </cell>
+                                                </row>
+                                                <row id="79">
+                                                    <property name="fontSize">7pt</property>
+                                                    <property name="fontWeight">normal</property>
+                                                    <cell id="80"/>
+                                                    <cell id="81"/>
+                                                    <cell id="82"/>
+                                                    <cell id="83">
+                                                        <property name="colSpan">2</property>
+                                                        <property name="rowSpan">1</property>
+                                                        <property name="borderBottomColor">#63666A</property>
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">thin</property>
+                                                        <property name="borderLeftColor">#63666A</property>
+                                                        <property name="borderLeftStyle">solid</property>
+                                                        <property name="borderLeftWidth">thin</property>
+                                                        <text id="93">
+                                                            <property name="contentType">html</property>
+                                                            <text-property name="content"><![CDATA[PAYMENT TERMS]]></text-property>
+                                                        </text>
+                                                    </cell>
+                                                    <cell id="85">
+                                                        <property name="borderBottomColor">#63666A</property>
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">thin</property>
+                                                        <property name="borderRightColor">#63666A</property>
+                                                        <property name="borderRightStyle">solid</property>
+                                                        <property name="borderRightWidth">thin</property>
+                                                    </cell>
+                                                </row>
+                                                <row id="86">
+                                                    <property name="fontSize">7pt</property>
+                                                    <property name="fontWeight">normal</property>
+                                                    <cell id="87"/>
+                                                    <cell id="88"/>
+                                                    <cell id="89"/>
+                                                    <cell id="90">
+                                                        <property name="colSpan">2</property>
+                                                        <property name="rowSpan">1</property>
+                                                        <property name="borderLeftColor">#63666A</property>
+                                                        <property name="borderLeftStyle">solid</property>
+                                                        <property name="borderLeftWidth">thin</property>
+                                                        <text id="94">
+                                                            <property name="contentType">html</property>
+                                                            <text-property name="content"><![CDATA[INITIAL PAYMENT AMOUNT(100%)]]></text-property>
+                                                        </text>
+                                                    </cell>
+                                                    <cell id="92">
+                                                        <property name="borderRightColor">#63666A</property>
+                                                        <property name="borderRightStyle">solid</property>
+                                                        <property name="borderRightWidth">thin</property>
+                                                    </cell>
+                                                </row>
+                                            </footer>
+                                        </table>
+                                    </cell>
+                                </row>
+                            </grid>
+                        </cell>
+                    </row>
+                </grid>
+                <grid id="134">
+                    <property name="fontSize">7pt</property>
+                    <property name="width">100%</property>
+                    <column id="135">
+                        <property name="width">2.125in</property>
+                    </column>
+                    <column id="136">
+                        <property name="width">5.611111111111111in</property>
+                    </column>
+                    <row id="137">
+                        <property name="backgroundColor">gray</property>
+                        <cell id="138">
+                            <property name="colSpan">2</property>
+                            <property name="rowSpan">1</property>
+                            <text id="155">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[CERTIFICATION REQUIRED]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="140">
+                        <cell id="141">
+                            <text id="156">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[FOR VALVES]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="142">
+                            <text id="161">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[Material Test Report, Inspection Certificates, Quality Control Document, Certificates of Conformity, Heat Test Report, Fire Test Certificates, Manuals, Datasheets, Drawing and other applicable certificates]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="143">
+                        <cell id="144">
+                            <text id="157">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[FOR CHEMICALS]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="145">
+                            <text id="162">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[Safety Data Sheets (SDS), Certificates of Analysis, Hazardous Packaging, Safety Signs Label and Stickers, DG Packaging]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="146">
+                        <cell id="147">
+                            <text id="158">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[FOR ELECTRICAL ITEMS]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="148">
+                            <text id="163">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[Certificate of Conformity, Test Reports, Product Certification, ISO Certifications]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="149">
+                        <cell id="150">
+                            <text id="159">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[FOR SPARE PARTS]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="151">
+                            <text id="164">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[Certificate of Conformity and all other certificates requires depending on the material of the spares.]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="152">
+                        <cell id="153">
+                            <text id="160">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[FOR BOLT &amp; NUTS]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="154">
+                            <text id="165">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[Certificate of Conformity, Mill Test Certificates and other applicable certification required]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                </grid>
+                <grid id="166">
+                    <property name="fontSize">7pt</property>
+                    <property name="width">100%</property>
+                    <column id="167">
+                        <property name="width">2.4722222222222223in</property>
+                    </column>
+                    <column id="168">
+                        <property name="width">5.263888888888889in</property>
+                    </column>
+                    <row id="527">
+                        <property name="backgroundColor">gray</property>
+                        <cell id="528">
+                            <property name="colSpan">2</property>
+                            <property name="rowSpan">1</property>
+                            <text id="203">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[DELIVERY INFORMATION]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="533">
+                        <cell id="534">
+                            <text id="207">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[LEAD PERIOD:]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="535"/>
+                    </row>
+                    <row id="536">
+                        <cell id="537">
+                            <text id="212">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[DELIVERY TERMS:]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="538"/>
+                    </row>
+                    <row id="539">
+                        <cell id="540">
+                            <text id="217">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[PICK UP LOCATION:]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="541"/>
+                    </row>
+                    <row id="542">
+                        <cell id="543">
+                            <text id="222">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[FREIGHT FORWARD'S ADDRESS:]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="544"/>
+                    </row>
+                    <row id="545">
+                        <cell id="546">
+                            <text id="227">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[FINAL DESTINATION]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="547"/>
+                    </row>
+                    <row id="548">
+                        <cell id="549"/>
+                        <cell id="550"/>
+                    </row>
+                    <row id="169">
+                        <property name="backgroundColor">gray</property>
+                        <cell id="170">
+                            <property name="colSpan">2</property>
+                            <property name="rowSpan">1</property>
+                            <text id="171">
+                                <property name="textAlign">center</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[TERMS AND CONDITION]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="173">
+                        <cell id="174">
+                            <text id="230">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[PACKAGING]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="176"/>
+                    </row>
+                    <row id="178">
+                        <cell id="179"/>
+                        <cell id="181">
+                            <text id="182">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<B>TAGGING:</B> Each part shall be properly tagged and subject to the conditions below if applicable.]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="183">
+                        <cell id="184"/>
+                        <cell id="186">
+                            <text id="187">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<B>(A) DANGEROUS GOODS MARKING:</B> Seller shall congorm to accepted international standards of marking and labelling each package of dangerous goods where applicable.]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="188">
+                        <cell id="189"/>
+                        <cell id="191">
+                            <text id="192">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[Small items with the same part numbers must be tagged and packed together in a plastic bag or box. The tag shall also be shown on the outside of the box or bag.]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="193">
+                        <cell id="194"/>
+                        <cell id="196">
+                            <text id="197">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<B>(B) CRATING:</B> Seller shall ensure that the goods are packed in a sturdy case, to withstand rough handling. Goods shall be protected with shock absorbent materials.]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="237">
+                        <cell id="238"/>
+                        <cell id="239">
+                            <text id="240">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<B>GENERAL PACKAGING CLAUSES:</B> All goods must be properly packed and packages must be sufficiently strong to withstand rough handling in transit and storage and to prevent damage to the goods in transit.]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="234">
+                        <cell id="235"/>
+                        <cell id="236">
+                            <text id="241">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<B>(C) GUARANTEE:</B> 6 month guarantee whic will cover replacement of the parts if defective due to faulty workmanship and/or materials]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="231">
+                        <cell id="232"/>
+                        <cell id="233">
+                            <text id="242">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<B>(D) DRAWINGS:</B> All Item must be manufactured to drawing/datasheet agreed upon before SELLER provided offer to BUYER. In case, BUYER requires a change to drawing in course of executing of order, BUYER will furnish SELLER with all details and SELLER will approve the new drawing. Any additional costs will be borne by BUYER should there be any significant change to item ordered]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="243">
+                        <cell id="244"/>
+                        <cell id="245">
+                            <text id="246">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<B>(E) CHANGE OF DESIGN:</B> SELLER is required to inform and receive approval of process Purchase Order from BUYER should there be change or modifications to item at no additional cost to BUYER.]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="247">
+                        <cell id="248"/>
+                        <cell id="249">
+                            <text id="250">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<B>(F) CHANGES IN SPECIFICATION:</B> BUYER can request in writing for changes in the specifications from SELLER after SELLER's acceptance of the ORDER. In the event of any such change, SELLER may be entitled to revise its price and delivery schedules to reflect such change. Such changes in price and delivery schedules propposed by SELLER for new specification must be resonable and acceptable to BUYER.]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="388">
+                        <property name="backgroundColor">gray</property>
+                        <cell id="389">
+                            <property name="colSpan">2</property>
+                            <property name="rowSpan">1</property>
+                            <text id="302">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[SHIPPING INFORMATION NEEDED FOR OUR ITEMS TO BE SHIPPED]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="391">
+                        <cell id="392"/>
+                        <cell id="393">
+                            <text id="264">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[A. Invoice will be required on every shipment]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="397">
+                        <cell id="398"/>
+                        <cell id="399">
+                            <text id="268">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[B. A letter of consent needs to be filled on your company letter head paper to enable search at the airline before shipping (we will inform you when this change is required).]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="394">
+                        <cell id="395"/>
+                        <cell id="396">
+                            <text id="272">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[C. Tax Identification Number will be required on orders above $2,500.00]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="400">
+                        <cell id="401"/>
+                        <cell id="402">
+                            <text id="276">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[D. Your contact details will be provided to our freight forwarder.]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="403">
+                        <cell id="404"/>
+                        <cell id="405">
+                            <text id="280">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[E. Packing list to include weight and dimensions.]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="406">
+                        <cell id="407"/>
+                        <cell id="408">
+                            <text id="284">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[F. Pictures of items should be provided.]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="409">
+                        <cell id="410"/>
+                        <cell id="411">
+                            <text id="288">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[G. Items should always be labelled with our company name (GEOSCAPE LIMITED)]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="412">
+                        <property name="backgroundColor">gray</property>
+                        <cell id="413">
+                            <property name="colSpan">2</property>
+                            <property name="rowSpan">1</property>
+                            <text id="343">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[PROVISION OF GOODS - WARRANTY; REJECTION AND REMEDIES]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="415">
+                        <cell id="416"/>
+                        <cell id="417">
+                            <text id="310">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[Without prejudice to representation or warranties applied by law or otherwise given by manufacturer/supplier.]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="418">
+                        <cell id="419"/>
+                        <cell id="420">
+                            <text id="314">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[Manufacturer/Supplier warrants that goods shall be
+<ol style="list-style-type: lower-alpha;">
+<li>Free from defects.</li> 
+<li>Fit for their intended purpose or application.</li> 
+<li>Manufactured and supplied strictly in accordance with the relevant specification and</li> 
+<li>Free of any registered or unregistered charge, lien, mortgage and other encumberance.</li>
+</ol>]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="421">
+                        <cell id="422"/>
+                        <cell id="423">
+                            <text id="318">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[The warranty for goods commence on the latter of the day Geoscape takes physical posession of the goods and is valid for the longer of twelve (12) months or the length of manufacturer/supplier's standard warranty period.]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="424">
+                        <cell id="425"/>
+                        <cell id="426">
+                            <text id="322">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[In case of rejection of the goods for any reason a - d stated above or any other reason traceable to Manufacturer/Supplier's facility and the cost for sending replacement goods back to the location from where the rejected goods shipped.]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="427">
+                        <property name="backgroundColor">gray</property>
+                        <cell id="428">
+                            <property name="colSpan">2</property>
+                            <property name="rowSpan">1</property>
+                            <text id="371">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[TERMS OF PAYMENT]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="430">
+                        <cell id="431">
+                            <property name="colSpan">2</property>
+                            <property name="rowSpan">1</property>
+                            <text id="526">
+                                <property name="textAlign">left</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[100% Payment upon presentation of Pro-Forma invoice and complete banking details for payment]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="433">
+                        <cell id="434">
+                            <property name="colSpan">2</property>
+                            <property name="rowSpan">1</property>
+                        </cell>
+                    </row>
+                </grid>
+            </header>
+        </list>
+    </body>
+</report>
