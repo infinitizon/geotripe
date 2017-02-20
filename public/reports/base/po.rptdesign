@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.4.2.v201410272105 Build &lt;4.4.2.v20150217-1805></property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.0.v201405191524 Build &lt;4.4.0.v20140606-1451></property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="layoutPreference">auto layout</property>
@@ -62,22 +62,16 @@
                     <text-property name="heading">po_details_id</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">podetailscol</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">podetailscol</text-property>
-                    <text-property name="heading">podetailscol</text-property>
+                    <property name="columnName">Quote_quote_Id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">quote_quote_id</text-property>
+                    <text-property name="heading">quote_quote_id</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">po_no</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">po_no</text-property>
                     <text-property name="heading">po_no</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">Quote_quote_Id</property>
-                    <property name="analysis">measure</property>
-                    <text-property name="displayName">Quote_quote_Id</text-property>
-                    <text-property name="heading">Quote_quote_Id</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">currency</property>
@@ -128,16 +122,16 @@
                     <text-property name="heading">other_cost</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">remarks</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">remarks</text-property>
-                    <text-property name="heading">remarks</text-property>
-                </structure>
-                <structure>
                     <property name="columnName">discount</property>
                     <property name="analysis">measure</property>
                     <text-property name="displayName">discount</text-property>
                     <text-property name="heading">discount</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">remarks</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">remarks</text-property>
+                    <text-property name="heading">remarks</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">noofinstallments</property>
@@ -257,8 +251,8 @@
                     </structure>
                     <structure>
                         <property name="position">2</property>
-                        <property name="name">podetailscol</property>
-                        <property name="dataType">string</property>
+                        <property name="name">Quote_quote_Id</property>
+                        <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">3</property>
@@ -267,47 +261,47 @@
                     </structure>
                     <structure>
                         <property name="position">4</property>
-                        <property name="name">Quote_quote_Id</property>
-                        <property name="dataType">decimal</property>
-                    </structure>
-                    <structure>
-                        <property name="position">5</property>
                         <property name="name">currency</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">6</property>
+                        <property name="position">5</property>
                         <property name="name">wire_transfer_fee</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">7</property>
+                        <property name="position">6</property>
                         <property name="name">cost_of_certs</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">8</property>
+                        <property name="position">7</property>
                         <property name="name">ground_freight</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">9</property>
+                        <property name="position">8</property>
                         <property name="name">int_freight</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">10</property>
+                        <property name="position">9</property>
                         <property name="name">packaging_cost</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">11</property>
+                        <property name="position">10</property>
                         <property name="name">harzardous_cost</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">12</property>
+                        <property name="position">11</property>
                         <property name="name">other_cost</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">discount</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
@@ -317,86 +311,81 @@
                     </structure>
                     <structure>
                         <property name="position">14</property>
-                        <property name="name">discount</property>
+                        <property name="name">noofinstallments</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">15</property>
-                        <property name="name">noofinstallments</property>
-                        <property name="dataType">integer</property>
-                    </structure>
-                    <structure>
-                        <property name="position">16</property>
                         <property name="name">installments</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">17</property>
+                        <property name="position">16</property>
                         <property name="name">Name</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">18</property>
+                        <property name="position">17</property>
                         <property name="name">EmailAddress</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">19</property>
+                        <property name="position">18</property>
                         <property name="name">AddressLine1</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">20</property>
+                        <property name="position">19</property>
                         <property name="name">AddressLine2</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">21</property>
+                        <property name="position">20</property>
                         <property name="name">AddressCity</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">22</property>
+                        <property name="position">21</property>
                         <property name="name">country</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">23</property>
+                        <property name="position">22</property>
                         <property name="name">state</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">24</property>
+                        <property name="position">23</property>
                         <property name="name">EventOwner</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">25</property>
+                        <property name="position">24</property>
                         <property name="name">ContactPhoneNumber</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">26</property>
+                        <property name="position">25</property>
                         <property name="name">code</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">27</property>
+                        <property name="position">26</property>
                         <property name="name">description</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">28</property>
+                        <property name="position">27</property>
                         <property name="name">decimalHTML</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">29</property>
+                        <property name="position">28</property>
                         <property name="name">hexHTML</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">30</property>
+                        <property name="position">29</property>
                         <property name="name">unicode</property>
                         <property name="dataType">string</property>
                     </structure>
@@ -415,7 +404,12 @@ var monthIndex = date.getMonth();
 var year = date.getFullYear();
 reportContext.setPersistentGlobalVariable("rptTitle", "Purchase Order");
 reportContext.setPersistentGlobalVariable("quoteNo", "PO NO. "+row["po_no"] +" | " + day +" "+ monthNames[monthIndex]+" "+year);
-reportContext.setPersistentGlobalVariable("currency", "CURRENCY "+row["code"]+" ("+row["decimalHTML"]+")");]]></method>
+reportContext.setPersistentGlobalVariable("currency", "CURRENCY "+row["code"]+(row["decimalHTML"]==''?'':" ("+row["decimalHTML"]+")"));
+if(row["noofinstallments"]!=null){
+	if(parseInt(row["noofinstallments"])>0){
+		reportContext.setPersistentGlobalVariable("installs", row["installments"].split(","));
+	}
+}]]></method>
             <property name="dataSource">MySQL_DS</property>
             <list-property name="resultSet">
                 <structure>
@@ -427,13 +421,13 @@ reportContext.setPersistentGlobalVariable("currency", "CURRENCY "+row["code"]+" 
                 </structure>
                 <structure>
                     <property name="position">2</property>
-                    <property name="name">podetailscol</property>
-                    <property name="nativeName">podetailscol</property>
-                    <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
+                    <property name="name">Quote_quote_Id</property>
+                    <property name="nativeName">Quote_quote_Id</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
                 </structure>
                 <structure>
-                    <property name="position">3</property>
+                    <property name="position">2</property>
                     <property name="name">po_no</property>
                     <property name="nativeName">po_no</property>
                     <property name="dataType">string</property>
@@ -441,69 +435,69 @@ reportContext.setPersistentGlobalVariable("currency", "CURRENCY "+row["code"]+" 
                 </structure>
                 <structure>
                     <property name="position">4</property>
-                    <property name="name">Quote_quote_Id</property>
-                    <property name="nativeName">Quote_quote_Id</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">-5</property>
-                </structure>
-                <structure>
-                    <property name="position">5</property>
                     <property name="name">currency</property>
                     <property name="nativeName">currency</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">-5</property>
                 </structure>
                 <structure>
-                    <property name="position">6</property>
+                    <property name="position">5</property>
                     <property name="name">wire_transfer_fee</property>
                     <property name="nativeName">wire_transfer_fee</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">7</property>
+                    <property name="position">6</property>
                     <property name="name">cost_of_certs</property>
                     <property name="nativeName">cost_of_certs</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">8</property>
+                    <property name="position">7</property>
                     <property name="name">ground_freight</property>
                     <property name="nativeName">ground_freight</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">9</property>
+                    <property name="position">8</property>
                     <property name="name">int_freight</property>
                     <property name="nativeName">int_freight</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">10</property>
+                    <property name="position">9</property>
                     <property name="name">packaging_cost</property>
                     <property name="nativeName">packaging_cost</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">11</property>
+                    <property name="position">10</property>
                     <property name="name">harzardous_cost</property>
                     <property name="nativeName">harzardous_cost</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">12</property>
+                    <property name="position">11</property>
                     <property name="name">other_cost</property>
                     <property name="nativeName">other_cost</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">13</property>
+                    <property name="position">12</property>
+                    <property name="name">discount</property>
+                    <property name="nativeName">discount</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
                     <property name="name">remarks</property>
                     <property name="nativeName">remarks</property>
                     <property name="dataType">string</property>
@@ -511,129 +505,124 @@ reportContext.setPersistentGlobalVariable("currency", "CURRENCY "+row["code"]+" 
                 </structure>
                 <structure>
                     <property name="position">14</property>
-                    <property name="name">discount</property>
-                    <property name="nativeName">discount</property>
+                    <property name="name">noofinstallments</property>
+                    <property name="nativeName">noofinstallments</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="nativeDataType">-5</property>
                 </structure>
                 <structure>
                     <property name="position">15</property>
-                    <property name="name">noofinstallments</property>
-                    <property name="nativeName">noofinstallments</property>
-                    <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
-                </structure>
-                <structure>
-                    <property name="position">16</property>
                     <property name="name">installments</property>
                     <property name="nativeName">installments</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">17</property>
+                    <property name="position">16</property>
                     <property name="name">Name</property>
                     <property name="nativeName">Name</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">18</property>
+                    <property name="position">17</property>
                     <property name="name">EmailAddress</property>
                     <property name="nativeName">EmailAddress</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">19</property>
+                    <property name="position">18</property>
                     <property name="name">AddressLine1</property>
                     <property name="nativeName">AddressLine1</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">20</property>
+                    <property name="position">19</property>
                     <property name="name">AddressLine2</property>
                     <property name="nativeName">AddressLine2</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">21</property>
+                    <property name="position">20</property>
                     <property name="name">AddressCity</property>
                     <property name="nativeName">AddressCity</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">22</property>
+                    <property name="position">21</property>
                     <property name="name">country</property>
                     <property name="nativeName">country</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">23</property>
+                    <property name="position">22</property>
                     <property name="name">state</property>
                     <property name="nativeName">state</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">24</property>
+                    <property name="position">23</property>
                     <property name="name">EventOwner</property>
                     <property name="nativeName">EventOwner</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">25</property>
+                    <property name="position">24</property>
                     <property name="name">ContactPhoneNumber</property>
                     <property name="nativeName">ContactPhoneNumber</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">26</property>
+                    <property name="position">25</property>
                     <property name="name">code</property>
                     <property name="nativeName">code</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">27</property>
+                    <property name="position">26</property>
                     <property name="name">description</property>
                     <property name="nativeName">description</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">28</property>
+                    <property name="position">27</property>
                     <property name="name">decimalHTML</property>
                     <property name="nativeName">decimalHTML</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">29</property>
+                    <property name="position">28</property>
                     <property name="name">hexHTML</property>
                     <property name="nativeName">hexHTML</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">30</property>
+                    <property name="position">29</property>
                     <property name="name">unicode</property>
                     <property name="nativeName">unicode</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select pod.*,p.Name,p.emailaddress,p.addressline1,p.addressline2,p.addresscity
+            <xml-property name="queryText"><![CDATA[select pod.po_details_id,pod.quote_quote_id,pod.po_no,pod.currency,pod.wire_transfer_fee,pod.cost_of_certs,pod.ground_freight,pod.int_freight
+	,pod.packaging_cost,pod.harzardous_cost,pod.other_cost,pod.discount,pod.remarks,pod.noofinstallments,pod.installments
+	,p.Name,p.emailaddress,p.addressline1,p.addressline2,p.addresscity
 	, (SELECT name FROM Country WHERE country_id=p.party_country_id)country
 	, (SELECT name FROM State WHERE state_id=p.party_state_id)state
-	, CONCAT(IFNULL(p.contactpersontitle,''),' ',IFNULL(p.contactlastname,''),' ',IFNULL(p.contactfirstname,''),' ',IFNULL(p.contactmiddlename,''))EventOwner
-    ,p.contactphonenumber, cur.code, cur.description, cur.decimalHTML, cur.hexHTML, cur.unicode
+	, CONCAT(IFNULL(p.contactpersontitle,''),' ',IFNULL(p.contactlastname,''),' ',IFNULL(p.contactfirstname,''),' ',IFNULL(p.contactmiddlename,''))EventOwner,p.contactphonenumber
+	, IFNULL(cur.code,'')code, IFNULL(cur.description,'')description, IFNULL(cur.decimalHTML,'')decimalHTML, IFNULL(cur.hexHTML,'')hexHTML, IFNULL(cur.unicode,'')unicode
 from PODetails pod
 	JOIN Quote q ON pod.quote_quote_id=q.quote_id
     LEFT JOIN QuoteDetail qd ON q.quote_id =  qd.quote_quote_id
@@ -1937,12 +1926,6 @@ WHERE qd.quote_is_po=1
                                         <property name="dataType">decimal</property>
                                     </structure>
                                     <structure>
-                                        <property name="name">podetailscol</property>
-                                        <text-property name="displayName">podetailscol</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["podetailscol"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
                                         <property name="name">po_no</property>
                                         <text-property name="displayName">po_no</text-property>
                                         <expression name="expression" type="javascript">dataSetRow["po_no"]</expression>
@@ -2109,6 +2092,12 @@ WHERE qd.quote_is_po=1
                                         <text-property name="displayName">unicode</text-property>
                                         <expression name="expression" type="javascript">dataSetRow["unicode"]</expression>
                                         <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">noofinstallments_1</property>
+                                        <text-property name="displayName">noofinstallments</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["noofinstallments"]</expression>
+                                        <property name="dataType">decimal</property>
                                     </structure>
                                 </list-property>
                                 <column id="4376">
@@ -2459,12 +2448,6 @@ www.geoscapeltd.com | admin@geoscapeltd.com</div>]]></text-property>
                                 <property name="dataType">decimal</property>
                             </structure>
                             <structure>
-                                <property name="name">podetailscol</property>
-                                <text-property name="displayName">podetailscol</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["podetailscol"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
                                 <property name="name">po_no</property>
                                 <text-property name="displayName">po_no</text-property>
                                 <expression name="expression" type="javascript">dataSetRow["po_no"]</expression>
@@ -2771,6 +2754,48 @@ www.geoscapeltd.com | admin@geoscapeltd.com</div>]]></text-property>
                                         <text-property name="displayName">other_cost</text-property>
                                         <expression name="expression" type="javascript">row._outer["other_cost"]</expression>
                                         <property name="dataType">decimal</property>
+                                        <property name="allowExport">true</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">Column Binding</property>
+                                        <expression name="expression" type="javascript">row._outer["discount"]</expression>
+                                        <property name="dataType">string</property>
+                                        <property name="allowExport">true</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">discountValue</property>
+                                        <text-property name="displayName">discountValue</text-property>
+                                        <expression name="expression" type="javascript">(row._outer["discount"]/100)*row["sumRunningTot"]</expression>
+                                        <property name="dataType">decimal</property>
+                                        <property name="allowExport">true</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">totalValue</property>
+                                        <text-property name="displayName">totalValue</text-property>
+                                        <expression name="expression" type="javascript">row["sumRunningTot"]-row["discountValue"]</expression>
+                                        <property name="dataType">decimal</property>
+                                        <property name="allowExport">true</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">currencyVal</property>
+                                        <expression name="expression" type="javascript">row._outer["code"] +(row._outer["decimalHTML"])</expression>
+                                        <property name="dataType">string</property>
+                                        <property name="allowExport">true</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">initialPmt</property>
+                                        <text-property name="displayName">initialPmt</text-property>
+                                        <expression name="expression" type="javascript">var installs = reportContext.getPersistentGlobalVariable("installs");
+(parseInt(installs[0])/100)*row["totalValue"]</expression>
+                                        <property name="dataType">decimal</property>
+                                        <property name="allowExport">true</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">initialPmtTxt</property>
+                                        <text-property name="displayName">initialPmtTxt</text-property>
+                                        <expression name="expression" type="javascript">var installs = reportContext.getPersistentGlobalVariable("installs");
+'INITIAL PAYMENT AMOUNT('+installs[0]+'%)'</expression>
+                                        <property name="dataType">string</property>
                                         <property name="allowExport">true</property>
                                     </structure>
                                 </list-property>
@@ -3239,7 +3264,7 @@ www.geoscapeltd.com | admin@geoscapeltd.com</div>]]></text-property>
                                             <property name="borderLeftWidth">thin</property>
                                             <text id="61">
                                                 <property name="contentType">html</property>
-                                                <text-property name="content"><![CDATA[0% DISCOUNT]]></text-property>
+                                                <text-property name="content"><![CDATA[<value-of format="HTML">parseInt(row._outer["discount"])</value-of>% DISCOUNT]]></text-property>
                                             </text>
                                         </cell>
                                         <cell id="59">
@@ -3249,6 +3274,15 @@ www.geoscapeltd.com | admin@geoscapeltd.com</div>]]></text-property>
                                             <property name="borderRightColor">#63666A</property>
                                             <property name="borderRightStyle">solid</property>
                                             <property name="borderRightWidth">thin</property>
+                                            <data id="4553">
+                                                <property name="fontWeight">bold</property>
+                                                <property name="marginRight">5pt</property>
+                                                <structure name="numberFormat">
+                                                    <property name="category">Fixed</property>
+                                                    <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                                </structure>
+                                                <property name="resultSetColumn">discountValue</property>
+                                            </data>
                                         </cell>
                                     </row>
                                     <row id="70">
@@ -3278,6 +3312,16 @@ www.geoscapeltd.com | admin@geoscapeltd.com</div>]]></text-property>
                                             <property name="borderRightColor">#63666A</property>
                                             <property name="borderRightStyle">solid</property>
                                             <property name="borderRightWidth">thin</property>
+                                            <data id="4554">
+                                                <property name="fontSize">8pt</property>
+                                                <property name="fontWeight">bold</property>
+                                                <property name="marginRight">5pt</property>
+                                                <structure name="numberFormat">
+                                                    <property name="category">Fixed</property>
+                                                    <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                                </structure>
+                                                <property name="resultSetColumn">totalValue</property>
+                                            </data>
                                         </cell>
                                     </row>
                                     <row id="63">
@@ -3307,6 +3351,12 @@ www.geoscapeltd.com | admin@geoscapeltd.com</div>]]></text-property>
                                             <property name="borderRightColor">#63666A</property>
                                             <property name="borderRightStyle">solid</property>
                                             <property name="borderRightWidth">thin</property>
+                                            <text id="4556">
+                                                <property name="marginRight">5pt</property>
+                                                <property name="contentType">html</property>
+                                                <text-property name="content"><![CDATA[<value-of format="HTML">row._outer["code"]</value-of>
+<value-of format="HTML">if(row._outer["decimalHTML"]==""){"";}else{" (" + row._outer["decimalHTML"] +")";}</value-of>]]></text-property>
+                                            </text>
                                         </cell>
                                     </row>
                                     <row id="79">
@@ -3341,6 +3391,12 @@ www.geoscapeltd.com | admin@geoscapeltd.com</div>]]></text-property>
                                     <row id="86">
                                         <property name="fontSize">7pt</property>
                                         <property name="fontWeight">normal</property>
+                                        <list-property name="visibility">
+                                            <structure>
+                                                <property name="format">all</property>
+                                                <expression name="valueExpr" type="javascript">parseInt(row._outer["noofinstallments"])&lt;=0 || row._outer["noofinstallments"]==null ||row._outer["noofinstallments"]==NaN</expression>
+                                            </structure>
+                                        </list-property>
                                         <cell id="87"/>
                                         <cell id="88"/>
                                         <cell id="89"/>
@@ -3350,15 +3406,22 @@ www.geoscapeltd.com | admin@geoscapeltd.com</div>]]></text-property>
                                             <property name="borderLeftColor">#63666A</property>
                                             <property name="borderLeftStyle">solid</property>
                                             <property name="borderLeftWidth">thin</property>
-                                            <text id="94">
-                                                <property name="contentType">html</property>
-                                                <text-property name="content"><![CDATA[INITIAL PAYMENT AMOUNT(100%)]]></text-property>
-                                            </text>
+                                            <data id="4558">
+                                                <property name="resultSetColumn">initialPmtTxt</property>
+                                            </data>
                                         </cell>
                                         <cell id="92">
                                             <property name="borderRightColor">#63666A</property>
                                             <property name="borderRightStyle">solid</property>
                                             <property name="borderRightWidth">thin</property>
+                                            <data id="4557">
+                                                <property name="marginRight">5pt</property>
+                                                <structure name="numberFormat">
+                                                    <property name="category">Currency</property>
+                                                    <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                                </structure>
+                                                <property name="resultSetColumn">initialPmt</property>
+                                            </data>
                                         </cell>
                                     </row>
                                 </footer>
@@ -3819,6 +3882,9 @@ www.geoscapeltd.com | admin@geoscapeltd.com</div>]]></text-property>
                                     <cell id="434">
                                         <property name="colSpan">2</property>
                                         <property name="rowSpan">1</property>
+                                        <data id="4551">
+                                            <property name="resultSetColumn">discount</property>
+                                        </data>
                                     </cell>
                                 </row>
                             </grid>
